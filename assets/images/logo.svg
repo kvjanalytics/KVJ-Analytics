@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100">
+  <defs>
+    <style>
+      .cls-1 { font-size: 48px; fill: #1a3a6c; font-weight: 800; font-family: 'Outfit', 'Inter', sans-serif; }
+      .cls-2 { font-size: 48px; fill: #1a3a6c; font-weight: 400; font-family: 'Outfit', 'Inter', sans-serif; }
+      .node { stroke-width: 2; stroke: #555; fill: none; }
+      .circle-orange { fill: #f39c12; }
+      .circle-green { fill: #2c5e1a; }
+      .circle-red { fill: #c0392b; }
+      .circle-blue { fill: #1a3a6c; }
+    </style>
+  </defs>
+  <!-- Text -->
+  <text x="10" y="70" class="cls-1">KVJ</text>
+  <text x="115" y="70" class="cls-2">Analytics</text>
+  
+  <!-- Graph above 'Analytics' -->
+  <g transform="translate(180, 10)">
+    <!-- Connecting Lines -->
+    <path d="M 50 35 L 85 15 L 120 40 L 155 10" stroke="#555" stroke-width="1.5" fill="none" />
+    
+    <!-- Nodes -->
+    <circle cx="50" cy="35" r="7" class="circle-orange" />
+    <circle cx="85" cy="15" r="7" class="circle-green" />
+    <circle cx="120" cy="40" r="7" class="circle-red" />
+    <circle cx="155" cy="10" r="7" class="circle-blue" />
+  </g>
+</svg>
