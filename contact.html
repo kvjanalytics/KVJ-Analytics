@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - KVJ Analytics</title>
+    <meta name="description"
+        content="Get in touch with KVJ Analytics for a free consultation on data analytics, visualization, and report automation.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+        }
+
+        .contact-info-card {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-method i {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-family: inherit;
+            transition: all var(--transition-fast);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.svg" alt="KVJ Analytics Logo"
+                    style="height: 50px; width: auto; max-width: 250px;">
+            </a>
+            <button class="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="training.html">Training</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html" class="active btn btn-primary"
+                    style="padding: 0.5rem 1.2rem; margin-left: 1rem;">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title text-gradient">Contact Us</h1>
+            <p class="page-subtitle">Have a project or want to learn data analytics? Get in touch with us.</p>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+
+            <div class="contact-grid">
+
+                <!-- Contact Information -->
+                <div class="contact-info-card">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: white;">Contact Information</h3>
+
+                    <div class="contact-method">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <span style="display: block; font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.2rem;">Email
+                                Us</span>
+                            <a href="mailto:info@kvjanalytics.in"
+                                style="color: white; font-weight: 500; font-size: 1.1rem; text-decoration: none;">info@kvjanalytics.in</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <span style="display: block; font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.2rem;">Call
+                                Us</span>
+                            <a href="tel:+919961813730"
+                                style="color: white; font-weight: 500; font-size: 1.1rem; text-decoration: none;">9961813730</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <span style="display: block; font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.2rem;">Visit
+                                Us</span>
+                            <span style="color: white; font-weight: 500; font-size: 1.1rem;">3rd Floor, Lalan
+                                Towers,<br>Banerji Road, High Court jn.,<br>Cochin-682 031</span>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top: 3rem; margin-bottom: 1rem; font-size: 1.2rem; color: white;">Follow Us</h4>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#"
+                            style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: background 0.3s ease;"><i
+                                class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"
+                            style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: background 0.3s ease;"><i
+                                class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Send Us a Message</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Fill out the form below and our team will
+                        get back to you within 24 hours.</p>
+
+                    <form id="contact-form" action="https://formsubmit.co/ajax/ajay.thestrategist@gmail.com"
+                        method="POST">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-control"
+                                placeholder="e.g. Jomon Joseph" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="e.g. info@kvjanalytics.in" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-control"
+                                placeholder="e.g. 9961813730">
+                        </div>
+                        <div class="form-group">
+                            <label for="service" class="form-label">Service Interested In</label>
+                            <select id="service" name="service" class="form-control" required>
+                                <option value="" disabled selected>Select a Service</option>
+                                <option value="analytics">Data Analytics & Visualizations</option>
+                                <option value="spreadsheet">Spreadsheet Consulting</option>
+                                <option value="financial">Financial Analytics & Modeling</option>
+                                <option value="training">Industry Oriented Training</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea id="message" name="message" class="form-control"
+                                placeholder="How can we help you?" required></textarea>
+                        </div>
+
+                        <input type="hidden" name="_subject" value="New Website Inquiry (KVJ Analytics)">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+
+                        <button type="submit" id="submit-btn" class="btn btn-primary"
+                            style="width: 100%; padding: 1rem; font-size: 1.1rem;">SendMessage</button>
+
+                        <div id="form-result"
+                            style="margin-top: 1.5rem; display: none; padding: 1rem; border-radius: 8px; text-align: center; font-weight: 500;">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.svg" alt="KVJ Analytics Logo"
+                            style="height: 50px; width: auto; max-width: 250px;">
+                    </a>
+                    <p>Turning Data Into Decisions. Smart Data. Smarter Business.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="training.html">Training</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">Data Analytics</a></li>
+                        <li><a href="services.html">Data Visualization</a></li>
+                        <li><a href="services.html">Report Automation</a></li>
+                        <li><a href="services.html">Data Consulting</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Training</h4>
+                    <ul>
+                        <li><a href="training.html">College Programs</a></li>
+                        <li><a href="training.html">Professional Courses</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 KVJ Analytics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Basic simulation of form submission
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...';
+            btn.style.opacity = '0.8';
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent Successfully!';
+                btn.style.background = '#10B981'; /* Success Green */
+                this.reset();
+
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = ''; // Reverts to default Primary gradient
+                    btn.style.opacity = '1';
+                }, 3000);
+            }, 1500);
+        });
+    </script>
+</body>
+
+</html>

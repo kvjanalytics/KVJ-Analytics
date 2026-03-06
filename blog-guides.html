@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beginner Guide to Power BI - KVJ Analytics Blog</title>
+    <meta name="description"
+        content="A comprehensive starter kit to getting your first dashboard running quickly using Microsoft's flagship tool.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .blog-header {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-image: url('assets/images/blog_guides_1772773366850.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.7);
+        }
+
+        .blog-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent-primary);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content {
+            max-width: 800px;
+            margin: -5rem auto 4rem;
+            background: white;
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            z-index: 2;
+        }
+
+        .blog-content h2 {
+            font-size: 2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .blog-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content ul {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+
+        .blog-content li {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .infographic-placeholder {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .blog-content {
+                padding: 2rem;
+                margin-top: -2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.svg" alt="KVJ Analytics Logo" style="height: 50px; width: auto; max-width: 250px;">
+            </a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="training.html">Training</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="contact.html" class="btn btn-primary" style="padding: 0.5rem 1.2rem; margin-left: 1rem;">Get
+                    Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="blog-header">
+        <div class="blog-header-content">
+            <span class="blog-category">Guides</span>
+            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Beginner Guide to Power BI</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Master the basics of Microsoft's flagship BI tool.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="blog-content">
+            <p>Microsoft Power BI is incredibly approachable for beginners but houses immense complexity under the hood
+                for advanced users. Getting started can feel overwhelming, but this guide will break down the essential
+                first steps.</p>
+
+            <h2>Phase 1: Get Data (Power Query)</h2>
+            <p>The first step in any Power BI project is importing your data. Power BI connects to hundreds of sources
+                (Excel, SQL Servers, Salesforce, Web APIs). When you hit the "Get Data" button, you enter the realm of
+                Power Query.</p>
+            <p>Power Query is where the magic happens. Here, you clean and transform your data—removing null values,
+                splitting columns, and changing data types. The best part? Power Query records all these steps, so the
+                next time your data updates, it automatically applies the same cleaning processes.</p>
+
+            <img src="assets/images/blog_guides_1772773366850.png"
+                alt="Power BI Quick Start Guide" class="infographic-placeholder">
+
+            <h2>Phase 2: Data Modeling</h2>
+            <p>Once your tables are clean, you need to tell Power BI how they relate to each other. This is done in the
+                "Model View". A common structure is the Star Schema, where a central "Fact Table" (e.g., Sales Data) is
+                surrounded by "Dimension Tables" (e.g., Dates, Products, Customers).</p>
+
+            <h2>Phase 3: DAX (Data Analysis Expressions)</h2>
+            <p>DAX is the formula language of Power BI. While basic aggregation (Sums, Averages) works out of the box,
+                DAX allows you to create complex calculations, like Year-Over-Year Growth or rolling 30-day averages.
+            </p>
+
+            <h2>Phase 4: Creating the Visuals</h2>
+            <p>Once your model is built and calculations are ready, you finally move to the reporting canvas. Here you
+                drag and drop fields into charts, graphs, and matrices. The key to good dashboard design in this phase
+                is restraint: keep it simple, clear, and actionable.</p>
+
+            <div
+                style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center;">
+                <a href="blog.html" style="color: var(--accent-primary); font-weight: 600;"><i
+                        class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+            </div>
+        </article>
+    </main>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
