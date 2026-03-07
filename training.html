@@ -169,36 +169,40 @@
                     const extensions = ['png', 'jpg', 'jpeg', 'webp'];
 
                     async function checkImage(folder, index) {
-                        for (let ext of extensions) {
+                        // We check all extensions in parallel for this index
+                        const results = await Promise.all(extensions.map(async (ext) => {
+                            const src = `assets/Photos/${folder}/${index}.${ext}`;
                             try {
-                                const src = `assets/Photos/${folder}/${index}.${ext}`;
-                                const img = new Image();
-                                await new Promise((resolve, reject) => {
-                                    img.onload = resolve;
-                                    img.onerror = reject;
-                                    img.src = src;
-                                });
-                                return src;
-                            } catch (e) {
-                                continue;
-                            }
-                        }
-                        throw new Error('Not found');
+                                const response = await fetch(src, { method: 'HEAD' });
+                                if (response.ok) return src;
+                            } catch (e) { }
+                            return null;
+                        }));
+                        return results.find(r => r !== null);
                     }
 
                     async function loadPhotos(folder, trackElement) {
-                        let hasMoreImages = true;
-                        let currentIndex = 1;
                         let loadedImages = [];
+                        let batchSize = 10;
+                        let start = 1;
+                        let sectionFinished = false;
 
-                        // 1. Fetch all available images
-                        while (hasMoreImages) {
-                            try {
-                                const src = await checkImage(folder, currentIndex);
-                                loadedImages.push(src);
-                                currentIndex++;
-                            } catch (e) {
-                                hasMoreImages = false;
+                        // Fetch in parallel batches of 10 for maximum speed
+                        while (!sectionFinished) {
+                            const batchProms = [];
+                            for (let i = 0; i < batchSize; i++) {
+                                batchProms.push(checkImage(folder, start + i));
+                            }
+
+                            const results = await Promise.all(batchProms);
+                            const validOnes = results.filter(r => r !== null);
+                            loadedImages = loadedImages.concat(validOnes);
+
+                            // If we didn't find a full batch, or found holes, we stop
+                            if (validOnes.length < batchSize) {
+                                sectionFinished = true;
+                            } else {
+                                start += batchSize;
                             }
                         }
 
@@ -222,6 +226,9 @@
                                 img.style.boxShadow = 'var(--glass-shadow)';
                                 img.style.objectFit = 'cover';
                                 img.style.flexShrink = '0';
+                                img.style.opacity = '0';
+                                img.style.transition = 'opacity 0.6s ease';
+                                img.onload = () => img.style.opacity = '1';
                                 trackElement.appendChild(img);
                             });
                         } else {
