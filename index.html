@@ -245,34 +245,47 @@
                 const extensions = ['png', 'jpg', 'jpeg', 'webp'];
 
                 async function checkImage(index) {
-                    for (let ext of extensions) {
-                        try {
+                    return new Promise((resolve) => {
+                        let found = false;
+                        let processed = 0;
+                        extensions.forEach(ext => {
                             const src = `assets/Logos/${index}.${ext}`;
                             const img = new Image();
-                            await new Promise((resolve, reject) => {
-                                img.onload = resolve;
-                                img.onerror = reject;
-                                img.src = src;
-                            });
-                            return src;
-                        } catch (e) {
-                            continue;
-                        }
-                    }
-                    throw new Error('Not found');
+                            img.onload = () => {
+                                if (!found) {
+                                    found = true;
+                                    resolve(src);
+                                }
+                            };
+                            img.onerror = () => {
+                                processed++;
+                                if (processed === extensions.length && !found) {
+                                    resolve(null);
+                                }
+                            };
+                            img.src = src;
+                        });
+                    });
                 }
 
                 async function loadLogos() {
-                    let hasMoreImages = true;
-                    const loadedImages = [];
+                    let loadedImages = [];
+                    let batchSize = 10;
+                    let start = 1;
+                    let sectionFinished = false;
 
-                    while (hasMoreImages) {
-                        try {
-                            const src = await checkImage(currentIndex);
-                            loadedImages.push(src);
-                            currentIndex++;
-                        } catch (e) {
-                            hasMoreImages = false;
+                    while (!sectionFinished) {
+                        const batchProms = [];
+                        for (let i = 0; i < batchSize; i++) {
+                            batchProms.push(checkImage(start + i));
+                        }
+                        const results = await Promise.all(batchProms);
+                        const validOnes = results.filter(r => r !== null);
+                        loadedImages = loadedImages.concat(validOnes);
+                        if (validOnes.length < batchSize) {
+                            sectionFinished = true;
+                        } else {
+                            start += batchSize;
                         }
                     }
 
@@ -283,7 +296,7 @@
                             div.className = 'ticker-item';
                             // Remove text styling if using images
                             div.style.filter = 'none';
-                            div.innerHTML = `<img src="${src}" alt="Client Logo" style="height: 50px; width: auto; max-width: 180px; object-fit: contain; filter: grayscale(1); transition: filter 0.3s;" onmouseover="this.style.filter='grayscale(0)'" onmouseout="this.style.filter='grayscale(1)'">`;
+                            div.innerHTML = `<img src="${src}" alt="Client Logo" style="height: 50px; width: auto; max-width: 180px; object-fit: contain; filter: grayscale(1); transition: filter 0.3s, opacity 0.6s; opacity: 0;" onmouseover="this.style.filter='grayscale(0)'" onmouseout="this.style.filter='grayscale(1)'" onload="this.style.opacity='1'">`;
                             fragment.appendChild(div);
                         });
                         track.appendChild(fragment);
