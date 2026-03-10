@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Excel 365 Expert | MO-211 Certification & Strategy - KVJ Analytics Blog</title>
+    <meta name="description"
+        content="Master Advanced Excel 365 formulas. Official guide for MO-211 Expert Certification. Tutorials for XLOOKUP, FILTER, and Power Query.">
+    <meta name="keywords"
+        content="Advanced Excel Course, MO-211 Exam Prep, Microsoft Excel Expert, Excel Mock Exam, XLOOKUP, Data Analytics Training">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .blog-header {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-image: url('assets/images/proctrix_excel_exam.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.7);
+        }
+
+        .blog-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent-secondary);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content {
+            max-width: 800px;
+            margin: -5rem auto 4rem;
+            background: white;
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            z-index: 2;
+        }
+
+        .blog-content h2 {
+            font-size: 2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .blog-content h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .blog-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Specific styles for this blog based on user's HTML */
+        .cert-showcase {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .formula-box {
+            background: #f8fafc;
+            border-left: 5px solid var(--accent-primary);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+        }
+
+        .formula-box code {
+            display: block;
+            background: #e2e8f0;
+            color: #ef4444;
+            /* Brighter, more visible red */
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            /* font-family: 'Courier New', monospace; */
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .final-cta {
+            background: #0f172a;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 12px;
+            margin-top: 4rem;
+        }
+
+        .final-cta h2 {
+            color: white !important;
+            margin-top: 0;
+        }
+
+        .final-cta p {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-size: 1.2rem;
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, var(--accent-secondary), #10b981);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            display: inline-block;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            color: white;
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.6);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            text-align: left;
+        }
+
+        .contact-grid h4 {
+            color: var(--accent-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-grid p {
+            margin-bottom: 0 !important;
+            font-size: 0.95rem !important;
+        }
+
+        @media (max-width: 768px) {
+            .blog-content {
+                padding: 2rem;
+                margin-top: -2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/KVJ%20analytics%20Logo.png" alt="KVJ Analytics Logo"
+                    style="height: 50px; width: auto; max-width: 250px;">
+            </a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="training.html">Training</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="contact.html" class="btn btn-primary" style="padding: 0.5rem 1.2rem; margin-left: 1rem;">Get
+                    Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="blog-header">
+        <div class="blog-header-content">
+            <span class="blog-category">Data Strategy & Mastery</span>
+            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Advanced Excel 365:<br>The Expert Framework</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Professional Certification Roadmap for Modern Data Analysts</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="blog-content">
+            <div class="cert-showcase">
+                <h3>Globally Recognized Excellence</h3>
+                <p>Validated Microsoft Office Specialist: Excel Expert Certification</p>
+            </div>
+
+            <p style="font-size: 1.25rem;">
+                In today's landscape, Excel is the core engine of organizational intelligence. Mastering the
+                <strong>MO-211 Expert Curriculum</strong> is the definitive step toward becoming industry-ready. This
+                guide details the high-impact formulas required for strategic report automation.
+            </p>
+
+            <h2>Strategic Retrieval: XLOOKUP</h2>
+            <p>The successor to VLOOKUP, offering native error handling and bidirectional search. It is the gold
+                standard for lookup data using functions in Excel 365.</p>
+
+            <div class="formula-box">
+                <code>=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found])</code>
+                <p><strong>Professional Use:</strong> Extracting dynamic data from cross-workbook references without
+                    breaking the source table structure.</p>
+            </div>
+
+            <h2>The Power of Dynamic Arrays</h2>
+            <p>Modern data strategy leverages <strong>FILTER</strong> and <strong>SORT</strong> to eliminate manual
+                processing. These functions "spill" results, creating auto-updating dashboards.</p>
+
+            <div class="formula-box">
+                <code>=FILTER(array, include, [if_empty])</code>
+                <p><strong>Professional Use:</strong> Generating real-time exception reports for high-priority
+                    transaction monitoring.</p>
+            </div>
+
+            <h2>Multi-Condition Logic</h2>
+            <p>Perform complex logical operations by using nested functions. Mastery of <strong>SUMIFS</strong> and
+                <strong>MAXIFS</strong> constitutes 30% of the MO-211 exam weightage.
+            </p>
+
+            <div class="formula-box">
+                <code>=SUMIFS(sum_range, criteria_range1, criteria1, ...)</code>
+                <p><strong>Professional Use:</strong> Granular revenue analysis across multiple regions, product tiers,
+                    and timeframes simultaneously.</p>
+            </div>
+
+            <h2>Numerical Engineering: MROUND</h2>
+            <p>Industry readiness requires precision. <strong>MROUND</strong> ensures your data aligns with real-world
+                constraints like logistics, shipping multiples, or financial tiers.</p>
+
+            <div class="formula-box">
+                <code>=MROUND(number, multiple)</code>
+                <p><strong>Professional Use:</strong> Aligning inventory orders with standard pallet sizes or rounding
+                    currency for precise financial forecasting.</p>
+            </div>
+
+            <section class="final-cta">
+                <h2>Become a Certified Strategist</h2>
+                <p>
+                    Our Advanced Microsoft Excel course bridges the gap between basic usage and professional mastery.
+                    Before attending the final Microsoft exam, clear our rigorous <strong>Mock Exam</strong> to ensure
+                    your success.
+                </p>
+
+                <a href="https://www.kvjanalytics.in" target="_blank" class="btn-premium">Access Course & Mock Exam</a>
+
+                <div class="contact-grid">
+                    <div style="border-left: 2px solid var(--accent-secondary); padding-left: 15px;">
+                        <h4>Contact Training</h4>
+                        <p>Phone: 9961813730</p>
+                    </div>
+                    <div style="border-left: 2px solid var(--accent-secondary); padding-left: 15px;">
+                        <h4>Email Support</h4>
+                        <p>info@kvjanalytics.in</p>
+                    </div>
+                    <div style="border-left: 2px solid var(--accent-secondary); padding-left: 15px;">
+                        <h4>Web Portal</h4>
+                        <p>www.kvjanalytics.in</p>
+                    </div>
+                </div>
+            </section>
+
+            <div
+                style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center;">
+                <a href="blog.html" style="color: var(--accent-primary); font-weight: 600;"><i
+                        class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 KVJ Analytics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
