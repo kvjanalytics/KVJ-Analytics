@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Expert Certification</title>
+    <style>
+        :root {
+            --primary: #122a42;
+            --accent: #00d285;
+            --lp-blue: #3498db;
+            --lp-orange: #e67e22;
+            --lp-green: #2ecc71;
+            --lp-purple: #9b59b6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            background-color: #f0f4f8;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(10, 25, 41, 0.9), rgba(10, 25, 41, 0.9)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            border-bottom: 5px solid var(--accent);
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin: 10px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: -60px auto 50px;
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            font-size: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .large-heading {
+            font-size: 32px;
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* Learning Path Modified Colors */
+        .path-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .path-card {
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .path-card.c1 {
+            background: var(--lp-blue);
+        }
+
+        .path-card.c2 {
+            background: var(--lp-orange);
+        }
+
+        .path-card.c3 {
+            background: var(--lp-green);
+        }
+
+        .path-card.c4 {
+            background: var(--lp-purple);
+        }
+
+        .path-card h4 {
+            font-size: 24px;
+            margin: 0 0 10px 0;
+        }
+
+        .path-card p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .grid-1x2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .info-box {
+            background: #f8fafc;
+            padding: 35px;
+            border-radius: 18px;
+            border-top: 6px solid var(--accent);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-box ul {
+            padding-left: 20px;
+        }
+
+        .info-box li {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 1000;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="training.html" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Training
+    </a>
+    <div class="hero">
+        <span
+            style="background: var(--accent); padding: 5px 15px; border-radius: 50px; font-weight: bold; text-transform: uppercase; font-size: 12px;">Expert
+            Level</span>
+        <h1>Advanced Excel Certification</h1>
+        <p>Uncover hidden growth opportunities and stay competitive in the digital age with our specialized Excel
+            Training.</p>
+    </div>
+
+    <div class="container">
+        <div class="grid-1x2">
+            <div class="info-box">
+                <h2 class="large-heading">Course Objective</h2>
+                <ul>
+                    <li>Develop proficiency in Microsoft Excel Expert (365 Apps) by mastering essential features.</li>
+                    <li>Enhance productivity by efficiently managing worksheets, workbooks, tables, and data.</li>
+                    <li>Equip learners with the ability to perform complex calculations using formulas and functions.
+                    </li>
+                    <li>Enable users to create, format, and analyse data using charts and tables.</li>
+                    <li>Prepare participants for the Microsoft Excel Expert (Microsoft 365 Apps) exam.</li>
+                </ul>
+            </div>
+            <div class="info-box" style="border-top-color: #667eea;">
+                <h2 class="large-heading">Course Outcome</h2>
+                <ul>
+                    <li>Make the participants industry ready.</li>
+                    <li>Apply advanced formatting and data manipulation techniques to cells and ranges.</li>
+                    <li>Create, format, and manage tables for data organization.</li>
+                    <li>Utilize formulas and functions to perform calculations and data analysis.</li>
+                    <li>Generate and customize charts to visualize data effectively.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title">Professional Learning Path</h2>
+        <div class="path-grid">
+            <div class="path-card c1">
+                <h4>Beginner</h4>
+                <p>Starting from scratch to build a strong foundation.</p>
+            </div>
+            <div class="path-card c2">
+                <h4>Intermediate</h4>
+                <p>Focusing on validation, logic, and troubleshooting.</p>
+            </div>
+            <div class="path-card c3">
+                <h4>Advanced</h4>
+                <p>Mastering Power Query, Macros, and Automation.</p>
+            </div>
+            <div class="path-card c4">
+                <h4>Case Studies</h4>
+                <p>Real-world business scenarios in every module.</p>
+            </div>
+        </div>
+        <div
+            style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; background: #fff; padding: 40px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee;">
+            <div class="cert-info">
+                <h2 class="large-heading">Global Certification Options</h2>
+                <p style="color: #666;">Choose the credential that fits your career goals:</p>
+
+                <div style="display: flex; gap: 15px; margin-bottom: 30px;">
+                    <div
+                        style="background: #eef2ff; padding: 20px; border-radius: 12px; flex: 1; border: 1px solid #c7d2fe; text-align: center;">
+                        <strong style="color: #4338ca; display: block; font-size: 18px;">Company Certificate</strong>
+                    </div>
+                    <div
+                        style="background: #ecfdf5; padding: 20px; border-radius: 12px; flex: 1; border: 1px solid #6ee7b7; text-align: center;">
+                        <strong style="color: #047857; display: block; font-size: 18px;">Microsoft Excel Expert</strong>
+                    </div>
+                </div>
+
+                <div style="background: var(--primary); color: white; padding: 30px; border-radius: 20px;">
+                    <h4 style="margin-top: 0; color: var(--accent); font-size: 22px;">Platform Benefits</h4>
+                    <ul style="list-style: none; padding: 0; font-size: 16px;">
+                        <li style="margin-bottom: 12px;">✅ <strong>Weekly Work:</strong> Via Proctrix (1 Year)</li>
+                        <li style="margin-bottom: 12px;">✅ <strong>Unlimited Practice:</strong> 3 Microsoft Mock Tests
+                        </li>
+                        <li>✅ <strong>Life-time Access:</strong> Full Session Video Recordings</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <img src="https://1drv.ms/i/c/9302007939DA05D8/IQRYi147fwQiQ6D5wIfc410WAcKx7U2YP6XB92EVkXYB-E4?width=2218&height=1712"
+                    style="width: 100%; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+                <p style="margin-top: 15px; color: #999; font-style: italic;">Official Microsoft Excel Expert Sample</p>
+            </div>
+        </div>
+        <h2 class="section-title" style="margin-top: 60px;">Complete Curriculum</h2>
+
+        <style>
+            .syllabus-item {
+                margin-bottom: 10px;
+                border-radius: 12px;
+                overflow: hidden;
+                border: 1px solid #e2e8f0;
+            }
+
+            summary {
+                padding: 18px;
+                background: #fff;
+                cursor: pointer;
+                font-weight: 600;
+                color: var(--primary);
+            }
+
+            .content {
+                padding: 20px;
+                background: #fafafa;
+                border-top: 1px solid #e2e8f0;
+            }
+
+            .content ul {
+                column-count: 2;
+                padding-left: 20px;
+                margin: 0;
+            }
+
+            .content li {
+                margin-bottom: 5px;
+                font-size: 14px;
+            }
+        </style>
+
+        <details class="syllabus-item">
+            <summary>Workbook Options & Settings</summary>
+            <div class="content">
+                <ul>
+                    <li>Manage workbooks</li>
+                    <li>Enable/Copy macros</li>
+                    <li>Manage workbook versions</li>
+                    <li>Protect worksheets/structure</li>
+                    <li>Formula calculation options</li>
+                </ul>
+            </div>
+        </details>
+        <details class="syllabus-item">
+            <summary>Manage and Format Data</summary>
+            <div class="content">
+                <ul>
+                    <li>Fill cells from existing data</li>
+                    <li>Format and validate data</li>
+                    <li>Configure data validation</li>
+                    <li>Group and ungroup data</li>
+                    <li>Remove duplicate records</li>
+                    <li>Advanced conditional formatting</li>
+                </ul>
+            </div>
+        </details>
+        <details class="syllabus-item">
+            <summary>Create Advanced Formulas</summary>
+            <div class="content">
+                <ul>
+                    <li>Perform logical operations</li>
+                    <li>Look up data using functions</li>
+                    <li>Troubleshoot formulas</li>
+                    <li>Advanced date and time functions</li>
+                    <li>Error checking rules</li>
+                    <li>Validate formulas</li>
+                </ul>
+            </div>
+        </details>
+        <details class="syllabus-item">
+            <summary>Create and Manage Macros</summary>
+            <div class="content">
+                <ul>
+                    <li>Create and modify simple macros</li>
+                    <li>Record, Name and Edit macros</li>
+                    <li>Automate repetitive tasks</li>
+                </ul>
+            </div>
+        </details>
+        <details class="syllabus-item">
+            <summary>Performance & Data Analysis</summary>
+            <div class="content">
+                <ul>
+                    <li>Consolidate feature</li>
+                    <li>Goal Seek & Scenario Manager</li>
+                    <li>What-if analysis</li>
+                </ul>
+            </div>
+        </details>
+        <details class="syllabus-item">
+            <summary>Advanced Charts and Tables</summary>
+            <div class="content">
+                <ul>
+                    <li>Dual-axis/Combo charts</li>
+                    <li>Box & Whisker, Funnel, Histogram</li>
+                    <li>Sunburst & Waterfall charts</li>
+                    <li>Create/Modify PivotTables</li>
+                    <li>Create/Modify PivotCharts</li>
+                </ul>
+            </div>
+        </details>
+        <details class="syllabus-item">
+            <summary>Advanced Tools & Automation</summary>
+            <div class="content">
+                <ul>
+                    <li>Data Consolidation and retrieval</li>
+                    <li>Power Query & Data Cleaning</li>
+                    <li>Power Pivot</li>
+                    <li>Dashboard & Report Automation</li>
+                    <li>AI in Excel and Copilot</li>
+                </ul>
+            </div>
+        </details>
+
+        <h2 class="section-title" style="margin-top: 60px;">Training Report</h2>
+        <div
+            style="position: relative; padding-bottom: 50%; height: 0; overflow: hidden; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 8px solid #fff;">
+            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                src="https://app.powerbi.com/view?r=eyJrIjoiNGNhYzE3OWYtOTIyMS00NjBmLTk3OGItYmE1ODYxYmZjMzZhIiwidCI6Ijg5YTM5YWRmLWUwNjYtNGJkNC1hMGE1LWEwYzcwYWNiZDczOSJ9&pageName=edd6fef202062e985c1e"
+                frameborder="0" allowFullScreen="true"></iframe>
+        </div>
+    </div>
+</body>
+
+</html>
