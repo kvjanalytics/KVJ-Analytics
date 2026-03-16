@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Module 4: Data Engineering | KVJ Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0f172a;
+            --secondary-blue: #3b82f6;
+            --bg-light: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --white: #ffffff;
+            --ai-accent: #10b981;
+            --amber: #f59e0b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            display: flex; 
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        /* Top Nav */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+        }
+
+        .kvj-logo-img { max-height: 35px; width: auto; }
+
+        .exit-btn {
+            background: #ef4444;
+            color: white;
+            padding: 8px 18px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        /* Header Banner */
+        .header-banner { 
+            background: var(--primary-blue); 
+            color: white; 
+            padding: 60px 20px; 
+            text-align: center;
+        }
+
+        .header-banner h1 { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px; 
+            font-weight: 900; 
+            text-transform: uppercase;
+        }
+
+        /* Layout Container */
+        .layout-container {
+            display: flex;
+            max-width: 1300px;
+            margin: 40px auto;
+            gap: 40px;
+            width: 95%;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 100px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            height: fit-content;
+        }
+
+        .sidebar a { 
+            display: flex; 
+            padding: 12px 15px; 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 500;
+            margin-bottom: 5px;
+            border-radius: 8px;
+        }
+
+        .sidebar a.active { 
+            color: var(--secondary-blue); 
+            font-weight: 700; 
+            background: #eff6ff; 
+            border-left: 4px solid var(--secondary-blue); 
+        }
+
+        /* Main Content Area */
+        .main-content { 
+            flex: 1;
+            background: #ffffff; 
+            border: 1px solid var(--border-color);
+            padding: 60px;
+            border-radius: 12px;
+        }
+
+        .section-header { margin-bottom: 30px; border-bottom: 3px solid var(--bg-light); padding-bottom: 15px; }
+        .section-header h2 { font-family: 'Montserrat', sans-serif; color: var(--primary-blue); font-size: 28px; font-weight: 800; }
+
+        p { margin-bottom: 25px; color: #334155; font-size: 17px; }
+        ul { margin-bottom: 25px; padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        /* AI Workspace: Data Modality Mixer */
+        .ai-workspace {
+            background: #0f172a;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #f8fafc;
+        }
+
+        .workspace-header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 30px; }
+        .workspace-title { color: #38bdf8; font-weight: 800; text-transform: uppercase; }
+
+        .modality-stage {
+            height: 200px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            margin-bottom: 30px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .data-stream {
+            width: 60px; height: 60px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 2px solid #38bdf8;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            transition: all 0.5s;
+        }
+
+        .active-modality {
+            border-color: var(--ai-accent);
+            background: rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            transform: scale(1.1);
+        }
+
+        .btn-mix {
+            background: var(--amber);
+            color: var(--primary-blue);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 13px; border-top: 1px solid var(--border-color); margin-top: 40px; }
+
+        @media (max-width: 992px) {
+            .layout-container { flex-direction: column; }
+            .sidebar { width: 100%; position: static; margin-bottom: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="ai_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+        <a href="ai_roadmap.html" class="exit-btn">EXIT MODULE</a>
+    </nav>
+
+    <header class="header-banner">
+        <h1>MODULE 4: DATA ENGINEERING & BIAS</h1>
+    </header>
+
+    <div class="layout-container">
+        <nav class="sidebar">
+            <a href="AI-Module-1.html">01 Foundations</a>
+            <a href="AI-Module-2.html">02 Problem & ML</a>
+            <a href="AI-Module-3.html">03 Ethics & Security</a>
+            <a href="AI-Module-4.html" class="active">04 Data Engineering</a>
+            <a href="AI-Module-5.html">02 Deep Learning</a>
+            <a href="AI-Module-6.html">06 Deployment</a>
+        </nav>
+
+        <main class="main-content">
+            <div class="section-header">
+                <h2>4.1 Data Modality</h2>
+            </div>
+            
+            <p>In AI, <strong>modality</strong> refers to the type of sensory information a model processes. Modern AI systems are moving from unimodal (one type) to multimodal (multiple types) capabilities.</p>
+
+            <h3>Types of Data Modality</h3>
+            <ul>
+                <li><strong>Text:</strong> Natural language data used in LLMs (GPT, BERT).</li>
+                <li><strong>Image:</strong> Visual data used in Computer Vision (Convolutional Neural Networks).</li>
+                <li><strong>Audio:</strong> Sound waves processed for Speech-to-Text and Music generation.</li>
+                <li><strong>Sensor:</strong> Structured numerical data from IoT devices, GPS, or medical equipment.</li>
+            </ul>
+
+            <div class="ai-workspace">
+                <div class="workspace-header">
+                    <div class="workspace-title">Intelligence Space: Modality Mixer</div>
+                </div>
+                
+                <div class="modality-stage">
+                    <div class="data-stream" id="mod-text">📝</div>
+                    <div class="data-stream" id="mod-img">🖼️</div>
+                    <div class="data-stream" id="mod-audio">🎧</div>
+                    <div class="data-stream" id="mod-sensor">📡</div>
+                </div>
+
+                <div class="logic-sandbox">
+                    <div class="sandbox-title">System State: <span id="mix-status">Unimodal (Text Only)</span></div>
+                    <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Activate multiple modalities to simulate a Multimodal AI system that can "see", "hear", and "read" simultaneously.</p>
+                    <button class="btn-mix" onclick="mix()">Sync Modalities</button>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>4.2 Data Quality & Bias</h2>
+            </div>
+
+            <p>The quality of your data directly determines the quality of your AI. "Garbage in, garbage out" is the golden rule of machine learning.</p>
+
+            <h3>Key Data Challenges</h3>
+            <ul>
+                <li><strong>Data Bias:</strong> When training data is not representative of the real population, leading to unfair predictions.</li>
+                <li><strong>Missing Values:</strong> Gaps in data that can skew statistical significance.</li>
+                <li><strong>Dirty Data:</strong> Incorrect, duplicate, or irrelevant entries that confuse the model.</li>
+            </ul>
+
+            <h3>Handling Bias</h3>
+            <p>Mitigating bias requires a multi-step approach: diverse data sourcing, algorithmic fairness checks, and continuous monitoring of model outputs across different demographic groups.</p>
+
+        </main>
+    </div>
+
+    <footer>
+        &copy; 2026 KVJ Analytics. All Rights Reserved.
+    </footer>
+
+    <script>
+        let isMixed = false;
+        function mix() {
+            const mods = ['mod-text', 'mod-img', 'mod-audio', 'mod-sensor'];
+            const status = document.getElementById('mix-status');
+            
+            if(!isMixed) {
+                mods.forEach(id => document.getElementById(id).classList.add('active-modality'));
+                status.innerText = 'Multimodal (Integrated Intelligence)';
+                status.style.color = '#10b981';
+                isMixed = true;
+            } else {
+                mods.forEach(id => document.getElementById(id).classList.remove('active-modality'));
+                document.getElementById('mod-text').classList.add('active-modality');
+                status.innerText = 'Unimodal (Text Only)';
+                status.style.color = '#38bdf8';
+                isMixed = false;
+            }
+        }
+        // Initialize with Text active
+        document.getElementById('mod-text').classList.add('active-modality');
+    </script>
+</body>
+</html>

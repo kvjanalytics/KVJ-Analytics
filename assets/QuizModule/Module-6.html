@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module 6: Built-in Modules | KVJ Analytics</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
             --primary-blue: #1e3a5f;
@@ -130,6 +133,23 @@
             color: var(--secondary-blue); 
             font-weight: 700;
         }
+        .static-output::before { content: "> Result: "; margin-right: 10px; opacity: 0.6; }
+
+        .live-output-box {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+            min-height: 40px;
+            white-space: pre-wrap;
+            display: none;
+        }
+        .live-output-box.active { display: block; }
 
         .quiz-cta {
             margin-top: 60px;
@@ -242,6 +262,40 @@
         }
         .coding-practice .btn-run:hover { background: #7dd3fc; transform: translateY(-2px); }
 
+        /* Visual Illustrations */
+        .illustration-container {
+            position: fixed;
+            right: 20px;
+            top: 200px;
+            width: 280px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        .illustration-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .illustration-card img { width: 80px; margin-bottom: 10px; }
+        .illustration-card span { display: block; font-weight: 800; color: var(--primary-blue); font-size: 14px; text-transform: uppercase; }
+
+        @media (max-width: 1600px) {
+            .illustration-container { display: none; }
+        }
+
         @media (max-width: 992px) {
             .layout-container { flex-direction: column; }
             .sidebar { width: 100%; position: static; margin-bottom: 30px; }
@@ -259,6 +313,21 @@
         <a href="roadmap.html" style="background:#dc2626; color:white; padding:8px 18px; border-radius:6px; text-decoration:none; font-size:12px; font-weight:700;">EXIT</a>
     </nav>
     <header class="header-banner"><h1>MODULE 6: BUILT-IN MODULES</h1></header>
+
+    <div class="illustration-container">
+        <div class="illustration-card" style="animation-delay: 0s;">
+            <img src="https://img.icons8.com/isometric/100/package.png" alt="Modules">
+            <span>Libraries</span>
+        </div>
+        <div class="illustration-card" style="animation-delay: 2s;">
+            <img src="https://img.icons8.com/isometric/100/calendar.png" alt="Time">
+            <span>DateTime</span>
+        </div>
+        <div class="illustration-card" style="animation-delay: 4s;">
+            <img src="https://img.icons8.com/isometric/100/dice.png" alt="Random">
+            <span>Randomizer</span>
+        </div>
+    </div>
     <div class="layout-container">
         <nav class="sidebar">
             <a href="Module-1.html">01 Foundation</a>
@@ -308,15 +377,15 @@
             <div class="interaction-box">
                 math.pi retrieves the value of π.
             </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which keyword is used to bring a module's code into your script?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-601" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(601, 'import')">Check Answer</button>
-                </div>
-                <div id="feedback-601" class="feedback"></div>
+            <!-- Coding Practice: import keyword -->
+            <div class="coding-practice">
+                <h3>Coding Practice: Import Keyword</h3>
+                <p><strong>Challenge:</strong> Write the code to <code>import math</code> and print <code>"Imported"</code>.</p>
+                <textarea id="coding-ans-import" placeholder="... math
+print('...')"></textarea>
+                <button class="btn-run" onclick="runSkulpt('import', 'Imported')">Run & Check</button>
+                <div id="coding-output-import" class="live-output-box"></div>
+                <div id="coding-feedback-import" class="feedback"></div>
             </div>
 
             <!-- Coding Practice 1 -->
@@ -325,11 +394,8 @@
                 <p><strong>Challenge:</strong> Import the <code>math</code> module and print the square root of 16 using <code>math.sqrt()</code>.</p>
                 <textarea id="coding-ans-1" placeholder="import ...
 print(...)"></textarea>
-                <button class="btn-run" onclick="checkCodingPractice(1, [
-                    {type: 'regex', value: 'import\\s+math', message: 'Import the math module'},
-                    {type: 'regex', value: 'math\\.sqrt\\s*\\(', message: 'Use math.sqrt()'},
-                    {type: 'regex', value: 'print\\s*\\([\\s\\S]*?\\)', message: 'Print the result'}
-                ])">Run & Check</button>
+                <button class="btn-run" onclick="runSkulpt(1, '4.0')">Run & Check</button>
+                <div id="coding-output-1" class="live-output-box"></div>
                 <div id="coding-feedback-1" class="feedback"></div>
             </div>
 
@@ -364,15 +430,15 @@ print(...)"></textarea>
             <div class="interaction-box">
                 getcwd() returns the current working directory where the program is running.
             </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which module provides functions to interact with the **Operating System**?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-602" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(602, 'os')">Check Answer</button>
-                </div>
-                <div id="feedback-602" class="feedback"></div>
+            <!-- Coding Practice: os module -->
+            <div class="coding-practice">
+                <h3>Coding Practice: OS Interaction</h3>
+                <p><strong>Challenge:</strong> Import <code>os</code> and print <code>"Checking"</code>.</p>
+                <textarea id="coding-ans-os" placeholder="import ...
+print('...')"></textarea>
+                <button class="btn-run" onclick="runSkulpt('os', 'Checking')">Run & Check</button>
+                <div id="coding-output-os" class="live-output-box"></div>
+                <div id="coding-feedback-os" class="feedback"></div>
             </div>
 
             <p><strong>List Files in a Directory Example:</strong></p>
@@ -457,15 +523,14 @@ file.close()
                 <li><strong>math.pow(2, 3)</strong> → returns 8.0 (Power)</li>
                 <li><strong>math.isnan(math.nan)</strong> → returns True (Checking NaN-Not a Number)</li>
             </ul>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which function in the <code>math</code> module is used to calculate the **square root**?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-603" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(603, 'sqrt()')">Check Answer</button>
-                </div>
-                <div id="feedback-603" class="feedback"></div>
+            <!-- Coding Practice: math function -->
+            <div class="coding-practice">
+                <h3>Coding Practice: Math Functions</h3>
+                <p><strong>Challenge:</strong> What is the math function for square root? Print just the name (e.g., <code>sqrt</code>).</p>
+                <textarea id="coding-ans-mathfunc" placeholder="print('...')"></textarea>
+                <button class="btn-run" onclick="runSkulpt('mathfunc', 'sqrt')">Run & Check</button>
+                <div id="coding-output-mathfunc" class="live-output-box"></div>
+                <div id="coding-feedback-mathfunc" class="feedback"></div>
             </div>
 
             <h3>The datetime Module</h3>
@@ -483,15 +548,15 @@ now = datetime.now()
                 datetime.now() returns the current system date and time.
             </div>
 
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which built-in Python module is primarily used to work with dates and time?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-1" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(1, 'datetime')">Check Answer</button>
-                </div>
-                <div id="feedback-1" class="feedback"></div>
+            <!-- Coding Practice: datetime -->
+            <div class="coding-practice">
+                <h3>Coding Practice: DateTime</h3>
+                <p><strong>Challenge:</strong> Import <code>datetime</code> and print <code>"Time Check"</code>.</p>
+                <textarea id="coding-ans-datetime" placeholder="from ... import ...
+print('...')"></textarea>
+                <button class="btn-run" onclick="runSkulpt('datetime', 'Time Check')">Run & Check</button>
+                <div id="coding-output-datetime" class="live-output-box"></div>
+                <div id="coding-feedback-datetime" class="feedback"></div>
             </div>
 
             <p><strong>Formatting Dates Example:</strong></p>
@@ -556,7 +621,7 @@ today = datetime.now().strftime(<span class="string">"%Y-%m-%d"</span>)
             <div class="quiz-cta">
                 <h3>Final Module Complete!</h3>
                 <p>Verify your understanding of Python libraries and the modular ecosystem.</p>
-                <a href="module_quiz.html?mod=6" class="btn-start-quiz">Start Module 6 Quiz &rarr;</a>
+                <a href="module_quiz.html?mod=6" class="btn-start-quiz">Start Module 6 Assessment &rarr;</a>
             </div>
         </main>
     </div>
@@ -565,57 +630,85 @@ today = datetime.now().strftime(<span class="string">"%Y-%m-%d"</span>)
         © 2026 KVJ Analytics | Professional Python Certification Path
     </footer>
     <script>
+        function triggerConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) { return clearInterval(interval); }
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
         function checkPracticeAnswer(id, correctAns) {
             const userAns = document.getElementById(`practice-ans-${id}`).value.trim().toLowerCase();
             const feedback = document.getElementById(`feedback-${id}`);
             
             if (userAns === correctAns.toLowerCase()) {
-                feedback.innerHTML = "✓ Correct! Well done.";
+                feedback.innerHTML = "Correct! Great job! 🎉";
                 feedback.className = "feedback correct";
+                triggerConfetti();
             } else {
-                feedback.innerHTML = "✗ Incorrect. Try again! Hint: It's the module imported in the example above.";
+                feedback.innerHTML = "✗ Incorrect. Try again!";
                 feedback.className = "feedback wrong";
             }
         }
 
-        function checkCodingPractice(id, requirements) {
-            const userCode = document.getElementById(`coding-ans-${id}`).value.trim();
+        function runSkulpt(id, expected) {
+            const prog = document.getElementById(`coding-ans-${id}`).value;
+            const outputDiv = document.getElementById(`coding-output-${id}`);
             const feedback = document.getElementById(`coding-feedback-${id}`);
-            const codeNoComments = userCode.replace(/#.*$/gm, '').trim();
             
-            let isCorrect = true;
-            let messages = [];
-            let captures = [];
+            outputDiv.innerHTML = "";
+            outputDiv.classList.add('active');
+            feedback.style.display = "none";
+            feedback.className = "feedback";
 
-            requirements.forEach(req => {
-                if (req.type === 'regex') {
-                    const regex = new RegExp(req.value, req.flags || '');
-                    const match = codeNoComments.match(regex);
-                    if (!match) {
-                        isCorrect = false;
-                        messages.push(req.message || "Incorrect logic");
-                    } else if (match) {
-                        for (let i = 1; i < match.length; i++) {
-                            captures.push(match[i]);
-                        }
-                    }
-                } else if (req.type === 'consistency') {
-                    const var1 = captures[req.variables[0]];
-                    const var2 = captures[req.variables[1]];
-                    if (var1 === undefined || var2 === undefined || var1 !== var2) {
-                        isCorrect = false;
-                        messages.push(req.message || "Variable inconsistency");
-                    }
-                }
+            let outputText = "";
+            
+            Sk.configure({
+                output: function(text) { outputText += text; },
+                read: function(x) {
+                    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                        throw "File not found: '" + x + "'";
+                    return Sk.builtinFiles["files"][x];
+                },
+                input: function() { return "Student"; }
             });
 
-            if (isCorrect) {
-                feedback.innerHTML = "✓ Correct! Module usage verified.";
-                feedback.className = "feedback correct";
-            } else {
-                feedback.innerHTML = "✗ Error: " + messages[0];
+            const myPromise = Sk.misceval.asyncToPromise(function() {
+                return Sk.importMainWithBody("<stdin>", false, prog, true);
+            });
+
+            myPromise.then(function(mod) {
+                outputDiv.innerText = outputText;
+                
+                const cleanOutput = outputText.trim().toLowerCase();
+                const cleanExpected = expected.toString().trim().toLowerCase();
+
+                if (cleanOutput.includes(cleanExpected)) {
+                    feedback.innerHTML = "Correct! Great job! 🎉";
+                    feedback.className = "feedback correct";
+                    triggerConfetti();
+                } else {
+                    feedback.innerHTML = `✗ Wrong! Expected result not found.`;
+                    feedback.className = "feedback wrong";
+                }
+                feedback.style.display = "block";
+            }, function(err) {
+                outputDiv.innerText = err.toString();
+                feedback.innerHTML = "✗ Syntax Error in your code!";
                 feedback.className = "feedback wrong";
-            }
+                feedback.style.display = "block";
+            });
         }
     </script>
 </body>

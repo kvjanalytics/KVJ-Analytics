@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Module 5: Deep Learning | KVJ Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0f172a;
+            --secondary-blue: #3b82f6;
+            --bg-light: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --white: #ffffff;
+            --ai-accent: #10b981;
+            --indigo: #6366f1;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            display: flex; 
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        /* Top Nav */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+        }
+
+        .kvj-logo-img { max-height: 35px; width: auto; }
+
+        .exit-btn {
+            background: #ef4444;
+            color: white;
+            padding: 8px 18px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        /* Header Banner */
+        .header-banner { 
+            background: var(--primary-blue); 
+            color: white; 
+            padding: 60px 20px; 
+            text-align: center;
+        }
+
+        .header-banner h1 { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px; 
+            font-weight: 900; 
+            text-transform: uppercase;
+        }
+
+        /* Layout Container */
+        .layout-container {
+            display: flex;
+            max-width: 1300px;
+            margin: 40px auto;
+            gap: 40px;
+            width: 95%;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 100px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            height: fit-content;
+        }
+
+        .sidebar a { 
+            display: flex; 
+            padding: 12px 15px; 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 500;
+            margin-bottom: 5px;
+            border-radius: 8px;
+        }
+
+        .sidebar a.active { 
+            color: var(--secondary-blue); 
+            font-weight: 700; 
+            background: #eff6ff; 
+            border-left: 4px solid var(--secondary-blue); 
+        }
+
+        /* Main Content Area */
+        .main-content { 
+            flex: 1;
+            background: #ffffff; 
+            border: 1px solid var(--border-color);
+            padding: 60px;
+            border-radius: 12px;
+        }
+
+        .section-header { margin-bottom: 30px; border-bottom: 3px solid var(--bg-light); padding-bottom: 15px; }
+        .section-header h2 { font-family: 'Montserrat', sans-serif; color: var(--primary-blue); font-size: 28px; font-weight: 800; }
+
+        p { margin-bottom: 25px; color: #334155; font-size: 17px; }
+        ul { margin-bottom: 25px; padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        /* AI Workspace: Neural Builder */
+        .ai-workspace {
+            background: #0f172a;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #f8fafc;
+        }
+
+        .workspace-header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 30px; }
+        .workspace-title { color: #38bdf8; font-weight: 800; text-transform: uppercase; }
+
+        .nn-stage {
+            height: 250px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            margin-bottom: 30px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .layer {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .neuron {
+            width: 25px; height: 25px;
+            background: rgba(56, 189, 248, 0.2);
+            border: 1px solid #38bdf8;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .neuron.active {
+            background: var(--ai-accent);
+            box-shadow: 0 0 15px var(--ai-accent);
+            transform: scale(1.2);
+        }
+
+        .btn-build {
+            background: var(--indigo);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 13px; border-top: 1px solid var(--border-color); margin-top: 40px; }
+
+        @media (max-width: 992px) {
+            .layout-container { flex-direction: column; }
+            .sidebar { width: 100%; position: static; margin-bottom: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="ai_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+        <a href="ai_roadmap.html" class="exit-btn">EXIT MODULE</a>
+    </nav>
+
+    <header class="header-banner">
+        <h1>MODULE 5: DEEP LEARNING & ALGORITHMS</h1>
+    </header>
+
+    <div class="layout-container">
+        <nav class="sidebar">
+            <a href="AI-Module-1.html">01 Foundations</a>
+            <a href="AI-Module-2.html">02 Problem & ML</a>
+            <a href="AI-Module-3.html">03 Ethics & Security</a>
+            <a href="AI-Module-4.html">04 Data Engineering</a>
+            <a href="AI-Module-5.html" class="active">05 Deep Learning</a>
+            <a href="AI-Module-6.html">06 Deployment</a>
+        </nav>
+
+        <main class="main-content">
+            <div class="section-header">
+                <h2>5.1 What is Deep Learning?</h2>
+            </div>
+            
+            <p><strong>Deep Learning</strong> is a subset of Machine Learning based on Artificial Neural Networks with representation learning. The "Deep" in deep learning refers to the number of layers through which the data is transformed.</p>
+
+            <h3>Neural Network Structure</h3>
+            <ul>
+                <li><strong>Input Layer:</strong> Receives raw data (pixels, text tokens, sensory readings).</li>
+                <li><strong>Hidden Layers:</strong> Performs mathematical transformations to identify complex features.</li>
+                <li><strong>Output Layer:</strong> Provides the final prediction or decision.</li>
+            </ul>
+
+            <div class="ai-workspace">
+                <div class="workspace-header">
+                    <div class="workspace-title">Intelligence Space: Neural Architecture</div>
+                </div>
+                
+                <div class="nn-stage" id="nn-stage">
+                    <div class="layer" id="layer-1">
+                        <div class="neuron"></div>
+                        <div class="neuron"></div>
+                        <div class="neuron"></div>
+                    </div>
+                    <div class="layer" id="layer-2">
+                        <div class="neuron"></div>
+                        <div class="neuron"></div>
+                        <div class="neuron"></div>
+                        <div class="neuron"></div>
+                    </div>
+                    <div class="layer" id="layer-3">
+                        <div class="neuron"></div>
+                    </div>
+                </div>
+
+                <div class="logic-sandbox">
+                    <div class="sandbox-title">System Status: <span id="nn-status">Idle (No weights initialized)</span></div>
+                    <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Trigger the forward pass to observe how data activates different pathways in the neural network.</p>
+                    <button class="btn-build" onclick="fireNN()">Execute Forward Pass</button>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>5.2 Key Algorithms</h2>
+            </div>
+
+            <p>Modern AI architectures are built on several foundational algorithms and structures:</p>
+
+            <ul>
+                <li><strong>Convolutional Neural Networks (CNN):</strong> Optimized for processing grid-like data (images).</li>
+                <li><strong>Recurrent Neural Networks (RNN):</strong> Specialized for sequential data (time-series, text).</li>
+                <li><strong>Transformers:</strong> The architecture behind LLMs, utilizing "Self-Attention" mechanisms to process data in parallel.</li>
+                <li><strong>Generative Adversarial Networks (GANs):</strong> Two networks competing to create realistic synthetic data.</li>
+            </ul>
+
+        </main>
+    </div>
+
+    <footer>
+        &copy; 2026 KVJ Analytics. All Rights Reserved.
+    </footer>
+
+    <script>
+        function fireNN() {
+            const neurons = document.querySelectorAll('.neuron');
+            const status = document.getElementById('nn-status');
+            
+            status.innerText = "Processing Data Flow...";
+            status.style.color = "#38bdf8";
+
+            neurons.forEach((n, i) => {
+                n.classList.remove('active');
+                setTimeout(() => {
+                    n.classList.add('active');
+                }, i * 100);
+            });
+
+            setTimeout(() => {
+                status.innerText = "Prediction Generated: Accuracy 99%";
+                status.style.color = "#10b981";
+            }, neurons.length * 100 + 500);
+        }
+    </script>
+</body>
+</html>
