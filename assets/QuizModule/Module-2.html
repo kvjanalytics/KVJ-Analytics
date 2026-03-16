@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module 2: Flow Control | KVJ Analytics</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
             --primary-blue: #1e3a5f;
@@ -203,7 +206,23 @@
             display: flex;
             align-items: center;
         }
-        .output-box::before { content: "> Result: "; margin-right: 10px; opacity: 0.6; }
+        .static-output::before { content: "> Result: "; margin-right: 10px; opacity: 0.6; }
+
+        .live-output-box {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+            min-height: 40px;
+            white-space: pre-wrap;
+            display: none;
+        }
+        .live-output-box.active { display: block; }
 
         /* Keywords */
         .keyword { color: #f472b6; }
@@ -328,6 +347,49 @@
         }
         .coding-practice .btn-run:hover { background: #7dd3fc; transform: translateY(-2px); }
 
+        /* Visual Illustrations */
+        .illustration-container {
+            position: fixed;
+            right: 20px;
+            top: 200px;
+            width: 280px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        .illustration-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .illustration-card img { width: 80px; margin-bottom: 10px; }
+        .illustration-card span { display: block; font-weight: 800; color: var(--primary-blue); font-size: 14px; text-transform: uppercase; }
+
+        .purpose-box {
+            background: #f0f9ff;
+            border-left: 5px solid #0ea5e9;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .purpose-box h4 { color: #0369a1; margin-bottom: 10px; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; }
+
+        @media (max-width: 1600px) {
+            .illustration-container { display: none; }
+        }
+
         @media (max-width: 992px) {
             .layout-container { flex-direction: column; }
             .sidebar { width: 100%; position: static; margin-bottom: 30px; }
@@ -346,6 +408,21 @@
     <header class="header-banner">
         <h1>MODULE 2: FLOW CONTROL</h1>
     </header>
+
+    <div class="illustration-container">
+        <div class="illustration-card" style="animation-delay: 0s;">
+            <img src="https://img.icons8.com/isometric/100/decision.png" alt="Decision">
+            <span>Branching</span>
+        </div>
+        <div class="illustration-card" style="animation-delay: 2s;">
+            <img src="https://img.icons8.com/isometric/100/recurring-appointment.png" alt="Loop">
+            <span>Iteration</span>
+        </div>
+        <div class="illustration-card" style="animation-delay: 4s;">
+            <img src="https://img.icons8.com/isometric/100/flow-chart.png" alt="Logic">
+            <span>Flow Control</span>
+        </div>
+    </div>
 
     <div class="layout-container">
         <nav class="sidebar">
@@ -400,7 +477,13 @@
             <p>Branching allows a program to choose different actions depending on conditions.</p>
 
             <h3>if Statement</h3>
-            <p>The if statement runs code only when the condition is True.</p>
+            <p>The <code>if</code> statement is the most basic form of decision making. It allows you to run a block of code <strong>only if</strong> a specific condition is True. If the condition is False, the code is skipped.</p>
+            
+            <div class="purpose-box">
+                <h4>Purpose</h4>
+                <p>Use the <code>if</code> statement when you want to perform an action based on a single condition, such as verifying a user's age or checking if a stock is available.</p>
+            </div>
+
             <p><strong>Example:</strong></p>
 <pre>
 profit = <span class="number">5000</span>
@@ -409,37 +492,27 @@ profit = <span class="number">5000</span>
 </pre>
             <p><strong>Output</strong></p>
             <div class="output-box">The business made a profit</div>
-            <div class="interaction-box">
-                The condition profit > 0 is True, so the statement inside the if block executes.
-            </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which keyword is used to start a decision-making statement in Python?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-201" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(201, 'if')">Check Answer</button>
-                </div>
-                <div id="feedback-201" class="feedback"></div>
-            </div>
-
-            <!-- Coding Practice 1 -->
+            
+            <!-- Coding Practice: if -->
             <div class="coding-practice">
-                <h3>Coding Practice: Decision Making</h3>
+                <h3>Coding Practice: Basic if</h3>
                 <p><strong>Challenge:</strong> Write a program that checks if a variable <code>price</code> is greater than 100. If it is, print <code>"Expensive"</code>.</p>
-                <textarea id="coding-ans-1" placeholder="price = 120
+                <textarea id="coding-ans-if" placeholder="price = 120
 if ... :
     print(...)"></textarea>
-                <button class="btn-run" onclick="checkCodingPractice(1, [
-                    {type: 'regex', value: '\\w+\\s*=\\s*\\d+', message: 'Assign a numeric value to a variable'},
-                    {type: 'regex', value: 'if\\s+\\w+\\s*>\\s*100\\s*:|if\\s+\\d+\\s*>\\s*100\\s*:', message: 'Check if the value is greater than 100'},
-                    {type: 'regex', value: 'print\\s*\\([\\s\\S]*?[Ee]xpensive[\\s\\S]*?\\)', message: 'Print &quot;Expensive&quot;'}
-                ])">Run &amp; Check</button>
-                <div id="coding-feedback-1" class="feedback"></div>
+                <button class="btn-run" onclick="runSkulpt('if', 'Expensive')">Run & Check</button>
+                <div id="coding-output-if" class="live-output-box"></div>
+                <div id="coding-feedback-if" class="feedback"></div>
             </div>
 
             <h3>if – else Statement</h3>
-            <p>Used when there are two possible outcomes.</p>
+            <p>The <code>if-else</code> statement provides two paths for the program. One path executes if the condition is True, and the <strong>other path</strong> (the else block) executes if the condition is False.</p>
+
+            <div class="purpose-box">
+                <h4>Purpose</h4>
+                <p>Use <code>if-else</code> when you have two mutually exclusive outcomes, like checking if a transaction is "Approved" or "Declined".</p>
+            </div>
+
             <p><strong>Example</strong></p>
 <pre>
 profit = <span class="number">-2000</span>
@@ -450,14 +523,29 @@ profit = <span class="number">-2000</span>
 </pre>
             <p><strong>Output</strong></p>
             <div class="output-box">Loss</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                Since profit > 0 is False, the program executes the else block.<br>
-                This is useful in business systems such as determining profit or loss.
+
+            <!-- Coding Practice: if-else -->
+            <div class="coding-practice">
+                <h3>Coding Practice: if-else</h3>
+                <p><strong>Challenge:</strong> Write a program that checks if <code>score</code> is 50 or more. If True, print <code>"Pass"</code>, otherwise print <code>"Fail"</code>.</p>
+                <textarea id="coding-ans-ifelse" placeholder="score = 45
+if score >= 50:
+    ...
+else:
+    ..."></textarea>
+                <button class="btn-run" onclick="runSkulpt('ifelse', 'Fail')">Run & Check</button>
+                <div id="coding-output-ifelse" class="live-output-box"></div>
+                <div id="coding-feedback-ifelse" class="feedback"></div>
             </div>
 
             <h3>if – elif – else Statement</h3>
-            <p>Used when there are multiple conditions.</p>
+            <p>The <code>elif</code> (short for else if) statement allows you to check multiple conditions one after another. Only the <strong>first</strong> condition that is True will be executed.</p>
+
+            <div class="purpose-box">
+                <h4>Purpose</h4>
+                <p>Use <code>if-elif-else</code> for categorization problems, such as grading students (A, B, C, D) or determining tax brackets based on income.</p>
+            </div>
+
             <p><strong>Example</strong></p>
 <pre>
 sales = <span class="number">8500</span>
@@ -472,24 +560,31 @@ sales = <span class="number">8500</span>
 </pre>
             <p><strong>Output</strong></p>
             <div class="output-box">Good Sales</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                The first condition that becomes True will execute.
-            </div>
 
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> What keyword is used in Python to check a secondary condition if the first <code>if</code> statement is False?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-1" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(1, 'elif')">Check Answer</button>
-                </div>
-                <div id="feedback-1" class="feedback"></div>
+            <!-- Coding Practice: elif -->
+            <div class="coding-practice">
+                <h3>Coding Practice: elif</h3>
+                <p><strong>Challenge:</strong> Write a program that checks <code>temp</code>. If > 30 print <code>"Hot"</code>, elif > 15 print <code>"Warm"</code>, else print <code>"Cold"</code>.</p>
+                <textarea id="coding-ans-elif" placeholder="temp = 20
+if ... :
+    ...
+elif ... :
+    ...
+else:
+    ..."></textarea>
+                <button class="btn-run" onclick="runSkulpt('elif', 'Warm')">Run & Check</button>
+                <div id="coding-output-elif" class="live-output-box"></div>
+                <div id="coding-feedback-elif" class="feedback"></div>
             </div>
 
             <h3>Nested if Statements</h3>
-            <p>A nested if means an if statement inside another if statement.</p>
+            <p>A nested <code>if</code> is simply an <code>if</code> statement placed inside another <code>if</code>. This allows for hierarchical or multi-level decision making.</p>
+
+            <div class="purpose-box">
+                <h4>Purpose</h4>
+                <p>Use Nested if when a decision depends on a previous decision. For example, check if a user is logged in, and THEN check if they have admin permissions.</p>
+            </div>
+
             <p><strong>Example</strong></p>
 <pre>
 profit = <span class="number">8000</span>
@@ -503,10 +598,18 @@ profit = <span class="number">8000</span>
 </pre>
             <p><strong>Output</strong></p>
             <div class="output-box">High Profit</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                The outer condition checks whether the business made profit.<br>
-                The inner condition checks the profit level.
+
+            <!-- Coding Practice: Nested if -->
+            <div class="coding-practice">
+                <h3>Coding Practice: Nested if</h3>
+                <p><strong>Challenge:</strong> Write a nested <code>if</code> to check if <code>num</code> is positive ( > 0), and if it is, check if it's even (<code>num % 2 == 0</code>). Print <code>"Positive Even"</code> if both are true.</p>
+                <textarea id="coding-ans-nested" placeholder="num = 10
+if num > 0:
+    if ... :
+        print(...)"></textarea>
+                <button class="btn-run" onclick="runSkulpt('nested', 'Positive Even')">Run & Check</button>
+                <div id="coding-output-nested" class="live-output-box"></div>
+                <div id="coding-feedback-nested" class="feedback"></div>
             </div>
 
             <h3>Compound Conditional Expressions</h3>
@@ -529,15 +632,17 @@ has_account = <span class="keyword">True</span>
             <div class="interaction-box">
                 Both conditions must be True for the statement to execute.
             </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which logical operator returns <code>True</code> only if **both** conditions are True?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-202" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(202, 'and')">Check Answer</button>
-                </div>
-                <div id="feedback-202" class="feedback"></div>
+            <!-- Coding Practice: and -->
+            <div class="coding-practice">
+                <h3>Coding Practice: Logical 'and'</h3>
+                <p><strong>Challenge:</strong> Write a program that checks if <code>age = 20</code> AND <code>gpa = 3.5</code> are both true. If they are, print <code>"Eligible"</code>.</p>
+                <textarea id="coding-ans-and" placeholder="age = 20
+gpa = 3.5
+if ... :
+    print(...)"></textarea>
+                <button class="btn-run" onclick="runSkulpt('and', 'Eligible')">Run & Check</button>
+                <div id="coding-output-and" class="live-output-box"></div>
+                <div id="coding-feedback-and" class="feedback"></div>
             </div>
 
             <div class="section-header">
@@ -558,7 +663,13 @@ has_account = <span class="keyword">True</span>
             </ul>
 
             <h3>while Loop</h3>
-            <p>The while loop runs as long as a condition remains True.</p>
+            <p>The <code>while</code> loop repeats a block of code as long as a specified condition is <strong>True</strong>. It is often used when you don't know exactly how many times you need to repeat something.</p>
+
+            <div class="purpose-box">
+                <h4>Purpose</h4>
+                <p>Use <code>while</code> loops for tasks like monitoring a system until an event occurs (e.g., waiting for a file to upload) or processing data until a "Stop" signal is received.</p>
+            </div>
+
             <p><strong>Example</strong></p>
 <pre>
 day = <span class="number">1</span>
@@ -572,39 +683,28 @@ day = <span class="number">1</span>
                 Processing sales data for day 2<br>
                 Processing sales data for day 3
             </div>
-            <div class="interaction-box">
-                The loop continues until the condition day <= 3 becomes False.
-            </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which loop is used to repeat code as long as a condition remains <strong>True</strong>?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-203" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(203, 'while')">Check Answer</button>
-                </div>
-                <div id="feedback-203" class="feedback"></div>
-            </div>
-
-            <!-- Coding Practice 2 -->
+            <!-- Coding Practice: while -->
             <div class="coding-practice">
-                <h3>Coding Practice: Loops</h3>
-                <p><strong>Challenge:</strong> Write a <code>while</code> loop that prints numbers from 1 to 5.</p>
-                <textarea id="coding-ans-2" placeholder="i = 1
-while ... :
+                <h3>Coding Practice: while Loop</h3>
+                <p><strong>Challenge:</strong> Fix the loop to print numbers from 1 to 5.</p>
+                <textarea id="coding-ans-while" placeholder="i = 1
+while i <= 5:
     print(i)
     i += 1"></textarea>
-                <button class="btn-run" onclick="checkCodingPractice(2, [
-                    {type: 'regex', value: '\\w+\\s*=\\s*1', message: 'Initialize a counter variable to 1'},
-                    {type: 'regex', value: 'while\\s+\\w+\\s*<=\\s*5\\s*:', message: 'Write a while loop condition checking <= 5'},
-                    {type: 'regex', value: 'print\\s*\\([\\s\\S]*?\\)', message: 'Print inside the loop'},
-                    {type: 'regex', value: '\\w+\\s*\\+=\\s*1|\\w+\\s*=\\s*\\w+\\s*\\+\\s*1', message: 'Increment the counter variable'}
-                ])">Run &amp; Check</button>
-                <div id="coding-feedback-2" class="feedback"></div>
+                <button class="btn-run" onclick="runSkulpt('while', '5')">Run & Check</button>
+                <div id="coding-output-while" class="live-output-box"></div>
+                <div id="coding-feedback-while" class="feedback"></div>
             </div>
 
+
             <h3>for Loop</h3>
-            <p>The for loop is used when the number of iterations is known.</p>
+            <p>The <code>for</code> loop is used to iterate over a sequence (like a list, tuple, or range). It is best used when you know the number of times you want to repeat a block of code.</p>
+
+            <div class="purpose-box">
+                <h4>Purpose</h4>
+                <p>Use <code>for</code> loops for processing every item in a list, such as calculating total revenue from a list of transactions or sending an email to every customer in a database.</p>
+            </div>
+
             <p><strong>Example</strong></p>
 <pre>
 <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">3</span>):
@@ -616,9 +716,16 @@ while ... :
                 Monthly sales report 1<br>
                 Monthly sales report 2
             </div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                range(3) generates values 0, 1, 2.
+            
+            <!-- Coding Practice: for loop -->
+            <div class="coding-practice">
+                <h3>Coding Practice: for loop</h3>
+                <p><strong>Challenge:</strong> Use a <code>for</code> loop and <code>range(1, 4)</code> to print <code>"Record 1"</code>, <code>"Record 2"</code>, <code>"Record 3"</code>.</p>
+                <textarea id="coding-ans-for" placeholder="for i in range(1, 4):
+    print('Record', ...)"></textarea>
+                <button class="btn-run" onclick="runSkulpt('for', 'Record 3')">Run & Check</button>
+                <div id="coding-output-for" class="live-output-box"></div>
+                <div id="coding-feedback-for" class="feedback"></div>
             </div>
 
             <h3>Loop with Conditional Logic</h3>
@@ -641,7 +748,13 @@ sales = [<span class="number">5000</span>, <span class="number">9000</span>, <sp
             </div>
 
             <h3>break Statement</h3>
-            <p>The break statement immediately stops a loop.</p>
+            <p>The <code>break</code> statement is used to exit a loop prematurely, even if the loop condition is still True.</p>
+
+            <div class="purpose-box">
+                <h4>Purpose</h4>
+                <p>Use <code>break</code> to stop searching once you've found what you're looking for, or to terminate a program if a critical error occurs during processing.</p>
+            </div>
+
             <p><strong>Example</strong></p>
 <pre>
 <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
@@ -650,27 +763,29 @@ sales = [<span class="number">5000</span>, <span class="number">9000</span>, <sp
     <span class="function">print</span>(i)
 </pre>
             <p><strong>Output</strong></p>
-            <div class="output-box">
-                0<br>
-                1<br>
-                2
-            </div>
-            <div class="interaction-box">
-                When i becomes 3, the loop stops immediately.
-            </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which statement is used to <strong>exit</strong> or stop a loop completely?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-204" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(204, 'break')">Check Answer</button>
-                </div>
-                <div id="feedback-204" class="feedback"></div>
+            <div class="output-box">0, 1, 2</div>
+            
+            <!-- Coding Practice: break -->
+            <div class="coding-practice">
+                <h3>Coding Practice: break</h3>
+                <p><strong>Challenge:</strong> Write a loop that prints numbers from 1 to 10, but use <code>break</code> to stop the loop when the number reaches 4.</p>
+                <textarea id="coding-ans-break" placeholder="for i in range(1, 11):
+    if i == 4:
+        ...
+    print(i)"></textarea>
+                <button class="btn-run" onclick="runSkulpt('break', '3')">Run & Check</button>
+                <div id="coding-output-break" class="live-output-box"></div>
+                <div id="coding-feedback-break" class="feedback"></div>
             </div>
 
             <h3>continue Statement</h3>
-            <p>The continue statement skips the current iteration and continues the loop.</p>
+            <p>The <code>continue</code> statement skips the current block of code and moves directly to the next iteration of the loop.</p>
+
+            <div class="purpose-box">
+                <h4>Purpose</h4>
+                <p>Use <code>continue</code> to skip specific items that don't meet a criteria, such as ignoring "Cancelled" orders in a list while processing the "Active" ones.</p>
+            </div>
+
             <p><strong>Example</strong></p>
 <pre>
 <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
@@ -679,39 +794,14 @@ sales = [<span class="number">5000</span>, <span class="number">9000</span>, <sp
     <span class="function">print</span>(i)
 </pre>
             <p><strong>Output</strong></p>
-            <div class="output-box">
-                0<br>
-                1<br>
-                3<br>
-                4
-            </div>
-            <div class="interaction-box">
-                When i = 2, the loop skips printing that value.
-            </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which statement is used to **skip** the rest of the current iteration and move to the next one?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-205" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(205, 'continue')">Check Answer</button>
-                </div>
-                <div id="feedback-205" class="feedback"></div>
-            </div>
+            <div class="output-box">0, 1, 3, 4</div>
 
             <h3>pass Statement</h3>
-            <p>The pass statement does nothing but acts as a placeholder.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">3</span>):
-    <span class="keyword">pass</span>
-<span class="function">print</span>(<span class="string">"Sales processing completed"</span>)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Sales processing completed</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                pass is used when a block is required but no action is needed yet.
+            <p>The <code>pass</code> statement is a null operation. It is used as a placeholder when a statement is syntactically required but no action is needed.</p>
+
+            <div class="purpose-box">
+                <h4>Purpose</h4>
+                <p>Use <code>pass</code> when you are sketching out a program structure and plan to write the logic later, or when creating a minimal class or function.</p>
             </div>
 
             <h3>Nested Loops</h3>
@@ -769,7 +859,7 @@ sales = [<span class="number">6500</span>, <span class="number">8800</span>, <sp
             <div class="quiz-cta">
                 <h3>Flow Control Standardized.</h3>
                 <p>Test your knowledge on branching and loops in Python.</p>
-                <a href="module_quiz.html?mod=2" class="btn-start-quiz">Start Module 2 Quiz &rarr;</a>
+                <a href="module_quiz.html?mod=2" class="btn-start-quiz">Start Module 2 Assessment &rarr;</a>
             </div>
         </main>
     </div>
@@ -791,49 +881,48 @@ sales = [<span class="number">6500</span>, <span class="number">8800</span>, <sp
             }
         }
 
-        function checkCodingPractice(id, requirements) {
-            const userCode = document.getElementById(`coding-ans-${id}`).value.trim();
+        function runSkulpt(id, expected) {
+            const prog = document.getElementById(`coding-ans-${id}`).value;
+            const outputDiv = document.getElementById(`coding-output-${id}`);
             const feedback = document.getElementById(`coding-feedback-${id}`);
-            const codeNoComments = userCode.replace(/#.*$/gm, '').trim();
             
-            let isCorrect = true;
-            let messages = [];
-            let captures = [];
+            outputDiv.innerHTML = "";
+            outputDiv.classList.add('active');
+            feedback.style.display = "none";
+            feedback.className = "feedback";
 
-            requirements.forEach(req => {
-                if (req.type === 'contains') {
-                    if (!userCode.includes(req.value)) {
-                        isCorrect = false;
-                        messages.push(req.message || req.label || req.value);
-                    }
-                } else if (req.type === 'regex') {
-                    const regex = new RegExp(req.value, req.flags || '');
-                    const match = codeNoComments.match(regex);
-                    if (!match) {
-                        isCorrect = false;
-                        messages.push(req.message || "Incorrect logic");
-                    } else if (match) {
-                        for (let i = 1; i < match.length; i++) {
-                            captures.push(match[i]);
-                        }
-                    }
-                } else if (req.type === 'consistency') {
-                    const var1 = captures[req.variables[0]];
-                    const var2 = captures[req.variables[1]];
-                    if (var1 === undefined || var2 === undefined || var1 !== var2) {
-                        isCorrect = false;
-                        messages.push(req.message || "Variable inconsistency");
-                    }
+            let outputText = "";
+            
+            Sk.configure({
+                output: function(text) { outputText += text; },
+                read: function(x) {
+                    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                        throw "File not found: '" + x + "'";
+                    return Sk.builtinFiles["files"][x];
                 }
             });
 
-            if (isCorrect) {
-                feedback.innerHTML = "✓ Correct! Logic verified.";
-                feedback.className = "feedback correct";
-            } else {
-                feedback.innerHTML = "✗ Error: " + messages[0];
+            const myPromise = Sk.misceval.asyncToPromise(function() {
+                return Sk.importMainWithBody("<stdin>", false, prog, true);
+            });
+
+            myPromise.then(function(mod) {
+                outputDiv.innerText = outputText;
+                
+                if (outputText.includes(expected)) {
+                    feedback.innerHTML = "✓ Correct! Your code works perfectly.";
+                    feedback.className = "feedback correct";
+                } else {
+                    feedback.innerHTML = `✗ Wrong! Expected to see "${expected}" in output.`;
+                    feedback.className = "feedback wrong";
+                }
+                feedback.style.display = "block";
+            }, function(err) {
+                outputDiv.innerText = err.toString();
+                feedback.innerHTML = "✗ Syntax Error in your code!";
                 feedback.className = "feedback wrong";
-            }
+                feedback.style.display = "block";
+            });
         }
     </script>
 </body>

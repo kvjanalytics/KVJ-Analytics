@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Module 1 | KVJ Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e3a5f;
+            --secondary-blue: #008eab;
+            --bg-light: #f6f8fb;
+            --text-main: #1d1d1f;
+            --text-muted: #4b5563;
+            --border-color: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: var(--bg-light);
+            color: var(--text-main); 
+            display: flex; 
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Top Nav */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+        }
+
+        .kvj-logo-img { max-height: 35px; width: auto; }
+
+        .logout-btn {
+            background: #dc2626;
+            color: white;
+            padding: 8px 18px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
+        }
+
+        /* Header Banner */
+        .header-banner { 
+            background: var(--primary-blue); 
+            color: white; 
+            padding: 120px 20px 60px; 
+            text-align: center; 
+        }
+        .header-banner h1 { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px; 
+            font-weight: 900; 
+            letter-spacing: -1px; 
+            text-transform: uppercase;
+        }
+
+        /* Layout Container */
+        .layout-container {
+            display: flex;
+            max-width: 1300px;
+            margin: 40px auto;
+            gap: 40px;
+            width: 95%;
+            padding-bottom: 60px;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 100px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            height: fit-content;
+        }
+
+        .sidebar h3 { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px; 
+            color: var(--secondary-blue); 
+            text-transform: uppercase; 
+            margin-bottom: 20px; 
+            border-bottom: 2px solid var(--bg-light); 
+            padding-bottom: 10px; 
+            font-weight: 800; 
+            letter-spacing: 1px;
+        }
+
+        .sidebar a { 
+            display: flex; 
+            align-items: center;
+            padding: 12px 15px; 
+            color: #555; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 500;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .sidebar a.active { 
+            color: var(--primary-blue); 
+            font-weight: 700; 
+            background: #f0f7ff; 
+            border-left: 4px solid var(--primary-blue); 
+        }
+
+        .sidebar a:hover:not(.active) {
+            background: #f8fafc;
+            color: var(--primary-blue);
+        }
+
+        /* Main Content Area */
+        .main-content { 
+            flex: 1;
+            background: #ffffff; 
+            border: 1px solid var(--border-color);
+            padding: 100px 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        /* Placeholder Content */
+        .placeholder-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .placeholder-desc {
+            font-size: 18px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 13px; border-top: 1px solid var(--border-color); margin-top: 40px; }
+        
+        @media (max-width: 992px) {
+            .layout-container { flex-direction: column; }
+            .sidebar { width: 100%; position: static; margin-bottom: 30px; }
+            .main-content { padding: 60px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="sql_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+        <a href="sql_roadmap.html" class="logout-btn">EXIT</a>
+    </nav>
+
+    <header class="header-banner">
+        <h1 id="module-title-header">SQL MODULE 1</h1>
+    </header>
+
+    <div class="layout-container">
+        <nav class="sidebar">
+            <h3>SQL Path</h3>
+            <a href="SQL-Module-1.html" id="nav-mod-1">Module 1: Intro</a>
+            <a href="SQL-Module-2.html" id="nav-mod-2">Module 2: Retrieval</a>
+            <a href="SQL-Module-3.html" id="nav-mod-3">Module 3: Filtering</a>
+            <a href="SQL-Module-4.html" id="nav-mod-4">Module 4: Joins</a>
+            <a href="SQL-Module-5.html" id="nav-mod-5">Module 5: Aggregation</a>
+            <a href="SQL-Module-6.html" id="nav-mod-6">Module 6: CTEs</a>
+            
+            <h3 style="margin-top:25px;">Navigation</h3>
+            <a href="sql_roadmap.html" style="background: #f8f9fa;">&larr; Return to Roadmap</a>
+        </nav>
+
+        <main class="main-content">
+            <h2 class="placeholder-title">Module 3: Advanced Filtering & Sorting</h2>
+            <div class="lesson-content" style="text-align: left;">
+                <h3>Logical Operators</h3>
+                <p>Combine multiple conditions in a <code>WHERE</code> clause:</p>
+                <ul>
+                    <li><strong>AND:</strong> All conditions must be true.</li>
+                    <li><strong>OR:</strong> At least one condition must be true.</li>
+                    <li><strong>NOT:</strong> Reverses the result of a condition.</li>
+                </ul>
+
+                <h3>Pattern Matching (LIKE)</h3>
+                <p>The <code>LIKE</code> operator searches for a specified pattern in a column.</p>
+                <ul>
+                    <li><code>%</code> : Represents zero, one, or multiple characters.</li>
+                    <li><code>_</code> : Represents a single character.</li>
+                </ul>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px; font-family: monospace;">SELECT * FROM Customers WHERE Name LIKE 'A%'; -- Starts with A</pre>
+
+                <h3>Handling NULL Values</h3>
+                <p>Use <code>IS NULL</code> or <code>IS NOT NULL</code> to find empty fields.</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px; font-family: monospace;">SELECT * FROM Orders WHERE ShippedDate IS NULL;</pre>
+
+                <h3>Sorting Data (ORDER BY)</h3>
+                <p>The <code>ORDER BY</code> keyword sorts the result-set in ascending (default) or descending order.</p>
+                <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px; font-family: monospace;">SELECT * FROM Products ORDER BY Price DESC;</pre>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simple script to set active class based on filename
+        const filename = window.location.pathname.split('/').pop();
+        const modNumber = filename.match(/\d/)[0];
+        document.getElementById(`nav-mod-${modNumber}`).classList.add('active');
+        document.getElementById('module-title-header').innerText = `SQL MODULE ${modNumber}`;
+    </script>
+</body>
+</html>

@@ -807,8 +807,8 @@
                 q.options.forEach((item, i) => {
                     const row = document.createElement('div');
                     row.className = "mtf-row";
-                    row.innerHTML = `<span style="color:#64748b; font-weight:600;">${item}</span><select class="quiz-dropdown" onchange="updateComplex('${item}', this.value)"><option value="">CHOOSE...</option>` + q.labels.map(l => `<option value="${l}">${l}</option>`).join('') + `</select>`;
-                    const val = userAnswers[currentIndex]?.[item];
+                    row.innerHTML = `<span style="color:#64748b; font-weight:600;">${item}</span><select class="quiz-dropdown" onchange="updateComplex(${i}, this.value)"><option value="">CHOOSE...</option>` + q.labels.map(l => `<option value="${l}">${l}</option>`).join('') + `</select>`;
+                    const val = userAnswers[currentIndex]?.[i];
                     if(val) row.querySelector('select').value = val;
                     area.appendChild(row);
                 });
@@ -939,9 +939,9 @@
                     correctDisp = q.a.join(", ").toUpperCase();
                 }
                 else if(q.type === "MTF") {
-                    correct = typeof u === 'object' && u !== null && Object.keys(q.a).every(k => u[k] === q.a[k]);
-                    userDisp = typeof u === 'object' && u !== null ? JSON.stringify(u).replace(/["{}]/g, "") : userDisp;
-                    correctDisp = JSON.stringify(q.a).replace(/["{}]/g, "");
+                    correct = Array.isArray(u) && q.options.every((opt, idx) => u[idx] === q.a[opt]);
+                    userDisp = Array.isArray(u) ? q.options.map((opt, idx) => `${opt}:${u[idx] || "Not matched"}`).join(",") : userDisp;
+                    correctDisp = q.options.map(opt => `${opt}:${q.a[opt]}`).join(",");
                 }
                 else if(q.type === "DD") {
                     correct = Array.isArray(u) && u.every((v, j) => v === q.a[j]);

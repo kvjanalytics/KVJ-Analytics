@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module 3: I/O Operations | KVJ Analytics</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
             --primary-blue: #1e3a5f;
@@ -203,7 +206,23 @@
             display: flex;
             align-items: center;
         }
-        .output-box::before { content: "> Result: "; margin-right: 10px; opacity: 0.6; }
+        .static-output::before { content: "> Result: "; margin-right: 10px; opacity: 0.6; }
+
+        .live-output-box {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+            min-height: 40px;
+            white-space: pre-wrap;
+            display: none;
+        }
+        .live-output-box.active { display: block; }
 
         /* Keywords */
         .keyword { color: #f472b6; }
@@ -328,6 +347,40 @@
         }
         .coding-practice .btn-run:hover { background: #7dd3fc; transform: translateY(-2px); }
 
+        /* Visual Illustrations */
+        .illustration-container {
+            position: fixed;
+            right: 20px;
+            top: 200px;
+            width: 280px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        .illustration-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .illustration-card img { width: 80px; margin-bottom: 10px; }
+        .illustration-card span { display: block; font-weight: 800; color: var(--primary-blue); font-size: 14px; text-transform: uppercase; }
+
+        @media (max-width: 1600px) {
+            .illustration-container { display: none; }
+        }
+
         @media (max-width: 992px) {
             .layout-container { flex-direction: column; }
             .sidebar { width: 100%; position: static; margin-bottom: 30px; }
@@ -346,6 +399,21 @@
     <header class="header-banner">
         <h1>MODULE 3 – INPUT AND OUTPUT OPERATIONS</h1>
     </header>
+
+    <div class="illustration-container">
+        <div class="illustration-card" style="animation-delay: 0s;">
+            <img src="https://img.icons8.com/isometric/100/data-transfer.png" alt="I/O">
+            <span>Data Flow</span>
+        </div>
+        <div class="illustration-card" style="animation-delay: 2s;">
+            <img src="https://img.icons8.com/isometric/100/upload.png" alt="Input">
+            <span>User Input</span>
+        </div>
+        <div class="illustration-card" style="animation-delay: 4s;">
+            <img src="https://img.icons8.com/isometric/100/download.png" alt="Output">
+            <span>File Ops</span>
+        </div>
+    </div>
 
     <div class="layout-container">
         <nav class="sidebar">
@@ -411,15 +479,15 @@ name = <span class="function">input</span>(<span class="string">"Enter your name
                 input() always returns string data.
             </div>
 
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> What special function does Python provide to read text directly from the user's keyboard?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-1" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(1, 'input()')">Check Answer</button>
-                </div>
-                <div id="feedback-1" class="feedback"></div>
+            <!-- Coding Practice: input -->
+            <div class="coding-practice">
+                <h3>Coding Practice: Input</h3>
+                <p><strong>Challenge:</strong> Write a program that asks for a <code>city</code> and prints <code>"Welcome to {city}"</code>.</p>
+                <textarea id="coding-ans-input" placeholder="city = input('Enter city: ')
+print(...)"></textarea>
+                <button class="btn-run" onclick="runSkulpt('input', 'Welcome to Student')">Run & Check</button>
+                <div id="coding-output-input" class="live-output-box"></div>
+                <div id="coding-feedback-input" class="feedback"></div>
             </div>
 
             <h3>Converting Input Values</h3>
@@ -437,15 +505,15 @@ age = <span class="function">int</span>(<span class="function">input</span>(<spa
             <div class="interaction-box">
                 int() converts it into an integer, allowing arithmetic operations.
             </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which Python function is used to convert a value into an <strong>integer</strong>?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-301" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(301, 'int()')">Check Answer</button>
-                </div>
-                <div id="feedback-301" class="feedback"></div>
+            <!-- Coding Practice: int conversion -->
+            <div class="coding-practice">
+                <h3>Coding Practice: Type Conversion</h3>
+                <p><strong>Challenge:</strong> Take a number input and print the result of that number multiplied by 2. (Remember to use <code>int()</code>).</p>
+                <textarea id="coding-ans-int" placeholder="num = int(input('Enter number: '))
+print(...)"></textarea>
+                <button class="btn-run" onclick="runSkulpt('int', 'NaN')">Run & Check</button>
+                <div id="coding-output-int" class="live-output-box"></div>
+                <div id="coding-feedback-int" class="feedback"></div>
             </div>
 
             <h3>Multiple Inputs</h3>
@@ -496,28 +564,26 @@ sales = <span class="number">5000</span>
             <div class="interaction-box">
                 This method is commonly used in modern Python programs.
             </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> What is the shorthand name for **Formatted String Literals** (starting with f)?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-302" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(302, 'f-strings')">Check Answer</button>
-                </div>
-                <div id="feedback-302" class="feedback"></div>
+            <!-- Coding Practice: f-string -->
+            <div class="coding-practice">
+                <h3>Coding Practice: f-Strings</h3>
+                <p><strong>Challenge:</strong> Create two variables <code>item = "Tablet"</code> and <code>price = 300</code>. Print <code>"Tablet costs 300"</code> using an f-string.</p>
+                <textarea id="coding-ans-fstring" placeholder="item = 'Tablet'
+...
+print(f'...')"></textarea>
+                <button class="btn-run" onclick="runSkulpt('fstring', 'Tablet costs 300')">Run & Check</button>
+                <div id="coding-output-fstring" class="live-output-box"></div>
+                <div id="coding-feedback-fstring" class="feedback"></div>
             </div>
 
             <!-- Coding Practice 1 -->
             <div class="coding-practice">
-                <h3>Coding Practice: I/O and Strings</h3>
-                <p><strong>Challenge:</strong> Write a program that takes a name using <code>input()</code> and prints a greeting using an <strong>f-string</strong>.</p>
-                <textarea id="coding-ans-1" placeholder="user_name = ...
-print(f'...')"></textarea>
-                <button class="btn-run" onclick="checkCodingPractice(1, [
-                    {type: 'regex', value: 'input\\s*\\(', message: 'Use input() to receive the name'},
-                    {type: 'regex', value: 'f[\'&quot;][\\s\\S]*?\\{\\w+[\\s\\S]*?\\}[\\s\\S]*?[\'&quot;]', message: 'Create an f-string that includes a variable inside {}'},
-                    {type: 'regex', value: 'print\\s*\\([\\s\\S]*?\\)', message: 'Print the greeting'}
-                ])">Run &amp; Check</button>
+                <h3>Coding Practice: I/O Greeting</h3>
+                <p><strong>Challenge:</strong> Write a program that takes a name using <code>input()</code> and prints a greeting <code>"Hello {name}!"</code> using an <strong>f-string</strong>.</p>
+                <textarea id="coding-ans-1" placeholder="user_name = input('Name: ')
+print(f'Hello {user_name}!')"></textarea>
+                <button class="btn-run" onclick="runSkulpt(1, 'Hello Student!')">Run & Check</button>
+                <div id="coding-output-1" class="live-output-box"></div>
                 <div id="coding-feedback-1" class="feedback"></div>
             </div>
 
@@ -576,15 +642,15 @@ file.<span class="function">close</span>()
             <div class="interaction-box">
                 write() stores text inside the file.
             </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which mode character is used to <strong>write</strong> to a file (overwriting existing content)?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-303" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(303, 'w')">Check Answer</button>
-                </div>
-                <div id="feedback-303" class="feedback"></div>
+            <!-- Coding Practice: write mode -->
+            <div class="coding-practice">
+                <h3>Coding Practice: File Write</h3>
+                <p><strong>Note:</strong> File operations are simulated here. In a real environment, you open with <code>'w'</code>.</p>
+                <textarea id="coding-ans-write" placeholder="with open('test.txt', 'w') as f:
+    f.write('Python')"></textarea>
+                <button class="btn-run" onclick="runSkulpt('write', '')">Run & Check</button>
+                <div id="coding-output-write" class="live-output-box"></div>
+                <div id="coding-feedback-write" class="feedback"></div>
             </div>
 
             <h3>Reading from a File</h3>
@@ -619,15 +685,14 @@ file.<span class="function">close</span>()
             <div class="interaction-box">
                 "a" mode adds new content to the end of the file.
             </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which mode character is used to **append** data to the end of a file?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-304" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(304, 'a')">Check Answer</button>
-                </div>
-                <div id="feedback-304" class="feedback"></div>
+            <!-- Coding Practice: append mode -->
+            <div class="coding-practice">
+                <h3>Coding Practice: File Append</h3>
+                <p><strong>Challenge:</strong> What is the mode for appending to a file? Print the letter.</p>
+                <textarea id="coding-ans-append" placeholder="print('...')"></textarea>
+                <button class="btn-run" onclick="runSkulpt('append', 'a')">Run & Check</button>
+                <div id="coding-output-append" class="live-output-box"></div>
+                <div id="coding-feedback-append" class="feedback"></div>
             </div>
 
             <h3>Using with Statement (Best Practice)</h3>
@@ -703,7 +768,7 @@ os.<span class="function">remove</span>(<span class="string">"data.txt"</span>)
             <div class="quiz-cta">
                 <h3>I/O Mastery.</h3>
                 <p>Test your knowledge on console and file operations in Python.</p>
-                <a href="module_quiz.html?mod=3" class="btn-start-quiz">Start Module 3 Quiz &rarr;</a>
+                <a href="module_quiz.html?mod=3" class="btn-start-quiz">Start Module 3 Assessment &rarr;</a>
             </div>
         </main>
     </div>
@@ -712,6 +777,24 @@ os.<span class="function">remove</span>(<span class="string">"data.txt"</span>)
         © 2026 KVJ Analytics | Professional Python Certification Path
     </footer>
     <script>
+        function triggerConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) { return clearInterval(interval); }
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
         function checkPracticeAnswer(id, correctAns) {
             const userAns = document.getElementById(`practice-ans-${id}`).value.trim().toLowerCase();
             const feedback = document.getElementById(`feedback-${id}`);
@@ -720,52 +803,62 @@ os.<span class="function">remove</span>(<span class="string">"data.txt"</span>)
             const cleanUser = userAns.replace(/\s/g, '');
 
             if (cleanUser === cleanCorrect || cleanUser === cleanCorrect.replace('()', '')) {
-                feedback.innerHTML = "✓ Correct! Well done.";
+                feedback.innerHTML = "Correct! Great job! 🎉";
                 feedback.className = "feedback correct";
+                triggerConfetti();
             } else {
-                feedback.innerHTML = "✗ Incorrect. Try again! Hint: It's the function used to get user data.";
+                feedback.innerHTML = "✗ Incorrect. Try again!";
                 feedback.className = "feedback wrong";
             }
         }
 
-        function checkCodingPractice(id, requirements) {
-            const userCode = document.getElementById(`coding-ans-${id}`).value.trim();
+        function runSkulpt(id, expected) {
+            const prog = document.getElementById(`coding-ans-${id}`).value;
+            const outputDiv = document.getElementById(`coding-output-${id}`);
             const feedback = document.getElementById(`coding-feedback-${id}`);
-            const codeNoComments = userCode.replace(/#.*$/gm, '').trim();
             
-            let isCorrect = true;
-            let messages = [];
-            let captures = [];
+            outputDiv.innerHTML = "";
+            outputDiv.classList.add('active');
+            feedback.style.display = "none";
+            feedback.className = "feedback";
 
-            requirements.forEach(req => {
-                if (req.type === 'regex') {
-                    const regex = new RegExp(req.value, req.flags || '');
-                    const match = codeNoComments.match(regex);
-                    if (!match) {
-                        isCorrect = false;
-                        messages.push(req.message || "Incorrect logic");
-                    } else if (match) {
-                        for (let i = 1; i < match.length; i++) {
-                            captures.push(match[i]);
-                        }
-                    }
-                } else if (req.type === 'consistency') {
-                    const var1 = captures[req.variables[0]];
-                    const var2 = captures[req.variables[1]];
-                    if (var1 === undefined || var2 === undefined || var1 !== var2) {
-                        isCorrect = false;
-                        messages.push(req.message || "Variable inconsistency");
-                    }
-                }
+            let outputText = "";
+            
+            Sk.configure({
+                output: function(text) { outputText += text; },
+                read: function(x) {
+                    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                        throw "File not found: '" + x + "'";
+                    return Sk.builtinFiles["files"][x];
+                },
+                input: function() { return "Student"; }
             });
 
-            if (isCorrect) {
-                feedback.innerHTML = "✓ Correct! Code looks good.";
-                feedback.className = "feedback correct";
-            } else {
-                feedback.innerHTML = "✗ Error: " + messages[0];
+            const myPromise = Sk.misceval.asyncToPromise(function() {
+                return Sk.importMainWithBody("<stdin>", false, prog, true);
+            });
+
+            myPromise.then(function(mod) {
+                outputDiv.innerText = outputText;
+                
+                const cleanOutput = outputText.trim().toLowerCase();
+                const cleanExpected = expected.trim().toLowerCase();
+
+                if (cleanOutput.includes(cleanExpected)) {
+                    feedback.innerHTML = "Correct! Great job! 🎉";
+                    feedback.className = "feedback correct";
+                    triggerConfetti();
+                } else {
+                    feedback.innerHTML = `✗ Wrong! Expected result not found.`;
+                    feedback.className = "feedback wrong";
+                }
+                feedback.style.display = "block";
+            }, function(err) {
+                outputDiv.innerText = err.toString();
+                feedback.innerHTML = "✗ Syntax Error in your code!";
                 feedback.className = "feedback wrong";
-            }
+                feedback.style.display = "block";
+            });
         }
     </script>
 </body>

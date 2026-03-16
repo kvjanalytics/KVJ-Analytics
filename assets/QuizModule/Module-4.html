@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module 4: Documentation | KVJ Analytics</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
             --primary-blue: #1e3a5f;
@@ -203,7 +206,23 @@
             display: flex;
             align-items: center;
         }
-        .output-box::before { content: "> Result: "; margin-right: 10px; opacity: 0.6; }
+        .static-output::before { content: "> Result: "; margin-right: 10px; opacity: 0.6; }
+
+        .live-output-box {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+            min-height: 40px;
+            white-space: pre-wrap;
+            display: none;
+        }
+        .live-output-box.active { display: block; }
 
         /* Keywords */
         .keyword { color: #f472b6; }
@@ -328,6 +347,40 @@
         }
         .coding-practice .btn-run:hover { background: #7dd3fc; transform: translateY(-2px); }
 
+        /* Visual Illustrations */
+        .illustration-container {
+            position: fixed;
+            right: 20px;
+            top: 200px;
+            width: 280px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        .illustration-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .illustration-card img { width: 80px; margin-bottom: 10px; }
+        .illustration-card span { display: block; font-weight: 800; color: var(--primary-blue); font-size: 14px; text-transform: uppercase; }
+
+        @media (max-width: 1600px) {
+            .illustration-container { display: none; }
+        }
+
         @media (max-width: 992px) {
             .layout-container { flex-direction: column; }
             .sidebar { width: 100%; position: static; margin-bottom: 30px; }
@@ -346,6 +399,21 @@
     <header class="header-banner">
         <h1>MODULE 4 – CODE DOCUMENTATION AND FUNCTIONS</h1>
     </header>
+
+    <div class="illustration-container">
+        <div class="illustration-card" style="animation-delay: 0s;">
+            <img src="https://img.icons8.com/isometric/100/document.png" alt="Doc">
+            <span>Docstrings</span>
+        </div>
+        <div class="illustration-card" style="animation-delay: 2s;">
+            <img src="https://img.icons8.com/isometric/100/code.png" alt="Functions">
+            <span>Reusability</span>
+        </div>
+        <div class="illustration-card" style="animation-delay: 4s;">
+            <img src="https://img.icons8.com/isometric/100/maintenance.png" alt="Maintenance">
+            <span>Structure</span>
+        </div>
+    </div>
 
     <div class="layout-container">
         <nav class="sidebar">
@@ -462,15 +530,15 @@ total = <span class="function">sum</span>(sales)
             <div class="interaction-box">
                 It helps other programmers understand the purpose of the code.
             </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which symbol is used to start a **single-line comment** in Python?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-401" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(401, '#')">Check Answer</button>
-                </div>
-                <div id="feedback-401" class="feedback"></div>
+            <!-- Coding Practice: comments -->
+            <div class="coding-practice">
+                <h3>Coding Practice: Comments</h3>
+                <p><strong>Challenge:</strong> Add a comment <code># This is a comment</code> above the print statement.</p>
+                <textarea id="coding-ans-comment" placeholder="...
+print('Hello')"></textarea>
+                <button class="btn-run" onclick="runSkulpt('comment', 'Hello')">Run & Check</button>
+                <div id="coding-output-comment" class="live-output-box"></div>
+                <div id="coding-feedback-comment" class="feedback"></div>
             </div>
 
             <h3>Docstrings</h3>
@@ -502,15 +570,16 @@ total = <span class="function">sum</span>(sales)
             <div class="interaction-box">
                 This allows Python tools to generate documentation automatically.
             </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> What are the triple-quoted strings used to document functions called?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-402" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(402, 'docstrings')">Check Answer</button>
-                </div>
-                <div id="feedback-402" class="feedback"></div>
+            <!-- Coding Practice: docstrings -->
+            <div class="coding-practice">
+                <h3>Coding Practice: Docstrings</h3>
+                <p><strong>Challenge:</strong> Write a docstring <code>"""Calculates total"""</code> inside a function called <code>total()</code> and return 0.</p>
+                <textarea id="coding-ans-doc" placeholder="def total():
+    ...
+    return 0"></textarea>
+                <button class="btn-run" onclick="runSkulpt('doc', '0')">Run & Check</button>
+                <div id="coding-output-doc" class="live-output-box"></div>
+                <div id="coding-feedback-doc" class="feedback"></div>
             </div>
 
             <h3>Using pydoc for Documentation</h3>
@@ -555,15 +624,15 @@ greet()
                 greet() calls the function.
             </div>
 
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which keyword is used in Python to define a new function?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-1" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(1, 'def')">Check Answer</button>
-                </div>
-                <div id="feedback-1" class="feedback"></div>
+            <!-- Coding Practice: def -->
+            <div class="coding-practice">
+                <h3>Coding Practice: Define Function</h3>
+                <p><strong>Challenge:</strong> Define a function <code>show()</code> that prints <code>"Visible"</code>.</p>
+                <textarea id="coding-ans-def" placeholder="def ...:
+    print('...')"></textarea>
+                <button class="btn-run" onclick="runSkulpt('def', 'Visible')">Run & Check</button>
+                <div id="coding-output-def" class="live-output-box"></div>
+                <div id="coding-feedback-def" class="feedback"></div>
             </div>
 
             <h3>Function with Parameters</h3>
@@ -599,28 +668,29 @@ result = profit(<span class="number">10000</span>, <span class="number">7000</sp
             <div class="interaction-box">
                 The function calculates profit and returns the result to the calling program.
             </div>
-            <!-- Practice Space -->
-            <div class="practice-space">
-                <h3>Practice Space</h3>
-                <p><strong>Question:</strong> Which statement is used to send a value **back** from a function to the caller?</p>
-                <div class="practice-box">
-                    <input type="text" id="practice-ans-403" placeholder="Type your answer here...">
-                    <button onclick="checkPracticeAnswer(403, 'return')">Check Answer</button>
-                </div>
-                <div id="feedback-403" class="feedback"></div>
+            <!-- Coding Practice: return -->
+            <div class="coding-practice">
+                <h3>Coding Practice: Return Value</h3>
+                <p><strong>Challenge:</strong> Fix the function to <strong>return</strong> the value <code>100</code>.</p>
+                <textarea id="coding-ans-return" placeholder="def get_val():
+    ... 100
+
+print(get_val())"></textarea>
+                <button class="btn-run" onclick="runSkulpt('return', '100')">Run & Check</button>
+                <div id="coding-output-return" class="live-output-box"></div>
+                <div id="coding-feedback-return" class="feedback"></div>
             </div>
 
             <!-- Coding Practice 1 -->
             <div class="coding-practice">
-                <h3>Coding Practice: Functions</h3>
-                <p><strong>Challenge:</strong> Define a function called <code>multiply</code> that takes two parameters, <code>a</code> and <code>b</code>, and <strong>returns</strong> their product.</p>
+                <h3>Coding Practice: Parameters</h3>
+                <p><strong>Challenge:</strong> Define <code>multiply(a, b)</code> and return their product. Test with 10 and 5.</p>
                 <textarea id="coding-ans-1" placeholder="def multiply(a, b):
-    ..."></textarea>
-                <button class="btn-run" onclick="checkCodingPractice(1, [
-                    {type: 'regex', value: 'def\\s+multiply\\s*\\(\\s*a\\s*,\\s*b\\s*\\)\\s*:', message: 'Define the function as multiply(a, b)'},
-                    {type: 'regex', value: 'a\\s*\\*\\s*b|b\\s*\\*\\s*a', message: 'Multiply parameters a and b'},
-                    {type: 'regex', value: 'return[\\s\\(][\\s\\S]*?a[\\s\\S]*?\\*[\\s\\S]*?b|return[\\s\\(][\\s\\S]*?b[\\s\\S]*?\\*[\\s\\S]*?a|result\\s*=|product\\s*=', message: 'Return the product of a and b'}
-                ])">Run &amp; Check</button>
+    return a * b
+
+print(multiply(10, 5))"></textarea>
+                <button class="btn-run" onclick="runSkulpt(1, '50')">Run & Check</button>
+                <div id="coding-output-1" class="live-output-box"></div>
                 <div id="coding-feedback-1" class="feedback"></div>
             </div>
 
@@ -689,7 +759,7 @@ avg = calculate_average_sales(sales)
             <div class="quiz-cta">
                 <h3>Documentation Standardized.</h3>
                 <p>Test your knowledge on documentation and functions in Python.</p>
-                <a href="module_quiz.html?mod=4" class="btn-start-quiz">Start Module 4 Quiz &rarr;</a>
+                <a href="module_quiz.html?mod=4" class="btn-start-quiz">Start Module 4 Assessment &rarr;</a>
             </div>
         </main>
     </div>
@@ -698,57 +768,85 @@ avg = calculate_average_sales(sales)
         © 2026 KVJ Analytics | Professional Python Certification Path
     </footer>
     <script>
+        function triggerConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) { return clearInterval(interval); }
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
         function checkPracticeAnswer(id, correctAns) {
             const userAns = document.getElementById(`practice-ans-${id}`).value.trim().toLowerCase();
             const feedback = document.getElementById(`feedback-${id}`);
             
             if (userAns === correctAns.toLowerCase()) {
-                feedback.innerHTML = "✓ Correct! Well done.";
+                feedback.innerHTML = "Correct! Great job! 🎉";
                 feedback.className = "feedback correct";
+                triggerConfetti();
             } else {
-                feedback.innerHTML = "✗ Incorrect. Try again! Hint: It's the 3-letter keyword used to start a function definition.";
+                feedback.innerHTML = "✗ Incorrect. Try again!";
                 feedback.className = "feedback wrong";
             }
         }
 
-        function checkCodingPractice(id, requirements) {
-            const userCode = document.getElementById(`coding-ans-${id}`).value.trim();
+        function runSkulpt(id, expected, appendCode = "") {
+            const progInput = document.getElementById(`coding-ans-${id}`).value;
+            const prog = progInput + (appendCode ? "\n" + appendCode : "");
+            const outputDiv = document.getElementById(`coding-output-${id}`);
             const feedback = document.getElementById(`coding-feedback-${id}`);
-            const codeNoComments = userCode.replace(/#.*$/gm, '').trim();
             
-            let isCorrect = true;
-            let messages = [];
-            let captures = [];
+            outputDiv.innerHTML = "";
+            outputDiv.classList.add('active');
+            feedback.style.display = "none";
+            feedback.className = "feedback";
 
-            requirements.forEach(req => {
-                if (req.type === 'regex') {
-                    const regex = new RegExp(req.value, req.flags || '');
-                    const match = codeNoComments.match(regex);
-                    if (!match) {
-                        isCorrect = false;
-                        messages.push(req.message || "Incorrect logic");
-                    } else if (match) {
-                        for (let i = 1; i < match.length; i++) {
-                            captures.push(match[i]);
-                        }
-                    }
-                } else if (req.type === 'consistency') {
-                    const var1 = captures[req.variables[0]];
-                    const var2 = captures[req.variables[1]];
-                    if (var1 === undefined || var2 === undefined || var1 !== var2) {
-                        isCorrect = false;
-                        messages.push(req.message || "Variable inconsistency");
-                    }
+            let outputText = "";
+            
+            Sk.configure({
+                output: function(text) { outputText += text; },
+                read: function(x) {
+                    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                        throw "File not found: '" + x + "'";
+                    return Sk.builtinFiles["files"][x];
                 }
             });
 
-            if (isCorrect) {
-                feedback.innerHTML = "✓ Correct! Function logic verified.";
-                feedback.className = "feedback correct";
-            } else {
-                feedback.innerHTML = "✗ Error: " + messages[0];
+            const myPromise = Sk.misceval.asyncToPromise(function() {
+                return Sk.importMainWithBody("<stdin>", false, prog, true);
+            });
+
+            myPromise.then(function(mod) {
+                outputDiv.innerText = outputText;
+                
+                const cleanOutput = outputText.trim().toLowerCase();
+                const cleanExpected = expected.toString().trim().toLowerCase();
+
+                if (cleanOutput.includes(cleanExpected)) {
+                    feedback.innerHTML = "Correct! Great job! 🎉";
+                    feedback.className = "feedback correct";
+                    triggerConfetti();
+                } else {
+                    feedback.innerHTML = `✗ Wrong! Expected result not found.`;
+                    feedback.className = "feedback wrong";
+                }
+                feedback.style.display = "block";
+            }, function(err) {
+                outputDiv.innerText = err.toString();
+                feedback.innerHTML = "✗ Syntax Error in your code!";
                 feedback.className = "feedback wrong";
-            }
+                feedback.style.display = "block";
+            });
         }
     </script>
 </body>

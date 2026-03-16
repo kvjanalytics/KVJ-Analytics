@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Module 3: Ethics & Security | KVJ Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0f172a;
+            --secondary-blue: #3b82f6;
+            --bg-light: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --white: #ffffff;
+            --ai-accent: #10b981;
+            --risk-red: #ef4444;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            display: flex; 
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        /* Top Nav */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+        }
+
+        .kvj-logo-img { max-height: 35px; width: auto; }
+
+        .exit-btn {
+            background: #ef4444;
+            color: white;
+            padding: 8px 18px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        /* Header Banner */
+        .header-banner { 
+            background: var(--primary-blue); 
+            color: white; 
+            padding: 60px 20px; 
+            text-align: center;
+        }
+
+        .header-banner h1 { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px; 
+            font-weight: 900; 
+            text-transform: uppercase;
+        }
+
+        /* Layout Container */
+        .layout-container {
+            display: flex;
+            max-width: 1300px;
+            margin: 40px auto;
+            gap: 40px;
+            width: 95%;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 100px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            height: fit-content;
+        }
+
+        .sidebar a { 
+            display: flex; 
+            padding: 12px 15px; 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 500;
+            margin-bottom: 5px;
+            border-radius: 8px;
+        }
+
+        .sidebar a.active { 
+            color: var(--secondary-blue); 
+            font-weight: 700; 
+            background: #eff6ff; 
+            border-left: 4px solid var(--secondary-blue); 
+        }
+
+        /* Main Content Area */
+        .main-content { 
+            flex: 1;
+            background: #ffffff; 
+            border: 1px solid var(--border-color);
+            padding: 60px;
+            border-radius: 12px;
+        }
+
+        .section-header { margin-bottom: 30px; border-bottom: 3px solid var(--bg-light); padding-bottom: 15px; }
+        .section-header h2 { font-family: 'Montserrat', sans-serif; color: var(--primary-blue); font-size: 28px; font-weight: 800; }
+
+        p { margin-bottom: 25px; color: #334155; font-size: 17px; }
+        ul { margin-bottom: 25px; padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        /* AI Workspace: Security Sandbox */
+        .ai-workspace {
+            background: #0f172a;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #f8fafc;
+        }
+
+        .workspace-header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 30px; }
+        .workspace-title { color: #38bdf8; font-weight: 800; text-transform: uppercase; }
+
+        .security-stage {
+            height: 200px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 30px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .system-core {
+            width: 80px; height: 80px;
+            background: var(--ai-accent);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px var(--ai-accent);
+            z-index: 10;
+        }
+
+        .shield {
+            position: absolute;
+            width: 140px; height: 140px;
+            border: 2px solid #38bdf8;
+            border-radius: 50%;
+            opacity: 0.3;
+            transition: all 0.5s;
+        }
+
+        .threat {
+            position: absolute;
+            font-size: 24px;
+            animation: attack 3s infinite;
+        }
+
+        @keyframes attack {
+            0% { transform: scale(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: scale(1) translateX(100px); opacity: 0; }
+        }
+
+        .dashboard-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .control-panel {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .btn-action {
+            background: var(--secondary-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+
+        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 13px; border-top: 1px solid var(--border-color); margin-top: 40px; }
+
+        @media (max-width: 992px) {
+            .layout-container { flex-direction: column; }
+            .sidebar { width: 100%; position: static; margin-bottom: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="ai_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+        <a href="ai_roadmap.html" class="exit-btn">EXIT MODULE</a>
+    </nav>
+
+    <header class="header-banner">
+        <h1>MODULE 3: ETHICS, RISKS & SECURITY</h1>
+    </header>
+
+    <div class="layout-container">
+        <nav class="sidebar">
+            <a href="AI-Module-1.html">01 Foundations</a>
+            <a href="AI-Module-2.html">02 Problem & ML</a>
+            <a href="AI-Module-3.html" class="active">03 Ethics & Security</a>
+            <a href="AI-Module-4.html">04 Data Engineering</a>
+            <a href="AI-Module-5.html">05 Deep Learning</a>
+            <a href="AI-Module-6.html">06 Deployment</a>
+        </nav>
+
+        <main class="main-content">
+            <div class="section-header">
+                <h2>3.1 AI Risks and Ethics</h2>
+            </div>
+            
+            <p>As AI systems become more powerful, the risks they pose grow in complexity. Ethical development is not an option; it is a necessity for trust and safety.</p>
+
+            <h3>Common AI Risks</h3>
+            <ul>
+                <li><strong>Bias:</strong> Models inheriting human prejudices from training data.</li>
+                <li><strong>Privacy:</strong> Unauthorized use of sensitive personal information.</li>
+                <li><strong>Misinformation:</strong> AI-generated "deepfakes" and false content.</li>
+                <li><strong>Job Displacement:</strong> Automation replacing human roles without a transition plan.</li>
+            </ul>
+
+            <div class="ai-workspace">
+                <div class="workspace-header">
+                    <div class="workspace-title">Intelligence Space: Security Sandbox</div>
+                </div>
+                
+                <div class="security-stage" id="stage">
+                    <div class="shield" id="shield"></div>
+                    <div class="system-core">🛡️</div>
+                </div>
+
+                <div class="dashboard-controls">
+                    <div class="control-panel">
+                        <h4 style="font-size: 14px; margin-bottom: 10px;">Threat Level: High</h4>
+                        <p style="font-size: 12px; color: #94a3b8;">Adversarial attack detected. Enhance shield integrity.</p>
+                        <button class="btn-action" onclick="fortify()">Fortify Shield</button>
+                    </div>
+                    <div class="control-panel">
+                        <h4 style="font-size: 14px; margin-bottom: 10px;">Ethics Check</h4>
+                        <p style="font-size: 12px; color: #94a3b8;">Audit system for algorithm bias and fairness.</p>
+                        <button class="btn-action" style="background: var(--ai-accent);" onclick="audit()">Run Audit</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>3.2 Safeguarding AI Systems</h2>
+            </div>
+
+            <p>Security in AI involves protecting the model, the data, and the deployment environment from malicious actors.</p>
+
+            <h3>Security Best Practices</h3>
+            <ul>
+                <li><strong>Adversarial Robustness:</strong> Training models to resist manipulated inputs.</li>
+                <li><strong>Data Sanctity:</strong> Ensuring training data has not been "poisoned" by attackers.</li>
+                <li><strong>Model Encryption:</strong> Protecting the proprietary weights and logic of the AI.</li>
+            </ul>
+
+        </main>
+    </div>
+
+    <footer>
+        &copy; 2026 KVJ Analytics. All Rights Reserved.
+    </footer>
+
+    <script>
+        function fortify() {
+            const shield = document.getElementById('shield');
+            shield.style.width = '180px';
+            shield.style.height = '180px';
+            shield.style.opacity = '0.8';
+            shield.style.borderColor = '#10b981';
+            setTimeout(() => {
+                shield.style.width = '140px';
+                shield.style.height = '140px';
+                shield.style.opacity = '0.3';
+                shield.style.borderColor = '#38bdf8';
+            }, 2000);
+        }
+
+        function audit() {
+            alert("Bias Audit Complete: 0 High Risks found. Fairness score: 96%");
+        }
+    </script>
+</body>
+</html>
