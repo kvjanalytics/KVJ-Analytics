@@ -195,16 +195,20 @@
         .nav-back {
             font-size: 0.9rem;
             font-weight: 700;
-            color: #64748b;
-            text-decoration: none;
-            margin-right: 20px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.3s;
-        }
-        .nav-back:hover {
             color: #0066ff;
+            text-decoration: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            box-shadow: none;
+        }
+
+        .nav-back:hover {
+            text-decoration: underline;
+            transform: none;
+            box-shadow: none;
+            background: none;
         }
     </style>
     <script>
@@ -217,13 +221,13 @@
 </head>
 <body>
     <nav class="navbar">
-        <div style="display: flex; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="intro.html" class="nav-back">
+                ← Back
+            </a>
             <a href="python_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
         </div>
-        <div style="display: flex; align-items: center;">
-            <a href="course_selection.html" class="nav-back">&larr; Back to Selection</a>
-            <a onclick="logout()" class="nav-logout">Log Out</a>
-        </div>
+        <a onclick="logout()" class="nav-logout">Log Out</a>
     </nav>
     <div class="top-info">Data Analytics | Consulting | Training</div>
 

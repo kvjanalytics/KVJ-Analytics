@@ -48,18 +48,24 @@
             text-decoration: underline;
         }
         .nav-back {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #64748b;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: white !important;
+            background-color: #193855;
             text-decoration: none;
-            margin-right: 20px;
             display: flex;
             align-items: center;
-            gap: 5px;
-            transition: color 0.3s;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            padding: 12px 28px;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px rgba(25, 56, 85, 0.3);
         }
+
         .nav-back:hover {
-            color: var(--blue-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(25, 56, 85, 0.4);
+            background-color: #11283f;
         }
 
         .top-info {
@@ -228,13 +234,13 @@
 </head>
 <body>
     <nav class="navbar">
-        <div style="display: flex; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="ai_index.html" class="nav-back">
+                Back
+            </a>
             <a href="ai_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
         </div>
-        <div style="display: flex; align-items: center;">
-            <a href="course_selection.html" class="nav-back">&larr; Back to Selection</a>
-            <a onclick="logout()" class="nav-logout">Log Out</a>
-        </div>
+        <a onclick="logout()" class="nav-logout">Log Out</a>
     </nav>
     <div class="top-info">Elite AI Certification | Strategic Intelligence | Next-Gen Curriculum</div>
 

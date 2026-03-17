@@ -723,7 +723,31 @@
                   options: ["with open(\"data.txt\", \"r\") as f: data = f.read()", "f = open(\"data.txt\", \"r\"); data = f.read()", "f = open(\"data.txt\", \"r\"); data = f.read(); f.close()", "open(\"data.txt\").read()"], a: [0, 2] },
                 { id: 40, type: "SHORT", q: `Calculate the total sum after the loop finishes.`, 
                   code: "total = 0\nfor i in range(1, 6):\n    if i == 3: continue\n    total += i\nprint(total)", a: "12" }
-            ]
+            ],
+            "d1": [
+                { id: 1, type: "MCQ", q: "Which statement best describes data?", options: ["Processed information ready for decision making", "Raw facts and figures collected for analysis", "A business strategy", "A summarized report"], a: 1 },
+                { id: 2, type: "TF", q: "For each statement below, select True or False.", options: ["Data becomes meaningful only after processing and analysis.", "Raw data is always structured.", "Information is derived from processed data.", "Data and information are the same thing."], a: [true, false, true, false] },
+                { id: 3, type: "MCQ", q: "Which data type can store a sentence or phrase?", options: ["Integer", "Boolean", "String", "Float"], a: 2 },
+                { id: 4, type: "MCQ", q: "Select the correct data type for the value:<br><code>is_logged_in = True</code>", options: ["Integer", "Boolean", "String", "Float"], a: 1 },
+                { id: 5, type: "MTF", q: "Match the data structure with its description.", options: ["Table", "Row", "Column", "List"], labels: ["Multiple rows and columns", "Single record in a dataset", "Attribute or field", "Collection of items"], a: { "Table": "Multiple rows and columns", "Row": "Single record in a dataset", "Column": "Attribute or field", "List": "Collection of items" } },
+                { id: 6, type: "MCQ", q: 'Which data structure describes this data?<br><code>["Aabid", "Jesenia", "Mark"]</code>', options: ["Table", "List", "Graph", "Matrix"], a: 1 },
+                { id: 7, type: "MCQ", q: "Which of the following is an example of qualitative data?", options: ["Employee Salary", "Temperature", "Eye Color", "Number of Sales"], a: 2 },
+                { id: 8, type: "TF", q: "For each statement below, select True or False.", options: ["Metadata is data about other data.", "Big Data is characterized by Volume, Velocity, and Variety.", "Structured data includes social media posts and videos.", "A CSV file stores data in comma-separated format."], a: [true, true, false, true] },
+                { id: 9, type: "MCQ2", q: "Select two metrics that represent quantitative data.", options: ["Age", "Product Category", "Distance", "User Feedback"], a: [0, 2] },
+                { id: 10, type: "MCQ", q: "Which characteristic is NOT one of the 'Three Vs' of Big Data?", options: ["Volume", "Velocity", "Validity", "Variety"], a: 2 }
+            ],
+    "d2": [
+        { id: 1, type: "MCQ", q: "What does ETL stand for?", options: ["Enter, Transfer, Leave", "Extract, Transform, Load", "Export, Transfer, Load", "Extract, Translate, Log"], a: 1 },
+        { id: 2, type: "TF", q: "For each statement below, select True or False.", options: ["CSV stands for Comma-Separated Values.", "JSON uses tags like XML to define structure.", "XLSX is a Microsoft Excel file format.", "The 'Transform' step in ETL involves cleaning data."], a: [true, false, true, true] },
+        { id: 3, type: "MCQ", q: "Which Python method removes leading and trailing whitespace from a string?", options: [".clean()", ".trim()", ".strip()", ".cut()"], a: 2 },
+        { id: 4, type: "DD", q: "Complete the code to remove duplicates from a list.<br><span style='font-size: 12px; font-style: italic;'>Select the correct option.</span>", code: "ids = [1, 2, 2, 3, 3]\nunique = list([b1](ids))\nprint(unique)", options: ["set", "unique", "distinct", "filter"], a: ["set"] },
+        { id: 5, type: "MTF", q: "Match each data cleaning task with the correct technique.", options: ["Remove extra spaces", "Replace missing values", "Remove duplicate rows"], labels: [".strip()", ".fillna() or conditional replacement", "set() or drop_duplicates()", ".split()"], a: { "Remove extra spaces": ".strip()", "Replace missing values": ".fillna() or conditional replacement", "Remove duplicate rows": "set() or drop_duplicates()" } },
+        { id: 6, type: "MCQ", q: "Which aggregation function returns the number of records?", options: ["SUM", "AVG", "COUNT", "MAX"], a: 2 },
+        { id: 7, type: "TF", q: "For each statement below, select True or False.", options: ["GROUP BY splits data into groups for aggregation.", "SUM calculates the average of all values.", "Missing values should always be deleted.", "Data cleaning improves the quality of analysis."], a: [true, false, false, true] },
+        { id: 8, type: "MCQ2", q: "Which two are valid ways to handle missing values in a dataset?<br><span style='font-size: 12px; font-style: italic;'>Choose 2.</span>", options: ["Fill with the mean or median", "Ignore them completely", "Remove rows with too many nulls", "Convert them to strings"], a: [0, 2] },
+        { id: 9, type: "SHORT", q: "What does the following code print?<br><code>data = [10, None, 30, None, 50]<br>clean = [x if x is not None else 0 for x in data]<br>print(sum(clean))</code><br><span style='font-size: 12px; font-style: italic;'>Enter the number.</span>", a: "90" },
+        { id: 10, type: "MCQ", q: "What is the primary purpose of the 'Load' step in ETL?", options: ["To visualize data", "To clean and format data", "To move processed data to a target system", "To collect raw data from sources"], a: 2 }
+    ]
         };
 
         const params = new URLSearchParams(window.location.search);
@@ -769,7 +793,7 @@
             document.getElementById('q-text').innerHTML = q.q;
             
             const codeContainer = document.getElementById('q-code-container');
-            codeContainer.innerHTML = q.code ? `<div class='code-snippet'>${q.code.replace(/\n/g, '<br>')}</div>` : "";
+            codeContainer.innerHTML = q.code ? `<div class='code-snippet'><pre style="margin:0; white-space:pre; font-family:inherit; font-size:inherit; color:inherit;">${q.code}</pre></div>` : "";
             
             const interaction = document.getElementById('interaction-area');
             interaction.innerHTML = "";
@@ -935,8 +959,10 @@
                 }
                 else if(q.type === "TF") {
                     correct = Array.isArray(u) && u.every((v, j) => v === q.a[j].toString());
-                    userDisp = Array.isArray(u) ? u.join(", ").toUpperCase() : userDisp;
-                    correctDisp = q.a.join(", ").toUpperCase();
+                    userDisp = Array.isArray(u) 
+                        ? q.options.map((opt, j) => `<b style="color:#64748b;">${j+1}. ${opt}:</b> <span style="font-weight:700;">${(u[j]||'').toUpperCase()}</span>`).join('<br>')
+                        : userDisp;
+                    correctDisp = q.options.map((opt, j) => `<b style="color:#64748b;">${j+1}. ${opt}:</b> <span style="font-weight:700; color:#059669;">${q.a[j].toString().toUpperCase()}</span>`).join('<br>');
                 }
                 else if(q.type === "MTF") {
                     correct = Array.isArray(u) && q.options.every((opt, idx) => u[idx] === q.a[opt]);
@@ -1016,8 +1042,8 @@
                         <div class="review-q-text">${res.q}</div>
                         <span class="status-pill ${res.isCorrect ? 'status-correct' : 'status-wrong'}">${res.isCorrect ? 'Correct' : 'Incorrect'}</span>
                     </div>
-                    ${res.code ? '<div style="padding:6px 0; font-family:monospace; font-size:13px; color:#334155; white-space:pre-wrap; line-height:1.6;">' + res.code.replace(/\n/g, '<br>') + '</div>' : ''}
-                    <div class="ans-row">
+                    ${res.code ? `<div style="padding:6px 0; font-family:'Fira Code',monospace; font-size:13px; color:#38bdf8; background:#0f172a; border-radius:10px; padding:15px 20px; margin:10px 0; line-height:1.7;"><pre style="margin:0; white-space:pre; font-family:inherit; font-size:inherit;">${res.code}</pre></div>` : ''}
+                    <div class="ans-row" style="flex-direction:column; align-items:flex-start;">
                         <span class="ans-label">Your Response:</span>
                         <span class="user-ans">${res.user}</span>
                     </div>

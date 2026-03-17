@@ -77,6 +77,26 @@
         .nav-logout:hover {
             text-decoration: underline;
         }
+        .nav-back {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: white !important;
+            background-color: #193855;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            padding: 12px 28px;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px rgba(25, 56, 85, 0.3);
+        }
+
+        .nav-back:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(25, 56, 85, 0.4);
+            background-color: #11283f;
+        }
 
         /* Center Content Alignment */
         .hero {
@@ -244,9 +264,14 @@
     <div class="floating-shape shape-3"></div>
 
     <nav class="navbar">
-        <a href="course_selection.html" class="nav-brand">
-            <img src="Kvj logo.jpeg" alt="KVJ Analytics" class="nav-logo">
-        </a>
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="course_selection.html" class="nav-back">
+                Back
+            </a>
+            <a href="course_selection.html" class="nav-brand">
+                <img src="Kvj logo.jpeg" alt="KVJ Analytics" class="nav-logo">
+            </a>
+        </div>
         <a onclick="logout()" class="nav-logout">Log Out</a>
     </nav>
 

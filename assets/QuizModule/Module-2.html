@@ -496,9 +496,9 @@ profit = <span class="number">5000</span>
             <!-- Coding Practice: if -->
             <div class="coding-practice">
                 <h3>Coding Practice: Basic if</h3>
-                <p><strong>Challenge:</strong> Write a program that checks if a variable <code>price</code> is greater than 100. If it is, print <code>"Expensive"</code>.</p>
-                <textarea id="coding-ans-if" placeholder="price = 120
-if ... :
+                <p><strong>Challenge:</strong> Create a variable called <code>price</code> and assign a value to it. Write a program that checks if the value of <code>price</code> is greater than 100. If the price is greater than 100, print <code>"Expensive"</code>.</p>
+                <textarea id="coding-ans-if" placeholder="price = ...
+if price > ... :
     print(...)"></textarea>
                 <button class="btn-run" onclick="runSkulpt('if', 'Expensive')">Run & Check</button>
                 <div id="coding-output-if" class="live-output-box"></div>
@@ -560,22 +560,6 @@ sales = <span class="number">8500</span>
 </pre>
             <p><strong>Output</strong></p>
             <div class="output-box">Good Sales</div>
-
-            <!-- Coding Practice: elif -->
-            <div class="coding-practice">
-                <h3>Coding Practice: elif</h3>
-                <p><strong>Challenge:</strong> Write a program that checks <code>temp</code>. If > 30 print <code>"Hot"</code>, elif > 15 print <code>"Warm"</code>, else print <code>"Cold"</code>.</p>
-                <textarea id="coding-ans-elif" placeholder="temp = 20
-if ... :
-    ...
-elif ... :
-    ...
-else:
-    ..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('elif', 'Warm')">Run & Check</button>
-                <div id="coding-output-elif" class="live-output-box"></div>
-                <div id="coding-feedback-elif" class="feedback"></div>
-            </div>
 
             <h3>Nested if Statements</h3>
             <p>A nested <code>if</code> is simply an <code>if</code> statement placed inside another <code>if</code>. This allows for hierarchical or multi-level decision making.</p>
@@ -881,6 +865,24 @@ sales = [<span class="number">6500</span>, <span class="number">8800</span>, <sp
             }
         }
 
+        function triggerConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) { return clearInterval(interval); }
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
         function runSkulpt(id, expected) {
             const prog = document.getElementById(`coding-ans-${id}`).value;
             const outputDiv = document.getElementById(`coding-output-${id}`);
@@ -892,13 +894,55 @@ sales = [<span class="number">6500</span>, <span class="number">8800</span>, <sp
             feedback.className = "feedback";
 
             let outputText = "";
+            let validationText = "";
+            let userInputs = [];
             
             Sk.configure({
-                output: function(text) { outputText += text; },
+                output: function(text) { 
+                    outputDiv.appendChild(document.createTextNode(text));
+                    outputDiv.scrollTop = outputDiv.scrollHeight;
+                    outputText += text; 
+                    validationText += text;
+                },
                 read: function(x) {
                     if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
                         throw "File not found: '" + x + "'";
                     return Sk.builtinFiles["files"][x];
+                },
+                inputfun: function(prompt) {
+                    return new Promise((resolve) => {
+                        // Clean up double prompt if it exists in the output div
+                        if (outputDiv.lastChild && outputDiv.lastChild.nodeType === 3) {
+                            let lastText = outputDiv.lastChild.textContent;
+                            if (lastText.endsWith(prompt)) {
+                                outputDiv.lastChild.textContent = lastText.substring(0, lastText.length - prompt.length);
+                            }
+                        }
+
+                        const container = document.createElement('div');
+                        container.className = 'colab-input-container';
+                        container.innerHTML = `
+                            <span class="colab-prompt">${prompt}</span>
+                            <input type="text" class="colab-input" autocomplete="off">
+                        `;
+                        outputDiv.appendChild(container);
+                        
+                        const inputField = container.querySelector('.colab-input');
+                        inputField.focus();
+                        
+                        inputField.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') {
+                                const val = inputField.value;
+                                userInputs.push(val);
+                                container.remove();
+                                // Add back the prompt and the answer to the output box permanently
+                                outputDiv.appendChild(document.createTextNode(prompt + val + "\n"));
+                                outputText += prompt + val + "\n";
+                                // Do NOT add prompt/input to validationText!
+                                resolve(val);
+                            }
+                        });
+                    });
                 }
             });
 
@@ -907,19 +951,35 @@ sales = [<span class="number">6500</span>, <span class="number">8800</span>, <sp
             });
 
             myPromise.then(function(mod) {
-                outputDiv.innerText = outputText;
+                if (!outputDiv.innerHTML) outputDiv.innerText = outputText;
                 
-                if (outputText.includes(expected)) {
-                    feedback.innerHTML = "✓ Correct! Your code works perfectly.";
+                const cleanOutput = validationText.trim().toLowerCase();
+                let cleanExpected = expected.trim().toLowerCase();
+
+                // Dynamic Validation Logic
+                if (userInputs.length > 0) {
+                    if (id === 'input') {
+                        cleanExpected = `welcome to ${userInputs[0].trim()}`.toLowerCase();
+                    } else if (id === 'int') {
+                        let num = parseInt(userInputs[0]);
+                        if (!isNaN(num)) {
+                            cleanExpected = (num * 2).toString().toLowerCase();
+                        }
+                    }
+                }
+
+                if (cleanOutput.includes(cleanExpected)) {
+                    feedback.innerHTML = "✓ Correct! Your code works perfectly. 🎉";
                     feedback.className = "feedback correct";
+                    triggerConfetti();
                 } else {
-                    feedback.innerHTML = `✗ Wrong! Expected to see "${expected}" in output.`;
+                    feedback.innerHTML = `✗ Wrong! Expected result not found.`;
                     feedback.className = "feedback wrong";
                 }
                 feedback.style.display = "block";
             }, function(err) {
-                outputDiv.innerText = err.toString();
-                feedback.innerHTML = "✗ Syntax Error in your code!";
+                outputDiv.innerText += "\n" + err.toString();
+                feedback.innerHTML = "✗ Error in your code!";
                 feedback.className = "feedback wrong";
                 feedback.style.display = "block";
             });

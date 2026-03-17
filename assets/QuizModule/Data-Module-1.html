@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Data Basics | KVJ Analytics</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary-blue: #1e293b;
+            --secondary-blue: #4f46e5;
+            --accent-indigo: #6366f1;
+            --accent-violet: #8b5cf6;
+            --bg-light: #f8fafc;
+            --bg-dark: #0f172a;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --white: #ffffff;
+            --card-dark: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Top Nav */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .kvj-logo-img {
+            max-height: 35px;
+            width: auto;
+        }
+
+        .logout-btn {
+            background: #dc2626;
+            color: white;
+            padding: 8px 18px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
+        }
+
+        /* Header Banner */
+        .header-banner {
+            background: var(--primary-blue);
+            color: white;
+            padding: 120px 20px 60px;
+            text-align: center;
+        }
+
+        .header-banner h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        /* Layout Container */
+        .layout-container {
+            display: flex;
+            max-width: 1300px;
+            margin: 40px auto;
+            gap: 40px;
+            width: 95%;
+            padding-bottom: 60px;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 100px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: var(--secondary-blue);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .sidebar a.active {
+            color: var(--primary-blue);
+            font-weight: 700;
+            background: #f0f7ff;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .sidebar a:hover:not(.active) {
+            background: #f8fafc;
+            color: var(--primary-blue);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--bg-light);
+            padding-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-blue);
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        /* Content Styles */
+        p {
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #334155;
+            font-size: 17px;
+        }
+
+        strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .interaction-box strong {
+            color: var(--secondary-blue);
+        }
+
+        .interaction-box {
+            background-color: #f7f9fc;
+            border-left: 5px solid var(--secondary-blue);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+            font-size: 15px;
+        }
+
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-blue);
+            margin: 40px 0 20px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* Code Block Styling */
+        pre {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
+            margin: 20px 0;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .output-box {
+            background-color: #ecfeff;
+            border: 1px solid #cffafe;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            margin-bottom: 30px;
+            color: var(--secondary-blue);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .static-output::before {
+            content: "> Result: ";
+            margin-right: 10px;
+            opacity: 0.6;
+        }
+
+        .live-output-box {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+            min-height: 40px;
+            white-space: pre-wrap;
+            display: none;
+        }
+
+        .live-output-box.active {
+            display: block;
+        }
+
+        /* Keywords */
+        .keyword {
+            color: #f472b6;
+        }
+
+        .function {
+            color: #4ade80;
+        }
+
+        .string {
+            color: #fbbf24;
+        }
+
+        .comment {
+            color: #94a3b8;
+        }
+
+        /* Quiz CTA */
+        .quiz-cta {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #008eab 100%);
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 142, 171, 0.2);
+        }
+
+        .quiz-cta h3 {
+            color: white;
+            margin-top: 0;
+            font-size: 24px;
+            border: none;
+            padding: 0;
+        }
+
+        .quiz-cta p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+        }
+
+        .btn-start-quiz {
+            display: inline-block;
+            background: #ffffff;
+            color: var(--primary-blue);
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-start-quiz:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: #f8fafc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+            font-size: 13px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        /* Practice Space Styling (Card-based) */
+        .practice-card {
+            background: var(--card-dark);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-left: 6px solid var(--accent-indigo);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #f1f5f9;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .practice-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 30px 60px -12px rgba(99, 102, 241, 0.2);
+        }
+
+        .practice-card::before {
+            content: "PRACTICE";
+            position: absolute;
+            top: -12px;
+            right: 25px;
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        .practice-card h3 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: var(--white);
+            font-size: 22px;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .practice-card p {
+            color: #cbd5e1;
+            font-size: 17px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .practice-dark-box {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .practice-dark-box input {
+            flex: 1;
+            padding: 14px 20px;
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .practice-dark-box input:focus {
+            border-color: #00d2ff;
+            background: #2d3748;
+        }
+
+        .practice-dark-btn {
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-violet) 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .practice-dark-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(79, 70, 229, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .feedback-dark {
+            margin-top: 15px;
+            font-weight: 700;
+            display: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .feedback-dark.correct {
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid #10b981;
+            display: block;
+        }
+
+        .feedback-dark.wrong {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            display: block;
+        }
+
+        /* Interaction List Style */
+        .content-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .content-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: #334155;
+            font-size: 17px;
+        }
+
+        .content-list li::before {
+            content: "•";
+            color: var(--secondary-blue);
+            font-weight: 900;
+            font-size: 24px;
+            position: absolute;
+            left: 0;
+            top: -4px;
+        }
+
+        /* Drag and Drop Container */
+        .dd-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+            background: #1f2937;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .dd-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .dd-label {
+            flex: 1;
+            color: #e5e7eb;
+            font-weight: 600;
+        }
+
+        .dd-target {
+            flex: 1;
+        }
+
+        .dd-target select {
+            width: 100%;
+            padding: 12px 15px;
+            background: #111827;
+            color: #fff;
+            border: 2px solid #374151;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            transition: all 0.2s;
+            outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2300d2ff'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        .dd-target select:hover {
+            border-color: #00d2ff;
+            background-color: #1f2937;
+        }
+
+        .dd-target select:focus {
+            border-color: #00d2ff;
+            box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.1);
+        }
+
+        /* MCQ Clickable Options */
+        .mcq-options {
+            display: grid;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .mcq-option {
+            background: #1f2937;
+            border: 2px solid #374151;
+            color: #e5e7eb;
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mcq-option:hover:not(.disabled) {
+            border-color: var(--accent-indigo);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateX(8px);
+        }
+
+        .mcq-option.selected-anim {
+            animation: mcq-pulse 0.4s ease-out;
+        }
+
+        @keyframes mcq-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+            100% { transform: scale(1); }
+        }
+
+        .mcq-option.correct {
+            border-color: #10b981 !important;
+            background: rgba(16, 185, 129, 0.15) !important;
+            color: #10b981 !important;
+        }
+
+        .mcq-option.wrong {
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.15) !important;
+            color: #ef4444 !important;
+        }
+
+        .mcq-option.selected {
+            border-color: #00d2ff;
+            background: rgba(0, 210, 255, 0.1);
+        }
+
+        .mcq-option.disabled {
+            cursor: default;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .checkbox-option {
+            background: #1f2937;
+            border: 2px solid #374151;
+            color: #e5e7eb;
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+            user-select: none;
+        }
+
+        .checkbox-option:hover:not(.disabled) {
+            border-color: #00d2ff;
+            background: #2d3748;
+            transform: translateX(5px);
+        }
+
+        .checkbox-option.selected {
+            border-color: #00d2ff;
+            background: rgba(0, 210, 255, 0.1);
+        }
+
+        .checkbox-option.correct {
+            border-color: #10b981 !important;
+            background: rgba(16, 185, 129, 0.15) !important;
+            color: #10b981 !important;
+        }
+
+        .checkbox-option.wrong {
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.15) !important;
+            color: #ef4444 !important;
+        }
+
+        .checkbox-option.disabled {
+            cursor: default;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .checkbox-input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #00d2ff;
+        }
+
+        .mcq-prefix {
+            font-weight: 800;
+            color: var(--accent-indigo);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            min-width: 25px;
+            transition: color 0.3s;
+        }
+
+        .mcq-option:hover .mcq-prefix {
+            color: var(--white);
+        }
+
+        /* Updated True/False Toggle Buttons */
+        .tf-btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .tf-btn {
+            flex: 1;
+            padding: 12px;
+            background: #111827;
+            border: 2px solid #374151;
+            color: #9ca3af;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+        }
+
+        .tf-btn:hover:not(.disabled) {
+            border-color: #3f4b5d;
+            background: #1f2937;
+        }
+
+        .tf-btn.selected-true {
+            background: rgba(16, 185, 129, 0.15) !important;
+            border-color: #10b981 !important;
+            color: #10b981 !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .tf-btn.selected-false {
+            background: rgba(239, 68, 68, 0.15) !important;
+            border-color: #ef4444 !important;
+            color: #ef4444 !important;
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.2);
+        }
+
+        .tf-btn.disabled {
+            cursor: default;
+            opacity: 0.6;
+        }
+
+        .tf-row {
+            display: flex;
+            flex-direction: column;
+            background: #1f2937;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #374151;
+            transition: all 0.3s ease;
+        }
+
+        .tf-row:hover {
+            border-color: #4b5563;
+        }
+
+        .tf-statement {
+            color: #f3f4f6;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .tf-row.correct { border-color: #10b981 !important; background: rgba(16, 185, 129, 0.05) !important; }
+        .tf-row.wrong { border-color: #ef4444 !important; background: rgba(239, 68, 68, 0.05) !important; }
+
+        .submit-btn-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-try-again {
+            background: #374151;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.2s;
+            display: none;
+        }
+
+        .btn-try-again:hover {
+            background: #4b5563;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="data_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+        <a href="data_roadmap.html" class="logout-btn">EXIT</a>
+    </nav>
+
+    <header class="header-banner">
+        <h1>MODULE 1: DATA BASICS</h1>
+    </header>
+
+
+
+    <div class="layout-container">
+        <nav class="sidebar">
+            <h3>Module Path</h3>
+            <a href="Data-Module-1.html" class="active">01 Data Basics</a>
+            <a href="Data-Module-2.html">02 Data Manipulation</a>
+            <a href="#">03 Data Analysis</a>
+            <a href="#">04 Visualization</a>
+            <a href="#">05 Responsible Analytics</a>
+
+            <h3 style="margin-top:25px;">Navigation</h3>
+            <a href="data_roadmap.html" style="background: #f8f9fa;">&larr; Return to Roadmap</a>
+        </nav>
+
+        <main class="main-content">
+
+            <div class="section-header">
+                <h2>1. Meaning of Data</h2>
+                <p style="font-weight: 600; color: var(--secondary-blue);">Foundational Definitions</p>
+            </div>
+            
+            <h3>Concept</h3>
+            <p><strong>Data</strong> refers to raw facts, figures, or observations collected for analysis or reference. Data can appear in many forms such as:</p>
+            <ul class="content-list">
+                <li>Numbers</li>
+                <li>Text</li>
+                <li>Images</li>
+                <li>Audio</li>
+            </ul>
+            <p>By itself, data does not carry meaning until it is processed and interpreted.</p>
+            
+            <div class="interaction-box">
+                <strong>Example Raw Data:</strong>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <tr style="background: #e2e8f0;">
+                        <th style="padding: 10px; border: 1px solid #cbd5e1;">Product</th>
+                        <th style="padding: 10px; border: 1px solid #cbd5e1;">Sales</th>
+                    </tr>
+                    <tr><td style="padding: 10px; border: 1px solid #cbd5e1;">Laptop</td><td style="padding: 10px; border: 1px solid #cbd5e1;">15</td></tr>
+                    <tr><td style="padding: 10px; border: 1px solid #cbd5e1;">Tablet</td><td style="padding: 10px; border: 1px solid #cbd5e1;">8</td></tr>
+                    <tr><td style="padding: 10px; border: 1px solid #cbd5e1;">Phone</td><td style="padding: 10px; border: 1px solid #cbd5e1;">20</td></tr>
+                </table>
+                <p style="margin-top: 15px;">After analysis we might discover: <strong>Phone is the best-selling product.</strong> That insight becomes useful information.</p>
+            </div>
+
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Data is like ingredients in cooking. Ingredients alone do not create a meal. Only after processing and combining them do we get something meaningful.</p>
+            </div>
+
+            <div class="practice-card" id="card-meaning-mcq">
+                <h3>Practice Activity: Understanding Data</h3>
+                <p>Which of the following best describes data?</p>
+                <div class="mcq-options" id="mcq-opts-meaning-mcq">
+                    <div class="mcq-option" onclick="selectMCQ('meaning-mcq', 'A')">
+                        <span class="mcq-prefix">A.</span> Final decision
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('meaning-mcq', 'B')">
+                        <span class="mcq-prefix">B.</span> Raw facts collected for analysis
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('meaning-mcq', 'C')">
+                        <span class="mcq-prefix">C.</span> A business strategy
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('meaning-mcq', 'D')">
+                        <span class="mcq-prefix">D.</span> A summarized report
+                    </div>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkMCQ('meaning-mcq', 'B', 'Data is raw facts collected for analysis.')">Submit</button>
+                    <button id="try-again-meaning-mcq" class="btn-try-again" onclick="resetMCQ('meaning-mcq')">Try Again</button>
+                </div>
+                <div id="feedback-meaning-mcq" class="feedback-dark"></div>
+
+                <div style="margin-top: 40px;">
+                    <h3>Practice Activity: Data Concepts</h3>
+                    <p>Evaluate the following statements about data:</p>
+                    <div id="tf-meaning-tf" class="tf-container">
+                        <div class="tf-row" id="tf-row-meaning-tf-0">
+                            <span class="tf-statement">Data always has meaning by itself.</span>
+                            <div class="tf-btn-group">
+                                <button class="tf-btn" onclick="selectTF('meaning-tf', 0, true)">True</button>
+                                <button class="tf-btn" onclick="selectTF('meaning-tf', 0, false)">False</button>
+                            </div>
+                        </div>
+                        <div class="tf-row" id="tf-row-meaning-tf-1">
+                            <span class="tf-statement">Data can include text and images.</span>
+                            <div class="tf-btn-group">
+                                <button class="tf-btn" onclick="selectTF('meaning-tf', 1, true)">True</button>
+                                <button class="tf-btn" onclick="selectTF('meaning-tf', 1, false)">False</button>
+                            </div>
+                        </div>
+                        <div class="tf-row" id="tf-row-meaning-tf-2">
+                            <span class="tf-statement">Data becomes useful after analysis.</span>
+                            <div class="tf-btn-group">
+                                <button class="tf-btn" onclick="selectTF('meaning-tf', 2, true)">True</button>
+                                <button class="tf-btn" onclick="selectTF('meaning-tf', 2, false)">False</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-btn-container">
+                        <button class="practice-dark-btn" onclick="checkTF('meaning-tf', [false, true, true], 'You understand the basics of data processing!')">Submit</button>
+                        <button id="try-again-meaning-tf" class="btn-try-again" onclick="resetTF('meaning-tf')">Try Again</button>
+                    </div>
+                    <div id="feedback-meaning-tf" class="feedback-dark"></div>
+                </div>
+            </div>
+            </div>
+
+            <div class="practice-card">
+                <h3>Scenario Question</h3>
+                <p>A school collects: Student marks, Attendance, and Assignment scores. Explain one insight the school could get after analyzing this data.</p>
+                <div class="practice-dark-box">
+                    <input type="text" id="ans-scenario" placeholder="Your answer...">
+                    <button class="practice-dark-btn" onclick="checkDark('scenario', 'insight', 'Great! For example, identifying struggling students or tracking overall attendance patterns.')">Submit</button>
+                </div>
+                <div id="feedback-scenario" class="feedback-dark"></div>
+            </div>
+
+            <div class="section-header">
+                <h2>2. Data Analysis</h2>
+            </div>
+            <h3>Concept</h3>
+            <p><strong>Data Analysis</strong> is the process of converting raw data into useful information for decision making. Organizations use data analysis to:</p>
+            <ul class="content-list">
+                <li>Understand trends</li>
+                <li>Identify patterns</li>
+                <li>Support decisions</li>
+            </ul>
+            
+            <div class="interaction-box">
+                <strong>Example:</strong>
+                <p>A company records daily sales.</p>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 15px;">
+                    <tr style="background: #e2e8f0;">
+                        <th style="padding: 10px; border: 1px solid #cbd5e1;">Day</th>
+                        <th style="padding: 10px; border: 1px solid #cbd5e1;">Sales</th>
+                    </tr>
+                    <tr><td style="padding: 10px; border: 1px solid #cbd5e1;">Monday</td><td style="padding: 10px; border: 1px solid #cbd5e1;">5000</td></tr>
+                    <tr><td style="padding: 10px; border: 1px solid #cbd5e1;">Tuesday</td><td style="padding: 10px; border: 1px solid #cbd5e1;">6200</td></tr>
+                    <tr><td style="padding: 10px; border: 1px solid #cbd5e1;">Wednesday</td><td style="padding: 10px; border: 1px solid #cbd5e1;">7100</td></tr>
+                </table>
+                <p>After analysis they may conclude: <strong>Sales increase mid-week.</strong></p>
+            </div>
+
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Data analysis answers questions like: What happened? Why did it happen? What might happen next?</p>
+            </div>
+
+            <div class="practice-card" id="card-analysis-dd">
+                <h3>Practice Activities</h3>
+                <p><strong>Drag & Drop Equivalent: Match the Purpose</strong></p>
+                <p>Match the data collected with the possible insight:</p>
+                <div class="dd-container">
+                    <div class="dd-row">
+                        <div class="dd-label">Website visitors &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-analysis-1">
+                                <option value="">Select Insight...</option>
+                                <option value="avg">Class average</option>
+                                <option value="pop">Most popular page</option>
+                                <option value="best">Best selling product</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dd-row">
+                        <div class="dd-label">Student marks &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-analysis-2">
+                                <option value="">Select Insight...</option>
+                                <option value="avg">Class average</option>
+                                <option value="pop">Most popular page</option>
+                                <option value="best">Best selling product</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dd-row">
+                        <div class="dd-label">Sales records &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-analysis-3">
+                                <option value="">Select Insight...</option>
+                                <option value="avg">Class average</option>
+                                <option value="pop">Most popular page</option>
+                                <option value="best">Best selling product</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="practice-dark-btn" style="margin-top: 10px;" onclick="checkDDAnalysis()">Check Matches</button>
+                </div>
+                <div id="feedback-analysis-dd" class="feedback-dark"></div>
+            </div>
+
+            <div class="practice-card" id="card-dataset-mcq">
+                <p><strong>MCQ:</strong> A dataset is:</p>
+                <div class="mcq-options" id="mcq-opts-dataset-mcq">
+                    <div class="mcq-option" onclick="selectMCQ('dataset-mcq', 'A')">
+                        <span class="mcq-prefix">A.</span> A collection of organized data
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('dataset-mcq', 'B')">
+                        <span class="mcq-prefix">B.</span> A single number
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('dataset-mcq', 'C')">
+                        <span class="mcq-prefix">C.</span> A verbal instruction
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('dataset-mcq', 'D')">
+                        <span class="mcq-prefix">D.</span> A hardware component
+                    </div>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkMCQ('dataset-mcq', 'A', 'A dataset is a collection of organized data.')">Submit</button>
+                    <button id="try-again-dataset-mcq" class="btn-try-again" onclick="resetMCQ('dataset-mcq')">Try Again</button>
+                </div>
+                <div id="feedback-dataset-mcq" class="feedback-dark"></div>
+            </div>
+                
+            <div class="practice-card" id="card-mini-thinking">
+                <p><strong>Thinking Question:</strong> A restaurant collects daily customer feedback ratings. What decision could the restaurant make after analyzing this data?</p>
+                <div class="practice-dark-box">
+                    <input type="text" id="ans-mini-thinking" placeholder="Your answer...">
+                    <button class="practice-dark-btn" onclick="checkDark('mini-thinking', 'menu', 'Excellent! They could improve their menu, change staff behavior, etc.')">Submit</button>
+                </div>
+                <div id="feedback-mini-thinking" class="feedback-dark"></div>
+            </div>
+
+            <div class="section-header">
+                <h2>3. Data Variable Types</h2>
+            </div>
+            <h3>Concept</h3>
+            <p>Variables describe the type of value stored in data. Main variable types include <strong>Boolean, Numeric, and String</strong>. Each type stores different kinds of values.</p>
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Understanding variable types helps store data correctly, analyze data efficiently, and avoid calculation errors.</p>
+            </div>
+
+            <h3>3.1 Boolean Data Type</h3>
+            <p>Boolean data type stores two possible values: <strong>True</strong> or <strong>False</strong>. Booleans are commonly used in logical conditions and decision making.</p>
+            <pre><span class="comment"># Example:</span>
+is_logged_in = <span class="keyword">True</span>
+<span class="keyword">if</span> is_logged_in:
+    <span class="function">print</span>(<span class="string">"Access granted"</span>)</pre>
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Boolean variables act like switches: ON = True, OFF = False.</p>
+            </div>
+
+            <div class="practice-card" id="card-bool-practice">
+                <h3>Practice Activity: Boolean Logic</h3>
+                <p><strong>Part 1: Identification</strong> - Which of the following can be represented as a Boolean (True/False)?</p>
+                <div class="checkbox-group" id="checkbox-group-bool-id">
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        1. Student passed exam
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        2. Number of books
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        3. Payment successful
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        4. Temperature
+                    </label>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkCheckboxes('bool-id', [1, 3], '1 and 3 are Yes/No states.')">Submit Part 1</button>
+                    <button id="try-again-bool-id" class="btn-try-again" onclick="resetCheckboxes('bool-id')">Try Again</button>
+                </div>
+                <div id="feedback-bool-id" class="feedback-dark"></div>
+
+                <div style="margin-top: 40px;">
+                    <p><strong>Part 2: Concepts</strong> - Evaluate these statements about Booleans:</p>
+                    <div id="tf-bool-tf" class="tf-container">
+                        <div class="tf-row" id="tf-row-bool-tf-0">
+                            <span class="tf-statement">Boolean variables store True or False.</span>
+                            <div class="tf-btn-group">
+                                <button class="tf-btn" onclick="selectTF('bool-tf', 0, true)">True</button>
+                                <button class="tf-btn" onclick="selectTF('bool-tf', 0, false)">False</button>
+                            </div>
+                        </div>
+                        <div class="tf-row" id="tf-row-bool-tf-1">
+                            <span class="tf-statement">Boolean values can be used in conditions.</span>
+                            <div class="tf-btn-group">
+                                <button class="tf-btn" onclick="selectTF('bool-tf', 1, true)">True</button>
+                                <button class="tf-btn" onclick="selectTF('bool-tf', 1, false)">False</button>
+                            </div>
+                        </div>
+                        <div class="tf-row" id="tf-row-bool-tf-2">
+                            <span class="tf-statement">Boolean values represent multiple numbers.</span>
+                            <div class="tf-btn-group">
+                                <button class="tf-btn" onclick="selectTF('bool-tf', 2, true)">True</button>
+                                <button class="tf-btn" onclick="selectTF('bool-tf', 2, false)">False</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-btn-container">
+                        <button class="practice-dark-btn" onclick="checkTF('bool-tf', [true, true, false], 'Excellent! You have mastered Boolean concepts.')">Submit Part 2</button>
+                        <button id="try-again-bool-tf" class="btn-try-again" onclick="resetTF('bool-tf')">Try Again</button>
+                    </div>
+                    <div id="feedback-bool-tf" class="feedback-dark"></div>
+                </div>
+            </div>
+            
+            <h3>3.2 Numeric Data Type</h3>
+            <p>Numeric data types represent numbers that can be calculated mathematically. Examples: exam marks, salary, weight, height. Numeric types include Integer, Float, Complex.</p>
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Numeric data allows operations such as addition, subtraction, multiplication, and division.</p>
+            </div>
+
+            <div class="practice-card">
+                <h3>Practice Activities</h3>
+                <p><strong>MCQ:</strong> Which of the following is numeric data?</p>
+                <ol style="margin-left: 20px; color: #9ca3af; list-style-type: upper-alpha;">
+                    <li>Age</li>
+                    <li>Country name</li>
+                    <li>Product category</li>
+                    <li>Email address</li>
+                </ol>
+                <div class="mcq-options" id="mcq-opts-numeric-mcq">
+                    <div class="mcq-option" onclick="selectMCQ('numeric-mcq', 'A')">
+                        <span class="mcq-prefix">A.</span> Age
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('numeric-mcq', 'B')">
+                        <span class="mcq-prefix">B.</span> Country name
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('numeric-mcq', 'C')">
+                        <span class="mcq-prefix">C.</span> Product category
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('numeric-mcq', 'D')">
+                        <span class="mcq-prefix">D.</span> Email address
+                    </div>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkMCQ('numeric-mcq', 'A', 'Age is numeric data.')">Submit</button>
+                    <button id="try-again-numeric-mcq" class="btn-try-again" onclick="resetMCQ('numeric-mcq')">Try Again</button>
+                </div>
+                <div id="feedback-numeric-mcq" class="feedback-dark"></div>
+
+                <p style="margin-top: 20px;"><strong>Classification: Match example with numeric type.</strong></p>
+                <div class="dd-container">
+                    <div class="dd-row">
+                        <div class="dd-label">25 &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-num-1">
+                                <option value="">Select Type...</option>
+                                <option value="integer">Integer</option>
+                                <option value="float">Float</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dd-row">
+                        <div class="dd-label">12.75 &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-num-2">
+                                <option value="">Select Type...</option>
+                                <option value="integer">Integer</option>
+                                <option value="float">Float</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="practice-dark-btn" style="margin-top: 10px;" onclick="checkDDNum()">Check Matches</button>
+                </div>
+                <div id="feedback-num-dd" class="feedback-dark"></div>
+            </div>
+
+            <h3>3.3 Integer</h3>
+            <p>An integer is a whole number without decimal values. Examples: 5, 10, -3, 0. Integers represent quantities like number of students or products sold.</p>
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Integers are useful when exact counts are needed.</p>
+            </div>
+
+            <div class="practice-card" id="card-int-practice">
+                <h3>Practice Activity: Integers</h3>
+                <p>Which of these are integers?</p>
+                <div class="checkbox-group" id="checkbox-group-int-id">
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        1. 15
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        2. 4.8
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        3. -10
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        4. 0
+                    </label>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkCheckboxes('int-id', [1, 3, 4], 'Those are whole numbers.')">Submit</button>
+                    <button id="try-again-int-id" class="btn-try-again" onclick="resetCheckboxes('int-id')">Try Again</button>
+                </div>
+                <div id="feedback-int-id" class="feedback-dark"></div>
+                
+                <p style="margin-top: 20px;"><strong>True or False:</strong></p>
+                <div id="tf-int-tf" class="tf-container">
+                    <div class="tf-row" id="tf-row-int-tf-0">
+                        <span class="tf-statement">Integers can have decimal points.</span>
+                        <div class="tf-btn-group">
+                            <button class="tf-btn" onclick="selectTF('int-tf', 0, true)">True</button>
+                            <button class="tf-btn" onclick="selectTF('int-tf', 0, false)">False</button>
+                        </div>
+                    </div>
+                    <div class="tf-row" id="tf-row-int-tf-1">
+                        <span class="tf-statement">Integers can be negative numbers.</span>
+                        <div class="tf-btn-group">
+                            <button class="tf-btn" onclick="selectTF('int-tf', 1, true)">True</button>
+                            <button class="tf-btn" onclick="selectTF('int-tf', 1, false)">False</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkTF('int-tf', [false, true], 'Correct!')">Submit</button>
+                    <button id="try-again-int-tf" class="btn-try-again" onclick="resetTF('int-tf')">Try Again</button>
+                </div>
+                <div id="feedback-int-tf" class="feedback-dark"></div>
+            </div>
+
+            <h3>3.4 Float</h3>
+            <p>A float represents numbers with decimal values. Examples: 2.5, 3.14, 7.8. Float values are used when precision is required (e.g., price, temperature, weight).</p>
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Floats allow more accurate measurements compared to integers.</p>
+            </div>
+
+            <div class="practice-card" id="card-float-practice">
+                <h3>Practice Activity: Floats</h3>
+                <p><strong>MCQ:</strong> Which value is a float?</p>
+                <ol style="margin-left: 20px; color: #9ca3af; list-style-type: upper-alpha;">
+                    <li>8</li>
+                    <li>12.5</li>
+                    <li>-3</li>
+                    <li>20</li>
+                </ol>
+                <div class="mcq-options" id="mcq-opts-float-mcq">
+                    <div class="mcq-option" onclick="selectMCQ('float-mcq', 'A')">
+                        <span class="mcq-prefix">A.</span> 8
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('float-mcq', 'B')">
+                        <span class="mcq-prefix">B.</span> 12.5
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('float-mcq', 'C')">
+                        <span class="mcq-prefix">C.</span> -3
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('float-mcq', 'D')">
+                        <span class="mcq-prefix">D.</span> 20
+                    </div>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkMCQ('float-mcq', 'B', '12.5 contains a decimal value.')">Submit</button>
+                    <button id="try-again-float-mcq" class="btn-try-again" onclick="resetMCQ('float-mcq')">Try Again</button>
+                </div>
+                <div id="feedback-float-mcq" class="feedback-dark"></div>
+
+                <p style="margin-top: 20px;"><strong>True or False:</strong></p>
+                <div id="tf-float-tf" class="tf-container">
+                    <div class="tf-row" id="tf-row-float-tf-0">
+                        <span class="tf-statement">Float numbers contain decimal values.</span>
+                        <div class="tf-btn-group">
+                            <button class="tf-btn" onclick="selectTF('float-tf', 0, true)">True</button>
+                            <button class="tf-btn" onclick="selectTF('float-tf', 0, false)">False</button>
+                        </div>
+                    </div>
+                    <div class="tf-row" id="tf-row-float-tf-1">
+                        <span class="tf-statement">Floats can be used to represent prices.</span>
+                        <div class="tf-btn-group">
+                            <button class="tf-btn" onclick="selectTF('float-tf', 1, true)">True</button>
+                            <button class="tf-btn" onclick="selectTF('float-tf', 1, false)">False</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkTF('float-tf', [true, true], 'Correct!')">Submit</button>
+                    <button id="try-again-float-tf" class="btn-try-again" onclick="resetTF('float-tf')">Try Again</button>
+                </div>
+                <div id="feedback-float-tf" class="feedback-dark"></div>
+            </div>
+
+            <h3>3.5 Complex Numbers</h3>
+            <p>Complex numbers contain a real part and an imaginary part. General form: <code>a + bi</code>. Example: <code>3 + 4i</code>. Python supports complex numbers using the complex data type.</p>
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Complex numbers are mainly used in engineering and scientific calculations.</p>
+            </div>
+
+            <div class="practice-card" id="card-complex-practice">
+                <h3>Practice Activity: Complex Numbers</h3>
+                <p><strong>Identify Complex Number:</strong> Which of the following is a complex number?</p>
+                <div class="mcq-options" id="mcq-opts-complex-mcq">
+                    <div class="mcq-option" onclick="selectMCQ('complex-mcq', 'A')">
+                        <span class="mcq-prefix">A.</span> 5
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('complex-mcq', 'B')">
+                        <span class="mcq-prefix">B.</span> 3.2
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('complex-mcq', 'C')">
+                        <span class="mcq-prefix">C.</span> 4 + 2i
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('complex-mcq', 'D')">
+                        <span class="mcq-prefix">D.</span> 10
+                    </div>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkMCQ('complex-mcq', 'C', '4 + 2i has a real and imaginary part.')">Submit</button>
+                    <button id="try-again-complex-mcq" class="btn-try-again" onclick="resetMCQ('complex-mcq')">Try Again</button>
+                </div>
+                <div id="feedback-complex-mcq" class="feedback-dark"></div>
+            </div>
+
+            <div class="section-header">
+                <h2>3.6 String Data Type</h2>
+            </div>
+            <p>String data type stores text values. Examples: names, city, product names. Strings can contain letters, numbers, and symbols.</p>
+            <pre><span class="comment"># Example:</span>
+name = <span class="string">"Anoop"</span></pre>
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Strings help store descriptive information, not numeric calculations.</p>
+            </div>
+
+            <div class="practice-card" id="card-string-practice">
+                <h3>Practice Activity: String Concepts</h3>
+                <p><strong>Part 1: Identification</strong> - Which of the following are strings?</p>
+                <div class="checkbox-group" id="checkbox-group-string-id">
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        1. "India"
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        2. 25
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        3. "Laptop"
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        4. 12.5
+                    </label>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkCheckboxes('string-id', [1, 3], 'Text surrounded by quotes is a string.')">Submit Part 1</button>
+                    <button id="try-again-string-id" class="btn-try-again" onclick="resetCheckboxes('string-id')">Try Again</button>
+                </div>
+                <div id="feedback-string-id" class="feedback-dark"></div>
+
+                <div style="margin-top: 40px;">
+                    <p><strong>Part 2: Concepts</strong> - Evaluate these statements about Strings:</p>
+                    <div id="tf-string-tf" class="tf-container">
+                        <div class="tf-row" id="tf-row-string-tf-0">
+                            <span class="tf-statement">Strings store text values.</span>
+                            <div class="tf-btn-group">
+                                <button class="tf-btn" onclick="selectTF('string-tf', 0, true)">True</button>
+                                <button class="tf-btn" onclick="selectTF('string-tf', 0, false)">False</button>
+                            </div>
+                        </div>
+                        <div class="tf-row" id="tf-row-string-tf-1">
+                            <span class="tf-statement">Strings can contain numbers as characters.</span>
+                            <div class="tf-btn-group">
+                                <button class="tf-btn" onclick="selectTF('string-tf', 1, true)">True</button>
+                                <button class="tf-btn" onclick="selectTF('string-tf', 1, false)">False</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-btn-container">
+                        <button class="practice-dark-btn" onclick="checkTF('string-tf', [true, true], 'Strings are essential for handling text-based data.')">Submit Part 2</button>
+                        <button id="try-again-string-tf" class="btn-try-again" onclick="resetTF('string-tf')">Try Again</button>
+                    </div>
+                    <div id="feedback-string-tf" class="feedback-dark"></div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>4. Data Structures</h2>
+            </div>
+            <p>Data is often organized using structures such as Tables, Rows, Columns, and Lists. Tables organize structured data.</p>
+            <div class="interaction-box">
+                <strong>Example Table:</strong>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 15px;">
+                    <tr style="background: #e2e8f0;">
+                        <th style="padding: 10px; border: 1px solid #cbd5e1;">Name</th>
+                        <th style="padding: 10px; border: 1px solid #cbd5e1;">Age</th>
+                        <th style="padding: 10px; border: 1px solid #cbd5e1;">Department</th>
+                    </tr>
+                    <tr><td style="padding: 10px; border: 1px solid #cbd5e1;">Arjun</td><td style="padding: 10px; border: 1px solid #cbd5e1;">28</td><td style="padding: 10px; border: 1px solid #cbd5e1;">Marketing</td></tr>
+                </table>
+            </div>
+            <ul class="content-list">
+                <li><strong>Rows</strong> represent records.</li>
+                <li><strong>Columns</strong> represent attributes.</li>
+                <li><strong>Lists</strong> store collections of items (e.g., <code>[1,2,3,4,5]</code>).</li>
+            </ul>
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Data structures help organize and analyze information efficiently.</p>
+            </div>
+
+            <div class="practice-card" id="card-struct-dd">
+                <h3>Practice Activities</h3>
+                <p><strong>Drag & Drop Equivalent: Match the concept.</strong></p>
+                <div class="dd-container">
+                    <div class="dd-row">
+                        <div class="dd-label">Single record &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-struct-1">
+                                <option value="">Select Concept...</option>
+                                <option value="row">Row</option>
+                                <option value="column">Column</option>
+                                <option value="table">Table</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dd-row">
+                        <div class="dd-label">Attribute &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-struct-2">
+                                <option value="">Select Concept...</option>
+                                <option value="row">Row</option>
+                                <option value="column">Column</option>
+                                <option value="table">Table</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dd-row">
+                        <div class="dd-label">Organized dataset &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-struct-3">
+                                <option value="">Select Concept...</option>
+                                <option value="row">Row</option>
+                                <option value="column">Column</option>
+                                <option value="table">Table</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="practice-dark-btn" style="margin-top: 10px;" onclick="checkDDStruct()">Check Matches</button>
+                </div>
+                <div id="feedback-struct-dd" class="feedback-dark"></div>
+            </div>
+
+            <div class="section-header">
+                <h2>5. Types of Data</h2>
+            </div>
+            <p>Data can be classified into two main types: <strong>Qualitative data</strong> and <strong>Quantitative data</strong>.</p>
+
+            <h3>5.1 Qualitative Data</h3>
+            <p>Qualitative data describes categories or characteristics. Examples: gender, city, brand. Types include Nominal and Ordinal.</p>
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Qualitative data focuses on descriptions rather than numbers.</p>
+            </div>
+
+            <div class="practice-card" id="card-qual-mcq">
+                <h3>Practice Activities</h3>
+                <p><strong>MCQ:</strong> Which of the following is qualitative data?</p>
+                <div class="mcq-options" id="mcq-opts-qual-mcq">
+                    <div class="mcq-option" onclick="selectMCQ('qual-mcq', 'A')">
+                        <span class="mcq-prefix">A.</span> Salary
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('qual-mcq', 'B')">
+                        <span class="mcq-prefix">B.</span> Height
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('qual-mcq', 'C')">
+                        <span class="mcq-prefix">C.</span> Eye color
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('qual-mcq', 'D')">
+                        <span class="mcq-prefix">D.</span> Age
+                    </div>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkMCQ('qual-mcq', 'C', 'Eye color is a category or characteristic.')">Submit</button>
+                    <button id="try-again-qual-mcq" class="btn-try-again" onclick="resetMCQ('qual-mcq')">Try Again</button>
+                </div>
+                <div id="feedback-qual-mcq" class="feedback-dark"></div>
+            </div>
+
+            <h3>5.2 Quantitative Data</h3>
+            <p>Quantitative data represents numeric values. Examples: height, weight, marks, distance.</p>
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Quantitative data allows statistical calculations.</p>
+            </div>
+
+            <div class="practice-card" id="card-quant-id">
+                <h3>Practice Activities</h3>
+                <p>Which of these are quantitative?</p>
+                <div class="checkbox-group" id="checkbox-group-quant-id">
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        1. Age
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        2. Weight
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        3. Country
+                    </label>
+                    <label class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <input type="checkbox" class="checkbox-input" tabindex="-1">
+                        4. Temperature
+                    </label>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkCheckboxes('quant-id', [1, 2, 4], 'These are all numeric values.')">Submit</button>
+                    <button id="try-again-quant-id" class="btn-try-again" onclick="resetCheckboxes('quant-id')">Try Again</button>
+                </div>
+                <div id="feedback-quant-id" class="feedback-dark"></div>
+            </div>
+
+            <div class="section-header">
+                <h2>6. Structured vs Unstructured Data</h2>
+            </div>
+            <h3>Structured Data</h3>
+            <p>Structured data fits into rows and columns and is typically stored in databases or spreadsheets. Examples: phone numbers, bank records.</p>
+            
+            <h3>Unstructured Data</h3>
+            <p>Unstructured data has no fixed format. Examples: emails, videos, social media posts.</p>
+            
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Most modern data generated online is unstructured.</p>
+            </div>
+
+            <div class="practice-card" id="card-structtype-dd">
+                <h3>Practice Activities</h3>
+                <p><strong>Classification Activity:</strong> Classify the following data types.</p>
+                <div class="dd-container">
+                    <div class="dd-row">
+                        <div class="dd-label">Excel table &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-structtype-1">
+                                <option value="">Select Type...</option>
+                                <option value="structured">Structured</option>
+                                <option value="unstructured">Unstructured</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dd-row">
+                        <div class="dd-label">Email message &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-structtype-2">
+                                <option value="">Select Type...</option>
+                                <option value="structured">Structured</option>
+                                <option value="unstructured">Unstructured</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dd-row">
+                        <div class="dd-label">Database records &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-structtype-3">
+                                <option value="">Select Type...</option>
+                                <option value="structured">Structured</option>
+                                <option value="unstructured">Unstructured</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dd-row">
+                        <div class="dd-label">Video file &rarr;</div>
+                        <div class="dd-target">
+                            <select id="dd-structtype-4">
+                                <option value="">Select Type...</option>
+                                <option value="structured">Structured</option>
+                                <option value="unstructured">Unstructured</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="practice-dark-btn" style="margin-top: 10px;" onclick="checkDDStructType()">Check Matches</button>
+                </div>
+                <div id="feedback-structtype-dd" class="feedback-dark"></div>
+            </div>
+
+            <div class="section-header">
+                <h2>7. Metadata</h2>
+            </div>
+            <h3>Concept</h3>
+            <p><strong>Metadata</strong> means data about data. It describes information such as file size, creation date, author, format.</p>
+            
+            <div class="interaction-box">
+                <strong>Example:</strong>
+                <p>A photo file may include metadata: camera type, date taken, resolution.</p>
+            </div>
+            
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Metadata helps organize and manage data efficiently.</p>
+            </div>
+
+            <div class="practice-card" id="card-meta-practice">
+                <h3>Practice Activity: Metadata</h3>
+                <p>Evaluate these statements about metadata:</p>
+                <div id="tf-meta-tf" class="tf-container">
+                    <div class="tf-row" id="tf-row-meta-tf-0">
+                        <span class="tf-statement">Metadata describes other data.</span>
+                        <div class="tf-btn-group">
+                            <button class="tf-btn" onclick="selectTF('meta-tf', 0, true)">True</button>
+                            <button class="tf-btn" onclick="selectTF('meta-tf', 0, false)">False</button>
+                        </div>
+                    </div>
+                    <div class="tf-row" id="tf-row-meta-tf-1">
+                        <span class="tf-statement">Metadata includes file information.</span>
+                        <div class="tf-btn-group">
+                            <button class="tf-btn" onclick="selectTF('meta-tf', 1, true)">True</button>
+                            <button class="tf-btn" onclick="selectTF('meta-tf', 1, false)">False</button>
+                        </div>
+                    </div>
+                </div>
+                    <div class="tf-row" id="tf-row-meta-tf-2">
+                        <span class="tf-statement">Metadata replaces the original data.</span>
+                        <div class="tf-btn-group">
+                            <button class="tf-btn" onclick="selectTF('meta-tf', 2, true)">True</button>
+                            <button class="tf-btn" onclick="selectTF('meta-tf', 2, false)">False</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkTF('meta-tf', [true, true, false], 'Metadata is like the ID card for your data files.')">Submit</button>
+                    <button id="try-again-meta-tf" class="btn-try-again" onclick="resetTF('meta-tf')">Try Again</button>
+                </div>
+                <div id="feedback-meta-tf" class="feedback-dark"></div>
+            </div>
+
+            <div class="section-header">
+                <h2>8. Big Data</h2>
+            </div>
+            <h3>Concept</h3>
+            <p><strong>Big Data</strong> refers to extremely large and complex datasets that grow rapidly and cannot be processed using traditional systems. Sources of big data include social media, online transactions, sensors, and IoT devices.</p>
+            
+            <div class="interaction-box" style="background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff;">
+                <strong>Insight:</strong>
+                <p>Big data allows organizations to analyze massive amounts of information to discover patterns and predictions.</p>
+            </div>
+
+            <div class="practice-card" id="card-bigdata-mcq">
+                <h3>Practice Activity: Big Data</h3>
+                <p><strong>MCQ:</strong> Big data is characterized by:</p>
+                <div class="mcq-options" id="mcq-opts-bigdata-mcq">
+                    <div class="mcq-option" onclick="selectMCQ('bigdata-mcq', 'A')">
+                        <span class="mcq-prefix">A.</span> Small datasets
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('bigdata-mcq', 'B')">
+                        <span class="mcq-prefix">B.</span> Extremely large and complex datasets
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('bigdata-mcq', 'C')">
+                        <span class="mcq-prefix">C.</span> Only numerical data
+                    </div>
+                    <div class="mcq-option" onclick="selectMCQ('bigdata-mcq', 'D')">
+                        <span class="mcq-prefix">D.</span> Only structured data
+                    </div>
+                </div>
+                <div class="submit-btn-container">
+                    <button class="practice-dark-btn" onclick="checkMCQ('bigdata-mcq', 'B', 'Welcome to the world of Big Data.')">Submit</button>
+                    <button id="try-again-bigdata-mcq" class="btn-try-again" onclick="resetMCQ('bigdata-mcq')">Try Again</button>
+                </div>
+                <div id="feedback-bigdata-mcq" class="feedback-dark"></div>
+            </div>
+
+            <div class="quiz-cta">
+                <h3>Module 1 Complete!</h3>
+                <p>Ready to test your knowledge on Data Basics?</p>
+                <a href="module_quiz.html?mod=d1" class="btn-start-quiz">Start Assessment &rarr;</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        © 2026 KVJ Analytics | Professional Data Analytics Certification Path
+    </footer>
+
+    <script>
+        // Check Practice Answer (Dark Theme)
+        function checkDark(id, correctAns, successMsg) {
+            const userAns = document.getElementById(`ans-${id}`).value.trim().toLowerCase();
+            const feedback = document.getElementById(`feedback-${id}`);
+            
+            if (userAns === correctAns.toLowerCase()) {
+                feedback.innerHTML = successMsg + " 🎉";
+                feedback.className = "feedback-dark correct";
+                triggerConfetti();
+            } else {
+                feedback.innerHTML = "✗ Not quite. Try again!";
+                feedback.className = "feedback-dark wrong";
+            }
+        }
+
+        function selectMCQ(qid, selected) {
+            const container = document.getElementById(`mcq-opts-${qid}`);
+            // Check if already disabled
+            if (container.classList.contains('locked')) return;
+            
+            const options = container.getElementsByClassName('mcq-option');
+            
+            // Remove selected class from all
+            for (let opt of options) {
+                opt.classList.remove('selected');
+            }
+
+            // Find clicked option and add selected
+            const selectedOpt = Array.from(options).find(o => o.innerText.trim().startsWith(selected + "."));
+            if (selectedOpt) {
+                selectedOpt.classList.add('selected');
+            }
+        }
+
+        function checkMCQ(qid, correct, successMsg) {
+            const container = document.getElementById(`mcq-opts-${qid}`);
+            if (container.classList.contains('locked')) return;
+
+            const options = container.getElementsByClassName('mcq-option');
+            const selectedOpt = Array.from(options).find(o => o.classList.contains('selected'));
+            const feedback = document.getElementById(`feedback-${qid}`);
+            const tryAgainBtn = document.getElementById(`try-again-${qid}`);
+            
+            if (!selectedOpt) {
+                feedback.innerHTML = "Please select an answer first.";
+                feedback.className = "feedback-dark wrong";
+                feedback.style.display = 'block';
+                return;
+            }
+
+            container.classList.add('locked'); // Lock further selections
+            
+            // Disable all options visually
+            for (let opt of options) {
+                opt.classList.add('disabled');
+            }
+
+            const selectedPrefix = selectedOpt.innerText.trim().charAt(0);
+
+            if (selectedPrefix === correct) {
+                selectedOpt.classList.remove('selected');
+                selectedOpt.classList.add('correct');
+                feedback.innerHTML = "Correct! " + successMsg + " 🎉";
+                feedback.className = "feedback-dark correct";
+                feedback.style.display = 'block';
+                triggerConfetti();
+            } else {
+                selectedOpt.classList.remove('selected');
+                selectedOpt.classList.add('wrong');
+                feedback.innerHTML = "Incorrect. Please try again.";
+                feedback.className = "feedback-dark wrong";
+                feedback.style.display = 'block';
+                if(tryAgainBtn) tryAgainBtn.style.display = 'inline-block';
+            }
+        }
+
+        function resetMCQ(qid) {
+            const container = document.getElementById(`mcq-opts-${qid}`);
+            container.classList.remove('locked');
+            
+            const options = container.getElementsByClassName('mcq-option');
+            for (let opt of options) {
+                opt.classList.remove('disabled', 'correct', 'wrong', 'selected');
+            }
+            
+            const feedback = document.getElementById(`feedback-${qid}`);
+            feedback.style.display = 'none';
+            feedback.className = "feedback-dark";
+            
+            const tryAgainBtn = document.getElementById(`try-again-${qid}`);
+            if(tryAgainBtn) tryAgainBtn.style.display = 'none';
+        }
+
+        function checkDDAnalysis() {
+            const v1 = document.getElementById('dd-analysis-1').value;
+            const v2 = document.getElementById('dd-analysis-2').value;
+            const v3 = document.getElementById('dd-analysis-3').value;
+            const feedback = document.getElementById('feedback-analysis-dd');
+
+            if(v1 === "pop" && v2 === "avg" && v3 === "best") {
+                feedback.innerHTML = "All matches correct! Excellent work. 🚀 🎉";
+                feedback.className = "feedback-dark correct";
+                triggerConfetti();
+            } else {
+                feedback.innerHTML = "✗ Some matches are incorrect. Try again.";
+                feedback.className = "feedback-dark wrong";
+            }
+        }
+
+        function checkDDNum() {
+            const v1 = document.getElementById('dd-num-1').value;
+            const v2 = document.getElementById('dd-num-2').value;
+            const feedback = document.getElementById('feedback-num-dd');
+
+            if(v1 === "integer" && v2 === "float") {
+                feedback.innerHTML = "All matches correct! Excellent work. 🚀 🎉";
+                feedback.className = "feedback-dark correct";
+                triggerConfetti();
+            } else {
+                feedback.innerHTML = "✗ Some matches are incorrect. Try again.";
+                feedback.className = "feedback-dark wrong";
+            }
+        }
+
+        function checkDDStruct() {
+            const v1 = document.getElementById('dd-struct-1').value;
+            const v2 = document.getElementById('dd-struct-2').value;
+            const v3 = document.getElementById('dd-struct-3').value;
+            const feedback = document.getElementById('feedback-struct-dd');
+
+            if(v1 === "row" && v2 === "column" && v3 === "table") {
+                feedback.innerHTML = "All matches correct! Excellent work. 🚀 🎉";
+                feedback.className = "feedback-dark correct";
+                triggerConfetti();
+            } else {
+                feedback.innerHTML = "✗ Some matches are incorrect. Try again.";
+                feedback.className = "feedback-dark wrong";
+            }
+        }
+
+        function checkDDStructType() {
+            const v1 = document.getElementById('dd-structtype-1').value;
+            const v2 = document.getElementById('dd-structtype-2').value;
+            const v3 = document.getElementById('dd-structtype-3').value;
+            const v4 = document.getElementById('dd-structtype-4').value;
+            const feedback = document.getElementById('feedback-structtype-dd');
+
+            if(v1 === "structured" && v2 === "unstructured" && v3 === "structured" && v4 === "unstructured") {
+                feedback.innerHTML = "All matches correct! Excellent work. 🚀 🎉";
+                feedback.className = "feedback-dark correct";
+                triggerConfetti();
+            } else {
+                feedback.innerHTML = "✗ Some matches are incorrect. Try again.";
+                feedback.className = "feedback-dark wrong";
+            }
+        }
+
+        function selectTF_single(qid, isTrue) {
+            const row = document.getElementById(`tf-row-${qid}`);
+            if(row.classList.contains('locked')) return;
+            
+            const buttons = row.getElementsByClassName('tf-btn');
+            
+            // Clear all selected classes
+            buttons[0].classList.remove('selected-true', 'selected-false');
+            buttons[1].classList.remove('selected-true', 'selected-false');
+            
+            // Add appropriate selected class
+            if (isTrue) {
+                buttons[0].classList.add('selected-true');
+                row.dataset.selected = "true";
+            } else {
+                buttons[1].classList.add('selected-false');
+                row.dataset.selected = "false";
+            }
+            
+            clearFeedback(qid);
+        }
+
+        function checkTF_single(qid, correctAnswer, successMsg) {
+            const row = document.getElementById(`tf-row-${qid}`);
+            const feedback = document.getElementById(`feedback-${qid}`);
+            const tryAgainBtn = document.getElementById(`try-again-${qid}`);
+            
+            if(!row.dataset.selected) {
+                feedback.innerHTML = "Please select True or False.";
+                feedback.className = "feedback-dark wrong";
+                feedback.style.display = 'block';
+                return;
+            }
+
+            const isTrueSelected = row.dataset.selected === "true";
+            row.classList.add('locked');
+            
+            const buttons = row.getElementsByClassName('tf-btn');
+            buttons[0].classList.add('disabled');
+            buttons[1].classList.add('disabled');
+
+            if (isTrueSelected === correctAnswer) {
+                row.classList.add('correct');
+                feedback.innerHTML = "Correct! " + (successMsg || "") + " 🎉";
+                feedback.className = "feedback-dark correct";
+                triggerConfetti();
+            } else {
+                row.classList.add('wrong');
+                feedback.innerHTML = "Incorrect. Please try again.";
+                feedback.className = "feedback-dark wrong";
+                if(tryAgainBtn) tryAgainBtn.style.display = 'inline-block';
+            }
+            feedback.style.display = 'block';
+        }
+
+        function resetTF_single(qid) {
+            const row = document.getElementById(`tf-row-${qid}`);
+            const feedback = document.getElementById(`feedback-${qid}`);
+            const tryAgainBtn = document.getElementById(`try-again-${qid}`);
+
+            if(row) {
+                row.classList.remove('correct', 'wrong', 'locked');
+                delete row.dataset.selected;
+                const buttons = row.getElementsByClassName('tf-btn');
+                buttons[0].classList.remove('disabled', 'selected-true', 'selected-false');
+                buttons[1].classList.remove('disabled', 'selected-true', 'selected-false');
+            }
+            
+            if(feedback) {
+                feedback.style.display = 'none';
+                feedback.className = "feedback-dark";
+            }
+            if(tryAgainBtn) tryAgainBtn.style.display = 'none';
+        }
+
+        function selectTF(qid, idx, isTrue) {
+            const row = document.getElementById(`tf-row-${qid}-${idx}`);
+            if(row.classList.contains('locked')) return;
+            
+            const buttons = row.getElementsByClassName('tf-btn');
+            
+            // Clear selected classes
+            buttons[0].classList.remove('selected-true', 'selected-false');
+            buttons[1].classList.remove('selected-true', 'selected-false');
+            
+            // Add appropriate selected class
+            if (isTrue) {
+                buttons[0].classList.add('selected-true');
+                row.dataset.selected = "true";
+            } else {
+                buttons[1].classList.add('selected-false');
+                row.dataset.selected = "false";
+            }
+            
+            clearFeedback(qid);
+        }
+
+        function checkTF(qid, answers, successMsg) {
+            const container = document.getElementById(`tf-${qid}`);
+            if(!container) return;
+            const rows = container.getElementsByClassName('tf-row');
+            const feedback = document.getElementById(`feedback-${qid}`);
+            const tryAgainBtn = document.getElementById(`try-again-${qid}`);
+            
+            let allAnswered = true;
+            let allCorrect = true;
+
+            for(let i=0; i<rows.length; i++) {
+                if(!rows[i].dataset.selected) {
+                    allAnswered = false;
+                    break;
+                }
+            }
+
+            if(!allAnswered) {
+                feedback.innerHTML = "Please answer all statements first.";
+                feedback.className = "feedback-dark wrong";
+                feedback.style.display = 'block';
+                return;
+            }
+
+            for(let i=0; i<rows.length; i++) {
+                const row = rows[i];
+                const isTrueSelected = row.dataset.selected === "true";
+                row.classList.add('locked');
+                
+                const buttons = row.getElementsByClassName('tf-btn');
+                buttons[0].classList.add('disabled');
+                buttons[1].classList.add('disabled');
+
+                if (isTrueSelected === answers[i]) {
+                    row.classList.add('correct');
+                } else {
+                    allCorrect = false;
+                    row.classList.add('wrong');
+                }
+            }
+
+            if (allCorrect) {
+                feedback.innerHTML = "Correct! " + (successMsg || "") + " 🎉";
+                feedback.className = "feedback-dark correct";
+                triggerConfetti();
+            } else {
+                feedback.innerHTML = "Incorrect. Please try again.";
+                feedback.className = "feedback-dark wrong";
+                if(tryAgainBtn) tryAgainBtn.style.display = 'inline-block';
+            }
+            feedback.style.display = 'block';
+        }
+
+        function resetTF(qid) {
+            const container = document.getElementById(`tf-${qid}`);
+            if(!container) return;
+            const rows = container.getElementsByClassName('tf-row');
+            
+            for(let i=0; i<rows.length; i++) {
+                const row = rows[i];
+                row.classList.remove('correct', 'wrong', 'locked');
+                delete row.dataset.selected;
+                const buttons = row.getElementsByClassName('tf-btn');
+                if(buttons.length > 0) {
+                    buttons[0].classList.remove('disabled', 'selected-true', 'selected-false');
+                    buttons[1].classList.remove('disabled', 'selected-true', 'selected-false');
+                }
+            }
+            
+            const feedback = document.getElementById(`feedback-${qid}`);
+            if(feedback){
+                feedback.style.display = 'none';
+                feedback.className = "feedback-dark";
+            }
+            
+            const tryAgainBtn = document.getElementById(`try-again-${qid}`);
+            if(tryAgainBtn) tryAgainBtn.style.display = 'none';
+        }
+
+        function clearFeedback(qid) {
+            const feedback = document.getElementById(`feedback-${qid}`);
+            if(feedback) {
+                feedback.style.display = 'none';
+            }
+        }
+
+        function toggleCheckbox(element) {
+            const container = element.closest('.checkbox-group');
+            if (container.classList.contains('locked')) return;
+            
+            element.classList.toggle('selected');
+        }
+
+        function checkCheckboxes(qid, correctIndices, successMsg) {
+            const container = document.getElementById(`checkbox-group-${qid}`);
+            if (container.classList.contains('locked')) return;
+            
+            const options = container.getElementsByClassName('checkbox-option');
+            const feedback = document.getElementById(`feedback-${qid}`);
+            const tryAgainBtn = document.getElementById(`try-again-${qid}`);
+            
+            let anySelected = false;
+            for(let opt of options) {
+                if(opt.classList.contains('selected')) {
+                    anySelected = true;
+                    break;
+                }
+            }
+
+            if(!anySelected) {
+                feedback.innerHTML = "Please select at least one option.";
+                feedback.className = "feedback-dark wrong";
+                feedback.style.display = 'block';
+                return;
+            }
+
+            container.classList.add('locked');
+            let allCorrect = true;
+            let totalCorrectSelected = 0;
+
+            for(let i=0; i<options.length; i++) {
+                const opt = options[i];
+                opt.classList.add('disabled');
+                
+                const isSelected = opt.classList.contains('selected');
+                const shouldBeSelected = correctIndices.includes(i + 1); // 1-indexed
+
+                opt.classList.remove('selected');
+
+                if (isSelected && shouldBeSelected) {
+                    opt.classList.add('correct');
+                    totalCorrectSelected++;
+                } else if (isSelected && !shouldBeSelected) {
+                    opt.classList.add('wrong');
+                    allCorrect = false;
+                } else if (!isSelected && shouldBeSelected) {
+                    allCorrect = false;
+                }
+            }
+
+            if (allCorrect && totalCorrectSelected === correctIndices.length) {
+                feedback.innerHTML = "Correct! " + successMsg + " 🎉";
+                feedback.className = "feedback-dark correct";
+                triggerConfetti();
+            } else {
+                feedback.innerHTML = "Incorrect. Please try again.";
+                feedback.className = "feedback-dark wrong";
+                if(tryAgainBtn) tryAgainBtn.style.display = 'inline-block';
+            }
+            feedback.style.display = 'block';
+        }
+
+        function resetCheckboxes(qid) {
+            const container = document.getElementById(`checkbox-group-${qid}`);
+            container.classList.remove('locked');
+            
+            const options = container.getElementsByClassName('checkbox-option');
+            for(let opt of options) {
+                opt.classList.remove('disabled', 'correct', 'wrong', 'selected');
+            }
+            
+            const feedback = document.getElementById(`feedback-${qid}`);
+            feedback.style.display = 'none';
+            feedback.className = "feedback-dark";
+            
+            const tryAgainBtn = document.getElementById(`try-again-${qid}`);
+            if(tryAgainBtn) tryAgainBtn.style.display = 'none';
+        }
+
+        function triggerConfetti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

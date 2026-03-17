@@ -484,8 +484,8 @@ name = <span class="function">input</span>(<span class="string">"Enter your name
                 <h3>Coding Practice: Input</h3>
                 <p><strong>Challenge:</strong> Write a program that asks for a <code>city</code> and prints <code>"Welcome to {city}"</code>.</p>
                 <textarea id="coding-ans-input" placeholder="city = input('Enter city: ')
-print(...)"></textarea>
-                <button class="btn-run" onclick="runSkulpt('input', 'Welcome to Student')">Run & Check</button>
+print(f'Welcome to {city}')"></textarea>
+                <button class="btn-run" onclick="runSkulpt('input', 'Welcome to Kochi')">Run & Check</button>
                 <div id="coding-output-input" class="live-output-box"></div>
                 <div id="coding-feedback-input" class="feedback"></div>
             </div>
@@ -510,8 +510,8 @@ age = <span class="function">int</span>(<span class="function">input</span>(<spa
                 <h3>Coding Practice: Type Conversion</h3>
                 <p><strong>Challenge:</strong> Take a number input and print the result of that number multiplied by 2. (Remember to use <code>int()</code>).</p>
                 <textarea id="coding-ans-int" placeholder="num = int(input('Enter number: '))
-print(...)"></textarea>
-                <button class="btn-run" onclick="runSkulpt('int', 'NaN')">Run & Check</button>
+print(num * 2)"></textarea>
+                <button class="btn-run" onclick="runSkulpt('int', '10')">Run & Check</button>
                 <div id="coding-output-int" class="live-output-box"></div>
                 <div id="coding-feedback-int" class="feedback"></div>
             </div>
@@ -645,10 +645,10 @@ file.<span class="function">close</span>()
             <!-- Coding Practice: write mode -->
             <div class="coding-practice">
                 <h3>Coding Practice: File Write</h3>
-                <p><strong>Note:</strong> File operations are simulated here. In a real environment, you open with <code>'w'</code>.</p>
-                <textarea id="coding-ans-write" placeholder="with open('test.txt', 'w') as f:
-    f.write('Python')"></textarea>
-                <button class="btn-run" onclick="runSkulpt('write', '')">Run & Check</button>
+                <p><strong>Challenge:</strong> Simulate writing the text "Hello World" to a file named <code>data.txt</code> by printing the message <strong>"Writing Hello World to data.txt"</strong>.</p>
+                <p><strong>Note:</strong> File operations are simulated in this environment. In a real Python program, you would open the file using <strong>'w' mode</strong>.</p>
+                <textarea id="coding-ans-write" placeholder="print(...)"></textarea>
+                <button class="btn-run" onclick="runSkulpt('write', 'Writing Hello World to data.txt')">Run & Check</button>
                 <div id="coding-output-write" class="live-output-box"></div>
                 <div id="coding-feedback-write" class="feedback"></div>
             </div>
@@ -823,15 +823,56 @@ os.<span class="function">remove</span>(<span class="string">"data.txt"</span>)
             feedback.className = "feedback";
 
             let outputText = "";
+            let validationText = "";
+            let userInputs = [];
             
             Sk.configure({
-                output: function(text) { outputText += text; },
+                output: function(text) { 
+                    outputDiv.appendChild(document.createTextNode(text));
+                    outputDiv.scrollTop = outputDiv.scrollHeight;
+                    outputText += text; 
+                    validationText += text;
+                },
                 read: function(x) {
                     if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
                         throw "File not found: '" + x + "'";
                     return Sk.builtinFiles["files"][x];
                 },
-                input: function() { return "Student"; }
+                inputfun: function(prompt) {
+                    return new Promise((resolve) => {
+                        // Clean up double prompt if it exists in the output div
+                        if (outputDiv.lastChild && outputDiv.lastChild.nodeType === 3) {
+                            let lastText = outputDiv.lastChild.textContent;
+                            if (lastText.endsWith(prompt)) {
+                                outputDiv.lastChild.textContent = lastText.substring(0, lastText.length - prompt.length);
+                            }
+                        }
+
+                        const container = document.createElement('div');
+                        container.className = 'colab-input-container';
+                        container.innerHTML = `
+                            <span class="colab-prompt">${prompt}</span>
+                            <input type="text" class="colab-input" autocomplete="off">
+                        `;
+                        outputDiv.appendChild(container);
+                        
+                        const inputField = container.querySelector('.colab-input');
+                        inputField.focus();
+                        
+                        inputField.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') {
+                                const val = inputField.value;
+                                userInputs.push(val);
+                                container.remove();
+                                // Add back the prompt and the answer to the output box permanently
+                                outputDiv.appendChild(document.createTextNode(prompt + val + "\n"));
+                                outputText += prompt + val + "\n";
+                                // Do NOT add prompt/input to validationText!
+                                resolve(val);
+                            }
+                        });
+                    });
+                }
             });
 
             const myPromise = Sk.misceval.asyncToPromise(function() {
@@ -839,13 +880,30 @@ os.<span class="function">remove</span>(<span class="string">"data.txt"</span>)
             });
 
             myPromise.then(function(mod) {
-                outputDiv.innerText = outputText;
+                if (!outputDiv.innerHTML) outputDiv.innerText = outputText;
                 
-                const cleanOutput = outputText.trim().toLowerCase();
-                const cleanExpected = expected.trim().toLowerCase();
+                const cleanOutput = validationText.trim().toLowerCase();
+                let cleanExpected = expected.trim().toLowerCase();
+
+                // Dynamic Validation Logic
+                if (userInputs.length > 0) {
+                    if (id === 'input') {
+                        // For the city challenge, handle both the user input and the 'Welcome to' wrapper
+                        cleanExpected = `welcome to ${userInputs[0].trim()}`.toLowerCase();
+                    } else if (id === 'int') {
+                        // For the number challenge, compute the expected number
+                        let num = parseInt(userInputs[0]);
+                        if (!isNaN(num)) {
+                            cleanExpected = (num * 2).toString().toLowerCase();
+                        }
+                    } else if (id.toString() === '1') {
+                        // For the name greeting challenge
+                        cleanExpected = `hello ${userInputs[0].trim()}!`.toLowerCase();
+                    }
+                }
 
                 if (cleanOutput.includes(cleanExpected)) {
-                    feedback.innerHTML = "Correct! Great job! 🎉";
+                    feedback.innerHTML = "✓ Correct! Your code works perfectly. 🎉";
                     feedback.className = "feedback correct";
                     triggerConfetti();
                 } else {
@@ -854,8 +912,8 @@ os.<span class="function">remove</span>(<span class="string">"data.txt"</span>)
                 }
                 feedback.style.display = "block";
             }, function(err) {
-                outputDiv.innerText = err.toString();
-                feedback.innerHTML = "✗ Syntax Error in your code!";
+                outputDiv.innerText += "\n" + err.toString();
+                feedback.innerHTML = "✗ Error in your code!";
                 feedback.className = "feedback wrong";
                 feedback.style.display = "block";
             });

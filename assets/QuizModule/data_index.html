@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Python Certification - KVJ Analytics</title>
+    <title>Elite Data Analytics Certification - KVJ Analytics</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -42,7 +42,7 @@
                 </a>
             </div>
             <div class="nav-links-right">
-                <a href="intro.html" class="kvj-btn kvj-btn-primary">Get Started</a>
+                <a href="data_intro.html" class="kvj-btn kvj-btn-primary">Get Started</a>
             </div>
         </div>
     </nav>
@@ -58,15 +58,15 @@
                 </h1>
                 
                 <h2 class="hero-subtitle">
-                    Elite Python Certification
+                    Elite Data Analytics Certification
                 </h2>
                 
                 <p class="hero-desc">
-                    Master Python logic through our mathematically optimized curriculum. Experience liftoff with interactive modules designed for your success.
+                    Master data manipulation and visualization through our mathematically optimized curriculum. Experience liftoff with interactive modules designed for your success.
                 </p>
                 
                 <div class="hero-action">
-                    <a href="intro.html" class="kvj-btn kvj-btn-dark">Explore Python</a>
+                    <a href="data_intro.html" class="kvj-btn kvj-btn-dark">Explore Analytics</a>
                 </div>
             </div>
             
@@ -77,23 +77,22 @@
                         <div class="dot dot-r"></div>
                         <div class="dot dot-y"></div>
                         <div class="dot dot-g"></div>
-                        <div class="fy-text" style="color: #94a3b8; font-family: monospace;">main.py</div>
+                        <div class="fy-text" style="color: #94a3b8; font-family: monospace;">analytics.py</div>
                     </div>
                     <div class="dash-content" style="padding: 30px; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95rem; line-height: 1.7; color: #e2e8f0; overflow-x: auto;">
-                        <span style="color: #c678dd;">def</span> <span style="color: #61afef;">master_python</span>(student):<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #5c6370; font-style: italic;">""" Elevate analytical skills to elite levels """</span><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;skills = [<span style="color: #98c379;">"Logic"</span>, <span style="color: #98c379;">"Data Science"</span>, <span style="color: #98c379;">"AI Engine"</span>]<br>
+                        <span style="color: #c678dd;">import</span> pandas <span style="color: #c678dd;">as</span> pd<br>
                         <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c678dd;">for</span> skill <span style="color: #c678dd;">in</span> skills:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;student.<span style="color: #61afef;">learn</span>(skill)<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;student.<span style="color: #61afef;">practice</span>(intensity=<span style="color: #d19a66;">100</span>)<br>
+                        <span style="color: #c678dd;">def</span> <span style="color: #61afef;">analyze_data</span>(dataset):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #5c6370; font-style: italic;">""" Transform raw data into strategic insights """</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;df = pd.<span style="color: #61afef;">read_csv</span>(dataset)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;insights = df.<span style="color: #61afef;">groupby</span>(<span style="color: #98c379;">'Trends'</span>).<span style="color: #61afef;">mean</span>()<br>
                         <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c678dd;">return</span> <span style="color: #98c379;">"Elite Certification Achieved!"</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c678dd;">return</span> <span style="color: #98c379;">"Analytics Mastery Achieved!"</span><br>
                         <br>
                         <br>
-                        <span style="color: #5c6370; font-style: italic;"># Initiate sequence</span><br>
-                        kvj_analytics = <span style="color: #e5c07b;">Institute</span>()<br>
-                        kvj_analytics.<span style="color: #61afef;">start_journey</span>(user=<span style="color: #98c379;">"You"</span>)<span class="blinking-cursor" style="background-color: #528bff; width: 8px; margin-left: 5px;"></span><br>
+                        <span style="color: #5c6370; font-style: italic;"># Initiate analysis</span><br>
+                        data_master = <span style="color: #e5c07b;">DataScientist</span>()<br>
+                        data_master.<span style="color: #61afef;">visualize</span>(user=<span style="color: #98c379;">"You"</span>)<span class="blinking-cursor" style="background-color: #528bff; width: 8px; margin-left: 5px;"></span><br>
                     </div>
                 </div>
             </div>
@@ -103,7 +102,7 @@
 
     <script>
         // Typing Effect logic
-        const textToType = "Experience liftoff with the next-generation Curriculum";
+        const textToType = "Transform raw data into powerful business insights";
         const typewriterEl = document.getElementById('typewriter');
         let typeIndex = 0;
         
@@ -115,9 +114,10 @@
         const closeSpan = "</span>";
         
         // Let's break the line at a specific point
-        const line1 = "Experience liftoff with ";
-        const line2 = "the next-generation<br>";
-        const line3 = "Curriculum";
+        const line1 = "Transform raw data ";
+        const line2 = "into powerful business<br>";
+        const line3 = "insights";
+
 
         // Pre-build the HTML string we will inject
         let fullHTML = "";
