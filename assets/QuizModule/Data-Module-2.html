@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Data Manipulation | KVJ Analytics</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary-blue: #1e3a5f;
+            --secondary-blue: #008eab;
+            --bg-light: #f6f8fb;
+            --text-main: #1d1d1f;
+            --text-muted: #4b5563;
+            --border-color: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Top Nav */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .kvj-logo-img {
+            max-height: 35px;
+            width: auto;
+        }
+
+        .logout-btn {
+            background: #dc2626;
+            color: white;
+            padding: 8px 18px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
+        }
+
+        /* Header Banner */
+        .header-banner {
+            background: var(--primary-blue);
+            color: white;
+            padding: 120px 20px 60px;
+            text-align: center;
+        }
+
+        .header-banner h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        /* Layout Container */
+        .layout-container {
+            display: flex;
+            max-width: 1300px;
+            margin: 40px auto;
+            gap: 40px;
+            width: 95%;
+            padding-bottom: 60px;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 100px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: var(--secondary-blue);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .sidebar a.active {
+            color: var(--primary-blue);
+            font-weight: 700;
+            background: #f0f7ff;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .sidebar a:hover:not(.active) {
+            background: #f8fafc;
+            color: var(--primary-blue);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--bg-light);
+            padding-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-blue);
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        /* Content Styles */
+        p {
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #334155;
+            font-size: 17px;
+        }
+
+        strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .interaction-box strong {
+            color: var(--secondary-blue);
+        }
+
+        .interaction-box {
+            background-color: #f7f9fc;
+            border-left: 5px solid var(--secondary-blue);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+            font-size: 15px;
+        }
+
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-blue);
+            margin: 40px 0 20px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* Code Block Styling */
+        pre {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
+            margin: 20px 0;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .output-box {
+            background-color: #ecfeff;
+            border: 1px solid #cffafe;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            margin-bottom: 30px;
+            color: var(--secondary-blue);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .static-output::before {
+            content: "> Result: ";
+            margin-right: 10px;
+            opacity: 0.6;
+        }
+
+        .live-output-box {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+            min-height: 40px;
+            white-space: pre-wrap;
+            display: none;
+        }
+
+        .live-output-box.active {
+            display: block;
+        }
+
+        /* Keywords */
+        .keyword {
+            color: #f472b6;
+        }
+
+        .function {
+            color: #4ade80;
+        }
+
+        .string {
+            color: #fbbf24;
+        }
+
+        .comment {
+            color: #94a3b8;
+        }
+
+        /* Quiz CTA */
+        .quiz-cta {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #008eab 100%);
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 142, 171, 0.2);
+        }
+
+        .quiz-cta h3 {
+            color: white;
+            margin-top: 0;
+            font-size: 24px;
+            border: none;
+            padding: 0;
+        }
+
+        .quiz-cta p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+        }
+
+        .btn-start-quiz {
+            display: inline-block;
+            background: #ffffff;
+            color: var(--primary-blue);
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-start-quiz:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: #f8fafc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+            font-size: 13px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        /* Practice Space Styling (Dark Theme) */
+        .practice-space-dark {
+            background: #111827;
+            border-left: 6px solid #00d2ff;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            color: #f3f4f6;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .practice-space-dark h3 {
+            margin-top: 0;
+            color: #00d2ff;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .practice-space-dark p {
+            color: #9ca3af;
+            font-size: 15px;
+        }
+
+        .practice-dark-box {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .practice-dark-box input {
+            flex: 1;
+            padding: 14px 20px;
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .practice-dark-box input:focus {
+            border-color: #00d2ff;
+            background: #2d3748;
+        }
+
+        .practice-dark-btn {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .practice-dark-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
+        }
+
+        .feedback-dark {
+            margin-top: 15px;
+            font-weight: 700;
+            display: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .feedback-dark.correct {
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid #10b981;
+            display: block;
+        }
+
+        .feedback-dark.wrong {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            display: block;
+        }
+
+        /* MCQ Clickable Options */
+        .mcq-options {
+            display: grid;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .mcq-option {
+            background: #1f2937;
+            border: 2px solid #374151;
+            color: #e5e7eb;
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mcq-option:hover:not(.disabled) {
+            border-color: #00d2ff;
+            background: #2d3748;
+            transform: translateX(5px);
+        }
+
+        .mcq-option.selected-anim {
+            animation: mcq-pulse 0.4s ease-out;
+        }
+
+        @keyframes mcq-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); box-shadow: 0 0 15px rgba(0, 210, 255, 0.3); }
+            100% { transform: scale(1); }
+        }
+
+        .mcq-option.correct {
+            border-color: #10b981 !important;
+            background: rgba(16, 185, 129, 0.15) !important;
+            color: #10b981 !important;
+        }
+
+        .mcq-option.wrong {
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, 0.15) !important;
+            color: #ef4444 !important;
+        }
+
+        .mcq-option.disabled {
+            cursor: default;
+            opacity: 0.8;
+        }
+
+        .mcq-prefix {
+            font-weight: 800;
+            color: #00d2ff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            min-width: 25px;
+        }
+
+        .mcq-option.correct .mcq-prefix { color: #10b981; }
+        .mcq-option.wrong .mcq-prefix { color: #ef4444; }
+
+        /* True/False Component Styles */
+        .tf-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1f2937;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #374151;
+            transition: all 0.2s;
+        }
+        .tf-statement {
+            color: #e5e7eb;
+            font-size: 14px;
+            flex: 1;
+            margin-right: 15px;
+            font-weight: 500;
+        }
+        .tf-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .tf-btn {
+            padding: 6px 15px;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
+            background: #2d3748;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.2s;
+            min-width: 65px;
+            text-align: center;
+        }
+        .tf-btn:hover:not(.disabled) {
+            border-color: #00d2ff;
+            color: #00d2ff;
+        }
+        .tf-btn.correct { background: #10b981 !important; color: white !important; border-color: #10b981 !important; }
+        .tf-btn.wrong { background: #ef4444 !important; color: white !important; border-color: #ef4444 !important; }
+        .tf-btn.disabled { opacity: 0.6; cursor: default; }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="data_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+        <a href="data_roadmap.html" class="logout-btn">EXIT</a>
+    </nav>
+
+    <header class="header-banner">
+        <h1>MODULE 2: DATA MANIPULATION</h1>
+    </header>
+
+
+
+    <div class="layout-container">
+        <nav class="sidebar">
+            <h3>Module Path</h3>
+            <a href="Data-Module-1.html">01 Data Basics</a>
+            <a href="Data-Module-2.html" class="active">02 Data Manipulation</a>
+            <a href="#">03 Data Analysis</a>
+            <a href="#">04 Visualization</a>
+            <a href="#">05 Responsible Analytics</a>
+
+            <h3 style="margin-top:25px;">Navigation</h3>
+            <a href="data_roadmap.html" style="background: #f8f9fa;">&larr; Return to Roadmap</a>
+        </nav>
+
+        <main class="main-content">
+            <div class="section-header">
+                <h2>MODULE 2</h2>
+                <p style="font-weight: 600; color: var(--secondary-blue);">Data Manipulation & Transformation</p>
+            </div>
+
+            <div class="module-intro-flex">
+                <div class="module-intro-text">
+                    <h3>2.1 The ETL Process</h3>
+                    <p>Before data can be analyzed, it often needs to be prepared. The <strong>ETL</strong> process is the backbone of data preparation:</p>
+                    
+                    <div class="interaction-box">
+                        <strong>ETL stands for:</strong>
+                        <ul>
+                            <li><strong>Extract:</strong> Pulling raw data from its source (e.g., database, API, file).</li>
+                            <li><strong>Transform:</strong> Cleaning, reformatting, and restructuring data.</li>
+                            <li><strong>Load:</strong> Moving the processed data into a target system for analysis.</li>
+                        </ul>
+                    </div>
+
+                    <h3>2.2 Common Data File Formats</h3>
+                    <p>Data analysts work with many file types. The most common include:</p>
+                    <ul>
+                        <li><strong>CSV (Comma-Separated Values):</strong> A plain text file where values are separated by commas. The most common format for tabular data.</li>
+                        <li><strong>JSON (JavaScript Object Notation):</strong> A key-value format used heavily in web APIs and NoSQL databases.</li>
+                        <li><strong>XML (Extensible Markup Language):</strong> Uses tags to define structure, common in enterprise systems.</li>
+                        <li><strong>XLSX:</strong> Microsoft Excel format with support for multiple sheets and formatting.</li>
+                    </ul>
+                </div>
+
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>2.3 Data Cleaning Techniques</h2>
+            </div>
+            <p>Real-world data is rarely perfect. Common issues include missing values, duplicates, inconsistent formatting, and extra whitespace. Data cleaning is the process of fixing these issues.</p>
+            
+            <h3>Handling Missing Values (Nulls)</h3>
+            <p>Missing values can be handled by:</p>
+            <ul>
+                <li><strong>Removing</strong> rows or columns with too many missing values.</li>
+                <li><strong>Filling</strong> missing values with a default, the mean, or the median.</li>
+                <li><strong>Flagging</strong> missing values for later review.</li>
+            </ul>
+            <pre>
+<span class="comment"># Example: Filling missing values</span>
+data = [<span class="number">10</span>, <span class="keyword">None</span>, <span class="number">30</span>, <span class="keyword">None</span>, <span class="number">50</span>]
+clean = [x <span class="keyword">if</span> x <span class="keyword">is not</span> <span class="keyword">None</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> data]
+<span class="function">print</span>(clean)
+</pre>
+            <div class="output-box">[10, 0, 30, 0, 50]</div>
+
+            <h3>Trimming Whitespace</h3>
+            <p>Extra spaces can cause matching errors. Use <code>.strip()</code> to trim them.</p>
+            <pre>
+name = <span class="string">"  KVJ Analytics  "</span>
+<span class="function">print</span>(name.strip())
+</pre>
+            <div class="output-box">KVJ Analytics</div>
+
+            <h3>Removing Duplicates</h3>
+            <p>Duplicate records can skew your analysis. In Python, <code>set()</code> removes duplicates from a list.</p>
+            <pre>
+ids = [<span class="number">101</span>, <span class="number">102</span>, <span class="number">101</span>, <span class="number">103</span>, <span class="number">102</span>]
+unique_ids = <span class="function">list</span>(<span class="function">set</span>(ids))
+<span class="function">print</span>(unique_ids)
+</pre>
+            <div class="output-box">[101, 102, 103]</div>
+
+            <div class="practice-space-dark">
+                <h3>Knowledge Check</h3>
+                <p>What does ETL stand for?</p>
+                <div class="practice-dark-box">
+                    <input type="text" id="ans-etl" placeholder="Type your answer...">
+                    <button class="practice-dark-btn" onclick="checkDark('etl', 'extract transform load', 'Correct! Extract, Transform, Load.')">Submit</button>
+                </div>
+                <div id="feedback-etl" class="feedback-dark"></div>
+            </div>
+
+            <div class="section-header">
+                <h2>2.4 Data Aggregation</h2>
+            </div>
+            <p>Aggregation means combining individual data points into summarized values. Common aggregation functions include:</p>
+            <ul>
+                <li><strong>SUM:</strong> Total of all values.</li>
+                <li><strong>COUNT:</strong> Number of records.</li>
+                <li><strong>AVG (Mean):</strong> Sum / Count.</li>
+                <li><strong>GROUP BY:</strong> Splitting data into groups to apply aggregation per group.</li>
+            </ul>
+
+            <div class="interaction-box">
+                <strong>Real-world Example:</strong>
+                <p>A retail company groups sales by region to find which area generates the most revenue. This is a GROUP BY + SUM operation.</p>
+            </div>
+
+            <div class="coding-practice">
+                <h3>Data Cleaning Practice</h3>
+                <p>Given the list <code>data = [" Alice ", "Bob", " alice", "Bob", "Charlie"]</code>, write Python code to clean the data by trimming whitespace, converting to lowercase, and removing duplicates. Print the result.</p>
+                <textarea id="coding-ans-clean" placeholder="# data = [' Alice ', 'Bob', ' alice', 'Bob', 'Charlie']..."></textarea>
+                <button class="btn-run" onclick="runSkulpt('clean', 'alice')">Run & Check</button>
+                <div id="coding-output-clean" class="live-output-box"></div>
+                <div id="coding-feedback-clean" class="feedback"></div>
+            </div>
+
+            <!-- Quiz CTA -->
+            <div class="quiz-cta">
+                <h3>Data Manipulation Complete.</h3>
+                <p>Verify your understanding of ETL, data cleaning, and aggregation.</p>
+                <a href="module_quiz.html?mod=d2" class="btn-start-quiz">Start Module 2 Assessment &rarr;</a>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        Â© 2026 KVJ Analytics | Professional Data Analytics Certification Path
+    </footer>
+
+    <script>
+        // Welcome Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const userName = localStorage.getItem('strategist_user') || 'Student';
+            console.log(`Knowledge session active for: ${userName}`);
+        });
+
+        function triggerConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function () {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) { return clearInterval(interval); }
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
+        function checkPracticeAnswer(id, correctAns) {
+            const userAns = document.getElementById(`practice-ans-${id}`).value.trim().toLowerCase();
+            const feedback = document.getElementById(`feedback-${id}`);
+
+            if (userAns.includes(correctAns.toLowerCase())) {
+                feedback.innerHTML = "Correct! ETL = Extract, Transform, Load. ðŸŽ‰";
+                feedback.className = "feedback correct";
+                triggerConfetti();
+            } else {
+                feedback.innerHTML = "âœ— Not quite. Hint: Extract, Transform, ...";
+                feedback.className = "feedback wrong";
+            }
+        }
+
+        function runSkulpt(id, expected) {
+            const prog = document.getElementById(`coding-ans-${id}`).value;
+            const outputDiv = document.getElementById(`coding-output-${id}`);
+            const feedback = document.getElementById(`coding-feedback-${id}`);
+            
+            outputDiv.innerHTML = "";
+            outputDiv.classList.add('active');
+            feedback.style.display = "none";
+            feedback.className = "feedback";
+
+            let outputText = "";
+            let validationText = "";
+            
+            Sk.configure({
+                output: function(text) { 
+                    outputDiv.appendChild(document.createTextNode(text));
+                    outputDiv.scrollTop = outputDiv.scrollHeight;
+                    outputText += text; 
+                    validationText += text;
+                },
+                read: function(x) {
+                    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                        throw "File not found: '" + x + "'";
+                    return Sk.builtinFiles["files"][x];
+                }
+            });
+
+            const myPromise = Sk.misceval.asyncToPromise(function() {
+                return Sk.importMainWithBody("<stdin>", false, prog, true);
+            });
+
+            myPromise.then(function(mod) {
+                if (!outputDiv.innerHTML) outputDiv.innerText = outputText;
+                
+                const cleanOutput = validationText.trim().toLowerCase();
+                
+                // Check that the output contains cleaned/unique names
+                if (cleanOutput.includes("alice") && cleanOutput.includes("bob") && cleanOutput.includes("charlie")) {
+                    feedback.innerHTML = "âœ“ Correct! Data cleaned and deduplicated successfully. ðŸŽ‰";
+                    feedback.className = "feedback correct";
+                    triggerConfetti();
+                } else {
+                    feedback.innerHTML = `âœ— Wrong! Make sure you trim, lowercase, and remove duplicates.`;
+                    feedback.className = "feedback wrong";
+                }
+                feedback.style.display = "block";
+            }, function(err) {
+                outputDiv.innerText += "\n" + err.toString();
+                feedback.innerHTML = "âœ— Error in your code!";
+                feedback.className = "feedback wrong";
+                feedback.style.display = "block";
+            });
+        }
+    </script>
+
+    <!-- Professional Terminal Typewriter Script -->
+    <script>
+        // Check Practice Answer (Dark Theme)
+        function checkDark(id, correctAns, successMsg) {
+            const userAns = document.getElementById(`ans-${id}`).value.trim().toLowerCase();
+            const feedback = document.getElementById(`feedback-${id}`);
+            
+            if (userAns === correctAns.toLowerCase()) {
+                feedback.innerHTML = successMsg + " 🎉";
+                feedback.className = "feedback-dark correct";
+                triggerConfetti();
+            } else {
+                feedback.innerHTML = "✗ Not quite. Try again!";
+                feedback.className = "feedback-dark wrong";
+            }
+        }
+
+        function selectMCQ(qid, selected, correct, successMsg) {
+            const container = document.getElementById(`mcq-opts-${qid}`);
+            const feedback = document.getElementById(`feedback-${qid}`);
+            const options = container.getElementsByClassName('mcq-option');
+            
+            // Disable all options
+            for (let opt of options) {
+                opt.classList.add('disabled');
+                opt.removeAttribute('onclick');
+            }
+
+            const selectedOpt = Array.from(options).find(o => o.innerText.trim().startsWith(selected + "."));
+            const correctOpt = Array.from(options).find(o => o.innerText.trim().startsWith(correct + "."));
+
+            selectedOpt.classList.add('selected-anim');
+
+            if (selected === correct) {
+                selectedOpt.classList.add('correct');
+                feedback.innerHTML = "Correct! " + successMsg + " 🎉";
+                feedback.className = "feedback-dark correct";
+                triggerConfetti();
+            } else {
+                selectedOpt.classList.add('wrong');
+                correctOpt.classList.add('correct');
+                feedback.innerHTML = `Incorrect. The correct answer is ${correct}.`;
+                feedback.className = "feedback-dark wrong";
+            }
+        }
+
+        function selectTF(qid, idx, isTrue, isCorrect, feedbackMsg) {
+            const row = document.getElementById(`tf-row-${qid}-${idx}`);
+            const buttons = row.getElementsByClassName('tf-btn');
+            const feedback = document.getElementById(`feedback-${qid}`);
+            
+            // Disable buttons in this row
+            for (let btn of buttons) {
+                btn.classList.add('disabled');
+                btn.removeAttribute('onclick');
+            }
+
+            const selectedBtn = isTrue ? buttons[0] : buttons[1];
+            const otherBtn = isTrue ? buttons[1] : buttons[0];
+
+            if (isTrue === isCorrect) {
+                selectedBtn.classList.add('correct');
+                if (feedbackMsg) {
+                    feedback.innerHTML = "Correct! " + feedbackMsg + " 🎉";
+                    feedback.className = "feedback-dark correct";
+                    triggerConfetti();
+                }
+            } else {
+                selectedBtn.classList.add('wrong');
+                otherBtn.classList.add('correct');
+                if (feedbackMsg) {
+                    feedback.innerHTML = "✗ Not quite. Try again!";
+                    feedback.className = "feedback-dark wrong";
+                }
+            }
+        }
+
+        function triggerConfetti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

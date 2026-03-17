@@ -350,3 +350,69 @@ body { margin: 0; padding: 0; box-sizing: border-box; background-color: var(--bg
     .kpi-row { grid-template-columns: 1fr 1fr; }
     .dashboard-mockup { max-width: 100%; }
 }
+
+/* Global Back Button */
+
+.nav-back {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white !important;
+    background-color: #193855;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    padding: 12px 28px;
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(25, 56, 85, 0.3);
+}
+
+.nav-back:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(25, 56, 85, 0.4);
+    background-color: #11283f;
+}
+
+/* Colab-style Input Panel */
+.colab-input-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    padding: 8px 0;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    color: #f8fafc;
+}
+
+.colab-input-container::before {
+    content: "...";
+    color: #94a3b8;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.colab-prompt {
+    color: #f8fafc;
+    white-space: pre-wrap;
+}
+
+.colab-input {
+    background: transparent;
+    border: 1px solid #475569;
+    color: #f8fafc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    width: 150px;
+    max-width: 100%;
+    transition: border-color 0.2s;
+}
+
+.colab-input:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.3);
+}

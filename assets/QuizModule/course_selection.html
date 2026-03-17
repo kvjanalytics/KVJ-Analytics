@@ -162,11 +162,32 @@
             align-items: center;
             padding: 0.75rem 2rem;
             animation: fadeInDown 0.8s ease backwards;
+            position: relative;
         }
 
         .nav-logo {
             max-height: 50px;
             width: auto;
+        }
+
+        .nav-logout {
+            position: absolute;
+            right: 2rem;
+            background-color: #0066ff;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        .nav-logout:hover {
+            opacity: 0.8;
         }
 
         .selection-container {
@@ -344,6 +365,7 @@
 
     <nav class="navbar">
         <img src="Kvj logo.jpeg" alt="KVJ Analytics" class="nav-logo">
+        <button onclick="logout()" class="nav-logout">Log Out</button>
     </nav>
 
 
@@ -393,11 +415,10 @@
         <!-- 4th: AI Mastery -->
         <a href="ai_index.html" class="course-card">
             <div class="img-container">
-                <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" alt="AI"
-                    style="width: 100%; height: 100%; object-fit: contain;">
+                <img src="Ai.png" alt="AI" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
-            <h2>AI Mastery</h2>
-            <p>Dive into machine learning and neural networks. Shape the future with intelligent systems.</p>
+            <h2>Artificial Intelligence</h2>
+            <p>Dive into machine learning and neural networks. Shape the future with intelligent systems and next-gen logic.</p>
             <div class="btn-select">Explore AI &rarr;</div>
         </a>
 
@@ -412,7 +433,7 @@
         </a>
 
         <!-- 6th: Data Analytics Mastery -->
-        <a href="#" class="course-card">
+        <a href="data_index.html" class="course-card">
             <div class="img-container">
                 <img src="https://cdn-icons-png.flaticon.com/512/3090/3090011.png" alt="Data Analytics"
                     style="width: 100%; height: 100%; object-fit: contain;">
@@ -425,6 +446,12 @@
     </div>
 
     <script>
+        function logout() {
+            sessionStorage.clear();
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             if (!sessionStorage.getItem('isLoggedIn')) {
                 window.location.href = 'index.html';

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module 1: Foundation | KVJ Analytics</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -19,13 +22,17 @@
             --white: #ffffff;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Outfit', sans-serif; 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
             background-color: var(--bg-light);
             color: var(--text-main);
-            display: flex; 
+            display: flex;
             flex-direction: column;
             min-height: 100vh;
             line-height: 1.6;
@@ -40,11 +47,15 @@
             background: #ffffff;
             border-bottom: 1px solid var(--border-color);
             position: fixed;
-            top: 0; width: 100%;
+            top: 0;
+            width: 100%;
             z-index: 1000;
         }
 
-        .kvj-logo-img { max-height: 35px; width: auto; }
+        .kvj-logo-img {
+            max-height: 35px;
+            width: auto;
+        }
 
         .logout-btn {
             background: #dc2626;
@@ -59,17 +70,18 @@
         }
 
         /* Header Banner */
-        .header-banner { 
-            background: var(--primary-blue); 
-            color: white; 
-            padding: 120px 20px 60px; 
-            text-align: center; 
+        .header-banner {
+            background: var(--primary-blue);
+            color: white;
+            padding: 120px 20px 60px;
+            text-align: center;
         }
-        .header-banner h1 { 
+
+        .header-banner h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 38px; 
-            font-weight: 900; 
-            letter-spacing: -1px; 
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -1px;
             text-transform: uppercase;
         }
 
@@ -92,40 +104,40 @@
             position: sticky;
             top: 100px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             height: fit-content;
         }
 
-        .sidebar h3 { 
+        .sidebar h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 13px; 
-            color: var(--secondary-blue); 
-            text-transform: uppercase; 
-            margin-bottom: 20px; 
-            border-bottom: 2px solid var(--bg-light); 
-            padding-bottom: 10px; 
-            font-weight: 800; 
+            font-size: 13px;
+            color: var(--secondary-blue);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 10px;
+            font-weight: 800;
             letter-spacing: 1px;
         }
 
-        .sidebar a { 
-            display: flex; 
+        .sidebar a {
+            display: flex;
             align-items: center;
-            padding: 12px 15px; 
-            color: #555; 
-            text-decoration: none; 
-            font-size: 14px; 
+            padding: 12px 15px;
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
             font-weight: 500;
             margin-bottom: 5px;
             border-radius: 8px;
             transition: all 0.2s;
         }
 
-        .sidebar a.active { 
-            color: var(--primary-blue); 
-            font-weight: 700; 
-            background: #f0f7ff; 
-            border-left: 4px solid var(--primary-blue); 
+        .sidebar a.active {
+            color: var(--primary-blue);
+            font-weight: 700;
+            background: #f0f7ff;
+            border-left: 4px solid var(--primary-blue);
         }
 
         .sidebar a:hover:not(.active) {
@@ -134,79 +146,103 @@
         }
 
         /* Main Content Area */
-        .main-content { 
+        .main-content {
             flex: 1;
-            background: #ffffff; 
+            background: #ffffff;
             border: 1px solid var(--border-color);
             padding: 60px;
             border-radius: 12px;
-            box-shadow: 0 4px 25px rgba(0,0,0,0.04);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
         }
 
-        .section-header { 
-            margin-bottom: 30px; 
-            border-bottom: 3px solid var(--bg-light); 
-            padding-bottom: 15px; 
+        .section-header {
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--bg-light);
+            padding-bottom: 15px;
         }
-        .section-header h2 { 
+
+        .section-header h2 {
             font-family: 'Montserrat', sans-serif;
-            color: var(--primary-blue); 
-            font-size: 28px; 
-            font-weight: 800; 
-            text-transform: uppercase; 
+            color: var(--primary-blue);
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
             letter-spacing: -0.5px;
         }
 
         /* Content Styles */
-        p { line-height: 1.8; margin-bottom: 25px; color: #334155; font-size: 17px; }
-        strong { color: var(--primary-blue); font-weight: 700; }
-        h1, h2, h3 { color: var(--primary-blue); font-weight: 700; }
-        
-        .interaction-box strong { color: var(--secondary-blue); }
-        
-        .interaction-box { 
-            background-color: #f7f9fc; 
-            border-left: 5px solid var(--secondary-blue); 
-            padding: 25px; 
-            margin: 30px 0; 
+        p {
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #334155;
+            font-size: 17px;
+        }
+
+        strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .interaction-box strong {
+            color: var(--secondary-blue);
+        }
+
+        .interaction-box {
+            background-color: #f7f9fc;
+            border-left: 5px solid var(--secondary-blue);
+            padding: 25px;
+            margin: 30px 0;
             border-radius: 0 10px 10px 0;
             font-size: 15px;
         }
 
-        h3 { 
+        h3 {
             font-family: 'Montserrat', sans-serif;
-            color: var(--primary-blue); 
-            margin: 40px 0 20px; 
-            font-size: 22px; 
-            font-weight: 700; 
+            color: var(--primary-blue);
+            margin: 40px 0 20px;
+            font-size: 22px;
+            font-weight: 700;
         }
 
         /* Code Block Styling */
-        pre { 
-            background: #1e293b; 
-            color: #f8fafc; 
-            padding: 20px; 
-            border-radius: 8px; 
-            overflow-x: auto; 
-            font-family: 'Fira Code', 'Consolas', monospace; 
-            font-size: 14px; 
+        pre {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
             margin: 20px 0;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-        .output-box { 
-            background-color: #ecfeff; 
-            border: 1px solid #cffafe; 
-            padding: 15px; 
-            border-radius: 6px; 
-            font-family: monospace; 
-            font-size: 14px; 
-            margin-bottom: 30px; 
-            color: var(--secondary-blue); 
-            font-weight: 700; 
+
+        .output-box {
+            background-color: #ecfeff;
+            border: 1px solid #cffafe;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            margin-bottom: 30px;
+            color: var(--secondary-blue);
+            font-weight: 700;
             display: flex;
             align-items: center;
         }
-        .static-output::before { content: "> Result: "; margin-right: 10px; opacity: 0.6; }
+
+        .static-output::before {
+            content: "> Result: ";
+            margin-right: 10px;
+            opacity: 0.6;
+        }
 
         .live-output-box {
             background: #0f172a;
@@ -222,13 +258,27 @@
             white-space: pre-wrap;
             display: none;
         }
-        .live-output-box.active { display: block; }
+
+        .live-output-box.active {
+            display: block;
+        }
 
         /* Keywords */
-        .keyword { color: #f472b6; }
-        .function { color: #4ade80; }
-        .string { color: #fbbf24; }
-        .comment { color: #94a3b8; }
+        .keyword {
+            color: #f472b6;
+        }
+
+        .function {
+            color: #4ade80;
+        }
+
+        .string {
+            color: #fbbf24;
+        }
+
+        .comment {
+            color: #94a3b8;
+        }
 
         /* Quiz CTA */
         .quiz-cta {
@@ -240,8 +290,20 @@
             color: white;
             box-shadow: 0 10px 30px rgba(0, 142, 171, 0.2);
         }
-        .quiz-cta h3 { color: white; margin-top: 0; font-size: 24px; border: none; padding: 0; }
-        .quiz-cta p { color: rgba(255,255,255,0.8); margin-bottom: 25px; }
+
+        .quiz-cta h3 {
+            color: white;
+            margin-top: 0;
+            font-size: 24px;
+            border: none;
+            padding: 0;
+        }
+
+        .quiz-cta p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+        }
+
         .btn-start-quiz {
             display: inline-block;
             background: #ffffff;
@@ -255,14 +317,22 @@
             letter-spacing: 1px;
             transition: all 0.3s;
         }
+
         .btn-start-quiz:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             background: #f8fafc;
         }
 
-        footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 13px; border-top: 1px solid var(--border-color); margin-top: 40px; }
-        
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+            font-size: 13px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
         /* Practice Space Styling */
         .practice-space {
             background: #ffffff;
@@ -272,12 +342,19 @@
             margin: 40px 0;
             box-shadow: 0 4px 15px rgba(0, 142, 171, 0.1);
         }
-        .practice-space h3 { margin-top: 0; color: var(--secondary-blue); font-size: 20px; }
+
+        .practice-space h3 {
+            margin-top: 0;
+            color: var(--secondary-blue);
+            font-size: 20px;
+        }
+
         .practice-box {
             display: flex;
             gap: 10px;
             margin-top: 20px;
         }
+
         .practice-box input {
             flex: 1;
             padding: 12px 15px;
@@ -286,6 +363,7 @@
             font-size: 16px;
             font-family: 'Outfit', sans-serif;
         }
+
         .practice-box button {
             background: var(--primary-blue);
             color: white;
@@ -296,7 +374,11 @@
             font-weight: 700;
             transition: background 0.3s;
         }
-        .practice-box button:hover { background: var(--secondary-blue); }
+
+        .practice-box button:hover {
+            background: var(--secondary-blue);
+        }
+
         .feedback {
             margin-top: 15px;
             font-weight: 700;
@@ -304,8 +386,20 @@
             padding: 10px;
             border-radius: 6px;
         }
-        .feedback.correct { color: #065f46; background: #ecfdf5; display: block; border: 1px solid #a7f3d0; }
-        .feedback.wrong { color: #991b1b; background: #fef2f2; display: block; border: 1px solid #fecaca; }
+
+        .feedback.correct {
+            color: #065f46;
+            background: #ecfdf5;
+            display: block;
+            border: 1px solid #a7f3d0;
+        }
+
+        .feedback.wrong {
+            color: #991b1b;
+            background: #fef2f2;
+            display: block;
+            border: 1px solid #fecaca;
+        }
 
         /* Coding Practice Styling */
         .coding-practice {
@@ -316,9 +410,25 @@
             color: #f8fafc;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
-        .coding-practice h3 { margin-top: 0; color: #7dd3fc; font-size: 22px; font-weight: 700; }
-        .coding-practice p { color: #e2e8f0; font-size: 16px; margin-bottom: 20px; }
-        .coding-practice strong { color: #f8fafc; font-weight: 800; }
+
+        .coding-practice h3 {
+            margin-top: 0;
+            color: #7dd3fc;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .coding-practice p {
+            color: #e2e8f0;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .coding-practice strong {
+            color: #f8fafc;
+            font-weight: 800;
+        }
+
         .coding-practice textarea {
             width: 100%;
             height: 120px;
@@ -333,7 +443,11 @@
             margin-bottom: 20px;
             outline: none;
         }
-        .coding-practice textarea:focus { border-color: #38bdf8; }
+
+        .coding-practice textarea:focus {
+            border-color: #38bdf8;
+        }
+
         .coding-practice .btn-run {
             background: #38bdf8;
             color: #0f172a;
@@ -345,7 +459,11 @@
             font-size: 16px;
             transition: all 0.3s;
         }
-        .coding-practice .btn-run:hover { background: #7dd3fc; transform: translateY(-2px); }
+
+        .coding-practice .btn-run:hover {
+            background: #7dd3fc;
+            transform: translateY(-2px);
+        }
 
         /* Visual Illustrations */
         .illustration-container {
@@ -360,26 +478,54 @@
             pointer-events: none;
             opacity: 0.8;
         }
+
         .illustration-card {
             background: white;
             border: 1px solid var(--border-color);
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             text-align: center;
             animation: float 6s ease-in-out infinite;
         }
+
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
-        .illustration-card img { width: 80px; margin-bottom: 10px; }
-        .illustration-card span { display: block; font-weight: 800; color: var(--primary-blue); font-size: 14px; text-transform: uppercase; }
+
+        .illustration-card img {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+
+        .illustration-card span {
+            display: block;
+            font-weight: 800;
+            color: var(--primary-blue);
+            font-size: 14px;
+            text-transform: uppercase;
+        }
 
         @keyframes fadeOut {
-            0% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
         }
 
         /* Module Illustrations */
@@ -394,22 +540,41 @@
             background: white;
             padding: 15px 25px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             text-align: center;
             border: 1px solid var(--border-color);
             animation: float 6s ease-in-out infinite;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
-        .illustration-card img { width: 80px; margin-bottom: 10px; }
-        .illustration-card span { display: block; font-weight: 800; color: var(--primary-blue); font-size: 14px; text-transform: uppercase; }
+        .illustration-card img {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+
+        .illustration-card span {
+            display: block;
+            font-weight: 800;
+            color: var(--primary-blue);
+            font-size: 14px;
+            text-transform: uppercase;
+        }
 
         @media (max-width: 1600px) {
-            .illustration-container { display: none; }
+            .illustration-container {
+                display: none;
+            }
         }
 
         /* Module Intro Animation Panel */
@@ -419,14 +584,17 @@
             align-items: flex-start;
             margin-bottom: 10px;
         }
+
         .module-intro-text {
             flex: 1;
         }
+
         .module-intro-animation {
             width: 280px;
             flex-shrink: 0;
             position: relative;
         }
+
         .module-intro-animation canvas {
             width: 280px;
             height: 280px;
@@ -438,45 +606,53 @@
             background: #1e1e2e;
             border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.06);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.06);
             width: 100%;
             font-family: 'Fira Code', 'Consolas', monospace;
         }
+
         .terminal-header {
             background: #2a2a3e;
             padding: 10px 14px;
             display: flex;
             align-items: center;
             gap: 6px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
+
         .t-dot {
-            width: 12px; height: 12px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             display: inline-block;
         }
+
         .t-title {
             margin-left: auto;
             font-size: 11px;
-            color: rgba(255,255,255,0.35);
+            color: rgba(255, 255, 255, 0.35);
             font-family: 'Outfit', sans-serif;
             letter-spacing: 0.5px;
         }
+
         .terminal-body {
             padding: 20px 18px 10px;
             min-height: 220px;
             position: relative;
         }
+
         .terminal-body pre {
             background: transparent;
             box-shadow: none;
-            padding: 0; margin: 0;
+            padding: 0;
+            margin: 0;
             color: #abb2bf;
             font-size: 12.5px;
             line-height: 1.75;
             white-space: pre-wrap;
             word-break: break-all;
         }
+
         .cursor-blink {
             display: inline-block;
             color: #61afef;
@@ -486,13 +662,22 @@
             vertical-align: text-bottom;
             line-height: 1;
         }
+
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
         }
+
         .terminal-footer {
             background: #12121e;
-            color: rgba(255,255,255,0.22);
+            color: rgba(255, 255, 255, 0.22);
             font-size: 10.5px;
             font-family: 'Outfit', sans-serif;
             padding: 7px 14px;
@@ -500,18 +685,37 @@
         }
 
         @media (max-width: 900px) {
-            .module-intro-flex { flex-direction: column; }
-            .module-intro-animation { display: none; }
+            .module-intro-flex {
+                flex-direction: column;
+            }
+
+            .module-intro-animation {
+                display: none;
+            }
         }
 
         @media (max-width: 992px) {
-            .layout-container { flex-direction: column; }
-            .sidebar { width: 100%; position: static; margin-bottom: 30px; }
-            .main-content { padding: 30px; }
-            .practice-box { flex-direction: column; }
+            .layout-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+                margin-bottom: 30px;
+            }
+
+            .main-content {
+                padding: 30px;
+            }
+
+            .practice-box {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar">
@@ -529,7 +733,8 @@
             <span>Core Logic</span>
         </div>
         <div class="illustration-card" style="animation-delay: 2s;">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="filter: hue-rotate(180deg);" alt="Data">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                style="filter: hue-rotate(180deg);" alt="Data">
             <span>Data Structures</span>
         </div>
         <div class="illustration-card" style="animation-delay: 4s;">
@@ -547,7 +752,7 @@
             <a href="Module-4.html">04 Documentation</a>
             <a href="Module-5.html">05 Error Handling</a>
             <a href="Module-6.html">06 Built-in Modules</a>
-            
+
             <h3 style="margin-top:25px;">Navigation</h3>
             <a href="roadmap.html" style="background: #f8f9fa;">&larr; Return to Roadmap</a>
         </nav>
@@ -557,37 +762,37 @@
                 <h2>MODULE 1</h2>
                 <p style="font-weight: 600; color: var(--secondary-blue);">Data Types, Data Structures & Operators</p>
             </div>
-            
+
             <div class="module-intro-flex">
                 <div class="module-intro-text">
-                <h3>Introduction to Python</h3>
-                <p>Python is a high-level programming language used to write instructions for computers.</p>
-                <p>It is widely used because it is:</p>
-                <ul>
-                    <li>Easy to read</li>
-                    <li>Beginner friendly</li>
-                    <li>Powerful</li>
-                    <li>Used in many industries</li>
-                </ul>
+                    <h3>Introduction to Python</h3>
+                    <p>Python is a high-level programming language used to write instructions for computers.</p>
+                    <p>It is widely used because it is:</p>
+                    <ul>
+                        <li>Easy to read</li>
+                        <li>Beginner friendly</li>
+                        <li>Powerful</li>
+                        <li>Used in many industries</li>
+                    </ul>
 
-                <p style="margin-top: 30px;"><strong>Python is used in:</strong></p>
-                <ul>
-                    <li>Data Science &amp; Business Intelligence</li>
-                    <li>Artificial Intelligence &amp; Machine Learning</li>
-                    <li>Web &amp; Backend Development</li>
-                    <li>Finance, Banking &amp; FinTech</li>
-                    <li>Business Process Automation</li>
-                    <li>Cybersecurity &amp; Scripting</li>
-                </ul>
+                    <p style="margin-top: 30px;"><strong>Python is used in:</strong></p>
+                    <ul>
+                        <li>Data Science &amp; Business Intelligence</li>
+                        <li>Artificial Intelligence &amp; Machine Learning</li>
+                        <li>Web &amp; Backend Development</li>
+                        <li>Finance, Banking &amp; FinTech</li>
+                        <li>Business Process Automation</li>
+                        <li>Cybersecurity &amp; Scripting</li>
+                    </ul>
 
-                <p style="margin-top: 30px;"><strong>Common job roles where Python is used:</strong></p>
-                <ul style="margin-bottom: 40px;">
-                    <li>Data Analyst / Business Analyst</li>
-                    <li>Backend Developer / Fullstack Developer</li>
-                    <li>Machine Learning Engineer</li>
-                    <li>Financial Analyst / Quantitative Developer</li>
-                    <li>Automation Engineer / DevOps Scientist</li>
-                </ul>
+                    <p style="margin-top: 30px;"><strong>Common job roles where Python is used:</strong></p>
+                    <ul style="margin-bottom: 40px;">
+                        <li>Data Analyst / Business Analyst</li>
+                        <li>Backend Developer / Fullstack Developer</li>
+                        <li>Machine Learning Engineer</li>
+                        <li>Financial Analyst / Quantitative Developer</li>
+                        <li>Automation Engineer / DevOps Scientist</li>
+                    </ul>
                 </div>
 
                 <!-- Right Side: Professional Code Terminal -->
@@ -618,7 +823,7 @@
             <h3>Integer (int)</h3>
             <p>Whole numbers without decimals.</p>
             <p><strong>Example:</strong></p>
-<pre>
+            <pre>
 units_sold = <span class="number">150</span>
 <span class="function">print</span>(<span class="function">type</span>(units_sold))
 </pre>
@@ -630,7 +835,8 @@ units_sold = <span class="number">150</span>
             <!-- Coding Practice: Integer -->
             <div class="coding-practice">
                 <h3>Coding Practice: Integer</h3>
-                <p><strong>Challenge:</strong> Assign the number <code>250</code> to a variable called <code>stock</code> and print its type.</p>
+                <p><strong>Challenge:</strong> Assign the number <code>250</code> to a variable called
+                    <code>stock</code> and print its type.</p>
                 <textarea id="coding-ans-int" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt('int', '<class \'int\'>')">Run & Check</button>
                 <div id="coding-output-int" class="live-output-box"></div>
@@ -640,7 +846,7 @@ units_sold = <span class="number">150</span>
             <h3>Float (float)</h3>
             <p>Numbers with decimal values.</p>
             <p><strong>Example</strong></p>
-<pre>
+            <pre>
 product_price = <span class="number">199.99</span>
 <span class="function">print</span>(<span class="function">type</span>(product_price))
 </pre>
@@ -652,7 +858,8 @@ product_price = <span class="number">199.99</span>
             <!-- Coding Practice: Float -->
             <div class="coding-practice">
                 <h3>Coding Practice: Float</h3>
-                <p><strong>Challenge:</strong> Create a variable <code>discount</code> with value <code>0.15</code> and print its type.</p>
+                <p><strong>Challenge:</strong> Create a variable <code>discount</code> with value <code>0.15</code> and
+                    print its type.</p>
                 <textarea id="coding-ans-float" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt('float', '<class \'float\'>')">Run & Check</button>
                 <div id="coding-output-float" class="live-output-box"></div>
@@ -662,7 +869,7 @@ product_price = <span class="number">199.99</span>
             <h3>String (str)</h3>
             <p>Strings store text data such as names, product labels, or company names.</p>
             <p><strong>Example</strong></p>
-<pre>
+            <pre>
 company_name = <span class="string">"Global Finance Ltd"</span>
 <span class="function">print</span>(<span class="function">type</span>(company_name))
 </pre>
@@ -671,7 +878,8 @@ company_name = <span class="string">"Global Finance Ltd"</span>
             <!-- Coding Practice: String -->
             <div class="coding-practice">
                 <h3>Coding Practice: String</h3>
-                <p><strong>Challenge:</strong> Store the name <code>"KVJ Analytics"</code> in a variable and print its type.</p>
+                <p><strong>Challenge:</strong> Store the name <code>"KVJ Analytics"</code> in a variable and print its
+                    type.</p>
                 <textarea id="coding-ans-str" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt('str', '<class \'str\'>')">Run & Check</button>
                 <div id="coding-output-str" class="live-output-box"></div>
@@ -679,7 +887,7 @@ company_name = <span class="string">"Global Finance Ltd"</span>
             </div>
 
             <h3>Important comparison</h3>
-<pre>
+            <pre>
 <span class="function">print</span>(<span class="function">type</span>(<span class="string">"10"</span>))
 <span class="function">print</span>(<span class="function">type</span>(<span class="number">10</span>))
 </pre>
@@ -697,7 +905,7 @@ company_name = <span class="string">"Global Finance Ltd"</span>
             <h3>Boolean (bool)</h3>
             <p>Boolean values represent True or False.</p>
             <p><strong>Example</strong></p>
-<pre>
+            <pre>
 profit = <span class="number">5000</span>
 result = profit > <span class="number">0</span>
 <span class="function">print</span>(result)
@@ -714,7 +922,8 @@ result = profit > <span class="number">0</span>
             <!-- Coding Practice: Boolean -->
             <div class="coding-practice">
                 <h3>Coding Practice: Boolean</h3>
-                <p><strong>Challenge:</strong> Write an expression that checks if <code>500 > 200</code> and print the result.</p>
+                <p><strong>Challenge:</strong> Write an expression that checks if <code>500 > 200</code> and print the
+                    result.</p>
                 <textarea id="coding-ans-bool" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt('bool', 'True')">Run & Check</button>
                 <div id="coding-output-bool" class="live-output-box"></div>
@@ -722,7 +931,7 @@ result = profit > <span class="number">0</span>
             </div>
 
             <h3>Evaluating Expressions</h3>
-<pre>
+            <pre>
 sales = <span class="number">5000</span>
 tax_rate = <span class="number">0.05</span>
 customer = <span class="string">"Rahul"</span>
@@ -750,7 +959,7 @@ status = sales > <span class="number">3000</span>
             <h3>Type Conversion</h3>
             <p>Type conversion changes data from one type to another.</p>
             <p><strong>Example</strong></p>
-<pre>
+            <pre>
 x = <span class="function">int</span>(<span class="string">"100"</span>)
 y = <span class="function">float</span>(<span class="string">"10.5"</span>)
 z = <span class="function">str</span>(<span class="number">500</span>)
@@ -781,7 +990,7 @@ w = <span class="function">bool</span>(<span class="number">0</span>)
             <h3>List</h3>
             <p>A list stores ordered values.</p>
             <p>Example: monthly sales data.</p>
-<pre>
+            <pre>
 monthly_sales = [<span class="number">5000</span>, <span class="number">7200</span>, <span class="number">6500</span>]
 <span class="function">print</span>(monthly_sales)
 </pre>
@@ -795,7 +1004,7 @@ monthly_sales = [<span class="number">5000</span>, <span class="number">7200</sp
             </ul>
 
             <h3>Indexing</h3>
-<pre>
+            <pre>
 <span class="function">print</span>(monthly_sales[<span class="number">0</span>])
 <span class="function">print</span>(monthly_sales[<span class="number">-1</span>])
 </pre>
@@ -810,7 +1019,8 @@ monthly_sales = [<span class="number">5000</span>, <span class="number">7200</sp
             <!-- Coding Practice: Indexing -->
             <div class="coding-practice">
                 <h3>Coding Practice: Indexing</h3>
-                <p><strong>Challenge:</strong> From the list <code>prices = [10.5, 20.0, 35.5]</code>, print the **second** element.</p>
+                <p><strong>Challenge:</strong> From the list <code>prices = [10.5, 20.0, 35.5]</code>, print the
+                    **second** element.</p>
                 <textarea id="coding-ans-index" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt('index', '20.0')">Run & Check</button>
                 <div id="coding-output-index" class="live-output-box"></div>
@@ -820,7 +1030,8 @@ monthly_sales = [<span class="number">5000</span>, <span class="number">7200</sp
             <!-- Coding Practice 2 -->
             <div class="coding-practice">
                 <h3>Coding Practice: List Indexing</h3>
-                <p><strong>Challenge:</strong> Create a list called <code>scores</code> with values <code>[85, 90, 95]</code> and print the <strong>first</strong> element.</p>
+                <p><strong>Challenge:</strong> Create a list called <code>scores</code> with values
+                    <code>[85, 90, 95]</code> and print the <strong>first</strong> element.</p>
                 <textarea id="coding-ans-2" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt(2, '85')">Run & Check</button>
                 <div id="coding-output-2" class="live-output-box"></div>
@@ -828,7 +1039,7 @@ monthly_sales = [<span class="number">5000</span>, <span class="number">7200</sp
             </div>
 
             <h3>Slicing</h3>
-<pre>
+            <pre>
 <span class="function">print</span>(monthly_sales[<span class="number">0</span>:<span class="number">2</span>])
 <span class="function">print</span>(monthly_sales[:<span class="number">2</span>])
 <span class="function">print</span>(monthly_sales[<span class="number">1</span>:])
@@ -842,7 +1053,7 @@ monthly_sales = [<span class="number">5000</span>, <span class="number">7200</sp
 
             <h3>List Operations</h3>
             <p><strong>append()</strong></p>
-<pre>
+            <pre>
 monthly_sales.append(<span class="number">9000</span>)
 <span class="function">print</span>(monthly_sales)
 </pre>
@@ -850,7 +1061,7 @@ monthly_sales.append(<span class="number">9000</span>)
             <div class="output-box">[5000, 7200, 6500, 9000]</div>
 
             <p><strong>insert()</strong></p>
-<pre>
+            <pre>
 monthly_sales.insert(<span class="number">1</span>, <span class="number">6000</span>)
 <span class="function">print</span>(monthly_sales)
 </pre>
@@ -858,25 +1069,25 @@ monthly_sales.insert(<span class="number">1</span>, <span class="number">6000</s
             <div class="output-box">[5000, 6000, 7200, 6500, 9000]</div>
 
             <p><strong>remove()</strong></p>
-<pre>
+            <pre>
 monthly_sales.remove(<span class="number">6500</span>)
 <span class="function">print</span>(monthly_sales)
 </pre>
 
             <p><strong>sort()</strong></p>
-<pre>
+            <pre>
 monthly_sales.sort()
 <span class="function">print</span>(monthly_sales)
 </pre>
 
             <p><strong>reverse()</strong></p>
-<pre>
+            <pre>
 monthly_sales.reverse()
 <span class="function">print</span>(monthly_sales)
 </pre>
 
             <p><strong>max() and min()</strong></p>
-<pre>
+            <pre>
 <span class="function">print</span>(<span class="function">max</span>(monthly_sales))
 <span class="function">print</span>(<span class="function">min</span>(monthly_sales))
 </pre>
@@ -884,7 +1095,7 @@ monthly_sales.reverse()
             <h3>Tuple</h3>
             <p>Tuples store fixed data that should not change.</p>
             <p>Example: store coordinates of a branch office.</p>
-<pre>
+            <pre>
 location = (<span class="number">10</span>, <span class="number">20</span>)
 <span class="function">print</span>(location)
 </pre>
@@ -892,7 +1103,8 @@ location = (<span class="number">10</span>, <span class="number">20</span>)
             <!-- Coding Practice: Tuple -->
             <div class="coding-practice">
                 <h3>Coding Practice: Tuple</h3>
-                <p><strong>Challenge:</strong> Create a tuple named <code>dimensions</code> with values <code>(1080, 1920)</code> and print it.</p>
+                <p><strong>Challenge:</strong> Create a tuple named <code>dimensions</code> with values
+                    <code>(1080, 1920)</code> and print it.</p>
                 <textarea id="coding-ans-tuple" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt('tuple', '(1080, 1920)')">Run & Check</button>
                 <div id="coding-output-tuple" class="live-output-box"></div>
@@ -902,7 +1114,7 @@ location = (<span class="number">10</span>, <span class="number">20</span>)
             <h3>Set</h3>
             <p>Sets store unique values.</p>
             <p>Example: unique product IDs.</p>
-<pre>
+            <pre>
 product_ids = {<span class="number">101</span>, <span class="number">102</span>, <span class="number">103</span>, <span class="number">103</span>}
 <span class="function">print</span>(product_ids)
 </pre>
@@ -911,7 +1123,8 @@ product_ids = {<span class="number">101</span>, <span class="number">102</span>,
             <!-- Coding Practice: Set -->
             <div class="coding-practice">
                 <h3>Coding Practice: Set</h3>
-                <p><strong>Challenge:</strong> Create a set <code>tags = {"python", "data", "python"}</code> and print it. Observe what happens to duplicate values.</p>
+                <p><strong>Challenge:</strong> Create a set <code>tags = {"python", "data", "python"}</code> and print
+                    it. Observe what happens to duplicate values.</p>
                 <textarea id="coding-ans-set" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt('set', 'data')">Run & Check</button>
                 <div id="coding-output-set" class="live-output-box"></div>
@@ -921,7 +1134,7 @@ product_ids = {<span class="number">101</span>, <span class="number">102</span>,
             <h3>Dictionary</h3>
             <p>Dictionaries store key-value pairs.</p>
             <p>Example: customer information.</p>
-<pre>
+            <pre>
 customer = {
     <span class="string">"name"</span>: <span class="string">"Rahul"</span>,
     <span class="string">"balance"</span>: <span class="number">5000</span>,
@@ -932,7 +1145,8 @@ customer = {
             <!-- Coding Practice: Dictionary -->
             <div class="coding-practice">
                 <h3>Coding Practice: Dictionary</h3>
-                <p><strong>Challenge:</strong> Create a dictionary <code>car = {"brand": "Tesla", "model": "S"}</code> and print the value of <code>brand</code>.</p>
+                <p><strong>Challenge:</strong> Create a dictionary <code>car = {"brand": "Tesla", "model": "S"}</code>
+                    and print the value of <code>brand</code>.</p>
                 <textarea id="coding-ans-dict" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt('dict', 'Tesla')">Run & Check</button>
                 <div id="coding-output-dict" class="live-output-box"></div>
@@ -943,16 +1157,21 @@ customer = {
                 <h2>1.3 Operators</h2>
             </div>
             <h3>Arithmetic Operators</h3>
-            <p>Arithmetic operators are used to perform mathematical calculations. Here is the complete list of operators in Python:</p>
+            <p>Arithmetic operators are used to perform mathematical calculations. Here is the complete list of
+                operators in Python:</p>
 
             <div class="interaction-box">
                 <ul>
                     <li><strong>Addition (+):</strong> Adds two numbers. (<code>10 + 5 = 15</code>)</li>
-                    <li><strong>Subtraction (-):</strong> Subtracts one number from another. (<code>10 - 5 = 5</code>)</li>
+                    <li><strong>Subtraction (-):</strong> Subtracts one number from another. (<code>10 - 5 = 5</code>)
+                    </li>
                     <li><strong>Multiplication (*):</strong> Multiplies two numbers. (<code>10 * 5 = 50</code>)</li>
-                    <li><strong>Division (/):</strong> Divides numbers and returns a decimal (float). (<code>10 / 4 = 2.5</code>)</li>
-                    <li><strong>Floor Division (//):</strong> Divides and rounds down to the nearest whole number. (<code>10 // 3 = 3</code>)</li>
-                    <li><strong>Modulus (%):</strong> Returns the remainder of a division. (<code>10 % 3 = 1</code>)</li>
+                    <li><strong>Division (/):</strong> Divides numbers and returns a decimal (float).
+                        (<code>10 / 4 = 2.5</code>)</li>
+                    <li><strong>Floor Division (//):</strong> Divides and rounds down to the nearest whole number.
+                        (<code>10 // 3 = 3</code>)</li>
+                    <li><strong>Modulus (%):</strong> Returns the remainder of a division. (<code>10 % 3 = 1</code>)
+                    </li>
                     <li><strong>Exponentiation (**):</strong> Raises a number to a power. (<code>2 ** 3 = 8</code>)</li>
                 </ul>
             </div>
@@ -963,7 +1182,8 @@ customer = {
             <div class="coding-practice">
                 <h3>Practice 1: Addition (+)</h3>
                 <p><strong>Explanation:</strong> Use the <code>+</code> operator to find the sum of two numbers.</p>
-                <p><strong>Task:</strong> Write a program to add <code>10</code> and <code>5</code> and print the result.</p>
+                <p><strong>Task:</strong> Write a program to add <code>10</code> and <code>5</code> and print the
+                    result.</p>
                 <textarea id="coding-ans-add" placeholder="print(10 + 5)"></textarea>
                 <button class="btn-run" onclick="runSkulpt('add', '15')">Run & Check</button>
                 <div id="coding-output-add" class="live-output-box"></div>
@@ -974,7 +1194,8 @@ customer = {
             <div class="coding-practice">
                 <h3>Practice 2: Multiplication (*)</h3>
                 <p><strong>Explanation:</strong> Use the <code>*</code> operator to multiply values.</p>
-                <p><strong>Task:</strong> Calculate the total cost of <code>5</code> items that cost <code>$20</code> each and print the result.</p>
+                <p><strong>Task:</strong> Calculate the total cost of <code>5</code> items that cost <code>$20</code>
+                    each and print the result.</p>
                 <textarea id="coding-ans-mul" placeholder="print(5 * 20)"></textarea>
                 <button class="btn-run" onclick="runSkulpt('mul', '100')">Run & Check</button>
                 <div id="coding-output-mul" class="live-output-box"></div>
@@ -983,35 +1204,35 @@ customer = {
 
             <!-- End of Practices -->
             <h3>Comparison operators</h3>
-<pre>
+            <pre>
 <span class="function">print</span>(<span class="number">10</span> > <span class="number">5</span>)
 <span class="function">print</span>(<span class="number">10</span> == <span class="number">5</span>)
 <span class="function">print</span>(<span class="number">10</span> != <span class="number">5</span>)
 </pre>
 
             <h3>Logical operators</h3>
-<pre>
+            <pre>
 <span class="function">print</span>(<span class="keyword">True</span> <span class="keyword">and</span> <span class="keyword">False</span>)
 <span class="function">print</span>(<span class="keyword">True</span> <span class="keyword">or</span> <span class="keyword">False</span>)
 <span class="function">print</span>(<span class="keyword">not</span> <span class="keyword">True</span>)
 </pre>
 
             <h3>Assignment operators</h3>
-<pre>
+            <pre>
 revenue = <span class="number">10000</span>
 revenue += <span class="number">2000</span>
 <span class="function">print</span>(revenue)
 </pre>
 
             <h3>Identity operator</h3>
-<pre>
+            <pre>
 a = <span class="number">10</span>
 b = <span class="number">10</span>
 <span class="function">print</span>(a <span class="keyword">is</span> b)
 </pre>
 
             <h3>Membership operator</h3>
-<pre>
+            <pre>
 products = [<span class="string">"Laptop"</span>, <span class="string">"Phone"</span>, <span class="string">"Tablet"</span>]
 <span class="function">print</span>(<span class="string">"Phone"</span> <span class="keyword">in</span> products)
 </pre>
@@ -1019,7 +1240,7 @@ products = [<span class="string">"Laptop"</span>, <span class="string">"Phone"</
             <div class="section-header">
                 <h2>1.4 Operator Precedence</h2>
             </div>
-<pre>
+            <pre>
 result = <span class="number">10</span> + <span class="number">5</span> * <span class="number">2</span>
 <span class="function">print</span>(result)
 </pre>
@@ -1028,7 +1249,7 @@ result = <span class="number">10</span> + <span class="number">5</span> * <span 
             <p>Multiplication happens before addition.</p>
 
             <p><strong>Using parentheses</strong></p>
-<pre>
+            <pre>
 <span class="function">print</span>((<span class="number">10</span> + <span class="number">5</span>) * <span class="number">2</span>)
 </pre>
             <p><strong>Output</strong></p>
@@ -1037,21 +1258,25 @@ result = <span class="number">10</span> + <span class="number">5</span> * <span 
             <div class="section-header">
                 <h2>Final Practice Task</h2>
             </div>
-            <p><strong>Scenario:</strong> You are analyzing a company's monthly sales using Python. Write a Python program to:</p>
+            <p><strong>Scenario:</strong> You are analyzing a company's monthly sales using Python. Write a Python
+                program to:</p>
             <ul>
-                <li>Create a list named <code>monthly_sales</code> with the values <code>[6500, 7200, 8800, 5400]</code>.</li>
+                <li>Create a list named <code>monthly_sales</code> with the values
+                    <code>[6500, 7200, 8800, 5400]</code>.</li>
                 <li>Add a new sales value <code>9000</code> to the list.</li>
                 <li>Sort the sales values.</li>
                 <li>Calculate the average sales.</li>
                 <li>Print the sorted sales list and the average sales.</li>
-                <li>Use an <code>if</code> condition to check if the average sales are greater than <code>6000</code> and print <code>"Business performance is strong"</code> if the condition is true.</li>
+                <li>Use an <code>if</code> condition to check if the average sales are greater than <code>6000</code>
+                    and print <code>"Business performance is strong"</code> if the condition is true.</li>
             </ul>
 
             <!-- Coding Practice: Final Business Task -->
             <div class="coding-practice">
                 <h3>Final Business Task</h3>
                 <textarea id="coding-ans-final" placeholder="# Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('final', 'Business performance is strong')">Run & Check</button>
+                <button class="btn-run" onclick="runSkulpt('final', 'Business performance is strong')">Run &
+                    Check</button>
                 <div id="coding-output-final" class="live-output-box"></div>
                 <div id="coding-feedback-final" class="feedback"></div>
             </div>
@@ -1085,7 +1310,7 @@ result = <span class="number">10</span> + <span class="number">5</span> * <span 
                 return Math.random() * (max - min) + min;
             }
 
-            var interval = setInterval(function() {
+            var interval = setInterval(function () {
                 var timeLeft = animationEnd - Date.now();
                 if (timeLeft <= 0) { return clearInterval(interval); }
                 var particleCount = 50 * (timeLeft / duration);
@@ -1097,7 +1322,7 @@ result = <span class="number">10</span> + <span class="number">5</span> * <span 
         function checkPracticeAnswer(id, correctAns) {
             const userAns = document.getElementById(`practice-ans-${id}`).value.trim().toLowerCase();
             const feedback = document.getElementById(`feedback-${id}`);
-            
+
             // Clean correct answer for comparison
             const cleanCorrect = correctAns.toLowerCase().replace(/\s/g, '');
             const cleanUser = userAns.replace(/\s/g, '').toLowerCase();
@@ -1124,13 +1349,55 @@ result = <span class="number">10</span> + <span class="number">5</span> * <span 
             feedback.className = "feedback";
 
             let outputText = "";
+            let validationText = "";
+            let userInputs = [];
             
             Sk.configure({
-                output: function(text) { outputText += text; },
+                output: function(text) { 
+                    outputDiv.appendChild(document.createTextNode(text));
+                    outputDiv.scrollTop = outputDiv.scrollHeight;
+                    outputText += text; 
+                    validationText += text;
+                },
                 read: function(x) {
                     if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
                         throw "File not found: '" + x + "'";
                     return Sk.builtinFiles["files"][x];
+                },
+                inputfun: function(prompt) {
+                    return new Promise((resolve) => {
+                        // Clean up double prompt if it exists in the output div
+                        if (outputDiv.lastChild && outputDiv.lastChild.nodeType === 3) {
+                            let lastText = outputDiv.lastChild.textContent;
+                            if (lastText.endsWith(prompt)) {
+                                outputDiv.lastChild.textContent = lastText.substring(0, lastText.length - prompt.length);
+                            }
+                        }
+
+                        const container = document.createElement('div');
+                        container.className = 'colab-input-container';
+                        container.innerHTML = `
+                            <span class="colab-prompt">${prompt}</span>
+                            <input type="text" class="colab-input" autocomplete="off">
+                        `;
+                        outputDiv.appendChild(container);
+                        
+                        const inputField = container.querySelector('.colab-input');
+                        inputField.focus();
+                        
+                        inputField.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') {
+                                const val = inputField.value;
+                                userInputs.push(val);
+                                container.remove();
+                                // Add back the prompt and the answer to the output box permanently
+                                outputDiv.appendChild(document.createTextNode(prompt + val + "\n"));
+                                outputText += prompt + val + "\n";
+                                // Do NOT add prompt/input to validationText!
+                                resolve(val);
+                            }
+                        });
+                    });
                 }
             });
 
@@ -1139,24 +1406,35 @@ result = <span class="number">10</span> + <span class="number">5</span> * <span 
             });
 
             myPromise.then(function(mod) {
-                outputDiv.innerText = outputText;
+                if (!outputDiv.innerHTML) outputDiv.innerText = outputText;
                 
-                // Flexible matching for expected output
-                const cleanOutput = outputText.trim().toLowerCase();
-                const cleanExpected = expected.trim().toLowerCase();
+                const cleanOutput = validationText.trim().toLowerCase();
+                let cleanExpected = expected.trim().toLowerCase();
+
+                // Dynamic Validation Logic
+                if (userInputs.length > 0) {
+                    if (id === 'input') {
+                        cleanExpected = `welcome to ${userInputs[0].trim()}`.toLowerCase();
+                    } else if (id === 'int') {
+                        let num = parseInt(userInputs[0]);
+                        if (!isNaN(num)) {
+                            cleanExpected = (num * 2).toString().toLowerCase();
+                        }
+                    }
+                }
 
                 if (cleanOutput.includes(cleanExpected)) {
-                    feedback.innerHTML = "Correct! Great job! 🎉";
+                    feedback.innerHTML = "✓ Correct! Your code works perfectly. 🎉";
                     feedback.className = "feedback correct";
                     triggerConfetti();
                 } else {
-                    feedback.innerHTML = `✗ Wrong! Expected to see "${expected}" in output.`;
+                    feedback.innerHTML = `✗ Wrong! Expected result not found.`;
                     feedback.className = "feedback wrong";
                 }
                 feedback.style.display = "block";
             }, function(err) {
-                outputDiv.innerText = err.toString();
-                feedback.innerHTML = "✗ Syntax Error in your code!";
+                outputDiv.innerText += "\n" + err.toString();
+                feedback.innerHTML = "✗ Error in your code!";
                 feedback.className = "feedback wrong";
                 feedback.style.display = "block";
             });
@@ -1165,12 +1443,12 @@ result = <span class="number">10</span> + <span class="number">5</span> * <span 
 
     <!-- Professional Terminal Typewriter Script -->
     <script>
-    (function() {
-        const el = document.getElementById('terminal-typed-code');
-        if (!el) return;
+        (function () {
+            const el = document.getElementById('terminal-typed-code');
+            if (!el) return;
 
-        const snippets = [
-            `# Python Data Types
+            const snippets = [
+                `# Python Data Types
 sales = 150_000       # int
 rate  = 0.18          # float
 name  = "KVJ Corp"    # str
@@ -1180,63 +1458,64 @@ print(type(sales))
 print(type(rate))
 print(type(name))
 print(type(active))`,
-            `# Data Structures
+                `# Data Structures
 scores  = [95, 88, 72]        # list
 profile = {"name": "Ana",     # dict
            "dept": "Finance"}
 
 print(scores[0])     # 95
 print(profile["name"]) # Ana`,
-            `# Operators
+                `# Operators
 x = 25 // 4   # 6  (integer div)
 y = 25  % 4   # 1  (remainder)
 z = 2  ** 8   # 256 (power)
 
 print(x, y, z)`
-        ];
+            ];
 
-        let snippetIdx = 0, charIdx = 0;
-        let typing = true;
-        const SPEED = 65;       // ms per character (slower = more readable)
-        const PAUSE_AFTER = 4500; // ms to display before erasing
+            let snippetIdx = 0, charIdx = 0;
+            let typing = true;
+            const SPEED = 65;       // ms per character (slower = more readable)
+            const PAUSE_AFTER = 4500; // ms to display before erasing
 
-        function colorize(raw) {
-            return raw
-                .replace(/(#[^\n]*)/g, '<span style="color:#636e7b">$1</span>')
-                .replace(/\b(print|type|True|False|None)\b/g, '<span style="color:#61afef">$1</span>')
-                .replace(/("[^"]*")/g, '<span style="color:#98c379">$1</span>')
-                .replace(/\b(\d+[_\d]*)\b/g, '<span style="color:#d19a66">$1</span>')
-                .replace(/\b(int|float|str|bool|list|dict)\b/g, '<span style="color:#c678dd">$1</span>');
-        }
+            function colorize(raw) {
+                return raw
+                    .replace(/(#[^\n]*)/g, '<span style="color:#636e7b">$1</span>')
+                    .replace(/\b(print|type|True|False|None)\b/g, '<span style="color:#61afef">$1</span>')
+                    .replace(/("[^"]*")/g, '<span style="color:#98c379">$1</span>')
+                    .replace(/\b(\d+[_\d]*)\b/g, '<span style="color:#d19a66">$1</span>')
+                    .replace(/\b(int|float|str|bool|list|dict)\b/g, '<span style="color:#c678dd">$1</span>');
+            }
 
-        function tick() {
-            const full = snippets[snippetIdx];
-            if (typing) {
-                charIdx++;
-                el.innerHTML = colorize(full.slice(0, charIdx));
-                if (charIdx < full.length) {
-                    setTimeout(tick, SPEED);
+            function tick() {
+                const full = snippets[snippetIdx];
+                if (typing) {
+                    charIdx++;
+                    el.innerHTML = colorize(full.slice(0, charIdx));
+                    if (charIdx < full.length) {
+                        setTimeout(tick, SPEED);
+                    } else {
+                        typing = false;
+                        setTimeout(tick, PAUSE_AFTER);
+                    }
                 } else {
-                    typing = false;
-                    setTimeout(tick, PAUSE_AFTER);
-                }
-            } else {
-                // Erase quickly
-                charIdx--;
-                el.innerHTML = colorize(full.slice(0, charIdx));
-                if (charIdx > 0) {
-                    setTimeout(tick, 12);
-                } else {
-                    snippetIdx = (snippetIdx + 1) % snippets.length;
-                    typing = true;
-                    setTimeout(tick, 600);
+                    // Erase quickly
+                    charIdx--;
+                    el.innerHTML = colorize(full.slice(0, charIdx));
+                    if (charIdx > 0) {
+                        setTimeout(tick, 12);
+                    } else {
+                        snippetIdx = (snippetIdx + 1) % snippets.length;
+                        typing = true;
+                        setTimeout(tick, 600);
+                    }
                 }
             }
-        }
 
-        setTimeout(tick, 800);
-    })();
+            setTimeout(tick, 800);
+        })();
     </script>
 
 </body>
+
 </html>

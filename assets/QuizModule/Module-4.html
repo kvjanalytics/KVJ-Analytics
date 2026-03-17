@@ -812,13 +812,55 @@ avg = calculate_average_sales(sales)
             feedback.className = "feedback";
 
             let outputText = "";
+            let validationText = "";
+            let userInputs = [];
             
             Sk.configure({
-                output: function(text) { outputText += text; },
+                output: function(text) { 
+                    outputDiv.appendChild(document.createTextNode(text));
+                    outputDiv.scrollTop = outputDiv.scrollHeight;
+                    outputText += text; 
+                    validationText += text;
+                },
                 read: function(x) {
                     if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
                         throw "File not found: '" + x + "'";
                     return Sk.builtinFiles["files"][x];
+                },
+                inputfun: function(prompt) {
+                    return new Promise((resolve) => {
+                        // Clean up double prompt if it exists in the output div
+                        if (outputDiv.lastChild && outputDiv.lastChild.nodeType === 3) {
+                            let lastText = outputDiv.lastChild.textContent;
+                            if (lastText.endsWith(prompt)) {
+                                outputDiv.lastChild.textContent = lastText.substring(0, lastText.length - prompt.length);
+                            }
+                        }
+
+                        const container = document.createElement('div');
+                        container.className = 'colab-input-container';
+                        container.innerHTML = `
+                            <span class="colab-prompt">${prompt}</span>
+                            <input type="text" class="colab-input" autocomplete="off">
+                        `;
+                        outputDiv.appendChild(container);
+                        
+                        const inputField = container.querySelector('.colab-input');
+                        inputField.focus();
+                        
+                        inputField.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') {
+                                const val = inputField.value;
+                                userInputs.push(val);
+                                container.remove();
+                                // Add back the prompt and the answer to the output box permanently
+                                outputDiv.appendChild(document.createTextNode(prompt + val + "\n"));
+                                outputText += prompt + val + "\n";
+                                // Do NOT add prompt/input to validationText!
+                                resolve(val);
+                            }
+                        });
+                    });
                 }
             });
 
@@ -827,13 +869,25 @@ avg = calculate_average_sales(sales)
             });
 
             myPromise.then(function(mod) {
-                outputDiv.innerText = outputText;
+                if (!outputDiv.innerHTML) outputDiv.innerText = outputText;
                 
-                const cleanOutput = outputText.trim().toLowerCase();
-                const cleanExpected = expected.toString().trim().toLowerCase();
+                const cleanOutput = validationText.trim().toLowerCase();
+                let cleanExpected = expected.toString().trim().toLowerCase();
+
+                // Dynamic Validation Logic
+                if (userInputs.length > 0) {
+                    if (id === 'input') {
+                        cleanExpected = `welcome to ${userInputs[0].trim()}`.toLowerCase();
+                    } else if (id === 'int') {
+                        let num = parseInt(userInputs[0]);
+                        if (!isNaN(num)) {
+                            cleanExpected = (num * 2).toString().toLowerCase();
+                        }
+                    }
+                }
 
                 if (cleanOutput.includes(cleanExpected)) {
-                    feedback.innerHTML = "Correct! Great job! 🎉";
+                    feedback.innerHTML = "✓ Correct! Your code works perfectly. 🎉";
                     feedback.className = "feedback correct";
                     triggerConfetti();
                 } else {
@@ -842,8 +896,8 @@ avg = calculate_average_sales(sales)
                 }
                 feedback.style.display = "block";
             }, function(err) {
-                outputDiv.innerText = err.toString();
-                feedback.innerHTML = "✗ Syntax Error in your code!";
+                outputDiv.innerText += "\n" + err.toString();
+                feedback.innerHTML = "✗ Error in your code!";
                 feedback.className = "feedback wrong";
                 feedback.style.display = "block";
             });
