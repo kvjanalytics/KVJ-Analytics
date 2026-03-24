@@ -192,45 +192,44 @@
                 <p>Perform the following calculations within the <strong>HR</strong> worksheet of your downloaded file. Use multi-criteria functions (SUMIFS, COUNTIFS) where appropriate.</p>
                 
                 <ol id="practicals-list" style="margin-left: 35px; color: #334155; font-size: 16px; line-height: 1.8;">
-                    <li id="li-q1" style="margin-bottom: 25px;">In the HR worksheet, calculate the Total Attendance Bonus. (5% of Monthly Salary if Attendance % > 0.95, otherwise return 0).
+                    <li id="li-q1" style="margin-bottom: 25px;">1. Calculate the Total Attendance Bonus. (5% of Monthly Salary if Attendance % > 0.95, otherwise return 0).
                         <div class="practice-box" style="margin-top: 10px;">
                             <input type="text" id="ans1" placeholder="">
                         </div>
                     </li>
-                    <li id="li-q2" style="margin-bottom: 25px;">In the HR worksheet, find the number of employees with Monthly Salary greater than ₹50,000.
+                    <li id="li-q2" style="margin-bottom: 25px;">2. Find the number of employees with Monthly Salary greater than ₹50,000.
                         <div class="practice-box" style="margin-top: 10px;">
                             <input type="text" id="ans2" placeholder="">
                         </div>
                     </li>
-                    <li id="li-q3" style="margin-bottom: 25px;">In the HR worksheet, find the number of employees who have Monthly Salary > ₹50,000 and Attendance % > 0.90.
+                    <li id="li-q3" style="margin-bottom: 25px;">3. Find the number of employees who have Monthly Salary > ₹50,000 and Attendance % < 0.90.
                         <div class="practice-box" style="margin-top: 10px;">
                             <input type="text" id="ans3" placeholder="">
                         </div>
                     </li>
-                    <li id="li-q4" style="margin-bottom: 25px;">In the HR worksheet, calculate the Total Monthly Salary of employees in the Sales department.
+                    <li id="li-q4" style="margin-bottom: 25px;">4. Calculate the total Monthly Salary of employees in the Sales department.
                         <div class="practice-box" style="margin-top: 10px;">
                             <input type="text" id="ans4" placeholder="">
                         </div>
                     </li>
-                    <li id="li-q5" style="margin-bottom: 25px;">In the HR worksheet, calculate the Average Monthly Salary of employees whose salary is > ₹50,000.
+                    <li id="li-q5" style="margin-bottom: 25px;">5. Find the average Monthly salary of Sales Department in Kochi.
                         <div class="practice-box" style="margin-top: 10px;">
                             <input type="text" id="ans5" placeholder="">
                         </div>
                     </li>
-                    <li id="li-q6" style="margin-bottom: 25px;">In the HR worksheet, calculate the Total Monthly Salary spent on Sales department employees with Attendance % > 0.90.
-                        <div class="practice-box" style="margin-top: 10px;">
-                            <input type="text" id="ans6" placeholder="">
-                        </div>
-                    </li>
-                    <li id="li-q7" style="margin-bottom: 25px;">In the HR worksheet, find the Total Salary of Sales Department in Kochi.
-                        <div class="practice-box" style="margin-top: 10px;">
-                            <input type="text" id="ans7" placeholder="">
-                        </div>
-                    </li>
-                    <li id="li-q8" style="margin-bottom: 25px;">In the HR worksheet, find the Total Salary of HR Department in Mumbai.
-                        <div class="practice-box" style="margin-top: 10px;">
-                            <input type="text" id="ans8" placeholder="">
-                        </div>
+                    <li id="li-q6" style="margin-bottom: 25px;">6. Calculate Monthly Salary by Department & Location and Answer the following Questions:
+                        <ul style="list-style-type: lower-alpha; margin-top: 10px;">
+                            <li id="li-q6a" style="margin-bottom: 15px;">a. Total Salary of Sales Departments in Delhi.
+                                <div class="practice-box" style="margin-top: 5px;">
+                                    <input type="text" id="ans6" placeholder="">
+                                </div>
+                            </li>
+                            <li id="li-q7" style="margin-bottom: 15px;">b. Total Salary of HR Department in Mumbai.
+                                <div class="practice-box" style="margin-top: 5px;">
+                                    <input type="text" id="ans7" placeholder="">
+                                </div>
+                            </li>
+                        </ul>
                     </li>
                 </ol>
 
@@ -243,7 +242,7 @@
                 <!-- Combined Submit Area -->
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px;">
                     <button id="btn-submit-main" onclick="submitPracticals()" class="btn-roadmap btn-quiz" style="background: var(--primary-blue); color: white; border: none; padding: 16px 60px; border-radius: 40px; font-weight: 700; font-size: 17px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 20px rgba(30, 58, 95, 0.2); min-width: 300px;">
-                        Submit All Answers
+                        Submit Answers
                     </button>
                 </div>
             </div>
@@ -287,7 +286,7 @@
     </footer>
 
                         <script>
-                const answerKey = [178233, 84, 52, 7203188, 128803, 4412905, 2308647, 203562]; // for HR Analytics
+                const answerKey = [178233, 84, 29, 7203188, 104939, 1722587, 203562]; // for HR Analytics
                 let wrongIndices = [];
 
                 function submitPracticals() {
@@ -295,13 +294,13 @@
                     let score = 0;
                     
                     // 1. Validate
-                    for (let i = 1; i <= 8; i++) {
+                    for (let i = 1; i <= 7; i++) {
                         const input = document.getElementById('ans' + i);
                         const userVal = parseInt(input.value.replace(/[^0-9]/g, '')) || 0;
                         const correctVal = answerKey[i-1];
                         const li = document.getElementById('li-q' + i);
                         
-                        // Reset style first
+                        // Reset style first (important to avoid overlapping colors if retaking)
                         li.style.color = "#334155";
                         li.style.background = "transparent";
                         li.style.padding = "0";
@@ -309,6 +308,13 @@
 
                         if (userVal === correctVal) {
                             score++;
+                            li.style.color = "#065f46";
+                            li.style.background = "#f0fdf4";
+                            li.style.borderRadius = "8px";
+                            li.style.padding = "10px";
+                            li.style.marginLeft = "25px";
+                            input.disabled = true;
+                            input.style.backgroundColor = "#e8f5e9";
                         } else {
                             wrongIndices.push(i);
                             li.style.color = "#ef4444";
@@ -327,7 +333,7 @@
                     document.getElementById('review-view').style.display = "block";
 
                     // 4. Populate Score & Review
-                    document.getElementById('score-display').innerHTML = "Score: " + score + " / 8";
+                    document.getElementById('score-display').innerHTML = "Score: " + score + " / 7";
                     const msg = document.getElementById('review-msg');
                     const wrongSection = document.getElementById('wrong-questions-section');
                     const wrongList = document.getElementById('wrong-list');
@@ -335,7 +341,7 @@
 
                     wrongList.innerHTML = ""; // Clear
                     
-                    if (score === 8) {
+                    if (score === 7) {
                         msg.innerHTML = "Perfect! Excellent work on the Sales Strategic Matrix.";
                         wrongSection.style.display = "none";
                         btnFix.style.display = "none";
@@ -367,7 +373,7 @@
                     document.getElementById('fix-navigation').style.display = "flex";
                     
                     // Show only the wrong ones in the questions-container
-                    for (let i = 1; i <= 8; i++) {
+                    for (let i = 1; i <= 7; i++) {
                         const li = document.getElementById('li-q' + i);
                         if (wrongIndices.includes(i)) {
                             li.style.display = "list-item";
@@ -383,7 +389,7 @@
                 }
 
                 function retakeWrong() {
-                    for (let i = 1; i <= 8; i++) {
+                    for (let i = 1; i <= 7; i++) {
                         if (wrongIndices.includes(i)) {
                             const input = document.getElementById('ans' + i);
                             input.value = "";
@@ -400,7 +406,7 @@
                 // Initial state ensures all are visible
                 window.onload = function() {
                     document.getElementById('fix-navigation').style.display = "none";
-                    for (let i = 1; i <= 8; i++) {
+                    for (let i = 1; i <= 7; i++) {
                         document.getElementById('li-q' + i).style.display = "list-item";
                     }
                 };

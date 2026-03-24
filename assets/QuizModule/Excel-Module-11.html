@@ -358,7 +358,7 @@
                         </li>
                     </ol>
                     <div style="text-align: right; margin-top: 30px; display: flex; gap: 15px; justify-content: flex-end;">
-                        <button class="validate-btn" onclick="validateSection(1)" style="background: #0891b2; color: white; border: none; padding: 12px 30px; border-radius: 30px; font-weight: 700; cursor: pointer;">Validate Section 1</button>
+                        <button class="validate-btn" onclick="validateSection(1)" style="background: #0891b2; color: white; border: none; padding: 12px 30px; border-radius: 30px; font-weight: 700; cursor: pointer;">Submit Section 1</button>
                         <button id="next-to-s2" class="next-btn" onclick="showQuestionSection(2)" style="display:none; background: #22c55e; color: white; border: none; padding: 12px 30px; border-radius: 30px; font-weight: 700; cursor: pointer;">Proceed to Section 2 &rarr;</button>
                     </div>
 
@@ -369,35 +369,36 @@
                     <a class="back-to-cards" onclick="resetToCards()">&larr; Back to Sections</a>
                     <h3 style="color: var(--primary-blue); border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 30px;">Section 2: Employee Payroll & Performance</h3>
                     <ol id="practicals-list-2" style="margin-left: 35px; color: #334155; font-size: 16px; line-height: 1.8;">
-                        <li id="li-q8" style="margin-bottom: 25px;"><strong>Metric 2.1:</strong> Calculate Total Bonus. Provide 5% of Monthly Salary if Attendance % is greater than 0.95, otherwise return 0.
-                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans8" placeholder="Enter formula result"></div>
+                        <li id="li-q8" style="margin-bottom: 25px;">1. Calculate the Total Attendance Bonus. (5% of Monthly Salary if Attendance % > 0.95, otherwise return 0).
+                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans8" placeholder="Enter calculated value"></div>
                         </li>
-                        <li id="li-q9" style="margin-bottom: 25px;"><strong>Metric 2.2:</strong> Find the number of employees have Monthly Salary greater than ₹50,000.
-                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans9" placeholder="Enter count"></div>
+                        <li id="li-q9" style="margin-bottom: 25px;">2. Find the number of employees with Monthly Salary greater than ₹50,000.
+                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans9" placeholder="Enter calculated value"></div>
                         </li>
-                        <li id="li-q10" style="margin-bottom: 25px;"><strong>Metric 2.3:</strong> Find the number of employees who have Monthly Salary greater than ₹50,000 and Attendance % less than 0.90.
-                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans10" placeholder="Enter count"></div>
+                        <li id="li-q10" style="margin-bottom: 25px;">3. Find the number of employees who have Monthly Salary > ₹50,000 and Attendance % < 0.90.
+                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans10" placeholder="Enter calculated value"></div>
                         </li>
-                        <li id="li-q11" style="margin-bottom: 25px;"><strong>Metric 2.4:</strong> Calculate the total Monthly Salary of employees in the Sales department.
-                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans11" placeholder="Enter total sum"></div>
+                        <li id="li-q11" style="margin-bottom: 25px;">4. Calculate the total Monthly Salary of employees in the Sales department.
+                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans11" placeholder="Enter calculated value"></div>
                         </li>
-                        <li id="li-q12" style="margin-bottom: 25px;"><strong>Metric 2.5:</strong> Find the average Monthly salary of Sales Department in Kochi.
-                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans12" placeholder="Enter average"></div>
+                        <li id="li-q12" style="margin-bottom: 25px;">5. Find the average Monthly salary of Sales Department in Kochi.
+                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans12" placeholder="Enter calculated value"></div>
                         </li>
-                        <div style="background: #f8fafc; border-left: 4px solid var(--secondary-blue); padding: 15px; margin: 30px 0 20px -35px; border-radius: 0 8px 8px 0;">
-                            <strong>Calculate Monthly Salary by Department & Location:</strong>
-                        </div>
-                        <li id="li-q13" style="margin-bottom: 25px;"><strong>Metric 2.6:</strong> Total Salary of Sales Department in Delhi.
-                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans13" placeholder="Enter sum"></div>
-                        </li>
-                        <li id="li-q14" style="margin-bottom: 25px;"><strong>Metric 2.7:</strong> Total Salary of HR Department in Mumbai.
-                            <div class="practice-box" style="margin-top: 10px;"><input type="text" id="ans14" placeholder="Enter sum"></div>
+                        <li id="li-q13-container" style="margin-bottom: 25px;">6. Calculate Monthly Salary by Department & Location and Answer the following Questions:
+                            <ul style="list-style-type: lower-alpha; margin-top: 10px;">
+                                <li id="li-q13" style="margin-bottom: 15px;">a. Total Salary of Sales Departments in Delhi.
+                                    <div class="practice-box" style="margin-top: 5px;"><input type="text" id="ans13" placeholder="Enter calculated value"></div>
+                                </li>
+                                <li id="li-q14" style="margin-bottom: 15px;">b. Total Salary of HR Department in Mumbai.
+                                    <div class="practice-box" style="margin-top: 5px;"><input type="text" id="ans14" placeholder="Enter calculated value"></div>
+                                </li>
+                            </ul>
                         </li>
                     </ol>
                     
                     <div style="text-align: center; margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 15px;">
                          <button id="btn-validate-2" onclick="validateSection(2)" style="background: #0891b2; color: white; border: none; padding: 15px 50px; border-radius: 40px; font-weight: 800; font-size: 16px; cursor: pointer; width: 100%; max-width: 400px;">
-                            Validate Section 2
+                            Submit Section 2
                         </button>
                          <button id="btn-submit-main" onclick="submitFinalPracticals()" style="display:none; background: #22c55e; color: white; border: none; padding: 18px 60px; border-radius: 40px; font-weight: 800; font-size: 17px; cursor: pointer; width: 100%; max-width: 400px; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.2);">
                             Finalize & Complete Practice
@@ -406,8 +407,6 @@
 
                 </div>
             </div>
-
-
             <div id="review-view" style="display: none;">
                 <h3 style="color: var(--primary-blue); font-family: 'Montserrat', sans-serif;">Performance Scoreboard</h3>
                 <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 30px; margin: 20px 0;">
@@ -425,16 +424,16 @@
                         Retake
                     </button>
                 </div>
-            </div>div>
+            </div>
             
             <div class="assessment-container" style="text-align: center; margin-top: 40px; padding-top: 40px; border-top: 2px solid #f1f5f9;">
                 <p style="color: #64748b; font-size: 14px; font-weight: 600;">PRACTICAL CAPSTONE COMPLETE</p>
+                <a href="Excel-Assessment-1.html" class="nav-btn nav-assess" style="background: #22c55e; color: white; margin-bottom: 25px; width: 100%; max-width: 400px; display: inline-flex; justify-content: center; padding: 16px; border-radius: 30px; font-weight: 800; font-size: 15px; text-decoration: none; text-transform: uppercase;">Take Assessment</a>
             </div>
-
             <div class="module-navigation" style="margin-top: 0; padding-top: 0; border-top: none; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap;">
-                <a href="Excel-Module-10-1.html" class="nav-btn nav-prev" style="background: #f1f5f9; color: #475569; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; flex: 1; text-align: center; min-width: 150px;">&larr; Previous</a>
+                <a href="javascript:history.back()" class="nav-btn nav-prev" style="background: #f1f5f9; color: #475569; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; flex: 1; text-align: center; min-width: 150px;">&larr; Previous</a>
                 <a href="excel_roadmap.html" class="nav-btn nav-home" style="background: #e2e8f0; color: #1e293b; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 800; flex: 1; text-align: center; min-width: 150px;">Home</a>
-                <a href="excel_roadmap.html" class="nav-btn nav-next" style="background: #1e3a5f; color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; flex: 1; text-align: center; min-width: 150px;">Next &rarr;</a>
+                <a href="Excel-Module-11.html" class="nav-btn nav-next" style="background: #1e3a5f; color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; flex: 1; text-align: center; min-width: 150px;">Next &rarr;</a>
             </div>
 
         
@@ -489,17 +488,20 @@
                 
                 let userVal = input.value.trim().replace(/,/g, '').replace(/₹/g, '');
                 if (userVal === answers[i]) {
-                    li.style.background = "#f0fdf4";
-                    li.style.borderLeft = "4px solid #22c55e";
-                    li.style.padding = "10px 15px";
-                    li.style.marginLeft = "20px";
                     sectionScore++;
+                    li.style.color = "#065f46";
+                    li.style.background = "#f0fdf4";
+                    li.style.borderRadius = "8px";
+                    li.style.padding = "10px";
+                    input.disabled = true;
+                    input.style.backgroundColor = "#e8f5e9";
                 } else {
+                    li.style.color = "#ef4444";
                     li.style.background = "#fef2f2";
-                    li.style.borderLeft = "4px solid #ef4444";
-                    li.style.padding = "10px 15px";
-                    li.style.marginLeft = "20px";
+                    li.style.borderRadius = "8px";
+                    li.style.padding = "10px";
                 }
+                li.style.marginLeft = "20px";
             }
             
             if (sectionScore === totalInSec) {
