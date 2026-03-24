@@ -242,7 +242,7 @@
 
                 <!-- Combined Submit Area -->
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px;">
-                    <button id="btn-submit-main"  class="btn-roadmap btn-quiz" style="background: var(--primary-blue); color: white; border: none; padding: 16px 60px; border-radius: 40px; font-weight: 700; font-size: 17px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 20px rgba(30, 58, 95, 0.2); min-width: 300px;">
+                    <button id="btn-submit-main" onclick="submitPracticals()" class="btn-roadmap btn-quiz" style="background: var(--primary-blue); color: white; border: none; padding: 16px 60px; border-radius: 40px; font-weight: 700; font-size: 17px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 20px rgba(30, 58, 95, 0.2); min-width: 300px;">
                         Submit All Answers
                     </button>
                 </div>
@@ -261,7 +261,7 @@
                 </div>
 
                 <div style="display: flex; flex-direction: row; justify-content: center; gap: 20px; margin-top: 40px; flex-wrap: wrap;">
-                    <button id="btn-fix"  style="display: none; background: #64748b; color: white; border: none; padding: 16px 50px; border-radius: 40px; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(100, 116, 139, 0.2); min-width: 280px;">
+                    <button id="btn-fix" onclick="retakeWrong()" style="display: none; background: #64748b; color: white; border: none; padding: 16px 50px; border-radius: 40px; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(100, 116, 139, 0.2); min-width: 280px;">
                         Retake
                     </button>
                 </div>
