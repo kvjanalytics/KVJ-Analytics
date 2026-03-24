@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 8: Business Intelligence | KVJ Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        :root {
+            --primary-blue: #1e3a5f;
+            --secondary-blue: #008eab;
+            --bg-light: #f6f8fb;
+            --text-main: #1d1d1f;
+            --text-muted: #4b5563;
+            --border-color: #e2e8f0;
+        }
+
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0; padding: 0;
+        }
+
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 3rem; background: #ffffff; border-bottom: 1px solid var(--border-color);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+        }
+
+        .kvj-logo-img { max-height: 35px; width: auto; }
+
+        .exit-btn {
+            background: #ef4444; color: white; padding: 8px 18px;
+            text-decoration: none; font-size: 12px; font-weight: 700;
+            border-radius: 6px; text-transform: uppercase;
+        }
+
+        .header-banner { 
+            position: relative;
+            background-image: linear-gradient(rgba(30, 58, 95, 0.75), rgba(8, 145, 178, 0.85)), url('architectural_data_model.png');
+            background-size: cover;
+            background-position: center;
+            color: white; 
+            padding: 140px 20px 140px; 
+            text-align: center; 
+        }
+
+        .header-banner h1 { 
+            font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .layout-container {
+            display: flex;
+            max-width: 1320px;
+            margin: -80px auto 40px; position: relative; z-index: 10;
+            gap: 30px;
+            width: 96%;
+            padding-bottom: 60px;
+            align-items: flex-start;
+        }
+
+        .module-sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 90px;
+            height: fit-content;
+        }
+
+        .module-sidebar h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--secondary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .module-sidebar a {
+            display: block;
+            padding: 12px 15px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: all 0.2s;
+        }
+
+        .module-sidebar a:hover {
+            background: #f8fafc;
+            color: var(--primary-blue);
+        }
+
+        .module-sidebar a.active {
+            background: #eff6ff;
+            color: var(--primary-blue);
+            font-weight: 500;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .main-content { 
+            flex: 1;
+            background: #ffffff; border: 1px solid var(--border-color);
+            padding: 50px; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            min-width: 0;
+        }
+
+        .section-header { margin-bottom: 30px; border-bottom: 3px solid var(--bg-light); padding-bottom: 15px; }
+        .section-header h2 { color: var(--primary-blue); font-size: 24px; font-weight: 800; text-transform: uppercase; }
+
+        p { line-height: 1.8; margin-bottom: 25px; color: #334155; font-size: 17px; }
+        strong { color: var(--primary-blue); font-weight: 700; }
+
+        .interaction-box { 
+            background-color: #f7f9fc; border-left: 5px solid var(--secondary-blue); 
+            padding: 25px; margin: 30px 0; border-radius: 0 10px 10px 0; 
+        }
+
+        ul { list-style: none; padding-left: 0; margin-bottom: 25px; }
+        ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: #334155; }
+        ul li::before {
+            content: ""; position: absolute; left: 0; top: 8px;
+            width: 8px; height: 8px; background: var(--secondary-blue);
+            transform: rotate(45deg); border-radius: 1px;
+        }
+
+        .practice-space {
+            background: #ffffff; border: 2px solid var(--secondary-blue);
+            border-radius: 12px; padding: 30px; margin: 40px 0; box-shadow: 0 4px 15px rgba(0, 142, 171, 0.1);
+        }
+
+        .feedback { margin-top: 15px; font-weight: 700; display: none; padding: 10px; border-radius: 6px; }
+        .feedback.correct { color: #065f46; background: #ecfdf5; display: block; border: 1px solid #a7f3d0; }
+        .feedback.wrong { color: #991b1b; background: #fef2f2; display: block; border: 1px solid #fecaca; }
+
+        .mcq-btn {
+            background: var(--primary-blue); color: white; border: none; padding: 12px 25px;
+            border-radius: 8px; cursor: pointer; font-weight: 700; transition: background 0.3s;
+        }
+        .mcq-btn:hover { background: var(--secondary-blue); }
+
+        .reset-btn {
+            background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; padding: 12px 25px;
+            border-radius: 8px; cursor: pointer; font-weight: 700; transition: all 0.3s;
+        }
+
+        footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 13px; }
+
+        @media (max-width: 1024px) { .module-sidebar { display: none; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="excel_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+        <a href="excel_roadmap.html" class="exit-btn">EXIT</a>
+    </nav>
+
+    <header class="header-banner">
+        <h1>MODULE 8: BUSINESS INTELLIGENCE</h1>
+    </header>
+
+    <div class="layout-container" style="display:block; max-width:960px; margin: -80px auto 40px; position: relative; z-index: 10; padding:0 20px 60px;">
+        
+
+        <main class="main-content">
+            <div class="section-header">
+                <h2>8. Power Query & Pivot</h2>
+                <p style="font-weight: 600; color: var(--secondary-blue);">Handling "Big Data" with Scalable Infrastructure</p>
+            </div>
+
+            <div class="interaction-box">
+                <strong>The Strategic Logic</strong>
+                <p style="margin-top:10px;">Professionals never "clean" the same data twice. If your data exceeds 100,000+ rows, standard formulas become slow and volatile. Use <strong>Business Intelligence</strong> tools to process millions of rows without crashing Excel.</p>
+            </div>
+
+            <h3>1. Power Query (ETL): Automated Cleaning</h3>
+            <p>Power Query is the <strong>Extract, Transform, and Load (ETL)</strong> engine of Excel. It records your cleaning steps and repeats them with one click.</p>
+            <ul>
+                <li style="margin-bottom: 18px;">
+                    <strong>Business Case:</strong> You receive 12 monthly CSV files from multiple boutique branches. Instead of manual copy-pasting, Power Query <strong>merges and cleans</strong> all 12 files into a single master table in seconds.
+                </li>
+            </ul>
+
+            <h3>2. Power Pivot (Data Modeling)</h3>
+            <p>Think of Power Pivot as a mini SQL database inside your Excel. It links Sales, HR, and Finance tables via <strong>Relationships</strong> instead of VLOOKUPS.</p>
+            <ul>
+                <li style="margin-bottom: 20px;">
+                    <strong>Scalability:</strong> Modeling allows you to calculate complex metrics across tables, such as <strong>"Revenue per Rupee of Salary"</strong> across the entire company, without writing a single formula in the cell sheet.
+                </li>
+            </ul>
+
+            
+            <div class="assessment-container" style="text-align: center; margin-top: 40px; padding-top: 40px; border-top: 2px solid #f1f5f9;">
+                <a href="module_quiz.html?mod=ex8" class="nav-btn nav-assess" style="background: #22c55e; color: white; margin-bottom: 25px; width: 100%; max-width: 400px; display: inline-flex; justify-content: center; padding: 16px; border-radius: 30px; font-weight: 800; font-size: 15px; text-decoration: none; text-transform: uppercase;">Take Assessment</a>
+            </div>
+            <div class="module-navigation" style="margin-top: 0; padding-top: 0; border-top: none; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <a href="Excel-Module-7-1.html" class="nav-btn nav-prev" style="background: #f1f5f9; color: #475569; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; flex: 1; text-align: center; min-width: 150px;">&larr; Previous</a>
+                <a href="excel_roadmap.html" class="nav-btn nav-home" style="background: #e2e8f0; color: #1e293b; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 800; flex: 1; text-align: center; min-width: 150px;">Home</a>
+                <a href="Excel-Module-9-1.html" class="nav-btn nav-next" style="background: #1e3a5f; color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; flex: 1; text-align: center; min-width: 150px;">Next &rarr;</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>&copy; 2024 KVJ Analytics. All Rights Reserved.</footer>
+
+    <script>
+        function checkMCQ(name, correct, feedbackId) {
+            const selected = document.querySelector('input[name="' + name + '"]:checked');
+            const fb = document.getElementById(feedbackId);
+            if (!selected) {
+                fb.className = "feedback wrong";
+                fb.innerHTML = "⚠️ Select an option first.";
+                return;
+            }
+            if (selected.value === correct) {
+                fb.className = "feedback correct";
+                fb.innerHTML = "✅ Correct! Power Query is the engine of data automation.";
+                if (typeof confetti !== "undefined") confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            } else {
+                fb.className = "feedback wrong";
+                fb.innerHTML = "❌ Try again! Think about Extract and Transform.";
+            }
+        }
+    </script>
+</body>
+</html>
