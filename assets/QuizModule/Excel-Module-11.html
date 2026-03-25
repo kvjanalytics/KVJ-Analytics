@@ -468,7 +468,7 @@
     </footer>
 
     <script>
-        const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; 
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz8u7zrKvUXRqOV0w4XdiSCEIdPm-XN7EzyXdq6RZ8-oYnETSWrMzdyTs05YVHnr1A6yA/exec'; // REPLACE WITH YOUR DEPLOYED WEB APP URL // REPLACE WITH YOUR DEPLOYED WEB APP URL // REPLACE WITH YOUR DEPLOYED WEB APP URL 
         
         const answers = {
             1: "9996027", 2: "477403", 3: "9518624", 4: "15858", 5: "600", 6: "1713352", 7: "5",
@@ -515,11 +515,26 @@
         }
 
         function submitFinalPracticals() {
-            const userName = sessionStorage.getItem('userName') || "Anonymous";
-            const userPhone = "N/A";
+            const sName = localStorage.getItem('strategist_user') || sessionStorage.getItem('userName') || '';
+            const sPhone = localStorage.getItem('strategist_phone') || '';
             
+            document.getElementById('trackerName').value = sName;
+            document.getElementById('trackerPhone').value = sPhone;
+            document.getElementById('trackerModal').style.display = 'flex';
+            
+            document.getElementById('btnConfirmSubmit').onclick = function() {
+                const name = document.getElementById('trackerName').value;
+                const phone = document.getElementById('trackerPhone').value;
+                if(!name || !phone) { alert("Please enter both Name and Phone."); return; }
+                
+                document.getElementById('trackerModal').style.display = 'none';
+                executeActualSubmission(name, phone);
+            };
+        }
+
+        function executeActualSubmission(userName, userPhone) {
             if (SCRIPT_URL && SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-                let url = SCRIPT_URL + '?name=' + encodeURIComponent(userName) + '&phone=' + encodeURIComponent(userPhone) + '&module=' + encodeURIComponent('M11 Practicals') + '&mark=' + encodeURIComponent('COMPLETED');
+                let url = SCRIPT_URL + '?name=' + encodeURIComponent(userName) + '&phone=' + encodeURIComponent(userPhone) + '&module=' + encodeURIComponent('M11 Master Practicals P1') + '&mark=' + encodeURIComponent('COMPLETED');
                 fetch(url, {mode: 'no-cors'}).catch(e=>console.log(e));
             }
             

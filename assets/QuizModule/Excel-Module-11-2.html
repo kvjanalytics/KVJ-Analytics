@@ -278,6 +278,30 @@
             </div>
 
 
+        
+<!-- Tracker Modal -->
+<div id="trackerModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.8); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:white; padding:40px; border-radius:16px; max-width:400px; width:90%; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.2);">
+        <h3 style="margin-top:0; color:#1e3a5f; margin-bottom:10px; font-size:20px; font-family:'Montserrat',sans-serif; text-transform:uppercase;">Submit Assessment</h3>
+        <p style="color:#64748b; font-size:14px; margin-bottom:20px; line-height:1.5;">Please confirm your details to record your score in the Master Database.</p>
+        
+        <div style="margin-bottom:15px; text-align:left;">
+            <label style="display:block; font-size:13px; font-weight:700; color:#475569; margin-bottom:5px; text-transform:uppercase;">Full Name</label>
+            <input type="text" id="trackerName" placeholder="E.g. John Doe" style="width:100%; padding:12px 15px; border:2px solid #e2e8f0; border-radius:8px; font-family:'Outfit',sans-serif; font-size:15px; outline:none; transition:border 0.2s;" />
+        </div>
+        
+        <div style="margin-bottom:25px; text-align:left;">
+            <label style="display:block; font-size:13px; font-weight:700; color:#475569; margin-bottom:5px; text-transform:uppercase;">Phone Number</label>
+            <input type="tel" id="trackerPhone" placeholder="+91 9876543210" style="width:100%; padding:12px 15px; border:2px solid #e2e8f0; border-radius:8px; font-family:'Outfit',sans-serif; font-size:15px; outline:none; transition:border 0.2s;" />
+        </div>
+        
+        <button id="btnConfirmSubmit" style="width:100%; background:#22c55e; color:white; padding:15px; border:none; border-radius:30px; font-weight:800; font-size:16px; font-family:'Outfit',sans-serif; cursor:pointer; text-transform:uppercase; transition:background 0.2s; box-shadow:0 6px 15px rgba(34,197,94,0.3);">
+            Confirm & Log Score
+        </button>
+        <button onclick="document.getElementById('trackerModal').style.display='none';" style="width:100%; background:transparent; color:#94a3b8; padding:10px; border:none; margin-top:10px; font-weight:600; font-family:'Outfit',sans-serif; cursor:pointer;">Cancel</button>
+    </div>
+</div>
+
         </main>
     </div>
 
@@ -289,83 +313,106 @@
                 const answerKey = [178233, 84, 29, 7203188, 104939, 1722587, 203562]; // for HR Analytics
                 let wrongIndices = [];
 
-                function submitPracticals() {
-                    wrongIndices = [];
-                    let score = 0;
-                    
-                    // 1. Validate
-                    for (let i = 1; i <= 7; i++) {
-                        const input = document.getElementById('ans' + i);
-                        const userVal = parseInt(input.value.replace(/[^0-9]/g, '')) || 0;
-                        const correctVal = answerKey[i-1];
-                        const li = document.getElementById('li-q' + i);
-                        
-                        // Reset style first (important to avoid overlapping colors if retaking)
-                        li.style.color = "#334155";
-                        li.style.background = "transparent";
-                        li.style.padding = "0";
-                        li.style.marginLeft = "35px";
+                
+        function submitPracticals() {
+            const sName = localStorage.getItem('strategist_user') || sessionStorage.getItem('userName') || '';
+            const sPhone = localStorage.getItem('strategist_phone') || '';
+            
+            document.getElementById('trackerName').value = sName;
+            document.getElementById('trackerPhone').value = sPhone;
+            document.getElementById('trackerModal').style.display = 'flex';
+            
+            document.getElementById('btnConfirmSubmit').onclick = function() {
+                const name = document.getElementById('trackerName').value;
+                const phone = document.getElementById('trackerPhone').value;
+                if(!name || !phone) { alert("Please enter both Name and Phone."); return; }
+                
+                document.getElementById('trackerModal').style.display = 'none';
+                executeActualSubmission(name, phone);
+            };
+        }
 
-                        if (userVal === correctVal) {
-                            score++;
-                            li.style.color = "#065f46";
-                            li.style.background = "#f0fdf4";
-                            li.style.borderRadius = "8px";
-                            li.style.padding = "10px";
-                            li.style.marginLeft = "25px";
-                            input.disabled = true;
-                            input.style.backgroundColor = "#e8f5e9";
-                        } else {
-                            wrongIndices.push(i);
-                            li.style.color = "#ef4444";
-                            li.style.background = "#fef2f2";
-                            li.style.borderRadius = "8px";
-                            li.style.padding = "10px";
-                            li.style.marginLeft = "25px";
-                        }
-                    }
+        function executeActualSubmission(userName, userPhone) {
+            wrongIndices = [];
+            let score = 0;
+            
+            // 1. Validate
+            for (let i = 1; i <= 7; i++) {
+                const input = document.getElementById('ans' + i);
+                const userVal = parseInt(input.value.replace(/[^0-9]/g, '')) || 0;
+                const correctVal = answerKey[i-1];
+                const li = document.getElementById('li-q' + i);
+                
+                // Reset style first
+                li.style.color = "#334155";
+                li.style.background = "transparent";
+                li.style.padding = "0";
+                li.style.marginLeft = "35px";
 
-                    // 2. Hide Fix Nav if it was showing
-                    document.getElementById('fix-navigation').style.display = "none";
-
-                    // 3. Switch View
-                    document.getElementById('questions-container').style.display = "none";
-                    document.getElementById('review-view').style.display = "block";
-
-                    // 4. Populate Score & Review
-                    document.getElementById('score-display').innerHTML = "Score: " + score + " / 7";
-                    const msg = document.getElementById('review-msg');
-                    const wrongSection = document.getElementById('wrong-questions-section');
-                    const wrongList = document.getElementById('wrong-list');
-                    const btnFix = document.getElementById('btn-fix');
-
-                    wrongList.innerHTML = ""; // Clear
-                    
-                    if (score === 7) {
-                        msg.innerHTML = "Perfect! Excellent work on the Sales Strategic Matrix.";
-                        wrongSection.style.display = "none";
-                        btnFix.style.display = "none";
-                        if (typeof confetti !== "undefined") {
-                            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-                        }
-                    } else {
-                        msg.innerHTML = "Assessment complete. Review the incorrect metrics below.";
-                        wrongSection.style.display = "block";
-                        btnFix.style.display = "inline-block";
-                        
-                        // Show only wrong questions in the review list
-                        wrongIndices.forEach(idx => {
-                            const originalLi = document.getElementById('li-q' + idx);
-                            const clone = originalLi.cloneNode(true);
-                            // Remove input from clone to just show the question text
-                            const inputDiv = clone.querySelector('.practice-box');
-                            if (inputDiv) inputDiv.remove();
-                            wrongList.appendChild(clone);
-                        });
-                    }
-                    
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (userVal === correctVal) {
+                    score++;
+                    li.style.color = "#065f46";
+                    li.style.background = "#f0fdf4";
+                    li.style.borderRadius = "8px";
+                    li.style.padding = "10px";
+                    li.style.marginLeft = "25px";
+                    input.disabled = true;
+                    input.style.backgroundColor = "#e8f5e9";
+                } else {
+                    wrongIndices.push(i);
+                    li.style.color = "#ef4444";
+                    li.style.background = "#fef2f2";
+                    li.style.borderRadius = "8px";
+                    li.style.padding = "10px";
+                    li.style.marginLeft = "25px";
                 }
+            }
+
+            // 2. Hide Fix Nav if it was showing
+            document.getElementById('fix-navigation').style.display = "none";
+
+            // 3. Switch View
+            document.getElementById('questions-container').style.display = "none";
+            document.getElementById('review-view').style.display = "block";
+
+            // 4. Populate Score & Review
+            document.getElementById('score-display').innerHTML = "Score: " + score + " / 7";
+            const msg = document.getElementById('review-msg');
+            const wrongSection = document.getElementById('wrong-questions-section');
+            const wrongList = document.getElementById('wrong-list');
+            const btnFix = document.getElementById('btn-fix');
+
+            wrongList.innerHTML = "";
+            
+            if (score === 7) {
+                msg.innerHTML = "Perfect! Excellent work on the Sales Strategic Matrix.";
+                wrongSection.style.display = "none";
+                btnFix.style.display = "none";
+                if (typeof confetti !== "undefined") {
+                    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                }
+            } else {
+                msg.innerHTML = "Assessment complete. Review the incorrect metrics below.";
+                wrongSection.style.display = "block";
+                btnFix.style.display = "inline-block";
+                
+                wrongIndices.forEach(idx => {
+                    const originalLi = document.getElementById('li-q' + idx);
+                    const clone = originalLi.cloneNode(true);
+                    const inputDiv = clone.querySelector('.practice-box');
+                    if (inputDiv) inputDiv.remove();
+                    wrongList.appendChild(clone);
+                });
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Send to Google Sheets
+            if (SCRIPT_URL && SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+                let url = SCRIPT_URL + '?name=' + encodeURIComponent(userName) + '&phone=' + encodeURIComponent(userPhone) + '&module=' + encodeURIComponent('M11 Master Practicals P2') + '&mark=' + encodeURIComponent(score+'/7');
+                fetch(url, {mode: 'no-cors'}).catch(e=>console.log(e));
+            }
+        }
 
                 function goBackToFix() {
                     document.getElementById('questions-container').style.display = "block";
