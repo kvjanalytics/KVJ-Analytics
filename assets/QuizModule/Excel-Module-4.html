@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module 2.3: Logical Functions | KVJ Analytics</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
+
     <style>
         :root {
             --primary-blue: #1e3a5f;
@@ -18,90 +21,184 @@
             --border-color: #e2e8f0;
         }
 
-        body { 
-            font-family: 'Outfit', sans-serif; 
+        body {
+            font-family: 'Outfit', sans-serif;
             background-color: var(--bg-light);
             color: var(--text-main);
             line-height: 1.6;
-            margin: 0; padding: 0;
+            margin: 0;
+            padding: 0;
         }
 
         .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 3rem; background: #ffffff; border-bottom: 1px solid var(--border-color);
-            position: fixed; top: 0; width: 100%; z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
 
-        .kvj-logo-img { max-height: 35px; width: auto; }
+        .kvj-logo-img {
+            max-height: 35px;
+            width: auto;
+        }
 
         .exit-btn {
-            background: #ef4444; color: white; padding: 8px 18px;
-            text-decoration: none; font-size: 12px; font-weight: 700;
-            border-radius: 6px; text-transform: uppercase;
+            background: #ef4444;
+            color: white;
+            padding: 8px 18px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            text-transform: uppercase;
         }
 
-        .header-banner { 
+        .header-banner {
             position: relative;
             background-image: linear-gradient(rgba(30, 58, 95, 0.75), rgba(8, 145, 178, 0.85)), url('architectural_data_model.png');
             background-size: cover;
             background-position: center;
-            color: white; 
-            padding: 140px 20px 140px; 
-            text-align: center; 
+            color: white;
+            padding: 140px 20px 140px;
+            text-align: center;
         }
 
-        .header-banner h1 { 
-            font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 900; text-transform: uppercase;
+        .header-banner h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
 
-        .layout-container { max-width: 900px; margin: -80px auto 40px; position: relative; z-index: 10; width: 95%; padding-bottom: 60px; }
+        .layout-container {
+            max-width: 900px;
+            margin: -80px auto 40px;
+            position: relative;
+            z-index: 10;
+            width: 95%;
+            padding-bottom: 60px;
+        }
 
-        .main-content { 
+        .main-content {
             flex: 1;
-            background: #ffffff; border: 1px solid var(--border-color);
-            padding: 50px; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             min-width: 0;
         }
 
-        .section-header { margin-bottom: 30px; border-bottom: 3px solid var(--bg-light); padding-bottom: 15px; }
-        .section-header h2 { color: var(--primary-blue); font-size: 24px; font-weight: 800; text-transform: uppercase; }
+        .section-header {
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--bg-light);
+            padding-bottom: 15px;
+        }
 
-        p { line-height: 1.8; margin-bottom: 25px; color: #334155; font-size: 17px; }
-        strong { color: var(--primary-blue); font-weight: 700; }
+        .section-header h2 {
+            color: var(--primary-blue);
+            font-size: 24px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
 
-        .interaction-box { 
-            background-color: #f7f9fc; border-left: 5px solid var(--secondary-blue); 
-            padding: 25px; margin: 30px 0; border-radius: 0 10px 10px 0; 
+        p {
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #334155;
+            font-size: 17px;
+        }
+
+        strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .interaction-box {
+            background-color: #f7f9fc;
+            border-left: 5px solid var(--secondary-blue);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
         }
 
         /* Professional diamond list marker */
-        ul { list-style: none; padding-left: 0; margin-bottom: 25px; }
-        ul li { position: relative; padding-left: 28px; margin-bottom: 12px; color: #334155; }
-        ol li { margin-bottom: 12px; color: #334155; padding-left: 8px; }
-        ul li::before {
-            content: ""; position: absolute; left: 0; top: 8px;
-            width: 8px; height: 8px; background: var(--secondary-blue);
-            transform: rotate(45deg); border-radius: 1px;
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 25px;
         }
 
-        .next-btn-container { text-align: right; margin-top: 40px; }
+        ul li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            color: #334155;
+        }
+
+        ol li {
+            margin-bottom: 12px;
+            color: #334155;
+            padding-left: 8px;
+        }
+
+        ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: var(--secondary-blue);
+            transform: rotate(45deg);
+            border-radius: 1px;
+        }
+
+        .next-btn-container {
+            text-align: right;
+            margin-top: 40px;
+        }
+
         .next-btn {
-            display: inline-block; background: var(--primary-blue); color: white;
-            padding: 15px 40px; border-radius: 30px; text-decoration: none;
-            font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: transform 0.3s;
         }
-        .next-btn:hover { transform: translateX(5px); background: var(--secondary-blue); }
 
-        footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 13px; }
+        .next-btn:hover {
+            transform: translateX(5px);
+            background: var(--secondary-blue);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
 
         /* ===== Layout: Sidebar + Content ===== */
         .layout-container {
             display: flex;
             max-width: 1320px;
-            margin: -80px auto 40px; position: relative; z-index: 10;
+            margin: -80px auto 40px;
+            position: relative;
+            z-index: 10;
             gap: 30px;
             width: 96%;
             padding-bottom: 60px;
@@ -157,9 +254,14 @@
             border-left: 4px solid var(--primary-blue);
         }
 
-        @media (max-width: 1024px) { .module-sidebar { display: none; } }
+        @media (max-width: 1024px) {
+            .module-sidebar {
+                display: none;
+            }
+        }
     </style>
 </head>
+
 <body>
     <nav class="navbar">
         <a href="excel_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
@@ -170,11 +272,12 @@
         <h1>MODULE 4: STRUCTURED DATA</h1>
     </header>
 
-    <div class="layout-container" style="display:block; max-width:960px; margin: -80px auto 40px; position: relative; z-index: 10; padding:0 20px 60px;">
+    <div class="layout-container"
+        style="display:block; max-width:960px; margin: -80px auto 40px; position: relative; z-index: 10; padding:0 20px 60px;">
 
-        
 
-                <main class="main-content">
+
+        <main class="main-content">
             <div class="section-header">
                 <h2>4. Structured Data</h2>
                 <p style="font-weight: 600; color: var(--secondary-blue);">The Power of Tables</p>
@@ -182,45 +285,64 @@
 
             <div class="interaction-box">
                 <strong>The Strategic Logic</strong>
-                <p style="margin-top:10px;">Transitioning from a static "Range" to a functional <strong>Database Object</strong> allows for seamless scaling. Professional models rely on structures that update automatically without human intervention.</p>
+                <p style="margin-top:10px;">Transitioning from a static "Range" to a functional <strong>Database
+                        Object</strong> allows for seamless scaling. Professional models rely on structures that update
+                    automatically without human intervention.</p>
             </div>
 
             <h3>1. Self-Healing Data</h3>
-            <p>Tables (shortcut: <code>Ctrl+T</code>) automatically expand to include new rows in all connected Pivot Tables and Charts.</p>
+            <p>Tables (shortcut: <code>Ctrl+T</code>) automatically expand to include new rows in all connected Pivot
+                Tables and Charts.</p>
             <ul>
                 <li style="margin-bottom: 18px;">
-                    <strong>The Old Way:</strong> Manually expanding the formulas and ranges from <code>A2:D500</code> to <code>A2:D600</code> at the end of every month.
+                    <strong>The Old Way:</strong> Manually expanding the formulas and ranges from <code>A2:D500</code>
+                    to <code>A2:D600</code> at the end of every month.
                 </li>
                 <li>
-                    <strong>The Professional Way:</strong> Adding new data to the bottom of the Table; the Table instantly ingests the rows, extending all calculations and formatting automatically.
+                    <strong>The Professional Way:</strong> Adding new data to the bottom of the Table; the Table
+                    instantly ingests the rows, extending all calculations and formatting automatically.
                 </li>
             </ul>
 
             <h3>2. Structured Referencing</h3>
-            <p>Using readable headers instead of cryptic cell addresses, making models significantly easier to audit and transfer to colleagues.</p>
+            <p>Using readable headers instead of cryptic cell addresses, making models significantly easier to audit and
+                transfer to colleagues.</p>
             <ul>
                 <li style="margin-bottom: 20px;">
                     <strong>Structured ($B$2:$B$500):</strong> <code>=SUM(SalesTable[Revenue])</code>
-                    <br><span style="color:var(--text-muted); font-size:14px;">→ <strong>Advantage:</strong> The formula is written in plain English, and "Revenue" will always point to the entire revenue column regardless of how many rows are added.</span>
+                    <br><span style="color:var(--text-muted); font-size:14px;">→ <strong>Advantage:</strong> The formula
+                        is written in plain English, and "Revenue" will always point to the entire revenue column
+                        regardless of how many rows are added.</span>
                 </li>
             </ul>
 
             <h3>3. Interactive Slicers</h3>
-            <p>Turning a standard list into a visual cockpit. Slicers are floating, hyper-visual filters connected directly to your structured Table.</p>
+            <p>Turning a standard list into a visual cockpit. Slicers are floating, hyper-visual filters connected
+                directly to your structured Table.</p>
             <ul>
                 <li>
-                    <strong>Visual Filtering:</strong> Instantly filter huge datasets. Clicking "Kochi" or "Silk" on a slicer updates every visible calculation instantly, transforming raw tables into mini-dashboards.
+                    <strong>Visual Filtering:</strong> Instantly filter huge datasets. Clicking "Kochi" or "Silk" on a
+                    slicer updates every visible calculation instantly, transforming raw tables into mini-dashboards.
                 </li>
             </ul>
 
-            
-            <div class="assessment-container" style="text-align: center; margin-top: 40px; padding-top: 40px; border-top: 2px solid #f1f5f9;">
-                <a href="module_quiz.html?mod=ex4" class="nav-btn nav-assess" style="background: #22c55e; color: white; margin-bottom: 25px; width: 100%; max-width: 400px; display: inline-flex; justify-content: center; padding: 16px; border-radius: 30px; font-weight: 800; font-size: 15px; text-decoration: none; text-transform: uppercase;">Take Assessment</a>
+
+            <div class="assessment-container"
+                style="text-align: center; margin-top: 40px; padding-top: 40px; border-top: 2px solid #f1f5f9;">
+                <a href="Excel-Assessment-4.html" class="nav-btn nav-assess"
+                    style="background: #22c55e; color: white; margin-bottom: 25px; width: 100%; max-width: 400px; display: inline-flex; justify-content: center; padding: 16px; border-radius: 30px; font-weight: 800; font-size: 15px; text-decoration: none; text-transform: uppercase;">Take
+                    Assessment</a>
             </div>
-            <div class="module-navigation" style="margin-top: 0; padding-top: 0; border-top: none; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap;">
-                <a href="Excel-Module-3.html" class="nav-btn nav-prev" style="background: #f1f5f9; color: #475569; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; flex: 1; text-align: center; min-width: 150px;">&larr; Previous</a>
-                <a href="excel_roadmap.html" class="nav-btn nav-home" style="background: #e2e8f0; color: #1e293b; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 800; flex: 1; text-align: center; min-width: 150px;">Home</a>
-                <a href="Excel-Module-5-1.html" class="nav-btn nav-next" style="background: #1e3a5f; color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; flex: 1; text-align: center; min-width: 150px;">Next &rarr;</a>
+            <div class="module-navigation"
+                style="margin-top: 0; padding-top: 0; border-top: none; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <a href="Excel-Module-3.html" class="nav-btn nav-prev"
+                    style="background: #f1f5f9; color: #475569; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; flex: 1; text-align: center; min-width: 150px;">&larr;
+                    Previous</a>
+                <a href="excel_roadmap.html" class="nav-btn nav-home"
+                    style="background: #e2e8f0; color: #1e293b; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 800; flex: 1; text-align: center; min-width: 150px;">Home</a>
+                <a href="Excel-Module-5-1.html" class="nav-btn nav-next"
+                    style="background: #1e3a5f; color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; flex: 1; text-align: center; min-width: 150px;">Next
+                    &rarr;</a>
             </div>
 
         </main>
@@ -230,4 +352,5 @@
         &copy; 2024 KVJ Analytics. All Rights Reserved.
     </footer>
 </body>
+
 </html>
