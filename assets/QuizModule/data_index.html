@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Data Analytics Certification - KVJ Analytics</title>
+    <title>KVJ Advanced Data Analytics Certification - KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -12,11 +12,12 @@
             min-height: 2.2em;
             position: relative;
         }
+        .text-blue-accent { color: #38bdf8; }
         .blinking-cursor {
             display: inline-block;
             width: 3px;
             height: 1em;
-            background-color: var(--blue-dark);
+            background-color: #38bdf8;
             margin-left: 2px;
             animation: blink-caret 1s step-end infinite;
             vertical-align: text-bottom;
@@ -32,12 +33,12 @@
     <nav class="kvj-navbar">
         <div class="kvj-container nav-wrapper">
             <div style="display: flex; align-items: center; gap: 1.5rem;">
-                <a href="course_selection.html" class="nav-back">
+                <a href="index.html" class="nav-back">
                     Back
                 </a>
-                <a href="course_selection.html" class="kvj-logo">
+                <a href="index.html" class="kvj-logo">
                     <div class="logo-box">
-                        <img src="Kvj logo.jpeg" alt="KVJ Analytics" style="max-height: 45px; width: auto;">
+                        <img src="Kvj logo.jpeg" alt="KVJ" style="max-height: 45px; width: auto;">
                     </div>
                 </a>
             </div>
@@ -58,41 +59,38 @@
                 </h1>
                 
                 <h2 class="hero-subtitle">
-                    Elite Data Analytics Certification
+                    KVJ Advanced Data Analytics Certification
                 </h2>
                 
                 <p class="hero-desc">
-                    Master data manipulation and visualization through our mathematically optimized curriculum. Experience liftoff with interactive modules designed for your success.
+                    Master the principles of Data Science and Analytics through our mathematically optimized curriculum. Experience liftoff with interactive modules designed for your success.
                 </p>
                 
                 <div class="hero-action">
-                    <a href="data_intro.html" class="kvj-btn kvj-btn-dark">Explore Analytics</a>
+                    <a href="data_intro.html" class="kvj-btn kvj-btn-dark" style="background: #0ea5e9; box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);">Explore Analytics</a>
                 </div>
             </div>
             
-            <!-- Right Content - Python Code Editor Graphic -->
+            <!-- Right Content - Data Analysis Code Editor Graphic -->
             <div class="hero-right fade-in-up" style="animation-delay: 0.3s;">
                 <div class="dashboard-mockup" style="background-color: #0f172a; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
                     <div class="window-controls" style="background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.1);">
                         <div class="dot dot-r"></div>
                         <div class="dot dot-y"></div>
                         <div class="dot dot-g"></div>
-                        <div class="fy-text" style="color: #94a3b8; font-family: monospace;">analytics.py</div>
+                        <div class="fy-text" style="color: #94a3b8; font-family: monospace;">analysis.py</div>
                     </div>
                     <div class="dash-content" style="padding: 30px; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95rem; line-height: 1.7; color: #e2e8f0; overflow-x: auto;">
-                        <span style="color: #c678dd;">import</span> pandas <span style="color: #c678dd;">as</span> pd<br>
+                        <span style="color: #c678dd;">import</span> pandas <span style="color: #c678dd;">as</span> <span style="color: #e5c07b;">pd</span><br>
                         <br>
-                        <span style="color: #c678dd;">def</span> <span style="color: #61afef;">analyze_data</span>(dataset):<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #5c6370; font-style: italic;">""" Transform raw data into strategic insights """</span><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;df = pd.<span style="color: #61afef;">read_csv</span>(dataset)<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;insights = df.<span style="color: #61afef;">groupby</span>(<span style="color: #98c379;">'Trends'</span>).<span style="color: #61afef;">mean</span>()<br>
+                        <span style="color: #5c6370; font-style: italic;"># Load and transform business data</span><br>
+                        df = pd.<span style="color: #61afef;">read_csv</span>(<span style="color: #98c379;">'kvj_intelligence.csv'</span>)<br>
+                        insights = df.<span style="color: #61afef;">groupby</span>(<span style="color: #98c379;">'Sector'</span>).<span style="color: #61afef;">mean</span>()<br>
                         <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c678dd;">return</span> <span style="color: #98c379;">"Analytics Mastery Achieved!"</span><br>
+                        <span style="color: #c678dd;">for</span> metric <span style="color: #c678dd;">in</span> insights.columns:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print(<span style="color: #98c379;">f"Deploying {metric} to Dashboard..."</span>)<br>
                         <br>
-                        <br>
-                        <span style="color: #5c6370; font-style: italic;"># Initiate analysis</span><br>
-                        data_master = <span style="color: #e5c07b;">DataScientist</span>()<br>
-                        data_master.<span style="color: #61afef;">visualize</span>(user=<span style="color: #98c379;">"You"</span>)<span class="blinking-cursor" style="background-color: #528bff; width: 8px; margin-left: 5px;"></span><br>
+                        <span style="color: #c678dd;">return</span> <span style="color: #98c379;">"KVJ Data Mastery Achieved!"</span><span class="blinking-cursor" style="background-color: #528bff; width: 8px; margin-left: 5px;"></span><br>
                     </div>
                 </div>
             </div>
@@ -102,24 +100,19 @@
 
     <script>
         // Typing Effect logic
-        const textToType = "Transform raw data into powerful business insights";
+        const textToType = "Experience liftoff with the next-generation Data Curriculum";
         const typewriterEl = document.getElementById('typewriter');
         let typeIndex = 0;
         
-        // Add styling exactly like the image colors
-        // The image has Transform Data [Blue] Into [Teal] Powerful Business Insights [Blue]
-        // But the requested typing text is different. So we will format half blue half teal.
         const blueStyle = "<span class='text-blue'>";
-        const tealStyle = "<span class='text-teal'>";
+        const accentStyle = "<span class='text-blue-accent'>";
         const closeSpan = "</span>";
         
-        // Let's break the line at a specific point
-        const line1 = "Transform raw data ";
-        const line2 = "into powerful business<br>";
-        const line3 = "insights";
+        // Break lines for impact
+        const line1 = "Experience liftoff with ";
+        const line2 = "the next-generation<br>";
+        const line3 = "Data Curriculum";
 
-
-        // Pre-build the HTML string we will inject
         let fullHTML = "";
 
         function typeWriter() {
@@ -127,25 +120,25 @@
                 fullHTML = blueStyle + line1.substring(0, typeIndex + 1) + closeSpan;
                 typewriterEl.innerHTML = fullHTML;
                 typeIndex++;
-                setTimeout(typeWriter, 40);
+                setTimeout(typeWriter, 35);
             } 
             else if (typeIndex < line1.length + line2.length) {
                 let idx2 = typeIndex - line1.length;
-                fullHTML = blueStyle + line1 + closeSpan + tealStyle + line2.substring(0, idx2 + 1) + closeSpan;
+                fullHTML = blueStyle + line1 + closeSpan + accentStyle + line2.substring(0, idx2 + 1) + closeSpan;
                 typewriterEl.innerHTML = fullHTML;
                 typeIndex++;
-                setTimeout(typeWriter, 40);
+                setTimeout(typeWriter, 35);
             }
             else if (typeIndex < line1.length + line2.length + line3.length) {
                 let idx3 = typeIndex - line1.length - line2.length;
-                fullHTML = blueStyle + line1 + closeSpan + tealStyle + line2 + closeSpan + blueStyle + line3.substring(0, idx3 + 1) + closeSpan;
+                fullHTML = blueStyle + line1 + closeSpan + accentStyle + line2 + closeSpan + blueStyle + line3.substring(0, idx3 + 1) + closeSpan;
                 typewriterEl.innerHTML = fullHTML;
                 typeIndex++;
-                setTimeout(typeWriter, 40);
+                setTimeout(typeWriter, 35);
             }
         }
         
-        setTimeout(typeWriter, 500);
+        setTimeout(typeWriter, 400);
     </script>
 </body>
 </html>

@@ -2,8 +2,11 @@
         console.log("Quiz script starting...");
         function logout() {
             sessionStorage.clear();
-            localStorage.clear();
-            window.location.href = 'index.html';
+            localStorage.removeItem('strategist_user');
+            localStorage.removeItem('strategist_phone');
+            localStorage.removeItem('gmail');
+            localStorage.removeItem('class_code');
+            window.location.href = 'login.html';
         }
         const quizData = {
                 "1": [
@@ -311,8 +314,8 @@
 
         let currentQuestions = [...(quizData[modId] || quizData["1"])];
 
-        // Shuffle logic for Mock Exams
-        if(mockId) {
+        // Shuffle logic for Module Assessments
+        if(!mockId) {
             for (let i = currentQuestions.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [currentQuestions[i], currentQuestions[j]] = [currentQuestions[j], currentQuestions[i]];

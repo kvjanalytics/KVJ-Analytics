@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 2.3: Logical Functions | KVJ Analytics</title>
+    <title>Module 2.3: Logical Functions | KVJ</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -46,7 +46,7 @@
             background-size: cover;
             background-position: center;
             color: white; 
-            padding: 140px 20px 140px; 
+            padding: 140px 20px 80px; 
             text-align: center; 
         }
 
@@ -56,12 +56,12 @@
             text-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
-        .layout-container { max-width: 900px; margin: -80px auto 40px; position: relative; z-index: 10; width: 95%; padding-bottom: 60px; }
+        .layout-container { max-width: 900px; margin: 40px auto; width: 95%; padding-bottom: 60px; }
 
         .main-content { 
             flex: 1;
             background: #ffffff; border: 1px solid var(--border-color);
-            padding: 50px; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            padding: 50px; border-radius: 12px; box-shadow: 0 4px 25px rgba(0,0,0,0.04);
             min-width: 0;
         }
 
@@ -101,7 +101,7 @@
         .layout-container {
             display: flex;
             max-width: 1320px;
-            margin: -80px auto 40px; position: relative; z-index: 10;
+            margin: 40px auto;
             gap: 30px;
             width: 96%;
             padding-bottom: 60px;
@@ -158,11 +158,43 @@
         }
 
         @media (max-width: 1024px) { .module-sidebar { display: none; } }
-    </style>
+    
+        /* Quiz CTA Styling */
+        .quiz-cta {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 142, 171, 0.2);
+        }
+        .quiz-cta h3 { color: #ffffff !important; margin-top: 0; font-size: 24px; border: none; padding: 0; }
+        .quiz-cta p { color: #ffffff !important; opacity: 0.95; margin-bottom: 25px; }
+        .btn-start-quiz {
+            display: inline-block;
+            background: #ffffff;
+            color: var(--primary-blue);
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .btn-start-quiz:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: #f8fafc;
+        }
+
+</style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="excel_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+        <a href="excel_index.html"><img src="Kvj logo.jpeg" alt="KVJ Logo" class="kvj-logo-img"></a>
         <a href="excel_roadmap.html" class="exit-btn">EXIT</a>
     </nav>
 
@@ -170,9 +202,25 @@
         <h1>MODULE 2: ADVANCED LOOKUPS & LOGIC</h1>
     </header>
 
-    <div class="layout-container" style="display:block; max-width:960px; margin: -80px auto 40px; position: relative; z-index: 10; padding:0 20px 60px;">
+    <div class="layout-container">
 
-        
+        <!-- ===== MODULE SIDEBAR ===== -->
+        <aside class="module-sidebar">
+            <h3>Module Path</h3>
+            <a href="Excel-Module-1-1.html">01 Architectural Data Modeling</a>
+            <a href="Excel-Module-2.html">02 Advanced Lookups & Logic</a>
+            <a href="Excel-Module-3.html">03 The Power of Referencing</a>
+            <a href="Excel-Module-4.html">04 Structured Data</a>
+            <a href="Excel-Module-5-1.html">05 Power Query & ETL</a>
+            <a href="Excel-Module-6-1.html">06 Relational Data & Power Pivot</a>
+            <a href="Excel-Module-7-1.html">07 Dashboard Engineering</a>
+            <a href="Excel-Module-8-1.html">08 VBA & Macro Automation</a>
+            <a href="Excel-Module-9-1.html">09 Scenario & Risk Modeling</a>
+            <a href="Excel-Module-10-1.html">10 Master Capstone Simulation</a>            <a href="Excel-Module-11.html">11 Practicals</a>
+
+            <h3 style="margin-top: 35px;">Navigation</h3>
+            <a href="excel_roadmap.html" style="background: #f8fafc;">&larr; Return to Roadmap</a>
+        </aside>
 
                 <main class="main-content">
             <div class="section-header">
@@ -303,7 +351,76 @@
                 <div id="match-fb" class="feedback"></div>
             </div>
 
-            
+            <script>
+                /* === Confetti Burst === */
+                function celebrate() {
+                    if (typeof confetti !== "undefined") {
+                        confetti({
+                            particleCount: 120,
+                            spread: 80,
+                            origin: { y: 0.6 },
+                            colors: ['#1e3a5f', '#008eab', '#10b981', '#f59e0b', '#f472b6']
+                        });
+                        setTimeout(() => confetti({ particleCount: 60, spread: 120, origin: { x: 0.1, y: 0.7 }, colors: ['#38bdf8','#818cf8','#a3e635']}), 200);
+                        setTimeout(() => confetti({ particleCount: 60, spread: 120, origin: { x: 0.9, y: 0.7 }, colors: ['#fb7185','#fbbf24','#34d399']}), 400);
+                    }
+                }
+
+                /* === MCQ === */
+                function checkMCQ(name, correct, feedbackId) {
+                    const selected = document.querySelector('input[name="' + name + '"]:checked');
+                    const fb = document.getElementById(feedbackId);
+                    if (!selected) {
+                        fb.className = "feedback wrong";
+                        fb.innerHTML = "⚠️ Please select an option first.";
+                        return;
+                    }
+                    if (selected.value === correct) {
+                        fb.className = "feedback correct";
+                        fb.innerHTML = "✅ Correct! The OR statement is perfect for this requirement.";
+                        celebrate();
+                    } else {
+                        fb.className = "feedback wrong";
+                        fb.innerHTML = "❌ Not quite. Remember, we need to trigger if AT LEAST ONE of the conditions is true.";
+                    }
+                }
+
+                function resetMCQ(name, feedbackId) {
+                    document.querySelectorAll('input[name="' + name + '"]').forEach(r => r.checked = false);
+                    const fb = document.getElementById(feedbackId);
+                    fb.className = 'feedback'; fb.innerHTML = '';
+                }
+
+                /* === Match the Following === */
+                function checkMatch() {
+                    const answers = { m1: 'branch', m2: 'all', m3: 'any', m4: 'reverse' };
+                    let score = 0;
+                    for (const [id, val] of Object.entries(answers)) {
+                        const el = document.getElementById(id);
+                        el.style.borderColor = el.value === val ? '#10b981' : '#ef4444';
+                        el.style.boxShadow = el.value === val ? '0 0 0 2px rgba(16,185,129,0.25)' : '0 0 0 2px rgba(239,68,68,0.25)';
+                        if (el.value === val) score++;
+                    }
+                    const fb = document.getElementById('match-fb');
+                    if (score === 4) {
+                        fb.className = "feedback correct";
+                        fb.innerHTML = "✅ Perfect Score! All 4 matches are correct.";
+                        celebrate();
+                    } else {
+                        fb.className = "feedback wrong";
+                        fb.innerHTML = "❌ " + score + "/4 correct. Dropdowns highlighted red need revisiting.";
+                    }
+                }
+
+                function resetMatch() {
+                    ['m1','m2','m3','m4'].forEach(id => {
+                        const el = document.getElementById(id);
+                        el.value = ''; el.style.borderColor = '#e2e8f0'; el.style.boxShadow = 'none';
+                    });
+                    const fb = document.getElementById('match-fb');
+                    fb.className = 'feedback'; fb.innerHTML = '';
+                }
+            </script>
             
             <!-- Footer Navigation -->
             <div class="module-navigation" style="display: flex; gap: 15px; justify-content: space-between; flex-wrap: wrap; margin-top: 40px; padding-top: 30px; border-top: 1px solid #e2e8f0;">
@@ -323,7 +440,9 @@
     </div>
 
     <footer>
-        &copy; 2024 KVJ Analytics. All Rights Reserved.
+        &copy; 2024 KVJ. All Rights Reserved.
     </footer>
+    </div>
+
 </body>
 </html>

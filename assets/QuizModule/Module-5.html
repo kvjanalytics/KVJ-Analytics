@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 5: Error Handling | KVJ Analytics</title>
+    <title>Module 5: Error Handling | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
@@ -73,7 +73,7 @@
 
         .layout-container {
             display: flex;
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 40px auto;
             gap: 40px;
             width: 95%;
@@ -82,38 +82,77 @@
 
         .sidebar {
             width: 300px;
+            flex-shrink: 0;
             background: white;
             padding: 30px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             position: sticky;
             top: 100px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             height: fit-content;
         }
 
-        .sidebar a { 
-            display: flex; 
-            padding: 12px 15px; 
-            color: #555; 
-            text-decoration: none; 
-            font-size: 14px; 
-            margin-bottom: 5px;
+        .sidebar h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--secondary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 15px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
             border-radius: 8px;
+            margin-bottom: 5px;
+            transition: all 0.2s;
         }
 
-        .sidebar a.active { 
-            color: var(--primary-blue); 
-            font-weight: 700; 
-            background: #f0f7ff; 
-            border-left: 4px solid var(--primary-blue); 
+        .sidebar a:hover {
+            background: #f8fafc;
+            color: var(--primary-blue);
         }
 
-        .main-content { 
+        .sidebar a.active {
+            background: #eff6ff;
+            color: var(--primary-blue);
+            font-weight: 700;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .main-content li {
+            list-style: none;
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+        }
+
+        .main-content li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+            border-radius: 2px;
+            transform: rotate(45deg);
+        }
+
+        /* Main Content Area */
+        .main-content {
             flex: 1;
-            background: #ffffff; 
+            background: #ffffff;
             border: 1px solid var(--border-color);
-            padding: 60px;
+            padding: 40px 60px;
             border-radius: 12px;
         }
 
@@ -172,6 +211,9 @@
             text-align: center;
             color: white;
         }
+
+        .quiz-cta h3 { color: #ffffff !important; margin-top: 0; }
+        .quiz-cta p { color: #ffffff !important; opacity: 0.95; }
         .btn-start-quiz {
             display: inline-block;
             background: white;
@@ -272,8 +314,56 @@
             font-weight: 700;
             font-size: 16px;
             transition: all 0.3s;
+            margin-right: 10px;
         }
-        .coding-practice .btn-run:hover { background: #7dd3fc; transform: translateY(-2px); }
+
+        .coding-practice .btn-reset {
+            background: #334155;
+            color: #f8fafc;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .coding-practice .btn-run:hover, .coding-practice .btn-reset:hover {
+            background: #7dd3fc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .coding-practice .btn-reset:hover { background: #475569; }
+
+        /* New Partial Fix UI */
+        .partial-fix-box {
+            background: #0f172a;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            margin-bottom: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            color: #38bdf8;
+            line-height: 1.6;
+        }
+        .partial-fix-line { display: block; white-space: pre; }
+        .partial-fix-box input {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #f8fafc;
+            width: 30px;
+            text-align: center;
+            border-radius: 4px;
+            margin: 0 5px;
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+            padding: 2px;
+        }
+        .partial-fix-box input:focus { border-color: #38bdf8; box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2); }
+        .partial-fix-box pre { margin: 0; padding: 0; background: transparent; color: inherit; font-size: inherit; }
 
         /* Visual Illustrations */
         .illustration-container {
@@ -309,15 +399,30 @@
             .illustration-container { display: none; }
         }
 
-        @media (max-width: 992px) {
+
+
+        @media (max-width: 1024px) {
+            .sidebar { display: none; }
+            .layout-container { flex-direction: column; max-width: 900px; }
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar { display: none; }
+            .layout-container { flex-direction: column; max-width: 900px; }
+        }
+
+        @media (max-width: 900px) {
+            .module-intro-flex { flex-direction: column; }
+            .module-intro-animation { display: none; }
+        }
+
+        @media (max-width: 768px) {
             .layout-container { flex-direction: column; }
-            .sidebar { width: 100%; position: static; margin-bottom: 30px; }
             .main-content { padding: 30px; }
             .practice-box { flex-direction: column; }
         }
 
         footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 13px; border-top: 1px solid var(--border-color); margin-top: 40px; }
-
     </style>
 </head>
 <body>
@@ -342,39 +447,42 @@
         </div>
     </div>
     <div class="layout-container">
-        <nav class="sidebar">
+        <aside class="sidebar">
+            <h3>Module Path</h3>
             <a href="Module-1.html">01 Foundation</a>
             <a href="Module-2.html">02 Flow Control</a>
             <a href="Module-3.html">03 I/O Operations</a>
             <a href="Module-4.html">04 Documentation</a>
             <a href="Module-5.html" class="active">05 Error Handling</a>
             <a href="Module-6.html">06 Built-in Modules</a>
-            <a href="roadmap.html" style="margin-top:20px; background:#f8f9fa;">&larr; Return to Roadmap</a>
-        </nav>
+
+            <h3 style="margin-top:35px;">Navigation</h3>
+            <a href="roadmap.html" style="background: #f8fafc;">&larr; Return to Roadmap</a>
+        </aside>
+
         <main class="main-content">
             <div class="section-header">
                 <h2>MODULE 5 – TROUBLESHOOTING AND ERROR HANDLING</h2>
                 <p style="font-weight: 600; color: var(--secondary-blue);">Python Certification Course – Module 5</p>
             </div>
             
-            <div class="section-header">
-                <h2>Introduction to Errors in Programming</h2>
-            </div>
-            <p>In real-world programming, errors are unavoidable. Even experienced developers encounter errors while building software systems.</p>
-            <p>A good programmer must be able to:</p>
-            <ul>
-                <li>Identify errors</li>
-                <li>Understand why they occur</li>
-                <li>Fix them efficiently</li>
-                <li>Prevent programs from crashing</li>
-            </ul>
-            <div class="interaction-box">
-                <strong>Business Context:</strong><br>
-                • A financial system should not crash if a user enters invalid data<br>
-                • A sales program should handle incorrect inputs safely<br>
-                • A reporting system must detect problems before processing files
-            </div>
-            <p>Python provides tools for debugging and handling errors gracefully.</p>
+                    <h3>Introduction to Errors in Programming</h3>
+                    <p>In real-world programming, errors are unavoidable. Even experienced developers encounter errors while building software systems.</p>
+                    <p>A good programmer must be able to:</p>
+                    <ul>
+                        <li>Identify errors</li>
+                        <li>Understand why they occur</li>
+                        <li>Fix them efficiently</li>
+                        <li>Prevent programs from crashing</li>
+                    </ul>
+                    <div class="interaction-box">
+                        <strong>Business Context:</strong><br>
+                        • A financial system should not crash if a user enters invalid data<br>
+                        • A sales program should handle incorrect inputs safely<br>
+                        • A reporting system must detect problems before processing files
+                    </div>
+                    <p>Python provides tools for debugging and handling errors gracefully.</p>
+
 
             <div class="section-header">
                 <h2>5.1 Types of Errors</h2>
@@ -402,9 +510,12 @@
             <div class="coding-practice">
                 <h3>Coding Practice: Fix Syntax</h3>
                 <p><strong>Challenge:</strong> Add the missing colon <code>:</code> to fix this if statement.</p>
-                <textarea id="coding-ans-syntax" placeholder="if 10 > 5
-    print('Fixed')"></textarea>
+                <div class="partial-fix-box">
+                    <span class="partial-fix-line">if 10 > 5<input type="text" id="coding-ans-syntax" maxlength="1" placeholder="?"></span>
+                    <pre>    print('Fixed')</pre>
+                </div>
                 <button class="btn-run" onclick="runSkulpt('syntax', 'Fixed')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('syntax')">Reset</button>
                 <div id="coding-output-syntax" class="live-output-box"></div>
                 <div id="coding-feedback-syntax" class="feedback"></div>
             </div>
@@ -438,12 +549,15 @@
             <!-- Coding Practice: logic -->
             <div class="coding-practice">
                 <h3>Coding Practice: Logic Fix</h3>
-                <p><strong>Challenge:</strong> Change the operator to <code>+</code> so the <code>add</code> function actually adds.</p>
-                <textarea id="coding-ans-logic" placeholder="def add(a, b):
-    return a - b
-
-print(add(5, 5))"></textarea>
+                <p><strong>Challenge:</strong> Fix the function to add the two numbers using a suitable operator.</p>
+                <div class="partial-fix-box">
+                    <pre>def add(a, b):</pre>
+                    <span class="partial-fix-line">    return a <input type="text" id="coding-ans-logic" maxlength="1" placeholder="?"> b</span>
+                    <pre>
+print(add(5, 5))</pre>
+                </div>
                 <button class="btn-run" onclick="runSkulpt('logic', '10')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('logic')">Reset</button>
                 <div id="coding-output-logic" class="live-output-box"></div>
                 <div id="coding-feedback-logic" class="feedback"></div>
             </div>
@@ -476,6 +590,7 @@ print(add(5, 5))"></textarea>
 ...:
     print('Caught')"></textarea>
                 <button class="btn-run" onclick="runSkulpt('except', 'Caught')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('except')">Reset</button>
                 <div id="coding-output-except" class="live-output-box"></div>
                 <div id="coding-feedback-except" class="feedback"></div>
             </div>
@@ -529,11 +644,12 @@ print(add(5, 5))"></textarea>
             <div class="coding-practice">
                 <h3>Coding Practice: Finally Block</h3>
                 <p><strong>Challenge:</strong> Add a <code>finally</code> block that prints <code>"Done"</code>.</p>
-                <textarea id="coding-ans-finally" placeholder="try:
+                <textarea id="coding-ans-finally">try:
     print('Success')
-...:
-    print('Done')"></textarea>
+finally:
+    print('Done')</textarea>
                 <button class="btn-run" onclick="runSkulpt('finally', 'Done')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('finally')">Reset</button>
                 <div id="coding-output-finally" class="live-output-box"></div>
                 <div id="coding-feedback-finally" class="feedback"></div>
             </div>
@@ -542,11 +658,12 @@ print(add(5, 5))"></textarea>
             <div class="coding-practice">
                 <h3>Coding Practice: Safe Division</h3>
                 <p><strong>Challenge:</strong> Write a <code>try-except</code> block that attempts to divide 10 by 0. In the <code>except</code> block, print <code>"Cannot divide by zero"</code>.</p>
-                <textarea id="coding-ans-1" placeholder="try:
+                <textarea id="coding-ans-1">try:
     print(10/0)
 except ZeroDivisionError:
-    print('Cannot divide by zero')"></textarea>
+    print('Cannot divide by zero')</textarea>
                 <button class="btn-run" onclick="runSkulpt(1, 'Cannot divide by zero')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice(1)">Reset</button>
                 <div id="coding-output-1" class="live-output-box"></div>
                 <div id="coding-feedback-1" class="feedback"></div>
             </div>
@@ -621,7 +738,7 @@ age = -<span class="number">5</span>
     </div>
 
     <footer>
-        © 2026 KVJ Analytics | Professional Python Certification Path
+        © 2026 KVJ | Professional Python Certification Path
     </footer>
     <script>
         function triggerConfetti() {
@@ -657,7 +774,18 @@ age = -<span class="number">5</span>
         }
 
         function runSkulpt(id, expected) {
-            const prog = document.getElementById(`coding-ans-${id}`).value;
+            let prog = "";
+            if (id === 'syntax') {
+                const input = document.getElementById('coding-ans-syntax');
+                const colon = input ? input.value : "";
+                prog = "if 10 > 5" + colon + "\n    print('Fixed')";
+            } else if (id === 'logic') {
+                const input = document.getElementById('coding-ans-logic');
+                const operator = input ? input.value : "";
+                prog = "def add(a, b):\n    return a " + operator + " b\nprint(add(5, 5))";
+            } else {
+                prog = document.getElementById(`coding-ans-${id}`).value;
+            }
             const outputDiv = document.getElementById(`coding-output-${id}`);
             const feedback = document.getElementById(`coding-feedback-${id}`);
             
@@ -708,10 +836,8 @@ age = -<span class="number">5</span>
                                 const val = inputField.value;
                                 userInputs.push(val);
                                 container.remove();
-                                // Add back the prompt and the answer to the output box permanently
-                                outputDiv.appendChild(document.createTextNode(prompt + val + "\n"));
-                                outputText += prompt + val + "\n";
-                                // Do NOT add prompt/input to validationText!
+                                outputDiv.appendChild(document.createTextNode(prompt + val + ""));
+                                outputText += prompt + val + "";
                                 resolve(val);
                             }
                         });
@@ -729,7 +855,6 @@ age = -<span class="number">5</span>
                 const cleanOutput = validationText.trim().toLowerCase();
                 let cleanExpected = expected.toString().trim().toLowerCase();
 
-                // Dynamic Validation Logic
                 if (userInputs.length > 0) {
                     if (id === 'input') {
                         cleanExpected = `welcome to ${userInputs[0].trim()}`.toLowerCase();
@@ -751,13 +876,30 @@ age = -<span class="number">5</span>
                 }
                 feedback.style.display = "block";
             }, function(err) {
-                outputDiv.innerText += "\n" + err.toString();
+                outputDiv.innerText += "" + err.toString();
                 feedback.innerHTML = "✗ Error in your code!";
                 feedback.className = "feedback wrong";
                 feedback.style.display = "block";
             });
         }
+
+        function resetCodingPractice(id) {
+            const textarea = document.getElementById(`coding-ans-${id}`);
+            const output = document.getElementById(`coding-output-${id}`);
+            const feedback = document.getElementById(`coding-feedback-${id}`);
+            
+            if (textarea) textarea.value = "";
+            if (output) {
+                output.innerHTML = "";
+                output.classList.remove('active');
+            }
+            if (feedback) {
+                feedback.style.display = "none";
+                feedback.className = "feedback";
+            }
+        }
     </script>
+    </div>
+
 </body>
 </html>
-```

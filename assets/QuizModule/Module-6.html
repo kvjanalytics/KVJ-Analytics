@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 6: Built-in Modules | KVJ Analytics</title>
+    <title>Module 6: Built-in Modules | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
@@ -72,7 +72,7 @@
 
         .layout-container {
             display: flex;
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 40px auto;
             gap: 40px;
             width: 95%;
@@ -81,38 +81,77 @@
 
         .sidebar {
             width: 300px;
+            flex-shrink: 0;
             background: white;
             padding: 30px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             position: sticky;
             top: 100px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             height: fit-content;
         }
 
-        .sidebar a { 
-            display: flex; 
-            padding: 12px 15px; 
-            color: #555; 
-            text-decoration: none; 
-            font-size: 14px; 
-            margin-bottom: 5px;
+        .sidebar h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--secondary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 15px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
             border-radius: 8px;
+            margin-bottom: 5px;
+            transition: all 0.2s;
         }
 
-        .sidebar a.active { 
-            color: var(--primary-blue); 
-            font-weight: 700; 
-            background: #f0f7ff; 
-            border-left: 4px solid var(--primary-blue); 
+        .sidebar a:hover {
+            background: #f8fafc;
+            color: var(--primary-blue);
         }
 
-        .main-content { 
+        .sidebar a.active {
+            background: #eff6ff;
+            color: var(--primary-blue);
+            font-weight: 700;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .main-content li {
+            list-style: none;
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+        }
+
+        .main-content li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+            border-radius: 2px;
+            transform: rotate(45deg);
+        }
+
+        /* Main Content Area */
+        .main-content {
             flex: 1;
-            background: #ffffff; 
+            background: #ffffff;
             border: 1px solid var(--border-color);
-            padding: 60px;
+            padding: 40px 60px;
             border-radius: 12px;
         }
 
@@ -171,6 +210,9 @@
             text-align: center;
             color: white;
         }
+
+        .quiz-cta h3 { color: #ffffff !important; margin-top: 0; }
+        .quiz-cta p { color: #ffffff !important; opacity: 0.95; }
         .btn-start-quiz {
             display: inline-block;
             background: white;
@@ -271,8 +313,27 @@
             font-weight: 700;
             font-size: 16px;
             transition: all 0.3s;
+            margin-right: 10px;
         }
-        .coding-practice .btn-run:hover { background: #7dd3fc; transform: translateY(-2px); }
+
+        .coding-practice .btn-reset {
+            background: #334155;
+            color: #f8fafc;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .coding-practice .btn-run:hover, .coding-practice .btn-reset:hover {
+            background: #7dd3fc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .coding-practice .btn-reset:hover { background: #475569; }
 
         /* Visual Illustrations */
         .illustration-container {
@@ -308,15 +369,25 @@
             .illustration-container { display: none; }
         }
 
-        @media (max-width: 992px) {
+
+
+        @media (max-width: 1024px) {
+            .sidebar { display: none; }
+            .layout-container { flex-direction: column; max-width: 900px; }
+        }
+
+        @media (max-width: 900px) {
+            .module-intro-flex { flex-direction: column; }
+            .module-intro-animation { display: none; }
+        }
+
+        @media (max-width: 768px) {
             .layout-container { flex-direction: column; }
-            .sidebar { width: 100%; position: static; margin-bottom: 30px; }
             .main-content { padding: 30px; }
             .practice-box { flex-direction: column; }
         }
 
         footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 13px; border-top: 1px solid var(--border-color); margin-top: 40px; }
-
     </style>
 </head>
 <body>
@@ -341,41 +412,44 @@
         </div>
     </div>
     <div class="layout-container">
-        <nav class="sidebar">
+        <aside class="sidebar">
+            <h3>Module Path</h3>
             <a href="Module-1.html">01 Foundation</a>
             <a href="Module-2.html">02 Flow Control</a>
             <a href="Module-3.html">03 I/O Operations</a>
             <a href="Module-4.html">04 Documentation</a>
             <a href="Module-5.html">05 Error Handling</a>
             <a href="Module-6.html" class="active">06 Built-in Modules</a>
-            <a href="roadmap.html" style="margin-top:20px; background:#f8f9fa;">&larr; Return to Roadmap</a>
-        </nav>
+
+            <h3 style="margin-top:35px;">Navigation</h3>
+            <a href="roadmap.html" style="background: #f8fafc;">&larr; Return to Roadmap</a>
+        </aside>
+
         <main class="main-content">
             <div class="section-header">
                 <h2>MODULE 6 – BUILT-IN MODULES</h2>
                 <p style="font-weight: 600; color: var(--secondary-blue);">Python Certification Course – Module 6</p>
             </div>
             
-            <div class="section-header">
-                <h2>Introduction to Python Modules</h2>
-            </div>
-            <p>As programs grow larger, writing all code inside a single file becomes difficult to manage. Python solves this problem using modules.</p>
-            <p>A module is a file that contains reusable Python code such as:</p>
-            <ul>
-                <li>Functions</li>
-                <li>Variables</li>
-                <li>Classes</li>
-            </ul>
-            <p>Instead of writing everything manually, Python provides built-in modules that help solve common computing problems.</p>
-            <p><strong>Examples of built-in modules:</strong></p>
-            <ul>
-                <li><strong>math</strong> – mathematical calculations</li>
-                <li><strong>random</strong> – random number generation</li>
-                <li><strong>datetime</strong> – working with dates and time</li>
-                <li><strong>os</strong> – operating system interaction</li>
-                <li><strong>sys</strong> – system-level operations</li>
-            </ul>
-            <p>Using modules makes programs: Faster to develop, More reliable, and Easier to maintain.</p>
+                    <h3>Introduction to Python Modules</h3>
+                    <p>As programs grow larger, writing all code inside a single file becomes difficult to manage. Python solves this problem using modules.</p>
+                    <p>A module is a file that contains reusable Python code such as:</p>
+                    <ul>
+                        <li>Functions</li>
+                        <li>Variables</li>
+                        <li>Classes</li>
+                    </ul>
+                    <p>Instead of writing everything manually, Python provides built-in modules that help solve common computing problems.</p>
+                    <p><strong>Examples of built-in modules:</strong></p>
+                    <ul>
+                        <li><strong>math</strong> – mathematical calculations</li>
+                        <li><strong>random</strong> – random number generation</li>
+                        <li><strong>datetime</strong> – working with dates and time</li>
+                        <li><strong>os</strong> – operating system interaction</li>
+                        <li><strong>sys</strong> – system-level operations</li>
+                    </ul>
+                    <p>Using modules makes programs: Faster to develop, More reliable, and Easier to maintain.</p>
+
 
             <h3>Importing Modules</h3>
             <p>To use a module, we must import it.</p>
@@ -396,6 +470,7 @@
                 <textarea id="coding-ans-import" placeholder="... math
 print('...')"></textarea>
                 <button class="btn-run" onclick="runSkulpt('import', 'Imported')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('import')">Reset</button>
                 <div id="coding-output-import" class="live-output-box"></div>
                 <div id="coding-feedback-import" class="feedback"></div>
             </div>
@@ -407,6 +482,7 @@ print('...')"></textarea>
                 <textarea id="coding-ans-1" placeholder="import ...
 print(...)"></textarea>
                 <button class="btn-run" onclick="runSkulpt(1, '4.0')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice(1)">Reset</button>
                 <div id="coding-output-1" class="live-output-box"></div>
                 <div id="coding-feedback-1" class="feedback"></div>
             </div>
@@ -449,6 +525,7 @@ print(...)"></textarea>
                 <textarea id="coding-ans-os" placeholder="import ...
 print('...')"></textarea>
                 <button class="btn-run" onclick="runSkulpt('os', 'Checking')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('os')">Reset</button>
                 <div id="coding-output-os" class="live-output-box"></div>
                 <div id="coding-feedback-os" class="feedback"></div>
             </div>
@@ -541,6 +618,7 @@ file.close()
                 <p><strong>Challenge:</strong> What is the math function for square root? Print just the name (e.g., <code>sqrt</code>).</p>
                 <textarea id="coding-ans-mathfunc" placeholder="print('...')"></textarea>
                 <button class="btn-run" onclick="runSkulpt('mathfunc', 'sqrt')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('mathfunc')">Reset</button>
                 <div id="coding-output-mathfunc" class="live-output-box"></div>
                 <div id="coding-feedback-mathfunc" class="feedback"></div>
             </div>
@@ -567,6 +645,7 @@ now = datetime.now()
                 <textarea id="coding-ans-datetime" placeholder="from ... import ...
 print('...')"></textarea>
                 <button class="btn-run" onclick="runSkulpt('datetime', 'Time Check')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('datetime')">Reset</button>
                 <div id="coding-output-datetime" class="live-output-box"></div>
                 <div id="coding-feedback-datetime" class="feedback"></div>
             </div>
@@ -639,7 +718,7 @@ today = datetime.now().strftime(<span class="string">"%Y-%m-%d"</span>)
     </div>
 
     <footer>
-        © 2026 KVJ Analytics | Professional Python Certification Path
+        © 2026 KVJ | Professional Python Certification Path
     </footer>
     <script>
         function triggerConfetti() {
@@ -684,6 +763,33 @@ today = datetime.now().strftime(<span class="string">"%Y-%m-%d"</span>)
             feedback.style.display = "none";
             feedback.className = "feedback";
 
+            // BYPASS FOR UNSUPPORTED SKULPT MODULES
+            if (id === 'os' || id === 'datetime') {
+                let isValid = false;
+                let simulatedOutput = "";
+                
+                if (id === 'os' && prog.includes('import os') && (prog.includes('print("Checking")') || prog.includes("print('Checking')"))) {
+                    isValid = true;
+                    simulatedOutput = "Checking";
+                } else if (id === 'datetime' && prog.includes('datetime') && (prog.includes('print("Time Check")') || prog.includes("print('Time Check')"))) {
+                    isValid = true;
+                    simulatedOutput = "Time Check";
+                }
+
+                if (isValid) {
+                    outputDiv.innerText = simulatedOutput;
+                    feedback.innerHTML = "✓ Correct! Your code works perfectly. 🎉";
+                    feedback.className = "feedback correct";
+                    triggerConfetti();
+                } else {
+                    outputDiv.innerText = "Error: Did you import the module correctly and print the exact string requested?";
+                    feedback.innerHTML = `✗ Wrong! Expected result not found.`;
+                    feedback.className = "feedback wrong";
+                }
+                feedback.style.display = "block";
+                return; // Exit early to bypass Skulpt
+            }
+
             let outputText = "";
             let validationText = "";
             let userInputs = [];
@@ -727,8 +833,8 @@ today = datetime.now().strftime(<span class="string">"%Y-%m-%d"</span>)
                                 userInputs.push(val);
                                 container.remove();
                                 // Add back the prompt and the answer to the output box permanently
-                                outputDiv.appendChild(document.createTextNode(prompt + val + "\n"));
-                                outputText += prompt + val + "\n";
+                                outputDiv.appendChild(document.createTextNode(prompt + val + ""));
+                                outputText += prompt + val + "";
                                 // Do NOT add prompt/input to validationText!
                                 resolve(val);
                             }
@@ -769,12 +875,30 @@ today = datetime.now().strftime(<span class="string">"%Y-%m-%d"</span>)
                 }
                 feedback.style.display = "block";
             }, function(err) {
-                outputDiv.innerText += "\n" + err.toString();
+                outputDiv.innerText += "" + err.toString();
                 feedback.innerHTML = "✗ Error in your code!";
                 feedback.className = "feedback wrong";
                 feedback.style.display = "block";
             });
         }
+
+        function resetCodingPractice(id) {
+            const textarea = document.getElementById(`coding-ans-${id}`);
+            const output = document.getElementById(`coding-output-${id}`);
+            const feedback = document.getElementById(`coding-feedback-${id}`);
+            
+            if (textarea) textarea.value = "";
+            if (output) {
+                output.innerHTML = "";
+                output.classList.remove('active');
+            }
+            if (feedback) {
+                feedback.style.display = "none";
+                feedback.className = "feedback";
+            }
+        }
     </script>
+    </div>
+
 </body>
 </html>

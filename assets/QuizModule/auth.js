@@ -1,6 +1,6 @@
 // auth.js - Frontend Logic
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyKUrP28dEY_Ma2EirPSf7VwGjQBzKo09Bpm5riLzHth0a7bE4uildUq7-2v_Ri7icy/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxWBtu6ZE4fwil942a0o5EfNUohvB_jYAFgGvDtPrnngIDl95LhJmpE9KoGRg6TabZR/exec';
 
 // Form Toggling
 function toggleForm(formId) {
@@ -84,6 +84,14 @@ function handleAuth(event, action) {
                 // Successful login
                 sessionStorage.setItem('isLoggedIn', 'true');
                 if(data.name) sessionStorage.setItem('userName', data.name);
+                
+                // Restore Enrollments from Server
+                if (data.enrollments && Array.isArray(data.enrollments)) {
+                    const phone = document.getElementById('login-phone').value.trim();
+                    data.enrollments.forEach(course => {
+                        localStorage.setItem('registered_' + phone + '_' + course, 'true');
+                    });
+                }
                 
                 showAlert("Sign in successful! Redirecting...", "success");
                 setTimeout(() => {

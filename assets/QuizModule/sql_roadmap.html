@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQL Roadmap | KVJ Analytics</title>
+    <title>SQL Roadmap | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -216,8 +216,11 @@
     <script>
         function logout() {
             sessionStorage.clear();
-            localStorage.clear();
-            window.location.href = 'index.html';
+            localStorage.removeItem('strategist_user');
+            localStorage.removeItem('strategist_phone');
+            localStorage.removeItem('gmail');
+            localStorage.removeItem('class_code');
+            window.location.href = 'login.html';
         }
     </script>
 </head>
@@ -227,7 +230,7 @@
             <a href="sql_intro.html" class="nav-back">
                 Back
             </a>
-            <a href="sql_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+            <a href="sql_index.html"><img src="Kvj logo.jpeg" alt="KVJ Logo" class="kvj-logo-img"></a>
         </div>
         <a onclick="logout()" class="nav-logout">Log Out</a>
     </nav>
@@ -319,5 +322,6 @@
             </div>
         </div>
     </main>
+    </div>
 </body>
 </html>

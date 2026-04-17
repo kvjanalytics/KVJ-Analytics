@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 2.4: Strategic Logic & Functions | KVJ Analytics</title>
+    <title>Module 2.4: Strategic Logic & Functions | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -44,7 +44,7 @@
             background-size: cover;
             background-position: center;
             color: white; 
-            padding: 140px 20px 140px; 
+            padding: 140px 20px 80px; 
             text-align: center; 
         }
 
@@ -54,11 +54,11 @@
             text-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
-        .layout-container { max-width: 900px; margin: -80px auto 40px; position: relative; z-index: 10; width: 95%; padding-bottom: 60px; }
+        .layout-container { max-width: 900px; margin: 40px auto; width: 95%; padding-bottom: 60px; }
 
         .main-content { 
             background: #ffffff; border: 1px solid var(--border-color);
-            padding: 60px; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            padding: 60px; border-radius: 12px; box-shadow: 0 4px 25px rgba(0,0,0,0.04);
         }
 
         .section-header { margin-bottom: 30px; border-bottom: 3px solid var(--bg-light); padding-bottom: 15px; }
@@ -105,11 +105,43 @@
             font-size: 14px; margin: 20px 0; border: 1px solid #1e293b;
         }
         .excel-terminal .keyword { color: #f472b6; }
-    </style>
+    
+        /* Quiz CTA Styling */
+        .quiz-cta {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 142, 171, 0.2);
+        }
+        .quiz-cta h3 { color: #ffffff !important; margin-top: 0; font-size: 24px; border: none; padding: 0; }
+        .quiz-cta p { color: #ffffff !important; opacity: 0.95; margin-bottom: 25px; }
+        .btn-start-quiz {
+            display: inline-block;
+            background: #ffffff;
+            color: var(--primary-blue);
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .btn-start-quiz:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: #f8fafc;
+        }
+
+</style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="excel_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+        <a href="excel_index.html"><img src="Kvj logo.jpeg" alt="KVJ Logo" class="kvj-logo-img"></a>
         <a href="excel_roadmap.html" class="exit-btn">EXIT</a>
     </nav>
 
@@ -142,7 +174,45 @@
                 <li style="margin-top: 15px;"><strong>Outlier Detection:</strong> Using <code>MIN</code> and <code>MAX</code> to identify "Hero Products" versus "Dead Stock" that is consuming liquid capital.</li>
             </ul>
 
-            
+            <!-- Practice 1 -->
+            <div class="practice-space">
+                <h3 style="margin-top:0;">Practice: Outlier Detection</h3>
+                <p style="margin-bottom: 20px;">Which function would you use to find the single highest-performing "Hero Product" in the sales range B2:B100?</p>
+                <div class="practice-box">
+                    <input type="text" id="prac1" placeholder="Type function name here (e.g. SUM)">
+                    <button onclick="checkExcel('prac1', 'MAX', 'fb1')">Submit</button>
+                </div>
+                <div id="fb1" class="feedback"></div>
+            </div>
+
+            <hr style="border:0; border-top:1px solid var(--border-color); margin: 40px 0;">
+
+            <h3>2. Logical Functions</h3>
+            <ul>
+                <li><strong>IF:</strong> Returns one value if a condition is TRUE and another if it is FALSE.
+                    <br><span style="color:var(--text-muted); font-size:14px; display:block; margin-top:5px; margin-bottom:5px;"><em>Example: If a sale is over ₹5,000, label it "Premium"; otherwise, "Standard."</em></span>
+                </li>
+                <li><strong>AND:</strong> Returns TRUE only if all conditions are met.
+                    <br><span style="color:var(--text-muted); font-size:14px; display:block; margin-top:5px; margin-bottom:5px;"><em>Example: Trigger a bonus only if Sales > ₹1,00,000 AND Attendance > 95%.</em></span>
+                </li>
+                <li><strong>OR:</strong> Returns TRUE if at least one condition is met.
+                    <br><span style="color:var(--text-muted); font-size:14px; display:block; margin-top:5px; margin-bottom:5px;"><em>Example: Flag an invoice for review if it is Overdue OR the amount exceeds ₹50,000.</em></span>
+                </li>
+                <li><strong>NOT:</strong> Reverses the logic.
+                    <br><span style="color:var(--text-muted); font-size:14px; display:block; margin-top:5px; margin-bottom:5px;"><em>Example: Identify all boutique branches that are NOT located in the "South" region.</em></span>
+                </li>
+            </ul>
+
+            <!-- Practice 2 -->
+            <div class="practice-space">
+                <h3 style="margin-top:0;">Practice: Multi-Condition Logic</h3>
+                <p style="margin-bottom: 20px;">Which logical function should wrap around multiple conditions if a manager wants to flag an employee who meets <strong>every single one</strong> of the criteria?</p>
+                <div class="practice-box">
+                    <input type="text" id="prac2" placeholder="Type function name here (e.g. IF)">
+                    <button onclick="checkExcel('prac2', 'AND', 'fb2')">Submit</button>
+                </div>
+                <div id="fb2" class="feedback"></div>
+            </div>
 
             <script>
                 function checkExcel(inputId, correctAns, feedbackId) {
@@ -168,7 +238,9 @@
     </div>
 
     <footer>
-        &copy; 2024 KVJ Analytics. All Rights Reserved.
+        &copy; 2024 KVJ. All Rights Reserved.
     </footer>
+    </div>
+
 </body>
 </html>

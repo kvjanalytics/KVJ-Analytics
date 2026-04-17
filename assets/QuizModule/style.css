@@ -293,7 +293,7 @@ body { margin: 0; padding: 0; box-sizing: border-box; background-color: var(--bg
 .bg-blue { background: #1e40af; }
 .bg-green { background: #059669; }
 .bg-purple { background: #7c3aed; }
-.bg-orange { background: #d97706; }
+.bg-sky { background: #38bdf8; }
 
 .kpi-title { font-size: 0.65rem; text-transform: uppercase; font-weight: 600; opacity: 0.8; margin-bottom: 10px; }
 .kpi-value { font-size: 1.4rem; font-weight: 700; font-family: 'Montserrat', sans-serif; margin-bottom: 6px; }
@@ -828,5 +828,60 @@ body { margin: 0; padding: 0; box-sizing: border-box; background-color: var(--bg
     box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
 }
 
+/* ===== Quick Contact Sidebar ===== */
+.quick-contact-bar {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 5px;
+    z-index: 9999;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+    border-radius: 8px 0 0 8px;
+}
 
+.quick-contact-bar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 5px 0;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    text-decoration: none;
+}
+
+.quick-contact-bar a:hover {
+    transform: scale(1.1);
+}
+
+.qc-phone {
+    background-color: #2196f3;
+}
+
+.qc-whatsapp {
+    background-color: #4caf50;
+}
+
+.qc-email {
+    background: linear-gradient(135deg, #ef5350, #ffb74d);
+}
+
+.qc-icon {
+    width: 24px;
+    height: 24px;
+    fill: white;
+    flex-shrink: 0;
+}
+
+.qc-divider {
+    width: 100%;
+    height: 1px;
+    background: #333;
+    margin: 5px 0;
+}
 

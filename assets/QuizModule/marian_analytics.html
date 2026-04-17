@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marian Business Analytics | Professional Certification Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
     <style>
         :root {
             --primary-navy: #1e3a8a;
@@ -74,112 +76,215 @@
 
         .logo-img { height: 50px; width: auto; }
 
-        /* IMAGE-FIRST HERO SECTION */
-        .hero {
+        /* HERO SECTION (Google Cert Style) */
+        .kvj-hero {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #170f36 0%, #2f195f 100%);
+            min-height: auto;
             position: relative;
-            padding: 4rem 0 6rem; /* Uplifted layout */
-            background: #ffffff;
-            overflow: hidden;
-            border-bottom: 1px solid #f1f5f9;
         }
 
-        #antigravity-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-        .hero-layout {
-            position: relative;
-            z-index: 2;
+        .cert-card {
+            background: var(--pure-white);
+            border-radius: 20px;
             display: grid;
-            grid-template-columns: 0.35fr 0.65fr;
-            gap: 6rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cert-logo {
+            height: 35px;
+            width: auto;
+            margin-bottom: 25px;
+            align-self: flex-start;
+        }
+
+        .cert-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #202124;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .cert-pills {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            display: inline-flex;
             align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
-        .hero-text {
-            max-width: 480px;
-            opacity: 0;
-            transform: translateX(-30px);
-            animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .pill-purple {
+            background-color: #f3e8ff;
+            color: #6b21a8;
         }
 
-        @keyframes slideInLeft {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .pill-teal {
+            background-color: #ccfbf1;
+            color: #0f766e;
         }
 
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 span {
-            color: var(--accent-cyan);
-            display: block;
-            background: linear-gradient(to right, var(--primary-navy), var(--accent-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: var(--text-medium);
-            margin-bottom: 0;
+        .cert-desc {
+            color: #5f6368;
+            font-size: 1.1rem;
             line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 95%;
+        }
+
+        .cert-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+            border-top: 1px solid #f1f3f4;
+            padding-top: 25px;
+        }
+
+        .stat-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-val {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #202124;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .stat-val.rating {
+            color: #e67c00;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #5f6368;
+            line-height: 1.3;
+        }
+
+        .cert-creator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: auto;
+            font-size: 0.9rem;
+            color: #5f6368;
+        }
+
+        .cert-creator img {
+            height: 20px;
+            width: auto;
+        }
+
+        .cert-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .hero-img-container {
             width: 100%;
-            aspect-ratio: 16 / 10;
-            border-radius: 24px;
+            height: 380px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15), 0 18px 36px -18px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(15, 23, 42, 0.08);
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: scale(0.95);
-            animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes scaleIn {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .hero-img-container:hover {
-            transform: scale(1.01) translateY(-10px);
-            box-shadow: 0 45px 90px -20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: #f8f9fa;
+            position: relative;
+            margin-bottom: 30px;
+            border: 1px solid #e8eaed;
         }
 
         .pbi-embed {
             width: 100%;
-            height: calc(100% + 40px);
+            height: 100%;
             border: none;
             display: block;
-            margin-top: -2px;
         }
 
+        .cert-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        /* COURSE GRID - IMAGE CENTRIC */
+        .btn-get-started {
+            background-color: #6328e0;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 14px 0;
+            width: 100%;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.2s;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .btn-get-started:hover {
+            background-color: #501bbf;
+        }
+
+        .cert-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5f6368;
+            line-height: 1.5;
+        }
+
+        .cert-note a {
+            color: #6328e0;
+            text-decoration: none;
+        }
+
+        .cert-note a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 1024px) {
+            .cert-card {
+                grid-template-columns: 1fr;
+            }
+            .cert-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .hero-img-container {
+                height: 300px;
+            }
+        }
+/* COURSE GRID */
         .content-section {
             padding: 8rem 0;
         }
@@ -286,15 +391,10 @@
         }
 
         @media (max-width: 1024px) {
-            .hero-layout { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-            .hero-text { max-width: 100%; }
-            .hero-text h1 { font-size: 3.5rem; }
+            .hero-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+            .hero-left { max-width: 100%; margin: 0 auto; }
+            .hero-title { font-size: 3rem; }
             .hero-img-container { max-width: 700px; margin: 0 auto; }
-        }
-
-        @media (max-width: 768px) {
-            .hero-text h1 { font-size: 2.8rem; }
-            .course-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -302,33 +402,82 @@
     <nav>
         <div class="container">
             <div class="nav-inner">
-                <a href="course_selection.html" class="nav-back">
-                    Back
-                </a>
-                <img src="Logo marian.png" alt="Marian Logo" class="logo-img">
+                <a href="index.html" class="nav-back">Back</a>
+                <img src="Kvj logo.jpeg" alt="KVJ Logo" class="logo-img" style="max-height: 45px; width: auto;">
             </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <canvas id="antigravity-particles"></canvas>
+    <header class="kvj-hero">
         <div class="container">
-            <div class="hero-layout">
-                <div class="hero-text">
-                    <h1>
-                        Defy Complexity. <br>
-                        <span>Elevate Strategy.</span>
-                    </h1>
-                    <p>Elite certification training platform specializing in data science, analytics, and business intelligence. Master the skills that drive industry disruption with professional precision.</p>
+            <div class="cert-card">
+                <div class="cert-left">
+                    <img src="Logo marian.png" alt="Marian Logo" class="cert-logo">
+                    <h1 class="cert-title">KVJ Advanced Business Analytics Certification</h1>
+                    
+                    <div class="cert-pills">
+                        <span class="pill pill-purple">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg> 
+                            Learn Analytics with KVJ
+                        </span>
+                        <span class="pill pill-teal">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg> 
+                            Certificate issued on completion
+                        </span>
+                    </div>
+                    
+                    <p class="cert-desc">
+                        Get the Business Analytics skills employers are looking for, and build 20+ interactive dashboards and models you can use at work, right away.
+                    </p>
+                    
+                    <div class="cert-stats">
+                        <div class="stat-col">
+                            <div class="stat-val rating">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="#e67c00" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                4.8
+                            </div>
+                            <div class="stat-label">average rating</div>
+                        </div>
+                        <div class="stat-col">
+                            <div class="stat-val">10</div>
+                            <div class="stat-label">course modules</div>
+                        </div>
+                        <div class="stat-col">
+                            <div class="stat-val">20+</div>
+                            <div class="stat-label">practice activities <svg style="opacity:0.5; margin-left:2px" viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+                        </div>
+                        <div class="stat-col">
+                            <div class="stat-val">40</div>
+                            <div class="stat-label">hours of content</div>
+                        </div>
+                    </div>
+                    
+                    <div class="cert-creator">
+                        <img src="Logo marian.png" alt="Marian Logo">
+                        <span>Created by <a href="#" style="color:#6328e0; text-decoration:none;">Marian College</a></span>
+                    </div>
                 </div>
-                <div class="hero-img-container">
-                    <iframe title="Power BI Report" class="pbi-embed" src="https://app.powerbi.com/view?r=eyJrIjoiNDJlYTk0ZTctODc2Ni00ZGJiLTlkMDctZWNiZmZmYjY4NjUzIiwidCI6Ijg5YTM5YWRmLWUwNjYtNGJkNC1hMGE1LWEwYzcwYWNiZDczOSJ9" allowFullScreen="true"></iframe>
+                
+                <div class="cert-right">
+                    <div class="hero-img-container">
+                        <iframe title="Power BI Report" class="pbi-embed" src="https://app.powerbi.com/view?r=eyJrIjoiNDJlYTk0ZTctODc2Ni00ZGJiLTlkMDctZWNiZmZmYjY4NjUzIiwidCI6Ijg5YTM5YWRmLWUwNjYtNGJkNC1hMGE1LWEwYzcwYWNiZDczOSJ9" allowFullScreen="true"></iframe>
+                    </div>
+                    
+                    <div class="cert-action">
+                        <a href="#courses" class="btn-get-started">
+                            Get started &rarr;
+                        </a>
+                        <p class="cert-note">
+                            Part of the KVJ professional learning path.<br>
+                            Flexible tracking starting at full access. <a href="#">Learn more</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="content-section">
+    <main class="content-section" id="courses">
         <div class="container">
             <div class="section-header">
                 <h2>Certification Modules</h2>
@@ -431,88 +580,43 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Marian Business Analytics & KVJ Analytics Collaboration. Empowering Global Minds.</p>
+            <p>&copy; 2024 Marian Business Analytics & KVJ Collaboration. Empowering Global Minds.</p>
         </div>
     </footer>
 
     <script>
-        // Antigravity Orbiting Particle Animation
-        const canvas = document.getElementById('antigravity-particles');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        const colors = ['#3b82f6', '#ef4444', '#eab308', '#a855f7']; // Blue, Red, Yellow, Purple
-
-        function initCanvas() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        }
-
-        class Particle {
-            constructor() {
-                this.init();
-            }
-
-            init() {
-                this.x = canvas.width / 2;
-                this.y = canvas.height / 2;
-                this.radius = Math.random() * 2 + 1;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.angle = Math.random() * Math.PI * 2;
-                this.velocity = Math.random() * 0.01 + 0.005;
-                this.orbitRadius = Math.random() * 20;
-                this.growth = Math.random() * 0.5 + 0.2;
-                this.opacity = Math.random() * 0.5 + 0.3;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.globalAlpha = this.opacity;
-                ctx.fill();
-                ctx.globalAlpha = 1;
-            }
-
-            update() {
-                this.orbitRadius += this.growth;
-                this.angle += this.velocity;
-                this.x = canvas.width / 2 + Math.cos(this.angle) * this.orbitRadius;
-                this.y = canvas.height / 2 + Math.sin(this.angle) * this.orbitRadius;
-
-                // Reset when too far
-                if (this.orbitRadius > Math.max(canvas.width, canvas.height) * 0.8) {
-                    this.init();
-                }
-            }
-        }
-
-        function createParticles() {
-            particles = [];
-            for (let i = 0; i < 80; i++) {
-                setTimeout(() => {
-                    particles.push(new Particle());
-                }, i * 50); // Stagger entry
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('resize', () => {
-            initCanvas();
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            initCanvas();
-            createParticles();
-            animate();
+        // Access Guard
+        window.addEventListener('DOMContentLoaded', () => {
+            const userName = sessionStorage.getItem('userName') || localStorage.getItem('strategist_user');
+            const userPhone = localStorage.getItem('strategist_phone') || 'guest';
+            
+            // 1. Must be logged in
+            if (!userName) {
+                sessionStorage.setItem('redirectAfterLogin', window.location.href);
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // 2. Must have purchased the course
+            const courseName = "Marian Business Analytics";
+            const isRegistered = localStorage.getItem('registered_' + userPhone + '_' + courseName) === 'true';
+            
+            if (!isRegistered) {
+                alert("Access Denied: You must register and purchase this course to view its content.");
+                window.location.href = 'index.html';
+            }
         });
     </script>
+
 </body>
 </html>

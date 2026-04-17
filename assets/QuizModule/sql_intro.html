@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQL Mastery | KVJ Analytics</title>
+    <title>SQL Mastery | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body { 
@@ -185,8 +185,11 @@
     <script>
         function logout() {
             sessionStorage.clear();
-            localStorage.clear();
-            window.location.href = 'index.html';
+            localStorage.removeItem('strategist_user');
+            localStorage.removeItem('strategist_phone');
+            localStorage.removeItem('gmail');
+            localStorage.removeItem('class_code');
+            window.location.href = 'login.html';
         }
         document.addEventListener('DOMContentLoaded', () => {
             const userName = sessionStorage.getItem('userName') || localStorage.getItem('strategist_user') || 'Student';
@@ -202,11 +205,11 @@
 
     <nav class="navbar">
         <div style="display: flex; align-items: center; gap: 1.5rem;">
-            <a href="course_selection.html" class="nav-back">
+            <a href="index.html" class="nav-back">
                 Back
             </a>
-            <a href="course_selection.html" class="nav-brand">
-                <img src="Kvj logo.jpeg" alt="KVJ Analytics" class="nav-logo">
+            <a href="index.html" class="nav-brand">
+                <img src="Kvj logo.jpeg" alt="KVJ" class="nav-logo">
             </a>
         </div>
         <a onclick="logout()" class="nav-logout">Log Out</a>
@@ -218,7 +221,7 @@
         </div>
         
         <h1>Query the Future.</h1>
-        <p>Master the language of data architecture. From complex joins to analytical optimization, unlock the power of relational structures with KVJ Analytics.</p>
+        <p>Master the language of data architecture. From complex joins to analytical optimization, unlock the power of relational structures with KVJ.</p>
         
         <a href="sql_roadmap.html" class="btn-primary">
             Begin SQL Sequence &rarr;
@@ -239,5 +242,7 @@
             <p>Transform raw records into strategic business intelligence through advanced analytical SQL functions.</p>
         </div>
     </div>
+    </div>
+
 </body>
 </html>

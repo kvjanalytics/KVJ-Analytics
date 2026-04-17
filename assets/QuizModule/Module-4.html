@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 4: Documentation | KVJ Analytics</title>
+    <title>Module 4: Documentation | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
@@ -76,71 +76,87 @@
         /* Layout Container */
         .layout-container {
             display: flex;
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 40px auto;
             gap: 40px;
             width: 95%;
             padding-bottom: 60px;
         }
 
-        /* Sidebar Navigation */
         .sidebar {
             width: 300px;
+            flex-shrink: 0;
             background: white;
             padding: 30px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             position: sticky;
             top: 100px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             height: fit-content;
         }
 
-        .sidebar h3 { 
+        .sidebar h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 13px; 
-            color: var(--secondary-blue); 
-            text-transform: uppercase; 
-            margin-bottom: 20px; 
-            border-bottom: 2px solid var(--bg-light); 
-            padding-bottom: 10px; 
-            font-weight: 800; 
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--secondary-blue);
+            text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f5f9;
         }
 
-        .sidebar a { 
-            display: flex; 
-            align-items: center;
-            padding: 12px 15px; 
-            color: #555; 
-            text-decoration: none; 
-            font-size: 14px; 
+        .sidebar a {
+            display: block;
+            padding: 12px 15px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
             font-weight: 500;
-            margin-bottom: 5px;
             border-radius: 8px;
+            margin-bottom: 5px;
             transition: all 0.2s;
         }
 
-        .sidebar a.active { 
-            color: var(--primary-blue); 
-            font-weight: 700; 
-            background: #f0f7ff; 
-            border-left: 4px solid var(--primary-blue); 
-        }
-
-        .sidebar a:hover:not(.active) {
+        .sidebar a:hover {
             background: #f8fafc;
             color: var(--primary-blue);
         }
 
+        .sidebar a.active {
+            background: #eff6ff;
+            color: var(--primary-blue);
+            font-weight: 700;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .main-content li {
+            list-style: none;
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+        }
+
+        .main-content li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+            border-radius: 2px;
+            transform: rotate(45deg);
+        }
+
         /* Main Content Area */
-        .main-content { 
+        .main-content {
             flex: 1;
-            background: #ffffff; 
+            background: #ffffff;
             border: 1px solid var(--border-color);
-            padding: 60px;
+            padding: 40px 60px;
             border-radius: 12px;
-            box-shadow: 0 4px 25px rgba(0,0,0,0.04);
         }
 
         .section-header { 
@@ -240,8 +256,8 @@
             color: white;
             box-shadow: 0 10px 30px rgba(0, 142, 171, 0.2);
         }
-        .quiz-cta h3 { color: white; margin-top: 0; font-size: 24px; border: none; padding: 0; }
-        .quiz-cta p { color: rgba(255,255,255,0.8); margin-bottom: 25px; }
+        .quiz-cta h3 { color: #ffffff !important; margin-top: 0; font-size: 24px; border: none; padding: 0; }
+        .quiz-cta p { color: #ffffff !important; opacity: 0.95; margin-bottom: 25px; }
         .btn-start-quiz {
             display: inline-block;
             background: #ffffff;
@@ -344,8 +360,49 @@
             font-weight: 700;
             font-size: 16px;
             transition: all 0.3s;
+            margin-right: 10px;
         }
-        .coding-practice .btn-run:hover { background: #7dd3fc; transform: translateY(-2px); }
+
+        .coding-practice .btn-reset {
+            background: #334155;
+            color: #f8fafc;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .coding-practice .btn-run:hover, .coding-practice .btn-reset:hover {
+            background: #7dd3fc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .coding-practice .btn-reset:hover { background: #475569; }
+
+        .practice-checklist {
+            list-style: none;
+            padding-left: 0;
+            margin: 15px 0 20px;
+        }
+        .practice-checklist li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            font-size: 15.5px;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+        .practice-checklist li::before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #38bdf8;
+            font-size: 18px;
+        }
 
         /* Visual Illustrations */
         .illustration-container {
@@ -381,6 +438,32 @@
             .illustration-container { display: none; }
         }
 
+        /* Module Intro Animation Panel */
+        .module-intro-flex {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .module-intro-text {
+            flex: 1;
+        }
+
+        .module-intro-animation {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar { display: none; }
+            .layout-container { flex-direction: column; max-width: 900px; }
+        }
+
+        @media (max-width: 900px) {
+            .module-intro-flex { flex-direction: column; }
+            .module-intro-animation { display: none; }
+        }
+
         @media (max-width: 992px) {
             .layout-container { flex-direction: column; }
             .sidebar { width: 100%; position: static; margin-bottom: 30px; }
@@ -392,7 +475,7 @@
 <body>
 
     <nav class="navbar">
-        <a href="python_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+        <a href="python_index.html"><img src="Kvj logo.jpeg" alt="KVJ Logo" class="kvj-logo-img"></a>
         <a href="roadmap.html" class="logout-btn">EXIT</a>
     </nav>
 
@@ -416,7 +499,7 @@
     </div>
 
     <div class="layout-container">
-        <nav class="sidebar">
+        <aside class="sidebar">
             <h3>Module Path</h3>
             <a href="Module-1.html">01 Foundation</a>
             <a href="Module-2.html">02 Flow Control</a>
@@ -424,10 +507,10 @@
             <a href="Module-4.html" class="active">04 Documentation</a>
             <a href="Module-5.html">05 Error Handling</a>
             <a href="Module-6.html">06 Built-in Modules</a>
-            
-            <h3 style="margin-top:25px;">Navigation</h3>
-            <a href="roadmap.html" style="background: #f8f9fa;">&larr; Return to Roadmap</a>
-        </nav>
+
+            <h3 style="margin-top:35px;">Navigation</h3>
+            <a href="roadmap.html" style="background: #f8fafc;">&larr; Return to Roadmap</a>
+        </aside>
 
         <main class="main-content">
             <div class="section-header">
@@ -486,6 +569,22 @@ marks = <span class="number">70</span>
                 Instead, indentation defines the structure.
             </div>
 
+            <h3>Introduction to Documentation</h3>
+            <p>Documentation is as important as the code itself. It explains what the code does, why it exists, and how to use it.</p>
+            <p>Good documentation helps:</p>
+            <ul>
+                <li>Other developers understand your logic</li>
+                <li>You remember what you wrote months later</li>
+                <li>Automated systems generate instruction manuals</li>
+            </ul>
+            <div class="interaction-box">
+                <strong>Business Importance:</strong><br>
+                • Large organizations rely on clear documentation to hand over projects<br>
+                • API documents allow different companies to connect their software<br>
+                • Compliance reports are generated from documented code
+            </div>
+
+
             <h3>Incorrect Indentation</h3>
             <p><strong>Example</strong></p>
 <pre>
@@ -533,13 +632,18 @@ total = <span class="function">sum</span>(sales)
             <!-- Coding Practice: comments -->
             <div class="coding-practice">
                 <h3>Coding Practice: Comments</h3>
-                <p><strong>Challenge:</strong> Add a comment <code># This is a comment</code> above the print statement.</p>
-                <textarea id="coding-ans-comment" placeholder="...
-print('Hello')"></textarea>
-                <button class="btn-run" onclick="runSkulpt('comment', 'Hello')">Run & Check</button>
+                <p><strong>Context:</strong> Internal script labeling for a marketing agency audit.
+                <br><strong>Challenge:</strong> Write a short explanation as a comment only (e.g., <code>This is a short explanation written as a comment</code>).</p>
+                <textarea id="coding-ans-comment" placeholder="Write your comment here..."></textarea>
+                <button class="btn-run" onclick="runSkulpt('comment', '')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('comment')">Reset</button>
                 <div id="coding-output-comment" class="live-output-box"></div>
                 <div id="coding-feedback-comment" class="feedback"></div>
             </div>
+
+            <!-- ... (intermediate content) ... -->
+            <!-- Note: I will use multi_replace for multiple changes, but here I am just showing the intent -->
+
 
             <h3>Docstrings</h3>
             <p>Docstrings describe what a function does.</p>
@@ -573,11 +677,11 @@ print('Hello')"></textarea>
             <!-- Coding Practice: docstrings -->
             <div class="coding-practice">
                 <h3>Coding Practice: Docstrings</h3>
-                <p><strong>Challenge:</strong> Write a docstring <code>"""Calculates total"""</code> inside a function called <code>total()</code> and return 0.</p>
-                <textarea id="coding-ans-doc" placeholder="def total():
-    ...
-    return 0"></textarea>
-                <button class="btn-run" onclick="runSkulpt('doc', '0')">Run & Check</button>
+                <p><strong>Objective:</strong> Technical documentation for a social media engagement counter.
+                <br><strong>Challenge:</strong> Define a function <code>total_likes()</code> that includes a <strong>Docstring</strong> and <code>return 0</code>.</p>
+                <textarea id="coding-ans-doc" placeholder="Write your documented function here..."></textarea>
+                <button class="btn-run" onclick="runSkulpt('doc', '', 'print(total_likes())')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('doc')">Reset</button>
                 <div id="coding-output-doc" class="live-output-box"></div>
                 <div id="coding-feedback-doc" class="feedback"></div>
             </div>
@@ -627,10 +731,11 @@ greet()
             <!-- Coding Practice: def -->
             <div class="coding-practice">
                 <h3>Coding Practice: Define Function</h3>
-                <p><strong>Challenge:</strong> Define a function <code>show()</code> that prints <code>"Visible"</code>.</p>
-                <textarea id="coding-ans-def" placeholder="def ...:
-    print('...')"></textarea>
-                <button class="btn-run" onclick="runSkulpt('def', 'Visible')">Run & Check</button>
+                <p><strong>Task:</strong> Automated status-verification routine for an enterprise server cluster.
+                <br><strong>Challenge:</strong> Define a function <code>show()</code> that prints <code>"Visible"</code>.</p>
+                <textarea id="coding-ans-def" placeholder="Write your function definition here..."></textarea>
+                <button class="btn-run" onclick="runSkulpt('def', 'Visible', 'show()')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('def')">Reset</button>
                 <div id="coding-output-def" class="live-output-box"></div>
                 <div id="coding-feedback-def" class="feedback"></div>
             </div>
@@ -671,25 +776,22 @@ result = profit(<span class="number">10000</span>, <span class="number">7000</sp
             <!-- Coding Practice: return -->
             <div class="coding-practice">
                 <h3>Coding Practice: Return Value</h3>
-                <p><strong>Challenge:</strong> Fix the function to <strong>return</strong> the value <code>100</code>.</p>
-                <textarea id="coding-ans-return" placeholder="def get_val():
-    ... 100
-
-print(get_val())"></textarea>
-                <button class="btn-run" onclick="runSkulpt('return', '100')">Run & Check</button>
+                <p><strong>Logic Design:</strong> Rewards-logic module configuration for standardized point-distribution.
+                <br><strong>Challenge:</strong> Define the function <code>get_val()</code> to <strong>return</strong> the value <code>100</code>.</p>
+                <textarea id="coding-ans-return" placeholder="Write your function here..."></textarea>
+                <button class="btn-run" onclick="runSkulpt('return', '100', 'print(get_val())')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('return')">Reset</button>
                 <div id="coding-output-return" class="live-output-box"></div>
                 <div id="coding-feedback-return" class="feedback"></div>
             </div>
-
             <!-- Coding Practice 1 -->
             <div class="coding-practice">
                 <h3>Coding Practice: Parameters</h3>
-                <p><strong>Challenge:</strong> Define <code>multiply(a, b)</code> and return their product. Test with 10 and 5.</p>
-                <textarea id="coding-ans-1" placeholder="def multiply(a, b):
-    return a * b
-
-print(multiply(10, 5))"></textarea>
-                <button class="btn-run" onclick="runSkulpt(1, '50')">Run & Check</button>
+                <p><strong>Application Engineering:</strong> Inventory valuation tool processing dynamic unit pricing.
+                <br><strong>Challenge:</strong> Define <code>multiply(a, b)</code> and return their product. Test with 10 and 5.</p>
+                <textarea id="coding-ans-1" placeholder="Write your function here..."></textarea>
+                <button class="btn-run" onclick="runSkulpt(1, '50', 'print(multiply(10, 5))')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice(1)">Reset</button>
                 <div id="coding-output-1" class="live-output-box"></div>
                 <div id="coding-feedback-1" class="feedback"></div>
             </div>
@@ -725,6 +827,26 @@ greet(<span class="string">"Rahul"</span>)
             <div class="interaction-box">
                 <strong>Explanation</strong><br>
                 pass prevents syntax errors when a function body is empty.
+            </div>
+
+            <!-- Final Coding Challenge: Documentation & Functions -->
+            <div class="coding-practice">
+                <h3>Final Challenge: Documentation & Functions</h3>
+                <p><strong>Challenge:</strong> Create a professional, documented function to calculate net value.</p>
+                <p style="color: #94a3b8; font-size: 14px; margin-top: -10px; font-style: italic;">
+                    <strong>Operational Scenario:</strong> Development of a retail checkout system requiring a verified net-price calculation routine after tax deductions.
+                </p>
+                <ul class="practice-checklist">
+                    <li>Define a function <code>calculate_net(gross, tax)</code></li>
+                    <li>Add a <strong>Docstring</strong> describing the purpose</li>
+                    <li>Add a <strong>comment</strong> explaining the calculation</li>
+                    <li><strong>Return</strong> the result and <code>print(calculate_net(1000, 150))</code></li>
+                </ul>
+                <textarea id="coding-ans-complex" placeholder="Write your professional code here..."></textarea>
+                <button class="btn-run" onclick="runSkulpt('complex', '850')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('complex')">Reset</button>
+                <div id="coding-output-complex" class="live-output-box"></div>
+                <div id="coding-feedback-complex" class="feedback"></div>
             </div>
 
             <div class="section-header">
@@ -765,7 +887,7 @@ avg = calculate_average_sales(sales)
     </div>
 
     <footer>
-        © 2026 KVJ Analytics | Professional Python Certification Path
+        © 2026 KVJ | Professional Python Certification Path
     </footer>
     <script>
         function triggerConfetti() {
@@ -802,7 +924,7 @@ avg = calculate_average_sales(sales)
 
         function runSkulpt(id, expected, appendCode = "") {
             const progInput = document.getElementById(`coding-ans-${id}`).value;
-            const prog = progInput + (appendCode ? "\n" + appendCode : "");
+            const prog = progInput + (appendCode ? "" + appendCode : "");
             const outputDiv = document.getElementById(`coding-output-${id}`);
             const feedback = document.getElementById(`coding-feedback-${id}`);
             
@@ -854,8 +976,8 @@ avg = calculate_average_sales(sales)
                                 userInputs.push(val);
                                 container.remove();
                                 // Add back the prompt and the answer to the output box permanently
-                                outputDiv.appendChild(document.createTextNode(prompt + val + "\n"));
-                                outputText += prompt + val + "\n";
+                                outputDiv.appendChild(document.createTextNode(prompt + val + ""));
+                                outputText += prompt + val + "";
                                 // Do NOT add prompt/input to validationText!
                                 resolve(val);
                             }
@@ -886,7 +1008,46 @@ avg = calculate_average_sales(sales)
                     }
                 }
 
-                if (cleanOutput.includes(cleanExpected)) {
+                if (id === 'comment') {
+                    if (progInput.includes('#')) {
+                        feedback.innerHTML = "✓ Perfect! You've used a comment correctly. 🎉";
+                        feedback.className = "feedback correct";
+                        triggerConfetti();
+                    } else {
+                        feedback.innerHTML = "✗ Missing Comment! Use the '#' symbol.";
+                    }
+                } else if (id === 'doc') {
+                    const hasDoc = progInput.includes('"""') || progInput.includes("'''");
+                    const hasDef = progInput.includes('def total_likes');
+                    if (!hasDef) {
+                        feedback.innerHTML = "✗ Function 'total_likes' not defined.";
+                    } else if (!hasDoc) {
+                        feedback.innerHTML = "✗ Missing Docstring! Use triple quotes.";
+                    } else {
+                        feedback.innerHTML = "✓ Great! You've documented your function correctly. 🎉";
+                        feedback.className = "feedback correct";
+                        triggerConfetti();
+                    }
+                } else if (id === 'complex') {
+                    const hasDoc = progInput.includes('"""') || progInput.includes("'''");
+                    const hasComment = progInput.includes('#');
+                    const hasDef = progInput.includes('def calculate_net');
+                    const correctOutput = cleanOutput.includes('850');
+
+                    if (!hasDef) {
+                        feedback.innerHTML = "✗ Function 'calculate_net' not defined.";
+                    } else if (!hasDoc) {
+                        feedback.innerHTML = "✗ Missing Docstring! Use triple quotes.";
+                    } else if (!hasComment) {
+                        feedback.innerHTML = "✗ Missing Comment! Use # symbol.";
+                    } else if (!correctOutput) {
+                        feedback.innerHTML = "✗ Calculation or Print error. Expected 850.";
+                    } else {
+                        feedback.innerHTML = "✓ Exceptional work! Professional documentation and logic verified. 🎉";
+                        feedback.className = "feedback correct";
+                        triggerConfetti();
+                    }
+                } else if (cleanOutput.includes(cleanExpected)) {
                     feedback.innerHTML = "✓ Correct! Your code works perfectly. 🎉";
                     feedback.className = "feedback correct";
                     triggerConfetti();
@@ -896,12 +1057,30 @@ avg = calculate_average_sales(sales)
                 }
                 feedback.style.display = "block";
             }, function(err) {
-                outputDiv.innerText += "\n" + err.toString();
+                outputDiv.innerText += "" + err.toString();
                 feedback.innerHTML = "✗ Error in your code!";
                 feedback.className = "feedback wrong";
                 feedback.style.display = "block";
             });
         }
+
+        function resetCodingPractice(id) {
+            const textarea = document.getElementById(`coding-ans-${id}`);
+            const output = document.getElementById(`coding-output-${id}`);
+            const feedback = document.getElementById(`coding-feedback-${id}`);
+            
+            if (textarea) textarea.value = "";
+            if (output) {
+                output.innerHTML = "";
+                output.classList.remove('active');
+            }
+            if (feedback) {
+                feedback.style.display = "none";
+                feedback.className = "feedback";
+            }
+        }
     </script>
+    </div>
+
 </body>
 </html>

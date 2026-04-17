@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQL Strategy - KVJ Analytics</title>
+    <title>SQL Strategy - KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -32,12 +32,12 @@
     <nav class="kvj-navbar">
         <div class="kvj-container nav-wrapper">
             <div style="display: flex; align-items: center; gap: 1.5rem;">
-                <a href="course_selection.html" class="nav-back">
+                <a href="index.html" class="nav-back">
                     Back
                 </a>
-                <a href="course_selection.html" class="kvj-logo">
+                <a href="index.html" class="kvj-logo">
                     <div class="logo-box">
-                        <img src="Kvj logo.jpeg" alt="KVJ Analytics" style="max-height: 45px; width: auto;">
+                        <img src="Kvj logo.jpeg" alt="KVJ" style="max-height: 45px; width: auto;">
                     </div>
                 </a>
             </div>
@@ -58,11 +58,11 @@
                 </h1>
                 
                 <h2 class="hero-subtitle">
-                    Elite SQL Certification
+                    KVJ Advanced SQL Certification
                 </h2>
                 
                 <p class="hero-desc">
-                    Architect data and craft complex queries. The engine of modern business intelligence. Experience liftoff with KVJ Analytics.
+                    Architect data and craft complex queries. The engine of modern business intelligence. Experience liftoff with KVJ.
                 </p>
                 
                 <div class="hero-action">
@@ -81,7 +81,7 @@
                     </div>
                     <div class="dash-content" style="padding: 30px; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95rem; line-height: 1.7; color: #e2e8f0; overflow-x: auto;">
                         <span style="color: #c678dd;">SELECT</span> student_name, mastery_level<br>
-                        <span style="color: #c678dd;">FROM</span> kvj_analytics_students<br>
+                        <span style="color: #c678dd;">FROM</span> kvj_students<br>
                         <span style="color: #c678dd;">WHERE</span> skills <span style="color: #c678dd;">LIKE</span> <span style="color: #98c379;">'%SQL%'</span><br>
                         <span style="color: #c678dd;">ORDER BY</span> achievement_points <span style="color: #c678dd;">DESC</span>;<br>
                         <br>
@@ -97,7 +97,7 @@
         // Typing Effect logic
         const line1 = "Master the Syntax of ";
         const line2 = "Data Architecture &<br>";
-        const line3 = "Analytics";
+        const line3 = "Mastery";
         const typewriterEl = document.getElementById('typewriter');
         let typeIndex = 0;
         const blueStyle = "<span class='text-blue'>";
@@ -129,5 +129,6 @@
         }
         setTimeout(typeWriter, 500);
     </script>
+    </div>
 </body>
 </html>

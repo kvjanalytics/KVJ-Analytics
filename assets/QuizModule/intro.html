@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mastery Sequence | KVJ Analytics</title>
+    <title>Mastery Sequence | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body { 
@@ -246,8 +246,11 @@
     <script>
         function logout() {
             sessionStorage.clear();
-            localStorage.clear();
-            window.location.href = 'index.html';
+            localStorage.removeItem('strategist_user');
+            localStorage.removeItem('strategist_phone');
+            localStorage.removeItem('gmail');
+            localStorage.removeItem('class_code');
+            window.location.href = 'login.html';
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -265,11 +268,11 @@
 
     <nav class="navbar">
         <div style="display: flex; align-items: center; gap: 1.5rem;">
-            <a href="course_selection.html" class="nav-back">
+            <a href="index.html" class="nav-back">
                 Back
             </a>
-            <a href="course_selection.html" class="nav-brand">
-                <img src="Kvj logo.jpeg" alt="KVJ Analytics" class="nav-logo">
+            <a href="index.html" class="nav-brand">
+                <img src="Kvj logo.jpeg" alt="KVJ" class="nav-logo">
             </a>
         </div>
         <a onclick="logout()" class="nav-logout">Log Out</a>
@@ -281,7 +284,7 @@
         </div>
         
         <h1>Architect the Future.</h1>
-        <p>Explore your potential and experience liftoff with KVJ Analytics.<br>Master the logic of innovation.</p>
+        <p>Explore your potential and experience liftoff with KVJ.<br>Master the logic of innovation.</p>
         
         <a href="roadmap.html" class="btn-primary">
             Begin Mastery Sequence<span class="cursor-blink"></span>
@@ -302,5 +305,7 @@
             <p>Assisting effective decision-making with dynamic tracking of your coding competencies.</p>
         </div>
     </div>
+    </div>
+
 </body>
 </html>

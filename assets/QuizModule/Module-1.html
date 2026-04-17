@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 1: Foundation | KVJ Analytics</title>
+    <title>Module 1: Foundation | KVJ</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -88,61 +88,59 @@
         /* Layout Container */
         .layout-container {
             display: flex;
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 40px auto;
             gap: 40px;
             width: 95%;
             padding-bottom: 60px;
         }
 
-        /* Sidebar Navigation */
         .sidebar {
             width: 300px;
+            flex-shrink: 0;
             background: white;
             padding: 30px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             position: sticky;
             top: 100px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             height: fit-content;
         }
 
         .sidebar h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
+            font-size: 12px;
+            font-weight: 800;
             color: var(--secondary-blue);
             text-transform: uppercase;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--bg-light);
-            padding-bottom: 10px;
-            font-weight: 800;
             letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f5f9;
         }
 
         .sidebar a {
-            display: flex;
-            align-items: center;
+            display: block;
             padding: 12px 15px;
-            color: #555;
+            color: var(--text-muted);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            margin-bottom: 5px;
             border-radius: 8px;
+            margin-bottom: 5px;
             transition: all 0.2s;
         }
 
-        .sidebar a.active {
-            color: var(--primary-blue);
-            font-weight: 700;
-            background: #f0f7ff;
-            border-left: 4px solid var(--primary-blue);
-        }
-
-        .sidebar a:hover:not(.active) {
+        .sidebar a:hover {
             background: #f8fafc;
             color: var(--primary-blue);
+        }
+
+        .sidebar a.active {
+            background: #eff6ff;
+            color: var(--primary-blue);
+            font-weight: 700;
+            border-left: 4px solid var(--primary-blue);
         }
 
         /* Main Content Area */
@@ -150,9 +148,8 @@
             flex: 1;
             background: #ffffff;
             border: 1px solid var(--border-color);
-            padding: 60px;
+            padding: 40px 60px;
             border-radius: 12px;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
         }
 
         .section-header {
@@ -292,7 +289,7 @@
         }
 
         .quiz-cta h3 {
-            color: white;
+            color: #ffffff !important;
             margin-top: 0;
             font-size: 24px;
             border: none;
@@ -458,12 +455,27 @@
             font-weight: 700;
             font-size: 16px;
             transition: all 0.3s;
+            margin-right: 10px;
         }
 
-        .coding-practice .btn-run:hover {
+        .coding-practice .btn-reset {
+            background: #334155;
+            color: #f8fafc;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .coding-practice .btn-run:hover, .coding-practice .btn-reset:hover {
             background: #7dd3fc;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
+        .coding-practice .btn-reset:hover { background: #475569; }
 
         /* Visual Illustrations */
         .illustration-container {
@@ -571,128 +583,38 @@
             text-transform: uppercase;
         }
 
+        .main-content li {
+            list-style: none;
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+        }
+
+        .main-content li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+            border-radius: 2px;
+            transform: rotate(45deg);
+        }
+
+        @media (max-width: 1024px) {
+            .illustration-container {
+                display: none;
+            }
+        }
+
         @media (max-width: 1600px) {
             .illustration-container {
                 display: none;
             }
         }
 
-        /* Module Intro Animation Panel */
-        .module-intro-flex {
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
 
-        .module-intro-text {
-            flex: 1;
-        }
-
-        .module-intro-animation {
-            width: 280px;
-            flex-shrink: 0;
-            position: relative;
-        }
-
-        .module-intro-animation canvas {
-            width: 280px;
-            height: 280px;
-            display: block;
-        }
-
-        /* Professional Code Terminal Card */
-        .code-terminal-card {
-            background: #1e1e2e;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.06);
-            width: 100%;
-            font-family: 'Fira Code', 'Consolas', monospace;
-        }
-
-        .terminal-header {
-            background: #2a2a3e;
-            padding: 10px 14px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .t-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .t-title {
-            margin-left: auto;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.35);
-            font-family: 'Outfit', sans-serif;
-            letter-spacing: 0.5px;
-        }
-
-        .terminal-body {
-            padding: 20px 18px 10px;
-            min-height: 220px;
-            position: relative;
-        }
-
-        .terminal-body pre {
-            background: transparent;
-            box-shadow: none;
-            padding: 0;
-            margin: 0;
-            color: #abb2bf;
-            font-size: 12.5px;
-            line-height: 1.75;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-
-        .cursor-blink {
-            display: inline-block;
-            color: #61afef;
-            font-size: 16px;
-            font-weight: 300;
-            animation: blink 1s step-start infinite;
-            vertical-align: text-bottom;
-            line-height: 1;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-        }
-
-        .terminal-footer {
-            background: #12121e;
-            color: rgba(255, 255, 255, 0.22);
-            font-size: 10.5px;
-            font-family: 'Outfit', sans-serif;
-            padding: 7px 14px;
-            letter-spacing: 0.5px;
-        }
-
-        @media (max-width: 900px) {
-            .module-intro-flex {
-                flex-direction: column;
-            }
-
-            .module-intro-animation {
-                display: none;
-            }
-        }
 
         @media (max-width: 992px) {
             .layout-container {
@@ -719,7 +641,7 @@
 <body>
 
     <nav class="navbar">
-        <a href="python_index.html"><img src="Kvj logo.jpeg" alt="KVJ Analytics Logo" class="kvj-logo-img"></a>
+        <a href="python_index.html"><img src="Kvj logo.jpeg" alt="KVJ Logo" class="kvj-logo-img"></a>
         <a href="roadmap.html" class="logout-btn">EXIT</a>
     </nav>
 
@@ -744,7 +666,7 @@
     </div>
 
     <div class="layout-container">
-        <nav class="sidebar">
+        <aside class="sidebar">
             <h3>Module Path</h3>
             <a href="Module-1.html" class="active">01 Foundation</a>
             <a href="Module-2.html">02 Flow Control</a>
@@ -753,9 +675,9 @@
             <a href="Module-5.html">05 Error Handling</a>
             <a href="Module-6.html">06 Built-in Modules</a>
 
-            <h3 style="margin-top:25px;">Navigation</h3>
-            <a href="roadmap.html" style="background: #f8f9fa;">&larr; Return to Roadmap</a>
-        </nav>
+            <h3 style="margin-top:35px;">Navigation</h3>
+            <a href="roadmap.html" style="background: #f8fafc;">&larr; Return to Roadmap</a>
+        </aside>
 
         <main class="main-content">
             <div class="section-header">
@@ -763,8 +685,6 @@
                 <p style="font-weight: 600; color: var(--secondary-blue);">Data Types, Data Structures & Operators</p>
             </div>
 
-            <div class="module-intro-flex">
-                <div class="module-intro-text">
                     <h3>Introduction to Python</h3>
                     <p>Python is a high-level programming language used to write instructions for computers.</p>
                     <p>It is widely used because it is:</p>
@@ -793,25 +713,7 @@
                         <li>Financial Analyst / Quantitative Developer</li>
                         <li>Automation Engineer / DevOps Scientist</li>
                     </ul>
-                </div>
 
-                <!-- Right Side: Professional Code Terminal -->
-                <div class="module-intro-animation">
-                    <div class="code-terminal-card">
-                        <div class="terminal-header">
-                            <span class="t-dot" style="background:#ff5f56"></span>
-                            <span class="t-dot" style="background:#ffbd2e"></span>
-                            <span class="t-dot" style="background:#27c93f"></span>
-                            <span class="t-title">foundation.py</span>
-                        </div>
-                        <div class="terminal-body" id="terminal-code-body">
-                            <pre id="terminal-typed-code"></pre>
-                            <span class="cursor-blink">|</span>
-                        </div>
-                        <div class="terminal-footer">Python 3.x — Data Foundation</div>
-                    </div>
-                </div>
-            </div>
             <p>The concepts in this module form the foundation for learning Python.</p>
 
             <div class="section-header">
@@ -839,6 +741,7 @@ units_sold = <span class="number">150</span>
                     <code>stock</code> and print its type.</p>
                 <textarea id="coding-ans-int" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt('int', '<class \'int\'>')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('int')">Reset</button>
                 <div id="coding-output-int" class="live-output-box"></div>
                 <div id="coding-feedback-int" class="feedback"></div>
             </div>
@@ -862,6 +765,7 @@ product_price = <span class="number">199.99</span>
                     print its type.</p>
                 <textarea id="coding-ans-float" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt('float', '<class \'float\'>')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('float')">Reset</button>
                 <div id="coding-output-float" class="live-output-box"></div>
                 <div id="coding-feedback-float" class="feedback"></div>
             </div>
@@ -878,7 +782,7 @@ company_name = <span class="string">"Global Finance Ltd"</span>
             <!-- Coding Practice: String -->
             <div class="coding-practice">
                 <h3>Coding Practice: String</h3>
-                <p><strong>Challenge:</strong> Store the name <code>"KVJ Analytics"</code> in a variable and print its
+                <p><strong>Challenge:</strong> Store the name <code>"KVJ"</code> in a variable and print its
                     type.</p>
                 <textarea id="coding-ans-str" placeholder="# Write your code here..."></textarea>
                 <button class="btn-run" onclick="runSkulpt('str', '<class \'str\'>')">Run & Check</button>
@@ -1275,8 +1179,8 @@ result = <span class="number">10</span> + <span class="number">5</span> * <span 
             <div class="coding-practice">
                 <h3>Final Business Task</h3>
                 <textarea id="coding-ans-final" placeholder="# Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('final', 'Business performance is strong')">Run &
-                    Check</button>
+                <button class="btn-run" onclick="runSkulpt('final', 'Business performance is strong')">Run & Check</button>
+                <button class="btn-reset" onclick="resetCodingPractice('final')">Reset</button>
                 <div id="coding-output-final" class="live-output-box"></div>
                 <div id="coding-feedback-final" class="feedback"></div>
             </div>
@@ -1291,7 +1195,7 @@ result = <span class="number">10</span> + <span class="number">5</span> * <span 
     </div>
 
     <footer>
-        © 2026 KVJ Analytics | Professional Python Certification Path
+        © 2026 KVJ | Professional Python Certification Path
     </footer>
 
     <script>
@@ -1391,8 +1295,8 @@ result = <span class="number">10</span> + <span class="number">5</span> * <span 
                                 userInputs.push(val);
                                 container.remove();
                                 // Add back the prompt and the answer to the output box permanently
-                                outputDiv.appendChild(document.createTextNode(prompt + val + "\n"));
-                                outputText += prompt + val + "\n";
+                                outputDiv.appendChild(document.createTextNode(prompt + val + ""));
+                                outputText += prompt + val + "";
                                 // Do NOT add prompt/input to validationText!
                                 resolve(val);
                             }
@@ -1433,88 +1337,30 @@ result = <span class="number">10</span> + <span class="number">5</span> * <span 
                 }
                 feedback.style.display = "block";
             }, function(err) {
-                outputDiv.innerText += "\n" + err.toString();
+                outputDiv.innerText += "" + err.toString();
                 feedback.innerHTML = "✗ Error in your code!";
                 feedback.className = "feedback wrong";
                 feedback.style.display = "block";
             });
         }
-    </script>
 
-    <!-- Professional Terminal Typewriter Script -->
-    <script>
-        (function () {
-            const el = document.getElementById('terminal-typed-code');
-            if (!el) return;
-
-            const snippets = [
-                `# Python Data Types
-sales = 150_000       # int
-rate  = 0.18          # float
-name  = "KVJ Corp"    # str
-active = True          # bool
-
-print(type(sales))
-print(type(rate))
-print(type(name))
-print(type(active))`,
-                `# Data Structures
-scores  = [95, 88, 72]        # list
-profile = {"name": "Ana",     # dict
-           "dept": "Finance"}
-
-print(scores[0])     # 95
-print(profile["name"]) # Ana`,
-                `# Operators
-x = 25 // 4   # 6  (integer div)
-y = 25  % 4   # 1  (remainder)
-z = 2  ** 8   # 256 (power)
-
-print(x, y, z)`
-            ];
-
-            let snippetIdx = 0, charIdx = 0;
-            let typing = true;
-            const SPEED = 65;       // ms per character (slower = more readable)
-            const PAUSE_AFTER = 4500; // ms to display before erasing
-
-            function colorize(raw) {
-                return raw
-                    .replace(/(#[^\n]*)/g, '<span style="color:#636e7b">$1</span>')
-                    .replace(/\b(print|type|True|False|None)\b/g, '<span style="color:#61afef">$1</span>')
-                    .replace(/("[^"]*")/g, '<span style="color:#98c379">$1</span>')
-                    .replace(/\b(\d+[_\d]*)\b/g, '<span style="color:#d19a66">$1</span>')
-                    .replace(/\b(int|float|str|bool|list|dict)\b/g, '<span style="color:#c678dd">$1</span>');
+        function resetCodingPractice(id) {
+            const textarea = document.getElementById(`coding-ans-${id}`);
+            const output = document.getElementById(`coding-output-${id}`);
+            const feedback = document.getElementById(`coding-feedback-${id}`);
+            
+            if (textarea) textarea.value = "";
+            if (output) {
+                output.innerHTML = "";
+                output.classList.remove('active');
             }
-
-            function tick() {
-                const full = snippets[snippetIdx];
-                if (typing) {
-                    charIdx++;
-                    el.innerHTML = colorize(full.slice(0, charIdx));
-                    if (charIdx < full.length) {
-                        setTimeout(tick, SPEED);
-                    } else {
-                        typing = false;
-                        setTimeout(tick, PAUSE_AFTER);
-                    }
-                } else {
-                    // Erase quickly
-                    charIdx--;
-                    el.innerHTML = colorize(full.slice(0, charIdx));
-                    if (charIdx > 0) {
-                        setTimeout(tick, 12);
-                    } else {
-                        snippetIdx = (snippetIdx + 1) % snippets.length;
-                        typing = true;
-                        setTimeout(tick, 600);
-                    }
-                }
+            if (feedback) {
+                feedback.style.display = "none";
+                feedback.className = "feedback";
             }
-
-            setTimeout(tick, 800);
-        })();
+        }
     </script>
+    </div>
 
 </body>
 
