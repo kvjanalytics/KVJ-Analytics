@@ -112,6 +112,18 @@
             transform: scale(1.1) !important;
             box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }
+        .signin-link {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.85);
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+        .signin-link span { text-decoration: underline; font-weight: 800; color: white; }
+        .signin-link:hover { color: #fff; transform: scale(1.05); }
 
         /* Profile V2 Styles */
         .profile-v2-container { padding: 20px 0; }
@@ -179,7 +191,6 @@
             <div class="nav-section">MANAGE</div>
             <a href="javascript:void(0)" class="nav-item" onclick="navigateTo('manage', 'profile')"><span class="icon">👤</span> Profile</a>
             <a href="javascript:void(0)" class="nav-item" onclick="navigateTo('manage', 'account')"><span class="icon">⚙️</span> Account</a>
-
             <a href="javascript:void(0)" class="nav-item" onclick="navigateTo('manage', 'support')"><span class="icon">❓</span> Help and support</a>
         </div>
 
@@ -271,6 +282,7 @@
                         Marian Business Analytics
                         <br>
                         <div class="register-btn" onclick="event.preventDefault(); event.stopPropagation(); registerCourse('Marian Business Analytics')">Register Now</div>
+                        <div class="signin-link" onclick="event.preventDefault(); event.stopPropagation(); signInCourse('Marian Business Analytics')">Already enrolled? <span>Sign In</span></div>
                     </div>
                 </a>
 
@@ -282,6 +294,7 @@
                         Python Mastery
                         <br>
                         <div class="register-btn" onclick="event.preventDefault(); event.stopPropagation(); registerCourse('Python Mastery')">Register Now</div>
+                        <div class="signin-link" onclick="event.preventDefault(); event.stopPropagation(); signInCourse('Python Mastery')">Already enrolled? <span>Sign In</span></div>
                     </div>
                 </a>
 
@@ -293,6 +306,7 @@
                         SQL Mastery
                         <br>
                         <div class="register-btn" onclick="event.preventDefault(); event.stopPropagation(); registerCourse('SQL Mastery')">Register Now</div>
+                        <div class="signin-link" onclick="event.preventDefault(); event.stopPropagation(); signInCourse('SQL Mastery')">Already enrolled? <span>Sign In</span></div>
                     </div>
                 </a>
 
@@ -304,6 +318,7 @@
                         Artificial Intelligence
                         <br>
                         <div class="register-btn" onclick="event.preventDefault(); event.stopPropagation(); registerCourse('Artificial Intelligence')">Register Now</div>
+                        <div class="signin-link" onclick="event.preventDefault(); event.stopPropagation(); signInCourse('Artificial Intelligence')">Already enrolled? <span>Sign In</span></div>
                     </div>
                 </a>
 
@@ -315,6 +330,7 @@
                         Power BI Mastery
                         <br>
                         <div class="register-btn" onclick="event.preventDefault(); event.stopPropagation(); registerCourse('Power BI Mastery')">Register Now</div>
+                        <div class="signin-link" onclick="event.preventDefault(); event.stopPropagation(); signInCourse('Power BI Mastery')">Already enrolled? <span>Sign In</span></div>
                     </div>
                 </a>
 
@@ -326,6 +342,7 @@
                         Data Analytics
                         <br>
                         <div class="register-btn" onclick="event.preventDefault(); event.stopPropagation(); registerCourse('Data Analytics')">Register Now</div>
+                        <div class="signin-link" onclick="event.preventDefault(); event.stopPropagation(); signInCourse('Data Analytics')">Already enrolled? <span>Sign In</span></div>
                     </div>
                 </a>
 
@@ -337,6 +354,7 @@
                         Advanced Gaming
                         <br>
                         <div class="register-btn" onclick="event.preventDefault(); event.stopPropagation(); registerCourse('Advanced Gaming')">Register Now</div>
+                        <div class="signin-link" onclick="event.preventDefault(); event.stopPropagation(); signInCourse('Advanced Gaming')">Already enrolled? <span>Sign In</span></div>
                     </div>
                 </a>
 
@@ -348,6 +366,7 @@
                         Advanced Excel
                         <br>
                         <div class="register-btn" onclick="event.preventDefault(); event.stopPropagation(); registerCourse('Advanced Excel')">Register Now</div>
+                        <div class="signin-link" onclick="event.preventDefault(); event.stopPropagation(); signInCourse('Advanced Excel')">Already enrolled? <span>Sign In</span></div>
                     </div>
                 </a>
 
@@ -451,22 +470,27 @@
         document.addEventListener('DOMContentLoaded', () => {
             const userName = sessionStorage.getItem('userName') || localStorage.getItem('strategist_user') || 'Manu';
             const userPhone = localStorage.getItem('strategist_phone') || 'guest';
-            const nameEles = document.querySelectorAll('#user-name, #profile-name-v2');
-            nameEles.forEach(el => el.textContent = userName);
-
-            initActivityTracking();
-
-            // Hide register buttons for enrolled courses
+            
+            // Hide register buttons for enrolled courses and check for any registration
             const cards = document.querySelectorAll('.course-card');
+            let hasAnyRegistration = false;
+            
             cards.forEach(card => {
                 const courseName = card.dataset.course;
                 const isRegistered = userPhone !== 'guest' && localStorage.getItem('registered_' + userPhone + '_' + courseName) === 'true';
                 
                 if (isRegistered) {
+                    hasAnyRegistration = true;
                     const regBtn = card.querySelector('.register-btn');
                     if (regBtn) regBtn.style.display = 'none';
                 }
             });
+
+            const displayUserName = hasAnyRegistration ? userName : 'Student';
+            const nameEles = document.querySelectorAll('#user-name, #profile-name-v2');
+            nameEles.forEach(el => el.textContent = displayUserName);
+
+            initActivityTracking();
         });
 
         function navigateTo(view, type) {
@@ -490,9 +514,11 @@
                 if (type === 'profile') {
                     profileView.style.display = 'block';
                     accountView.style.display = 'none';
+                    document.getElementById('support-v2-container').style.display = 'none';
                 } else if (type === 'account') {
                     profileView.style.display = 'none';
                     accountView.style.display = 'block';
+                    document.getElementById('support-v2-container').style.display = 'none';
                     // Update email
                     const email = localStorage.getItem('gmail') || 'Not registered';
                     if (document.getElementById('account-email')) document.getElementById('account-email').textContent = email;
@@ -547,11 +573,11 @@
 
         function logout() {
             sessionStorage.clear();
-            localStorage.removeItem('strategist_user');
-            localStorage.removeItem('strategist_phone');
-            localStorage.removeItem('gmail');
-            localStorage.removeItem('class_code');
-            window.location.href = 'login.html';
+            // Clear specific registration flags to force re-sync on next login
+            Object.keys(localStorage).forEach(key => {
+                if (key.startsWith('registered_')) localStorage.removeItem(key);
+            });
+            window.location.href = 'https://www.kvjanalytics.in/training.html';
         }
 
         // --- ACTIVITY TRACKING LOGIC ---
@@ -649,6 +675,10 @@
 
         function registerCourse(courseName) {
             window.location.href = 'login.html?course=' + encodeURIComponent(courseName) + '&action=register';
+        }
+
+        function signInCourse(courseName) {
+            window.location.href = 'login.html?course=' + encodeURIComponent(courseName) + '&action=enter';
         }
 
         function markCourseCompleted(courseName) {
