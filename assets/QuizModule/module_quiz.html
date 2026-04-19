@@ -722,7 +722,6 @@
             min-width: 120px;
         }
         .stat-pending { background: #fee2e2; color: #991b1b; }
-        .stat-skipped { background: #f1f5f9; color: #64748b; }
         .stat-review { background: #fef9c3; color: #854d0e; }
         .stat-answered { background: #dcfce7; color: #166534; }
 
@@ -751,7 +750,6 @@
         .q-node:hover { transform: scale(1.1); }
         .q-node.pending { background: #f1f5f9; color: #94a3b8; }
         .q-node.answered { background: #dcfce7; color: #15803d; }
-        .q-node.skipped { background: #94a3b8; color: #ffffff; border-color: #64748b; }
         .q-node.review { border-color: #eab308; background: #fef9c3; color: #854d0e; box-shadow: 0 0 10px rgba(234, 179, 8, 0.3); }
 
         .review-badge {
@@ -952,7 +950,6 @@
 
                 <div class="nav-controls">
                     <button class="btn btn-prev" id="btn-prev" onclick="prevQuestion()" disabled>Previous</button>
-                    <button class="btn btn-skip" onclick="skipQuestion()">Skip</button>
                     <button class="btn btn-prev" onclick="showSummary()" style="background:#f1f5f9; color:#64748b; border: 2px solid #e2e8f0; min-width:120px;">Review All</button>
                     <button class="btn btn-next" id="btn-next" onclick="nextQuestion()">Next Step</button>
                 </div>
@@ -1043,7 +1040,6 @@
             
             <div class="summary-stats">
                 <div class="stat-box stat-pending"><div id="sum-pending-val">0</div><div style="font-size:10px; opacity:0.8;">PENDING</div></div>
-                <div class="stat-box stat-skipped"><div id="sum-skipped-val">0</div><div style="font-size:10px; opacity:0.8;">SKIPPED</div></div>
                 <div class="stat-box stat-review"><div id="sum-review-val">0</div><div style="font-size:10px; opacity:0.8;">FOR REVIEW</div></div>
                 <div class="stat-box stat-answered"><div id="sum-answered-val">0</div><div style="font-size:10px; opacity:0.8;">ANSWERED</div></div>
             </div>
@@ -1134,8 +1130,8 @@
                         sidebarContent += `
                             <a href="Data-Module-1.html" class="${modId === 'data1' ? 'active' : ''}">01 Data Basics</a>
                             <a href="Data-Module-2.html" class="${modId === 'data2' ? 'active' : ''}">02 Data Lifecycle</a>
-                            <a href="Data-Module-3.html" class="${modId === 'data3' ? 'active' : ''}">03 Data Analysis</a>
-                            <a href="Data-Module-4.html" class="${modId === 'data4' ? 'active' : ''}">04 Data Visualization</a>
+                            <a href="Data-Module-3.html" class="${modId === 'data3' ? 'active' : ''}">03 Data Visualization</a>
+                            <a href="Data-Module-4.html" class="${modId === 'data4' ? 'active' : ''}">04 Data Analysis</a>
                             <a href="Data-Module-5.html" class="${modId === 'data5' ? 'active' : ''}">05 Responsible Analytics</a>
                         `;
                     } else if (modId.startsWith('ex')) {
@@ -1227,24 +1223,10 @@
         });
 
         // Question order and internal option shuffle logic
-        if (!mockId) {
-            shuffleArray(currentQuestions);
+        const isDataAnalytics = (modId.startsWith('data') || modId.startsWith('da_mock') || modId.startsWith('marian_mock'));
 
-            // Internal Option Shuffling
-            currentQuestions.forEach(q => {
-                if (q.type === "MCQ") {
-                    const correctText = q.options[q.a];
-                    shuffleArray(q.options);
-                    q.a = q.options.indexOf(correctText);
-                } else if (q.type === "MCQ2") {
-                    const correctTexts = q.a.map(idx => q.options[idx]);
-                    shuffleArray(q.options);
-                    q.a = correctTexts.map(txt => q.options.indexOf(txt));
-                } else if (q.type === "MTF") {
-                    shuffleArray(q.options);
-                    shuffleArray(q.labels);
-                }
-            });
+        if (isDataAnalytics) {
+            shuffleArray(currentQuestions);
         }
 
         let currentIndex = 0;
@@ -1725,7 +1707,6 @@
         }
 
         function prevQuestion() { if(currentIndex > 0) { currentIndex--; loadQuestion(); } }
-        function skipQuestion() { userAnswers[currentIndex] = "SKIP"; nextQuestion(); }
         function nextQuestion() {
             if(currentIndex < currentQuestions.length - 1) { currentIndex++; loadQuestion(); }
             else showSummary();
@@ -1741,7 +1722,7 @@
             const grid = document.getElementById('summary-q-grid');
             grid.innerHTML = "";
 
-            let stats = { pending: 0, skipped: 0, review: 0, answered: 0 };
+            let stats = { pending: 0, review: 0, answered: 0 };
 
             currentQuestions.forEach((q, i) => {
                 const ans = userAnswers[i];
@@ -1754,9 +1735,6 @@
                 if (isReview) {
                     statusClass = "review";
                     stats.review++;
-                } else if (ans === "SKIP") {
-                    statusClass = "skipped";
-                    stats.skipped++;
                 } else if (isAnswered) {
                     statusClass = "answered";
                     stats.answered++;
@@ -1772,7 +1750,6 @@
             });
 
             document.getElementById('sum-pending-val').innerText = stats.pending;
-            document.getElementById('sum-skipped-val').innerText = stats.skipped;
             document.getElementById('sum-review-val').innerText = stats.review;
             document.getElementById('sum-answered-val').innerText = stats.answered;
 
@@ -1792,6 +1769,7 @@
         function autoSubmit() {
             closeSummary();
             let score = 0;
+            let totalMarks = currentQuestions.reduce((sum, q) => sum + (q.marks || 1), 0);
             let results = [];
             const timeTaken = Math.max(0, (mockId ? 50 : 10) * 60 - timeLeft);
             const avgSpeed = (timeTaken / currentQuestions.length).toFixed(1);
@@ -1826,7 +1804,7 @@
             currentQuestions.forEach((q, i) => {
                 const u = userAnswers[i];
                 let questionScore = 0; // Partial score for this question (0 to 1)
-                let userDisp = u === "SKIP" || !u ? "Skipped" : u;
+                let userDisp = !u ? "Unanswered" : u;
                 let correctDisp = q.a;
 
                 // Validation Logic with Partial Credit
@@ -1930,7 +1908,7 @@
                     correctDisp = '<div style="display:inline-block; vertical-align:top; margin-top:-2px;">' + q.rows.map((row, rIdx) => `<strong>${row}</strong> &#8594; ${q.cols[q.a[rIdx]]}`).join('<br>') + '</div>';
                 }
 
-                score += questionScore;
+                score += questionScore * (q.marks || 1);
                 // Assign to skill category
                 const qText = (q.q || '').toLowerCase();
                 for(const [skill, kws] of Object.entries(skillKeywords)) {
@@ -1960,9 +1938,9 @@
             });
 
             // SUBMIT TO SHEET
-            submitToSheet(score, currentQuestions.length);
+            submitToSheet(score, totalMarks);
 
-            showResults(score, avgSpeed, results, skillMap);
+            showResults(score, totalMarks, avgSpeed, results, skillMap);
         }
 
         function submitToSheet(score, total) {
@@ -2018,7 +1996,7 @@
             document.body.appendChild(script);
         }
 
-        function showResults(score, speed, results, skillMap) {
+        function showResults(score, totalMarks, speed, results, skillMap) {
             const layout = document.getElementById('layout-container');
             const standardUI = document.getElementById('quiz-ui-standard');
             if (layout) layout.style.display = "none";
@@ -2027,8 +2005,8 @@
             document.getElementById('result-dashboard').style.display = "block";
             
             const roundedScore = Math.round(score * 100) / 100;
-            document.getElementById('res-score').innerText = `${roundedScore}/${currentQuestions.length}`;
-            document.getElementById('res-accuracy').innerText = `${Math.round(score/currentQuestions.length*100)}%`;
+            document.getElementById('res-score').innerText = `${roundedScore}/${totalMarks}`;
+            document.getElementById('res-accuracy').innerText = `${Math.round(score/totalMarks*100)}%`;
             document.getElementById('res-speed').innerText = `${speed}s`;
 
             const reviewList = document.getElementById('review-list');

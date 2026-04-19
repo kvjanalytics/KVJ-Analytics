@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housing Prices Visualization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-dark: #1e3a5f;
+            --blue-navy: #193855;
+            --teal-main: #008eab;
+            --bg-light: #f6f8fb;
+            --text-main: #1d1d1f;
+            --text-gray: #4b5563;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 40px;
+            display: flex;
+            gap: 40px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .chart-section {
+            flex: 2;
+        }
+
+        .table-section {
+            flex: 1;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--blue-dark);
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border: 2px solid #e2e8f0;
+            display: inline-block;
+            border-radius: 8px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .chart-container {
+            height: 400px;
+            position: relative;
+            margin-left: 60px;
+            margin-bottom: 40px;
+            border-left: 1px solid #cbd5e1;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        .y-axis {
+            position: absolute;
+            left: -70px;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-weight: 600;
+            width: 65px;
+            text-align: right;
+        }
+
+        .grid-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            border-top: 1px solid #f1f5f9;
+            height: 1px;
+        }
+
+        .bars-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 0 10px;
+        }
+
+        .bar-wrapper {
+            width: 8%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+        }
+
+        .bar {
+            width: 100%;
+            background: linear-gradient(to top, var(--blue-navy), var(--teal-main));
+            border-radius: 4px 4px 0 0;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .bar:hover {
+            transform: scaleX(1.1);
+            filter: brightness(1.1);
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--blue-dark);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 12px;
+            background: #e2e8f0;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--blue-dark);
+            text-transform: uppercase;
+        }
+
+        .data-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: rgba(0,0,0,0.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="capture-area">
+        <div class="chart-section">
+            <h2>Housing Prices</h2>
+            <div class="chart-container">
+                <div class="y-axis">
+                    <span>$-</span>
+                    <span>$50,000</span>
+                    <span>$1,00,000</span>
+                    <span>$1,50,000</span>
+                    <span>$2,00,000</span>
+                    <span>$2,50,000</span>
+                    <span>$3,00,000</span>
+                    <span>$3,50,000</span>
+                    <span>$4,00,000</span>
+                    <span>$4,50,000</span>
+                </div>
+                
+                <!-- Grid Lines -->
+                <div class="grid-line" style="bottom: 0%;"></div>
+                <div class="grid-line" style="bottom: 11.11%;"></div>
+                <div class="grid-line" style="bottom: 22.22%;"></div>
+                <div class="grid-line" style="bottom: 33.33%;"></div>
+                <div class="grid-line" style="bottom: 44.44%;"></div>
+                <div class="grid-line" style="bottom: 55.55%;"></div>
+                <div class="grid-line" style="bottom: 66.66%;"></div>
+                <div class="grid-line" style="bottom: 77.77%;"></div>
+                <div class="grid-line" style="bottom: 88.88%;"></div>
+                <div class="grid-line" style="bottom: 100%;"></div>
+
+                <div class="bars-container">
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 33.33%;"></div>
+                        <div class="bar-label">2016</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 38.88%;"></div>
+                        <div class="bar-label">2017</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 44.44%;"></div>
+                        <div class="bar-label">2018</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 50.00%;"></div>
+                        <div class="bar-label">2019</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 55.55%;"></div>
+                        <div class="bar-label">2020</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 61.11%;"></div>
+                        <div class="bar-label">2021</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 66.66%;"></div>
+                        <div class="bar-label">2022</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 72.22%;"></div>
+                        <div class="bar-label">2023</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 77.77%;"></div>
+                        <div class="bar-label">2024</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="height: 94.44%;"></div>
+                        <div class="bar-label">2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-section">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>2016</td><td>$ 1,50,000</td></tr>
+                    <tr><td>2017</td><td>$ 1,75,000</td></tr>
+                    <tr><td>2018</td><td>$ 2,00,000</td></tr>
+                    <tr><td>2019</td><td>$ 2,25,000</td></tr>
+                    <tr><td>2020</td><td>$ 2,50,000</td></tr>
+                    <tr><td>2021</td><td>$ 2,75,000</td></tr>
+                    <tr><td>2022</td><td>$ 3,00,000</td></tr>
+                    <tr><td>2023</td><td>$ 3,25,000</td></tr>
+                    <tr><td>2024</td><td>$ 3,50,000</td></tr>
+                    <tr><td>2025</td><td>$ 4,25,000</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

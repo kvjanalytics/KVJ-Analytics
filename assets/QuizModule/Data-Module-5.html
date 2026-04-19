@@ -183,84 +183,82 @@
         @media (max-width: 1600px) { .illustration-container { display: none; } }
         @media (max-width: 992px) { .layout-container { flex-direction: column; } .sidebar { width: 100%; position: static; } .main-content { padding: 30px; } }
 
-        /* Dark UI for Practice (matching Python coding-practice) */
+        /* Professional Light UI for Practice */
         .practice-card {
-            background: #1e293b;
+            background: #ffffff;
+            border: 2px solid #cbd5e1;
             border-radius: 12px;
             padding: 30px;
             margin: 40px 0;
-            color: #f8fafc;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            color: var(--text-main);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             position: relative;
-            border: none;
         }
-        .practice-badge {
-            display: none;
-        }
+        .practice-badge { display: none; }
         .practice-card h3 { 
-            margin-top: 0; color: #38bdf8; font-size: 22px; font-weight: 700; border: none; padding-bottom: 0; margin-bottom: 20px; font-family: 'Outfit', sans-serif;
+            margin-top: 0; color: var(--primary-blue); font-size: 22px; font-weight: 700; border: none; padding-bottom: 0; margin-bottom: 20px; font-family: 'Outfit', sans-serif;
         }
-        .practice-card p { color: #e2e8f0; font-size: 16px; margin-bottom: 20px; }
-        .practice-card strong { color: #f8fafc; font-weight: 800; }
+        .practice-card p { color: var(--text-muted); font-size: 16px; margin-bottom: 20px; }
+        .practice-card strong { color: var(--text-main); font-weight: 800; }
         
         .mcq-option {
-            background: #0f172a; border: 1px solid #334155;
+            background: #f8fafc; border: 1px solid var(--border-color);
             padding: 15px 20px; border-radius: 8px; margin-bottom: 10px;
             cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 15px;
-            color: #e2e8f0;
+            color: var(--text-main);
         }
-        .mcq-option:hover { background: #1e293b; border-color: #38bdf8; }
-        .mcq-option.selected { border-width: 2px; border-color: #38bdf8; }
-        .mcq-option.correct { border-color: #10b981; background: rgba(16, 185, 129, 0.1); color: #10b981; }
-        .mcq-option.wrong { border-color: #ef4444; background: rgba(239, 68, 68, 0.1); color: #ef4444; }
-        .mcq-prefix { font-weight: 800; color: #38bdf8; }
+        .mcq-option:hover { background: #f1f5f9; border-color: var(--accent-blue); }
+        .mcq-option.selected { border-width: 2px; border-color: var(--accent-blue); background: #eff6ff; }
+        .mcq-option.correct { border-color: #10b981; background: rgba(16, 185, 129, 0.05); color: #065f46; }
+        .mcq-option.wrong { border-color: #ef4444; background: rgba(239, 68, 68, 0.05); color: #991b1b; }
+        .mcq-prefix { font-weight: 800; color: var(--accent-blue); }
 
-        .tf-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #334155; }
-        .tf-statement { color: #e2e8f0; font-size: 15px; }
-        .tf-btn { padding: 6px 15px; border: 1px solid #334155; background: #0f172a; color: #e2e8f0; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
-        .tf-btn.selected { background: #38bdf8; color: #0f172a; border-color: #38bdf8; }
+        .tf-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
+        .tf-statement { color: var(--text-main); font-size: 15px; }
+        .tf-btn { padding: 6px 15px; border: 1px solid var(--border-color); background: #f8fafc; color: var(--text-muted); border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
+        .tf-btn.selected { background: var(--accent-blue); color: white; border-color: var(--accent-blue); }
         .tf-btn.correct { background: #10b981 !important; border-color: #10b981 !important; color: white !important; }
         .tf-btn.wrong { background: #ef4444 !important; border-color: #ef4444 !important; color: white !important; }
 
         .tf-btn-group { display: flex; gap: 15px; margin-top: 20px; }
         .tf-btn-large {
-            flex: 1; padding: 15px; border: 1px solid #334155;
-            background: #0f172a; color: #e2e8f0; border-radius: 8px;
+            flex: 1; padding: 15px; border: 1px solid var(--border-color);
+            background: #f8fafc; color: var(--text-muted); border-radius: 8px;
             cursor: pointer; font-weight: 800; font-size: 16px; transition: all 0.2s;
             text-transform: uppercase; letter-spacing: 1px;
         }
-        .tf-btn-large:hover { background: #1e293b; border-color: #38bdf8; }
+        .tf-btn-large:hover { background: #f1f5f9; border-color: var(--accent-blue); }
         .tf-btn-large.correct { background: #10b981 !important; border-color: #10b981; color: white; }
         .tf-btn-large.wrong { background: #ef4444 !important; border-color: #ef4444; color: white; }
 
         .practice-dark-btn {
-            background: #38bdf8; color: #0f172a; border: none;
+            background: var(--primary-blue); color: white; border: none;
             padding: 12px 25px; border-radius: 8px; font-weight: 700;
             font-size: 16px; cursor: pointer; transition: transform 0.2s; margin-top: 20px;
             margin-right: 10px; font-family: 'Outfit', sans-serif;
         }
         .practice-reset-btn {
-            background: #334155; color: #f8fafc; border: none;
+            background: #f1f5f9; color: var(--text-muted); border: 1px solid var(--border-color);
             padding: 12px 25px; border-radius: 8px; font-weight: 700;
             font-size: 16px; cursor: pointer; transition: transform 0.2s; margin-top: 20px;
             font-family: 'Outfit', sans-serif;
         }
-        .practice-dark-btn:hover, .practice-reset-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-        .practice-reset-btn:hover { background: #475569; }
+        .practice-dark-btn:hover, .practice-reset-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .practice-reset-btn:hover { background: #e2e8f0; }
 
         .feedback-dark { margin-top: 15px; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 14px; display: none; }
-        .feedback-dark.correct { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid #10b981; display: block; }
-        .feedback-dark.wrong { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; display: block; }
+        .feedback-dark.correct { background: #ecfdf5; color: #065f46; border: 1px solid #10b981; display: block; }
+        .feedback-dark.wrong { background: #fef2f2; color: #991b1b; border: 1px solid #ef4444; display: block; }
 
         .dd-container select { 
-            padding: 10px 15px; border-radius: 8px; background: #0f172a; 
-            color: #f8fafc; border: 1px solid #334155; font-weight: 600;
+            padding: 10px 15px; border-radius: 8px; background: #f8fafc; 
+            color: var(--text-main); border: 1px solid var(--border-color); font-weight: 600;
             width: 220px; outline: none; transition: border-color 0.2s;
         }
-        .dd-container select:focus { border-color: #38bdf8; }
+        .dd-container select:focus { border-color: var(--accent-blue); }
         
-        .mcq-option strong { margin-right: 10px; color: #f8fafc; }
-        .dd-container select option { background: #0f172a; color: #f8fafc; }
+        .mcq-option strong { margin-right: 10px; color: var(--primary-blue); }
+        .dd-container select option { background: #ffffff; color: var(--text-main); }
 
     </style>
 </head>
@@ -566,11 +564,6 @@
                 <div class="feedback-dark" id="feedback-m5-8"></div>
             </div>
 
-            <div class="quiz-cta">
-                <h3>Ready for the Final Module Assessment?</h3>
-                <p>Test your knowledge of responsible analytics practices and data ethics.</p>
-                <a href="module_quiz.html?mod=data5" class="btn-start-quiz">Start Assessment &rarr;</a>
-            </div>
         </main>
     </div>
 

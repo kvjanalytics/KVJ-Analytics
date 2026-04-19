@@ -101,9 +101,12 @@
             border: 2px solid rgba(255,255,255,0.35);
             border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.6rem;
             margin-bottom: 1.1rem;
             backdrop-filter: blur(4px);
+            overflow: hidden;
+        }
+        .course-icon img {
+            width: 100%; height: 100%; object-fit: contain; padding: 10px;
         }
 
         .course-title {
@@ -202,7 +205,7 @@
         .feature-item:last-child { border-right: none; }
         .feature-item:hover { background: #fafafa; }
 
-        .feature-icon { font-size: 2rem; margin-bottom: 0.3rem; line-height: 1; }
+        .feature-icon { width: 48px; height: 48px; object-fit: contain; margin-bottom: 0.8rem; }
         .feature-title { font-size: 1rem; font-weight: 700; color: #1a1a1a; }
         .feature-sub { font-size: 0.85rem; color: #6b7280; line-height: 1.4; }
 
@@ -337,7 +340,13 @@
             padding: 3rem 1.5rem;
             text-align: center;
         }
-        .sidebar-thumb-icon { font-size: 4rem; line-height: 1; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
+        }
+        .sidebar-thumb-icon { width: 80px; height: 80px; margin: 0 auto; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .sidebar-thumb-icon img { width: 100%; height: 100%; object-fit: contain; animation: float 3s ease-in-out infinite; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); }
         .sidebar-thumb p { color: rgba(255,255,255,0.9); font-size: 0.9rem; margin-top: 0.7rem; font-weight: 600; }
 
         .sidebar-body { padding: 2rem 1.5rem; }
@@ -369,6 +378,72 @@
         }
         .sidebar-features li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: #374151; }
         .sf-icon { font-size: 1.1rem; flex-shrink: 0; }
+        .sf-img-icon { height: 24px; width: 24px; object-fit: contain; flex-shrink: 0; }
+        .sf-img-round { 
+            width: 24px; height: 24px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            background: #f8fafc; border: 1px solid #e2e8f0; overflow: hidden;
+        }
+        .sf-img-round img { width: 85%; height: auto; object-fit: contain; }
+
+        /* ── CERTIFICATE CTA ───────────────────────────── */
+        .cert-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(to right, #ffffff, #fffafa);
+        }
+        .cert-info { flex: 1; text-align: left; }
+        .cert-info h4 { font-size: 0.95rem; font-weight: 800; color: #1a1a1a; margin-bottom: 0.3rem; margin-top: 0; }
+        .cert-info p { font-size: 0.8rem; color: #6b7280; line-height: 1.3; margin-bottom: 0.8rem; }
+        .btn-view-cert {
+            display: block; width: 100%; text-align: center;
+            background: var(--py-blue-dark);
+            color: #fff; font-weight: 700; font-size: 1rem;
+            padding: 1rem; border-radius: 10px; text-decoration: none;
+            cursor: pointer; border: none; transition: background 0.2s, transform 0.15s;
+        }
+        .btn-view-cert:hover { background: #152b47; transform: translateY(-1px); }
+        .cert-thumb { display: none; }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            padding: 20px;
+        }
+        .modal-content {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+            background: #fff;
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        }
+        .modal-content img { display: block; width: 100%; height: auto; border-radius: 8px; }
+        .modal-close {
+            position: absolute;
+            top: -45px; right: 0;
+            width: 36px; height: 36px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem; font-weight: bold; color: #1a1a1a;
+            border: none;
+        }
 
         @media (max-width: 900px) {
             .page-body { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -392,6 +467,14 @@
             localStorage.removeItem('class_code');
             window.location.href = 'login.html';
         }
+
+        function openCertModal() { document.getElementById('certModal').style.display = 'flex'; }
+        function closeCertModal() { document.getElementById('certModal').style.display = 'none'; }
+        
+        window.onclick = function(event) {
+            let modal = document.getElementById('certModal');
+            if (event.target == modal) { modal.style.display = 'none'; }
+        }
     </script>
 </head>
 <body>
@@ -410,7 +493,7 @@
     <!-- ── HERO BANNER (Python Edition) ── -->
     <div class="course-banner">
         <div class="banner-inner">
-            <div class="course-icon">🐍</div>
+            <div class="course-icon"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python"></div>
 
             <h1 class="course-title">KVJ Advanced Python Certification</h1>
 
@@ -443,17 +526,17 @@
     <!-- ── FEATURES BAR ── -->
     <div class="features-bar">
         <div class="feature-item">
-            <div class="feature-icon">🎯</div>
+            <img src="beginner.png" alt="Beginner" class="feature-icon">
             <div class="feature-title">Beginner Friendly</div>
             <div class="feature-sub">No prior coding experience needed</div>
         </div>
         <div class="feature-item">
-            <div class="feature-icon">⚡</div>
+            <img src="bite.png" alt="Bite-sized" class="feature-icon">
             <div class="feature-title">Bite-sized Content</div>
             <div class="feature-sub">Learn at your own pace, module by module</div>
         </div>
         <div class="feature-item">
-            <div class="feature-icon">🏅</div>
+            <img src="cert.png" alt="Certified" class="feature-icon">
             <div class="feature-title">Get Certified</div>
             <div class="feature-sub">Accredited by KVJ</div>
         </div>
@@ -595,25 +678,46 @@
         <div class="sidebar">
             <div class="sidebar-card">
                 <div class="sidebar-thumb">
-                    <div class="sidebar-thumb-icon">🐍</div>
+                    <div class="sidebar-thumb-icon"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python Badge"></div>
                     <p>KVJ Advanced Python Certification</p>
                 </div>
                 <div class="sidebar-body">
-                    <div class="sidebar-price">Full Access <span>Premium</span></div>
-                    <a href="intro.html" class="btn-full">Start Learning Now →</a>
-                    <a href="roadmap.html" class="btn-full-outline">View Full Roadmap</a>
+                    <div class="sidebar-price">Career Certification</div>
+                    
+                    <div class="cert-card">
+                        <div class="cert-info">
+                            <h4>Official Certification</h4>
+                            <p>Earn globally recognized Pearson IT Specialist and KVJ Career certificates.</p>
+                            <button class="btn-view-cert" onclick="openCertModal()">View a sample certificate</button>
+                        </div>
+                    </div>
+
                     <ul class="sidebar-features">
                         <li><span class="sf-icon">📚</span> 6 structured study modules</li>
                         <li><span class="sf-icon">✅</span> 50+ interactive quiz questions</li>
                         <li><span class="sf-icon">📝</span> 3 full mock assessments</li>
                         <li><span class="sf-icon">⏱️</span> Self-paced, no deadlines</li>
                         <li><span class="sf-icon">📱</span> Works on any device</li>
-                        <li><span class="sf-icon">🏅</span> KVJ certificate</li>
+                        <li><img src="pearson_badge.png" alt="Pearson" class="sf-img-icon"> Pearson IT Specialist Cert.</li>
+                        <li>
+                            <div class="sf-img-round">
+                                <img src="Kvj logo.jpeg" alt="KVJ">
+                            </div>
+                            KVJ Participation Certificate
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+
+    <!-- Certification Modal -->
+    <div class="modal-overlay" id="certModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCertModal()">×</button>
+            <img src="sample_certificate.png" alt="Official Certificate">
+        </div>
     </div>
 </body>
 </html>
