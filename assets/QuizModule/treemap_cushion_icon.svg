@@ -1,0 +1,12 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#f8fafc" rx="12"/>
+    <defs>
+        <radialGradient id="cushionGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" style="stop-color:#7dd3fc;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+        </radialGradient>
+    </defs>
+    <rect x="15" y="15" width="40" height="70" fill="url(#cushionGrad)" rx="6" stroke="#f8fafc" stroke-width="2"/>
+    <rect x="55" y="15" width="30" height="30" fill="url(#cushionGrad)" rx="6" stroke="#f8fafc" stroke-width="2"/>
+    <rect x="55" y="45" width="30" height="40" fill="url(#cushionGrad)" rx="6" stroke="#f8fafc" stroke-width="2"/>
+</svg>

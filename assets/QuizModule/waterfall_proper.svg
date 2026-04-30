@@ -1,0 +1,24 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="500" fill="#0f172a" rx="24"/>
+    <text x="400" y="50" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="24" font-weight="900" fill="#f8fafc" letter-spacing="1">NET PROFIT BRIDGE ANALYSIS</text>
+    
+    <!-- Steps -->
+    <rect x="100" y="300" width="80" height="100" fill="#64748b" rx="4"/>
+    <text x="140" y="430" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" fill="#94a3b8">Start</text>
+
+    <line x1="180" y1="300" x2="220" y2="300" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,4"/>
+    <rect x="220" y="220" width="80" height="80" fill="#10b981" rx="4"/>
+    <text x="260" y="430" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" fill="#94a3b8">Sales +80</text>
+
+    <line x1="300" y1="220" x2="340" y2="220" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,4"/>
+    <rect x="340" y="140" width="80" height="80" fill="#10b981" rx="4"/>
+    <text x="380" y="430" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" fill="#94a3b8">Service +80</text>
+
+    <line x1="420" y1="220" x2="460" y2="220" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,4"/>
+    <rect x="460" y="220" width="80" height="50" fill="#ef4444" rx="4"/>
+    <text x="500" y="430" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" fill="#94a3b8">Cost -50</text>
+
+    <line x1="540" y1="270" x2="580" y2="270" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,4"/>
+    <rect x="580" y="270" width="100" height="130" fill="#38bdf8" rx="4"/>
+    <text x="630" y="430" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="14" fill="#94a3b8">Final Profit</text>
+</svg>

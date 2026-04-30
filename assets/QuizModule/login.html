@@ -306,7 +306,7 @@
 
     <!-- YOUR EXACT JS LOGIC FOR THE AUTHENTICATION  -->
     <script>
-        const scriptURL = "https://script.google.com/macros/s/AKfycbxWBtu6ZE4fwil942a0o5EfNUohvB_jYAFgGvDtPrnngIDl95LhJmpE9KoGRg6TabZR/exec";
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzESAIomPGCHhkYOoAJyi8Agjn8FLCDjnju3ngO1UUXuTVABsmrHe5c8AkdhGF5q3AV/exec";
 
         function showLoginScreen() {
             document.querySelectorAll('.datacamp-card').forEach(c => c.classList.add('hidden'));
@@ -365,15 +365,19 @@
                     });
                     localStorage.setItem('gmail', data.gmail || "");
                     localStorage.setItem('class_code', data.classCode || "");
-                    sessionStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('isLoggedIn', 'true');
                     
+                    const userEmail = data.gmail || "";
+
                     // Restore Enrollments from Server
                     if (data.enrollments && Array.isArray(data.enrollments)) {
                         data.enrollments.forEach(course => {
-                            localStorage.setItem('registered_' + phone + '_' + course, 'true');
+                            const normalized = course.trim();
+                            if (userEmail) localStorage.setItem('registered_' + userEmail + '_' + normalized, 'true');
+                            localStorage.setItem('registered_' + phone + '_' + normalized, 'true');
                         });
                     }
-                    sessionStorage.setItem('userName', data.name);
+                    localStorage.setItem('userName', data.name);
                     
                     const urlParams = new URLSearchParams(window.location.search);
                     const course = urlParams.get('course');
@@ -381,26 +385,18 @@
                     const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
 
                     if (action === 'enter' && course) {
-                        const userPhone = localStorage.getItem('strategist_phone') || 'guest';
-                        const isRegistered = localStorage.getItem('registered_' + userPhone + '_' + course) === 'true';
-                        
-                        if (isRegistered) {
-                            const courseMaps = {
-                                'Marian Business Analytics': 'marian_analytics.html',
-                                'Python Mastery': 'python_index.html',
-                                'SQL Mastery': 'sql_index.html',
-                                'Artificial Intelligence': 'ai_index.html',
-                                'Power BI Mastery': 'powerbi_index.html',
-                                'Data Analytics': 'data_index.html',
-                                'Advanced Gaming': 'gaming_index.html',
-                                'Advanced Excel': 'excel_index.html'
-                            };
-                            const target = courseMaps[course] || 'index.html';
-                            window.location.href = target;
-                        } else {
-                            alert("You have not purchased this course yet. Please register first.");
-                            window.location.href = "index.html";
-                        }
+                        const courseMaps = {
+                            'Marian Business Analytics': 'marian_analytics.html',
+                            'Python Mastery': 'python_index.html',
+                            'SQL Mastery': 'sql_index.html',
+                            'Artificial Intelligence': 'ai_index.html',
+                            'Power BI Mastery': 'powerbi_index.html',
+                            'Data Analytics': 'data_index.html',
+                            'Advanced Gaming': 'gaming_index.html',
+                            'Advanced Excel': 'excel_index.html'
+                        };
+                        const target = courseMaps[course] || 'index.html';
+                        window.location.href = target;
                     } else if (course) {
                         window.location.href = "registration.html?course=" + encodeURIComponent(course);
                     } else if (redirectUrl) {

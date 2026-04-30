@@ -1,0 +1,30 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="500" fill="#0f172a" rx="24"/>
+    <text x="400" y="50" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="24" font-weight="900" fill="#f8fafc" letter-spacing="1">USER GROWTH OVER TIME</text>
+    
+    <!-- Grid -->
+    <line x1="100" y1="400" x2="700" y2="400" stroke="#1e293b" stroke-width="2"/>
+    <line x1="100" y1="80" x2="100" y2="400" stroke="#1e293b" stroke-width="2"/>
+
+    <!-- Path for the line -->
+    <path d="M 100 350 L 250 280 L 400 310 L 550 180 L 700 120" 
+          fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <animate attributeName="stroke-dasharray" from="0, 1000" to="1000, 0" dur="2s" fill="freeze" />
+    </path>
+
+    <!-- Data points -->
+    <circle cx="100" cy="350" r="8" fill="#f8fafc" stroke="#38bdf8" stroke-width="3"/>
+    <circle cx="250" cy="280" r="8" fill="#f8fafc" stroke="#38bdf8" stroke-width="3"/>
+    <circle cx="400" cy="310" r="8" fill="#f8fafc" stroke="#38bdf8" stroke-width="3"/>
+    <circle cx="550" cy="180" r="8" fill="#f8fafc" stroke="#38bdf8" stroke-width="3"/>
+    <circle cx="700" cy="120" r="8" fill="#f8fafc" stroke="#38bdf8" stroke-width="3"/>
+
+    <!-- Labels -->
+    <g font-family="'Outfit', sans-serif" font-size="16" fill="#94a3b8" font-weight="600">
+        <text x="100" y="440" text-anchor="middle">Jan</text>
+        <text x="250" y="440" text-anchor="middle">Feb</text>
+        <text x="400" y="440" text-anchor="middle">Mar</text>
+        <text x="550" y="440" text-anchor="middle">Apr</text>
+        <text x="700" y="440" text-anchor="middle">May</text>
+    </g>
+</svg>

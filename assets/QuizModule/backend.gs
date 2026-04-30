@@ -80,7 +80,72 @@ function doGet(e) {
       return finalize(callback, {success: false, error: "Reset failed"});
     }
 
-    // 5. SUBMIT SCORE ACTION
+    // 5. COURSE REGISTER ACTION (Access Code Validation)
+    if (action === "courseRegister") {
+      var name = e.parameter.name || "Unknown";
+      var gmail = e.parameter.email || "Missing";
+      var phone = e.parameter.phone || "";
+      var course = e.parameter.course || "";
+      var accessCode = e.parameter.accessCode || "";
+
+      if (!phone || !accessCode || !course) {
+        return finalize(callback, {success: false, error: "Phone, Course, and Access Code are required"});
+      }
+
+      // Read Access Code Sheet
+      var accessSheet = ss.getSheetByName("Access Code");
+      if (!accessSheet) {
+        return finalize(callback, {success: false, error: "Configuration Error: Access Code sheet missing"});
+      }
+      
+      var accessData = accessSheet.getDataRange().getValues();
+      var codeValid = false;
+      var codeFound = false;
+
+      // Loop rows (assuming Row 1 is header: Course Name, Access Code, Expiry Date)
+      for (var i = 1; i < accessData.length; i++) {
+        var rowCourse = accessData[i][0] ? accessData[i][0].toString().trim() : "";
+        var rowCode = accessData[i][1] ? accessData[i][1].toString().trim() : "";
+        var rowExpiry = accessData[i][2]; // Date object or string
+
+        if (rowCode === accessCode.toString().trim()) {
+          codeFound = true;
+          
+          // Check Course Match
+          if (rowCourse !== course.toString().trim()) {
+            return finalize(callback, {success: false, error: "Access Code is not valid for this course"});
+          }
+
+          // Check Expiry
+          if (rowExpiry) {
+            var expiryDate = new Date(rowExpiry);
+            var now = new Date();
+            // Optional: reset time to midnight for pure date comparison, or compare strictly
+            if (now > expiryDate) {
+              return finalize(callback, {success: false, error: "Access Code has expired"});
+            }
+          }
+
+          // If we reach here, it's valid
+          codeValid = true;
+          break;
+        }
+      }
+
+      if (!codeFound) {
+        return finalize(callback, {success: false, error: "Invalid Access Code"});
+      }
+
+      if (codeValid) {
+        // Record registration in the Login sheet
+        var loginSheet = ss.getSheetByName("Login") || ss.getActiveSheet();
+        loginSheet.appendRow([name, phone, course, gmail, ""]); // Leaving password blank or generic
+        
+        return finalize(callback, {success: true, message: "Registration successful"});
+      }
+    }
+
+    // 6. SUBMIT SCORE ACTION
     if (action === "submitScore") {
       var phone = e.parameter.phone || "";
       var name = e.parameter.name || "Unknown";
@@ -92,7 +157,7 @@ function doGet(e) {
       
       if (!phone) return finalize(callback, {success: false, error: "Phone required"});
 
-      var resSheet = ss.getSheetByName("Results");
+      var resSheet = ss.getSheetByName("Result python");
 
       var headers = [
         "Phone Number", "Name", "Class Code", "Email ID",
@@ -107,7 +172,7 @@ function doGet(e) {
       ];
 
       if (!resSheet) {
-        resSheet = ss.insertSheet("Results");
+        resSheet = ss.insertSheet("Result python");
         resSheet.appendRow(headers);
         resSheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#f3f3f3");
         resSheet.setFrozenRows(1);
@@ -181,6 +246,67 @@ function doGet(e) {
       return finalize(callback, {success: true, message: "Score and time updated for " + moduleID});
     }
 
+    // 7. LOG QUIZ ACTION (For detailed logging)
+    if (action === "logQuiz") {
+      var phone = e.parameter.phone || "";
+      var name = e.parameter.name || "Unknown";
+      var moduleName = e.parameter.module || "";
+      var mark = e.parameter.mark || "0";
+      var maxMark = e.parameter.maxMark || "0";
+      
+      if (!phone) return finalize(callback, {success: false, error: "Phone required"});
+      
+      var logSheet = ss.getSheetByName("Results data analytics");
+      if (!logSheet) {
+        logSheet = ss.insertSheet("Results data analytics");
+        logSheet.appendRow(["Time Stamp", "Phone Number", "Name", "Module", "Mark", "Maximum Mark"]);
+      }
+      
+      var now = new Date();
+      var timeStamp = Utilities.formatDate(now, "GMT+5:30", "yyyy-MM-dd HH:mm:ss");
+      
+      logSheet.appendRow([timeStamp, phone, name, moduleName, mark, maxMark]);
+      
+      return finalize(callback, {success: true, message: "Logged to Results data analytics"});
+    }
+
+    // 5. GET SCORES ACTION (For syncing progress)
+    if (action === "getScores") {
+      var phone = e.parameter.phone || "";
+      if (!phone) return finalize(callback, {success: false, error: "Phone required"});
+
+      var logSheet = ss.getSheetByName("Results data analytics");
+      var scores = {};
+
+      if (logSheet) {
+        var logData = logSheet.getDataRange().getValues();
+        for (var i = 1; i < logData.length; i++) {
+          var rowPhone = logData[i][1] ? logData[i][1].toString().trim() : "";
+          if (rowPhone === phone.toString().trim()) {
+            var moduleName = logData[i][3] || ""; // e.g. "M1 Assessment"
+            var mark = parseFloat(logData[i][4]) || 0;
+            var maxMark = parseFloat(logData[i][5]) || 1;
+            var percentage = (mark / maxMark) * 100;
+
+            // Map "M1 Assessment" -> "1", "Mock Test 1" -> "mock1" etc.
+            var key = "";
+            if (moduleName.includes("Mock")) {
+               key = "mock" + moduleName.replace(/[^0-9]/g, "");
+            } else {
+               key = moduleName.replace(/[^0-9]/g, ""); // "M1 Assessment" -> "1"
+               // Handle data analytics prefix if needed
+               if (moduleName.toLowerCase().includes("data")) key = "data" + key;
+            }
+
+            if (!scores[key] || percentage > scores[key]) {
+              scores[key] = percentage;
+            }
+          }
+        }
+      }
+      return finalize(callback, {success: true, scores: scores});
+    }
+    
     return finalize(callback, {success: false, error: "Invalid Action"});
 
   } catch (err) {

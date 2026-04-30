@@ -599,23 +599,44 @@
         window.addEventListener('DOMContentLoaded', () => {
             const userName = sessionStorage.getItem('userName') || localStorage.getItem('strategist_user');
             const userPhone = localStorage.getItem('strategist_phone') || 'guest';
+            const userEmail = localStorage.getItem('gmail');
             
             // 1. Must be logged in
-            if (!userName) {
+            if (!userName || userName === 'Student') {
                 sessionStorage.setItem('redirectAfterLogin', window.location.href);
                 window.location.href = 'login.html';
                 return;
             }
 
-            // 2. Must have purchased the course
+            // 2. Check enrollment
             const courseName = "Marian Business Analytics";
-            const isRegistered = localStorage.getItem('registered_' + userPhone + '_' + courseName) === 'true';
+            const isRegistered = (userEmail && localStorage.getItem('registered_' + userEmail + '_' + courseName) === 'true') ||
+                               (userPhone !== 'guest' && localStorage.getItem('registered_' + userPhone + '_' + courseName) === 'true');
             
             if (!isRegistered) {
-                alert("Access Denied: You must register and purchase this course to view its content.");
-                window.location.href = 'index.html';
+                // Background sync instead of blocking alert
+                checkSyncAndAccess(userEmail, userPhone, courseName);
             }
         });
+
+        function checkSyncAndAccess(email, phone, course) {
+            if (!email && (!phone || phone === 'guest')) return;
+
+            const scriptURL = "https://script.google.com/macros/s/AKfycbxOGpI6VoX5N1vH5qlXlTXufZbKIGVEHc3gusa7zzQsfsYr7RY6klHgCDTp3AB7NQIt/exec";
+            const script = document.createElement('script');
+            const callbackName = 'accessSync_' + Math.floor(Math.random() * 1000000);
+            
+            window[callbackName] = function(data) {
+                delete window[callbackName];
+                document.body.removeChild(script);
+                if (data.exists && data.enrollments && data.enrollments.includes(course)) {
+                    if (email) localStorage.setItem('registered_' + email + '_' + course, 'true');
+                    if (phone && phone !== 'guest') localStorage.setItem('registered_' + phone + '_' + course, 'true');
+                }
+            };
+            script.src = `${scriptURL}?action=login&email=${encodeURIComponent(email || '')}&phone=${encodeURIComponent(phone || '')}&password=BYPASS_SYNC&callback=${callbackName}`;
+            document.body.appendChild(script);
+        }
     </script>
 
 </body>

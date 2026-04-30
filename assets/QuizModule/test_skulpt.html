@@ -1,58 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js" type="text/javascript"></script>
 </head>
 <body>
-    <textarea id="code">
-x = int("500")
-print("Type:", type(x))
-    </textarea>
-    <button onclick="runCode()">Run</button>
-    <pre id="output"></pre>
-    <script>
-        function runCode() {
-            var prog = document.getElementById("code").value;
-            var outText = "";
-            document.getElementById("output").innerHTML = "";
+    <script type="text/javascript">
+        function testSkulpt(prog, expectedOutput, requirements = null) {
+            console.log('--- Testing Code ---\n' + prog);
+            const outputDiv = document.createElement('div'); // Mock output
+            let outputText = "";
             
-            Sk.configure({
-                output: function(text) { outText += text; },
+            Sk.configure({ 
+                output: function(text) { 
+                    outputText += text; 
+                },
                 read: function(x) {
                     if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
                         throw "File not found: '" + x + "'";
                     return Sk.builtinFiles["files"][x];
-                },
-                inputfun: function(prompt) {
-                    return new Promise((resolve) => {
-                        resolve("TestUser"); 
-                    });
                 }
             });
-
-            var myPromise = Sk.misceval.asyncToPromise(function() {
+            
+            const myPromise = Sk.misceval.asyncToPromise(function() {
                 return Sk.importMainWithBody("<stdin>", false, prog, true);
             });
 
             myPromise.then(function(mod) {
-                console.log("Success! Output:", outText);
-                document.getElementById("output").innerHTML = outText;
+                console.log('Final Output:', outputText);
+                let isCorrect = true;
                 
-                // Example check for Module 1 Practice 1
-                if (outText.includes("<class 'int'>")) {
-                    document.getElementById("output").innerHTML += "[VALIDATION: CORRECT]";
-                } else {
-                    document.getElementById("output").innerHTML += "[VALIDATION: FAILED - missed type output]";
+                // 1. Output Match
+                if (expectedOutput && !outputText.includes(expectedOutput)) {
+                    isCorrect = false;
+                    console.error('FAIL: Output mismatch. Expected: ' + expectedOutput);
                 }
 
-            }, function(err) {
-                console.log(err.toString());
-                document.getElementById("output").innerHTML = err.toString();
+                // 2. Variable Validation
+                if (requirements) {
+                    for (const [varName, expectedVal] of Object.entries(requirements)) {
+                        const pyVar = mod.$d[varName];
+                        if (!pyVar) {
+                            isCorrect = false;
+                            console.error('FAIL: Variable not found: ' + varName);
+                            break;
+                        }
+                        const jsVal = Sk.ffi.remapToJs(pyVar);
+                        if (JSON.stringify(jsVal) !== JSON.stringify(expectedVal)) {
+                            isCorrect = false;
+                            console.error('FAIL Variable value mismatch. Variable: ' + varName + ', Got: ' + jsVal + ', Expected: ' + expectedVal);
+                            break;
+                        }
+                    }
+                }
+
+                if (isCorrect) {
+                    console.log('%c SUCCESS: Challenge Passed! ', 'background: #22c55e; color: white');
+                } else {
+                    console.log('%c FAILED: Challenge Not Passed. ', 'background: #ef4444; color: white');
+                }
             });
         }
-    </script>
-    </div>
 
+        // Test Case 1: Correct value
+        testSkulpt("stock = 250\nprint(type(stock))", "<class 'int'>", {"stock": 250});
+        
+        // Test Case 2: Wrong value (But same output)
+        setTimeout(() => {
+            testSkulpt("stock = 251\nprint(type(stock))", "<class 'int'>", {"stock": 250});
+        }, 500);
+
+        // Test Case 3: Wrong variable name
+        setTimeout(() => {
+            testSkulpt("inventory = 250\nprint(type(inventory))", "<class 'int'>", {"stock": 250});
+        }, 1000);
+    </script>
 </body>
 </html>

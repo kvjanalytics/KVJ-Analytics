@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Roadmap | KVJ</title>
+    <title>Python Mastery Roadmap | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --py-blue-dark: #1e3a5f;
-            --py-blue-brand: #3776ab;
-            --py-yellow: #ffd43b;
-            --bg-light: #f6f8fb;
-            --text-main: #1d1d1f;
-            --text-muted: #4b5563;
+                        :root {
+            --brand-dark: #1c1d1f;
+            --brand-python: #a435f0;
+            --brand-accent: #a435f0;
+            --bg-light: #ffffff;
+            --text-main: #1c1d1f;
+            --text-muted: #6a6f73;
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,9 +23,10 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
-
-        /* ── NAVBAR ─────────────────────────────────────── */
+        
+        /* ── NAVBAR ── */
         .navbar {
             background: #fff;
             border-bottom: 1px solid #e5e7eb;
@@ -42,7 +43,7 @@
         .nav-back {
             font-size: 0.85rem;
             font-weight: 600;
-            color: #193855;
+            color: #1c1d1f;
             text-decoration: none;
             background: #eef2ff;
             padding: 7px 18px;
@@ -54,29 +55,28 @@
         .nav-logout {
             font-size: 0.85rem;
             font-weight: 700;
-            color: #0066ff;
+            color: #1c1d1f;
             text-decoration: none;
             cursor: pointer;
             transition: opacity 0.2s;
         }
         .nav-logout:hover { opacity: 0.75; }
 
-        /* ── HERO BANNER (Blue/Yellow Python Theme) ────── */
+        /* ── HERO BANNER ── */
         .course-banner {
-            background: linear-gradient(135deg, var(--py-blue-dark) 0%, var(--py-blue-brand) 100%);
+            background: var(--brand-dark);
             color: #fff;
-            padding: 3.5rem 2.5rem 2.5rem;
+            padding: 4.5rem 2.5rem 3.5rem;
             position: relative;
             overflow: hidden;
         }
 
-        /* subtle decorative circles */
         .course-banner::before,
         .course-banner::after {
             content: '';
             position: absolute;
             border-radius: 50%;
-            opacity: 0.12;
+            opacity: 0.08;
         }
         .course-banner::before {
             width: 420px; height: 420px;
@@ -84,9 +84,9 @@
             top: -160px; right: -100px;
         }
         .course-banner::after {
-            width: 240px; height: 240px;
+            width: 300px; height: 300px;
             background: #fff;
-            bottom: -80px; left: 40%;
+            bottom: -100px; left: 30%;
         }
 
         .banner-inner {
@@ -110,21 +110,29 @@
         }
 
         .course-title {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+        .course-subtitle {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
         }
 
         .rating-row {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 0.85rem;
+            margin-bottom: 1.2rem;
             flex-wrap: wrap;
         }
-        .stars { color: #FFD700; font-size: 1rem; letter-spacing: 1px; }
+        .stars { color: #fbbf24; font-size: 1rem; letter-spacing: 1px; }
         .rating-score { font-weight: 700; font-size: 0.95rem; }
         .rating-count {
             font-size: 0.88rem;
@@ -138,7 +146,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.6rem;
-            margin-bottom: 1.7rem;
+            margin-bottom: 2rem;
         }
         .meta-list li {
             display: flex;
@@ -152,38 +160,33 @@
 
         .btn-cta {
             display: inline-block;
-            background: var(--py-yellow);
-            color: var(--py-blue-dark);
+            background: var(--brand-python);
+            color: white;
             font-size: 0.95rem;
             font-weight: 800;
-            padding: 0.85rem 2.5rem;
+            padding: 0.9rem 2.5rem;
             border-radius: 30px;
             text-decoration: none;
             border: none;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 18px rgba(255, 212, 59, 0.4);
-            letter-spacing: 0.2px;
+            box-shadow: 0 4px 18px rgba(164, 53, 240, 0.4);
+            letter-spacing: 0.5px;
             text-transform: uppercase;
         }
         .btn-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 212, 59, 0.5);
-            background: #fecf1f;
+            box-shadow: 0 8px 24px rgba(164, 53, 240, 0.5);
+            background: #8710d8;
         }
 
-        .guarantee-note {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.8);
-            margin-top: 0.8rem;
-        }
 
-        /* ── FEATURES BAR ───────────────────────────────── */
+        /* ── FEATURES BAR ── */
         .features-bar {
             background: #fff;
             border-radius: 14px;
             box-shadow: 0 8px 40px rgba(0,0,0,0.10);
-            margin: -1px 2.5rem 0;
+            margin: -1.5rem 2.5rem 0;
             position: relative;
             z-index: 3;
             display: flex;
@@ -197,23 +200,21 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2.2rem 1.5rem;
+            padding: 2rem 1.5rem;
             gap: 0.5rem;
             border-right: 1px solid #f0f0f0;
-            transition: background 0.2s;
         }
         .feature-item:last-child { border-right: none; }
-        .feature-item:hover { background: #fafafa; }
+        .feature-icon-text { font-size: 2.2rem; margin-bottom: 0.2rem; }
+        .feature-icon-text img { height: 40px; margin-bottom: 10px; }
+        .feature-title { font-size: 0.95rem; font-weight: 700; color: #1a1a1a; }
+        .feature-sub { font-size: 0.8rem; color: #6b7280; line-height: 1.4; }
 
-        .feature-icon { width: 48px; height: 48px; object-fit: contain; margin-bottom: 0.8rem; }
-        .feature-title { font-size: 1rem; font-weight: 700; color: #1a1a1a; }
-        .feature-sub { font-size: 0.85rem; color: #6b7280; line-height: 1.4; }
-
-        /* ── MAIN CONTENT AREA ──────────────────────────── */
+        /* ── MAIN CONTENT AREA ── */
         .page-body {
             max-width: 1200px;
             margin: 3.5rem auto;
-            padding: 0 2.5rem 4rem;
+            padding: 0 2rem 4rem;
             display: grid;
             grid-template-columns: 1fr 340px;
             gap: 3rem;
@@ -240,7 +241,7 @@
             align-items: flex-start;
             gap: 0.75rem;
             font-size: 0.95rem;
-            color: #374151;
+            color: #6b7280;
             line-height: 1.5;
         }
         .check { color: #10b981; font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
@@ -265,12 +266,12 @@
         }
         .module-num {
             min-width: 44px; height: 44px;
-            background: #f0f7ff;
+            background: #eef2ff;
             border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
             font-size: 0.9rem;
             font-weight: 800;
-            color: var(--py-blue-brand);
+            color: var(--brand-python);
         }
         .module-info { flex: 1; }
         .module-name { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.3rem; }
@@ -286,132 +287,92 @@
             border: 1px solid;
             transition: all 0.2s;
         }
-        .btn-study { color: #0066ff; border-color: #dbeafe; background: #eff6ff; }
-        .btn-study:hover { background: #dbeafe; }
-        .btn-quiz { color: #059669; border-color: #d1fae5; background: #f0fdf4; }
-        .btn-quiz:hover { background: #d1fae5; }
+        .btn-study { color: #1c1d1f; border-color: #1c1d1f; background: #ffffff; }
+        .btn-study:hover { background: #1c1d1f; color: #ffffff; }
+        .btn-quiz { color: #059669; border-color: #059669; background: #ffffff; }
+        .btn-quiz:hover { background: #059669; color: #ffffff; }
 
-        .mock-card {
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
+        /* ── SIDEBAR ── */
+        .sidebar { 
+            position: sticky; 
+            top: 100px; 
         }
-        .mock-badge {
-            min-width: 44px; height: 44px;
-            background: #f0fdff;
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem;
-        }
-        .mock-info { flex: 1; }
-        .mock-name { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.25rem; }
-        .mock-desc { font-size: 0.85rem; color: #6b7280; }
-        .btn-mock {
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 0.5rem 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #0891b2;
-            border: 1px solid #cffafe;
-            background: #f0fdff;
-            flex-shrink: 0;
-            transition: all 0.2s;
-        }
-        .btn-mock:hover { background: #cffafe; }
-
-        /* ── SIDEBAR ────────────────────────────────────── */
-        .sidebar { position: relative; }
         .sidebar-card {
             background: #fff;
             border-radius: 16px;
             border: 1px solid #e5e7eb;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 100px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
         }
         .sidebar-thumb {
-            background: linear-gradient(135deg, var(--py-blue-dark), var(--py-blue-brand));
-            padding: 3rem 1.5rem;
+            padding: 2.5rem 1.5rem 1.5rem;
             text-align: center;
+            background: #e2e8f0;
         }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
-            100% { transform: translateY(0px); }
-        }
-        .sidebar-thumb-icon { width: 80px; height: 80px; margin: 0 auto; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .sidebar-thumb-icon img { width: 100%; height: 100%; object-fit: contain; animation: float 3s ease-in-out infinite; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); }
-        .sidebar-thumb p { color: rgba(255,255,255,0.9); font-size: 0.9rem; margin-top: 0.7rem; font-weight: 600; }
-
-        .sidebar-body { padding: 2rem 1.5rem; }
-        .sidebar-price { font-size: 2rem; font-weight: 950; color: #1a1a1a; margin-bottom: 1.25rem; }
-        .sidebar-price span { font-size: 1.1rem; font-weight: 500; color: #9ca3af; text-decoration: line-through; margin-left: 0.6rem; }
-
-        .btn-full {
-            display: block; width: 100%; text-align: center;
-            background: var(--py-blue-dark);
-            color: #fff; font-weight: 700; font-size: 1rem;
-            padding: 1rem; border-radius: 10px; text-decoration: none;
-            margin-bottom: 0.8rem; transition: background 0.2s, transform 0.15s;
-        }
-        .btn-full:hover { background: #152b47; transform: translateY(-1px); }
-
-        .btn-full-outline {
-            display: block; width: 100%; text-align: center;
-            background: transparent;
-            color: var(--py-blue-dark); font-weight: 700; font-size: 1rem;
-            padding: 1rem; border-radius: 10px; text-decoration: none;
-            border: 2px solid var(--py-blue-dark); margin-bottom: 1.25rem;
-            transition: all 0.2s;
-        }
-        .btn-full-outline:hover { background: #eff6ff; }
-
-        .sidebar-features {
-            list-style: none; display: flex; flex-direction: column; gap: 0.8rem;
-            border-top: 1px solid #f0f0f0; padding-top: 1.25rem;
-        }
-        .sidebar-features li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: #374151; }
-        .sf-icon { font-size: 1.1rem; flex-shrink: 0; }
-        .sf-img-icon { height: 24px; width: 24px; object-fit: contain; flex-shrink: 0; }
-        .sf-img-round { 
-            width: 24px; height: 24px; border-radius: 50%; 
+        .sidebar-thumb-icon { 
+            width: 160px; height: 160px; margin: 0 auto; 
             display: flex; align-items: center; justify-content: center; 
-            background: #f8fafc; border: 1px solid #e2e8f0; overflow: hidden;
         }
-        .sf-img-round img { width: 85%; height: auto; object-fit: contain; }
+        .sidebar-thumb p { color: var(--text-main); font-size: 0.85rem; margin-top: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* ── CERTIFICATE CTA ───────────────────────────── */
-        .cert-card {
-            background: #fff;
-            border: 1px solid #e5e7eb;
+        .sidebar-body { padding: 1.8rem 1.5rem; text-align: center; }
+        .sidebar-track-title { font-size: 1.8rem; font-weight: 900; color: #1a1a1a; margin-bottom: 1.25rem; letter-spacing: -0.5px; text-align: center; }
+        
+        .cert-info-box {
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
             border-radius: 12px;
             padding: 1.25rem;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: linear-gradient(to right, #ffffff, #fffafa);
+            text-align: center;
+            margin-bottom: 1.5rem;
         }
-        .cert-info { flex: 1; text-align: left; }
-        .cert-info h4 { font-size: 0.95rem; font-weight: 800; color: #1a1a1a; margin-bottom: 0.3rem; margin-top: 0; }
-        .cert-info p { font-size: 0.8rem; color: #6b7280; line-height: 1.3; margin-bottom: 0.8rem; }
-        .btn-view-cert {
-            display: block; width: 100%; text-align: center;
-            background: var(--py-blue-dark);
-            color: #fff; font-weight: 700; font-size: 1rem;
-            padding: 1rem; border-radius: 10px; text-decoration: none;
-            cursor: pointer; border: none; transition: background 0.2s, transform 0.15s;
+        .cert-info-box h4 { font-size: 1rem; font-weight: 800; color: #1e293b; margin-bottom: 0.5rem; }
+        .cert-info-box p { font-size: 0.85rem; color: #64748b; line-height: 1.5; margin-bottom: 1.25rem; }
+        .btn-view-cert { 
+            display: block;
+            width: 100%; 
+            padding: 1rem; 
+            background: #1c1d1f; 
+            border: none;
+            border-radius: 12px; 
+            color: #fff; 
+            font-size: 1rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: all 0.2s; 
         }
-        .btn-view-cert:hover { background: #152b47; transform: translateY(-1px); }
-        .cert-thumb { display: none; }
+        .btn-view-cert:hover { background: #000000; }
 
-        /* Modal Styles */
+        .tools-covered {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f1f5f9;
+        }
+        .tools-label { font-size: 0.75rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; display: block; text-align: center; }
+        .tools-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 1.25rem; 
+        }
+        .tool-icon-wrap { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 0.6rem; 
+        }
+        .tool-icon-wrap img { 
+            width: 32px; 
+            height: 32px; 
+            object-fit: contain; 
+            margin-bottom: 4px;
+        }
+        .tool-icon-wrap span { 
+            font-size: 0.7rem; 
+            font-weight: 600; 
+            color: #64748b; 
+        }
+
+        /* Modal */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -423,90 +384,45 @@
             backdrop-filter: blur(5px);
             padding: 20px;
         }
-        .modal-content {
-            position: relative;
-            max-width: 800px;
-            width: 100%;
-            background: #fff;
-            padding: 8px;
-            border-radius: 12px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-        }
+        .modal-content { position: relative; max-width: 800px; width: 100%; background: #fff; padding: 8px; border-radius: 12px; }
         .modal-content img { display: block; width: 100%; height: auto; border-radius: 8px; }
-        .modal-close {
-            position: absolute;
-            top: -45px; right: 0;
-            width: 36px; height: 36px;
-            background: #fff;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer;
-            font-size: 1.5rem; font-weight: bold; color: #1a1a1a;
-            border: none;
-        }
+        .modal-close { position: absolute; top: -45px; right: 0; width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; font-weight: bold; border: none; }
 
         @media (max-width: 900px) {
-            .page-body { grid-template-columns: 1fr; gap: 2.5rem; }
-            .sidebar-card { position: static; max-width: 400px; margin: 0 auto; }
-            .features-bar { margin: -1px 1rem 0; flex-direction: column; }
-            .feature-item { border-right: none; border-bottom: 1px solid #f0f0f0; padding: 1.5rem; }
-            .feature-item:last-child { border-bottom: none; }
-        }
-        @media (max-width: 640px) {
-            .course-title { font-size: 2rem; }
-            .learn-grid { grid-template-columns: 1fr; }
-            .page-body { padding: 0 1.25rem 3.5rem; margin-top: 2.5rem; }
+            .page-body { grid-template-columns: 1fr; }
+            .features-bar { margin: -1rem 1rem 0; flex-direction: column; }
+            .feature-item { border-right: none; border-bottom: 1px solid #f0f0f0; }
         }
     </style>
-    <script>
-        function logout() {
-            sessionStorage.clear();
-            localStorage.removeItem('strategist_user');
-            localStorage.removeItem('strategist_phone');
-            localStorage.removeItem('gmail');
-            localStorage.removeItem('class_code');
-            window.location.href = 'login.html';
-        }
-
-        function openCertModal() { document.getElementById('certModal').style.display = 'flex'; }
-        function closeCertModal() { document.getElementById('certModal').style.display = 'none'; }
-        
-        window.onclick = function(event) {
-            let modal = document.getElementById('certModal');
-            if (event.target == modal) { modal.style.display = 'none'; }
-        }
-    </script>
 </head>
 <body>
 
-    <!-- ── NAVBAR ── -->
     <nav class="navbar">
         <div class="navbar-left">
-            <a href="intro.html" class="nav-back">← Back</a>
-            <a href="python_index.html">
-                <img src="Kvj logo.jpeg" alt="KVJ" class="nav-logo">
-            </a>
+            <a href="index.html" class="nav-back">← Back</a>
+            <img src="Kvj logo.jpeg" alt="KVJ Logo" class="nav-logo">
         </div>
-        <a onclick="logout()" class="nav-logout">Log Out</a>
+        <a href="javascript:void(0)" class="nav-logout" onclick="logout()">Logout</a>
     </nav>
 
-    <!-- ── HERO BANNER (Python Edition) ── -->
-    <div class="course-banner">
+    <section class="course-banner">
         <div class="banner-inner">
-            <div class="course-icon"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python"></div>
-
-            <h1 class="course-title">KVJ Advanced Python Certification</h1>
-
+            <div class="course-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python">
+            </div>
+            <h1 class="course-title">Python Mastery</h1>
+            <p class="course-subtitle">Become a Professional Developer</p>
+            
             <div class="rating-row">
                 <span class="stars">★★★★★</span>
-                <span class="rating-score">4.8</span>
-                <span class="rating-count">(2,400+ enrolled)</span>
+                <span class="rating-score">4.9</span>
+                <span class="rating-count">(1,250+ enrolled)</span>
             </div>
 
             <ul class="meta-list">
                 <li>
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    Estimated study time: <strong>40 h</strong>
+                    Estimated study time: <strong>4 to 5 hours</strong>
                 </li>
                 <li>
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
@@ -518,206 +434,258 @@
                 </li>
             </ul>
 
-            <a href="intro.html" class="btn-cta">Start Learning →</a>
-            <p class="guarantee-note">✓ Self-paced &nbsp;|&nbsp; ✓ Interactive assessments &nbsp;|&nbsp; ✓ Certificate upon completion</p>
+            <div style="margin-bottom: 2rem;">
+                <a href="#modules" class="btn-cta">EXPLORE →</a>
+                <div style="margin-top: 1rem; display: flex; gap: 1.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.9);">
+                    <span>✓ Real-world projects</span>
+                    <span>✓ Standard libraries</span>
+                    <span>✓ Certificate upon completion</span>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- ── FEATURES BAR ── -->
     <div class="features-bar">
         <div class="feature-item">
-            <img src="beginner.png" alt="Beginner" class="feature-icon">
-            <div class="feature-title">Beginner Friendly</div>
-            <div class="feature-sub">No prior coding experience needed</div>
+            <div class="feature-icon-text">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <div class="feature-title">Foundational Coding</div>
+            <div class="feature-sub">Variables, types, and logic</div>
         </div>
         <div class="feature-item">
-            <img src="bite.png" alt="Bite-sized" class="feature-icon">
-            <div class="feature-title">Bite-sized Content</div>
-            <div class="feature-sub">Learn at your own pace, module by module</div>
+            <div class="feature-icon-text">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            </div>
+            <div class="feature-title">I/O & Modules</div>
+            <div class="feature-sub">File handling and libraries</div>
         </div>
         <div class="feature-item">
-            <img src="cert.png" alt="Certified" class="feature-icon">
-            <div class="feature-title">Get Certified</div>
-            <div class="feature-sub">Accredited by KVJ</div>
+            <div class="feature-icon-text">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            </div>
+            <div class="feature-title">Error Handling</div>
+            <div class="feature-sub">Exception & debugging</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon-text">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <div class="feature-title">Certification Prep</div>
+            <div class="feature-sub">ITS-303 Specialist exam</div>
         </div>
     </div>
 
-    <!-- ── PAGE BODY ── -->
     <div class="page-body">
-
-        <!-- LEFT COLUMN -->
-        <div>
-            <!-- What you'll learn -->
+        <div class="main-column">
             <h2 class="section-title">What You'll Learn</h2>
             <div class="learn-grid">
-                <div class="learn-item"><span class="check">✓</span> Master Python fundamentals: variables, types, and logic</div>
-                <div class="learn-item"><span class="check">✓</span> Implement advanced flow control and nested loops</div>
-                <div class="learn-item"><span class="check">✓</span> Handle file I/O and data persistence efficiently</div>
-                <div class="learn-item"><span class="check">✓</span> Write professional documentation and docstrings</div>
-                <div class="learn-item"><span class="check">✓</span> Build robust error handling with Try-Except blocks</div>
-                <div class="learn-item"><span class="check">✓</span> Explore Python's powerful built-in standard library</div>
-                <div class="learn-item"><span class="check">✓</span> Solve real-world automation and data problems</div>
-                <div class="learn-item"><span class="check">✓</span> Pass full-length certification mock tests</div>
+                <div class="learn-item"><span class="check">✓</span> Python syntax, variables, and core data types</div>
+                <div class="learn-item"><span class="check">✓</span> Advanced control flow, loops, and logical branching</div>
+                <div class="learn-item"><span class="check">✓</span> Comprehensive file I/O and data persistence</div>
+                <div class="learn-item"><span class="check">✓</span> Professional documentation and clean coding standards</div>
+                <div class="learn-item"><span class="check">✓</span> Robust error handling and debugging techniques</div>
+                <div class="learn-item"><span class="check">✓</span> Leveraging standard libraries and built-in modules</div>
+                <div class="learn-item"><span class="check">✓</span> Solving practical coding challenges and projects</div>
+                <div class="learn-item"><span class="check">✓</span> Preparing for industry-standard Python certifications</div>
             </div>
 
-            <!-- Modules -->
-            <div class="modules-section">
-                <h2 class="section-title">Course Modules</h2>
-                <div class="module-list">
-
-                    <div class="module-card">
-                        <div class="module-num">M1</div>
-                        <div class="module-info">
-                            <div class="module-name">Module 1 — Data Types</div>
-                            <div class="module-desc">Fundamental data types, variables, and basic operators.</div>
-                        </div>
-                        <div class="module-actions">
-                            <a href="Module-1.html" class="btn-sm btn-study">Study</a>
-                            <a href="module_quiz.html?mod=1" class="btn-sm btn-quiz">Quiz</a>
-                        </div>
+            <h2 class="section-title" id="modules">Course Modules</h2>
+            <div class="module-list">
+                <div class="module-card">
+                    <div class="module-num">M1</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 1 — Foundation</div>
+                        <div class="module-desc">Variables, data types, and basic operations.</div>
                     </div>
-
-                    <div class="module-card">
-                        <div class="module-num">M2</div>
-                        <div class="module-info">
-                            <div class="module-name">Module 2 — Flow Control</div>
-                            <div class="module-desc">Conditional statements and loops to control program logic.</div>
-                        </div>
-                        <div class="module-actions">
-                            <a href="Module-2.html" class="btn-sm btn-study">Study</a>
-                            <a href="module_quiz.html?mod=2" class="btn-sm btn-quiz">Quiz</a>
-                        </div>
+                    <div class="module-actions">
+                        <a href="Module-1.html" class="btn-sm btn-study">Study</a>
+                        <a href="module_quiz.html?mod=1" class="btn-sm btn-quiz">Quiz</a>
                     </div>
-
-                    <div class="module-card">
-                        <div class="module-num">M3</div>
-                        <div class="module-info">
-                            <div class="module-name">Module 3 — I/O Operations</div>
-                            <div class="module-desc">Handling user input and managing file operations.</div>
-                        </div>
-                        <div class="module-actions">
-                            <a href="Module-3.html" class="btn-sm btn-study">Study</a>
-                            <a href="module_quiz.html?mod=3" class="btn-sm btn-quiz">Quiz</a>
-                        </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M2</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 2 — Flow Control</div>
+                        <div class="module-desc">Conditionals, loops, and logic branches.</div>
                     </div>
-
-                    <div class="module-card">
-                        <div class="module-num">M4</div>
-                        <div class="module-info">
-                            <div class="module-name">Module 4 — Documentation</div>
-                            <div class="module-desc">Best practices for structuring code and writing docstrings.</div>
-                        </div>
-                        <div class="module-actions">
-                            <a href="Module-4.html" class="btn-sm btn-study">Study</a>
-                            <a href="module_quiz.html?mod=4" class="btn-sm btn-quiz">Quiz</a>
-                        </div>
+                    <div class="module-actions">
+                        <a href="Module-2.html" class="btn-sm btn-study">Study</a>
+                        <a href="module_quiz.html?mod=2" class="btn-sm btn-quiz">Quiz</a>
                     </div>
-
-                    <div class="module-card">
-                        <div class="module-num">M5</div>
-                        <div class="module-info">
-                            <div class="module-name">Module 5 — Error Handling</div>
-                            <div class="module-desc">Implementing try-except blocks and debugging techniques.</div>
-                        </div>
-                        <div class="module-actions">
-                            <a href="Module-5.html" class="btn-sm btn-study">Study</a>
-                            <a href="module_quiz.html?mod=5" class="btn-sm btn-quiz">Quiz</a>
-                        </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M3</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 3 — I/O Operations</div>
+                        <div class="module-desc">File handling and console input/output.</div>
                     </div>
-
-                    <div class="module-card">
-                        <div class="module-num">M6</div>
-                        <div class="module-info">
-                            <div class="module-name">Module 6 — Built-in Modules</div>
-                            <div class="module-desc">Exploring standard libraries like math, datetime, and os.</div>
-                        </div>
-                        <div class="module-actions">
-                            <a href="Module-6.html" class="btn-sm btn-study">Study</a>
-                            <a href="module_quiz.html?mod=6" class="btn-sm btn-quiz">Quiz</a>
-                        </div>
+                    <div class="module-actions">
+                        <a href="Module-3.html" class="btn-sm btn-study">Study</a>
+                        <a href="module_quiz.html?mod=3" class="btn-sm btn-quiz">Quiz</a>
                     </div>
-
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M4</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 4 — Documentation</div>
+                        <div class="module-desc">Comments, docstrings, and best practices.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="Module-4.html" class="btn-sm btn-study">Study</a>
+                        <a href="module_quiz.html?mod=4" class="btn-sm btn-quiz">Quiz</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M5</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 5 — Error Handling</div>
+                        <div class="module-desc">Try-except blocks and debugging.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="Module-5.html" class="btn-sm btn-study">Study</a>
+                        <a href="module_quiz.html?mod=5" class="btn-sm btn-quiz">Quiz</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M6</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 6 — Built-in Modules</div>
+                        <div class="module-desc">Standard libraries and os/math modules.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="Module-6.html" class="btn-sm btn-study">Study</a>
+                        <a href="module_quiz.html?mod=6" class="btn-sm btn-quiz">Quiz</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Mock Tests -->
-            <div class="modules-section">
-                <h2 class="section-title">Mock Assessments</h2>
-                <div class="module-list">
-                    <div class="mock-card">
-                        <div class="mock-badge">📝</div>
-                        <div class="mock-info">
-                            <div class="mock-name">Mock Test 1</div>
-                            <div class="mock-desc">Comprehensive assessment covering all Python fundamentals.</div>
-                        </div>
-                        <a href="module_quiz.html?mock=1" class="btn-mock">Take Mock</a>
+            <h2 class="section-title" style="margin-top: 3rem;">Certification Mock Exams</h2>
+            <div class="module-list">
+                <div class="module-card">
+                    <div class="module-num"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></div>
+                    <div class="module-info">
+                        <div class="module-name">Mock Test 1 — Foundational</div>
+                        <div class="module-desc">Covers core Python syntax and flow control (Modules 1-3).</div>
                     </div>
-
-                    <div class="mock-card">
-                        <div class="mock-badge">📝</div>
-                        <div class="mock-info">
-                            <div class="mock-name">Mock Test 2</div>
-                            <div class="mock-desc">Advanced full-length practice exam simulation environment.</div>
-                        </div>
-                        <a href="module_quiz.html?mock=2" class="btn-mock">Take Mock</a>
+                    <div class="module-actions">
+                        <a href="module_quiz.html?mock=1" class="btn-sm btn-study">Take Mock</a>
                     </div>
-
-                    <div class="mock-card">
-                        <div class="mock-badge">🏆</div>
-                        <div class="mock-info">
-                            <div class="mock-name">Mock Test 3 — Full Certification Simulation</div>
-                            <div class="mock-desc">Final simulation covering all advanced Python topics.</div>
-                        </div>
-                        <a href="module_quiz.html?mock=3" class="btn-mock">Take Mock</a>
+                </div>
+                <div class="module-card">
+                    <div class="module-num"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                    <div class="module-info">
+                        <div class="module-name">Mock Test 2 — Advanced Logic</div>
+                        <div class="module-desc">Focuses on file I/O, error handling, and documentation.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="module_quiz.html?mock=2" class="btn-sm btn-study">Take Mock</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path></svg></div>
+                    <div class="module-info">
+                        <div class="module-name">Mock Test 3 — Full Simulation</div>
+                        <div class="module-desc">Comprehensive final simulation covering all modules.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="module_quiz.html?mock=3" class="btn-sm btn-study">Take Mock</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- RIGHT COLUMN -->
-        <div class="sidebar">
-            <div class="sidebar-card">
-                <div class="sidebar-thumb">
-                    <div class="sidebar-thumb-icon"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python Badge"></div>
-                    <p>KVJ Advanced Python Certification</p>
-                </div>
-                <div class="sidebar-body">
-                    <div class="sidebar-price">Career Certification</div>
-                    
-                    <div class="cert-card">
-                        <div class="cert-info">
-                            <h4>Official Certification</h4>
-                            <p>Earn globally recognized Pearson IT Specialist and KVJ Career certificates.</p>
+        <div class="sidebar-column">
+            <div class="sidebar">
+                <div class="sidebar-card">
+                    <div class="sidebar-thumb">
+                        <div class="sidebar-thumb-icon">
+                            <img src="pearson_python_badge_transparent.png" alt="Pearson Badge" style="width: 100%; height: auto;">
+                        </div>
+                        <p style="font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Pearson IT Specialist</p>
+                    </div>
+                    <div class="sidebar-body">
+                        <h3 class="sidebar-track-title">Career Track</h3>
+                        
+                        <div class="cert-info-box">
+                            <p style="margin-bottom: 1.5rem; color: #64748b; font-size: 0.9rem;">Specialist and KVJ certificate.</p>
                             <button class="btn-view-cert" onclick="openCertModal()">View a sample certificate</button>
                         </div>
-                    </div>
 
-                    <ul class="sidebar-features">
-                        <li><span class="sf-icon">📚</span> 6 structured study modules</li>
-                        <li><span class="sf-icon">✅</span> 50+ interactive quiz questions</li>
-                        <li><span class="sf-icon">📝</span> 3 full mock assessments</li>
-                        <li><span class="sf-icon">⏱️</span> Self-paced, no deadlines</li>
-                        <li><span class="sf-icon">📱</span> Works on any device</li>
-                        <li><img src="pearson_badge.png" alt="Pearson" class="sf-img-icon"> Pearson IT Specialist Cert.</li>
-                        <li>
-                            <div class="sf-img-round">
-                                <img src="Kvj logo.jpeg" alt="KVJ">
+                        <ul class="sidebar-benefits" style="list-style: none; padding: 2rem 0; border-top: 1px solid #f1f5f9; margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+                            <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1c1d1f; font-weight: 500;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> 6 core coding modules
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1c1d1f; font-weight: 500;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> Hands-on code projects
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1c1d1f; font-weight: 500;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg> 3 full mock exams
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1c1d1f; font-weight: 500;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Self-paced flexibility
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1c1d1f; font-weight: 500;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1c1d1f"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg> Professional toolsets
+                            </li>
+                        </ul>
+
+                        <div style="display: flex; justify-content: center; gap: 0.8rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; margin-bottom: 1.5rem;">
+                            <div style="flex: 1; border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                <img src="pearson_logo.svg" alt="Pearson" style="height: 20px;">
                             </div>
-                            KVJ Participation Certificate
-                        </li>
-                    </ul>
+                            <div style="flex: 1; border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                <img src="Kvj logo.jpeg" alt="KVJ" style="height: 28px;">
+                            </div>
+                        </div>
+
+                        <div class="tools-covered">
+                            <span class="tools-label">EXPLORE TOOLS COVERED</span>
+                            <div class="tools-grid" style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 1rem;">
+                                <div class="tool-icon-wrap">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python">
+                                    <span>Python</span>
+                                </div>
+                                <div class="tool-icon-wrap">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/906/906324.png" alt="VS Code">
+                                    <span>VS Code</span>
+                                </div>
+                                <div class="tool-icon-wrap">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecolab/googlecolab-original.svg" alt="Colab">
+                                    <span>Colab</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 
-    <!-- Certification Modal -->
     <div class="modal-overlay" id="certModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeCertModal()">×</button>
-            <img src="sample_certificate.png" alt="Official Certificate">
+            <img src="anoop_python_certificate.png" alt="Python Specialist Certificate">
         </div>
     </div>
+
+    <script>
+        function checkMockCode(expectedCode, targetUrl) {
+            window.location.href = targetUrl;
+        }
+
+        function logout() {
+            sessionStorage.clear();
+            localStorage.removeItem('strategist_user');
+            localStorage.removeItem('strategist_phone');
+            window.location.href = 'login.html';
+        }
+        function openCertModal() { document.getElementById('certModal').style.display = 'flex'; }
+        function closeCertModal() { document.getElementById('certModal').style.display = 'none'; }
+        window.onclick = function(event) {
+            let modal = document.getElementById('certModal');
+            if (event.target == modal) { modal.style.display = 'none'; }
+        }
+    </script>
 </body>
 </html>

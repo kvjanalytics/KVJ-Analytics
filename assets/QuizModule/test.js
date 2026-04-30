@@ -88,8 +88,8 @@
                 { id: 2, type: "MCQ", q: `You are reviewing code written by a developer that checks whether a number exists in a list.<br><br>What will the program output?<br><span style="font-size: 12px; font-style: italic;">Select the correct answer.</span>`, 
                   code: "numbers = [10, 20, 30, 40]\nprint(20 in numbers)", 
                   options: ["False", "True", "20", "Error"], a: 1 },
-                { id: 3, type: "DND", q: `You are developing a program that processes numbers from 1 to 10. The program must: • Stop the loop immediately when the number 7 is encountered. <br><br>Complete the code by moving the correct code segment into the blank.<br><span style="font-size: 12px; font-style: italic;">Note: You will receive partial credit for correct placement.</span>`, 
-                  code: "for i in range(1, 11):\n    if i == 7:\n        [target1]\n    print(i)", 
+                { id: 3, type: "DROPDOWN", q: `You are developing a program that processes numbers from 1 to 10. The program must: • Stop the loop immediately when the number 7 is encountered. <br><br>Complete the code by selecting the correct code segment.<br><span style="font-size: 12px; font-style: italic;">Note: You will receive partial credit for correct selection.</span>`, 
+                  code: "for i in range(1, 11):\n    if i == 7:\n        [b1]\n    print(i)", 
                   options: ["break", "continue", "pass"], a: ["break"] },
                 { id: 4, type: "DD", q: `You are creating a program that stores student marks. The program must: • Add a new mark to the list • Sort the list. <br><br>Complete the code by selecting the correct option from each drop-down list.<br><span style="font-size: 12px; font-style: italic;">Note: You will receive partial credit for each correct selection.</span>`, 
                   code: "marks = [70, 85, 60]\nmarks.[b1](90)\nmarks.[b2]()\nprint(marks)", 
@@ -161,7 +161,7 @@
                   options: ["except", "catch", "handle"], a: ["except"] },
                 { id: 29, type: "TF", q: `Select True or False.`, 
                   options: ["finally always executes", "finally runs only when error occurs", "finally runs even if no exception happens."], a: [true, false, true] },
-                { id: 30, type: "DD", q: `Complete the test statement.`, 
+                { id: 30, type: "DROPDOWN", q: `You are writing automated tests for a data processing pipeline to strictly ensure variable types.<br><br>Complete the test statement.`, 
                   code: "self.[b1](5, int)", 
                   options: ["assertTrue", "assertEqual", "assertIsInstance", "assertIn"], a: ["assertIsInstance"] },
                 { id: 31, type: "MCQ", q: `Evaluate Output?`, 
@@ -211,8 +211,8 @@
                 Complete the code to check if data.txt exists and read it.`, 
                   code: "import os\nif [b1](\"data.txt\"):\n    file = open(\"data.txt\", \"r\")\n    print(file.[b2]())\n    file.close()", 
                   options: [["os.path.exists", "os.exists", "os.path.check"], ["read", "write", "open"]], a: ["os.path.exists", "read"] },
-                { id: 7, type: "DND", q: `Move the correct keyword to stop the inner loop.`, 
-                  code: "for p in range(2, 21):\n    is_prime = True\n    for i in range(2, p):\n        if p % i == 0:\n            is_prime = False\n            [target1]\n    if is_prime:\n        print(p)", 
+                { id: 7, type: "DROPDOWN", q: `Select the correct keyword to stop the inner loop.`, 
+                  code: "for p in range(2, 21):\n    is_prime = True\n    for i in range(2, p):\n        if p % i == 0:\n            is_prime = False\n            [b1]\n    if is_prime:\n        print(p)", 
                   options: ["break", "continue", "pass"], a: ["break"] },
                 { id: 8, type: "DD", q: `Complete the comparison logic.`, 
                   code: "numList = [1, 2, 3]\nalphaList = [\"a\", \"b\", \"c\"]\nif [b1]:\n    print(\"Equal\")\nelse:\n    print(\"Not Equal\")", 
@@ -230,8 +230,8 @@
                 { id: 13, type: "DD", q: `Complete the loop and condition to count items.`, 
                   code: "def count_letter(letter, word_list):\n    count = 0\n    for [b1]:\n        if [b2]:\n            count += 1\n    return count", 
                   options: [["word in word_list", "word_list in word"], ["letter in word", "word in letter"]], a: ["word in word_list", "letter in word"] },
-                { id: 14, type: "DND", q: `Move the code segments to create a valid guessing game.`, 
-                  code: "from random import randint\ntarget = randint(1, 10)\nchance = 1\n[target1]\n    guess = int(input(\"Guess: \"))\n    if guess == target:\n        print(\"Correct!\")\n        [target2]\n    [target3]", 
+                { id: 14, type: "DROPDOWN", q: `Select the code segments to create a valid guessing game.`, 
+                  code: "from random import randint\ntarget = randint(1, 10)\nchance = 1\n[b1]\n    guess = int(input(\"Guess: \"))\n    if guess == target:\n        print(\"Correct!\")\n        [b2]\n    [b3]", 
                   options: ["break", "chance += 1", "while chance <= 3:"], a: ["while chance <= 3:", "break", "chance += 1"] },
                 { id: 15, type: "DD", q: `Complete the conditional logic for fee calculation.`, 
                   code: "elif age >= 5 and age <= 17 and not school: rate = [b1]\nelse: rate = [b2]", 
@@ -271,14 +271,15 @@
                 { id: 28, type: "TF", q: `Analyze the behavior of opening a file in 'append' mode.`, 
                   code: "f = open(\"python.txt\", \"a\")\nf.write(\"This is a line of text.\")\nf.close()", 
                   options: ["A file named python.txt is created if it does not exist.", "The existing data in the file will be overwritten.", "The file can be opened again after this code runs."], a: [true, false, true] },
-                { id: 29, type: "MCQ2", q: `Identify the correct f-string or formatting methods.`, 
-                  options: ["print('\"' + item + '\",' + str(sales))", "print('\"{0}\",{1}'.format(item, sales))", "print(item + \",\" + sales)", "print(f'\"{item}\",{sales}')"], a: [1, 3] },
+                { id: 29, type: "MCQ2", q: `<strong>Formatted Output:</strong> You are creating an eCommerce script that accepts input from the user and outputs the data in a comma-delimited format. Enclose strings in double quotes, do not enclose numbers in quotes, and separate items by commas.<br><br>Which two code segments meet the requirements?<br><span style='font-size: 15px; font-style: italic;'>Each correct answer presents a complete solution. (Choose 2.)</span>`, 
+                  code: "item = input(\"Enter the item name: \")\nsales = int(input(\"Enter the quantity: \"))",
+                  options: ["print('\"' + item + '\",' , sales)", "print('\"{0}\",{1}'.format(item, sales))", "print(item + ',' + sales)", "print(f'\"{item}\",{sales}')"], a: [1, 3] },
                 { id: 30, type: "MCQ", q: `Evaluate the arithmetic expression with modulo and precedence.`, 
                   code: "value1 = 9; value2 = 4\nanswer = (value1 % value2 * 10) / 2.0 ** 3.0 + value2", 
                   options: ["5.667", "5.0", "129", "Syntax Error"], a: 1 },
-                { id: 31, type: "DND", q: `Order the operational precedence from first to last.`, 
-                  code: "1st: [target1]\nLast: [target2]", 
-                  options: ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"], a: ["Parentheses", "And"] },
+                { id: 31, type: "DROPDOWN", q: `<strong>Operator Precedence:</strong> You are writing a Python application that includes multiple operations on the same line of code. You need to determine the correct order of operations.<br>Select the type of operation for each step in the order of execution (1st to 6th).<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>`, 
+                  code: "<div style='display: grid; grid-template-columns: 1fr 2fr; gap: 10px; align-items: center; background: #0f172a; padding: 20px; border-radius: 12px; color: #f8fafc; font-family: \"Outfit\"; font-weight: 600;'><div style='color: #38bdf8;'>1st Operation (Top):</div> <div>[b1]</div> <div style='color: #38bdf8;'>2nd Operation:</div> <div>[b2]</div> <div style='color: #38bdf8;'>3rd Operation:</div> <div>[b3]</div> <div style='color: #38bdf8;'>4th Operation:</div> <div>[b4]</div> <div style='color: #38bdf8;'>5th Operation:</div> <div>[b5]</div> <div style='color: #38bdf8;'>6th Operation (Bottom):</div> <div>[b6]</div></div>", 
+                  options: [["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"], ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"], ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"], ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"], ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"], ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"]], a: ["Parentheses", "Exponents", "Unary positive, negative, not", "Multiplication and Division", "Addition and Subtraction", "And"] },
                 { id: 32, type: "TF", q: `Select True or False for the default parameter analysis.`, 
                   code: "01 def increment_score(score, bonus, points=1): ...", 
                   options: ["To meet the requirements, you must change line 01.", "If line 01 is not changed, an error occurs with 2 parameters.", "Line 03 modifies the external variable points."], a: [true, true, false] },
@@ -302,6 +303,142 @@
                   options: ["with open(\"data.txt\", \"r\") as f: data = f.read()", "f = open(\"data.txt\", \"r\"); data = f.read()", "f = open(\"data.txt\", \"r\"); data = f.read(); f.close()", "open(\"data.txt\").read()"], a: [0, 2] },
                 { id: 40, type: "SHORT", q: `Calculate the total sum after the loop finishes.`, 
                   code: "total = 0\nfor i in range(1, 6):\n    if i == 3: continue\n    total += i\nprint(total)", a: "12" }
+            ],
+            "mock3": [
+                { id: 1, type: "DROPDOWN", q: "You need to test whether an object is an instance of a specific class.", code: "[b1] unittest\nclass TestIsInstance([b2]):\n    def [b3]\n        [b4]", options: [["define", "import", "include", "using"], ["unittest.TestCase", "test.TestCase"], ["test_isInstance(self):", "try_isInstance(self):"], ["self.assertIsInstance(obj, cls, msg=None)", "test.assertIsInstance(obj, cls, msg=None)"]], a: ["import", "unittest.TestCase", "test_isInstance(self):", "self.assertIsInstance(obj, cls, msg=None)"] },
+                { 
+                  id: 30, 
+                  type: "MCQ2", 
+                  q: `You are creating an eCommerce script that accepts input from the user and outputs the data in a comma-delimited format.<br><br>
+                  You write the following code to accept input:<br>
+                  <div class='code-snippet'>item = input("Enter the item name: ")<br>sales = int(input("Enter the quantity: "))</div><br>
+                  The output must meet the following requirements:
+                  <ul style='margin-top: 10px; margin-bottom: 10px; padding-left: 20px;'>
+                    <li>Enclose strings in double quotes.</li>
+                    <li>Do not enclose numbers in quotes or other characters.</li>
+                    <li>Separate items by commas.</li>
+                  </ul>
+                  You need to complete the code to meet the requirements.<br><br>
+                  Which two code segments could you use? Each correct answer presents a complete solution. (Choose 2.)<br><br>
+                  <span style='font-size: 14px; font-style: italic; color: #64748b;'>Note: You will receive partial credit for each correct answer.</span>`, 
+                  options: [
+                    "print('\"' + item + '\",' , sales)", 
+                    "print('\"{0}\",{1}'.format(item, sales))", 
+                    "print(item + ',' + sales)", 
+                    "print(f'\"{item}\",{sales}')"
+                  ], 
+                  a: [1, 3] 
+                },
+                { id: 31, type: "DROPDOWN", q: `You are writing a Python application that includes multiple operations on the same line of code. You need to determine the correct order of operations.<br><br>Select the type of operation for each step in the order of execution (1st to 6th).`, 
+                  code: `<div style='display: grid; grid-template-columns: 1fr 2fr; gap: 10px; align-items: center; background: #0f172a; padding: 20px; border-radius: 12px; color: #f8fafc; font-family: "Outfit"; font-weight: 600;'>
+                    <div style='color: #38bdf8;'>1st (Top):</div> <div>[b1]</div>
+                    <div style='color: #38bdf8;'>2nd:</div> <div>[b2]</div>
+                    <div style='color: #38bdf8;'>3rd:</div> <div>[b3]</div>
+                    <div style='color: #38bdf8;'>4th:</div> <div>[b4]</div>
+                    <div style='color: #38bdf8;'>5th:</div> <div>[b5]</div>
+                    <div style='color: #38bdf8;'>6th (Bottom):</div> <div>[b6]</div>
+                  </div>`, 
+                  options: [
+                    ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"],
+                    ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"],
+                    ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"],
+                    ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"],
+                    ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"],
+                    ["Addition and Subtraction", "And", "Exponents", "Multiplication and Division", "Parentheses", "Unary positive, negative, not"]
+                  ], 
+                  a: ["Parentheses", "Exponents", "Unary positive, negative, not", "Multiplication and Division", "Addition and Subtraction", "And"] },
+                { 
+                  id: 32, 
+                  type: "TF", 
+                  q: `You are writing a function that increments the player score in a game. The function has the following requirements:<br>
+                  • If no value is specified for points, then points start at one.<br>
+                  • If bonus is True, then points must be doubled.<br><br>
+                  You write the following code. Line numbers are included for reference only.`, 
+                  code: `01 def increment_score(score, bonus, points):<br>02     if bonus == True:<br>03         points = points * 2<br>04     score = score + points<br>05     return score<br>06 points = 5<br>07 score = 10<br>08 new_score = increment_score(score, True, points)`, 
+                  options: [
+                    "To meet the requirements, you must change line 01 to: def increment_score(score, bonus, points = 1):", 
+                    "If you do not change line 01 and the function is called with only two parameters, an error occurs.", 
+                    "Line 03 will also modify the value of the variable points declared at line 06."
+                  ], 
+                  a: [true, true, false] 
+                },
+                { 
+                  id: 33, 
+                  type: "MTF", 
+                  q: `You need to identify the results of performing various slicing operations on the following sequence structure:<br><br><code>alph = "abcdefghijklmnopqrstuvwxyz"</code>`, 
+                  options: ["alph[3:6]", "alph[:6]"], 
+                  labels: ["def", "cde", "cdef", "abcdef", "defg", "abcde"], 
+                  a: { "alph[3:6]": "def", "alph[:6]": "abcdef" } 
+                },
+                { 
+                  id: 34, 
+                  type: "SHORT", 
+                  q: `Review the following code segment:<br><br>How many lines of output does the code print?<br><span style='font-size: 12px; font-style: italic;'>Enter the number as an integer.</span>`, 
+                  code: `product = 2<br>n = 5<br>while (n != 0):<br>    product *= n<br>    print(product)<br>    n -= 1<br>    if n == 3:<br>        break`, 
+                  a: "2" 
+                },
+                { 
+                  id: 35, 
+                  type: "DROPDOWN", 
+                  q: `You find errors while evaluating the following code. Line numbers are included for reference only. You need to correct the code at line 03 and line 06.`, 
+                  code: `<div class='code-snippet'>01 numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]<br>02 index = 0<br>03 [b1]<br>04 &nbsp;&nbsp;&nbsp;&nbsp;print(numbers[index])<br>05 <br>06 &nbsp;&nbsp;&nbsp;&nbsp;[b2]<br>07 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br>08 &nbsp;&nbsp;&nbsp;&nbsp;else :<br>09 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index += 1</div>`, 
+                  options: [
+                    ["while (index < 10) :", "while [index < 10]", "while (index < 5) :", "while [index < 5]"],
+                    ["if numbers[index] == 6 :", "if numbers[index] == 6", "if numbers(index) = 6 :", "if numbers(index) != 6"]
+                  ], 
+                  a: ["while (index < 10) :", "if numbers[index] == 6 :"] 
+                },
+                { 
+                  id: 36, 
+                  type: "DROPDOWN", 
+                  q: `You are developing a student grading system. You need to perform the following operations on the <code>grades</code> list:<br>1. Add a new grade (85) to the end of the list.<br>2. Sort the list in ascending order.<br>3. Remove and return the last item in the list.`, 
+                  code: `<div class='code-snippet'>grades = [90, 70, 80]<br>grades.[b1](85)<br>grades.[b2]()<br>final_grade = grades.[b3]()</div>`, 
+                  options: [
+                    ["append", "add", "insert", "extend"],
+                    ["sort", "sorted", "arrange", "order"],
+                    ["pop", "remove", "delete", "drop"]
+                  ], 
+                  a: ["append", "sort", "pop"] 
+                },
+                { 
+                  id: 37, 
+                  type: "TF", 
+                  q: `You are reviewing a script that generates a formatted report. For each statement, select True or False.`, 
+                  code: `<div class='code-snippet'>name = "Anoop"<br>score = 95.5<br>report = "Student: {} | Score: {:.0f}".format(name, score)</div>`, 
+                  options: [
+                    "The variable score is of type float.", 
+                    "The report variable will contain the string 'Student: Anoop | Score: 96'.", 
+                    "The {:.0f} format specifier rounds the value to the nearest whole number."
+                  ], 
+                  a: [true, true, true] 
+                },
+                { 
+                  id: 38, 
+                  type: "MCQ", 
+                  q: `You are auditing a security gate condition. What is the output?`, 
+                  code: `<div class='code-snippet'>authorized = True<br>expired = False<br>override = False<br>result = authorized and not expired or override<br>print(result)</div>`, 
+                  options: ["True", "False", "None", "Error"], 
+                  a: 0 
+                },
+                { 
+                  id: 39, 
+                  type: "DROPDOWN", 
+                  q: `You are writing a script to process a configuration file <code>config.txt</code>. You need to read all lines into a list and close the file automatically.`, 
+                  code: `<div class='code-snippet'>[b1] open("config.txt", "r") [b2] file:<br>&nbsp;&nbsp;&nbsp;&nbsp;lines = file.[b3]()</div>`, 
+                  options: [
+                    ["with", "using", "open", "try"],
+                    ["as", "for", "in", "to"],
+                    ["readlines", "read", "readline", "getlines"]
+                  ], 
+                  a: ["with", "as", "readlines"] 
+                },
+                { 
+                  id: 40, 
+                  type: "SHORT", 
+                  q: `You are accessing a nested dictionary of employee data. What is the output of the code?`, 
+                  code: `<div class='code-snippet'>employees = {<br>&nbsp;&nbsp;&nbsp;&nbsp;"E01": {"name": "Alice", "dept": "HR"},<br>&nbsp;&nbsp;&nbsp;&nbsp;"E02": {"name": "Bob", "dept": "IT"}<br>}<br>print(employees["E02"]["dept"])</div>`, 
+                  a: "IT" 
+                }
             ]
         };
 
@@ -372,13 +509,38 @@
             } else if(q.type === "TF") {
                 const area = document.createElement('div');
                 area.className = "answer-area";
+                let html = `
+                    <div class="answer-area-label" style="margin-bottom: 15px;">TRUE / FALSE SELECTION</div>
+                    <div style="background: white; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                        <div style="display: flex; background: #f8fafc; border-bottom: 2px solid #e2e8f0; padding: 12px 15px; font-weight: 700; color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">
+                            <div style="flex: 1;">Statement</div>
+                            <div style="width: 140px; display: flex; justify-content: space-around; text-align: center;">
+                                <span style="width: 50%;">True</span>
+                                <span style="width: 50%;">False</span>
+                            </div>
+                        </div>
+                `;
                 q.options.forEach((opt, i) => {
-                    const row = document.createElement('div');
-                    row.className = "mtf-row";
-                    row.innerHTML = `<span style="color:#64748b; font-weight:600;">${opt}</span><select class="quiz-dropdown" onchange="updateTF(${i}, this.value)"><option value="">SELECT...</option><option value="true">TRUE</option><option value="false">FALSE</option></select>`;
-                    if(userAnswers[currentIndex]?.[i]) row.querySelector('select').value = userAnswers[currentIndex][i];
-                    area.appendChild(row);
+                    const val = (userAnswers[currentIndex] && typeof userAnswers[currentIndex] === 'object') ? userAnswers[currentIndex][i] : null;
+                    const isTrue = val === true || val === 'true';
+                    const isFalse = val === false || val === 'false';
+                    
+                    html += `
+                        <div style="display: flex; border-bottom: 1px solid #f1f5f9; padding: 15px; align-items: center; transition: background 0.2s;">
+                            <div style="flex: 1; font-weight: 500; color: #1e293b; padding-right: 20px;">${opt}</div>
+                            <div style="width: 140px; display: flex; justify-content: space-around;">
+                                <div onclick="updateTF(${i}, true)" style="display: flex; cursor: pointer; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: ${isTrue ? '#0ea5e9' : '#e2e8f0'}; border: 2px solid ${isTrue ? '#0ea5e9' : '#cbd5e1'}; transition: all 0.2s; box-shadow: ${isTrue ? '0 0 8px rgba(14,165,233,0.4)' : 'none'};">
+                                    ${isTrue ? '<div style="width: 8px; height: 8px; border-radius: 50%; background: white;"></div>' : ''}
+                                </div>
+                                <div onclick="updateTF(${i}, false)" style="display: flex; cursor: pointer; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: ${isFalse ? '#0ea5e9' : '#e2e8f0'}; border: 2px solid ${isFalse ? '#0ea5e9' : '#cbd5e1'}; transition: all 0.2s; box-shadow: ${isFalse ? '0 0 8px rgba(14,165,233,0.4)' : 'none'};">
+                                    ${isFalse ? '<div style="width: 8px; height: 8px; border-radius: 50%; background: white;"></div>' : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
                 });
+                html += `</div>`;
+                area.innerHTML = html;
                 interaction.appendChild(area);
             } else if(q.type === "MTF") {
                 const area = document.createElement('div');
@@ -441,6 +603,7 @@
         }
 
         function handleSelection(idx, multi) {
+            console.log("handleSelection called", idx, multi);
             if(multi) {
                 if(!Array.isArray(userAnswers[currentIndex])) userAnswers[currentIndex] = [];
                 const pos = userAnswers[currentIndex].indexOf(idx);
@@ -450,7 +613,7 @@
             loadQuestion();
         }
 
-        function updateTF(i, val) { if(!userAnswers[currentIndex]) userAnswers[currentIndex] = []; userAnswers[currentIndex][i] = val; }
+        function updateTF(i, val) { console.log("updateTF called", i, val); if(!userAnswers[currentIndex]) userAnswers[currentIndex] = []; userAnswers[currentIndex][i] = val; loadQuestion(); }
         function updateComplex(key, val) { if(!userAnswers[currentIndex]) userAnswers[currentIndex] = (typeof key === 'string' ? {} : []); userAnswers[currentIndex][key] = val; }
 
         function handleDragStart(e) { e.dataTransfer.setData("text", e.target.innerText); }
@@ -513,8 +676,8 @@
                     correct = u? u.toString().toLowerCase().trim() === q.a.toLowerCase().trim() : false;
                 }
                 else if(q.type === "TF") {
-                    correct = Array.isArray(u) && u.every((v, j) => v === q.a[j].toString());
-                    userDisp = Array.isArray(u) ? u.join(", ").toUpperCase() : userDisp;
+                    correct = Array.isArray(u) && u.every((v, j) => v !== undefined && v !== null && v.toString().toLowerCase() === q.a[j].toString().toLowerCase());
+                    userDisp = Array.isArray(u) ? u.map(v => v.toString().toUpperCase()).join(", ") : userDisp;
                     correctDisp = q.a.join(", ").toUpperCase();
                 }
                 else if(q.type === "MTF") {

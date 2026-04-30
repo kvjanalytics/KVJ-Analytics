@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --py-blue-dark: #1e3a5f;
-            --py-blue-brand: #3776ab;
-            --data-accent: #0ea5e9;
+            --brand-dark: #0f172a;
+            --brand-blue: #1e4ed8;
+            --brand-accent: #3b82f6;
             --bg-light: #f6f8fb;
             --text-main: #1d1d1f;
             --text-muted: #4b5563;
@@ -26,7 +26,7 @@
             scroll-behavior: smooth;
         }
         
-        /* ── NAVBAR ─────────────────────────────────────── */
+        /* ── NAVBAR ── */
         .navbar {
             background: #fff;
             border-bottom: 1px solid #e5e7eb;
@@ -55,39 +55,38 @@
         .nav-logout {
             font-size: 0.85rem;
             font-weight: 700;
-            color: #0066ff;
+            color: var(--brand-blue);
             text-decoration: none;
             cursor: pointer;
             transition: opacity 0.2s;
         }
         .nav-logout:hover { opacity: 0.75; }
 
-        /* ── HERO BANNER (Blue Theme) ────────────── */
+        /* ── HERO BANNER ── */
         .course-banner {
-            background: linear-gradient(135deg, var(--py-blue-dark) 0%, #2563eb 100%);
+            background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-blue) 100%);
             color: #fff;
-            padding: 3.5rem 2.5rem 2.5rem;
+            padding: 4rem 2.5rem 3rem;
             position: relative;
             overflow: hidden;
         }
 
-        /* subtle decorative circles */
         .course-banner::before,
         .course-banner::after {
             content: '';
             position: absolute;
             border-radius: 50%;
-            opacity: 0.12;
+            opacity: 0.08;
         }
-         .course-banner::before {
+        .course-banner::before {
             width: 420px; height: 420px;
             background: #fff;
             top: -160px; right: -100px;
         }
         .course-banner::after {
-            width: 240px; height: 240px;
+            width: 300px; height: 300px;
             background: #fff;
-            bottom: -80px; left: 40%;
+            bottom: -100px; left: 30%;
         }
 
         .banner-inner {
@@ -111,18 +110,26 @@
         }
 
         .course-title {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+        .course-subtitle {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
         }
 
         .rating-row {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 0.85rem;
+            margin-bottom: 1.2rem;
             flex-wrap: wrap;
         }
         .stars { color: #fbbf24; font-size: 1rem; letter-spacing: 1px; }
@@ -139,7 +146,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.6rem;
-            margin-bottom: 1.7rem;
+            margin-bottom: 2rem;
         }
         .meta-list li {
             display: flex;
@@ -153,38 +160,33 @@
 
         .btn-cta {
             display: inline-block;
-            background: var(--data-accent);
+            background: var(--brand-accent);
             color: white;
             font-size: 0.95rem;
             font-weight: 800;
-            padding: 0.85rem 2.5rem;
+            padding: 0.9rem 2.5rem;
             border-radius: 30px;
             text-decoration: none;
             border: none;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 18px rgba(14, 165, 233, 0.4);
-            letter-spacing: 0.2px;
+            box-shadow: 0 4px 18px rgba(59, 130, 246, 0.4);
+            letter-spacing: 0.5px;
             text-transform: uppercase;
         }
         .btn-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.5);
-            background: #0284c7;
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5);
+            background: #2563eb;
         }
 
-        .guarantee-note {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.8);
-            margin-top: 0.8rem;
-        }
 
-        /* ── FEATURES BAR ───────────────────────────────── */
+        /* ── FEATURES BAR ── */
         .features-bar {
             background: #fff;
             border-radius: 14px;
             box-shadow: 0 8px 40px rgba(0,0,0,0.10);
-            margin: -1px 2.5rem 0;
+            margin: -1.5rem 2.5rem 0;
             position: relative;
             z-index: 3;
             display: flex;
@@ -198,23 +200,20 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2.2rem 1.5rem;
+            padding: 2rem 1.5rem;
             gap: 0.5rem;
             border-right: 1px solid #f0f0f0;
-            transition: background 0.2s;
         }
         .feature-item:last-child { border-right: none; }
-        .feature-item:hover { background: #fafafa; }
+        .feature-icon-text { font-size: 2.2rem; margin-bottom: 0.2rem; }
+        .feature-title { font-size: 0.95rem; font-weight: 700; color: #1a1a1a; }
+        .feature-sub { font-size: 0.8rem; color: #6b7280; line-height: 1.4; }
 
-        .feature-icon { width: 48px; height: 48px; object-fit: contain; margin-bottom: 0.8rem; }
-        .feature-title { font-size: 1rem; font-weight: 700; color: #1a1a1a; }
-        .feature-sub { font-size: 0.85rem; color: #6b7280; line-height: 1.4; }
-
-        /* ── MAIN CONTENT AREA ──────────────────────────── */
+        /* ── MAIN CONTENT AREA ── */
         .page-body {
             max-width: 1200px;
             margin: 3.5rem auto;
-            padding: 0 2.5rem 4rem;
+            padding: 0 2rem 4rem;
             display: grid;
             grid-template-columns: 1fr 340px;
             gap: 3rem;
@@ -266,12 +265,12 @@
         }
         .module-num {
             min-width: 44px; height: 44px;
-            background: #eef2ff;
+            background: #eff6ff;
             border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
             font-size: 0.9rem;
             font-weight: 800;
-            color: var(--py-blue-brand);
+            color: var(--brand-blue);
         }
         .module-info { flex: 1; }
         .module-name { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.3rem; }
@@ -287,131 +286,95 @@
             border: 1px solid;
             transition: all 0.2s;
         }
-        .btn-study { color: #3776ab; border-color: #dbeafe; background: #eff6ff; }
+        .btn-study { color: var(--brand-blue); border-color: #dbeafe; background: #eff6ff; }
         .btn-study:hover { background: #dbeafe; }
-        .btn-quiz { color: #059669; border-color: #d1fae5; background: #f0fdf4; }
-        .btn-quiz:hover { background: #d1fae5; }
+        .btn-quiz { color: #059669; border-color: #dcfce7; background: #f0fdf4; }
+        .btn-quiz:hover { background: #dcfce7; }
 
-        .mock-card {
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
+        /* ── SIDEBAR ── */
+        .sidebar { 
+            position: sticky; 
+            top: 100px; 
         }
-        .mock-badge {
-            min-width: 44px; height: 44px;
-            background: #ecfeff;
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem;
-        }
-        .mock-info { flex: 1; }
-        .mock-name { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.25rem; }
-        .mock-desc { font-size: 0.85rem; color: #6b7280; }
-        .btn-mock {
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 0.5rem 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #0891b2;
-            border: 1px solid #cffafe;
-            background: #f0fdff;
-            flex-shrink: 0;
-            transition: all 0.2s;
-        }
-        .btn-mock:hover { background: #cffafe; }
-
-        /* ── SIDEBAR ────────────────────────────────────── */
-        .sidebar { position: relative; }
         .sidebar-card {
             background: #fff;
             border-radius: 16px;
             border: 1px solid #e5e7eb;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 100px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
         }
         .sidebar-thumb {
-            background: linear-gradient(135deg, var(--py-blue-dark), #2563eb);
-            padding: 3rem 1.5rem;
+            background: linear-gradient(135deg, var(--brand-dark), var(--brand-blue));
+            padding: 2.5rem 1.5rem;
             text-align: center;
         }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
-            100% { transform: translateY(0px); }
-        }
-        .sidebar-thumb-icon { width: 180px; height: 180px; margin: 0 auto; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); }
-        .sidebar-thumb p { color: rgba(255,255,255,0.95); font-size: 0.9rem; margin-top: 0.7rem; font-weight: 600; }
-
-        .sidebar-body { padding: 2rem 1.5rem; }
-        .sidebar-price { font-size: 2rem; font-weight: 950; color: #1a1a1a; margin-bottom: 1.25rem; }
-        .sidebar-price span { font-size: 1.1rem; font-weight: 500; color: #9ca3af; text-decoration: line-through; margin-left: 0.6rem; }
-
-        .btn-full {
-            display: block; width: 100%; text-align: center;
-            background: var(--data-accent);
-            color: #fff; font-weight: 700; font-size: 1rem;
-            padding: 1rem; border-radius: 10px; text-decoration: none;
-            margin-bottom: 0.8rem; transition: background 0.2s, transform 0.15s;
-        }
-        .btn-full:hover { background: #0284c7; transform: translateY(-1px); }
-
-        .btn-full-outline {
-            display: block; width: 100%; text-align: center;
-            background: transparent;
-            color: var(--data-accent); font-weight: 700; font-size: 1rem;
-            padding: 1rem; border-radius: 10px; text-decoration: none;
-            border: 2px solid var(--data-accent); margin-bottom: 1.25rem;
-            transition: all 0.2s;
-        }
-        .btn-full-outline:hover { background: #f0f9ff; }
-
-        .sidebar-features {
-            list-style: none; display: flex; flex-direction: column; gap: 0.8rem;
-            border-top: 1px solid #f0f0f0; padding-top: 1.25rem;
-        }
-        .sidebar-features li { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; color: #374151; }
-        .sf-icon { font-size: 1.5rem; flex-shrink: 0; }
-        .sf-img-icon { height: 80px; width: 80px; object-fit: contain; flex-shrink: 0; }
-        .sf-img-round { 
-            width: 80px; height: 80px; border-radius: 50%; 
+        .sidebar-thumb-icon { 
+            width: 140px; height: 140px; margin: 0 auto; 
+            background: #fff; border-radius: 50%; padding: 15px;
             display: flex; align-items: center; justify-content: center; 
-            background: #f8fafc; border: 1px solid #e2e8f0; overflow: hidden;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)); 
         }
-        .sf-img-round img { width: 85%; height: auto; object-fit: contain; }
+        .sidebar-thumb p { color: rgba(255,255,255,0.95); font-size: 0.85rem; margin-top: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* ── CERTIFICATE CTA ───────────────────────────── */
-        .cert-card {
-            background: #fff;
-            border: 1px solid #e5e7eb;
+        .sidebar-body { padding: 1.8rem 1.5rem; }
+        .sidebar-track-title { font-size: 1.8rem; font-weight: 900; color: #1a1a1a; margin-bottom: 1.25rem; letter-spacing: -0.5px; }
+        
+        .cert-info-box {
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
             border-radius: 12px;
             padding: 1.25rem;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: linear-gradient(to right, #ffffff, #fffafa);
+            text-align: center;
+            margin-bottom: 1.5rem;
         }
-        .cert-info { flex: 1; text-align: left; }
-        .cert-info h4 { font-size: 0.95rem; font-weight: 800; color: #1a1a1a; margin-bottom: 0.3rem; margin-top: 0; }
-        .cert-info p { font-size: 0.8rem; color: #6b7280; line-height: 1.3; margin-bottom: 0.8rem; }
-        .btn-view-cert {
-            display: block; width: 100%; text-align: center;
-            background: var(--data-accent);
-            color: #fff; font-weight: 700; font-size: 1rem;
-            padding: 1rem; border-radius: 10px; text-decoration: none;
-            cursor: pointer; border: none; transition: background 0.2s, transform 0.15s;
+        .cert-info-box h4 { font-size: 1rem; font-weight: 800; color: #1e293b; margin-bottom: 0.5rem; }
+        .cert-info-box p { font-size: 0.85rem; color: #64748b; line-height: 1.5; margin-bottom: 1.25rem; }
+        .btn-view-cert { 
+            display: block;
+            width: 100%; 
+            padding: 1rem; 
+            background: #0ea5e9; 
+            border: none;
+            border-radius: 12px; 
+            color: #fff; 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
         }
         .btn-view-cert:hover { background: #0284c7; transform: translateY(-1px); }
-        .cert-thumb { display: none; }
 
-        /* Modal Styles */
+        .tools-covered {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f1f5f9;
+        }
+        .tools-label { font-size: 0.75rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; display: block; text-align: center; }
+        .tools-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 1.25rem; 
+        }
+        .tool-icon-wrap { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 0.6rem; 
+        }
+        .tool-icon-wrap img { 
+            width: 32px; 
+            height: 32px; 
+            object-fit: contain; 
+            margin-bottom: 4px;
+        }
+        .tool-icon-wrap span { 
+            font-size: 0.7rem; 
+            font-weight: 600; 
+            color: #64748b; 
+        }
+
+        /* Modal */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -423,74 +386,34 @@
             backdrop-filter: blur(5px);
             padding: 20px;
         }
-        .modal-content {
-            position: relative;
-            max-width: 800px;
-            width: 100%;
-            background: #fff;
-            padding: 8px;
-            border-radius: 12px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-        }
+        .modal-content { position: relative; max-width: 800px; width: 100%; background: #fff; padding: 8px; border-radius: 12px; }
         .modal-content img { display: block; width: 100%; height: auto; border-radius: 8px; }
-        .modal-close {
-            position: absolute;
-            top: -45px; right: 0;
-            width: 36px; height: 36px;
-            background: #fff;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer;
-            font-size: 1.5rem; font-weight: bold; color: #1a1a1a;
-            border: none;
-        }
+        .modal-close { position: absolute; top: -45px; right: 0; width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; font-weight: bold; border: none; }
 
         @media (max-width: 900px) {
-            .page-body { grid-template-columns: 1fr; gap: 2.5rem; }
-            .sidebar-card { position: static; max-width: 400px; margin: 0 auto; }
-            .features-bar { margin: -1px 1rem 0; flex-direction: column; }
-            .feature-item { border-right: none; border-bottom: 1px solid #f0f0f0; padding: 1.5rem; }
-            .feature-item:last-child { border-bottom: none; }
+            .page-body { grid-template-columns: 1fr; }
+            .features-bar { margin: -1rem 1rem 0; flex-direction: column; }
+            .feature-item { border-right: none; border-bottom: 1px solid #f0f0f0; }
         }
     </style>
-    <script>
-        function logout() {
-            sessionStorage.clear();
-            localStorage.removeItem('strategist_user');
-            localStorage.removeItem('strategist_phone');
-            localStorage.removeItem('gmail');
-            localStorage.removeItem('class_code');
-            window.location.href = 'login.html';
-        }
-
-        function openCertModal() { document.getElementById('certModal').style.display = 'flex'; }
-        function closeCertModal() { document.getElementById('certModal').style.display = 'none'; }
-        
-        window.onclick = function(event) {
-            let modal = document.getElementById('certModal');
-            if (event.target == modal) { modal.style.display = 'none'; }
-        }
-    </script>
 </head>
 <body>
 
-    <!-- ── NAVBAR ── -->
     <nav class="navbar">
         <div class="navbar-left">
-            <a href="data_intro.html" class="nav-back">← Back</a>
-            <a href="data_index.html">
-                <img src="Kvj logo.jpeg" alt="KVJ" class="nav-logo">
-            </a>
+            <a href="index.html" class="nav-back">← Back</a>
+            <img src="Kvj logo.jpeg" class="nav-logo" alt="KVJ Logo">
         </div>
         <a onclick="logout()" class="nav-logout">Log Out</a>
     </nav>
 
-    <!-- ── HERO BANNER (Data Analytics Edition) ── -->
     <div class="course-banner">
         <div class="banner-inner">
-            <div class="course-icon"><img src="https://cdn-icons-png.flaticon.com/512/2633/2633118.png" alt="Data Analytics"></div>
-
-            <h1 class="course-title">Pearson IT Specialist &amp; KVJ Completion Certificate</h1>
+            <div class="course-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/3090/3090011.png" alt="Data Icon">
+            </div>
+            <h2 class="course-title">Pearson IT Specialist & KVJ Completion Certificate</h2>
+            <h1 class="course-subtitle">DATA ANALYTICS</h1>
 
             <div class="rating-row">
                 <span class="stars">★★★★★</span>
@@ -513,39 +436,46 @@
                 </li>
             </ul>
 
-            <a href="#modules" class="btn-cta">Start Analyzing →</a>
-            <p class="guarantee-note">✓ Professional dashboards &nbsp;|&nbsp; ✓ Real-world datasets &nbsp;|&nbsp; ✓ Certificate upon completion</p>
+            <div style="margin-bottom: 2rem;">
+                <a href="#modules" class="btn-cta">START ANALYZING →</a>
+                <div style="margin-top: 1rem; display: flex; gap: 1.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.9);">
+                    <span>✓ Professional dashboards</span>
+                    <span>✓ Real-world datasets</span>
+                    <span>✓ Certificate upon completion</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- ── FEATURES BAR ── -->
     <div class="features-bar">
         <div class="feature-item">
-            <img src="insights.png" alt="Data Insights" class="feature-icon">
+            <div class="feature-icon-text">
+                <img src="https://cdn-icons-png.flaticon.com/512/3090/3090011.png" style="height: 40px; margin-bottom: 10px;">
+            </div>
             <div class="feature-title">Data Insights</div>
             <div class="feature-sub">Transform raw numbers into business strategy</div>
         </div>
         <div class="feature-item">
-            <img src="viz.png" alt="Visualization" class="feature-icon">
+            <div class="feature-icon-text">
+                <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" style="height: 40px; margin-bottom: 10px;">
+            </div>
             <div class="feature-title">Visualization</div>
             <div class="feature-sub">Master storytelling with interactive dashboards</div>
         </div>
         <div class="feature-item">
-            <img src="ethics.png" alt="Ethical Data" class="feature-icon">
+            <div class="feature-icon-text">
+                <img src="https://cdn-icons-png.flaticon.com/512/2085/2085277.png" style="height: 40px; margin-bottom: 10px;">
+            </div>
             <div class="feature-title">Ethical Data</div>
             <div class="feature-sub">Learn responsible and unbiased analytics</div>
         </div>
     </div>
 
-    <!-- ── PAGE BODY ── -->
     <div class="page-body">
-
-        <!-- LEFT COLUMN -->
-        <div>
-            <!-- What you'll learn -->
+        <div class="main-column">
             <h2 class="section-title">What You'll Learn</h2>
             <div class="learn-grid">
-                <div class="learn-item"><span class="check">✓</span> Foundational data concepts, types, and collection methods</div>
+                <div class="learn-item"><span class="check">✓</span> Foundational data concepts, types, and principles of collection</div>
                 <div class="learn-item"><span class="check">✓</span> Advanced data cleaning and transformation techniques</div>
                 <div class="learn-item"><span class="check">✓</span> Exploratory Data Analysis (EDA) and trend discovery</div>
                 <div class="learn-item"><span class="check">✓</span> Creating high-impact dashboards and visualizations</div>
@@ -555,187 +485,189 @@
                 <div class="learn-item"><span class="check">✓</span> Passing full-length certification mock simulations</div>
             </div>
 
-            <!-- Modules -->
-            <div class="modules-section">
-                <h2 class="section-title" id="modules">Course Modules</h2>
-                <div class="module-list">
-
-                    <div class="module-card">
-                        <div class="module-num">M1</div>
-                        <div class="module-info">
-                            <div class="module-name">Module 1 — Data Basics</div>
-                            <div class="module-desc">Foundational data concepts, types, and the principles of collection.</div>
-                        </div>
-                        <div class="module-actions">
-                            <a href="Data-Module-1.html" class="btn-sm btn-study">Study</a>
-                            <a href="module_quiz.html?mod=data1" class="btn-sm btn-quiz">Quiz</a>
-                        </div>
+            <h2 class="section-title" id="modules">Course Modules</h2>
+            <div class="module-list">
+                <div class="module-card">
+                    <div class="module-num">M1</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 1 — Data Basics</div>
+                        <div class="module-desc">Foundational data concepts, types, and the principles of collection.</div>
                     </div>
-
-                    <div class="module-card">
-                        <div class="module-num">M2</div>
-                        <div class="module-info">
-                            <div class="module-name">Module 2 — Data Manipulation</div>
-                            <div class="module-desc">Mastering tools and techniques to clean and transform datasets.</div>
-                        </div>
-                        <div class="module-actions">
-                            <a href="Data-Module-2.html" class="btn-sm btn-study">Study</a>
-                            <a href="module_quiz.html?mod=data2" class="btn-sm btn-quiz">Quiz</a>
-                        </div>
+                    <div class="module-actions">
+                        <a href="Data-Module-1.html" class="btn-sm btn-study">Study</a>
+                        <a href="module_quiz.html?mod=data1" class="btn-sm btn-quiz">Quiz</a>
                     </div>
-
-                    <div class="module-card">
-                        <div class="module-num">M3</div>
-                        <div class="module-info">
-                            <div class="module-name">Module 3 — Visualization</div>
-                            <div class="module-desc">Creating compelling dashboards and stakeholder communication.</div>
-                        </div>
-                        <div class="module-actions">
-                            <a href="Data-Module-3.html" class="btn-sm btn-study">Study</a>
-                            <a href="module_quiz.html?mod=data3" class="btn-sm btn-quiz">Quiz</a>
-                        </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M2</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 2 — Data Manipulation</div>
+                        <div class="module-desc">Mastering tools and techniques to clean and transform datasets.</div>
                     </div>
-
-                    <div class="module-card">
-                        <div class="module-num">M4</div>
-                        <div class="module-info">
-                            <div class="module-name">Module 4 — Data Analysis</div>
-                            <div class="module-desc">Applying statistical methods and exploratory data processes.</div>
-                        </div>
-                        <div class="module-actions">
-                            <a href="Data-Module-4.html" class="btn-sm btn-study">Study</a>
-                            <a href="module_quiz.html?mod=data4" class="btn-sm btn-quiz">Quiz</a>
-                        </div>
+                    <div class="module-actions">
+                        <a href="Data-Module-2.html" class="btn-sm btn-study">Study</a>
+                        <a href="module_quiz.html?mod=data2" class="btn-sm btn-quiz">Quiz</a>
                     </div>
-
-                    <div class="module-card">
-                        <div class="module-num">M5</div>
-                        <div class="module-info">
-                            <div class="module-name">Module 5 — Responsible Analytics</div>
-                            <div class="module-desc">Privacy, ethics, and avoiding bias in analytical models.</div>
-                        </div>
-                        <div class="module-actions">
-                            <a href="Data-Module-5.html" class="btn-sm btn-study">Study</a>
-                        </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M3</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 3 — Data Analysis</div>
+                        <div class="module-desc">Applying statistical methods and exploratory data processes.</div>
                     </div>
-
+                    <div class="module-actions">
+                        <a href="Data-Module-3.html" class="btn-sm btn-study">Study</a>
+                        <a href="module_quiz.html?mod=data3" class="btn-sm btn-quiz">Quiz</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M4</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 4 — Data Visualization</div>
+                        <div class="module-desc">Creating compelling dashboards and stakeholder communication.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="Data-Module-4.html" class="btn-sm btn-study">Study</a>
+                        <a href="module_quiz.html?mod=data4" class="btn-sm btn-quiz">Quiz</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M5</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 5 — Responsible Analytics</div>
+                        <div class="module-desc">Privacy, ethics, and avoiding bias in analytical models.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="Data-Module-5.html" class="btn-sm btn-study">Study</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Mock Tests -->
-            <div class="modules-section">
-                <h2 class="section-title">Certification Mock Exams</h2>
-                <div class="module-list">
-                    <div class="mock-card">
-                        <div class="mock-badge">📐</div>
-                        <div class="mock-info">
-                            <div class="mock-name">Mock Test 1 — Foundational</div>
-                            <div class="mock-desc">Covers core data concepts and manipulation (Modules 1-3).</div>
-                        </div>
-                        <a href="module_quiz.html?mock=da_mock1" class="btn-mock">Take Mock</a>
+            <h2 class="section-title" style="margin-top: 3rem;">Certification Mock Exams</h2>
+            <div class="module-list">
+                <div class="module-card">
+                    <div class="module-num"><img src="https://cdn-icons-png.flaticon.com/512/2620/2620857.png" style="width:24px;"></div>
+                    <div class="module-info">
+                        <div class="module-name">Mock Test 1 — Foundational</div>
+                        <div class="module-desc">Covers core data concepts and manipulation (Modules 1-3).</div>
                     </div>
-
-                    <div class="mock-card">
-                        <div class="mock-badge">📊</div>
-                        <div class="mock-info">
-                            <div class="mock-name">Mock Test 2 — Advanced Reporting</div>
-                            <div class="mock-desc">Focuses on visualization, storytelling, and ethical practices.</div>
-                        </div>
-                        <a href="module_quiz.html?mock=da_mock2" class="btn-mock">Take Mock</a>
+                    <div class="module-actions">
+                        <a href="module_quiz.html?mock=da_mock1" class="btn-sm btn-study" style="background:#eff6ff; color:var(--brand-blue); border-color:#dbeafe;">Take Mock</a>
                     </div>
-
-                    <div class="mock-card">
-                        <div class="mock-badge">🏆</div>
-                        <div class="mock-info">
-                            <div class="mock-name">Mock Test 3 — Full Simulation</div>
-                            <div class="mock-desc">Comprehensive final simulation covering all modules.</div>
-                        </div>
-                        <a href="module_quiz.html?mock=da_mock3" class="btn-mock">Take Mock</a>
+                </div>
+                <div class="module-card">
+                    <div class="module-num"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135783.png" style="width:24px;"></div>
+                    <div class="module-info">
+                        <div class="module-name">Mock Test 2 — Advanced Reporting</div>
+                        <div class="module-desc">Focuses on visualization, storytelling, and ethical practices.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="module_quiz.html?mock=da_mock2" class="btn-sm btn-study" style="background:#eff6ff; color:var(--brand-blue); border-color:#dbeafe;">Take Mock</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num"><img src="https://cdn-icons-png.flaticon.com/512/3112/3112946.png" style="width:24px;"></div>
+                    <div class="module-info">
+                        <div class="module-name">Mock Test 3 — Full Simulation</div>
+                        <div class="module-desc">Comprehensive final simulation covering all modules.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="module_quiz.html?mock=da_mock3" class="btn-sm btn-study" style="background:#eff6ff; color:var(--brand-blue); border-color:#dbeafe;">Take Mock</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- RIGHT COLUMN -->
         <div class="sidebar">
             <div class="sidebar-card">
                 <div class="sidebar-thumb">
                     <div class="sidebar-thumb-icon">
-                        <img src="pearson_badge.png" alt="Pearson IT Specialist" style="width:160px; height:160px; object-fit:contain; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25));">
+                        <img src="pearson_badge.png" alt="Pearson Badge" style="width: 100%; height: auto;">
                     </div>
-                    <p>Pearson IT Specialist &amp; KVJ Certification</p>
+                    <p>Pearson IT Specialist</p>
                 </div>
                 <div class="sidebar-body">
-                    <div class="sidebar-price">Career Track</div>
+                    <h3 class="sidebar-track-title">Career Track</h3>
                     
-                    <div class="cert-card">
-                        <div class="cert-info" style="text-align: center;">
-                            <h4>Official Certification</h4>
-                            <p>Earn globally recognized Pearson IT Specialist and KVJ Career certificates.</p>
-                            <button class="btn-view-cert" onclick="openCertModal()">View a sample certificate</button>
+                    <div class="cert-info-box">
+                        <p style="margin-bottom: 1.5rem; color: #64748b; font-size: 0.9rem;">Specialist and KVJ certificate.</p>
+                        <button class="btn-view-cert" onclick="openCertModal()">View a sample certificate</button>
+                    </div>
+
+                    <ul class="sidebar-benefits" style="list-style: none; padding: 2rem 0; border-top: 1px solid #f1f5f9; margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+                        <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1e293b; font-weight: 500;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991108.png" style="width: 24px;"> 5 core analytical modules
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1e293b; font-weight: 500;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3588/3588616.png" style="width: 24px;"> Hands-on case studies
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1e293b; font-weight: 500;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2599/2599181.png" style="width: 24px;"> 3 full mock exams
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1e293b; font-weight: 500;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2838/2838779.png" style="width: 24px;"> Self-paced flexibility
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1e293b; font-weight: 500;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2888/2888408.png" style="width: 24px;"> Industry-standard tools
+                        </li>
+                    </ul>
+
+                    <div style="display: flex; justify-content: center; gap: 0.8rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; margin-bottom: 1.5rem;">
+                        <div style="flex: 1; border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="pearson_logo.svg" alt="Pearson" style="height: 20px;">
+                        </div>
+                        <div style="flex: 1; border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="Kvj logo.jpeg" alt="KVJ" style="height: 28px;">
                         </div>
                     </div>
 
-                    <ul class="sidebar-features">
-                        <li><span class="sf-icon">📚</span> 5 core analytical modules</li>
-                        <li><span class="sf-icon">📊</span> Hands-on case studies</li>
-                        <li><span class="sf-icon">📝</span> 3 full mock exams</li>
-                        <li><span class="sf-icon">⏱️</span> Self-paced flexibility</li>
-                        <li><span class="sf-icon">💻</span> Industry-standard tools</li>
-                        <li style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 14px; padding-top: 14px; border-top: 1px solid #e5e7eb;">
-                            <span style="display:inline-flex; align-items:center; border: 1.5px solid #c5d5e8; border-radius: 12px; padding: 4px 10px; height: 48px; box-sizing: border-box;">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 60" height="36" width="130">
-                                    <circle cx="30" cy="30" r="28" fill="#007fa3"/>
-                                    <text x="30" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="32" font-weight="bold" fill="white">P</text>
-                                    <circle cx="33" cy="47" r="3" fill="white"/>
-                                    <text x="100" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#444" letter-spacing="0.5">Pearson</text>
-                                </svg>
-                            </span>
-                            <span style="display:inline-flex; align-items:center; border: 1.5px solid #c5d5e8; border-radius: 12px; padding: 4px 10px; height: 48px; box-sizing: border-box;">
-                                <img src="Kvj logo.jpeg" alt="KVJ" style="height: 36px; width: auto; object-fit: contain; border: none; box-shadow: none; outline: none;">
-                            </span>
-                        </li>
-                        <li style="flex-direction: column; align-items: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; gap: 8px;">
-                            <span style="font-size: 0.75rem; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px;">Tools Covered</span>
-                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 4px;">
-                                <div style="display:flex; flex-direction:column; align-items:center; gap:3px;">
-                                    <img src="Power bi logo.png" alt="Power BI" style="height:32px; width:32px; object-fit:contain;">
-                                    <span style="font-size:0.65rem; color:#6b7280;">Power BI</span>
-                                </div>
-                                <div style="display:flex; flex-direction:column; align-items:center; gap:3px;">
-                                    <img src="https://img.icons8.com/color/512/data-configuration.png" alt="Power Pivot" style="height:32px; width:32px; object-fit:contain;">
-                                    <span style="font-size:0.65rem; color:#6b7280;">Power Pivot</span>
-                                </div>
-                                <div style="display:flex; flex-direction:column; align-items:center; gap:3px;">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python" style="height:32px; width:32px; object-fit:contain;">
-                                    <span style="font-size:0.65rem; color:#6b7280;">Python</span>
-                                </div>
-                                <div style="display:flex; flex-direction:column; align-items:center; gap:3px;">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/4492/4492311.png" alt="SQL" style="height:32px; width:32px; object-fit:contain;">
-                                    <span style="font-size:0.65rem; color:#6b7280;">SQL</span>
-                                </div>
-                                <div style="display:flex; flex-direction:column; align-items:center; gap:3px;">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel" style="height:32px; width:32px; object-fit:contain;">
-                                    <span style="font-size:0.65rem; color:#6b7280;">Excel</span>
-                                </div>
-                                <div style="display:flex; flex-direction:column; align-items:center; gap:3px;">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" style="height:32px; width:32px; object-fit:contain;">
-                                    <span style="font-size:0.65rem; color:#6b7280;">Azure</span>
-                                </div>
+                    <div class="tools-covered">
+                        <span class="tools-label">TOOLS COVERED</span>
+                        <div class="tools-grid" style="grid-template-columns: repeat(3, 1fr);">
+                            <div class="tool-icon-wrap">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python">
+                                <span>Python</span>
                             </div>
-                        </li>
-                    </ul>
+                            <div class="tool-icon-wrap">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2772/2772128.png" alt="SQL">
+                                <span>SQL</span>
+                            </div>
+                            <div class="tool-icon-wrap">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel">
+                                <span>Excel</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Certification Modal -->
     <div class="modal-overlay" id="certModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeCertModal()">×</button>
-            <img src="sample_certificate.png" alt="Official Certificate">
+            <img src="sample_certificate.png" alt="Sample Certificate">
         </div>
     </div>
+
+    <script>
+        function checkMockCode(expectedCode, targetUrl) {
+            window.location.href = targetUrl;
+        }
+
+        function logout() {
+            sessionStorage.clear();
+            localStorage.removeItem('strategist_user');
+            localStorage.removeItem('strategist_phone');
+            window.location.href = 'login.html';
+        }
+        function openCertModal() { document.getElementById('certModal').style.display = 'flex'; }
+        function closeCertModal() { document.getElementById('certModal').style.display = 'none'; }
+        window.onclick = function(event) {
+            let modal = document.getElementById('certModal');
+            if (event.target == modal) { modal.style.display = 'none'; }
+        }
+    </script>
 </body>
 </html>

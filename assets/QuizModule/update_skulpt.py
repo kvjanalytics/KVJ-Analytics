@@ -1,10 +1,10 @@
 import os
 import re
 
-files = ["Module-1.html", "Module-3.html", "Module-4.html", "Module-5.html", "Module-6.html"]
+files = ["Module-1.html", "Module-2.html", "Module-3.html", "Module-4.html", "Module-5.html", "Module-6.html"]
 directory = r"c:\Users\kj anand\Downloads\Quiz DD"
 
-new_run_skulpt = """        function runSkulpt(id, expected) {
+new_run_skulpt = """        function runSkulpt(id, expected, checks = null) {
             const prog = document.getElementById(`coding-ans-${id}`).value;
             const outputDiv = document.getElementById(`coding-output-${id}`);
             const feedback = document.getElementById(`coding-feedback-${id}`);
@@ -26,30 +26,6 @@ new_run_skulpt = """        function runSkulpt(id, expected) {
                     if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
                         throw "File not found: '" + x + "'";
                     return Sk.builtinFiles["files"][x];
-                },
-                input: function(prompt) {
-                    return new Promise((resolve) => {
-                        const container = document.createElement('div');
-                        container.className = 'colab-input-container';
-                        container.innerHTML = `
-                            <span class="colab-prompt">${prompt}</span>
-                            <input type="text" class="colab-input" autocomplete="off">
-                        `;
-                        outputDiv.appendChild(container);
-                        
-                        const inputField = container.querySelector('.colab-input');
-                        inputField.focus();
-                        
-                        inputField.addEventListener('keydown', (e) => {
-                            if (e.key === 'Enter') {
-                                const val = inputField.value;
-                                container.remove();
-                                outputDiv.appendChild(document.createTextNode(prompt + val + "\\n"));
-                                outputText += prompt + val + "\\n";
-                                resolve(val);
-                            }
-                        });
-                    });
                 }
             });
 
@@ -61,14 +37,45 @@ new_run_skulpt = """        function runSkulpt(id, expected) {
                 if (!outputDiv.innerHTML) outputDiv.innerText = outputText;
                 
                 const cleanOutput = outputText.trim().toLowerCase();
-                const cleanExpected = expected.trim().toLowerCase();
+                const cleanExpected = expected ? expected.trim().toLowerCase() : "";
 
-                if (cleanOutput.includes(cleanExpected)) {
+                let isCorrect = true;
+                let errorMsg = "";
+
+                // 1. Output Check
+                if (cleanExpected && !cleanOutput.includes(cleanExpected)) {
+                    isCorrect = false;
+                    errorMsg = `Expected output "${expected}" not found.`;
+                }
+
+                // 2. Variable State Check
+                if (isCorrect && checks) {
+                    try {
+                        const checkObj = typeof checks === 'string' ? JSON.parse(checks) : checks;
+                        for (const [varName, expectedVal] of Object.entries(checkObj)) {
+                            if (mod.$d[varName] === undefined) {
+                                isCorrect = false;
+                                errorMsg = `Variable "${varName}" is missing.`;
+                                break;
+                            }
+                            const userVal = Sk.ffi.remapToJs(mod.$d[varName]);
+                            if (JSON.stringify(userVal) !== JSON.stringify(expectedVal)) {
+                                isCorrect = false;
+                                errorMsg = `The value of "${varName}" is incorrect. Expected ${expectedVal}.`;
+                                break;
+                            }
+                        }
+                    } catch (e) {
+                        console.error("Check Error:", e);
+                    }
+                }
+
+                if (isCorrect) {
                     feedback.innerHTML = "✓ Correct! Your code works perfectly. 🎉";
                     feedback.className = "feedback correct";
-                    triggerConfetti();
+                    if (typeof triggerConfetti === 'function') triggerConfetti();
                 } else {
-                    feedback.innerHTML = `✗ Wrong! Expected to see "${expected}" in output.`;
+                    feedback.innerHTML = `✗ ${errorMsg || "Wrong! Try again."}`;
                     feedback.className = "feedback wrong";
                 }
                 feedback.style.display = "block";
@@ -78,10 +85,11 @@ new_run_skulpt = """        function runSkulpt(id, expected) {
                 feedback.className = "feedback wrong";
                 feedback.style.display = "block";
             });
-        }"""
+        }
+"""
 
-# Improved regex to capture the whole function regardless of variations in the middle
-pattern = re.compile(r"function runSkulpt\(id, expected\)\s*\{(?:[^{}]*|\{[^{}]*\})*\}", re.DOTALL)
+# Simple but effective regex to find the runSkulpt function block
+pattern = re.compile(r"function runSkulpt\s*\(id, expected.*?\)\s*\{(?:[^{}]*|\{[^{}]*\})*\}", re.DOTALL)
 
 for filename in files:
     path = os.path.join(directory, filename)

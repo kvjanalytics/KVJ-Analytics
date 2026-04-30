@@ -1,6 +1,6 @@
 // auth.js - Frontend Logic
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxWBtu6ZE4fwil942a0o5EfNUohvB_jYAFgGvDtPrnngIDl95LhJmpE9KoGRg6TabZR/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzESAIomPGCHhkYOoAJyi8Agjn8FLCDjnju3ngO1UUXuTVABsmrHe5c8AkdhGF5q3AV/exec';
 
 // Form Toggling
 function toggleForm(formId) {

@@ -1,0 +1,30 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="500" fill="#0f172a" rx="24"/>
+    <text x="400" y="50" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="24" font-weight="900" fill="#f8fafc" letter-spacing="1">AD SPEND VS REVENUE CORRELATION</text>
+    
+    <!-- Grid -->
+    <line x1="100" y1="400" x2="700" y2="400" stroke="#1e293b" stroke-width="2"/>
+    <line x1="100" y1="80" x2="100" y2="400" stroke="#1e293b" stroke-width="2"/>
+
+    <!-- Regression Line -->
+    <line x1="120" y1="380" x2="680" y2="120" stroke="#38bdf8" stroke-width="2" stroke-dasharray="10,5" opacity="0.5"/>
+
+    <!-- Scatter points -->
+    <circle cx="150" cy="360" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="180" cy="330" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="220" cy="350" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="260" cy="280" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="300" cy="300" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="340" cy="240" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="380" cy="260" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="420" cy="180" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="460" cy="210" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="500" cy="140" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="540" cy="170" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="600" cy="120" r="6" fill="#38bdf8" opacity="0.8"/>
+    <circle cx="650" cy="100" r="6" fill="#38bdf8" opacity="0.8"/>
+
+    <!-- Labels -->
+    <text x="400" y="460" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="16" fill="#94a3b8">Ad Spend (Thousands)</text>
+    <text x="50" y="250" text-anchor="middle" transform="rotate(-90 50 250)" font-family="'Outfit', sans-serif" font-size="16" fill="#94a3b8">Revenue (Millions)</text>
+</svg>

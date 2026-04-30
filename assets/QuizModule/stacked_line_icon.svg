@@ -1,0 +1,7 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#f8fafc" rx="12"/>
+    <!-- Stacked Areas -->
+    <path d="M 15 85 L 15 60 L 40 40 L 65 50 L 90 20 L 90 85 Z" fill="#38bdf8" opacity="0.4"/>
+    <path d="M 15 85 L 15 75 L 40 60 L 65 70 L 90 50 L 90 85 Z" fill="#0ea5e9"/>
+    <line x1="15" y1="85" x2="90" y2="85" stroke="#cbd5e1" stroke-width="2"/>
+</svg>

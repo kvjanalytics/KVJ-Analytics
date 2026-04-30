@@ -1,0 +1,18 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="500" fill="#0f172a" rx="24"/>
+    <text x="400" y="50" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="24" font-weight="900" fill="#f8fafc" letter-spacing="1">BUDGET ALLOCATION FLOW</text>
+    
+    <!-- Sankey flows -->
+    <path d="M 100 150 C 300 150, 300 120, 500 120 L 500 220 C 300 220, 300 250, 100 250 Z" fill="#38bdf8" opacity="0.6"/>
+    <path d="M 100 260 C 300 260, 300 350, 500 350 L 500 450 C 300 450, 300 360, 100 360 Z" fill="#0ea5e9" opacity="0.6"/>
+    
+    <!-- Nodes -->
+    <rect x="80" y="150" width="40" height="210" fill="#f8fafc" rx="4"/>
+    <text x="70" y="255" text-anchor="end" font-family="'Outfit', sans-serif" font-size="16" font-weight="800" fill="#f8fafc">Total Budget</text>
+    
+    <rect x="500" y="120" width="40" height="100" fill="#38bdf8" rx="4"/>
+    <text x="550" y="175" text-anchor="start" font-family="'Outfit', sans-serif" font-size="16" font-weight="800" fill="#f8fafc">Operations</text>
+    
+    <rect x="500" y="350" width="40" height="100" fill="#0ea5e9" rx="4"/>
+    <text x="550" y="405" text-anchor="start" font-family="'Outfit', sans-serif" font-size="16" font-weight="800" fill="#f8fafc">Marketing</text>
+</svg>

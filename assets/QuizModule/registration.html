@@ -166,13 +166,14 @@
                 <input type="tel" id="phone" class="form-control" placeholder="e.g. +91 98765 43210" required>
             </div>
 
-            <div class="form-group">
-                <label for="branch">Branch / Specialization (Optional)</label>
-                <input type="text" id="branch" class="form-control" placeholder="e.g. Computer Science">
-            </div>
+
 
             <button type="submit" class="submit-btn" id="submitBtn">Submit Registration</button>
         </form>
+
+        <div id="errorMsg" class="error-msg" style="display: none; text-align: center; color: #ef4444; font-weight: 600; margin-top: 20px; padding: 15px; background: #fef2f2; border-radius: 10px;">
+            <!-- Error message will appear here -->
+        </div>
 
         <div id="successMsg" class="success-msg">
             ✓ Registration Successful! Welcome to the course.
@@ -193,88 +194,95 @@
             }
 
             // Pre-fill info from session/local storage if available
-            const savedName = sessionStorage.getItem('userName') || localStorage.getItem('strategist_user');
+            const savedName = localStorage.getItem('userName') || localStorage.getItem('strategist_user');
             const savedEmail = localStorage.getItem('gmail');
             const savedPhone = localStorage.getItem('strategist_phone');
 
-            if (savedName && savedName !== 'User') {
+            if (savedName && savedName !== 'User' && savedName !== 'Student') {
                 document.getElementById('fullName').value = savedName;
             }
-            
             if (savedEmail) {
                 document.getElementById('email').value = savedEmail;
-                document.getElementById('email').readOnly = true;
-                document.getElementById('email').style.backgroundColor = '#f1f5f9';
             }
-            
-            if (savedPhone) {
+            if (savedPhone && savedPhone !== 'guest') {
                 document.getElementById('phone').value = savedPhone;
-                document.getElementById('phone').readOnly = true;
-                document.getElementById('phone').style.backgroundColor = '#f1f5f9';
+            }
+
+            if (savedEmail && course) {
+                // Pre-check for existing enrollment to prevent duplicates
+                checkExistingEnrollment(savedEmail, savedPhone, decodeURIComponent(course));
             }
         });
 
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const form = document.getElementById('registrationForm');
-            const msg = document.getElementById('successMsg');
-
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const branch = document.getElementById('branch').value;
-            const course = document.getElementById('courseName').value;
-
-            btn.disabled = true;
-            btn.textContent = "Processing Registration...";
-
-            // 1. Save enrollment status locally (Scoping it by phone for security)
-            localStorage.setItem('registered_' + phone + '_' + course, 'true');
-
-            // 2. Submit to Google Sheet directly
-            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxWBtu6ZE4fwil942a0o5EfNUohvB_jYAFgGvDtPrnngIDl95LhJmpE9KoGRg6TabZR/exec";
+        function checkExistingEnrollment(email, phone, course) {
+            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzESAIomPGCHhkYOoAJyi8Agjn8FLCDjnju3ngO1UUXuTVABsmrHe5c8AkdhGF5q3AV/exec";
             const script = document.createElement('script');
-            const callbackName = 'regCallback_' + Math.floor(Math.random() * 1000000);
+            const callbackName = 'checkSync_' + Math.floor(Math.random() * 1000000);
             
-            window[callbackName] = function(response) {
+            window[callbackName] = function(data) {
                 delete window[callbackName];
                 document.body.removeChild(script);
-                console.log("Sheet Update Response:", response);
+                if (data.exists && data.enrollments && data.enrollments.includes(course)) {
+                    // Update all possible local markers
+                    if (email) localStorage.setItem('registered_' + email + '_' + course, 'true');
+                    if (phone) localStorage.setItem('registered_' + phone + '_' + course, 'true');
+                    redirectToCourse(course);
+                }
             };
-
-            script.src = SCRIPT_URL + "?action=courseRegister" +
-                         "&name=" + encodeURIComponent(fullName) +
-                         "&email=" + encodeURIComponent(email) +
-                         "&phone=" + encodeURIComponent(phone) +
-                         "&branch=" + encodeURIComponent(branch || '') +
-                         "&course=" + encodeURIComponent(course) +
-                         "&callback=" + callbackName;
-            
+            script.src = `${SCRIPT_URL}?action=login&email=${encodeURIComponent(email || '')}&phone=${encodeURIComponent(phone || '')}&password=BYPASS_SYNC&callback=${callbackName}`;
             document.body.appendChild(script);
+        }
 
-            // 3. Show Success & Redirect
+        function redirectToCourse(course) {
+            const courseMaps = {
+                'Marian Business Analytics': 'marian_analytics.html',
+                'Python Mastery': 'python_index.html',
+                'SQL Mastery': 'sql_index.html',
+                'Artificial Intelligence': 'ai_index.html',
+                'Power BI Mastery': 'powerbi_index.html',
+                'Data Analytics': 'data_index.html',
+                'Advanced Gaming': 'gaming_index.html',
+                'Advanced Excel': 'excel_index.html'
+            };
+            const target = courseMaps[course] || 'index.html';
+            window.location.href = target;
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('registrationForm');
+            const msg = document.getElementById('successMsg');
+            const errorMsg = document.getElementById('errorMsg');
+
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const course = document.getElementById('courseName').value;
+
+            // Instant Registration logic - set both for redundancy
+            localStorage.setItem('registered_' + phone + '_' + course, 'true');
+            if (email) localStorage.setItem('registered_' + email + '_' + course, 'true');
+            if (email) localStorage.setItem('gmail', email);
+            localStorage.setItem('strategist_phone', phone);
+            
+            form.style.display = 'none';
+            errorMsg.style.display = 'none';
+            msg.innerHTML = "✓ Registration Successful! Welcome to the course.";
+            msg.style.display = 'block';
+            
+            const courseMaps = {
+                'Marian Business Analytics': 'marian_analytics.html',
+                'Python Mastery': 'python_index.html',
+                'SQL Mastery': 'sql_index.html',
+                'Artificial Intelligence': 'ai_index.html',
+                'Power BI Mastery': 'powerbi_index.html',
+                'Data Analytics': 'data_index.html',
+                'Advanced Gaming': 'gaming_index.html',
+                'Advanced Excel': 'excel_index.html'
+            };
+            
+            const target = courseMaps[course] || 'index.html';
             setTimeout(() => {
-                form.style.display = 'none';
-                msg.innerHTML = "✓ Registration Successful! Taking you to your course...";
-                msg.style.display = 'block';
-                
-                // Redirect mapping
-                const courseMaps = {
-                    'Marian Business Analytics': 'marian_analytics.html',
-                    'Python Mastery': 'python_index.html',
-                    'SQL Mastery': 'sql_index.html',
-                    'Artificial Intelligence': 'ai_index.html',
-                    'Power BI Mastery': 'powerbi_index.html',
-                    'Data Analytics': 'data_index.html',
-                    'Advanced Gaming': 'gaming_index.html',
-                    'Advanced Excel': 'excel_index.html'
-                };
-                
-                const target = courseMaps[course] || 'index.html';
-                setTimeout(() => {
-                    window.location.href = target;
-                }, 1500);
+                window.location.href = target;
             }, 1000);
         }
     </script>

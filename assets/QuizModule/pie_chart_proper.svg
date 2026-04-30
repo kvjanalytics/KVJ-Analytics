@@ -1,0 +1,34 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="500" fill="#0f172a" rx="24"/>
+    <text x="400" y="50" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="24" font-weight="900" fill="#f8fafc" letter-spacing="1">MARKET SHARE DISTRIBUTION</text>
+    
+    <!-- Pie segments -->
+    <!-- Segment 1 (45%) -->
+    <path d="M 400 280 L 400 100 A 180 180 0 0 1 571 335 Z" fill="#38bdf8" stroke="#0f172a" stroke-width="4"/>
+    <!-- Segment 2 (30%) -->
+    <path d="M 400 280 L 571 335 A 180 180 0 0 1 235 348 Z" fill="#0ea5e9" stroke="#0f172a" stroke-width="4"/>
+    <!-- Segment 3 (25%) -->
+    <path d="M 400 280 L 235 348 A 180 180 0 0 1 400 100 Z" fill="#0369a1" stroke="#0f172a" stroke-width="4"/>
+
+    <!-- Center hole for Donut feel (optional, but looks modern) -->
+    <!-- <circle cx="400" cy="280" r="80" fill="#0f172a"/> -->
+
+    <!-- Labels -->
+    <g font-family="'Outfit', sans-serif" font-size="18" font-weight="800">
+        <text x="500" y="220" fill="#f8fafc">45%</text>
+        <text x="400" y="380" fill="#f8fafc">30%</text>
+        <text x="300" y="240" fill="#f8fafc">25%</text>
+    </g>
+
+    <!-- Legend -->
+    <g transform="translate(620, 150)">
+        <rect width="15" height="15" fill="#38bdf8" rx="3"/>
+        <text x="25" y="13" font-family="'Outfit', sans-serif" font-size="14" fill="#94a3b8">Company A</text>
+        
+        <rect y="30" width="15" height="15" fill="#0ea5e9" rx="3"/>
+        <text x="25" y="43" font-family="'Outfit', sans-serif" font-size="14" fill="#94a3b8">Company B</text>
+        
+        <rect y="60" width="15" height="15" fill="#0369a1" rx="3"/>
+        <text x="25" y="73" font-family="'Outfit', sans-serif" font-size="14" fill="#94a3b8">Company C</text>
+    </g>
+</svg>

@@ -114,7 +114,7 @@
         }
         .signin-link {
             font-size: 0.7rem;
-            color: rgba(255,255,255,0.85);
+            color: #ffffff !important;
             margin-top: 10px;
             cursor: pointer;
             transition: all 0.2s;
@@ -122,8 +122,8 @@
             letter-spacing: 0.5px;
             display: inline-block;
         }
-        .signin-link span { text-decoration: underline; font-weight: 800; color: white; }
-        .signin-link:hover { color: #fff; transform: scale(1.05); }
+        .signin-link span { text-decoration: underline; font-weight: 800; color: #ffffff !important; }
+        .signin-link:hover { color: #ffffff !important; transform: scale(1.05); }
 
         /* Profile V2 Styles */
         .profile-v2-container { padding: 20px 0; }
@@ -387,6 +387,9 @@
                         <div class="profile-meta">
                             <div class="meta-item">📍 India</div>
                             <div class="meta-item">📅 Joined March 2026</div>
+                            <div class="meta-item" style="margin-left: 20px;">
+                                <button onclick="syncUserEnrollments(localStorage.getItem('strategist_phone'))" style="background: #3b82f6; color: white; border: none; padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; cursor: pointer;">🔄 Sync My Courses</button>
+                            </div>
                         </div>
                     </div>
 
@@ -468,30 +471,91 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const userName = sessionStorage.getItem('userName') || localStorage.getItem('strategist_user') || 'Manu';
+            const userEmail = localStorage.getItem('gmail');
+            const userPhone = localStorage.getItem('strategist_phone') || 'guest';
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            
+            // Re-sync on every load if logged in to stay up-to-date with Google Sheet
+            if (isLoggedIn && (userEmail || (userPhone && userPhone !== 'guest'))) {
+                syncUserEnrollments(userEmail, userPhone);
+            }
+            refreshDashboardUI();
+            
+            initActivityTracking();
+        });
+
+        function refreshDashboardUI() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userName = isLoggedIn ? (localStorage.getItem('userName') || localStorage.getItem('strategist_user')) : 'Student';
+            const userEmail = localStorage.getItem('gmail');
             const userPhone = localStorage.getItem('strategist_phone') || 'guest';
             
-            // Hide register buttons for enrolled courses and check for any registration
             const cards = document.querySelectorAll('.course-card');
-            let hasAnyRegistration = false;
             
             cards.forEach(card => {
                 const courseName = card.dataset.course;
-                const isRegistered = userPhone !== 'guest' && localStorage.getItem('registered_' + userPhone + '_' + courseName) === 'true';
                 
+                // Broad check across all possible keys
+                const isRegistered = isLoggedIn && (
+                    (userEmail && localStorage.getItem('registered_' + userEmail + '_' + courseName) === 'true') ||
+                    (userPhone && userPhone !== 'guest' && localStorage.getItem('registered_' + userPhone + '_' + courseName) === 'true') ||
+                    (localStorage.getItem('registered_' + courseName) === 'true') // legacy/direct fallback
+                );
+                
+                const regBtn = card.querySelector('.register-btn');
+                const signInLink = card.querySelector('.signin-link');
+
+                const courseMaps = {
+                    'Marian Business Analytics': 'marian_analytics.html',
+                    'Python Mastery': 'python_index.html',
+                    'SQL Mastery': 'sql_index.html',
+                    'Artificial Intelligence': 'ai_index.html',
+                    'Power BI Mastery': 'powerbi_index.html',
+                    'Data Analytics': 'data_index.html',
+                    'Advanced Gaming': 'gaming_index.html',
+                    'Advanced Excel': 'excel_index.html'
+                };
+
                 if (isRegistered) {
-                    hasAnyRegistration = true;
-                    const regBtn = card.querySelector('.register-btn');
-                    if (regBtn) regBtn.style.display = 'none';
+                    if (regBtn) {
+                        regBtn.innerHTML = 'ACCESS COURSE';
+                        regBtn.style.setProperty('background', '#0f172a', 'important');
+                        regBtn.style.setProperty('color', '#ffffff', 'important');
+                        regBtn.style.display = 'inline-block';
+                        regBtn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); signInCourse(courseName); };
+                    }
+                    if (signInLink) {
+                        signInLink.innerHTML = "<span style='color: #ffffff !important; font-weight: 700; text-transform: uppercase;'>Already Enrolled</span>";
+                        signInLink.style.pointerEvents = 'none';
+                        signInLink.onclick = null;
+                        signInLink.style.display = 'block';
+                    }
+                    if (courseMaps[courseName]) card.href = courseMaps[courseName];
+                } else {
+                    // Reset to default "Register Now" state for logged-out or non-enrolled
+                    if (regBtn) {
+                        regBtn.innerHTML = 'REGISTER NOW';
+                        regBtn.style.background = ''; // Use CSS default
+                        regBtn.style.color = '';
+                        regBtn.style.display = 'inline-block';
+                        regBtn.onclick = (e) => { e.preventDefault(); registerCourse(courseName); };
+                    }
+                    if (signInLink) {
+                        signInLink.innerHTML = "ALREADY ENROLLED? <span style='text-decoration: underline; color: #ffffff !important;'>SIGN IN</span>";
+                        signInLink.style.pointerEvents = 'auto';
+                        signInLink.style.display = 'block';
+                    }
+                    // Direct link to registration if logged in, otherwise login
+                    const targetPage = isLoggedIn ? 'registration.html' : 'login.html';
+                    const actionParam = isLoggedIn ? '' : '&action=register';
+                    card.href = `${targetPage}?course=${encodeURIComponent(courseName)}${actionParam}`;
                 }
             });
 
-            const displayUserName = hasAnyRegistration ? userName : 'Student';
+            const displayUserName = userName || 'Student';
             const nameEles = document.querySelectorAll('#user-name, #profile-name-v2');
             nameEles.forEach(el => el.textContent = displayUserName);
-
-            initActivityTracking();
-        });
+        }
 
         function navigateTo(view, type) {
             const coursesContainer = document.getElementById('courses-section');
@@ -572,12 +636,18 @@
         }
 
         function logout() {
-            sessionStorage.clear();
-            // Clear specific registration flags to force re-sync on next login
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userName');
+            // Clear identity markers but keep registration flags if you want them persistent, 
+            // OR clear them for security. We'll clear identity to force "Student" view.
+            localStorage.removeItem('strategist_user');
+            localStorage.removeItem('strategist_phone');
+            localStorage.removeItem('gmail');
+            // Remove sync markers to force fresh check on next login
             Object.keys(localStorage).forEach(key => {
-                if (key.startsWith('registered_')) localStorage.removeItem(key);
+                if (key.startsWith('sync_done_')) localStorage.removeItem(key);
             });
-            window.location.href = 'https://www.kvjanalytics.in/training.html';
+            window.location.href = 'index.html';
         }
 
         // --- ACTIVITY TRACKING LOGIC ---
@@ -645,7 +715,7 @@
             btn.textContent = "Sending...";
             btn.disabled = true;
 
-            const scriptURL = "https://script.google.com/macros/s/AKfycbxWBtu6ZE4fwil942a0o5EfNUohvB_jYAFgGvDtPrnngIDl95LhJmpE9KoGRg6TabZR/exec";
+            const scriptURL = "https://script.google.com/macros/s/AKfycbzESAIomPGCHhkYOoAJyi8Agjn8FLCDjnju3ngO1UUXuTVABsmrHe5c8AkdhGF5q3AV/exec";
 
             fetch(scriptURL, {
                 method: 'POST',
@@ -674,11 +744,89 @@
         }
 
         function registerCourse(courseName) {
-            window.location.href = 'login.html?course=' + encodeURIComponent(courseName) + '&action=register';
+            const userEmail = localStorage.getItem('gmail');
+            const userPhone = localStorage.getItem('strategist_phone') || 'guest';
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+            const isRegistered = (userEmail && localStorage.getItem('registered_' + userEmail + '_' + courseName) === 'true') ||
+                               (userPhone !== 'guest' && localStorage.getItem('registered_' + userPhone + '_' + courseName) === 'true');
+            
+            if (isRegistered) {
+                signInCourse(courseName);
+            } else if (isLoggedIn) {
+                // If already logged in, go straight to registration with their details
+                window.location.href = 'registration.html?course=' + encodeURIComponent(courseName);
+            } else {
+                window.location.href = 'login.html?course=' + encodeURIComponent(courseName) + '&action=register';
+            }
         }
 
         function signInCourse(courseName) {
-            window.location.href = 'login.html?course=' + encodeURIComponent(courseName) + '&action=enter';
+            const userEmail = localStorage.getItem('gmail');
+            const userPhone = localStorage.getItem('strategist_phone') || 'guest';
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const isRegistered = (userEmail && localStorage.getItem('registered_' + userEmail + '_' + courseName) === 'true') ||
+                               (userPhone !== 'guest' && localStorage.getItem('registered_' + userPhone + '_' + courseName) === 'true');
+
+            if (isLoggedIn && isRegistered) {
+                // Direct entry if already logged in and registered
+                const courseMaps = {
+                    'Marian Business Analytics': 'marian_analytics.html',
+                    'Python Mastery': 'python_index.html',
+                    'SQL Mastery': 'sql_index.html',
+                    'Artificial Intelligence': 'ai_index.html',
+                    'Power BI Mastery': 'powerbi_index.html',
+                    'Data Analytics': 'data_index.html',
+                    'Advanced Gaming': 'gaming_index.html',
+                    'Advanced Excel': 'excel_index.html'
+                };
+                window.location.href = courseMaps[courseName] || 'index.html';
+            } else {
+                window.location.href = 'login.html?course=' + encodeURIComponent(courseName) + '&action=enter';
+            }
+        }
+
+        function syncUserEnrollments(email, phone) {
+            const identifier = email || phone;
+            if (!identifier || identifier === 'guest') return;
+            
+            // Only treat as a button if it's a real HTML button or has our specific class
+            const btn = (event && event.target && event.target.tagName === 'BUTTON') ? event.target : null;
+            const originalText = btn ? btn.textContent : '';
+            if (btn) {
+                btn.textContent = "Syncing...";
+                btn.disabled = true;
+            }
+
+            const scriptURL = "https://script.google.com/macros/s/AKfycbxOGpI6VoX5N1vH5qlXlTXufZbKIGVEHc3gusa7zzQsfsYr7RY6klHgCDTp3AB7NQIt/exec";
+            const script = document.createElement('script');
+            const callbackName = 'syncCallback_' + Math.floor(Math.random() * 1000000);
+            
+            window[callbackName] = function(data) {
+                delete window[callbackName];
+                if (script.parentNode) document.body.removeChild(script);
+                
+                if (data.exists) {
+                    if (data.name) localStorage.setItem('strategist_user', data.name);
+                    if (data.enrollments) {
+                        data.enrollments.forEach(course => {
+                            const normalized = course.trim();
+                            if (email) localStorage.setItem('registered_' + email + '_' + normalized, 'true');
+                            if (phone && phone !== 'guest') localStorage.setItem('registered_' + phone + '_' + normalized, 'true');
+                        });
+                    }
+                    if (email) localStorage.setItem('sync_done_' + email, 'true');
+                    refreshDashboardUI(); // Update UI immediately
+                } else if (btn) {
+                    // Only show alert if user MANUALLY clicked a button
+                    alert("No enrollments found for this account. If you just registered, please wait a moment or try signing in again.");
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }
+            };
+            
+            // Sync by email primarily
+            script.src = `${scriptURL}?action=login&email=${encodeURIComponent(email || '')}&phone=${encodeURIComponent(phone || '')}&password=BYPASS_SYNC&callback=${callbackName}&t=${Date.now()}`;
+            document.body.appendChild(script);
         }
 
         function markCourseCompleted(courseName) {
