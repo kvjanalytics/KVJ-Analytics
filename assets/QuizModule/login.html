@@ -7,6 +7,11 @@
     <!-- We will use the fonts matched to our new theme, but keep your exact logic -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         :root {
             --primary-blue: #1e3a5f;
             --secondary-blue: #008eab;
@@ -148,7 +153,7 @@
             margin-top: 25px;
             text-align: center;
             font-size: 14px;
-            color: #64748b;
+            color: #1e293b; font-weight: 600;
         }
 
         .signup-footer a {
@@ -180,7 +185,7 @@
             right: 14px;
             top: 14px;
             cursor: pointer;
-            color: #64748b;
+            color: #1e293b; font-weight: 600;
             background: none;
             border: none;
             padding: 0;
@@ -257,7 +262,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
                 </button>
             </div>
-            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 20px;">Password must contain digits and be at least 6 characters long.</div>
+            <div style="font-size: 12px; color: #1e293b; font-weight: 600; margin-bottom: 20px;">Password must contain digits and be at least 6 characters long.</div>
             <label class="datacamp-label">Confirm Password</label>
             <div class="password-wrapper">
                 <input type="password" id="reg-confirm-password" name="confirm_password" class="datacamp-input" placeholder="Confirm password" required style="padding-right: 40px;">
@@ -275,13 +280,13 @@
         <div id="forgot-password-screen" class="datacamp-card hidden">
             <h2 class="datacamp-title">Reset Password</h2>
             <div id="reset-step-1">
-                <p style="text-align: center; color: #64748b; font-size: 14px; margin-bottom: 25px;">Enter your registered phone number to verify your account.</p>
+                <p style="text-align: center; color: #1e293b; font-weight: 600; font-size: 14px; margin-bottom: 25px;">Enter your registered phone number to verify your account.</p>
                 <label class="datacamp-label">Phone Number</label>
                 <input type="text" id="recover-phone" class="datacamp-input" placeholder="e.g. 9876543210" required>
                 <button onclick="verifyPhoneForReset()" class="btn-login">Verify Phone Number</button>
             </div>
             <div id="reset-step-2" class="hidden">
-                <p style="text-align: center; color: #64748b; font-size: 14px; margin-bottom: 25px;">Create and confirm your new password.</p>
+                <p style="text-align: center; color: #1e293b; font-weight: 600; font-size: 14px; margin-bottom: 25px;">Create and confirm your new password.</p>
                 <label class="datacamp-label">New Password</label>
                 <div class="password-wrapper">
                     <input type="password" id="reset-new-password" class="datacamp-input" required style="padding-right: 40px;">
@@ -306,7 +311,7 @@
 
     <!-- YOUR EXACT JS LOGIC FOR THE AUTHENTICATION  -->
     <script>
-        const scriptURL = "https://script.google.com/macros/s/AKfycbzESAIomPGCHhkYOoAJyi8Agjn8FLCDjnju3ngO1UUXuTVABsmrHe5c8AkdhGF5q3AV/exec";
+        const scriptURL = "https://script.google.com/macros/s/AKfycbx6TOmaeAAlsQX4Ucef_3oTOjElUhgNztdiVWIE31k1QM16e_RQw4khy2kXAJxYGYkc/exec";
 
         function showLoginScreen() {
             document.querySelectorAll('.datacamp-card').forEach(c => c.classList.add('hidden'));
@@ -354,7 +359,8 @@
             window.handleResponse = function(data) {
                 if (data.exists) {
                     localStorage.setItem('strategist_user', data.name);
-                    localStorage.setItem('strategist_phone', phone);
+                    const cleanPhone = phone.replace(/\D/g, '');
+                    localStorage.setItem('strategist_phone', cleanPhone);
                     
                     // SECURITY FIX: Clear previous registration markers from OTHER users
                     // on this computer to prevent cross-user leakage. 
@@ -385,18 +391,33 @@
                     const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
 
                     if (action === 'enter' && course) {
-                        const courseMaps = {
-                            'Marian Business Analytics': 'marian_analytics.html',
-                            'Python Mastery': 'python_index.html',
-                            'SQL Mastery': 'sql_index.html',
-                            'Artificial Intelligence': 'ai_index.html',
-                            'Power BI Mastery': 'powerbi_index.html',
-                            'Data Analytics': 'data_index.html',
-                            'Advanced Gaming': 'gaming_index.html',
-                            'Advanced Excel': 'excel_index.html'
-                        };
-                        const target = courseMaps[course] || 'index.html';
-                        window.location.href = target;
+                        // VERIFY ACCESS
+                        let hasAccess = false;
+                        if (data.enrollments && Array.isArray(data.enrollments)) {
+                            data.enrollments.forEach(enrolledCourse => {
+                                if (enrolledCourse.trim().toLowerCase() === course.trim().toLowerCase()) {
+                                    hasAccess = true;
+                                }
+                            });
+                        }
+                        
+                        if (hasAccess || course === 'General Enrollment') {
+                            const courseMaps = {
+                                'Marian Business Analytics': 'marian_analytics.html',
+                                'Python Mastery': 'python_index.html',
+                                'SQL Mastery': 'sql_index.html',
+                                'Artificial Intelligence': 'ai_index.html',
+                                'Power BI Mastery': 'powerbi_index.html',
+                                'Data Analytics': 'data_index.html',
+                                'Advanced Gaming': 'gaming_index.html',
+                                'Advanced Excel': 'excel_index.html'
+                            };
+                            const target = courseMaps[course] || 'index.html';
+                            window.location.href = target;
+                        } else {
+                            alert("You are not enrolled in " + course + ". Please complete registration first.");
+                            window.location.href = "registration.html?course=" + encodeURIComponent(course);
+                        }
                     } else if (course) {
                         window.location.href = "registration.html?course=" + encodeURIComponent(course);
                     } else if (redirectUrl) {

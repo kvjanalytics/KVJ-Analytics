@@ -6,6 +6,11 @@
     <title>AI Live Project | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         :root {
             --blue-dark: #0f172a;
             --blue-primary: #3b82f6;
@@ -85,7 +90,7 @@
         .output-panel {
             margin-top: 30px;
             background: #0f172a;
-            color: #38bdf8;
+            color: #1e3a8a; font-weight: 800;
             padding: 20px;
             border-radius: 12px;
             font-family: monospace;
@@ -124,7 +129,7 @@
         <!-- Section 1: Prompt Engineering -->
         <div class="card">
             <h2>AI Prompt Engineer</h2>
-            <p style="margin-bottom: 20px; color: #64748b;">Design a professional prompt for an AI model. Use clear instructions, context, and output constraints.</p>
+            <p style="margin-bottom: 20px; color: #1e293b; font-weight: 600;">Design a professional prompt for an AI model. Use clear instructions, context, and output constraints.</p>
             <textarea id="prompt-input" placeholder="Example: Act as a senior data analyst. Analyze this sales data and provide a 3-point summary focus on profitability..."></textarea>
             <button class="btn-action" onclick="simulatePrompt()">Generate Analysis</button>
             <div id="prompt-output" class="output-panel"></div>
@@ -133,7 +138,7 @@
         <!-- Section 2: Problem Analysis -->
         <div class="card">
             <h2>Model Logic Console</h2>
-            <p style="margin-bottom: 20px; color: #64748b;">Analyze the following AI scenario and determine the optimal model architecture.</p>
+            <p style="margin-bottom: 20px; color: #1e293b; font-weight: 600;">Analyze the following AI scenario and determine the optimal model architecture.</p>
             <div style="background: #f8fafc; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
                 <strong>Scenario:</strong> "A hospital needs a system to detect rare lung diseases from 2D X-ray images with 99.9% precision."
             </div>

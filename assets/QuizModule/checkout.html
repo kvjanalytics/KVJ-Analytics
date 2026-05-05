@@ -6,6 +6,11 @@
     <title>Checkout | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: 'Inter', sans-serif; 
@@ -67,7 +72,7 @@
         }
 
         .plan-info h3 { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 5px; }
-        .plan-info p { font-size: 0.85rem; color: #94a3b8; font-weight: 500; }
+        .plan-info p { font-size: 0.85rem; color: #1e293b; font-weight: 600; font-weight: 500; }
         .plan-info .add-code { display: block; margin-top: 15px; color: #3b82f6; text-decoration: none; font-size: 0.85rem; font-weight: 600; }
 
         .plan-price { font-size: 0.9rem; font-weight: 700; color: #0f172a; }
@@ -163,7 +168,7 @@
 
         .submit-btn:hover { background: #be185d; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(214, 51, 108, 0.2); }
 
-        .renew-text { text-align: center; color: #94a3b8; font-size: 0.85rem; font-weight: 500; margin-bottom: 40px; }
+        .renew-text { text-align: center; color: #1e293b; font-weight: 600; font-size: 0.85rem; font-weight: 500; margin-bottom: 40px; }
 
         /* Trust Badges */
         .secured-by {
@@ -172,7 +177,7 @@
             text-align: center;
         }
 
-        .secured-by p { font-size: 0.8rem; font-weight: 700; color: #64748b; margin-bottom: 15px; }
+        .secured-by p { font-size: 0.8rem; font-weight: 700; color: #1e293b; font-weight: 600; margin-bottom: 15px; }
         .trust-logos { display: flex; justify-content: center; align-items: center; gap: 30px; opacity: 0.6; }
         .trust-logos img, .trust-logos svg { height: 25px; width: auto; filter: grayscale(1); }
 
@@ -309,7 +314,7 @@
                 if (pendingReg) {
                     try {
                         const regData = JSON.parse(pendingReg);
-                        const scriptURL = "https://script.google.com/macros/s/AKfycbxOGpI6VoX5N1vH5qlXlTXufZbKIGVEHc3gusa7zzQsfsYr7RY6klHgCDTp3AB7NQIt/exec";
+                        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6TOmaeAAlsQX4Ucef_3oTOjElUhgNztdiVWIE31k1QM16e_RQw4khy2kXAJxYGYkc/exec";
                         const script = document.createElement('script');
                         const callbackName = 'checkoutCallback_' + Math.floor(Math.random() * 1000000);
                         
@@ -318,12 +323,12 @@
                             document.body.removeChild(script);
                         };
 
-                        script.src = SCRIPT_URL + "?action=courseRegister" +
+                        script.src = SCRIPT_URL + "?action=register" +
                                      "&name=" + encodeURIComponent(regData.name) +
                                      "&email=" + encodeURIComponent(regData.email) +
                                      "&phone=" + encodeURIComponent(regData.phone) +
                                      "&branch=" + encodeURIComponent(regData.branch || '') +
-                                     "&course=" + encodeURIComponent(regData.course) +
+                                     "&code=" + encodeURIComponent(regData.course) +
                                      "&callback=" + callbackName;
                         
                         document.body.appendChild(script);

@@ -8,6 +8,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         :root {
             --primary-navy: #1e3a8a;
             --secondary-navy: #1e3a5f;
@@ -622,7 +627,7 @@
         function checkSyncAndAccess(email, phone, course) {
             if (!email && (!phone || phone === 'guest')) return;
 
-            const scriptURL = "https://script.google.com/macros/s/AKfycbxOGpI6VoX5N1vH5qlXlTXufZbKIGVEHc3gusa7zzQsfsYr7RY6klHgCDTp3AB7NQIt/exec";
+            const scriptURL = "https://script.google.com/macros/s/AKfycbx6TOmaeAAlsQX4Ucef_3oTOjElUhgNztdiVWIE31k1QM16e_RQw4khy2kXAJxYGYkc/exec";
             const script = document.createElement('script');
             const callbackName = 'accessSync_' + Math.floor(Math.random() * 1000000);
             

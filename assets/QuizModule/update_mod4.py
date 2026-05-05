@@ -306,7 +306,7 @@ html_content = """
             <div class="quiz-cta">
                 <h3>Visualization Mastery Complete!</h3>
                 <p>You've learned how to turn raw data into powerful visuals and impactful reports.</p>
-                <a href="module_quiz.html?mod=data4" class="btn-start-quiz">Start Final Assessment &rarr;</a>
+                <a href="module_quiz.html?mod=data4" class="btn-start-quiz">Start Assessment &rarr;</a>
             </div>
 """
 

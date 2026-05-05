@@ -6,6 +6,11 @@
     <title>SQL Mastery | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         body { 
             font-family: 'Inter', -apple-system, sans-serif; 
             margin: 0; 
@@ -114,7 +119,7 @@
         }
         .hero p {
             font-size: 1.25rem;
-            color: #64748b;
+            color: #1e293b; font-weight: 600;
             line-height: 1.6;
             margin-bottom: 2.5rem;
             animation: fadeInUp 0.8s ease backwards;
@@ -165,7 +170,7 @@
         .card:nth-child(3) { animation-delay: 0.9s; border-top: 4px solid #4285F4; }
 
         .card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; }
-        .card p { color: #64748b; font-size: 1rem; line-height: 1.5; margin: 0; }
+        .card p { color: #1e293b; font-weight: 600; font-size: 1rem; line-height: 1.5; margin: 0; }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
@@ -189,7 +194,7 @@
             localStorage.removeItem('strategist_phone');
             localStorage.removeItem('gmail');
             localStorage.removeItem('class_code');
-            window.location.href = 'login.html';
+            window.location.href = 'https://www.kvjanalytics.in/training.html';
         }
         document.addEventListener('DOMContentLoaded', () => {
             const userName = sessionStorage.getItem('userName') || localStorage.getItem('strategist_user') || 'Student';

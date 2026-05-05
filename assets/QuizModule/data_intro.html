@@ -7,6 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         :root {
             --primary-blue: #1e3a8a;
             --secondary-blue: #1d4ed8;
@@ -144,7 +149,7 @@
 
         p {
             font-size: 1.25rem;
-            color: #64748b;
+            color: #1e293b; font-weight: 600;
             line-height: 1.6;
             margin-bottom: 3rem;
             animation: fadeInUp 0.8s ease backwards;
@@ -221,7 +226,7 @@
         .card p {
             font-size: 1rem;
             margin-bottom: 0;
-            color: #64748b;
+            color: #1e293b; font-weight: 600;
         }
 
         @keyframes fadeInDown {
@@ -285,10 +290,6 @@
             <h3>Strategic Flow</h3>
             <p>Master complex logic through intuitive, real-world analytical scenarios and datasets.</p>
         </div>
-        <div class="card">
-            <h3>Performance Data</h3>
-            <p>Assisting effective decision-making with dynamic tracking of your visualization and analytical competencies.</p>
-        </div>
     </div>
 
     <script>
@@ -298,7 +299,7 @@
             localStorage.removeItem('strategist_phone');
             localStorage.removeItem('gmail');
             localStorage.removeItem('class_code');
-            window.location.href = 'login.html';
+            window.location.href = 'https://www.kvjanalytics.in/training.html';
         }
 
         document.addEventListener('DOMContentLoaded', () => {

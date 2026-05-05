@@ -7,6 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         :root {
             --primary-blue: #1e3a5f;
             --accent-blue: #38bdf8;
@@ -53,17 +58,11 @@
         .logout-btn:hover { background: #dc2626; transform: translateY(-1px); }
 
         .header-banner {
-            background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%); 
-            color: white;
-            padding: 140px 20px 80px; text-align: center;
-            position: relative; overflow: hidden;
+            background: var(--primary-blue); color: white;
+            padding: 120px 20px 60px; text-align: center;
         }
 
-        .header-banner::after {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            opacity: 0.1; pointer-events: none;
-        }
+
 
         .header-banner h1 {
             font-family: 'Montserrat', sans-serif; font-size: 42px;
@@ -72,23 +71,29 @@
         }
 
         .header-banner p {
-            font-size: 18px; opacity: 0.8; margin-top: 10px; font-weight: 400;
+            font-size: 18px; color: var(--white); margin-top: 10px; font-weight: 400;
             position: relative; z-index: 1;
         }
 
         .layout-container {
             display: flex; max-width: 1400px;
-            margin: -40px auto 40px; gap: 40px; width: 95%; padding-bottom: 60px;
-            position: relative; z-index: 10;
+            margin: 40px auto; gap: 40px; width: 95%; padding-bottom: 60px;
         }
 
         .sidebar {
-            width: 320px; background: white; padding: 35px;
+            width: 300px; background: white; padding: 30px;
             border: 1px solid var(--border-color); position: sticky;
-            top: 100px; border-radius: 24px;
+            top: 100px; border-radius: 12px;
             max-height: calc(100vh - 140px);
-            box-shadow: var(--card-shadow);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f1f5f9;
         }
+
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .sidebar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
         .sidebar h3 {
             font-family: 'Montserrat', sans-serif; font-size: 12px;
@@ -97,23 +102,143 @@
             padding-bottom: 12px; font-weight: 800; letter-spacing: 1.5px;
         }
 
+        /* ─── ENHANCED ACCORDION SIDEBAR ─── */
+        .sidebar {
+            width: 320px; background: white; padding: 25px;
+            border: 1px solid var(--border-color); position: sticky;
+            top: 100px; border-radius: 20px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar h3 {
+            font-family: 'Montserrat', sans-serif; font-size: 11px;
+            color: var(--accent-blue); text-transform: uppercase;
+            margin-bottom: 20px; border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 10px; font-weight: 800; letter-spacing: 1.5px;
+        }
+
+        .accordion-item {
+            margin-bottom: 12px;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 14px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .accordion-header:hover {
+            background: #f1f5f9;
+            color: var(--primary-blue);
+            transform: translateX(5px);
+            border-color: var(--accent-blue);
+        }
+
+        .accordion-header.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+            box-shadow: 0 8px 25px rgba(30, 58, 95, 0.25);
+        }
+
+        .accordion-header.expanded {
+            border-color: var(--accent-blue);
+            background: #ffffff;
+            color: var(--primary-blue);
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .accordion-header.active.expanded {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .chevron {
+            width: 8px;
+            height: 8px;
+            border-right: 2.5px solid currentColor;
+            border-bottom: 2.5px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-header.expanded .chevron {
+            transform: rotate(-135deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin 0.4s ease;
+            opacity: 0;
+            padding-left: 15px;
+            margin-left: 10px;
+            border-left: 2px solid #e2e8f0;
+        }
+
+        .accordion-content.expanded {
+            max-height: 1000px;
+            opacity: 1;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
         .sidebar-content-link {
-            display: block; padding: 12px 18px;
-            color: var(--text-muted); text-decoration: none; font-size: 14px;
-            font-weight: 500; margin-bottom: 6px; border-radius: 12px;
-            transition: all 0.3s;
+            font-size: 13px;
+            padding: 10px 15px;
+            color: #475569;
+            font-weight: 500;
+            display: block;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-bottom: 4px;
+            position: relative;
         }
 
-        .sidebar-content-link.active {
-            color: white; font-weight: 700;
-            background: var(--primary-blue); box-shadow: 0 4px 12px rgba(30, 58, 95, 0.2);
+        .sidebar-content-link:hover {
+            background: #eff6ff;
+            color: var(--primary-blue);
+            padding-left: 22px;
         }
 
-        .sidebar-content-link:hover:not(.active) { background: #f1f5f9; color: var(--primary-blue); transform: translateX(5px); }
+        .sidebar-content-link:hover::before {
+            content: "";
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        .sidebar-content-link.active-topic {
+            background: #f1f5f9;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
 
         .main-content {
             flex: 1; background: #ffffff; border: 1px solid var(--border-color);
-            padding: 60px; border-radius: 24px; box-shadow: var(--card-shadow);
+            padding: 40px 60px; border-radius: 12px;
         }
 
         .section-header {
@@ -151,23 +276,11 @@
         }
 
         .practice-card {
-            position: relative;
             background: #ffffff; 
-            border: 1px solid #e2e8f0; 
-            border-radius: 16px;
-            padding: 40px; 
-            margin: 40px 0; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-        .practice-card:hover { transform: translateY(-5px); }
-        .practice-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 6px;
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            border: 1px solid var(--border-color); 
+            border-radius: 12px;
+            padding: 30px; 
+            margin-bottom: 30px;
         }
 
         .practice-header {
@@ -175,8 +288,8 @@
         }
         
         .q-badge {
-            background: #e0f2fe; color: #0284c7; font-weight: 900; font-size: 16px;
-            width: 45px; height: 45px; border-radius: 10px; 
+            background: #e0f2fe; color: #1e3a8a; font-weight: 800; font-weight: 800; font-size: 15px;
+            width: 40px; height: 40px; border-radius: 8px; 
             display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
 
@@ -190,21 +303,20 @@
         }
 
         .mcq-option {
-            background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;
-            padding: 16px 20px; margin-bottom: 12px; cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 600; color: #334155; display: flex; align-items: center; gap: 20px;
+            background: #ffffff; border: 1px solid var(--border-color); border-radius: 10px;
+            padding: 15px 20px; margin-bottom: 10px; cursor: pointer;
+            transition: all 0.2s; font-weight: 500; color: #334155;
+            display: flex; align-items: center; gap: 15px;
         }
-        .mcq-option:hover { border-color: #cbd5e1; background: #f8fafc; }
+        .mcq-option:hover { border-color: #1e293b; background: #f8fafc; }
         .mcq-option.selected { border-color: #3b82f6; background: #f0f9ff; color: #1e40af; }
         .mcq-option.correct { border-color: #10b981; background: #ecfdf5; color: #065f46; }
         .mcq-option.wrong { border-color: #ef4444; background: #fef2f2; color: #991b1b; }
 
         .mcq-prefix {
-            width: 32px; height: 32px; background: #f1f5f9; border: none;
-            border-radius: 8px; display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 14px; color: #64748b; flex-shrink: 0;
-            transition: all 0.2s ease;
+            width: 30px; height: 30px; background: #f1f5f9; border: none;
+            border-radius: 6px; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 13px; color: #1e293b; font-weight: 600; flex-shrink: 0;
         }
         .mcq-option.selected .mcq-prefix { background: #3b82f6; color: #ffffff; }
         .mcq-option.correct .mcq-prefix { background: #10b981; color: #ffffff; }
@@ -212,13 +324,13 @@
 
         .practice-dark-btn {
             background: #1e293b; color: white; border: none; padding: 14px 28px;
-            border-radius: 8px; font-weight: 800; cursor: pointer; transition: all 0.3s;
+            border-radius: 6px; font-weight: 700; cursor: pointer; transition: all 0.3s;
             text-transform: uppercase; letter-spacing: 0.5px; font-size: 13px; margin-top: 15px;
         }
         .practice-dark-btn:hover { background: #0f172a; transform: scale(1.02); }
 
         .practice-reset-btn {
-            background: transparent; border: 1px solid #cbd5e1; color: #64748b; padding: 14px 25px;
+            background: transparent; border: 1px solid #cbd5e1; color: #1e293b; font-weight: 600; padding: 14px 25px;
             border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s;
             text-transform: uppercase; letter-spacing: 1px; font-size: 13px;
         }
@@ -251,19 +363,113 @@
     <div class="layout-container">
         
         <aside class="sidebar">
+            
+            
             <h3>Module Path</h3>
-            <a href="Data-Module-1.html" class="sidebar-content-link">01 Data Basics</a>
-            <a href="Data-Module-2.html" class="sidebar-content-link">02 Data Manipulation</a>
-            <a href="Data-Module-3.html" class="sidebar-content-link">03 Data Analysis</a>
-            <a href="Data-Module-4.html" class="sidebar-content-link">04 Data Visualization</a>
-            <a href="Data-Module-5.html" class="sidebar-content-link active">05 Responsible Analytics</a>
+            
+            <!-- Module 1 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-1" onclick="toggleAccordion(1)">
+                    <span>01 Data Basics</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-1" class="accordion-content">
+                    <a href="Data-Module-1.html#s1-basics" class="sidebar-content-link">1.1 Data & Information</a>
+                    <a href="Data-Module-1.html#s2-info" class="sidebar-content-link">1.2 Information</a>
+                    <a href="Data-Module-1.html#s3-knowledge" class="sidebar-content-link">1.3 Knowledge</a>
+                    <a href="Data-Module-1.html#s4-analysis" class="sidebar-content-link">1.4 Data Analysis</a>
+                    <a href="Data-Module-1.html#s5-variables" class="sidebar-content-link">1.5 Variable Types</a>
+                    <a href="Data-Module-1.html#s6-structures" class="sidebar-content-link">1.6 Basic Structures</a>
+                    <a href="Data-Module-1.html#s7-stats" class="sidebar-content-link">1.7 Statistics</a>
+                    <a href="Data-Module-1.html#s8-types" class="sidebar-content-link">1.8 Types of Data</a>
+                    <a href="Data-Module-1.html#s9-structured" class="sidebar-content-link">1.9 Structured Data</a>
+                    <a href="Data-Module-1.html#s10-raw" class="sidebar-content-link">1.10 Raw & Big Data</a>
+                </div>
+            </div>
 
-            <h3 style="margin-top:35px;">Topics</h3>
-            <a href="#s5-1-concept" class="sidebar-content-link">5.1 Concept</a>
-            <a href="#s5-2-laws" class="sidebar-content-link">5.2 Privacy Laws</a>
-            <a href="#s5-3-best-practices" class="sidebar-content-link">5.3 Best Practices</a>
-            <a href="#s5-4-bias" class="sidebar-content-link">5.4 Types of Bias</a>
-            <a href="#s5-practice" class="sidebar-content-link">Knowledge Check</a>
+            <!-- Module 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-2" onclick="toggleAccordion(2)">
+                    <span>02 Data Manipulation</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-2" class="accordion-content">
+                    <a href="Data-Module-2.html#s1-etl" class="sidebar-content-link">2.1 ETL Process</a>
+                    <a href="Data-Module-2.html#s2-formats" class="sidebar-content-link">2.2 File Formats</a>
+                    <a href="Data-Module-2.html#s3-cleaning" class="sidebar-content-link">2.3 Data Cleaning</a>
+                    <a href="Data-Module-2.html#s4-organizing" class="sidebar-content-link">2.4 Data Organizing</a>
+                    <a href="Data-Module-2.html#s5-aggregation" class="sidebar-content-link">2.5 Data Aggregation</a>
+                    <a href="Data-Module-2.html#s6-summarizing" class="sidebar-content-link">2.6 Summarizing</a>
+                    <a href="Data-Module-2.html#s7-pivoting" class="sidebar-content-link">2.7 Pivoting</a>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-3" onclick="toggleAccordion(3)">
+                    <span>03 Data Analysis</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-3" class="accordion-content">
+                    <a href="Data-Module-3.html#s3-1-types" class="sidebar-content-link">3.1 Analysis Types</a>
+                    <a href="Data-Module-3.html#s3-2-descriptive" class="sidebar-content-link">3.2 Descriptive</a>
+                    <a href="Data-Module-3.html#s3-3-diagnostic" class="sidebar-content-link">3.3 Diagnostic</a>
+                    <a href="Data-Module-3.html#s3-4-predictive" class="sidebar-content-link">3.4 Predictive</a>
+                    <a href="Data-Module-3.html#s3-5-prescriptive" class="sidebar-content-link">3.5 Prescriptive</a>
+                    <a href="Data-Module-3.html#s3-6-exploratory" class="sidebar-content-link">3.6 Exploratory (EDA)</a>
+                    <a href="Data-Module-3.html#s3-7-drilling" class="sidebar-content-link">3.7 Data Drilling</a>
+                    <a href="Data-Module-3.html#s3-8-granularity" class="sidebar-content-link">3.8 Data Granularity</a>
+                    <a href="Data-Module-3.html#s3-9-mining" class="sidebar-content-link">3.9 Data Mining</a>
+                    <a href="Data-Module-3.html#s3-10-corr" class="sidebar-content-link">3.10 Correlation</a>
+                    <a href="Data-Module-3.html#s3-11-pattern" class="sidebar-content-link">3.11 Pattern Recognition</a>
+                    <a href="Data-Module-3.html#s3-12-anomaly-outliers" class="sidebar-content-link">3.12 Anomaly & Outliers</a>
+                    <a href="Data-Module-3.html#s3-13-evaluate" class="sidebar-content-link">3.13 Explain Results</a>
+                    <a href="Data-Module-3.html#s3-14-hypothesis" class="sidebar-content-link">3.14 Hypothesis Testing</a>
+                    <a href="Data-Module-3.html#s3-15-prob" class="sidebar-content-link">3.15 Probability/Errors</a>
+                    <a href="Data-Module-3.html#s3-16-stats" class="sidebar-content-link">3.16 Statistical Techniques</a>
+                    <a href="Data-Module-3.html#s3-17-predictive-models" class="sidebar-content-link">3.17 Predictive Models</a>
+                    <a href="Data-Module-3.html#s3-20-ai-role" class="sidebar-content-link">3.20 Role of AI</a>
+                    <a href="Data-Module-3.html#s3-21-ml-algo" class="sidebar-content-link">3.21 ML Algorithms</a>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-4" onclick="toggleAccordion(4)">
+                    <span>04 Data Visualization</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-4" class="accordion-content">
+                    <a href="Data-Module-4.html#s4-1-report-data" class="sidebar-content-link">4.1 Report Data</a>
+                    <a href="Data-Module-4.html#s4-2-types-of-reports" class="sidebar-content-link">4.2 Types of Reports</a>
+                    <a href="Data-Module-4.html#s4-3-apple-case" class="sidebar-content-link">4.3 Apple Case Study</a>
+                    <a href="Data-Module-4.html#s4-4-importance" class="sidebar-content-link">4.4 Importance/Audience</a>
+                    <a href="Data-Module-4.html#s4-5-banavil" class="sidebar-content-link">4.5 Banavil Case Study</a>
+                    <a href="Data-Module-4.html#s4-7-tables" class="sidebar-content-link">4.7 Data Tables</a>
+                    <a href="Data-Module-4.html#s4-8-conclusions" class="sidebar-content-link">4.8 Conclusions</a>
+                    <a href="Data-Module-4.html#s4-9-chart-library" class="sidebar-content-link">4.9 Chart Library</a>
+                    <a href="Data-Module-4.html#s4-10-dashboard" class="sidebar-content-link">4.10 Live Dashboard</a>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-5" onclick="toggleAccordion(5)">
+                    <span>05 Responsible Analytics</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-5" class="accordion-content expanded">
+                    <a href="Data-Module-5.html#s5-1-concept" class="sidebar-content-link">5.1 Concept</a>
+                    <a href="Data-Module-5.html#s5-2-laws" class="sidebar-content-link">5.2 Privacy Laws</a>
+                    <a href="Data-Module-5.html#s5-3-best-practices" class="sidebar-content-link">5.3 Best Practices</a>
+                    <a href="Data-Module-5.html#s5-4-bias" class="sidebar-content-link">5.4 Types of Bias</a>
+                </div>
+            </div>
+
+            <h3 style="margin-top:35px;">Navigation</h3>
+
+
+            <a href="data_roadmap.html" style="background: #f8fafc; display: block; padding: 12px 15px; color: var(--primary-blue); text-decoration: none; font-size: 14px; font-weight: 700; border-radius: 12px; transition: all 0.3s; border: 1px solid #e2e8f0; text-align: center;">&larr; Return to Roadmap</a>
         </aside>
 
         <main class="main-content">
@@ -302,7 +508,7 @@
                 </div>
                 <div style="flex-shrink: 0; width: 320px;">
                     <div style="background: #ffffff; padding: 40px; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M5 9h14M5 15h14"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h18"/></svg>
                     </div>
                 </div>
             </div>
@@ -355,7 +561,7 @@
                 <!-- GDPR Section -->
                 <div style="margin-top: 80px; border-top: 2px solid #f1f5f9; padding-top: 60px;">
                     <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">1. General Data Protection Regulation (GDPR)</h3>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">5.2.1 General Data Protection Regulation (GDPR)</h3>
                         <div style="background: #eff6ff; color: #3b82f6; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">EU Standard</div>
                     </div>
                     
@@ -369,7 +575,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Explicit Consent</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Requires clear, affirmative consent from individuals before any personal data is collected or processed.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Requires clear, affirmative consent from individuals before any personal data is collected or processed.</p>
                             </div>
                         </div>
 
@@ -380,7 +586,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Data Subject Rights</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Provides rights such as access, correction, erasure (right to be forgotten), and data portability.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Provides rights such as access, correction, erasure (right to be forgotten), and data portability.</p>
                             </div>
                         </div>
 
@@ -391,7 +597,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Data Protection Officer (DPO)</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Organizations must appoint a DPO if they process large amounts of sensitive personal data.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Organizations must appoint a DPO if they process large amounts of sensitive personal data.</p>
                             </div>
                         </div>
 
@@ -402,7 +608,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Breach Notification</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Mandatory reporting of data breaches to authorities and individuals within 72 hours of discovery.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Mandatory reporting of data breaches to authorities and individuals within 72 hours of discovery.</p>
                             </div>
                         </div>
 
@@ -413,7 +619,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #ffffff; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Severe Financial Penalties</h4>
-                                <p style="font-size: 15px; color: #cbd5e1; margin-bottom: 0; line-height: 1.6;">Non-compliance can result in significant fines (up to <strong style="color: #60a5fa;">€20 million</strong> or <strong style="color: #60a5fa;">4% of global turnover</strong>, whichever is higher).</p>
+                                <p style="font-size: 15px; color: white; margin-bottom: 0; line-height: 1.6;">Non-compliance can result in significant fines (up to <strong style="color: #60a5fa;">€20 million</strong> or <strong style="color: #60a5fa;">4% of global turnover</strong>, whichever is higher).</p>
                             </div>
                         </div>
                     </div>
@@ -422,7 +628,7 @@
                 <!-- CCPA Section -->
                 <div style="margin-top: 80px; border-top: 2px solid #f1f5f9; padding-top: 60px;">
                     <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">1. California Consumer Privacy Act (CCPA)</h3>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">5.2.2 California Consumer Privacy Act (CCPA)</h3>
                         <div style="background: #fef2f2; color: #ef4444; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">USA - California</div>
                     </div>
                     
@@ -436,7 +642,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Consumer Rights</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Grants rights to know what personal data is being collected, to access it, and to request deletion.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Grants rights to know what personal data is being collected, to access it, and to request deletion.</p>
                             </div>
                         </div>
 
@@ -447,7 +653,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Opt-Out Rights</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Provides the explicit right to opt out of the sale of personal information to third parties.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Provides the explicit right to opt out of the sale of personal information to third parties.</p>
                             </div>
                         </div>
 
@@ -458,7 +664,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Data Protection</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Requires businesses to implement and maintain reasonable security measures to protect data.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Requires businesses to implement and maintain reasonable security measures to protect data.</p>
                             </div>
                         </div>
 
@@ -469,7 +675,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Enforcement</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Violations can result in significant fines, penalties, and the possibility of private lawsuits.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Violations can result in significant fines, penalties, and the possibility of private lawsuits.</p>
                             </div>
                         </div>
                     </div>
@@ -478,7 +684,7 @@
                 <!-- HIPAA Section -->
                 <div style="margin-top: 80px; border-top: 2px solid #f1f5f9; padding-top: 60px;">
                     <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">Health Insurance Portability and Accountability Act (HIPAA)</h3>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">5.2.3 Health Insurance Portability and Accountability Act (HIPAA)</h3>
                         <div style="background: #f0fdf4; color: #16a34a; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">USA - Healthcare</div>
                     </div>
                     
@@ -492,7 +698,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Protected Health Information (PHI)</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Regulates the protection of all individually identifiable health information used in healthcare.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Regulates the protection of all individually identifiable health information used in healthcare.</p>
                             </div>
                         </div>
 
@@ -503,7 +709,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Security Rule</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Requires administrative, physical, and technical safeguards for electronic health information.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Requires administrative, physical, and technical safeguards for electronic health information.</p>
                             </div>
                         </div>
 
@@ -514,7 +720,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Privacy Rule</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Governs the use and disclosure of health information to ensure patient confidentiality.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Governs the use and disclosure of health information to ensure patient confidentiality.</p>
                             </div>
                         </div>
 
@@ -525,7 +731,7 @@
                             </div>
                             <div>
                                 <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">Breach Notification Rule</h4>
-                                <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Mandates notifications to individuals and the HHS in case of any data breaches.</p>
+                                <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Mandates notifications to individuals and the HHS in case of any data breaches.</p>
                             </div>
                         </div>
                     </div>
@@ -534,7 +740,7 @@
                 <!-- FERPA Section -->
                 <div style="margin-top: 80px; border-top: 2px solid #f1f5f9; padding-top: 60px;">
                     <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">Family Educational Rights and Privacy Act (FERPA)</h3>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">5.2.4 Family Educational Rights and Privacy Act (FERPA)</h3>
                         <div style="background: #fff7ed; color: #ea580c; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">USA - Education</div>
                     </div>
                     
@@ -547,7 +753,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
                             </div>
                             <h4 style="color: #1e3a5f; font-size: 19px; font-weight: 800; margin-bottom: 12px;">Education Records</h4>
-                            <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Protects the privacy and confidentiality of student education records at all levels.</p>
+                            <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Protects the privacy and confidentiality of student education records at all levels.</p>
                         </div>
 
                         <!-- Parental Rights -->
@@ -556,7 +762,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             </div>
                             <h4 style="color: #1e3a5f; font-size: 19px; font-weight: 800; margin-bottom: 12px;">Parental Rights</h4>
-                            <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Grants parents the right to access and request corrections to their child's records.</p>
+                            <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Grants parents the right to access and request corrections to their child's records.</p>
                         </div>
 
                         <!-- Consent -->
@@ -565,7 +771,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                             </div>
                             <h4 style="color: #1e3a5f; font-size: 19px; font-weight: 800; margin-bottom: 12px;">Consent</h4>
-                            <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Requires written consent for disclosure of records, with specific exceptions.</p>
+                            <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Requires written consent for disclosure of records, with specific exceptions.</p>
                         </div>
                     </div>
                 </div>
@@ -573,8 +779,8 @@
                 <!-- PIPEDA Section -->
                 <div style="margin-top: 80px; border-top: 2px solid #f1f5f9; padding-top: 60px;">
                     <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">Personal Information Protection and Electronic Documents Act (PIPEDA)</h3>
-                        <div style="background: #f1f5f9; color: #64748b; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">Canada</div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">5.2.5 Personal Information Protection and Electronic Documents Act (PIPEDA)</h3>
+                        <div style="background: #f1f5f9; color: #1e293b; font-weight: 600; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">Canada</div>
                     </div>
                     
                     <p style="font-size: 17px; line-height: 1.8; color: #475569; margin-bottom: 40px; max-width: 900px;">PIPEDA sets a federal standard for privacy protection in Canada, covering a wide range of private-sector organizations. It influences provincial laws and is often compared to GDPR for its comprehensive approach.</p>
@@ -618,7 +824,7 @@
                 <!-- IRB Section -->
                 <div style="margin-top: 80px; border-top: 2px solid #f1f5f9; padding-top: 60px;">
                     <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">Institutional Review Board (IRB)</h3>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">5.2.6 Institutional Review Board (IRB)</h3>
                         <div style="background: #f5f3ff; color: #7c3aed; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">Ethics Board</div>
                     </div>
                     
@@ -631,7 +837,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                             </div>
                             <h4 style="color: #1e3a5f; font-size: 19px; font-weight: 800; margin-bottom: 12px;">Purpose:</h4>
-                            <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Protects the rights and welfare of human research participants during the research process.</p>
+                            <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Protects the rights and welfare of human research participants during the research process.</p>
                         </div>
 
                         <!-- Scope -->
@@ -640,7 +846,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                             </div>
                             <h4 style="color: #1e3a5f; font-size: 19px; font-weight: 800; margin-bottom: 12px;">Scope:</h4>
-                            <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Primarily academic institutions and research organizations in the U.S. conducting human research.</p>
+                            <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Primarily academic institutions and research organizations in the U.S. conducting human research.</p>
                         </div>
 
                         <!-- Key Focus -->
@@ -649,7 +855,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                             </div>
                             <h4 style="color: #1e3a5f; font-size: 19px; font-weight: 800; margin-bottom: 12px;">Key Focus:</h4>
-                            <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Ensuring ethical standards, obtaining informed consent, and protecting participant confidentiality.</p>
+                            <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Ensuring ethical standards, obtaining informed consent, and protecting participant confidentiality.</p>
                         </div>
                     </div>
                 </div>
@@ -657,7 +863,7 @@
                 <!-- PCI DSS Section -->
                 <div style="margin-top: 80px; border-top: 2px solid #f1f5f9; padding-top: 60px;">
                     <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">PCI DSS (Payment Card Industry Data Security Standard)</h3>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 26px; color: #1e3a5f; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;">5.2.7 PCI DSS (Payment Card Industry Data Security Standard)</h3>
                         <div style="background: #eff6ff; color: #3b82f6; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">Finance & Security</div>
                     </div>
                     
@@ -670,7 +876,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                             </div>
                             <h4 style="color: #1e3a5f; font-size: 19px; font-weight: 800; margin-bottom: 12px;">Purpose:</h4>
-                            <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Protects cardholder data and ensures secure processing of credit card transactions.</p>
+                            <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Protects cardholder data and ensures secure processing of credit card transactions.</p>
                         </div>
 
                         <!-- Scope -->
@@ -679,7 +885,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                             </div>
                             <h4 style="color: #1e3a5f; font-size: 19px; font-weight: 800; margin-bottom: 12px;">Scope:</h4>
-                            <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Applies to any organization that accepts, transmits, or stores credit card data.</p>
+                            <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Applies to any organization that accepts, transmits, or stores credit card data.</p>
                         </div>
 
                         <!-- Key Focus -->
@@ -688,7 +894,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                             </div>
                             <h4 style="color: #1e3a5f; font-size: 19px; font-weight: 800; margin-bottom: 12px;">Key Focus:</h4>
-                            <p style="font-size: 14px; color: #64748b; margin-bottom: 0; line-height: 1.6;">Encryption, secure networks, and regular monitoring to protect sensitive financial data.</p>
+                            <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 0; line-height: 1.6;">Encryption, secure networks, and regular monitoring to protect sensitive financial data.</p>
                         </div>
                     </div>
                 </div>
@@ -712,7 +918,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                                     <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">Global Impact</h4>
                                 </div>
-                                <p style="font-size: 13px; color: #64748b; line-height: 1.6; margin: 0;">Set new standards globally, affecting how companies operate beyond their own borders.</p>
+                                <p style="font-size: 13px; color: #1e293b; font-weight: 600; line-height: 1.6; margin: 0;">Set new standards globally, affecting how companies operate beyond their own borders.</p>
                             </div>
 
                             <!-- Comprehensive Protections -->
@@ -721,7 +927,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                                     <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">Protections</h4>
                                 </div>
-                                <p style="font-size: 13px; color: #64748b; line-height: 1.6; margin: 0;">Robust protection for individuals' privacy and data, promoting trust and accountability.</p>
+                                <p style="font-size: 13px; color: #1e293b; font-weight: 600; line-height: 1.6; margin: 0;">Robust protection for individuals' privacy and data, promoting trust and accountability.</p>
                             </div>
 
                             <!-- Influence -->
@@ -730,7 +936,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M5 9h14M5 15h14"></path></svg>
                                     <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">Influence</h4>
                                 </div>
-                                <p style="font-size: 13px; color: #64748b; line-height: 1.6; margin: 0;">Newer privacy laws around the world have been modeled after the GDPR and CCPA standards.</p>
+                                <p style="font-size: 13px; color: #1e293b; font-weight: 600; line-height: 1.6; margin: 0;">Newer privacy laws around the world have been modeled after the GDPR and CCPA standards.</p>
                             </div>
 
                             <!-- Adaptability -->
@@ -739,7 +945,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                                     <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">Adaptability</h4>
                                 </div>
-                                <p style="font-size: 13px; color: #64748b; line-height: 1.6; margin: 0;">Designed to adapt to technological changes and emerging privacy challenges in a digital world.</p>
+                                <p style="font-size: 13px; color: #1e293b; font-weight: 600; line-height: 1.6; margin: 0;">Designed to adapt to technological changes and emerging privacy challenges in a digital world.</p>
                             </div>
                         </div>
                     </div>
@@ -761,9 +967,9 @@
                         <div style="background: #eff6ff; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">1. Data Minimization</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.1 Data Minimization</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Collect only the data that is necessary</li>
                         <li style="margin-bottom: 8px;">Avoid storing unnecessary personal information</li>
                         <li>Reduces risk of data misuse</li>
@@ -776,9 +982,9 @@
                         <div style="background: #fef2f2; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">2. Strong Access Control</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.2 Strong Access Control</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Limit data access to authorized users only</li>
                         <li style="margin-bottom: 8px;">Use role-based access control (RBAC)</li>
                         <li>Implement multi-factor authentication (MFA)</li>
@@ -791,9 +997,9 @@
                         <div style="background: #fef3c7; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">3. Data Encryption</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.3 Data Encryption</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Encrypt data both at rest and in transit</li>
                         <li style="margin-bottom: 8px;">Protects data from unauthorized access</li>
                         <li>Use secure protocols (HTTPS, SSL/TLS)</li>
@@ -806,9 +1012,9 @@
                         <div style="background: #dcfce7; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">4. Regular Data Backup</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.4 Regular Data Backup</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Maintain secure backups of important data</li>
                         <li style="margin-bottom: 8px;">Helps in recovery during data loss</li>
                         <li>Store backups in secure locations</li>
@@ -821,9 +1027,9 @@
                         <div style="background: #e0e7ff; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5. Secure Systems</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.5 Secure Systems</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Use trusted platforms like Excel, Power BI</li>
                         <li style="margin-bottom: 8px;">Configure proper security settings</li>
                         <li>Keep software updated</li>
@@ -836,9 +1042,9 @@
                         <div style="background: #f1f5f9; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle><line x1="1" y1="1" x2="23" y2="23"></line></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">6. Data Anonymization</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.6 Data Anonymization</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Remove or hide personal identifiers</li>
                         <li style="margin-bottom: 8px;">Use masking, hashing, or pseudonymization</li>
                         <li>Protects identity while analyzing data</li>
@@ -851,9 +1057,9 @@
                         <div style="background: #ccfbf1; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">7. Training and Awareness</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.7 Training and Awareness</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Educate employees and stakeholders</li>
                         <li style="margin-bottom: 8px;">Teach data privacy best practices</li>
                         <li>Emphasize the importance of protecting data</li>
@@ -866,9 +1072,9 @@
                         <div style="background: #f3e8ff; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">8. Compliance</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.8 Compliance</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Follow legal frameworks like GDPR</li>
                         <li style="margin-bottom: 8px;">Ensure data handling meets legal standards</li>
                         <li>Maintain proper documentation</li>
@@ -881,9 +1087,9 @@
                         <div style="background: #ffe4e6; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">9. Secure Storage</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.9 Secure Storage</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Store data in protected environments</li>
                         <li style="margin-bottom: 8px;">Use firewalls and intrusion detection</li>
                         <li>Avoid unsecured locations</li>
@@ -896,9 +1102,9 @@
                         <div style="background: #ffedd5; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">10. Audits & Updates</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.10 Audits & Updates</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Regularly review privacy policies</li>
                         <li style="margin-bottom: 8px;">Ensure ongoing compliance with laws</li>
                         <li>Update data practices as necessary</li>
@@ -911,9 +1117,9 @@
                         <div style="background: #cffafe; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">11. Retention Policies</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.11 Retention Policies</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Define how long data should be stored</li>
                         <li style="margin-bottom: 8px;">Delete data that is no longer needed</li>
                         <li>Reduces risk of exposure</li>
@@ -926,9 +1132,9 @@
                         <div style="background: #fee2e2; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">12. Incident Response</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.12 Incident Response</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Have a plan to handle data breaches</li>
                         <li style="margin-bottom: 8px;">Quickly detect, respond, and recover</li>
                         <li>Minimize damage and impact</li>
@@ -941,9 +1147,9 @@
                         <div style="background: #f0fdf4; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M9 15L11 17L15 13"></path></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">13. Consent & Transparency</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.13 Consent & Transparency</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Inform individuals on how data is used</li>
                         <li style="margin-bottom: 8px;">Obtain explicit consent before collecting</li>
                         <li>Maintain transparent privacy practices</li>
@@ -956,9 +1162,9 @@
                         <div style="background: #eff6ff; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">14. Secure Data Handling</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.14 Secure Data Handling</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Protect data from unauthorized access & leaks</li>
                         <li style="margin-bottom: 8px;">Use encryption and secure storage methods</li>
                         <li>Limit access strictly to necessary personnel</li>
@@ -971,9 +1177,9 @@
                         <div style="background: #f1f5f9; padding: 12px; border-radius: 12px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle><line x1="1" y1="1" x2="23" y2="23"></line></svg>
                         </div>
-                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">15. Anonymization</h4>
+                        <h4 style="color: #1e3a5f; font-size: 17px; font-weight: 800; margin: 0;">5.3.15 Anonymization</h4>
                     </div>
-                    <ul style="font-size: 14px; color: #64748b; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0; padding-left: 20px; line-height: 1.6;">
                         <li style="margin-bottom: 8px;">Anonymize data to prevent individual tracing</li>
                         <li style="margin-bottom: 8px;">Pseudonymize by using artificial identifiers</li>
                         <li>Remove direct identifiers before data analysis</li>
@@ -992,7 +1198,7 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-bottom: 50px;">
                 <!-- Meaning -->
                 <div style="background: #ffffff; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border: 1px solid #e2e8f0;">
-                    <h4 style="color: #1e3a5f; font-size: 18px; margin-bottom: 15px; font-weight: 800;">Meaning</h4>
+                    <h4 style="color: #1e3a5f; font-size: 18px; margin-bottom: 15px; font-weight: 800;">5.4.1 Meaning</h4>
                     <ul class="content-list" style="margin-bottom: 0; font-size: 14px;">
                         <li>Means lack of neutrality or fairness in data</li>
                         <li>Affects the accuracy and reliability of analysis</li>
@@ -1001,7 +1207,7 @@
                 </div>
                 <!-- Causes -->
                 <div style="background: #ffffff; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border: 1px solid #e2e8f0;">
-                    <h4 style="color: #1e3a5f; font-size: 18px; margin-bottom: 15px; font-weight: 800;">Causes of Bias</h4>
+                    <h4 style="color: #1e3a5f; font-size: 18px; margin-bottom: 15px; font-weight: 800;">5.4.2 Causes of Bias</h4>
                     <ul class="content-list" style="margin-bottom: 0; font-size: 14px;">
                         <li>Poor data collection methods</li>
                         <li>Incomplete or unbalanced datasets</li>
@@ -1011,7 +1217,7 @@
                 </div>
                 <!-- Effects -->
                 <div style="background: #ffffff; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border: 1px solid #e2e8f0;">
-                    <h4 style="color: #1e3a5f; font-size: 18px; margin-bottom: 15px; font-weight: 800;">Effects of Bias</h4>
+                    <h4 style="color: #1e3a5f; font-size: 18px; margin-bottom: 15px; font-weight: 800;">5.4.3 Effects of Bias</h4>
                     <ul class="content-list" style="margin-bottom: 0; font-size: 14px;">
                         <li>Misleading insights</li>
                         <li>Wrong business or policy decisions</li>
@@ -1021,7 +1227,7 @@
                 </div>
                 <!-- How to Reduce -->
                 <div style="background: #ffffff; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border: 1px solid #e2e8f0;">
-                    <h4 style="color: #1e3a5f; font-size: 18px; margin-bottom: 15px; font-weight: 800;">How to Reduce Bias</h4>
+                    <h4 style="color: #1e3a5f; font-size: 18px; margin-bottom: 15px; font-weight: 800;">5.4.4 How to Reduce Bias</h4>
                     <ul class="content-list" style="margin-bottom: 0; font-size: 14px;">
                         <li>Use representative samples</li>
                         <li>Apply proper data collection methods</li>
@@ -1032,12 +1238,17 @@
                 </div>
             </div>
 
-            <h3 style="color: #1e3a5f; font-size: 24px; font-weight: 800; margin-bottom: 30px;">10 Common Types of Bias</h3>
+            <h3 style="color: #1e3a5f; font-size: 24px; font-weight: 800; margin-bottom: 30px;">5.4.5 Common Types of Bias</h3>
 
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-bottom: 60px;">
                 <!-- 1. Sampling Bias -->
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-                    <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">1. Sampling Bias</h4>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #eff6ff; padding: 12px; border-radius: 12px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin: 0;">5.4.5.1 Sampling Bias</h4>
+                    </div>
                     <p style="font-size: 14px; color: #475569; margin-bottom: 15px;">Occurs when the selected sample does not accurately represent the entire population. This leads to results that are skewed toward a particular group, reducing the validity of conclusions.</p>
                     <div style="background: #f1f5f9; padding: 12px 15px; border-radius: 8px; font-size: 13px; color: #334155;">
                         <strong>Example:</strong> Conducting a survey on internet usage by collecting responses only from college students, ignoring older age groups.
@@ -1046,7 +1257,12 @@
 
                 <!-- 2. Measurement Bias -->
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-                    <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">2. Measurement Bias</h4>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #faf5ff; padding: 12px; border-radius: 12px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 12h.01M10 12h.01M14 12h.01M18 12h.01"></path></svg>
+                        </div>
+                        <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin: 0;">5.4.5.2 Measurement Bias</h4>
+                    </div>
                     <p style="font-size: 14px; color: #475569; margin-bottom: 15px;">Arises when there are errors in data collection methods, tools, or instruments. This results in inaccurate data being recorded, which affects the overall analysis.</p>
                     <div style="background: #f1f5f9; padding: 12px 15px; border-radius: 8px; font-size: 13px; color: #334155;">
                         <strong>Example:</strong> Using a defective weighing scale that consistently shows incorrect weight measurements.
@@ -1055,7 +1271,12 @@
 
                 <!-- 3. Confirmation Bias -->
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-                    <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">3. Confirmation Bias</h4>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #ecfdf5; padding: 12px; border-radius: 12px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </div>
+                        <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin: 0;">5.4.5.3 Confirmation Bias</h4>
+                    </div>
                     <p style="font-size: 14px; color: #475569; margin-bottom: 15px;">Occurs when analysts focus only on data that supports their existing beliefs or assumptions, overlooking contradictory data. This leads to one-sided conclusions.</p>
                     <div style="background: #f1f5f9; padding: 12px 15px; border-radius: 8px; font-size: 13px; color: #334155;">
                         <strong>Example:</strong> A researcher only selecting data that proves their hypothesis while ignoring conflicting results.
@@ -1064,7 +1285,12 @@
 
                 <!-- 4. Non-response Bias -->
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-                    <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">4. Non-response Bias</h4>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #fff1f2; padding: 12px; border-radius: 12px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="18" y1="8" x2="23" y2="13"></line><line x1="23" y1="8" x2="18" y2="13"></line></svg>
+                        </div>
+                        <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin: 0;">5.4.5.4 Non-response Bias</h4>
+                    </div>
                     <p style="font-size: 14px; color: #475569; margin-bottom: 15px;">Happens when certain individuals or groups do not respond to a survey. If the non-respondents differ significantly from respondents, the results become completely biased.</p>
                     <div style="background: #f1f5f9; padding: 12px 15px; border-radius: 8px; font-size: 13px; color: #334155;">
                         <strong>Example:</strong> In a customer satisfaction survey, only highly satisfied customers respond, while dissatisfied customers ignore it.
@@ -1073,7 +1299,12 @@
 
                 <!-- 5. Selection Bias -->
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-                    <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">5. Selection Bias</h4>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #fff7ed; padding: 12px; border-radius: 12px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        </div>
+                        <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin: 0;">5.4.5.5 Selection Bias</h4>
+                    </div>
                     <p style="font-size: 14px; color: #475569; margin-bottom: 15px;">Occurs when the method of selecting data or participants is not random and favors certain outcomes. It often overlaps with sampling bias but is more related to the selection process.</p>
                     <div style="background: #f1f5f9; padding: 12px 15px; border-radius: 8px; font-size: 13px; color: #334155;">
                         <strong>Example:</strong> Choosing only top-performing employees to evaluate overall employee productivity.
@@ -1082,7 +1313,12 @@
 
                 <!-- 6. Data Processing Bias -->
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-                    <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">6. Data Processing Bias</h4>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #eef2ff; padding: 12px; border-radius: 12px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                        </div>
+                        <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin: 0;">5.4.5.6 Data Processing Bias</h4>
+                    </div>
                     <p style="font-size: 14px; color: #475569; margin-bottom: 15px;">Arises during data cleaning, transformation, or analysis stages. Errors such as incorrect filtering, coding mistakes, or improper aggregation can severely distort results.</p>
                     <div style="background: #f1f5f9; padding: 12px 15px; border-radius: 8px; font-size: 13px; color: #334155;">
                         <strong>Example:</strong> Accidentally removing important data while cleaning duplicates in a dataset.
@@ -1091,7 +1327,12 @@
 
                 <!-- 7. Survivorship Bias -->
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-                    <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">7. Survivorship Bias</h4>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #fffbeb; padding: 12px; border-radius: 12px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        </div>
+                        <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin: 0;">5.4.5.7 Survivorship Bias</h4>
+                    </div>
                     <p style="font-size: 14px; color: #475569; margin-bottom: 15px;">Occurs when analysis focuses only on successful or surviving cases, ignoring failures. This gives a distorted view of reality and overly optimistic conclusions.</p>
                     <div style="background: #f1f5f9; padding: 12px 15px; border-radius: 8px; font-size: 13px; color: #334155;">
                         <strong>Example:</strong> Studying only successful startups to understand business success, ignoring failed startups.
@@ -1100,7 +1341,12 @@
 
                 <!-- 8. Recall Bias -->
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-                    <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">8. Recall Bias</h4>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #f0fdfa; padding: 12px; border-radius: 12px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 8 14"></polyline></svg>
+                        </div>
+                        <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin: 0;">5.4.5.8 Recall Bias</h4>
+                    </div>
                     <p style="font-size: 14px; color: #475569; margin-bottom: 15px;">Happens when participants do not accurately remember past events or experiences. This leads to incorrect or incomplete data being collected, especially in interviews.</p>
                     <div style="background: #f1f5f9; padding: 12px 15px; border-radius: 8px; font-size: 13px; color: #334155;">
                         <strong>Example:</strong> Asking people to recall their exact expenses from several months ago.
@@ -1109,7 +1355,12 @@
 
                 <!-- 9. Observer Bias -->
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-                    <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">9. Observer Bias</h4>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #fdf2f8; padding: 12px; border-radius: 12px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </div>
+                        <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin: 0;">5.4.5.9 Observer Bias</h4>
+                    </div>
                     <p style="font-size: 14px; color: #475569; margin-bottom: 15px;">Occurs when the person collecting or analyzing data unintentionally influences the results. Personal opinions or expectations may affect how data is recorded or interpreted.</p>
                     <div style="background: #f1f5f9; padding: 12px 15px; border-radius: 8px; font-size: 13px; color: #334155;">
                         <strong>Example:</strong> A teacher grading students more favorably based on personal preference.
@@ -1118,7 +1369,12 @@
 
                 <!-- 10. Algorithmic Bias -->
                 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-                    <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin-bottom: 10px;">10. Algorithmic Bias</h4>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="background: #ecfeff; padding: 12px; border-radius: 12px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        </div>
+                        <h4 style="color: #1e3a5f; font-size: 18px; font-weight: 800; margin: 0;">5.4.5.10 Algorithmic Bias</h4>
+                    </div>
                     <p style="font-size: 14px; color: #475569; margin-bottom: 15px;">Occurs when a model or algorithm produces biased results due to biased training data or design. It can reinforce existing inequalities and unfair patterns in machine learning systems.</p>
                     <div style="background: #f1f5f9; padding: 12px 15px; border-radius: 8px; font-size: 13px; color: #334155;">
                         <strong>Example:</strong> A hiring algorithm favoring male candidates because it was trained on past biased hiring data.
@@ -1132,11 +1388,11 @@
             </div>
             <p style="font-size: 17px; line-height: 1.8; color: #475569; margin-bottom: 40px; max-width: 900px;">Test your understanding of data privacy laws and best practices.</p>
 
-            <!-- Question 1 -->
+            <div style="display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; margin-bottom: 60px;">
+                <!-- Question 1 -->
             <div class="practice-card" id="q5-1">
                 <div class="practice-header">
                     <div class="q-badge">Q1</div>
-                    <h3>Regulation Specifics</h3>
                 </div>
                 <p class="q-text">Which data privacy regulation specifically applies to the protection of health information in the United States?</p>
                 <div class="options-grid">
@@ -1155,7 +1411,6 @@
             <div class="practice-card" id="q5-2">
                 <div class="practice-header">
                     <div class="q-badge">Q2</div>
-                    <h3>Data Minimization</h3>
                 </div>
                 <p class="q-text">What is the core principle of "Data Minimization" in privacy best practices?</p>
                 <div class="options-grid">
@@ -1174,7 +1429,6 @@
             <div class="practice-card" id="q5-3">
                 <div class="practice-header">
                     <div class="q-badge">Q3</div>
-                    <h3>Access Control</h3>
                 </div>
                 <p class="q-text">If an organization uses "Role-Based Access Control (RBAC)", which privacy best practice are they primarily enforcing?</p>
                 <div class="options-grid">
@@ -1193,7 +1447,6 @@
             <div class="practice-card" id="q5-4">
                 <div class="practice-header">
                     <div class="q-badge">Q4</div>
-                    <h3>Identity Protection</h3>
                 </div>
                 <p class="q-text">Which practice ensures that data cannot be easily traced back to an individual during analysis?</p>
                 <div class="options-grid">
@@ -1212,7 +1465,6 @@
             <div class="practice-card" id="q5-5">
                 <div class="practice-header">
                     <div class="q-badge">Q5</div>
-                    <h3>GDPR Requirements</h3>
                 </div>
                 <p class="q-text">Under regulations like the GDPR, what must organizations generally do before collecting personal data?</p>
                 <div class="options-grid">
@@ -1228,6 +1480,16 @@
             </div>
 
         </div>
+
+
+            <!-- Module 5 Assessment CTA -->
+            <div class="quiz-cta" style="margin: 100px 0 120px; padding: 60px; background: linear-gradient(135deg, #1e3a5f 0%, #38bdf8 100%); border-radius: 24px; text-align: center; color: white; box-shadow: 0 20px 40px rgba(30, 58, 95, 0.2);">
+                <h3 style="color: #ffffff !important; margin-top: 0; font-size: 32px; font-weight: 800; font-family: 'Montserrat', sans-serif; letter-spacing: -0.5px;">Ready for the Module 5 Assessment?</h3>
+                <p style="color: #ffffff !important; opacity: 0.9; font-size: 18px; margin-bottom: 35px; font-weight: 500;">Test your knowledge of data ethics, privacy laws, and bias mitigation.</p>
+                <a href="module_quiz.html?mod=data5" class="btn-start-quiz" style="display: inline-block; background: #ffffff; color: #1e3a5f; text-decoration: none; padding: 18px 45px; border-radius: 50px; font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                    START ASSESSMENT
+                </a>
+            </div>
 
         </main>
     </div>
@@ -1342,6 +1604,54 @@
                 });
             }
         }
+
+        function toggleAccordion(moduleNum) {
+            const allHeaders = document.querySelectorAll('.accordion-header');
+            const allContents = document.querySelectorAll('.accordion-content');
+            const targetContent = document.getElementById(`content-${moduleNum}`);
+            
+            if (!targetContent) return;
+            
+            const targetHeader = targetContent.previousElementSibling;
+            const isExpanded = targetContent.classList.contains('expanded');
+
+            // Collapse all
+            allContents.forEach((content) => {
+                content.classList.remove('expanded');
+                if (content.previousElementSibling) {
+                    content.previousElementSibling.classList.remove('expanded');
+                    content.previousElementSibling.classList.remove('active');
+                }
+            });
+
+            // If it wasn't expanded, expand it
+            if (!isExpanded) {
+                targetContent.classList.add('expanded');
+                targetHeader.classList.add('expanded');
+                targetHeader.classList.add('active');
+            }
+        }
+
+        // Highlight active section on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section-header, .lab-container, .practice-card');
+            const navLinks = document.querySelectorAll('.sidebar-content-link');
+            
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-topic');
+                if (link.getAttribute('href').includes(current) && current !== "") {
+                    link.classList.add('active-topic');
+                }
+            });
+        });
     </script>
 </body>
 </html>

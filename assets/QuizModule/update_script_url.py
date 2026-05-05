@@ -1,7 +1,7 @@
 import os
 
-old_url = "https://script.google.com/macros/s/AKfycbwKpqYE5bUkT3IdyDo95KlkRTVkw-mXTYMh0f6yypNteEVuAe_JeO6CYWOSKH5X6quZ/exec"
-new_url = "https://script.google.com/macros/s/AKfycbw9mb2dsJ1SSheOcpdcdeE8eKNnuCjK2U9U9kIeHV_2yga8Ujiee1w_huTzc2w5BpWD/exec"
+old_url = "https://script.google.com/macros/s/AKfycbzIXsxw9CidSI8w23b5x_DrKogVHjwknQ67zEcWjYv8kKOtXCF9KGPM2CrqxmBVqUEX/exec"
+new_url = "https://script.google.com/macros/s/AKfycbxs8bcb1jw5qpazffbr1U5KvM_PzqAhb_9F3xOSjBQxuu1KaJYFC_DkUovfuloGCCq-/exec"
 
 files_to_update = [
     "auth.js",

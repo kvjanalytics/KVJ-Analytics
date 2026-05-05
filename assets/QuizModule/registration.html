@@ -6,6 +6,11 @@
     <title>Course Registration | KVJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: 'Inter', sans-serif; 
@@ -51,7 +56,7 @@
         }
 
         .reg-header p {
-            color: #64748b;
+            color: #1e293b; font-weight: 600;
             font-size: 0.9rem;
             margin-top: 5px;
         }
@@ -113,7 +118,7 @@
             display: block;
             text-align: center;
             margin-top: 20px;
-            color: #64748b;
+            color: #1e293b; font-weight: 600;
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 500;
@@ -215,7 +220,7 @@
         });
 
         function checkExistingEnrollment(email, phone, course) {
-            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzESAIomPGCHhkYOoAJyi8Agjn8FLCDjnju3ngO1UUXuTVABsmrHe5c8AkdhGF5q3AV/exec";
+            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6TOmaeAAlsQX4Ucef_3oTOjElUhgNztdiVWIE31k1QM16e_RQw4khy2kXAJxYGYkc/exec";
             const script = document.createElement('script');
             const callbackName = 'checkSync_' + Math.floor(Math.random() * 1000000);
             
@@ -251,39 +256,79 @@
         function handleFormSubmit(event) {
             event.preventDefault();
             const form = document.getElementById('registrationForm');
+            const submitBtn = document.getElementById('submitBtn');
             const msg = document.getElementById('successMsg');
             const errorMsg = document.getElementById('errorMsg');
 
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const course = document.getElementById('courseName').value;
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const course = document.getElementById('courseName').value.trim();
+            const name = document.getElementById('fullName').value.trim();
 
-            // Instant Registration logic - set both for redundancy
-            localStorage.setItem('registered_' + phone + '_' + course, 'true');
-            if (email) localStorage.setItem('registered_' + email + '_' + course, 'true');
-            if (email) localStorage.setItem('gmail', email);
-            localStorage.setItem('strategist_phone', phone);
-            
-            form.style.display = 'none';
+            // UI Feedback
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Processing Registration...";
             errorMsg.style.display = 'none';
-            msg.innerHTML = "✓ Registration Successful! Welcome to the course.";
-            msg.style.display = 'block';
+
+            // Google Apps Script Call
+            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6TOmaeAAlsQX4Ucef_3oTOjElUhgNztdiVWIE31k1QM16e_RQw4khy2kXAJxYGYkc/exec";
+            const script = document.createElement('script');
+            const callbackName = 'regCallback_' + Math.floor(Math.random() * 1000000);
             
-            const courseMaps = {
-                'Marian Business Analytics': 'marian_analytics.html',
-                'Python Mastery': 'python_index.html',
-                'SQL Mastery': 'sql_index.html',
-                'Artificial Intelligence': 'ai_index.html',
-                'Power BI Mastery': 'powerbi_index.html',
-                'Data Analytics': 'data_index.html',
-                'Advanced Gaming': 'gaming_index.html',
-                'Advanced Excel': 'excel_index.html'
+            window[callbackName] = function(data) {
+                delete window[callbackName];
+                document.body.removeChild(script);
+
+                if (data.success) {
+                    // Instant Registration logic - set both for redundancy
+                    const cleanPhone = phone.replace(/\D/g, '');
+                    localStorage.setItem('registered_' + cleanPhone + '_' + course, 'true');
+                    if (email) localStorage.setItem('registered_' + email + '_' + course, 'true');
+                    if (email) localStorage.setItem('gmail', email);
+                    localStorage.setItem('strategist_phone', cleanPhone);
+                    localStorage.setItem('userName', name);
+                    localStorage.setItem('isLoggedIn', 'true');
+                    
+                    form.style.display = 'none';
+                    msg.innerHTML = "✓ Registration Successful! Welcome to the course.";
+                    msg.style.display = 'block';
+                    
+                    const courseMaps = {
+                        'Marian Business Analytics': 'marian_analytics.html',
+                        'Python Mastery': 'python_index.html',
+                        'SQL Mastery': 'sql_index.html',
+                        'Artificial Intelligence': 'ai_index.html',
+                        'Power BI Mastery': 'powerbi_index.html',
+                        'Data Analytics': 'data_index.html',
+                        'Advanced Gaming': 'gaming_index.html',
+                        'Advanced Excel': 'excel_index.html'
+                    };
+                    
+                    const target = courseMaps[course] || 'index.html';
+                    setTimeout(() => {
+                        window.location.href = target;
+                    }, 1500);
+                } else {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit Registration";
+                    errorMsg.textContent = "Error: " + (data.error || "Could not complete registration. Please try again.");
+                    errorMsg.style.display = 'block';
+                }
             };
+
+            // Use the "register" action which appends [name, phone, code, gmail, pass]
+            // We pass the course name as the "code" parameter
+            const cleanPhone = phone.replace(/\D/g, '');
+            const finalURL = `${SCRIPT_URL}?action=register&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(cleanPhone)}&code=${encodeURIComponent(course)}&branch=General&callback=${callbackName}&t=${Date.now()}`;
             
-            const target = courseMaps[course] || 'index.html';
-            setTimeout(() => {
-                window.location.href = target;
-            }, 1000);
+            script.src = finalURL;
+            script.onerror = function() {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Submit Registration";
+                errorMsg.textContent = "Connection Error: Failed to reach the registration server.";
+                errorMsg.style.display = 'block';
+            };
+            document.body.appendChild(script);
         }
     </script>
 </body>

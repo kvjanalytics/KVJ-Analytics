@@ -8,6 +8,11 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         :root {
             --primary-blue: #0061ff;
             --secondary-blue: #0ea5e9;
@@ -27,7 +32,7 @@
         /* Navbar Styling */
         .navbar {
             background: white;
-            padding: 12px 60px;
+            padding: 8px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -48,7 +53,7 @@
         .exit-link { color: var(--primary-blue); text-decoration: none; font-weight: 700; font-size: 15px; }
 
         /* Layout */
-        .layout { display: flex; max-width: 1440px; margin: 85px auto 0; gap: 30px; padding: 30px 60px; }
+        .layout { display: flex; max-width: 1440px; margin: 70px auto 0; gap: 30px; padding: 20px 60px; }
 
         /* Sidebar Styling */
         .sidebar { width: 280px; background: white; border-radius: 12px; padding: 35px 0; border: 1px solid var(--border-color); height: fit-content; position: sticky; top: 110px; box-shadow: var(--shadow); }
@@ -64,7 +69,7 @@
         .sidebar-item:hover:not(.active) { background: #f8fafc; color: var(--primary-blue); }
         
         .sidebar-nav-box { margin: 0 25px; background: #f8fafc; border-radius: 10px; padding: 15px; }
-        .sidebar-nav-link { color: #64748b; text-decoration: none; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .sidebar-nav-link { color: #1e293b; font-weight: 600; text-decoration: none; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
 
         /* Question Container Overhaul */
         .main-content { flex: 1; }
@@ -74,9 +79,9 @@
         .q-top-header h2 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; }
         .q-progress-badge { background: rgba(255,255,255,0.2); padding: 3px 12px; border-radius: 15px; font-size: 12px; font-weight: 700; margin-left: 15px; }
 
-        .q-inner-body { padding: 50px 60px; min-height: 550px; }
+        .q-inner-body { padding: 30px 40px; min-height: 400px; }
         .q-id-label { color: var(--primary-blue); font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; display: block; margin-bottom: 25px; }
-        .q-text { font-size: 20px; font-weight: 700; color: #1e293b; line-height: 1.5; margin-bottom: 35px; }
+        .q-text { font-size: 20px; font-weight: 400; color: #1e293b; line-height: 1.5; margin-bottom: 20px; }
         
         .btn-mark {
             position: absolute; top: 40px; right: 60px;
@@ -89,26 +94,28 @@
         .interaction-box { margin-top: 40px; }
         
         /* Drag and Drop Specific Styles (Matching Image 1) */
-        .dnd-wrapper { background: #0f172a; border-radius: 15px; padding: 40px; }
+        .dnd-wrapper { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 15px; padding: 20px; }
         .dnd-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; gap: 40px; }
-        .dnd-source-pool { display: flex; flex-direction: column; gap: 15px; width: 120px; }
+        .dnd-source-pool { display: flex; flex-direction: column; gap: 15px; width: 180px; }
         .dnd-item { 
-            background: white; border: 2px solid #38bdf8; padding: 6px; border-radius: 8px; 
-            text-align: center; font-weight: 800; color: #1e3a8a; cursor: grab; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            font-size: 14px;
+            background: white; border: 2px solid var(--secondary-blue); padding: 10px 15px; border-radius: 8px; 
+            text-align: center; font-weight: 700; color: var(--dark-blue); cursor: grab; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            font-size: 14px; transition: all 0.2s;
         }
+        .dnd-item:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); border-color: var(--primary-blue); }
         .dnd-target-area { flex: 1; display: flex; flex-direction: column; gap: 15px; }
         .dnd-slot-row { 
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; 
-            padding: 15px 25px; display: flex; justify-content: space-between; align-items: center;
+            background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; 
+            padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;
         }
-        .dnd-expr { color: white; font-family: 'Fira Code', monospace; font-size: 16px; font-weight: 500; }
+        .dnd-expr { color: var(--text-main); font-weight: 600; font-size: 16px; }
         .dnd-target-slot { 
-            width: 130px; height: 35px; background: rgba(15, 23, 42, 0.5); border: 2px dashed #1e40af; border-radius: 8px;
-            display: flex; align-items: center; justify-content: center; font-weight: 800; color: #38bdf8;
-            font-size: 14px;
+            width: 220px; min-height: 45px; background: #fff; border: 2px dashed #cbd5e1; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--primary-blue);
+            font-size: 14px; transition: all 0.2s; padding: 4px 10px; text-align: center;
         }
-        .dnd-target-slot.filled { background: rgba(56, 189, 248, 0.1); border-style: solid; border-color: #38bdf8; }
+        .dnd-target-slot.filled { background: #eff6ff; border: 2px solid var(--primary-blue); color: var(--primary-blue); font-weight: 800; box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1); }
+        .dnd-target-slot:hover { border-color: var(--primary-blue); background: #f1f7ff; }
 
         /* Inline Dropdowns & Inputs */
         .inline-select {
@@ -124,24 +131,24 @@
 
         .tf-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: #f8fafc; border-radius: 12px; margin-bottom: 12px; border: 1px solid #e2e8f0; }
         .tf-btns { display: flex; gap: 10px; }
-        .btn-tf { padding: 6px 18px; border-radius: 8px; font-weight: 800; font-size: 11px; cursor: pointer; border: 1px solid #e2e8f0; background: white; color: #64748b; }
+        .btn-tf { padding: 6px 18px; border-radius: 8px; font-weight: 800; font-size: 11px; cursor: pointer; border: 1px solid #e2e8f0; background: white; color: #1e293b; font-weight: 600; }
         .btn-tf.active { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
 
         /* MCQ Options */
         .mcq-grid { display: flex; flex-direction: column; gap: 12px; }
         .mcq-option {
-            padding: 18px 25px; border: 1px solid #e2e8f0; border-radius: 12px;
+            padding: 12px 20px; border: 1px solid #e2e8f0; border-radius: 12px;
             cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 20px;
             font-weight: 600; color: #475569;
         }
-        .mcq-option:hover { background: #f8fafc; border-color: #cbd5e1; }
+        .mcq-option:hover { background: #f8fafc; border-color: #1e293b; }
         .mcq-option.selected { background: #eff6ff; border-color: var(--primary-blue); color: #1e3a5f; border-width: 2px; }
         .mcq-prefix { width: 24px; height: 24px; border: 2px solid #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .mcq-option.selected .mcq-prefix { border-color: var(--primary-blue); }
         .mcq-option.selected .mcq-prefix::after { content:""; width:12px; height:12px; background:var(--primary-blue); border-radius:50%; }
 
         /* Footer Buttons */
-        .q-footer { padding: 30px 60px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; }
+        .q-footer { padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; }
         .btn-footer { padding: 14px 40px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: all 0.2s; border: none; font-size: 15px; }
         .btn-back { background: #f1f5f9; color: #475569; }
         .btn-review-all { background: #eff6ff; color: #1e3a5f; border: 1px solid #dbeafe; }
@@ -154,7 +161,7 @@
         }
         .modal-card { background: white; border-radius: 24px; width: 700px; padding: 50px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
         .modal-card h2 { font-size: 28px; font-weight: 800; color: #1e293b; margin-bottom: 10px; }
-        .modal-card p { color: #64748b; font-weight: 500; margin-bottom: 35px; }
+        .modal-card p { color: #1e293b; font-weight: 600; font-weight: 500; margin-bottom: 35px; }
         
         .summary-row { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; }
         .summary-pill { padding: 20px; border-radius: 15px; width: 150px; text-align: center; }
@@ -166,7 +173,7 @@
 
         .modal-q-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; }
         .grid-q-btn { 
-            width: 45px; height: 45px; border-radius: 10px; background: #f1f5f9; color: #64748b;
+            width: 45px; height: 45px; border-radius: 10px; background: #f1f5f9; color: #1e293b; font-weight: 600;
             display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer;
         }
         .grid-q-btn.answered { background: #dcfce7; color: #166534; }
@@ -182,15 +189,17 @@
         .report-header { text-align: center; margin-bottom: 60px; }
         .report-header h1 { font-size: 42px; font-weight: 900; color: #1e293b; letter-spacing: -1px; text-transform: uppercase; display: inline-block; position: relative; }
         .report-header h1::before { content: ""; position: absolute; left: -10px; top: 10px; width: 4px; height: 35px; background: var(--primary-blue); }
-        .report-header p { color: #94a3b8; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; font-size: 14px; }
+        .report-header p { color: #1e293b; font-weight: 600; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; font-size: 14px; }
 
         .big-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 50px; }
-        .big-stat-card { background: white; padding: 45px 30px; border-radius: 20px; border: 1px solid #e2e8f0; text-align: center; box-shadow: var(--shadow); }
-        .big-stat-val { display: block; font-size: 48px; font-weight: 900; color: var(--primary-blue); line-height: 1; margin-bottom: 10px; }
-        .big-stat-lbl { font-size: 12px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; }
+        .big-stat-card { background: white; padding: 45px 30px; border-radius: 20px; border: 1px solid #e2e8f0; text-align: center; box-shadow: var(--shadow); transition: transform 0.3s; }
+        .big-stat-card:hover { transform: translateY(-5px); }
+        .big-stat-val { display: block; font-size: 48px; font-weight: 900; line-height: 1; margin-bottom: 10px; }
+        .big-stat-lbl { font-size: 12px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; }
 
-        .charts-container { display: flex; gap: 30px; margin-bottom: 60px; }
-        .chart-box { flex: 1; background: white; padding: 40px; border-radius: 20px; border: 1px solid #e2e8f0; box-shadow: var(--shadow); }
+        .charts-container { display: flex; justify-content: center; gap: 30px; margin-bottom: 60px; flex-wrap: wrap; }
+        .chart-box { flex: 1; min-width: 300px; max-width: 450px; background: white; padding: 40px; border-radius: 20px; border: 1px solid #e2e8f0; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; }
+        .chart-box canvas { max-height: 300px !important; }
         
         /* Detailed Review (Image 4) */
         .review-title { font-size: 24px; font-weight: 900; color: #1e293b; text-transform: uppercase; display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
@@ -202,12 +211,12 @@
         .status-incorrect { background: #fee2e2; color: #ef4444; }
         .status-correct { background: #dcfce7; color: #10b981; }
         
-        .review-q-text { font-size: 18px; font-weight: 700; color: #1e293b; line-height: 1.5; margin-bottom: 30px; }
-        .review-q-text i { color: #64748b; font-size: 14px; font-weight: 600; display: block; margin-top: 10px; }
+        .review-q-text { font-size: 18px; font-weight: 400; color: #1e293b; line-height: 1.5; margin-bottom: 30px; }
+        .review-q-text i { color: #1e293b; font-weight: 600; font-size: 14px; font-weight: 600; display: block; margin-top: 10px; }
 
         .review-ans-box { border-top: 1px dashed #e2e8f0; padding-top: 25px; }
         .ans-line { display: flex; gap: 20px; margin-bottom: 15px; font-size: 15px; }
-        .ans-lbl { font-weight: 800; color: #94a3b8; text-transform: uppercase; min-width: 140px; font-size: 12px; padding-top: 3px; }
+        .ans-lbl { font-weight: 800; color: #1e293b; font-weight: 600; text-transform: uppercase; min-width: 140px; font-size: 12px; padding-top: 3px; }
         .ans-val { font-weight: 700; color: #1e293b; }
         .correct-box { background: #f0fdf4; border-radius: 10px; padding: 20px; display: flex; gap: 20px; }
         .correct-box .ans-val { color: #166534; line-height: 1.6; }
@@ -240,7 +249,7 @@
                 <div class="q-card">
                     <div class="q-top-header">
                         <h2 id="header-qid">Question 1</h2>
-                        <span class="q-progress-badge" id="header-progress">1/10</span>
+                        <span class="q-progress-badge" id="header-progress">--/--</span>
                     </div>
 
                     <div class="q-inner-body fade-in" id="q-body">
@@ -272,17 +281,17 @@
                 </div>
 
                 <div class="big-stats-grid">
-                    <div class="big-stat-card">
-                        <span class="big-stat-val" id="res-score">0/10</span>
+                    <div class="big-stat-card" style="border-top: 5px solid var(--primary-blue);">
+                        <span class="big-stat-val" id="res-score" style="color: var(--primary-blue);">--/--</span>
                         <span class="big-stat-lbl">Total Score</span>
                     </div>
-                    <div class="big-stat-card">
-                        <span class="big-stat-val" id="res-accuracy">0%</span>
-                        <span class="big-stat-lbl">Accuracy Gauge</span>
+                    <div class="big-stat-card" style="border-top: 5px solid #10b981;">
+                        <span class="big-stat-val" id="res-accuracy" style="color: #10b981;">0%</span>
+                        <span class="big-stat-lbl">Accuracy</span>
                     </div>
-                    <div class="big-stat-card">
-                        <span class="big-stat-val" id="res-speed">0s</span>
-                        <span class="big-stat-lbl">Avg Timer Speed</span>
+                    <div class="big-stat-card" style="border-top: 5px solid #f59e0b;">
+                        <span class="big-stat-val" id="res-speed" style="color: #f59e0b;">0s</span>
+                        <span class="big-stat-lbl">Avg Time</span>
                     </div>
                 </div>
 
@@ -314,7 +323,7 @@
 
             <div class="summary-row">
                 <div class="summary-pill pill-pending">
-                    <span class="pill-val" id="sum-pending">10</span>
+                    <span class="pill-val" id="sum-pending">--</span>
                     <span class="pill-lbl">Pending</span>
                 </div>
                 <div class="summary-pill pill-review">
@@ -346,7 +355,12 @@
         let mockParam = params.get('mock');
         let modId = modParam || mockParam || "1";
         
-        // Data selection
+        // Handle aliases (Force Mock-3 to the 40-question DA set)
+        if (modId === "3" || modId === "mock3" || modId === "23" || modId === "mock23") {
+            modId = "da_mock3";
+        }
+        
+        // Data selection & Cache Busting
         let masterData = (modId.startsWith('data') || modId.startsWith('da_')) ? dataQuizData : quizData;
         let questions = masterData[modId] || masterData["1"];
 
@@ -373,6 +387,18 @@
         }
 
         function updateTileBar() {
+            // Update the Top Progress Badge
+            document.getElementById('header-progress').innerText = `${currentIndex + 1}/${questions.length}`;
+            
+            // Update the Review Modal Summary
+            const sumPending = userAnswers.filter(a => a === null).length;
+            const sumReview = reviewMarks.filter(r => r === true).length;
+            const sumAnswered = userAnswers.filter(a => a !== null).length;
+            if(document.getElementById('sum-pending')) document.getElementById('sum-pending').innerText = sumPending;
+            if(document.getElementById('sum-review')) document.getElementById('sum-review').innerText = sumReview;
+            if(document.getElementById('sum-answered')) document.getElementById('sum-answered').innerText = sumAnswered;
+
+            // Update the Sidebar Grid
             const bar = document.getElementById('tile-bar');
             if (!bar) return;
             bar.innerHTML = "";
@@ -424,34 +450,41 @@
             const textContainer = document.getElementById('q-text-container');
             const area = document.getElementById('interaction-area');
             area.innerHTML = "";
-            textContainer.innerHTML = q.q;
+            if (q.type !== "DND_PIVOT") {
+                textContainer.innerHTML = q.q;
+            } else {
+                textContainer.innerHTML = "";
+            }
 
             // Render question image (data table etc.) if present
             if (q.img) {
-                textContainer.innerHTML += `<div style="margin-top: 20px;"><img src="${q.img}" style="max-width:700px; width:100%; border:1px solid #e2e8f0; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.08);" /></div>`;
+                textContainer.innerHTML += `<div style="margin-top: 15px; display:flex; justify-content:center; background:#f8fafc; padding:10px; border-radius:14px; border:1px solid #e2e8f0;"><img src="${q.img}" style="max-width:100%; max-height:300px; object-fit:contain; border-radius:8px; box-shadow:0 4px 15px rgba(0,0,0,0.05);" /></div>`;
             }
 
             // Handle Question Rendering by Type
-            if (q.type === "MCQ" || q.type === "MCQ2") {
+            if (q.type === "MCQ" || q.type === "MCQ2" || q.type === "MCQ3") {
                 if (q.code) textContainer.innerHTML += `<div style="margin-top:20px; font-family:'Fira Code', monospace; background:#f1f5f9; padding:15px; border-radius:8px; font-size:15px; border-left:4px solid var(--primary-blue);">${q.code.replace(/\\n/g, '<br>')}</div>`;
 
                 // Image-based options (chart selection questions)
                 if (q.optionImages && q.optionImages.length > 0) {
                     const imgGrid = document.createElement('div');
-                    imgGrid.style.cssText = "display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:10px;";
+                    imgGrid.style.cssText = "display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:15px; margin-top:10px;";
                     q.options.forEach((opt, i) => {
                         const isSel = q.type === "MCQ" ? userAnswers[currentIndex] === i : (userAnswers[currentIndex]?.includes?.(i));
                         const card = document.createElement('div');
-                        card.style.cssText = `border: ${isSel ? '3px solid var(--primary-blue)' : '2px solid #e2e8f0'}; border-radius:12px; padding:12px; cursor:pointer; background:${isSel ? '#eff6ff' : 'white'}; transition:all 0.2s; text-align:center;`;
+                        card.style.cssText = `border: ${isSel ? '3px solid var(--primary-blue)' : '1px solid #e2e8f0'}; border-radius:16px; padding:10px; cursor:pointer; background:${isSel ? '#f0f7ff' : '#fff'}; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-align:center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);`;
+                        
                         card.innerHTML = `
-                            <img src="${q.optionImages[i]}" style="width:100%; border-radius:8px; margin-bottom:10px; border:1px solid #f1f5f9;" />
-                            <div style="display:flex; align-items:center; gap:10px; justify-content:center;">
-                                <div style="width:22px; height:22px; border:2px solid ${isSel ? 'var(--primary-blue)' : '#cbd5e1'}; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                            <div style="background:#f8fafc; border-radius:12px; padding:8px; margin-bottom:8px; border:1px solid #f1f5f9; display:flex; align-items:center; justify-content:center; height:130px; overflow:hidden;">
+                                <img src="${q.optionImages[i]}" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:4px;" />
+                            </div>
+                            <div style="display:flex; align-items:center; gap:12px; justify-content:center;">
+                                <div style="width:24px; height:24px; border:2.5px solid ${isSel ? 'var(--primary-blue)' : '#cbd5e1'}; border-radius:50%; display:flex; align-items:center; justify-content:center;">
                                     ${isSel ? '<div style="width:12px;height:12px;background:var(--primary-blue);border-radius:50%;"></div>' : ''}
                                 </div>
-                                <span style="font-weight:700; color:${isSel ? 'var(--primary-blue)' : '#475569'};">${opt}</span>
+                                <span style="font-weight:700; font-size:15px; color:${isSel ? 'var(--primary-blue)' : '#1e293b'};">${opt}</span>
                             </div>`;
-                        card.onclick = () => handleMCQ(i, q.type === "MCQ2");
+                        card.onclick = () => handleMCQ(i, q.type === "MCQ2" || q.type === "MCQ3");
                         imgGrid.appendChild(card);
                     });
                     area.appendChild(imgGrid);
@@ -464,7 +497,7 @@
                         const isSel = q.type === "MCQ" ? userAnswers[currentIndex] === i : (userAnswers[currentIndex]?.includes?.(i));
                         div.className = `mcq-option ${isSel ? 'selected' : ''}`;
                         div.innerHTML = `<div class="mcq-prefix"></div> <span>${opt}</span>`;
-                        div.onclick = () => handleMCQ(i, q.type === "MCQ2");
+                        div.onclick = () => handleMCQ(i, q.type === "MCQ2" || q.type === "MCQ3");
                         grid.appendChild(div);
                     });
                     area.appendChild(grid);
@@ -484,7 +517,7 @@
                 const thead = document.createElement('thead');
                 let headerRow = `<tr style="border-bottom: 2px solid #f1f5f9; background: #f8fafc;"><th></th>`;
                 q.labels.forEach(l => {
-                    headerRow += `<th style="padding: 15px; text-align: center; color: #475569; font-weight: 600;">${l}</th>`;
+                    headerRow += `<th style="padding: 10px; text-align: center; color: #475569; font-weight: 600;">${l}</th>`;
                 });
                 headerRow += `</tr>`;
                 thead.innerHTML = headerRow;
@@ -496,11 +529,11 @@
                 options.forEach((opt, idx) => {
                     const row = document.createElement('tr');
                     row.style.borderBottom = "1px solid #f8fafc";
-                    let rowHTML = `<td style="padding: 15px; font-weight: 500; color: #1e293b;">${opt}</td>`;
+                    let rowHTML = `<td style="padding: 10px; font-weight: 500; color: #1e293b;">${opt}</td>`;
                     q.labels.forEach((l) => {
                         const val = userAnswers[currentIndex]?.[opt];
                         const isChecked = val === l ? "checked" : "";
-                        rowHTML += `<td style="padding: 15px; text-align: center;">
+                        rowHTML += `<td style="padding: 10px; text-align: center;">
                             <input type="radio" name="matrix_${idx}" value="${l}" ${isChecked} 
                             onchange="updateComplex('${opt}', '${l}')" 
                             style="transform: scale(1.5); cursor: pointer; accent-color: var(--primary-blue);">
@@ -511,6 +544,60 @@
                 });
                 matrixTable.appendChild(tbody);
                 area.appendChild(matrixTable);
+            }
+            else if (q.type === "DND_PIVOT") {
+                const flexContainer = document.createElement('div');
+                flexContainer.style.display = "flex";
+                flexContainer.style.gap = "40px";
+                flexContainer.style.alignItems = "flex-start";
+                flexContainer.style.marginTop = "20px";
+
+                // Pool of labels
+                const pool = document.createElement('div');
+                pool.style.width = "220px";
+                pool.style.display = "flex";
+                pool.style.flexDirection = "column";
+                pool.style.gap = "10px";
+                pool.innerHTML = `<h4 style="font-size:12px; text-transform:uppercase; color:var(--text-muted); margin-bottom:10px;">${q.poolHeader || "Labels"}</h4>`;
+                
+                q.labels.forEach(l => {
+                    const item = document.createElement('div');
+                    item.className = "dnd-item";
+                    item.style.padding = "10px 15px";
+                    item.style.fontSize = "13px";
+                    item.innerText = l;
+                    item.draggable = true;
+                    item.ondragstart = (e) => e.dataTransfer.setData("text", l);
+                    pool.appendChild(item);
+                });
+
+                // Table with slots
+                const tableContainer = document.createElement('div');
+                tableContainer.style.flex = "1";
+                tableContainer.style.background = "#fff";
+                tableContainer.style.padding = "20px";
+                tableContainer.style.borderRadius = "12px";
+                tableContainer.style.border = "1px solid var(--border-color)";
+
+                let tableHtml = q.q;
+                // Replace Label X with slots
+                q.options.forEach(labelKey => {
+                    const val = userAnswers[currentIndex]?.[labelKey];
+                    const slotHtml = `
+                        <div class="dnd-target-slot ${val ? 'filled' : ''}" 
+                             ondragover="event.preventDefault()" 
+                             ondrop="handleDrop(event, '${labelKey}')">${val || ""}</div>
+                    `;
+                    // We need a safe way to replace the text in the HTML string
+                    // This is a bit hacky but should work for this specific structure
+                    tableHtml = tableHtml.replace(new RegExp(labelKey, 'g'), slotHtml);
+                });
+                
+                tableContainer.innerHTML = tableHtml;
+
+                flexContainer.appendChild(pool);
+                flexContainer.appendChild(tableContainer);
+                area.appendChild(flexContainer);
             }
             else if (q.type === "MTF" || q.type === "DND") {
                 const wrapper = document.createElement('div');
@@ -551,8 +638,7 @@
                 area.appendChild(wrapper);
             }
             else if (q.type === "DD" || q.type === "DROPDOWN") {
-                const code = q.code || "";
-                const codeWithSelects = code.replace(/\[b(\d+)\]/g, (match, p1) => {
+                const buildSelect = (match, p1) => {
                     const idx = parseInt(p1) - 1;
                     const optSet = Array.isArray(q.options[0]) ? q.options[idx] : q.options;
                     const val = userAnswers[currentIndex]?.[idx] || "";
@@ -560,9 +646,17 @@
                         <option value="">...</option>
                         ${optSet.map(o => `<option value="${o}" ${o===val?'selected':''}>${o}</option>`).join('')}
                     </select>`;
-                });
-                textContainer.innerHTML += `<div style="margin-top:20px; font-family:'Fira Code', monospace; background:#f1f5f9; padding:20px; border-radius:12px; font-size:15px; border-left:5px solid var(--primary-blue); color:#1e293b; line-height:1.8;">${codeWithSelects.replace(/\\n/g, '<br>')}</div>`;
+                };
+                if (q.code) {
+                    // Standard: [b1] placeholders live in a separate code block
+                    const codeWithSelects = q.code.replace(/\[b(\d+)\]/g, buildSelect);
+                    textContainer.innerHTML += `<div style="margin-top:20px; font-family:'Fira Code', monospace; background:#f1f5f9; padding:20px; border-radius:12px; font-size:15px; border-left:5px solid var(--primary-blue); color:#1e293b; line-height:1.8;">${codeWithSelects.replace(/\\n/g, '<br>')}</div>`;
+                } else {
+                    // Inline: [b1] is embedded directly inside the q text — re-render with live selects
+                    textContainer.innerHTML = q.q.replace(/\[b(\d+)\]/g, buildSelect);
+                }
             }
+
             else if (q.type === "TF") {
                 const grid = document.createElement('div');
                 q.options.forEach((opt, i) => {
@@ -670,52 +764,135 @@
         function calculateResults() {
             let score = 0;
             let results = [];
-            const pointsPerQ = modId.startsWith('data') ? 2 : 1;
+            // Handle 100 marks for mocks (2.5 per Q for 40Q, 10 per Q for 10Q)
+            const pointsPerQ = modId.includes('mock') ? (100 / questions.length) : (modId.startsWith('data') ? 2 : 1);
+            
+            // Show syncing indicator
+            const submitBtn = document.querySelector('.btn-submit');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerText = "Syncing...";
+            }
+
+            const moduleMapping = {
+                'da_mock1': {1:4, 2:3, 3:3, 4:4, 5:1, 6:2, 7:2, 8:1, 9:2, 10:2, 11:5, 12:5, 13:4, 14:1, 15:4, 16:2, 17:1, 18:4, 19:2, 20:2, 21:3, 22:3, 23:1, 24:3, 25:2, 26:1, 27:2, 28:3, 29:5, 30:2, 31:4, 32:3, 33:5, 34:2, 35:4, 36:5, 37:1, 38:3, 39:3, 40:2},
+                'da_mock2': {1:2, 2:5, 3:1, 4:4, 5:1, 6:1, 7:1, 8:1, 9:3, 10:5, 11:2, 12:2, 13:4, 14:3, 15:4, 16:4, 17:3, 18:2, 19:4, 20:3, 21:4, 22:2, 23:2, 24:4, 25:1, 26:5, 27:2, 28:2, 29:2, 30:3, 31:5, 32:1, 33:1, 34:5, 35:3, 36:3, 37:3, 38:2, 39:4, 40:1, 41:5, 42:5},
+                'da_mock3': {1:4, 2:2, 3:3, 4:2, 5:1, 6:4, 7:4, 8:4, 9:3, 10:4, 11:2, 12:5, 13:1, 14:2, 15:5, 16:4, 17:2, 18:2, 19:1, 20:4, 21:1, 22:3, 23:4, 24:1, 25:3, 26:2, 27:1, 28:3, 29:5, 30:1, 31:3, 32:5, 33:5, 34:3, 35:5, 36:5, 37:5, 38:5, 39:3, 40:5}
+            };
+
+            const currentMap = moduleMapping[modId] || null;
+            let moduleScores = {1:0, 2:0, 3:0, 4:0, 5:0};
+            let moduleTotals = {1:0, 2:0, 3:0, 4:0, 5:0};
 
             questions.forEach((q, i) => {
                 const u = userAnswers[i];
                 let isCorrect = false;
                 let userDisp = u === null ? "Unanswered" : JSON.stringify(u);
                 let correctDisp = "";
+                let marksEarned = 0;
+                const maxMarks = (q.marks || pointsPerQ);
 
                 if (q.type === "MCQ") {
                     isCorrect = u === q.a;
+                    if (isCorrect) marksEarned = maxMarks;
+
                     let uTxt = u !== null ? q.options[u] : "Unanswered";
-                    if (q.optionImages && u !== null) uTxt = `<img src="${q.optionImages[u]}" style="height:60px; border-radius:4px; vertical-align:middle; margin-right:10px; border:1px solid #ddd;" /> ${uTxt}`;
+                    if (q.optionImages && u !== null) uTxt = `<div style="display:flex; align-items:center; gap:12px;"><img src="${q.optionImages[u]}" style="height:100px; border-radius:8px; border:1px solid #e2e8f0; background:#f8fafc; padding:4px;" /><span>${uTxt}</span></div>`;
                     userDisp = uTxt;
 
                     let cTxt = q.options[q.a];
-                    if (q.optionImages) cTxt = `<img src="${q.optionImages[q.a]}" style="height:60px; border-radius:4px; vertical-align:middle; margin-right:10px; border:1px solid #ddd;" /> ${cTxt}`;
+                    if (q.optionImages) cTxt = `<div style="display:flex; align-items:center; gap:12px;"><img src="${q.optionImages[q.a]}" style="height:100px; border-radius:8px; border:1px solid #e2e8f0; background:#f8fafc; padding:4px;" /><span>${cTxt}</span></div>`;
                     correctDisp = cTxt;
-                } else if (q.type === "MCQ2") {
+                } else if (q.type === "MCQ2" || q.type === "MCQ3") {
                     isCorrect = Array.isArray(u) && u.length === q.a.length && u.every(v => q.a.includes(v));
+                    if (Array.isArray(u)) {
+                        let correctCount = u.filter(v => q.a.includes(v)).length;
+                        let wrongCount = u.filter(v => !q.a.includes(v)).length;
+                        marksEarned = Math.max(0, correctCount * (maxMarks / q.a.length) - wrongCount * (maxMarks / q.a.length));
+                    }
                     userDisp = Array.isArray(u) ? u.map(idx => q.options[idx]).join(", ") : "Unanswered";
                     correctDisp = q.a.map(idx => q.options[idx]).join(", ");
                 } else if (q.type === "TF") {
-                    isCorrect = typeof u === 'object' && u !== null && Object.keys(u).length === q.options.length && Object.keys(u).every(j => u[j] === q.a[j]);
+                    isCorrect = typeof u === 'object' && u !== null && Object.keys(q.a).length === q.options.length && Object.keys(u).every(j => u[j] === q.a[j]);
+                    if (typeof u === 'object' && u !== null) {
+                        let correctCount = 0;
+                        let totalCount = q.a.length;
+                        for (let j = 0; j < totalCount; j++) {
+                            if (u[j] === q.a[j]) correctCount++;
+                        }
+                        marksEarned = correctCount * (maxMarks / totalCount);
+                    }
                     userDisp = u ? Object.entries(u).map(([k,v]) => `Q${parseInt(k)+1}: ${v.toString().toUpperCase()}`).join(", ") : "Unanswered";
                     correctDisp = Object.entries(q.a).map(([k,v]) => `Q${parseInt(k)+1}: ${v.toString().toUpperCase()}`).join(", ");
                 } else if (q.type === "SHORT") {
-                    isCorrect = u?.toString().toLowerCase().trim() === q.a.toString().toLowerCase().trim();
+                    let uText = u?.toString().toLowerCase().trim() || "";
+                    let uStripped = uText.replace(/\s+/g, '');
+                    if (q.regex) {
+                        isCorrect = new RegExp(q.regex, 'i').test(uStripped);
+                    } else if (Array.isArray(q.a)) {
+                        isCorrect = q.a.some(ans => uStripped === ans.toString().toLowerCase().replace(/\s+/g, ''));
+                    } else {
+                        isCorrect = uStripped === q.a.toString().toLowerCase().replace(/\s+/g, '');
+                    }
+                    if (isCorrect) marksEarned = maxMarks;
                     userDisp = u || "Unanswered";
-                    correctDisp = q.a;
-                } else if (q.type === "MTF" || q.type === "DND" || q.type === "DD" || q.type === "DROPDOWN" || q.type === "MATRIX") {
-                    isCorrect = typeof u === 'object' && u !== null && Object.keys(q.a).every(k => u[k] == q.a[k]);
-                    userDisp = u ? Object.entries(u).map(([k,v]) => `${k} \u2192 ${v}`).join("<br>") : "Unanswered";
-                    correctDisp = Object.entries(q.a).map(([k,v]) => `${k} \u2192 ${v}`).join("<br>");
+                    correctDisp = Array.isArray(q.a) ? q.a[0] : q.a;
+                } else if (q.type === "MTF" || q.type === "DND" || q.type === "DD" || q.type === "DROPDOWN" || q.type === "MATRIX" || q.type === "DND_PIVOT") {
+                    let correctCount = 0;
+                    if (Array.isArray(q.a)) {
+                        isCorrect = Array.isArray(u) && u.length === q.a.length && u.every((val, idx) => val == q.a[idx]);
+                        if (Array.isArray(u)) {
+                            for (let idx = 0; idx < q.a.length; idx++) {
+                                if (u[idx] == q.a[idx]) correctCount++;
+                            }
+                        }
+                        marksEarned = correctCount * (maxMarks / q.a.length);
+                        userDisp = Array.isArray(u) ? u.map((v, i) => `Q${i+1}: ${v}`).join("<br>") : "Unanswered";
+                        correctDisp = q.a.map((v, i) => `Q${i+1}: ${v}`).join("<br>");
+                    } else {
+                        let totalCount = Object.keys(q.a).length;
+                        isCorrect = typeof u === 'object' && u !== null && Object.keys(q.a).every(k => u[k] == q.a[k]);
+                        if (typeof u === 'object' && u !== null) {
+                            for (let k in q.a) {
+                                if (u[k] == q.a[k]) correctCount++;
+                            }
+                        }
+                        marksEarned = correctCount * (maxMarks / totalCount);
+                        userDisp = u ? Object.entries(u).map(([k,v]) => `${k} \u2192 ${v}`).join("<br>") : "Unanswered";
+                        correctDisp = Object.entries(q.a).map(([k,v]) => `${k} \u2192 ${v}`).join("<br>");
+                    }
                 }
 
-                if (isCorrect) score += (q.marks || pointsPerQ);
+                score += marksEarned;
+                if (currentMap) moduleScores[currentMap[i+1]] += marksEarned;
+                if (currentMap) moduleTotals[currentMap[i+1]] += maxMarks;
+
                 results.push({ q: q.q, type: q.type, isCorrect, user: userDisp, correct: correctDisp });
             });
 
-            const max = questions.reduce((acc, q) => acc + (q.marks || pointsPerQ), 0);
+            // Calculate Radar Data
+            let radarData = [0, 0, 0, 0, 0];
+            if (currentMap) {
+                for (let m = 1; m <= 5; m++) {
+                    if (moduleTotals[m] > 0) {
+                        radarData[m-1] = Math.round((moduleScores[m] / moduleTotals[m]) * 100);
+                    }
+                }
+            } else {
+                radarData = [0, 0, 0, 0, 0]; // No fallback, show 0 if not a mock
+            }
+
+            // Calculate final max marks (Force 100 for mocks)
+            const max = modId.includes('mock') ? 100 : questions.reduce((acc, q) => acc + (q.marks || pointsPerQ), 0);
             
             // --- Sync with Google Sheets ---
             const phone = localStorage.getItem('strategist_phone');
             const name = localStorage.getItem('strategist_user') || 'Unknown';
+            let syncStatus = "Skipped (Guest/Not Logged In)";
+
             if (phone && phone !== 'guest') {
-                const scriptURL = "https://script.google.com/macros/s/AKfycbzESAIomPGCHhkYOoAJyi8Agjn8FLCDjnju3ngO1UUXuTVABsmrHe5c8AkdhGF5q3AV/exec";
+                syncStatus = "Initiating Sync...";
+                const scriptURL = "https://script.google.com/macros/s/AKfycbx6TOmaeAAlsQX4Ucef_3oTOjElUhgNztdiVWIE31k1QM16e_RQw4khy2kXAJxYGYkc/exec";
                 
                 // 1. Map ID to Pretty Name for Logging
                 let prettyName = modId.toUpperCase();
@@ -723,28 +900,57 @@
                 else if (modId === 'data2') prettyName = "M2 Assessment";
                 else if (modId === 'data3') prettyName = "M3 Assessment";
                 else if (modId === 'data4') prettyName = "M4 Assessment";
+                else if (modId === 'data5') prettyName = "M5 Assessment";
+                else if (modId === 'data6') prettyName = "M6 Assessment";
                 else if (modId === 'da_mock1') prettyName = "Mock Test 1";
                 else if (modId === 'da_mock2') prettyName = "Mock Test 2";
                 else if (modId === 'da_mock3') prettyName = "Mock Test 3";
                 else if (modId.startsWith('mock')) prettyName = "Mock Test " + modId.replace('mock', '');
 
                 // 2. Submit for Roadmap (Results sheet)
-                fetch(`${scriptURL}?action=submitScore&phone=${phone}&name=${encodeURIComponent(name)}&score=${score}&moduleID=${modId}`, { mode: 'no-cors' });
+                const roadmapURL = `${scriptURL}?action=submitScore&phone=${phone}&name=${encodeURIComponent(name)}&score=${score}&moduleID=${modId}`;
+                fetch(roadmapURL, { mode: 'no-cors' });
 
                 // 3. Submit for Detailed Logging (Quiz Log sheet)
-                fetch(`${scriptURL}?action=logQuiz&phone=${phone}&name=${encodeURIComponent(name)}&module=${encodeURIComponent(prettyName)}&mark=${score}&maxMark=${max}`, { mode: 'no-cors' });
+                const logURL = `${scriptURL}?action=logQuiz&phone=${phone}&name=${encodeURIComponent(name)}&module=${encodeURIComponent(prettyName)}&mark=${score}&maxMark=${max}`;
+                
+                // Use fetch with no-cors as primary, Beacon as background
+                fetch(logURL, { mode: 'no-cors' })
+                    .then(() => { if(document.getElementById('sync-indicator')) document.getElementById('sync-indicator').innerHTML = "✓ Results Saved to Sheet"; });
+
+                if (navigator.sendBeacon) navigator.sendBeacon(logURL);
                 
                 // Also save locally for immediate roadmap feedback
                 localStorage.setItem('score_' + modId, score);
             }
 
-            renderResults(score, max, results);
+            renderResults(score, max, results, radarData, syncStatus);
         }
 
-        function renderResults(score, max, results) {
+        function renderResults(score, max, results, radarData, syncStatus) {
             document.getElementById('quiz-ui').style.display = "none";
             const screen = document.getElementById('results-screen');
             screen.style.display = "block";
+            
+            // Add sync indicator if it doesn't exist
+            if (!document.getElementById('sync-indicator')) {
+                const indicator = document.createElement('div');
+                indicator.id = "sync-indicator";
+                indicator.style = "text-align:center; margin-top:10px; font-size:0.9rem; font-weight:600; color:var(--primary-blue); opacity:0.8;";
+                const reportHeader = document.querySelector('.report-header');
+                if (reportHeader) reportHeader.appendChild(indicator);
+            }
+            if (document.getElementById('sync-indicator')) document.getElementById('sync-indicator').innerText = syncStatus;
+
+            // Show/Hide Radar Chart based on test type
+            const isMock = modId.includes('mock');
+            const radarBox = document.getElementById('radarChart').parentElement;
+            if (radarBox) {
+                radarBox.style.display = isMock ? "block" : "none";
+                // Adjust layout if radar is hidden
+                const chartGrid = document.querySelector('.charts-container');
+                if (chartGrid) chartGrid.style.gridTemplateColumns = isMock ? "repeat(auto-fit, minmax(300px, 1fr))" : "1fr";
+            }
 
             document.getElementById('res-score').innerText = `${score}/${max}`;
             document.getElementById('res-accuracy').innerText = `${Math.round(score/max*100)}%`;
@@ -777,19 +983,65 @@
             });
 
             // Charts
-            new Chart(document.getElementById('radarChart'), {
-                type: 'radar',
-                data: {
-                    labels: ['Logic', 'Data', 'Syntax', 'Functions', 'Loops'],
-                    datasets: [{ label: 'Competency', data: [80, 60, 90, 70, 85], borderColor: '#0061ff', backgroundColor: 'rgba(0,97,255,0.1)' }]
-                }
-            });
+            try {
+                new Chart(document.getElementById('radarChart'), {
+                    type: 'radar',
+                    data: {
+                        labels: ['Module 1', 'Module 2', 'Module 3', 'Module 4', 'Module 5'],
+                        datasets: [{ 
+                            label: 'Competency', 
+                            data: radarData, 
+                            borderColor: '#0061ff', 
+                            backgroundColor: 'rgba(0, 97, 255, 0.2)',
+                            pointBackgroundColor: '#0061ff',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#0061ff'
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            r: {
+                                angleLines: { color: '#e2e8f0' },
+                                grid: { color: '#e2e8f0' },
+                                suggestedMin: 0,
+                                suggestedMax: 100,
+                                ticks: { display: false }
+                            }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            } catch (e) { console.error("Radar Chart Error:", e); }
 
-            new Chart(document.getElementById('doughnutChart'), {
-                type: 'doughnut',
-                data: { labels: ['Correct', 'Incorrect'], datasets: [{ data: [score, max-score], backgroundColor: ['#0061ff', '#f1f5f9'] }] },
-                options: { cutout: '80%' }
-            });
+            try {
+                new Chart(document.getElementById('doughnutChart'), {
+                    type: 'doughnut',
+                    data: { 
+                        labels: ['Correct', 'Incorrect'], 
+                        datasets: [{ 
+                            data: [score, max - score], 
+                            backgroundColor: ['#10b981', '#f1f5f9'],
+                            borderWidth: 0,
+                            hoverOffset: 4
+                        }] 
+                    },
+                    options: { 
+                        cutout: '80%',
+                        maintainAspectRatio: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 15,
+                                    font: { family: 'Outfit', size: 11, weight: '600' }
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (e) { console.error("Doughnut Chart Error:", e); }
 
             if (score/max >= 0.7) confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
         }

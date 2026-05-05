@@ -1,0 +1,11 @@
+
+        {
+                "id": 1,
+                "type": "MCQ",
+                "q": "You are analyzing customer ice cream preferences across different regions. Based on the following pie chart, which flavor is the most preferred by the sample population?",
+                "img": "ice_cream_preference_chart.png",
+                "options": [
+                        "Vanilla",
+                        "Chocolate",
+                        "Strawberry",
+                        "Mango"

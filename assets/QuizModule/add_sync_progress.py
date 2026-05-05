@@ -11,7 +11,7 @@ sync_html = """
 """
 
 sync_js_function = """
-        const scriptURL = "https://script.google.com/macros/s/AKfycbwKpqYE5bUkT3IdyDo95KlkRTVkw-mXTYMh0f6yypNteEVuAe_JeO6CYWOSKH5X6quZ/exec";
+        const scriptURL = "https://script.google.com/macros/s/AKfycbxs8bcb1jw5qpazffbr1U5KvM_PzqAhb_9F3xOSjBQxuu1KaJYFC_DkUovfuloGCCq-/exec";
 
         function syncProgress() {
             const phone = localStorage.getItem('strategist_phone');

@@ -10,27 +10,49 @@ function doGet(e) {
     // 1. REGISTER ACTION
     if (action === "register" || action === "signup") {
       var name = e.parameter.name || "Unknown";
-      var gmail = e.parameter.gmail || e.parameter.email || "Missing"; // FOOLPROOF: check both
+      var gmail = e.parameter.gmail || e.parameter.email || "Missing";
       var phone = e.parameter.phone || "";
       var code = e.parameter.classCode || e.parameter.code || "None";
       var pass = e.parameter.password || "";
 
       if (!phone) return finalize(callback, {success: false, error: "Phone number is required"});
 
-      // Check if phone exists (Column B = index 1)
-      for (var i = 1; i < data.length; i++) {
-        if (data[i][1] && data[i][1].toString().trim() === phone.toString().trim()) {
-          return finalize(callback, {success: false, error: "Phone number already exists"});
+      if (pass !== "") {
+        // ACCOUNT CREATION (From login.html "Sign Up")
+        // Put them in the Login sheet so they can log in later.
+        var phoneExistsInLogin = false;
+        for (var i = 1; i < data.length; i++) {
+          if (data[i][1] && data[i][1].toString().trim() === phone.toString().trim()) {
+            phoneExistsInLogin = true;
+            break;
+          }
+        }
+        if (!phoneExistsInLogin) {
+          sheet.appendRow([name, phone, code, gmail, pass]);
+        }
+      } else {
+        // COURSE REGISTRATION (From registration.html)
+        // Check if they are already registered for this specific course in the Registration sheet
+        var regSheet = ss.getSheetByName("Registration");
+        if (regSheet) {
+          var regData = regSheet.getDataRange().getValues();
+          for (var j = 1; j < regData.length; j++) {
+            var regPhone = regData[j][3] ? regData[j][3].toString().trim() : "";
+            var regCourse = regData[j][5] ? regData[j][5].toString().trim() : "";
+            if (regPhone === phone.toString().trim() && regCourse === code.toString().trim()) {
+              return finalize(callback, {success: false, error: "Already registered for this course"});
+            }
+          }
+          // Only show registration on the registration sheet
+          var now = Utilities.formatDate(new Date(), "GMT+5:30", "yyyy-MM-dd HH:mm:ss");
+          var branch = e.parameter.branch || "General";
+          regSheet.appendRow([now, name, gmail, phone, branch, code]);
         }
       }
-
-      // Record Order: Name(A), Phone(B), Class(C), Gmail(D), Password(E)
-      sheet.appendRow([name, phone, code, gmail, pass]);
       
       return finalize(callback, {
         success: true, 
-        message: "Recorded: " + gmail + " (Col D)",
-        debug: "Name: " + name + ", Phone: " + phone + ", Gmail: " + gmail
+        message: "Registration Successful"
       });
     }
 
@@ -38,18 +60,61 @@ function doGet(e) {
     if (action === "login") {
       var phone = e.parameter.phone || "";
       var pass = e.parameter.password || "";
+      var found = false;
+      var userName = "";
+      var userGmail = "";
+      var enrollments = [];
+
+      // First check Login sheet
       for (var i = 1; i < data.length; i++) {
         var rowPhone = data[i][1] ? data[i][1].toString().trim() : "";
         var rowPass = data[i][4] ? data[i][4].toString().trim() : "";
-        if (rowPhone === phone.toString().trim() && rowPass === pass.toString().trim()) {
-          return finalize(callback, {
-            exists: true, 
-            success: true, 
-            name: data[i][0],
-            classCode: data[i][2] || "",
-            gmail: data[i][3] || ""
-          });
+        var rowCourse = data[i][2] ? data[i][2].toString().trim() : "";
+        
+        if (rowPhone === phone.toString().trim()) {
+          if (pass === "BYPASS_SYNC" || rowPass === pass.toString().trim()) {
+            found = true;
+            if (!userName) userName = data[i][0];
+            if (!userGmail) userGmail = data[i][3] || "";
+            if (rowCourse && enrollments.indexOf(rowCourse) === -1) enrollments.push(rowCourse);
+          }
         }
+      }
+
+      // If BYPASS_SYNC, we allow finding user from Registration sheet even if they aren't in Login sheet
+      if (pass === "BYPASS_SYNC") found = true;
+
+      // Always scan Registration sheet for courses belonging to this phone number
+      if (found) {
+        var regSheet = ss.getSheetByName("Registration");
+        if (regSheet) {
+          var regData = regSheet.getDataRange().getValues();
+          for (var j = 1; j < regData.length; j++) {
+            var regPhone = regData[j][3] ? regData[j][3].toString().trim() : "";
+            var regCourse = regData[j][5] ? regData[j][5].toString().trim() : "";
+            if (regPhone === phone.toString().trim()) {
+              if (!userName && regData[j][1]) userName = regData[j][1]; // Get name from reg sheet if missing
+              if (!userGmail && regData[j][2]) userGmail = regData[j][2]; // Get email from reg sheet if missing
+              if (regCourse && enrollments.indexOf(regCourse) === -1) {
+                enrollments.push(regCourse);
+              }
+            }
+          }
+        }
+
+        // Only return success if we actually found them in Login sheet OR if BYPASS_SYNC found courses
+        if (pass === "BYPASS_SYNC" && enrollments.length === 0 && !userName) {
+            return finalize(callback, {exists: false, success: false, error: "Not found"});
+        }
+
+        return finalize(callback, {
+          exists: true, 
+          success: true, 
+          name: userName || "Student",
+          gmail: userGmail,
+          classCode: enrollments.length > 0 ? enrollments[0] : "", // backward compatibility
+          enrollments: enrollments
+        });
       }
       return finalize(callback, {exists: false, success: false, error: "Incorrect Phone or Password"});
     }
@@ -292,6 +357,7 @@ function doGet(e) {
             var key = "";
             if (moduleName.includes("Mock")) {
                key = "mock" + moduleName.replace(/[^0-9]/g, "");
+               if (moduleName.toLowerCase().includes("data")) key = "da_" + key;
             } else {
                key = moduleName.replace(/[^0-9]/g, ""); // "M1 Assessment" -> "1"
                // Handle data analytics prefix if needed

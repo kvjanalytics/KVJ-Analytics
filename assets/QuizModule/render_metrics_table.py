@@ -62,6 +62,8 @@ html_content = """
       <tr class="metric-row"><td class="row-label">Metric 2</td><td>35000</td><td>45000</td><td>42500</td><td>55000</td></tr>
       <tr class="metric-row"><td class="row-label">Metric 3</td><td>25000</td><td>30000</td><td>40000</td><td>50000</td></tr>
       <tr class="metric-row"><td class="row-label">Metric 4</td><td>35000</td><td>30000</td><td>40000</td><td>55000</td></tr>
+      <tr class="metric-row"><td class="row-label">Metric 5</td><td>32375</td><td>34375</td><td>40875</td><td>53125</td></tr>
+      <tr class="metric-row"><td class="row-label">Metric 6</td><td>34750</td><td>31250</td><td>40500</td><td>53750</td></tr>
     </table>
 </div>
 </body>
@@ -76,7 +78,9 @@ async def main():
         # Wait a bit for layout
         await page.wait_for_timeout(100)
         elem = page.locator("#capture")
+        await elem.screenshot(path="recreated_table.png")
         await elem.screenshot(path="quarterly_sales_metrics.png")
+        await elem.screenshot(path="metrics_table2.png")
         await browser.close()
 
 if __name__ == "__main__":

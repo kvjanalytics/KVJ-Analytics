@@ -7,17 +7,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         .typing-container {
             display: inline-block;
             min-height: 2.2em;
             position: relative;
         }
-        .text-blue-accent { color: #38bdf8; }
+        .text-blue-accent { color: #1e3a8a; font-weight: 800; }
         .blinking-cursor {
             display: inline-block;
             width: 3px;
             height: 1em;
-            background-color: #38bdf8;
+            background-color: #1e3a8a; font-weight: 800;
             margin-left: 2px;
             animation: blink-caret 1s step-end infinite;
             vertical-align: text-bottom;
@@ -63,44 +68,30 @@
                 </h2>
                 
                 <p class="hero-desc">
-                    Master the principles of Data Science and Analytics through our mathematically optimized curriculum. Experience liftoff with interactive modules designed for your success.
+                    Master analytics, visualization, automation, and intelligent technologies designed for tomorrow’s professionals.
                 </p>
                 
                 <div class="hero-action">
-                    <a href="data_intro.html" class="kvj-btn kvj-btn-dark" style="background: #0ea5e9; box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);">Explore Analytics</a>
+                    <a href="data_roadmap.html" class="kvj-btn kvj-btn-dark" style="background: #0ea5e9; box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);">LETS BEGIN</a>
                 </div>
             </div>
             
             <!-- Right Content - Data Analysis Code Editor Graphic -->
             <div class="hero-right fade-in-up" style="animation-delay: 0.3s;">
-                <div class="dashboard-mockup" style="background-color: #0f172a; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
-                    <div class="window-controls" style="background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <div class="dot dot-r"></div>
-                        <div class="dot dot-y"></div>
-                        <div class="dot dot-g"></div>
-                        <div class="fy-text" style="color: #94a3b8; font-family: monospace;">analysis.py</div>
-                    </div>
-                    <div class="dash-content" style="padding: 30px; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95rem; line-height: 1.7; color: #e2e8f0; overflow-x: auto;">
-                        <span style="color: #c678dd;">import</span> pandas <span style="color: #c678dd;">as</span> <span style="color: #e5c07b;">pd</span><br>
-                        <br>
-                        <span style="color: #5c6370; font-style: italic;"># Load and transform business data</span><br>
-                        df = pd.<span style="color: #61afef;">read_csv</span>(<span style="color: #98c379;">'kvj_intelligence.csv'</span>)<br>
-                        insights = df.<span style="color: #61afef;">groupby</span>(<span style="color: #98c379;">'Sector'</span>).<span style="color: #61afef;">mean</span>()<br>
-                        <br>
-                        <span style="color: #c678dd;">for</span> metric <span style="color: #c678dd;">in</span> insights.columns:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;print(<span style="color: #98c379;">f"Deploying {metric} to Dashboard..."</span>)<br>
-                        <br>
-                        <span style="color: #c678dd;">return</span> <span style="color: #98c379;">"KVJ Data Mastery Achieved!"</span><span class="blinking-cursor" style="background-color: #528bff; width: 8px; margin-left: 5px;"></span><br>
-                    </div>
-                </div>
+            <div class="hero-right fade-in-up" style="animation-delay: 0.3s; display: flex; justify-content: center; align-items: center;">
+                <img src="woman_presenting_dashboard.png" 
+                     alt="Data Analytics Professional" 
+                     style="width: 100%; max-width: 480px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); border: 1px solid rgba(255,255,255,0.1);">
+            </div>
             </div>
             
         </div>
     </header>
 
+
     <script>
         // Typing Effect logic
-        const textToType = "Experience liftoff with the next-generation Data Curriculum";
+        const textToType = "Shape the Future with Data Analytics";
         const typewriterEl = document.getElementById('typewriter');
         let typeIndex = 0;
         
@@ -109,9 +100,9 @@
         const closeSpan = "</span>";
         
         // Break lines for impact
-        const line1 = "Experience liftoff with ";
-        const line2 = "the next-generation<br>";
-        const line3 = "Data Curriculum";
+        const line1 = "Shape the Future ";
+        const line2 = "with<br>";
+        const line3 = "Data Analytics";
 
         let fullHTML = "";
 

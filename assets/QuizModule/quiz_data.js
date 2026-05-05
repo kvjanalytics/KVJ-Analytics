@@ -2338,17 +2338,16 @@ var quizData = {
 ,
 
     "data1": [
-        { id: 1, marks: 1, type: "MCQ", q: "(1 Mark) What is metadata?", options: ["Statistics", "The text content of a message", "Numerical facts", "The context that give data meaning"], a: 3 },
-        { id: 2, marks: 2, type: "MCQ", q: "(2 Marks) A popular social media site records and count clicks, likes, and dislikes, and other user interactions. What type of data is collected?", options: ["Continuous data", "Imputed Data", "Qualitative Data", "Big Data"], a: 3 },
-        { id: 3, marks: 1, type: "MCQ", q: "(1 Mark) Which data type can store a phrase or sentence?", options: ["Integer", "String", "Boolean", "Character"], a: 1 },
-        { id: 4, marks: 4, type: "MTF", q: "(4 Marks) You are performing descriptive analytics on quarterly sales data. Move the appropriate statistical metrics from the list on the left to the correct locations on the right. You may use each metric once, more than once, or not at all.<br><br><img src='recreated_table.png' style='max-width:100%; border:1px solid #e5e7eb; border-radius:6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 10px;'><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct response.</span>", options: ["Average", "Max", "Median", "Mode", "Sum", "Min"], labels: ["Metric 1", "Metric 2", "Metric 3", "Metric 4"], a: { "Metric 1": "Sum", "Metric 2": "Max", "Metric 3": "Min", "Metric 4": "Mode" } },
-        { id: 5, marks: 4, type: "DROPDOWN", q: "(4 Marks) You are analyzing customer satisfaction scores between online purchases and in-store purchases. Satisfaction scores are entered on a scale from 1 (extremely unsatisfied) to 10 (extremely satisfied).<br><br>Select the correct metric from the drop-down list for each statement.<br><br>The most frequent satisfaction score was 5 for online customers and 9 for in-store customers: [b1]<br><br>The average score for online customers was 6.4 and the average score for in-store customers was 7.0: [b2]<br><br>The score at the midpoint between the lowest and the highest scores was 6 for online customers and 7 for in-store customers: [b3]<br><br>The online scores vary from the average by 2.3 and the in-store variance is 1.9: [b4]<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", options: [["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"], ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"], ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"], ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"]], a: ["Mode", "Mean", "Median", "Std Dev"] },
-        { id: 6, marks: 2, type: "MCQ", q: "(2 Marks) Which data structure describes the following data?<br><br><code>[\"Aabid\", \"jesenia\", \"Mark\"]</code>", options: ["Graph", "Table", "List", "Multi-dimensional array"], a: 2 },
-        { id: 7, marks: 4, type: "MATRIX", q: "(4 Marks) You are performing descriptive analysis on quarterly sales data. Move the appropriate statistical metrics from the list on the left to the correct locations on the right. You may use each metric once, more than once.<br><br><img src='metrics_table2.png' style='max-width:100%; border:1px solid #e5e7eb; border-radius:6px; margin-bottom:14px;'><br><span style='font-size:15px; font-style:italic;'>Note: Partial credits will be given for each correct response.</span>", rows: ["1", "2", "3", "4"], cols: ["Average", "Max", "Median", "Min", "Mode", "Sum"], a: { 0: 5, 1: 1, 2: 3, 3: 4 } },
-        { id: 8, marks: 1, type: "DROPDOWN", q: "(1 Mark) What is raw data? [b1]", options: [["Unprocessed Data", "Purely numerical Data", "Summarized Data", "Visualized Data"]], a: ["Unprocessed Data"] },
-        { id: 9, marks: 1, type: "MCQ", q: "(1 Mark) Which Data structure have multiple rows and columns?", options: ["Series", "Table", "One-dimensional Array", "List"], a: 1 },
-        { id: 10, marks: 4, type: "MTF", q: "(4 Marks) Move each function from the list on the left to the correct description on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct response.</span>", options: ["Returns the largest value", "Returns the smallest value", "Returns the number of Values", "Returns the total of the values"], labels: ["Count()", "Max()", "Min()", "Sum()"], a: { "Returns the largest value": "Max()", "Returns the smallest value": "Min()", "Returns the number of Values": "Count()", "Returns the total of the values": "Sum()" } },
-        { id: 11, marks: 2, type: "MCQ", q: "(2 Marks) Person A has 5 coins and person B has 10 coins.<br><br>Which type of data does the number of coins represents?", options: ["Ordinal Data", "Metadata", "Qualitative data", "Quantitative data"], a: 3 }
+        { id: 1, marks: 1, type: "MCQ", q: "What is metadata? (1 Mark)", options: ["Statistics", "The text content of a message", "Numerical facts", "The context that give data meaning"], a: 3 },
+        { id: 2, marks: 2, type: "MCQ", q: "A popular social media site records and count clicks, likes, and dislikes, and other user interactions. What type of data is collected? (2 Marks)", options: ["Continuous data", "Imputed Data", "Qualitative Data", "Big Data"], a: 3 },
+        { id: 3, marks: 1, type: "MCQ", q: "Which data type can store a phrase or sentence? (1 Mark)", options: ["Integer", "String", "Boolean", "Character"], a: 1 },
+        { id: 4, marks: 4, type: "DND_PIVOT", q: "You are performing descriptive analytics on quarterly sales data. Move the appropriate statistical metrics from the list on the left to the correct locations on the right. You may use each metric once, more than once, or not at all.<br><br><table style=\"width:100%; border-collapse:collapse; margin-top:10px;\"><thead><tr style=\"background:#f1f5f9;\"><th style=\"border:1px solid #ddd; padding:8px;\">Region</th><th style=\"border:1px solid #ddd; padding:8px;\">Quarter 1</th><th style=\"border:1px solid #ddd; padding:8px;\">Quarter 2</th><th style=\"border:1px solid #ddd; padding:8px;\">Quarter 3</th><th style=\"border:1px solid #ddd; padding:8px;\">Quarter 4</th></tr></thead><tbody><tr><td style=\"border:1px solid #ddd; padding:8px;\">North</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">25000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">30000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">40000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">50000</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px;\">South</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">35000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">45000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">40000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">55000</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px;\">East</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">35000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">32500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">41000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">52500</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px;\">West</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">34500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">30000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">42500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">55000</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px; font-weight:bold;\">Metric 1</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">129500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">137500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">163500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">212500</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px; font-weight:bold;\">Metric 2</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">35000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">45000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">42500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">55000</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px; font-weight:bold;\">Metric 3</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">25000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">30000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">40000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">50000</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px; font-weight:bold;\">Metric 4</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">35000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">30000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">40000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">55000</td></tr></tbody></table><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct response.</span> (4 Marks)", options: ["Metric 1", "Metric 2", "Metric 3", "Metric 4"], labels: ["Average", "Max", "Median", "Mode", "Sum", "Min"], a: { "Metric 1": "Sum", "Metric 2": "Max", "Metric 3": "Min", "Metric 4": "Mode" } },
+        { id: 5, marks: 4, type: "DROPDOWN", q: "You are analyzing customer satisfaction scores between online purchases and in-store purchases. Satisfaction scores are entered on a scale from 1 (extremely unsatisfied) to 10 (extremely satisfied).<br><br>Select the correct metric from the drop-down list for each statement.<br><br>The most frequent satisfaction score was 5 for online customers and 9 for in-store customers: [b1]<br><br>The average score for online customers was 6.4 and the average score for in-store customers was 7.0: [b2]<br><br>The score at the midpoint between the lowest and the highest scores was 6 for online customers and 7 for in-store customers: [b3]<br><br>The online scores vary from the average by 2.3 and the in-store variance is 1.9: [b4]<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span> (4 Marks)", options: [["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"], ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"], ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"], ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"]], a: ["Mode", "Mean", "Median", "Std Dev"] },
+        { id: 6, marks: 2, type: "MCQ", q: "Which data structure describes the following data?<br><br><code>[\"Aabid\", \"jesenia\", \"Mark\"]</code> (2 Marks)", options: ["Graph", "Table", "List", "Multi-dimensional array"], a: 2 },
+        { id: 8, marks: 1, type: "MCQ", q: "What is raw data? (1 Mark)", options: ["Unprocessed Data", "Purely numerical Data", "Summarized Data", "Visualized Data"], a: 0 },
+        { id: 9, marks: 1, type: "MCQ", q: "Which Data structure have multiple rows and columns? (1 Mark)", options: ["Series", "Table", "One-dimensional Array", "List"], a: 1 },
+        { id: 10, marks: 4, type: "MTF", q: "Move each function from the list on the left to the correct description on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct response.</span> (4 Marks)", options: ["Returns the largest value", "Returns the smallest value", "Returns the number of Values", "Returns the total of the values"], labels: ["Count()", "Max()", "Min()", "Sum()"], a: { "Returns the largest value": "Max()", "Returns the smallest value": "Min()", "Returns the number of Values": "Count()", "Returns the total of the values": "Sum()" } },
+        { id: 11, marks: 2, type: "MCQ", q: "Person A has 5 coins and person B has 10 coins.<br><br>Which type of data does the number of coins represents? (2 Marks)", options: ["Ordinal Data", "Metadata", "Qualitative data", "Quantitative data"], a: 3 }
     ],
     "data2": [
         { id: 1, marks: 1, type: "MCQ", q: "(1 Mark) What is an example of data cleaning?", options: ["Arranging Excel data rows in an order that is easy for a user to read", "Ensuring that the data in a Word table uses a consistent font", "Adding quotation marks to the beginning and end of a tab-delimited file", "Removing non-printable characters from a comma-delimited file"], a: 3 },
@@ -2366,7 +2365,7 @@ var quizData = {
         { id: 13, marks: 4, type: "MATRIX", q: "(4 Marks) From the data in the table below, you create a pivot table to show the combined number of certified virtual and in-person teachers for each class at each school.<br><br>Move the appropriate labels from the list on the left to the correct locations in the Pivot tables on the right. You may use each label once or not at all.<br><br><img src='pivot_teachers_task.png' style='max-width:100%; border:1px solid #e5e7eb; border-radius:6px; margin-bottom:14px;'><br><span style='font-size:15px; font-style:italic;'>Note: You will receive partial credit for each correct response.</span>", rows: ["Label 1", "Label 2", "Label 3", "Label 4"], cols: ["Data Analytics", "Networking", "In-Person", "Virtual", "School A", "School B"], a: { 0: 1, 1: 0, 2: 4, 3: 5 } },
         { id: 14, marks: 1, type: "MCQ", q: "(1 Mark) Your company has summarized a large data set for the region you live in. You need to compare results from urban and rural communities within your region.<br><br>What is the fastest way to obtain the information?", options: ["A. Collect a new Data Sample", "B. Review data from neighbouring regions", "C. Disaggregate the data", "D. Aggregate the data"], a: 2 },
         { id: 15, marks: 1, type: "MCQ", q: "(1 Mark) What concept allows analysts to drill down into data and examine different levels of information that may be crucial in diagnostic analytics?", options: ["Granularity", "Completeness", "Interpretability", "Transparency"], a: 0 },
-        { id: 16, marks: 1, type: "MCQ", q: "(1 Mark) You have a dataset that includes product review scores and demographic information about the reviewers. There are no subcategories associated with the demographic answers. The table shows a selection of the data.<br><br><img src='product_reviews_demographics.png' style='max-width:100%; border:1px solid #e5e7eb; border-radius:6px; margin-bottom:14px;'><br>Which scenario is an example of disaggregating the dataset?", options: ["By average and mode of the scores for each product grouped by the ethnicity of the reviewers", "Display the overall average and mode of all scores on a per-products basis", "Display a list of ethnicities that are included in the other option", "Display the overall average and mode of all scores and a count of all reviews"], a: 0 },
+        { id: 16, marks: 1, type: "MCQ", q: "(1 Mark) You have a dataset that includes product review scores and demographic information about the reviewers. There are no subcategories associated with the demographic answers. The table shows a selection of the data.<br><br><img src='product_reviews_demographics.png' style='max-width:100%; border:1px solid #e5e7eb; border-radius:6px; margin-bottom:14px;'><br>Which scenario is an example of disaggregating the dataset?", options: ["By average and mode of the scores for each product grouped by the ethnicity of the reviewers", "Display the overall average and mode of all scores on a per-products basis", "Display a list of ethnicities that are included in the other option", "Display the overall average and mode of all scores and a count of all reviews"], a: 2 },
         { id: 17, marks: 1, type: "MCQ", q: "(1 Mark) You are reviewing a database of restaurant menu items. The table below shows a selection of the data. You need to display only items on the dessert menu with a type of cake.<br><br><img src='restaurant_menu_data.png' style='max-width:100%; border:1px solid #e5e7eb; border-radius:6px; margin-bottom:14px;'><br>What should you do to nondestructively limit the data display?", options: ["Group the data by menu and then group the data on the dessert menu by type", "Delete all data that has a menu other than dessert. Then delete all data that has a type other than cake", "Add two slicers, one for menu and one for type. Set the menu slicer to dessert and the type slicer to cake", "Sort the data by menu and within each menu, Sort by type"], a: 2 },
         { id: 18, marks: 4, type: "MTF", q: "(4 Marks) You are using data analytics to help answer business questions about a new product your company released.<br><br>Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size:15px; font-style:italic;'>Note: You will receive partial credit for each correct match.</span>", options: ["Descriptive Analysis", "Diagnostic Analysis", "Predictive Analysis", "Prescriptive Analysis"], labels: ["Why did it happens?", "What action should we take next?", "What might happen in future?", "What happened in the initial product release?"], a: { "Descriptive Analysis": "What happened in the initial product release?", "Diagnostic Analysis": "Why did it happens?", "Predictive Analysis": "What might happen in future?", "Prescriptive Analysis": "What action should we take next?" } }
     ],
@@ -2375,7 +2374,7 @@ var quizData = {
             id: 1,
             marks: 1,
             type: "MCQ",
-            q: "(1 Mark) Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x axis and corresponding frequencies on the Y axis?<br>Select the correct visualization type in the answer area.",
+            q: "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x axis and corresponding frequencies on the Y axis?<br>Select the correct visualization type in the answer area. (1 Mark)",
             options: ["Option A", "Option B", "Option C", "Option D"],
             optionImages: ["v3_q1_optA.png", "v3_q1_optB.png", "v3_q1_optC.png", "v3_q1_optD.png"],
             a: 2
@@ -2384,7 +2383,7 @@ var quizData = {
                 "id": 2,
                 "marks": 3,
                 "type": "TF",
-                "q": "(3 Marks) The professional visualization and data table below depict housing prices in a region. Review the visual patterns and the data set carefully.<br><br>For each statement about the visualization, select True or False<br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection</span>",
+"q": "The professional visualization and data table below depict housing prices in a region. Review the visual patterns and the data set carefully.<br><br>For each statement about the visualization, select True or False<br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection</span> (3 Marks)",
                 "img": "housing_prices_professional.png",
                 "options": [
                         "The visualization uses scaling manipulation to exaggerate growth",
@@ -2401,7 +2400,7 @@ var quizData = {
                 "id": 3,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) A colleague shows you the chart below to indicate that Group A has performed significantly better than Group B on a recent assignment. You do not know the sample size or the results of statistical testing. Which chart element creates the impression of a significant score difference?",
+"q": "A colleague shows you the chart below to indicate that Group A has performed significantly better than Group B on a recent assignment. You do not know the sample size or the results of statistical testing. Which chart element creates the impression of a significant score difference? (1 Mark)",
                 "img": "group_comparison_bias.png",
                 "options": [
                         "The x-axis units of measurement",
@@ -2415,7 +2414,7 @@ var quizData = {
                 "id": 4,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) What is the direction of correlation between variable X and variable Y?",
+"q": "What is the direction of correlation between variable X and variable Y? (1 Mark)",
                 "img": "correlation_direction.png",
                 "options": ["Positive", "Negative", "Zero"],
                 "a": 0
@@ -2424,7 +2423,7 @@ var quizData = {
                 "id": 5,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You want to show a friend your monthly budget breakdown to prove that most of your expenditure is food costs. You create a table that shows the flow of money as it moves from one budget category to the next.<br><br>Which visualization type should you use to display your analysis based on the table shown?",
+"q": "You want to show a friend your monthly budget breakdown to prove that most of your expenditure is food costs. You create a table that shows the flow of money as it moves from one budget category to the next.<br><br>Which visualization type should you use to display your analysis based on the table shown? (1 Mark)",
                 "img": "budget_flow_table.png",
                 "options": [
                         "Time Series Chart",
@@ -2438,7 +2437,7 @@ var quizData = {
                 "id": 6,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You work for a recreational sports company. The table shows the company's recreational vehicle sales data. You need to show how each vehicle type contributes to the company's total sales.<br><br>Which visualization should you use? Select the correct visualization in the answer area.",
+"q": "You work for a recreational sports company. The table shows the company's recreational vehicle sales data. You need to show how each vehicle type contributes to the company's total sales.<br><br>Which visualization should you use? Select the correct visualization in the answer area. (1 Mark)",
                 "img": "vehicle_sales_table.png",
                 "optionImages": [
                         "v3_q6_optA.png",
@@ -2453,7 +2452,7 @@ var quizData = {
                 "id": 7,
                 "marks": 3,
                 "type": "TF",
-                "q": "(3 Marks) The visualization and data table depict housing price in a region. Review the visual patterns and the data set carefully.<br><br>For each statement about the visualization, select True or False.<br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection</span>",
+"q": "The visualization and data table depict housing price in a region. Review the visual patterns and the data set carefully.<br><br>For each statement about the visualization, select True or False.<br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection</span> (3 Marks)",
                 "img": "housing_prices_v2_professional.png",
                 "options": [
                         "The visualization accurately depict the housing prices shown in the table",
@@ -2470,7 +2469,7 @@ var quizData = {
                 "id": 8,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) A college shows you the chart below to indicate that group A has performed significantly better than group B on a recent assignment. You don't know the sample size and the result of the statistical testing.<br><br>Which chart element creates the impression of a significant score difference?",
+"q": "A college shows you the chart below to indicate that group A has performed significantly better than group B on a recent assignment. You don't know the sample size and the result of the statistical testing.<br><br>Which chart element creates the impression of a significant score difference? (1 Mark)",
                 "img": "group_comparison_3d_bias.png",
                 "options": [
                         "The X-axis unit of Measurement",
@@ -2484,7 +2483,7 @@ var quizData = {
                 "id": 9,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) The visualization below displays sales data for two salespeople. A conclusion indicates that Salesperson 1 has a higher lead to sale rate than salesperson 2.<br><br>(A lead to sales rate is the number of actual sales divided by the number of attempted sales)<br><br>You need to determine the accuracy of this conclusion. What should you conclude?",
+"q": "The visualization below displays sales data for two salespeople. A conclusion indicates that Salesperson 1 has a higher lead to sale rate than salesperson 2.<br><br>(A lead to sales rate is the number of actual sales divided by the number of attempted sales)<br><br>You need to determine the accuracy of this conclusion. What should you conclude? (1 Mark)",
                 "img": "sales_lead_comparison.png",
                 "options": [
                         "The conclusion is accurate",
@@ -2498,7 +2497,7 @@ var quizData = {
                 "id": 10,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You need to compare three (3) values of each data point in a series which data type should you use?",
+"q": "You need to compare three (3) values of each data point in a series which data type should you use? (1 Mark)",
                 "options": [
                         "Bubble chart",
                         "Area chart",
@@ -2511,7 +2510,7 @@ var quizData = {
                 "id": 11,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You are given a data set displaying the time of day and number of minutes customers waited in line for service. You need to remove bias from the results by eliminating outliers.<br><br>Which visualization illustrates outliers in your dataset? Select the correct visualization in the answer area.",
+"q": "You are given a data set displaying the time of day and number of minutes customers waited in line for service. You need to remove bias from the results by eliminating outliers.<br><br>Which visualization illustrates outliers in your dataset? Select the correct visualization in the answer area. (1 Mark)",
                 "optionImages": [
                         "v3_q11_opt1.png",
                         "v3_q11_opt2.png",
@@ -2525,7 +2524,7 @@ var quizData = {
                 "id": 12,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You want to show a friend your monthly budget breakdown to prove that most of your expenditure is food costs. You create a table that shows the flow of money as it moves one budget category to the next.<br><br>Which visualization type should you use to display your analysis based on the table shown?",
+"q": "You want to show a friend your monthly budget breakdown to prove that most of your expenditure is food costs. You create a table that shows the flow of money as it moves one budget category to the next.<br><br>Which visualization type should you use to display your analysis based on the table shown? (1 Mark)",
                 "img": "budget_flow_v2.png",
                 "options": [
                         "Time Series Chart",
@@ -2539,7 +2538,7 @@ var quizData = {
                 "id": 13,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the y-axis? Select the correct visualization type in the answer area.",
+"q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the y-axis? Select the correct visualization type in the answer area. (1 Mark)",
                 "optionImages": [
                         "v3_q13_opt1.png",
                         "v3_q13_opt2.png",
@@ -2553,7 +2552,7 @@ var quizData = {
                 "id": 14,
                 "marks": 1,
                 "type": "MCQ2",
-                "q": "(1 Mark) Which two chart types should you use to rank values in ascending or descending order? (choose 2)<br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection</span>",
+"q": "Which two chart types should you use to rank values in ascending or descending order? (choose 2)<br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection</span> (1 Mark)",
                 "options": [
                         "Bar chart",
                         "Column chart",
@@ -2566,7 +2565,7 @@ var quizData = {
                 "id": 15,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) For which scenario should you use a line chart to represent the data?",
+"q": "For which scenario should you use a line chart to represent the data? (1 Mark)",
                 "options": [
                         "The weekly average stock price during a one-year period",
                         "The proportion of yes and no answer to a survey question",
@@ -2579,7 +2578,7 @@ var quizData = {
                 "id": 16,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You create the column chart below, which shows sales for different years. Management asks for a way to see demographic information associated with the individual sales records for each year.<br><br>You decide to create tables for each year that show the demographic information for the sales in that year. When someone clicks, the associated table will open.<br><br>Which reporting technique does this represent?",
+"q": "You create the column chart below, which shows sales for different years. Management asks for a way to see demographic information associated with the individual sales records for each year.<br><br>You decide to create tables for each year that show the demographic information for the sales in that year. When someone clicks, the associated table will open.<br><br>Which reporting technique does this represent? (1 Mark)",
                 "img": "sales_by_year_column.png",
                 "options": [
                         "Disaggregating",
@@ -2593,7 +2592,7 @@ var quizData = {
                 "id": 17,
                 "marks": 1,
                 "type": "DROPDOWN",
-                "q": "(1 Mark) Which correlation range most likely describes the relationship between Variable X and Variable Y based on the visualization below? Select the correct answer from the dropdown.",
+"q": "Which correlation range most likely describes the relationship between Variable X and Variable Y based on the visualization below? Select the correct answer from the dropdown. (1 Mark)",
                 "img": "scatter_correlation_v2.png",
                 "code": "Relationship Analysis → [b1]",
                 "options": [
@@ -2605,7 +2604,7 @@ var quizData = {
                 "id": 18,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) A group of students was asked about their favorite flavor of ice cream. The pie chart below illustrates the proportion of each response.<br><br>What can you conclude from the visualization below about ice cream preference for this group of students?",
+"q": "A group of students was asked about their favorite flavor of ice cream. The pie chart below illustrates the proportion of each response.<br><br>What can you conclude from the visualization below about ice cream preference for this group of students? (1 Mark)",
                 "img": "ice_cream_pie_chart.png",
                 "options": [
                         "The fewest students chose strawberry",
@@ -2619,7 +2618,7 @@ var quizData = {
                 "id": 19,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) An analyst claims the visualization below implies that Variable X <b>causes</b> Variable Y. Is the analyst correct in this assertion?",
+"q": "An analyst claims the visualization below implies that Variable X <b>causes</b> Variable Y. Is the analyst correct in this assertion? (1 Mark)",
                 "img": "scatter_correlation_v2.png",
                 "options": [
                         "Yes",
@@ -2631,7 +2630,7 @@ var quizData = {
                 "id": 20,
                 "marks": 4,
                 "type": "TF",
-                "q": "(4 Marks) You are analyzing statistics for online and in-store purchases with data collected over the past year. Data collected includes surveys from 300 instore customers and 300 online customers.<br><br>Based on the data visualization below, identify which statements about customer purchases over the last year are correct and which statements are incorrect. Select True if the statement is correct or False if the statement is incorrect.<br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection.</span>",
+"q": "You are analyzing statistics for online and in-store purchases with data collected over the past year. Data collected includes surveys from 300 instore customers and 300 online customers.<br><br>Based on the data visualization below, identify which statements about customer purchases over the last year are correct and which statements are incorrect. Select True if the statement is correct or False if the statement is incorrect.<br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection.</span> (4 Marks)",
                 "img": "purchase_stats_comparison.png",
                 "options": [
                         "In-store customers spent more money than online customers.",
@@ -2645,7 +2644,7 @@ var quizData = {
                 "id": 21,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You are responsible for e-commerce sales at your company. You need to present the quarterly data shown in the table to upper management using the most accurate and unbiased visualization.<br><br>Which visualization should you choose? Select the correct visualization in the answer area.",
+"q": "You are responsible for e-commerce sales at your company. You need to present the quarterly data shown in the table to upper management using the most accurate and unbiased visualization.<br><br>Which visualization should you choose? Select the correct visualization in the answer area. (1 Mark)",
                 "img": "quarterly_sales_table.png",
                 "optionImages": [
                         "v3_q21_opt1.png",
@@ -2662,7 +2661,7 @@ var quizData = {
                 "id": 1,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) What is an example of machine learning in predictive analysis?",
+"q": "What is an example of machine learning in predictive analysis? (1 Mark)",
                 "options": [
                         "Your thermostat adjusts to a higher temperature because you programmed it based on the time of day",
                         "Your streaming service suggests a category of movies based on the last ten movies you watched.",
@@ -2675,7 +2674,7 @@ var quizData = {
                 "id": 2,
                 "marks": 1,
                 "type": "MCQ2",
-                "q": "(1 Mark) In the United States and Europe, which two data points are considered <b>non-sensitive PII</b> (personal identifiable information)? (choose 2)",
+"q": "In the United States and Europe, which two data points are considered <b>non-sensitive PII</b> (personal identifiable information)? (choose 2) (1 Mark)",
                 "options": [
                         "Bank account number",
                         "Medical records",
@@ -2688,7 +2687,7 @@ var quizData = {
                 "id": 3,
                 "marks": 3,
                 "type": "TF",
-                "q": "(3 Marks) For each statement about <b>data mining</b>, select True if the statement is correct or False if it is incorrect. <br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection.</span>",
+"q": "For each statement about <b>data mining</b>, select True if the statement is correct or False if it is incorrect. <br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection.</span> (3 Marks)",
                 "options": [
                         "Data mining is used to find anomalies",
                         "Data mining is used to summarize raw data from large data sets",
@@ -2699,30 +2698,24 @@ var quizData = {
         {
                 "id": 4,
                 "marks": 5,
-                "type": "MTF",
-                "q": "(5 Marks) Match the type of data analysis on the left to the analysis question it answers on the right. You may use each item once or not at all.<br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct response.</span>",
-                "img": "analysis_types_matching.png",
-                "options": ["Descriptive", "Predictive", "Hypothesis Testing", "Diagnostic", "Prescriptive"],
-                "labels": [
-                        "What happened?",
-                        "Why did it happen?",
-                        "What should we do next?",
-                        "Is there enough evidence to draw conclusion",
-                        "What will happen"
-                ],
+                "type": "DND_PIVOT",
+                "q": "Match the type of data analysis on the left to the analysis question it answers on the right. You may use each item once or not at all.<br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct response.</span> (5 Marks)<br><br><div style='background: white; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;'><table style='width: 100%; border-collapse: separate; border-spacing: 0 12px;'><thead><tr><th style='text-align: left; font-weight: 800; color: #1e3a5f; text-transform: uppercase; font-size: 13px; padding-bottom: 10px;'>Analysis Question</th><th style='width: 150px;'></th></tr></thead><tbody><tr><td style='padding: 10px; font-weight: 600; color: #334155;'>What happened?</td><td style='text-align: right;'>Box 1</td></tr><tr><td style='padding: 10px; font-weight: 600; color: #334155;'>Why did it happen?</td><td style='text-align: right;'>Box 2</td></tr><tr><td style='padding: 10px; font-weight: 600; color: #334155;'>What should we do next?</td><td style='text-align: right;'>Box 3</td></tr><tr><td style='padding: 10px; font-weight: 600; color: #334155;'>Is there enough evidence to draw conclusion</td><td style='text-align: right;'>Box 4</td></tr><tr><td style='padding: 10px; font-weight: 600; color: #334155;'>What will happen</td><td style='text-align: right;'>Box 5</td></tr></tbody></table></div>",
+                "poolHeader": "Analysis Type",
+                "options": ["Box 1", "Box 2", "Box 3", "Box 4", "Box 5"],
+                "labels": ["Descriptive analysis", "Predictive analysis", "Hypothesis Testing", "Diagnostic analysis", "Prescriptive analysis"],
                 "a": {
-                        "Descriptive": "What happened?",
-                        "Predictive": "What will happen",
-                        "Hypothesis Testing": "Is there enough evidence to draw conclusion",
-                        "Diagnostic": "Why did it happen?",
-                        "Prescriptive": "What should we do next?"
+                        "Box 1": "Descriptive analysis",
+                        "Box 2": "Diagnostic analysis",
+                        "Box 3": "Prescriptive analysis",
+                        "Box 4": "Hypothesis Testing",
+                        "Box 5": "Predictive analysis"
                 }
         },
         {
                 "id": 5,
                 "marks": 1,
                 "type": "MCQ3",
-                "q": "(1 Mark) You are tasked with completing a data analysis project for a large organization. During the project, you must handle personally identifiable information (PII).<br><br>Throughout the project, which <b>three principles</b> should you follow? (Choose 3)",
+"q": "You are tasked with completing a data analysis project for a large organization. During the project, you must handle personally identifiable information (PII).<br><br>Throughout the project, which <b>three principles</b> should you follow? (Choose 3) (1 Mark)",
                 "options": [
                         "Limit your handling of the PII to only what is necessary for the current analysis.",
                         "Remove all PII from your computer after the analysis is complete.",
@@ -2736,7 +2729,7 @@ var quizData = {
                 "id": 6,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You are analyzing sales and determining trends based on a very large dataset that includes the following columns:<br><ul><li>CustomerName</li><li>CustomerEmail</li><li>Birthdate</li><li>FirstPurchaseDate</li><li>MostRecentPurchaseDate</li><li>TotalQuantityPurchased</li><li>TotalSalesAmount</li></ul>You need to validate the data before you start analysis. What should you do?",
+"q": "You are analyzing sales and determining trends based on a very large dataset that includes the following columns:<br><ul><li>CustomerName</li><li>CustomerEmail</li><li>Birthdate</li><li>FirstPurchaseDate</li><li>MostRecentPurchaseDate</li><li>TotalQuantityPurchased</li><li>TotalSalesAmount</li></ul>You need to validate the data before you start analysis. What should you do? (1 Mark)",
                 "options": [
                         "Analyze FirstPurchaseDates to determine purchasing trends",
                         "Calculate statistics for TotalQuantityPurchased",
@@ -2749,7 +2742,7 @@ var quizData = {
                 "id": 7,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) A data scientist at your company creates a machine learning model to help the hiring manager select candidates from thousands of job applicants.<br><br>Which statement best describes how <b>machine learning</b> is used in this scenario?",
+"q": "A data scientist at your company creates a machine learning model to help the hiring manager select candidates from thousands of job applicants.<br><br>Which statement best describes how <b>machine learning</b> is used in this scenario? (1 Mark)",
                 "options": [
                         "A machine learning model defines the qualifications necessary for a given job or role",
                         "The machine learning model uses historical data and algorithms to predict future applicant performance",
@@ -2762,7 +2755,7 @@ var quizData = {
                 "id": 8,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You ran a t-test with an alpha value of 1% (a=0.01).<br><br>Which p-value would cause you to <b>reject</b> the null hypothesis?",
+"q": "You ran a t-test with an alpha value of 1% (a=0.01).<br><br>Which p-value would cause you to <b>reject</b> the null hypothesis? (1 Mark)",
                 "options": [
                         "0.001",
                         "0.011",
@@ -2775,7 +2768,7 @@ var quizData = {
                 "id": 9,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You want to know whether there is a significant difference between the average test scores of male and female students in the same class. You check that the data is approximately normally distributed and that each group has similar variance.<br><br>How would you decide whether the difference in the test score between male and female students is significant?",
+"q": "You want to know whether there is a significant difference between the average test scores of male and female students in the same class. You check that the data is approximately normally distributed and that each group has similar variance.<br><br>How would you decide whether the difference in the test score between male and female students is significant? (1 Mark)",
                 "options": [
                         "Perform a t-test using the means and variance for male and female students and if p-value is greater than 0.05 decide that the difference is significant.",
                         "Perform a t-test using the medians and variance for male and female students and if p-value is less than 0.05 decide that the difference is significant.",
@@ -2788,7 +2781,7 @@ var quizData = {
                 "id": 10,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) What is the goal of data privacy and protection laws such as GDPR, FERPA, and HIPAA?",
+"q": "What is the goal of data privacy and protection laws such as GDPR, FERPA, and HIPAA? (1 Mark)",
                 "options": [
                         "To hold violators accountable for mishandling data",
                         "To tax companies that use private data",
@@ -2801,7 +2794,7 @@ var quizData = {
                 "id": 11,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You have a small dataset that contains personally identifiable information (PII). You need to provide the data to an outside source for additional processing.<br><br>What could you do to protect the PII but still allow you to eventually relate the additional analysis to your original data?",
+"q": "You have a small dataset that contains personally identifiable information (PII). You need to provide the data to an outside source for additional processing.<br><br>What could you do to protect the PII but still allow you to eventually relate the additional analysis to your original data? (1 Mark)",
                 "options": [
                         "Remove every instance of PII in the original dataset and add them back after the new dataset is retrieved.",
                         "Retain every text-based PII in the original dataset but convert them to number-based features in the new dataset.",
@@ -2814,7 +2807,7 @@ var quizData = {
                 "id": 12,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You are analyzing sales activity that occurs on national holidays.<br><br>What level of data granularity will enable you to perform the most precise analysis?",
+"q": "You are analyzing sales activity that occurs on national holidays.<br><br>What level of data granularity will enable you to perform the most precise analysis? (1 Mark)",
                 "options": [
                         "Years",
                         "Months",
@@ -2828,7 +2821,7 @@ var quizData = {
                 "id": 13,
                 "marks": 3,
                 "type": "TF",
-                "q": "(3 Marks) For each statement about machine learning, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+"q": "For each statement about machine learning, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span> (3 Marks)",
                 "options": [
                         "Machine learning can predict the probability of rain in a region by examining known weather patterns.",
                         "Machine learning can help determine whether a candidate will pass an exam without looking at historical scores.",
@@ -2840,7 +2833,7 @@ var quizData = {
                 "id": 14,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) In which scenario will artificial intelligence (AI) provide the greatest benefit?",
+"q": "In which scenario will artificial intelligence (AI) provide the greatest benefit? (1 Mark)",
                 "options": [
                         "Interpreting fundraising sales data for a college team",
                         "Recording daily sales for three stores owned by one franchise owner",
@@ -2853,7 +2846,7 @@ var quizData = {
                 "id": 15,
                 "marks": 2,
                 "type": "MCQ2",
-                "q": "(2 Marks) Which two concepts are commonly associated with artificial intelligence (AI) in data analytics?<br><span style='font-size: 15px; font-style: italic;'>Each correct answer presents a complete solution. (Choose 2.)</span>",
+"q": "Which two concepts are commonly associated with artificial intelligence (AI) in data analytics?<br><span style='font-size: 15px; font-style: italic;'>Each correct answer presents a complete solution. (Choose 2.)</span> (2 Marks)",
                 "options": [
                         "Cost-Benefit Analysis",
                         "Stakeholder Mapping",
@@ -2866,7 +2859,7 @@ var quizData = {
                 "id": 16,
                 "marks": 2,
                 "type": "MCQ2",
-                "q": "(2 Marks) For which two reasons is it risky to make generalizations from limited sample data?<br><span style='font-size: 15px; font-style: italic;'>Each correct answer presents a complete solution. (Choose 2.)</span>",
+"q": "For which two reasons is it risky to make generalizations from limited sample data?<br><span style='font-size: 15px; font-style: italic;'>Each correct answer presents a complete solution. (Choose 2.)</span> (2 Marks)",
                 "options": [
                         "Findings from a smaller sample size may not be as precise",
                         "Analyzing data from a smaller sample size is faster",
@@ -2879,7 +2872,7 @@ var quizData = {
                 "id": 17,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You believe playing video games increases the chance of a person getting a heart attack. In your research, you notice equal evidence favoring your hypothesis and opposed to it. You spend hours trying to identify problems with the evidence opposed to your hypothesis, but readily accept the evidence in favor.<br><br>Which type of bias are you demonstrating?",
+"q": "You believe playing video games increases the chance of a person getting a heart attack. In your research, you notice equal evidence favoring your hypothesis and opposed to it. You spend hours trying to identify problems with the evidence opposed to your hypothesis, but readily accept the evidence in favor.<br><br>Which type of bias are you demonstrating? (1 Mark)",
                 "options": [
                         "Motivated Reasoning",
                         "Anchoring bias",
@@ -2892,7 +2885,7 @@ var quizData = {
                 "id": 18,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You conduct a study to identify how much time people exercise daily. You recruit all the study participants at the gym.<br><br>Which type of bias are you demonstrating?",
+"q": "You conduct a study to identify how much time people exercise daily. You recruit all the study participants at the gym.<br><br>Which type of bias are you demonstrating? (1 Mark)",
                 "options": [
                         "Anchoring bias",
                         "Motivated reasoning",
@@ -2905,7 +2898,7 @@ var quizData = {
                 "id": 19,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) You run a t-test with an alpha value of 5% (a = 0.05) in order to test an alternative hypothesis (H1). You finish the analysis and discover the p-value is 0.017.<br><br>What can you conclude about the null hypothesis (H0)?",
+"q": "You run a t-test with an alpha value of 5% (a = 0.05) in order to test an alternative hypothesis (H1). You finish the analysis and discover the p-value is 0.017.<br><br>What can you conclude about the null hypothesis (H0)? (1 Mark)",
                 "options": [
                         "You reject the null hypothesis (H0)",
                         "You fail to reject the null hypothesis (H0)",
@@ -2918,7 +2911,7 @@ var quizData = {
                 "id": 20,
                 "marks": 1,
                 "type": "MCQ3",
-                "q": "(1 Mark) Select three ways that machine learning algorithms are used in data analysis.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 3.)</span>",
+"q": "Select three ways that machine learning algorithms are used in data analysis.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 3.)</span> (1 Mark)",
                 "options": [
                         "Time Series Analysis",
                         "Anomaly Detection",
@@ -2933,7 +2926,7 @@ var quizData = {
                 "id": 21,
                 "marks": 1,
                 "type": "MCQ2",
-                "q": "(1 Mark) Each month, you need to automatically transform the data from two XML documents into a single flat file with columns and rows that Excel can open and interpret. The document names and structure remain constant. You know the relationships between the two XML documents.<br><br>Which two resources can you use?<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 2.)</span>",
+"q": "Each month, you need to automatically transform the data from two XML documents into a single flat file with columns and rows that Excel can open and interpret. The document names and structure remain constant. You know the relationships between the two XML documents.<br><br>Which two resources can you use?<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 2.)</span> (1 Mark)",
                 "options": [
                         "Python",
                         "Microsoft Word",
@@ -2946,7 +2939,7 @@ var quizData = {
                 "id": 22,
                 "marks": 1,
                 "type": "MCQ",
-                "q": "(1 Mark) A popular social media site records and counts clicks, likes, dislikes, and other user interactions.<br><br>What type of data is collected?",
+"q": "A popular social media site records and counts clicks, likes, dislikes, and other user interactions.<br><br>What type of data is collected? (1 Mark)",
                 "options": [
                         "Continuous Data",
                         "Imputed Data",
@@ -3040,24 +3033,16 @@ var quizData = {
             options: ["Pivoting", "Filtering", "Merging", "Grouping"], 
             a: [0, 3] 
         },
+        
         { 
             id: 7, 
-            type: "MTF", 
-            q: "<strong>Statistical Metrics:</strong> You are performing descriptive analysis on quarterly sales data. <br><br>Move the appropriate statistical metrics from the list on the left to the correct row numbers (1-4) shown in the summary area of the table provided below.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>", 
-            img: "statistical_metrics_v2.png", 
-            options: ["Row 1", "Row 2", "Row 3", "Row 4"], 
-            labels: ["Sum", "Max", "Min", "Mode", "Average", "Median"], 
-            a: { "Row 1": "Sum", "Row 2": "Max", "Row 3": "Min", "Row 4": "Mode" } 
-        },
-        { 
-            id: 8, 
             type: "MCQ", 
             q: "Which data type can store a phrase or sentence?", 
             options: ["Integer", "Character", "String", "Boolean"], 
             a: 2 
         },
         { 
-            id: 9, 
+            id: 8, 
             type: "MCQ2", 
             q: "A coworker is having trouble joining two database tables, Table A and Table B, that were imported from CSV files. They say the tables have no common values.<br><br>You troubleshoot the problem and find that the <b>RowKey</b> values in TableA and the <b>RowID</b> values in TableB look identical (e.g., three numbers, a dash, and two letters).<br><br>Which <b>two</b> actions should you complete next? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", 
             options: [
@@ -3069,14 +3054,14 @@ var quizData = {
             a: [1, 2] 
         },
         { 
-            id: 10, 
+            id: 9, 
             type: "MCQ2", 
             q: "Each month you need to automatically transform the data from two XML documents into a single flat file with columns and rows that Excel can open and interpret. The document names and structure remain constant. You know the relationship between the two XML documents.<br><br>Which <b>two</b> resources can you use? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", 
             options: ["Json", "Power Query for Excel (M)", "Microsoft Excel", "Python"], 
             a: [1, 3] 
         },
         { 
-            id: 11, 
+            id: 10, 
             type: "MCQ", 
             q: "What is the goal of data privacy and protection laws such as GDPR, FERPA, and HIPAA?", 
             options: [
@@ -3088,7 +3073,7 @@ var quizData = {
             a: 0 
         },
         { 
-            id: 12, 
+            id: 11, 
             type: "MCQ", 
             q: "You have a small dataset that contains personally identifiable information (PII). You need to provide the data to an outside source for additional processing.<br><br>What could you do to protect the PII but still allow you to eventually relate the additional analysis to your original data?", 
             options: [
@@ -3100,7 +3085,7 @@ var quizData = {
             a: 0 
         },
         { 
-            id: 13, 
+            id: 12, 
             type: "TF", 
             q: "The visualization and the data table depict housing prices in a region. For each statement about the visualization, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", 
             img: "housing_prices_color_final.png", 
@@ -3112,21 +3097,21 @@ var quizData = {
             a: [false, false, true] 
         },
         { 
-            id: 14, 
+            id: 13, 
             type: "MCQ", 
             q: "What is a raw data?", 
             options: ["Unprocessed Data", "Purely numerical Data", "Summarized Data", "Visualized Data"], 
             a: 0 
         },
         { 
-            id: 15, 
+            id: 14, 
             type: "MCQ", 
             q: "You are analyzing sales activity that occurs on national holidays.<br><br>What level of data granularity will enable you to perform the most precise analysis?", 
             options: ["Years", "Months", "Weeks", "Days", "Hours"], 
             a: 4 
         },
         { 
-            id: 16, 
+            id: 15, 
             type: "MCQ", 
             q: "What is an example of data cleaning?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
             options: [
@@ -3138,14 +3123,14 @@ var quizData = {
             a: 3 
         },
         { 
-            id: 17, 
+            id: 16, 
             type: "MCQ", 
             q: "A popular social media site records and counts clicks, likes, and dislikes and other user interactions.<br><br>What type of data is collected?", 
             options: ["Continuous data", "Qualitative data", "Imputed data", "Big data"], 
             a: 3 
         },
         { 
-            id: 18, 
+            id: 17, 
             type: "MCQ", 
             q: "You work for a recreational sports company. The table shows the company's recreational vehicle sales.<br><br>You need to show how each vehicle type contributes to the company's total sales.<br><br>Which visualization should you use? Select the correct visualization in the answer area.", 
             img: "recreational_sales_table.png", 
@@ -3159,7 +3144,7 @@ var quizData = {
             a: 0 
         },
         { 
-            id: 19, 
+            id: 18, 
             type: "MATRIX", 
             q: "From the data in the table below, you create a pivot table to show the combined number of certified virtual and in-person teachers for each class at each school.<br><br>Move the appropriate labels from the list on the left to the correct locations in the Pivot tables on the right. You may use each label once or not at all.", 
             img: "pivot_table_question.png",
@@ -3168,21 +3153,21 @@ var quizData = {
             a: [1, 0, 4, 5] 
         },
         { 
-            id: 20, 
+            id: 19, 
             type: "MCQ", 
             q: "Your company has summarized a large data set for the region you live in. You need to compare results from urban and rural communities within your region.<br><br>What is the fastest way to obtain the information?", 
             options: ["Collect a new Data Sample", "Review data from neighbouring regions", "Disaggregate the data", "Aggregate the data"], 
             a: 2 
         },
         { 
-            id: 21, 
+            id: 20, 
             type: "MCQ", 
             q: "What concept allows analysts to drill down into data and examine different levels of information that may be crucial in diagnostic analytics?", 
             options: ["Granularity", "Completeness", "Interpretability", "Transparency"], 
             a: 0 
         },
         { 
-            id: 22, 
+            id: 21, 
             type: "TF", 
             q: "For each statement about the machine learning select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", 
             options: [
@@ -3193,14 +3178,14 @@ var quizData = {
             a: [true, false, true] 
         },
         { 
-            id: 23, 
+            id: 22, 
             type: "MCQ", 
             q: "Which Data structure have multiple rows and columns?", 
             options: ["Series", "Table", "One-dimensional Array", "List"], 
             a: 1 
         },
         { 
-            id: 24, 
+            id: 23, 
             type: "MCQ", 
             q: "In which scenario will artificial intelligence (AI) provide the greatest benefit?", 
             options: [
@@ -3212,7 +3197,7 @@ var quizData = {
             a: 0 
         },
         { 
-            id: 25, 
+            id: 24, 
             type: "MTF", 
             q: "Move each function from the list on the left to the correct description on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>", 
             options: ["Returns the largest value", "Returns the smallest value", "Returns the number of Values", "Returns the total of the values"], 
@@ -3225,14 +3210,14 @@ var quizData = {
             }
         },
         { 
-            id: 26, 
+            id: 25, 
             type: "MCQ", 
             q: "Person A has 5 coins and person B has 10 coins.<br><br>Which type of data does the number of coins represent?", 
             options: ["Ordinal Data", "Metadata", "Qualitative data", "Quantitative data"], 
             a: 3 
         },
         { 
-            id: 27, 
+            id: 26, 
             type: "MCQ", 
             q: "You have a dataset that includes product review scores and demographic information about the reviewers. There are no subcategories associated with the demographic answers. The table shows a selection of the data.<br><br>Which Scenario is an example of disaggregating the dataset?", 
             img: "disaggregation_dataset_v3.png",
@@ -3242,17 +3227,17 @@ var quizData = {
                 "Display a list of ethnicities that are included in the other option",
                 "Display the overall average and mode of all scores and a count of all reviews"
             ], 
-            a: 0 
+            a: 2 
         },
         { 
-            id: 28, 
+            id: 27, 
             type: "MCQ2", 
             q: "Which two concepts are commonly associated with artificial intelligence (AI) in data analytics?<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 2.)</span>", 
             options: ["Cost-Benefit Analysis", "Stakeholder Mapping", "Automation", "Machine Learning"], 
             a: [2, 3] 
         },
         { 
-            id: 29, 
+            id: 28, 
             type: "MCQ2", 
             q: "For which two reasons is it risky to make generalizations from limited sample data?<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 2.)</span>", 
             options: [
@@ -3264,7 +3249,7 @@ var quizData = {
             a: [1, 2] 
         },
         { 
-            id: 30, 
+            id: 29, 
             type: "MCQ", 
             q: "You are reviewing a database of restaurant menu items. The table below shows a selection of the data.<br>You need to display only items on the dessert menu with a type of cake.<br><br>What should you do to nondestructively limit the data display?", 
             img: "restaurant_menu_dataset.png",
@@ -3277,7 +3262,7 @@ var quizData = {
             a: 2 
         },
         { 
-            id: 31, 
+            id: 30, 
             type: "MCQ", 
             q: "You want to show a friend your monthly budget breakdown to prove that most of your expenditure is food costs. You create a table that shows the flow of money as it moves one budget category to the next.<br><br>Which visualization type should you use to display your analysis based on the table shown?", 
             img: "budget_flow_dataset_v2.png",
@@ -3285,21 +3270,21 @@ var quizData = {
             a: 2 
         },
         { 
-            id: 32, 
+            id: 31, 
             type: "MCQ", 
             q: "The Marketing team wants to know which market segment have the highest sales in the last year.<br><br>Which type of data analysis should they use?", 
             options: ["Perspective analytics", "Diagnostic Analytics", "Predictive Analytics", "Descriptive Analytics"], 
             a: 3 
         },
         { 
-            id: 33, 
+            id: 32, 
             type: "MCQ", 
             q: "You Believe Playing video game's increases the chance of man getting heart attack. In your research you notice equal evidences in favouring your hypothesis and opposed to it. You tried hours trying to identify the problems with the evidence opposed to your hypothesis, but readily accept the evidence in favor.<br><br>Which type of bias are you demonstrating?", 
             options: ["Motivated Reasoning", "Confirmation Bias", "Anchoring Bias", "Sampling Bias"], 
             a: 1 
         },
         { 
-            id: 34, 
+            id: 33, 
             type: "TF", 
             q: "<strong>Data Disaggregation:</strong> For each statement about data disaggregation, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", 
             options: [
@@ -3310,7 +3295,7 @@ var quizData = {
             a: [false, false, true] 
         },
         { 
-            id: 35, 
+            id: 34, 
             type: "MCQ", 
             q: "A college shows you the chart below to indicate that group A has performed significantly better than group B on a recent assignment. You don't know the sample size and the result of the statistical testing.<br><br>Which chart element creates the impression of a significant score difference?", 
             img: "scaling_manipulation_chart.png",
@@ -3323,21 +3308,21 @@ var quizData = {
             a: 1 
         },
         { 
-            id: 36, 
+            id: 35, 
             type: "MCQ", 
             q: "You conduct a study to identify how much people exercise daily. You recruit all the study participants at the gyms.<br><br>Which type of bias are you demonstrating?", 
             options: ["Anchoring bias", "Confirmation Bias", "Motivated Bias", "Sampling bias"], 
             a: 3 
         },
         { 
-            id: 37, 
+            id: 36, 
             type: "MCQ", 
             q: "Which Statement correctly assigns a string to the variable that is name score?", 
             options: ["Score=true", "Score=String[7]", "Score=\"&\"", "Score= 7\""], 
             a: 2 
         },
         { 
-            id: 38, 
+            id: 37, 
             type: "MTF", 
             q: "You are using data analytics to help answer business questions about a new product your company released.<br><br>Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>", 
             options: [
@@ -3360,7 +3345,7 @@ var quizData = {
             }
         },
         { 
-            id: 39, 
+            id: 38, 
             type: "MCQ", 
             q: "You run a t-test with alpha value of 5% (a= 0.05) in order to test an alternative hypothesis (H1). You finish the analysis and discover the P-value is 0.017.<br><br>What can you conclude about the null hypothesis (H0)?", 
             options: [
@@ -3372,7 +3357,7 @@ var quizData = {
             a: 3 
         },
         { 
-            id: 40, 
+            id: 39, 
             type: "MCQ", 
             q: "You have a comma-delimited file with 100,000 rows and 200 columns of phone sales data. One column represents the Phone manufacturer.<br><br>You need to analyze all sales data for a specific manufacturer.<br><br>Which technique should you use?", 
             options: ["Deleting", "Transposing", "Truncating", "Filtering"], 
@@ -3603,7 +3588,7 @@ var quizData = {
                 "Display average and mode of the scores for each product grouped by the ethnicity of the reviewers.",
                 "Display the overall average and mode of all scores and a count of all reviews."
             ], 
-            a: 2 
+            a: 1 
         },
         { 
             id: 19, 
@@ -3844,9 +3829,9 @@ var quizData = {
             type: "MATRIX", 
             q: "You are performing descriptive analytics on quarterly sales data. Move the appropriate statistical metrics from the list on the left to the correct locations on the right.<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct response.</span><br><span style='font-size: 13px; color: #64748b;'>4 points</span>", 
             img: "quarterly_sales_metrics.png",
-            rows: ["Metric 1", "Metric 2", "Metric 3", "Metric 4"],
+            rows: ["Metric 1", "Metric 2", "Metric 3", "Metric 4", "Metric 5", "Metric 6"],
             cols: ["Average", "Max", "Median", "Mode", "Sum", "Min"],
-            a: [4, 1, 5, 3] 
+            a: [4, 1, 5, 3, 0, 2] 
         }
     ],
     "da_mock3": [
@@ -4231,6 +4216,19 @@ var quizData = {
                         false,
                         true
                 ]
+        },
+        {
+                "id": 29,
+                "type": "MCQ3",
+                "q": "A domestic flight company wants to forecast flight delays and cancellations to provide the best experience to their customers. Which three approaches would a data scientist use for this task? (Choose 3.)<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+                "options": [
+                        "Using structured data",
+                        "Building predictive analysis models using machine learning",
+                        "Using only current local weather",
+                        "Proposing when a flight might be delayed without using data mining",
+                        "Using unstructured data"
+                ],
+                "a": [0, 1, 4]
         }
     ],
     "data1": [
@@ -4297,7 +4295,7 @@ var quizData = {
             "id": 1,
             "marks": 1,
             "type": "MCQ",
-            "q": "(1 Mark) You are responsible for e-commerce sales at your company. You need to present the quarterly data shown in the table to upper management using the most accurate unbiased visualization.<br><br>Which visualization should you choose?<br>Select the correct visualization in the answer area.",
+"q": "You are responsible for e-commerce sales at your company. You need to present the quarterly data shown in the table to upper management using the most accurate unbiased visualization.<br><br>Which visualization should you choose?<br>Select the correct visualization in the answer area. (1 Mark)",
             "img": "quarterly_sales_table.png",
             "optionImages": [
                 "v3_q21_opt1.png",

@@ -298,7 +298,7 @@ html_content = """
             <div class="quiz-cta">
                 <h3>Responsible Analytics Mastery Complete!</h3>
                 <p>You've learned how to handle data securely, ethically, and without bias.</p>
-                <a href="module_quiz.html?mod=data5" class="btn-start-quiz">Start Final Assessment &rarr;</a>
+                <a href="module_quiz.html?mod=data5" class="btn-start-quiz">Start Assessment &rarr;</a>
             </div>
 """
 

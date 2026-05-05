@@ -7,6 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         :root {
             --primary-blue: #1e3a5f;
             --accent-blue: #38bdf8;
@@ -81,32 +86,139 @@
         .sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         .sidebar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
+        /* ─── ENHANCED ACCORDION SIDEBAR ─── */
+        .sidebar {
+            width: 320px; background: white; padding: 25px;
+            border: 1px solid var(--border-color); position: sticky;
+            top: 100px; border-radius: 20px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+        }
+
         .sidebar h3 {
-            font-family: 'Montserrat', sans-serif; font-size: 12px;
+            font-family: 'Montserrat', sans-serif; font-size: 11px;
             color: var(--accent-blue); text-transform: uppercase;
             margin-bottom: 20px; border-bottom: 2px solid var(--bg-light);
-            padding-bottom: 10px; font-weight: 800; letter-spacing: 1px;
+            padding-bottom: 10px; font-weight: 800; letter-spacing: 1.5px;
         }
 
-        .sidebar a {
-            display: block; padding: 12px 15px;
-            color: var(--text-muted); text-decoration: none; font-size: 14px;
-            font-weight: 500; margin-bottom: 5px; border-radius: 8px;
-            transition: all 0.2s;
+        .accordion-item {
+            margin-bottom: 12px;
         }
 
-        .sidebar a.active {
-            color: var(--primary-blue); font-weight: 700;
-            background: #eff6ff; border-left: 4px solid var(--primary-blue);
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 14px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
         }
 
-        .sidebar a:hover:not(.active) { background: #f8fafc; color: var(--primary-blue); }
+        .accordion-header:hover {
+            background: #f1f5f9;
+            color: var(--primary-blue);
+            transform: translateX(5px);
+            border-color: var(--accent-blue);
+        }
+
+        .accordion-header.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+            box-shadow: 0 8px 25px rgba(30, 58, 95, 0.25);
+        }
+
+        .accordion-header.expanded {
+            border-color: var(--accent-blue);
+            background: #ffffff;
+            color: var(--primary-blue);
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .accordion-header.active.expanded {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .chevron {
+            width: 8px;
+            height: 8px;
+            border-right: 2.5px solid currentColor;
+            border-bottom: 2.5px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-header.expanded .chevron {
+            transform: rotate(-135deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin 0.4s ease;
+            opacity: 0;
+            padding-left: 15px;
+            margin-left: 10px;
+            border-left: 2px solid #e2e8f0;
+        }
+
+        .accordion-content.expanded {
+            max-height: 1000px;
+            opacity: 1;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
         .sidebar-content-link {
-            font-size: 12.5px; padding: 5px 10px; color: #64748b; margin-bottom: 2px;
-            display: block; border-radius: 4px; transition: all 0.2s; text-decoration: none;
+            font-size: 13px;
+            padding: 10px 15px;
+            color: #475569;
+            font-weight: 500;
+            display: block;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-bottom: 4px;
+            position: relative;
         }
-        .sidebar-content-link:hover { color: var(--primary-blue); background: #f1f5f9; }
-        .sidebar-content-link.selected { color: var(--primary-blue); background: #eff6ff; font-weight: 700; }
+
+        .sidebar-content-link:hover {
+            background: #eff6ff;
+            color: var(--primary-blue);
+            padding-left: 22px;
+        }
+
+        .sidebar-content-link:hover::before {
+            content: "";
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        .sidebar-content-link.active-topic {
+            background: #f1f5f9;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
 
         .main-content {
             flex: 1; background: #ffffff; border: 1px solid var(--border-color);
@@ -221,7 +333,7 @@
         pre { background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); color: #1e293b; margin: 20px 0; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto; }
         
         .dnd-option { display: inline-block; background: #334155; color: white; padding: 8px 15px; border-radius: 6px; cursor: grab; margin: 5px; font-weight: 600; font-size: 14px; }
-        .dnd-target { border: 2px dashed #475569; padding: 10px; border-radius: 6px; color: #94a3b8; text-align: center; min-height: 40px; }
+        .dnd-target { border: 2px dashed #475569; padding: 10px; border-radius: 6px; color: #1e293b; font-weight: 600; text-align: center; min-height: 40px; }
         .dnd-target.filled { background: #0f172a; color: #00d2ff; border-style: solid; }
 
         @media (max-width: 1600px) { .illustration-container { display: none; } }
@@ -267,7 +379,7 @@
         }
         .pivot-drop-zone.dragover { border-color: #3b82f6; background: #f0f9ff; }
         .zone-label {
-            font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase;
+            font-size: 10px; font-weight: 800; color: #1e293b; font-weight: 600; text-transform: uppercase;
             letter-spacing: 0.5px; margin-bottom: 5px;
         }
         .zone-content { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -284,8 +396,8 @@
         .raw-data-table th { background: #f8fafc; color: #1e3a5f; padding: 12px 15px; text-align: left; border-bottom: 2px solid #e2e8f0; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; }
         .raw-data-table td { padding: 10px 15px; border-bottom: 1px solid #f1f5f9; color: #475569; }
         .error-cell { background: #fef2f2; color: #dc2626; font-weight: 600; border: 1px solid #fecaca !important; }
-        .duplicate-row { background: #f8fafc; color: #94a3b8; font-style: italic; }
-        .missing-cell { color: #94a3b8; font-family: monospace; }
+        .duplicate-row { background: #f8fafc; color: #1e293b; font-weight: 600; font-style: italic; }
+        .missing-cell { color: #1e293b; font-weight: 600; font-family: monospace; }
         .cleaned-cell { background: #f0fdf4; color: #166534; font-weight: 600; }
 
         /* Practice Check Styles */
@@ -304,12 +416,12 @@
             background: white; border: 2px solid #e2e8f0; border-radius: 12px;
             cursor: pointer; transition: all 0.2s; font-weight: 500; color: #334155;
         }
-        .mcq-light-option:hover { background: #f8fafc; border-color: #cbd5e1; transform: translateY(-2px); }
+        .mcq-light-option:hover { background: #f8fafc; border-color: #1e293b; transform: translateY(-2px); }
         .mcq-light-option.selected { background: #eff6ff; border-color: #3b82f6; color: #1e40af; box-shadow: 0 4px 12px rgba(59,130,246,0.15); }
         .mcq-light-option.correct { background: #f0fdf4; border-color: #22c55e; color: #166534; }
         .mcq-light-option.wrong { background: #fef2f2; border-color: #ef4444; color: #991b1b; }
         .mcq-light-prefix {
-            background: #f1f5f9; color: #64748b; width: 32px; height: 32px; border-radius: 8px;
+            background: #f1f5f9; color: #1e293b; font-weight: 600; width: 32px; height: 32px; border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
             margin-right: 15px; font-size: 13px; font-weight: 800;
             flex-shrink: 0; font-family: 'Montserrat', sans-serif;
@@ -327,7 +439,7 @@
         .feedback-light.correct { display: block; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
         .feedback-light.wrong { display: block; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
 
-        .btn-tf-light { padding: 6px 15px; border-radius: 6px; font-weight: 700; font-size: 12px; cursor: pointer; border: 1px solid #cbd5e1; background: white; color: #64748b; transition: all 0.2s; }
+        .btn-tf-light { padding: 6px 15px; border-radius: 6px; font-weight: 700; font-size: 12px; cursor: pointer; border: 1px solid #cbd5e1; background: white; color: #1e293b; font-weight: 600; transition: all 0.2s; }
         .btn-tf-light.selected { background: #3b82f6; color: white; border-color: #3b82f6; }
         .btn-tf-light.correct { background: #10b981; color: white; border-color: #10b981; }
         .btn-tf-light.wrong { background: #ef4444; color: white; border-color: #ef4444; }
@@ -580,24 +692,113 @@
     <div class="layout-container">
         
         <aside class="sidebar">
+            
+            
             <h3>Module Path</h3>
-            <a href="Data-Module-1.html" class="">01 Data Basics</a>
-            <a href="Data-Module-2.html" class="active">02 Data Manipulation</a>
-            <div style="padding-left: 14px; border-left: 3px solid #e2e8f0; margin: 8px 0 10px 15px;">
-                <a href="#s1-etl" class="sidebar-content-link">1. Extract Transform and Load (ETL)</a>
-                <a href="#s2-formats" class="sidebar-content-link">2. Common Data File Format</a>
-                <a href="#s3-cleaning" class="sidebar-content-link">3. Data Cleaning</a>
-                <a href="#s4-organizing" class="sidebar-content-link">4. Data Organizing</a>
-                <a href="#s5-aggregation" class="sidebar-content-link">5. Data Aggregation</a>
-                <a href="#s6-summarizing" class="sidebar-content-link">6. Summarizing</a>
-                <a href="#s7-pivoting" class="sidebar-content-link">7. Pivoting</a>
+            
+            <!-- Module 1 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-1" onclick="toggleAccordion(1)">
+                    <span>01 Data Basics</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-1" class="accordion-content">
+                    <a href="Data-Module-1.html#s1-basics" class="sidebar-content-link">1.1 Data & Information</a>
+                    <a href="Data-Module-1.html#s2-info" class="sidebar-content-link">1.2 Information</a>
+                    <a href="Data-Module-1.html#s3-knowledge" class="sidebar-content-link">1.3 Knowledge</a>
+                    <a href="Data-Module-1.html#s4-analysis" class="sidebar-content-link">1.4 Data Analysis</a>
+                    <a href="Data-Module-1.html#s5-variables" class="sidebar-content-link">1.5 Variable Types</a>
+                    <a href="Data-Module-1.html#s6-structures" class="sidebar-content-link">1.6 Basic Structures</a>
+                    <a href="Data-Module-1.html#s7-stats" class="sidebar-content-link">1.7 Statistics</a>
+                    <a href="Data-Module-1.html#s8-types" class="sidebar-content-link">1.8 Types of Data</a>
+                    <a href="Data-Module-1.html#s9-structured" class="sidebar-content-link">1.9 Structured Data</a>
+                    <a href="Data-Module-1.html#s10-raw" class="sidebar-content-link">1.10 Raw & Big Data</a>
+                </div>
             </div>
-            <a href="Data-Module-3.html" class="">03 Data Analysis</a>
-            <a href="Data-Module-4.html" class="">04 Data Visualization</a>
-            <a href="Data-Module-5.html" class="">05 Responsible Analytics</a>
+
+            <!-- Module 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-2" onclick="toggleAccordion(2)">
+                    <span>02 Data Manipulation</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-2" class="accordion-content expanded">
+                    <a href="Data-Module-2.html#s1-etl" class="sidebar-content-link">2.1 ETL Process</a>
+                    <a href="Data-Module-2.html#s2-formats" class="sidebar-content-link">2.2 File Formats</a>
+                    <a href="Data-Module-2.html#s3-cleaning" class="sidebar-content-link">2.3 Data Cleaning</a>
+                    <a href="Data-Module-2.html#s4-organizing" class="sidebar-content-link">2.4 Data Organizing</a>
+                    <a href="Data-Module-2.html#s5-aggregation" class="sidebar-content-link">2.5 Data Aggregation</a>
+                    <a href="Data-Module-2.html#s6-summarizing" class="sidebar-content-link">2.6 Summarizing</a>
+                    <a href="Data-Module-2.html#s7-pivoting" class="sidebar-content-link">2.7 Pivoting</a>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-3" onclick="toggleAccordion(3)">
+                    <span>03 Data Analysis</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-3" class="accordion-content">
+                    <a href="Data-Module-3.html#s3-1-types" class="sidebar-content-link">3.1 Analysis Types</a>
+                    <a href="Data-Module-3.html#s3-2-descriptive" class="sidebar-content-link">3.2 Descriptive</a>
+                    <a href="Data-Module-3.html#s3-3-diagnostic" class="sidebar-content-link">3.3 Diagnostic</a>
+                    <a href="Data-Module-3.html#s3-4-predictive" class="sidebar-content-link">3.4 Predictive</a>
+                    <a href="Data-Module-3.html#s3-5-prescriptive" class="sidebar-content-link">3.5 Prescriptive</a>
+                    <a href="Data-Module-3.html#s3-6-exploratory" class="sidebar-content-link">3.6 Exploratory (EDA)</a>
+                    <a href="Data-Module-3.html#s3-7-drilling" class="sidebar-content-link">3.7 Data Drilling</a>
+                    <a href="Data-Module-3.html#s3-8-granularity" class="sidebar-content-link">3.8 Data Granularity</a>
+                    <a href="Data-Module-3.html#s3-9-mining" class="sidebar-content-link">3.9 Data Mining</a>
+                    <a href="Data-Module-3.html#s3-10-corr" class="sidebar-content-link">3.10 Correlation</a>
+                    <a href="Data-Module-3.html#s3-11-pattern" class="sidebar-content-link">3.11 Pattern Recognition</a>
+                    <a href="Data-Module-3.html#s3-12-anomaly-outliers" class="sidebar-content-link">3.12 Anomaly & Outliers</a>
+                    <a href="Data-Module-3.html#s3-13-evaluate" class="sidebar-content-link">3.13 Explain Results</a>
+                    <a href="Data-Module-3.html#s3-14-hypothesis" class="sidebar-content-link">3.14 Hypothesis Testing</a>
+                    <a href="Data-Module-3.html#s3-15-prob" class="sidebar-content-link">3.15 Probability/Errors</a>
+                    <a href="Data-Module-3.html#s3-16-stats" class="sidebar-content-link">3.16 Statistical Techniques</a>
+                    <a href="Data-Module-3.html#s3-17-predictive-models" class="sidebar-content-link">3.17 Predictive Models</a>
+                    <a href="Data-Module-3.html#s3-20-ai-role" class="sidebar-content-link">3.20 Role of AI</a>
+                    <a href="Data-Module-3.html#s3-21-ml-algo" class="sidebar-content-link">3.21 ML Algorithms</a>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-4" onclick="toggleAccordion(4)">
+                    <span>04 Data Visualization</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-4" class="accordion-content">
+                    <a href="Data-Module-4.html#s4-1-report-data" class="sidebar-content-link">4.1 Report Data</a>
+                    <a href="Data-Module-4.html#s4-2-types-of-reports" class="sidebar-content-link">4.2 Types of Reports</a>
+                    <a href="Data-Module-4.html#s4-3-apple-case" class="sidebar-content-link">4.3 Apple Case Study</a>
+                    <a href="Data-Module-4.html#s4-4-importance" class="sidebar-content-link">4.4 Importance/Audience</a>
+                    <a href="Data-Module-4.html#s4-5-banavil" class="sidebar-content-link">4.5 Banavil Case Study</a>
+                    <a href="Data-Module-4.html#s4-7-tables" class="sidebar-content-link">4.7 Data Tables</a>
+                    <a href="Data-Module-4.html#s4-8-conclusions" class="sidebar-content-link">4.8 Conclusions</a>
+                    <a href="Data-Module-4.html#s4-9-chart-library" class="sidebar-content-link">4.9 Chart Library</a>
+                    <a href="Data-Module-4.html#s4-10-dashboard" class="sidebar-content-link">4.10 Live Dashboard</a>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-5" onclick="toggleAccordion(5)">
+                    <span>05 Responsible Analytics</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-5" class="accordion-content">
+                    <a href="Data-Module-5.html#s5-1-concept" class="sidebar-content-link">5.1 Concept</a>
+                    <a href="Data-Module-5.html#s5-2-laws" class="sidebar-content-link">5.2 Privacy Laws</a>
+                    <a href="Data-Module-5.html#s5-3-best-practices" class="sidebar-content-link">5.3 Best Practices</a>
+                    <a href="Data-Module-5.html#s5-4-bias" class="sidebar-content-link">5.4 Types of Bias</a>
+                </div>
+            </div>
 
             <h3 style="margin-top:35px;">Navigation</h3>
-            <a href="data_roadmap.html" style="background: #f8fafc;">&larr; Return to Roadmap</a>
+
+
+            <a href="data_roadmap.html" style="background: #f8fafc; display: block; padding: 12px 15px; color: var(--primary-blue); text-decoration: none; font-size: 14px; font-weight: 700; border-radius: 12px; transition: all 0.3s; border: 1px solid #e2e8f0; text-align: center;">&larr; Return to Roadmap</a>
         </aside>
 
 
@@ -618,7 +819,7 @@
             </ul>
 
             <div id="s1-etl" class="section-header" style="margin-top: 60px;">
-                <h2>1. Extract Transform and Load (ETL)</h2>
+                <h2>2.1 Extract Transform and Load (ETL)</h2>
             </div>
             
             <h3>Fundamental Understanding of ETL</h3>
@@ -654,7 +855,7 @@
 
             <!-- Deeper Dive into ETL Stages -->
             <div class="section-header" style="margin-top: 60px;">
-                <h2>1.1 Extract</h2>
+                <h3>2.1.1 Extract</h3>
             </div>
             <p>The process starts by extracting raw data from relevant data sources, including databases, files, web etc. The extracted data is stored in a landing zone, also called a staging area. A staging area is an intermediate storage where data is only stored temporarily.</p>
 
@@ -685,7 +886,7 @@
                     </div>
                 </div>
                 
-                <div style="font-size: 40px; color: #cbd5e1; margin: 0 20px;">
+                <div style="font-size: 40px; color: #1e293b; margin: 0 20px;">
                     &#10230;
                 </div>
                 
@@ -698,7 +899,7 @@
             <p style="text-align: center; font-size: 14px; color: var(--text-muted); margin-top: -20px; margin-bottom: 40px;"><em>Figure: Data Sources and Extract</em></p>
 
             <div class="section-header" style="margin-top: 60px;">
-                <h2>1.2 Transform</h2>
+                <h3>2.1.2 Transform</h3>
             </div>
             <p>This is the transformation stage of the ETL process. There, the data extracted from various sources and within the staging area (temporary storage) goes through a data processing phase to <strong><em>transform so that they can be used for analytics</em></strong>. Essentially this converts raw data to a more focused and meaningful data set.</p>
 
@@ -752,7 +953,7 @@
             <p style="text-align: center; font-size: 14px; color: var(--text-muted); margin-top: -20px; margin-bottom: 40px;"><em>Figure: Types of data transformation</em></p>
 
             <div class="section-header" style="margin-top: 60px;">
-                <h2>1.3 Load</h2>
+                <h3>2.1.3 Load</h3>
             </div>
             <p>In data loading, extract transform, and load (ETL) tools move the transformed data from the staging area into the target data warehouse. For most organizations that use ETL, the process is automated, well defined, continual, and batch driven. Two methods for loading data follow:</p>
 
@@ -762,7 +963,7 @@
                     <img src="https://img.icons8.com/ios/100/000000/process.png" alt="Process" style="width: 80px;">
                 </div>
                 
-                <div style="font-size: 50px; color: #cbd5e1; margin: 0 20px;">
+                <div style="font-size: 50px; color: #1e293b; margin: 0 20px;">
                     &#10230;
                 </div>
                 
@@ -786,7 +987,7 @@
 
             <!-- Common Data File Format -->
             <div id="s2-formats" class="section-header" style="margin-top: 80px;">
-                <h2>2. Common Data File Format</h2>
+                <h2>2.2 Common Data File Format</h2>
             </div>
             
             <p>In data analytics, data is often stored and exchanged in various file formats. Each format has its own strengths and is chosen based on the nature of the data and the intended use.</p>
@@ -862,7 +1063,7 @@ Sara,30,London</pre>
                     <h4 style="color: #1e3a5f; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; margin-bottom: 10px;">PDF (Portable Document Format)</h4>
                     <p style="font-size: 15px; line-height: 1.6; color: #4b5563; margin-bottom: 15px;">Portable Document Format files are used to present documents in a fixed layout. They are widely used for distributing read-only reports and summaries that look the same on all devices.</p>
                     <div style="background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px dashed #cbd5e1; position: relative;">
-                        <div style="text-align: center; color: #64748b; font-size: 12px; margin-bottom: 10px; font-weight: 700; text-transform: uppercase;">Final Employee Report.pdf</div>
+                        <div style="text-align: center; color: #1e293b; font-weight: 600; font-size: 12px; margin-bottom: 10px; font-weight: 700; text-transform: uppercase;">Final Employee Report.pdf</div>
                         <p style="font-size: 14px; color: #1e293b; margin-bottom: 15px;">This document contains the summary of employees and their respective locations as of 2024.</p>
                         <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman', serif; font-size: 14px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                             <tr style="border-bottom: 2px solid #1e293b; font-weight: 700;">
@@ -896,8 +1097,8 @@ Sara,30,London</pre>
                 <!-- etl_formats_q1 -->
                 <div class="practice-light-card">
                     <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="background: #f0f9ff; color: #0284c7; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q1</div>
-                        <h3 style="margin: 0; color: #1e293b; font-size: 19px; font-weight: 700; font-family: 'Montserrat', sans-serif;">Extraction Strategy</h3>
+                        <div style="background: #f0f9ff; color: #1e3a8a; font-weight: 800; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q1</div>
+                        <h3 style="margin: 0; color: #1e293b; font-size: 19px; font-weight: 700; font-family: 'Montserrat', sans-serif;"></h3>
                     </div>
                     <p style="color: #475569; font-size: 15.5px; margin-bottom: 25px; font-weight: 500;">In the 'Extract' stage of ETL, what is a common challenge when dealing with multiple source systems like CRM, ERP, and legacy flat files?</p>
                     
@@ -927,7 +1128,7 @@ Sara,30,London</pre>
                 <div class="practice-light-card">
                     <div style="display: flex; align-items: center; margin-bottom: 20px;">
                         <div style="background: #fef2f2; color: #dc2626; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q2</div>
-                        <h3 style="margin: 0; color: #1e293b; font-size: 19px; font-weight: 700; font-family: 'Montserrat', sans-serif;">File Format Selection</h3>
+                        <h3 style="margin: 0; color: #1e293b; font-size: 19px; font-weight: 700; font-family: 'Montserrat', sans-serif;"></h3>
                     </div>
                     <p style="color: #475569; font-size: 15.5px; margin-bottom: 25px; font-weight: 500;">Why might a data professional choose the <strong>JSON</strong> format over CSV when storing complex information like a customer's multi-level purchase history?</p>
                     
@@ -957,7 +1158,7 @@ Sara,30,London</pre>
                 <div class="practice-light-card">
                     <div style="display: flex; align-items: center; margin-bottom: 20px;">
                         <div style="background: #f0fdf4; color: #16a34a; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q3</div>
-                        <h3 style="margin: 0; color: #1e293b; font-size: 19px; font-weight: 700; font-family: 'Montserrat', sans-serif;">Loading Logic</h3>
+                        <h3 style="margin: 0; color: #1e293b; font-size: 19px; font-weight: 700; font-family: 'Montserrat', sans-serif;"></h3>
                     </div>
                     <p style="color: #475569; font-size: 15.5px; margin-bottom: 25px; font-weight: 500;">Which loading strategy involves adding only the records that have been created or changed since the last execution to the data warehouse?</p>
                     
@@ -986,7 +1187,7 @@ Sara,30,London</pre>
 
             <!-- Section 3: Data Cleaning -->
             <div id="s3-cleaning" class="section-header" style="margin-top: 80px;">
-                <h2>3. Data Cleaning</h2>
+                <h2>2.3 Data Cleaning</h2>
             </div>
             
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-top: 5px solid #3b82f6; border-radius: 24px; padding: 40px; margin-bottom: 60px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
@@ -1006,7 +1207,7 @@ Sara,30,London</pre>
             <!-- Section 3.1: Handling Null values -->
             <div style="border: 1px solid #e2e8f0; border-top: 5px solid #3b82f6; border-radius: 20px; padding: 40px; margin-bottom: 60px; background: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
                 <div class="section-header" style="margin-top: 0;">
-                    <h2>3.1 Handling Null values</h2>
+                    <h3>2.3.1 Handling Null values</h3>
                 </div>
                 
                 <p style="font-size: 18px; color: #475569; margin-bottom: 30px;">Dealing with <strong>Missing or Null values</strong>, which may involve imputing missing data or excluding rows with missing values.</p>
@@ -1085,7 +1286,7 @@ Sara,30,London</pre>
             <!-- Section 3.2: Special Characters -->
             <div style="border: 1px solid #e2e8f0; border-top: 5px solid #3b82f6; border-radius: 20px; padding: 40px; margin-bottom: 60px; background: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
                 <div class="section-header" style="margin-top: 0;">
-                    <h2>3.2 Special Characters</h2>
+                    <h3>2.3.2 Special Characters</h3>
                 </div>
                 
                 <p style="font-size: 18px; color: #475569; margin-top: 20px; font-weight: 500;">Removing or encoding special characters that can cause data processing issues.</p>
@@ -1102,7 +1303,7 @@ Sara,30,London</pre>
                                 cleaned_data
                             </div>
                         </div>
-                        <p style="font-family: 'Fira Code', monospace; font-size: 14px; margin-top: 15px; color: #64748b;">: 'HelloWorld Python'</p>
+                        <p style="font-family: 'Fira Code', monospace; font-size: 14px; margin-top: 15px; color: #1e293b; font-weight: 600;">: 'HelloWorld Python'</p>
                     </div>
 
                     <!-- Right Column -->
@@ -1121,7 +1322,7 @@ Sara,30,London</pre>
             <!-- Section 3.3: Trimming Spaces -->
             <div style="border: 1px solid #e2e8f0; border-top: 5px solid #3b82f6; border-radius: 20px; padding: 40px; margin-bottom: 60px; background: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
                 <div class="section-header" style="margin-top: 0;">
-                    <h2>3.3 Trimming Spaces</h2>
+                    <h3>2.3.3 Trimming Spaces</h3>
                 </div>
                 
                 <div style="display: flex; gap: 60px; flex-wrap: wrap; margin-top: 30px; align-items: flex-start;">
@@ -1139,18 +1340,18 @@ Sara,30,London</pre>
                         <!-- Snippet 1 -->
                         <div style="background: #1e293b; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
                             <div style="font-family: 'Fira Code', monospace; font-size: 14px; line-height: 1.6; color: #e2e8f0;">
-                                <span style="color: #94a3b8; font-style: italic;"># Trimming spaces from a single string</span><br>
-                                data = <span style="color: #fb7185;">"  Hello, World!  "</span><br>
+                                <span style="color: #1e293b; font-weight: 600; font-style: italic;"># Trimming spaces from a single string</span><br>
+                                data = <span style="color: #be123c;">"  Hello, World!  "</span><br>
                                 trimmed_data = data.strip()<br>
-                                <span style="color: #38bdf8;">trimmed_data</span>
+                                <span style="color: #0369a1; font-weight: 700;">trimmed_data</span>
                             </div>
                         </div>
 
                         <!-- Snippet 2 -->
                         <div style="background: #1e293b; border-radius: 12px; padding: 25px;">
                             <div style="font-family: 'Fira Code', monospace; font-size: 13px; line-height: 1.5; color: #e2e8f0;">
-                                <span style="color: #94a3b8; font-style: italic;"># Trimming spaces for an entire column</span><br>
-                                df[<span style="color: #fb7185;">'fruit'</span>] = df[<span style="color: #fb7185;">'fruit'</span>].str.strip()
+                                <span style="color: #1e293b; font-weight: 600; font-style: italic;"># Trimming spaces for an entire column</span><br>
+                                df[<span style="color: #be123c;">'fruit'</span>] = df[<span style="color: #be123c;">'fruit'</span>].str.strip()
                             </div>
                             
                             <!-- Mini Table Output -->
@@ -1160,11 +1361,11 @@ Sara,30,London</pre>
                                     <th style="padding: 5px 15px; border: 1px solid #475569; text-align: left;">fruit</th>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 15px; border: 1px solid #334155; color: #94a3b8;">0</td>
+                                    <td style="padding: 5px 15px; border: 1px solid #334155; color: #1e293b; font-weight: 600;">0</td>
                                     <td style="padding: 5px 15px; border: 1px solid #334155;">apple</td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 15px; border: 1px solid #334155; color: #94a3b8;">1</td>
+                                    <td style="padding: 5px 15px; border: 1px solid #334155; color: #1e293b; font-weight: 600;">1</td>
                                     <td style="padding: 5px 15px; border: 1px solid #334155;">banana</td>
                                 </tr>
                             </table>
@@ -1176,7 +1377,7 @@ Sara,30,London</pre>
             <!-- Section 3.4: Inconsistent Formatting -->
             <div style="border: 1px solid #e2e8f0; border-top: 5px solid #3b82f6; border-radius: 20px; padding: 40px; margin-bottom: 60px; background: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
                 <div class="section-header" style="margin-top: 0;">
-                    <h2>3.4 Inconsistent Formatting</h2>
+                    <h3>2.3.4 Inconsistent Formatting</h3>
                 </div>
                 
                 <p style="font-size: 18px; color: #475569; margin-top: 20px; margin-bottom: 30px;">Standardizing data formats, such as date formats, to ensure uniformity across the entire dataset.</p>
@@ -1195,19 +1396,19 @@ Sara,30,London</pre>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="padding: 6px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #94a3b8;">0</td>
+                                    <td style="padding: 6px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #1e293b; font-weight: 600;">0</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 600;">01/01/2019</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0;">151200</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0;">Female</td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 6px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #94a3b8;">1</td>
+                                    <td style="padding: 6px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #1e293b; font-weight: 600;">1</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 600;">2019-Jan-01</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0;">151201</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0;">Male</td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 6px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #94a3b8;">2</td>
+                                    <td style="padding: 6px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #1e293b; font-weight: 600;">2</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0; color: #ef4444; font-weight: 600;">01-01-19</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0;">151202</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0;">Male</td>
@@ -1219,9 +1420,9 @@ Sara,30,London</pre>
 
                 <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 30px;">
                     <div style="font-family: 'Fira Code', monospace; font-size: 14px; line-height: 1.8;">
-                        <span style="color: #64748b; font-style: italic; margin-bottom: 15px; display: block;"># Standardizing date format to YYYY-MM-DD</span>
-                        <span style="color: #94a3b8; margin-right: 15px;">In [28]:</span> df[<span style="color: #dc2626;">'Transaction_date'</span>] = pd.to_datetime(df[<span style="color: #dc2626;">'Transaction_date'</span>])<br>
-                        <span style="color: #94a3b8; margin-right: 15px;">In [29]:</span> df[<span style="color: #dc2626;">'Transaction_date'</span>] = df[<span style="color: #dc2626;">'Transaction_date'</span>].dt.strftime(<span style="color: #dc2626;">'%Y-%m-%d'</span>)
+                        <span style="color: #1e293b; font-weight: 600; font-style: italic; margin-bottom: 15px; display: block;"># Standardizing date format to YYYY-MM-DD</span>
+                        <span style="color: #1e293b; font-weight: 600; margin-right: 15px;">In [28]:</span> df[<span style="color: #dc2626;">'Transaction_date'</span>] = pd.to_datetime(df[<span style="color: #dc2626;">'Transaction_date'</span>])<br>
+                        <span style="color: #1e293b; font-weight: 600; margin-right: 15px;">In [29]:</span> df[<span style="color: #dc2626;">'Transaction_date'</span>] = df[<span style="color: #dc2626;">'Transaction_date'</span>].dt.strftime(<span style="color: #dc2626;">'%Y-%m-%d'</span>)
                     </div>
                     
                     <p style="font-size: 16px; font-weight: 700; color: #1e3a5f; margin-top: 30px; margin-bottom: 15px;">Consistent Data (After):</p>
@@ -1237,13 +1438,13 @@ Sara,30,London</pre>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="padding: 6px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #94a3b8;">0</td>
+                                    <td style="padding: 6px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #1e293b; font-weight: 600;">0</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0; color: #166534; font-weight: 600;">2019-01-01</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0;">151200</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0;">Female</td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 6px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #94a3b8;">1</td>
+                                    <td style="padding: 6px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #1e293b; font-weight: 600;">1</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0; color: #166534; font-weight: 600;">2019-01-01</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0;">151201</td>
                                     <td style="padding: 6px 12px; border: 1px solid #e2e8f0;">Male</td>
@@ -1257,7 +1458,7 @@ Sara,30,London</pre>
             <!-- Section 3.5: Removing Duplicates -->
             <div style="border: 1px solid #e2e8f0; border-top: 5px solid #3b82f6; border-radius: 20px; padding: 40px; margin-bottom: 60px; background: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
                 <div class="section-header" style="margin-top: 0;">
-                    <h2>3.5 Removing Duplicates</h2>
+                    <h3>2.3.5 Removing Duplicates</h3>
                 </div>
                 
                 <div style="display: flex; gap: 60px; flex-wrap: wrap; margin-top: 30px; align-items: flex-start;">
@@ -1307,15 +1508,15 @@ Sara,30,London</pre>
                     <div style="flex: 1.2; min-width: 400px;">
                         <div style="background: #1e293b; border-radius: 12px; padding: 30px; color: #e2e8f0; margin-bottom: 30px;">
                             <div style="font-family: 'Fira Code', monospace; font-size: 14px; line-height: 1.6;">
-                                <span style="color: #94a3b8;">In [31]:</span> <span style="color: #38bdf8;">#Check for duplicates</span><br>
+                                <span style="color: #1e293b; font-weight: 600;">In [31]:</span> <span style="color: #0369a1; font-weight: 700;">#Check for duplicates</span><br>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;df.duplicated().sum()<br>
-                                <span style="color: #fb7185;">Out[31]:</span> 1<br><br>
+                                <span style="color: #be123c;">Out[31]:</span> 1<br><br>
                                 
-                                <span style="color: #94a3b8;">In [32]:</span> <span style="color: #38bdf8;">#Removing the Duplicates</span><br>
+                                <span style="color: #1e293b; font-weight: 600;">In [32]:</span> <span style="color: #0369a1; font-weight: 700;">#Removing the Duplicates</span><br>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;df.drop_duplicates(inplace=True)<br><br>
                                 
-                                <span style="color: #94a3b8;">In [33]:</span> df.duplicated().sum()<br>
-                                <span style="color: #fb7185;">Out[33]:</span> 0
+                                <span style="color: #1e293b; font-weight: 600;">In [33]:</span> df.duplicated().sum()<br>
+                                <span style="color: #be123c;">Out[33]:</span> 0
                             </div>
                         </div>
 
@@ -1351,7 +1552,7 @@ Sara,30,London</pre>
             <!-- Section 3.6: Validating Data -->
             <div style="border: 1px solid #e2e8f0; border-top: 5px solid #3b82f6; border-radius: 20px; padding: 40px; margin-bottom: 60px; background: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
                 <div class="section-header" style="margin-top: 0;">
-                    <h2>3.6 Validating Data</h2>
+                    <h3>2.3.6 Validating Data</h3>
                 </div>
                 
                 <div style="margin-top: 30px;">
@@ -1401,7 +1602,7 @@ Sara,30,London</pre>
                 <!-- clean_q1 -->
                 <div class="practice-light-card">
                     <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="background: #f0f9ff; color: #0284c7; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q1</div>
+                        <div style="background: #f0f9ff; color: #1e3a8a; font-weight: 800; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q1</div>
                         <h3 style="margin: 0; color: #1e293b; font-size: 19px; font-weight: 700; font-family: 'Montserrat', sans-serif;"></h3>
                     </div>
                     <p style="color: #475569; font-size: 15.5px; margin-bottom: 25px; font-weight: 500;">When a dataset has a column with many outliers (extreme values), which imputation method is generally preferred to fill missing values?</p>
@@ -1491,7 +1692,7 @@ Sara,30,London</pre>
 
             <!-- Section 4: Data Organizing Toolkit -->
             <div id="s4-organizing" class="section-header" style="margin-top: 40px;">
-                <h2>4. Data Organizing</h2>
+                <h2>2.4 Data Organizing</h2>
             </div>
 
             <!-- Compact Split Hero for Section 4 -->
@@ -1512,37 +1713,37 @@ Sara,30,London</pre>
             <div class="org-selector-grid">
                 <div class="org-box active" onclick="showOrgDetail(1, this)">
                     <img src="https://img.icons8.com/color/96/sorting-options.png" class="org-box-icon" alt="Sorting">
-                    <span class="org-box-num">4.1</span>
+                    <span class="org-box-num">2.4.1</span>
                     <span class="org-box-title">Sorting</span>
                 </div>
                 <div class="org-box" onclick="showOrgDetail(2, this)">
                     <img src="https://img.icons8.com/color/96/filter.png" class="org-box-icon" alt="Filtering">
-                    <span class="org-box-num">4.2</span>
+                    <span class="org-box-num">2.4.2</span>
                     <span class="org-box-title">Filtering</span>
                 </div>
                 <div class="org-box" onclick="showOrgDetail(3, this)">
                     <img src="https://img.icons8.com/color/96/slice.png" class="org-box-icon" alt="Slicing">
-                    <span class="org-box-num">4.3</span>
+                    <span class="org-box-num">2.4.3</span>
                     <span class="org-box-title">Slicing</span>
                 </div>
                 <div class="org-box" onclick="showOrgDetail(4, this)">
                     <img src="https://img.icons8.com/color/96/data-in-both-directions.png" class="org-box-icon" alt="Transposing">
-                    <span class="org-box-num">4.4</span>
+                    <span class="org-box-num">2.4.4</span>
                     <span class="org-box-title">Transposing</span>
                 </div>
                 <div class="org-box" onclick="showOrgDetail(5, this)">
                     <img src="https://img.icons8.com/color/96/plus.png" class="org-box-icon" alt="Appending">
-                    <span class="org-box-num">4.5</span>
+                    <span class="org-box-num">2.4.5</span>
                     <span class="org-box-title">Appending</span>
                 </div>
                 <div class="org-box" onclick="showOrgDetail(6, this)">
                     <img src="https://img.icons8.com/color/96/cut.png" class="org-box-icon" alt="Truncating">
-                    <span class="org-box-num">4.6</span>
+                    <span class="org-box-num">2.4.6</span>
                     <span class="org-box-title">Truncating</span>
                 </div>
                 <div class="org-box" onclick="showOrgDetail(7, this)">
                     <img src="https://img.icons8.com/color/96/merge.png" class="org-box-icon" alt="Merging">
-                    <span class="org-box-num">4.7</span>
+                    <span class="org-box-num">2.4.7</span>
                     <span class="org-box-title">Merging</span>
                 </div>
             </div>
@@ -1552,7 +1753,7 @@ Sara,30,London</pre>
                 <div id="org-pane-1" class="org-detail-pane active">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1.5px solid #f1f5f9; padding-bottom: 15px;">
-                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">1</div>
+                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">2.4.1</div>
                             <h3 style="margin: 0; color: #1e3a5f; font-size: 22px; font-weight: 800;">Sorting</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 20px;">Reordering data based on one or more columns, usually in <strong>ascending</strong> or <strong>descending</strong> order to facilitate trend analysis.</p>
@@ -1589,7 +1790,7 @@ Sara,30,London</pre>
                 <div id="org-pane-2" class="org-detail-pane">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1.5px solid #f1f5f9; padding-bottom: 15px;">
-                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">2</div>
+                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">2.4.2</div>
                             <h3 style="margin: 0; color: #1e3a5f; font-size: 22px; font-weight: 800;">Filtering</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 20px;">Selecting a <strong>subset of data</strong> based on specified criteria or conditions to focus on relevant information.</p>
@@ -1626,7 +1827,7 @@ Sara,30,London</pre>
                 <div id="org-pane-3" class="org-detail-pane">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1.5px solid #f1f5f9; padding-bottom: 15px;">
-                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">3</div>
+                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">2.4.3</div>
                             <h3 style="margin: 0; color: #1e3a5f; font-size: 22px; font-weight: 800;">Slicing</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 20px;">Extracting a <strong>specified range</strong> or portion of the data using index positions for sampling.</p>
@@ -1663,7 +1864,7 @@ Sara,30,London</pre>
                 <div id="org-pane-4" class="org-detail-pane">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1.5px solid #f1f5f9; padding-bottom: 15px;">
-                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">4</div>
+                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">2.4.4</div>
                             <h3 style="margin: 0; color: #1e3a5f; font-size: 22px; font-weight: 800;">Transposing</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 20px;">Changing the <strong>orientation of data</strong>, such as converting rows to columns or vice versa.</p>
@@ -1696,7 +1897,7 @@ Sara,30,London</pre>
                 <div id="org-pane-5" class="org-detail-pane">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1.5px solid #f1f5f9; padding-bottom: 15px;">
-                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">5</div>
+                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">2.4.5</div>
                             <h3 style="margin: 0; color: #1e3a5f; font-size: 22px; font-weight: 800;">Appending</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 20px;">Combining or adding <strong>new data points</strong> or records to the end of an existing dataset.</p>
@@ -1732,7 +1933,7 @@ Sara,30,London</pre>
                 <div id="org-pane-6" class="org-detail-pane">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1.5px solid #f1f5f9; padding-bottom: 15px;">
-                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">6</div>
+                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">2.4.6</div>
                             <h3 style="margin: 0; color: #1e3a5f; font-size: 22px; font-weight: 800;">Truncating</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 20px;">Reducing the data to a <strong>specific length</strong> or number of rows for performance optimization.</p>
@@ -1769,7 +1970,7 @@ Sara,30,London</pre>
                 <div id="org-pane-7" class="org-detail-pane">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1.5px solid #f1f5f9; padding-bottom: 15px;">
-                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">7</div>
+                            <div style="background: #3b82f6; color: white; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">2.4.7</div>
                             <h3 style="margin: 0; color: #1e3a5f; font-size: 22px; font-weight: 800;">Merging</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 20px;">Fusing disparate data sources into a <strong>unified entity</strong> through relational join keys.</p>
@@ -1788,14 +1989,14 @@ Sara,30,London</pre>
                                 </div>
                                 <div style="display: flex; gap: 15px; margin-bottom: 15px;">
                                     <div style="flex: 1;">
-                                        <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Table A (Users)</span>
+                                        <span style="font-size: 11px; font-weight: 700; color: #1e293b; font-weight: 600; text-transform: uppercase;">Table A (Users)</span>
                                         <table class="lab-table" style="font-size: 12px;">
                                             <thead><tr><th>ID</th><th>Name</th></tr></thead>
                                             <tbody><tr><td>1</td><td>Alice</td></tr><tr><td>2</td><td>Bob</td></tr></tbody>
                                         </table>
                                     </div>
                                     <div style="flex: 1;">
-                                        <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Table B (Sales)</span>
+                                        <span style="font-size: 11px; font-weight: 700; color: #1e293b; font-weight: 600; text-transform: uppercase;">Table B (Sales)</span>
                                         <table class="lab-table" style="font-size: 12px;">
                                             <thead><tr><th>ID</th><th>Amt</th></tr></thead>
                                             <tbody><tr><td>1</td><td>$450</td></tr><tr><td>2</td><td>$120</td></tr></tbody>
@@ -1903,7 +2104,7 @@ Sara,30,London</pre>
 
             <!-- Section 5: Data Aggregation -->
             <div id="s5-aggregation" class="section-header" style="margin-top: 40px;">
-                <h2>5. Data Aggregation</h2>
+                <h2>2.5 Data Aggregation</h2>
             </div>
 
             <p style="margin-top: 0;"><strong>Aggregate Functions</strong> are mathematical operations performed on a collection of values (a set of data) that return a single, summarizing value.</p>
@@ -1913,27 +2114,27 @@ Sara,30,London</pre>
             <!-- Interactive Aggregation Toolkit -->
             <div class="org-selector-grid" style="margin-top: 40px;">
                 <div class="org-box sum active" onclick="showAggDetail(1, this)">
-                    <span class="org-box-num">5.1</span>
+                    <span class="org-box-num">2.5.1</span>
                     <span class="org-box-title">Grouping (SUM)</span>
                 </div>
                 <div class="org-box count" onclick="showAggDetail(2, this)">
-                    <span class="org-box-num">5.2</span>
+                    <span class="org-box-num">2.5.2</span>
                     <span class="org-box-title">Grouping (COUNT)</span>
                 </div>
                 <div class="org-box avg" onclick="showAggDetail(3, this)">
-                    <span class="org-box-num">5.3</span>
+                    <span class="org-box-num">2.5.3</span>
                     <span class="org-box-title">Grouping (AVG)</span>
                 </div>
                 <div class="org-box max" onclick="showAggDetail(4, this)">
-                    <span class="org-box-num">5.4</span>
+                    <span class="org-box-num">2.5.4</span>
                     <span class="org-box-title">Grouping (MAX)</span>
                 </div>
                 <div class="org-box min" onclick="showAggDetail(5, this)">
-                    <span class="org-box-num">5.5</span>
+                    <span class="org-box-num">2.5.5</span>
                     <span class="org-box-title">Grouping (MIN)</span>
                 </div>
                 <div class="org-box mode" onclick="showAggDetail(6, this)">
-                    <span class="org-box-num">5.6</span>
+                    <span class="org-box-num">2.5.6</span>
                     <span class="org-box-title">Grouping (MODE)</span>
                 </div>
             </div>
@@ -1943,12 +2144,12 @@ Sara,30,London</pre>
                 <div id="agg-pane-1" class="org-detail-pane active">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="background: #3b82f6; color: white; padding: 12px 25px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
-                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">1. Grouping (SUM)</h3>
+                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">2.5.1 Grouping (SUM)</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 25px;">Grouping SUM is an aggregation function that calculates the sum of a specific numerical column within each group. When you group data by one or more columns, you can apply the SUM function to find the total sum of a particular numerical value for each group.</p>
                         
                         <div style="margin-bottom: 30px;">
-                            <span style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Sales Records</span>
+                            <span style="font-size: 11px; font-weight: 800; color: #1e293b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Sales Records</span>
                             <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; font-size: 14px;">
                                 <thead style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
                                     <tr>
@@ -1966,19 +2167,19 @@ Sara,30,London</pre>
                             </table>
                         </div>
                         
-                        <div style="background: #1e293b; padding: 25px; border-radius: 12px; color: #e2e8f0; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto;">
-                            <h4 style="color: #38bdf8; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
-                            <div style="color: #94a3b8; margin-bottom: 10px;"># Grouping by 'Category' and calculating total sales</div>
-                            <div style="margin-bottom: 5px;">grouped_data = df1.groupby(<span style="color: #34d399;">'Category'</span>)[<span style="color: #34d399;">'Amount'</span>].sum()</div>
+                        <div class="premium-code-card" style="background: white; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; border-left: 6px solid #3b82f6; box-shadow: 0 10px 25px rgba(0,0,0,0.05); color: #334155; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto; margin: 25px 0; position: relative; transition: transform 0.2s ease;">
+                            <h4 style="color: #1e3a8a; font-weight: 800; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
+                            <div style="color: #1e293b; font-weight: 600; margin-bottom: 10px;"># Grouping by 'Category' and calculating total sales</div>
+                            <div style="margin-bottom: 5px;">grouped_data = df1.groupby(<span style="color: #059669;">'Category'</span>)[<span style="color: #059669;">'Amount'</span>].sum()</div>
                             <div style="margin-bottom: 15px;">grouped_data</div>
                             
-                            <div style="border-top: 1px solid #334155; padding-top: 15px; color: #cbd5e1;">
-                                <div style="font-weight: 700; color: #94a3b8; margin-bottom: 10px;">Output:</div>
+                            <div style="padding-top: 5px; color: #334155;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-top: 20px; margin-bottom: 15px;"><div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div><div style="font-weight: 800; color: #1e3a8a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Output Console</div><div style="flex: 1; height: 1px; background: #f1f5f9; margin-left: 10px;"></div></div>
                                 <table style="width: 100%; border-collapse: collapse; font-family: 'Fira Code', monospace; font-size: 14px;">
-                                    <thead><tr style="color: #94a3b8; text-align: left;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Amount</th></tr></thead>
+                                    <thead><tr style="color: #1e293b; text-align: left; font-weight: 700;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Amount</th></tr></thead>
                                     <tbody>
-                                        <tr><td style="padding: 4px 0;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">350</td></tr>
-                                        <tr><td style="padding: 4px 0;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">1500</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">350</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">1500</td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -1990,12 +2191,12 @@ Sara,30,London</pre>
                 <div id="agg-pane-2" class="org-detail-pane">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="background: #3b82f6; color: white; padding: 12px 25px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
-                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">2. Grouping (COUNT)</h3>
+                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">2.5.2 Grouping (COUNT)</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 25px;">Grouping COUNT is an aggregation function that counts the number of rows within each group. It is used to determine how many items fall into each group.</p>
                         
                         <div style="margin-bottom: 30px;">
-                            <span style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Transaction Records</span>
+                            <span style="font-size: 11px; font-weight: 800; color: #1e293b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Transaction Records</span>
                             <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; font-size: 14px;">
                                 <thead style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
                                     <tr><th style="padding: 12px 20px; text-align: left; color: #1e3a5f;">Category</th><th style="padding: 12px 20px; text-align: left; color: #1e3a5f;">Transaction ID</th></tr>
@@ -2012,19 +2213,19 @@ Sara,30,London</pre>
                             </table>
                         </div>
 
-                        <div style="background: #1e293b; padding: 25px; border-radius: 12px; color: #e2e8f0; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto;">
-                            <h4 style="color: #38bdf8; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
-                            <div style="color: #94a3b8; margin-bottom: 10px;"># Counting transactions per category</div>
-                            <div style="margin-bottom: 5px;">count_data = df1.groupby(<span style="color: #34d399;">'Category'</span>)[<span style="color: #34d399;">'Transaction ID'</span>].count()</div>
+                        <div class="premium-code-card" style="background: white; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; border-left: 6px solid #3b82f6; box-shadow: 0 10px 25px rgba(0,0,0,0.05); color: #334155; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto; margin: 25px 0; position: relative; transition: transform 0.2s ease;">
+                            <h4 style="color: #1e3a8a; font-weight: 800; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
+                            <div style="color: #1e293b; font-weight: 600; margin-bottom: 10px;"># Counting transactions per category</div>
+                            <div style="margin-bottom: 5px;">count_data = df1.groupby(<span style="color: #059669;">'Category'</span>)[<span style="color: #059669;">'Transaction ID'</span>].count()</div>
                             <div style="margin-bottom: 15px;">count_data</div>
                             
-                            <div style="border-top: 1px solid #334155; padding-top: 15px; color: #cbd5e1;">
-                                <div style="font-weight: 700; color: #94a3b8; margin-bottom: 10px;">Output:</div>
+                            <div style="padding-top: 5px; color: #334155;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-top: 20px; margin-bottom: 15px;"><div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div><div style="font-weight: 800; color: #1e3a8a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Output Console</div><div style="flex: 1; height: 1px; background: #f1f5f9; margin-left: 10px;"></div></div>
                                 <table style="width: 100%; border-collapse: collapse; font-family: 'Fira Code', monospace; font-size: 14px;">
-                                    <thead><tr style="color: #94a3b8; text-align: left;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Count</th></tr></thead>
+                                    <thead><tr style="color: #1e293b; text-align: left; font-weight: 700;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Count</th></tr></thead>
                                     <tbody>
-                                        <tr><td style="padding: 4px 0;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">2</td></tr>
-                                        <tr><td style="padding: 4px 0;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">5</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">2</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">5</td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -2036,12 +2237,12 @@ Sara,30,London</pre>
                 <div id="agg-pane-3" class="org-detail-pane">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="background: #3b82f6; color: white; padding: 12px 25px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
-                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">3. Grouping (AVG)</h3>
+                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">2.5.3 Grouping (AVG)</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 25px;">Grouping AVG is an aggregation function that calculates the average(mean) of a specific numerical column within each group. This function provides the average value of the data in each group.</p>
                         
                         <div style="margin-bottom: 30px;">
-                            <span style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Price Records</span>
+                            <span style="font-size: 11px; font-weight: 800; color: #1e293b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Price Records</span>
                             <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; font-size: 14px;">
                                 <thead style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
                                     <tr><th style="padding: 12px 20px; text-align: left; color: #1e3a5f;">Category</th><th style="padding: 12px 20px; text-align: right; color: #1e3a5f;">Price</th></tr>
@@ -2056,19 +2257,19 @@ Sara,30,London</pre>
                             </table>
                         </div>
 
-                        <div style="background: #1e293b; padding: 25px; border-radius: 12px; color: #e2e8f0; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto;">
-                            <h4 style="color: #38bdf8; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
-                            <div style="color: #94a3b8; margin-bottom: 10px;"># Calculating average price per category</div>
-                            <div style="margin-bottom: 5px;">avg_data = df1.groupby(<span style="color: #34d399;">'Category'</span>)[<span style="color: #34d399;">'Price'</span>].mean()</div>
+                        <div class="premium-code-card" style="background: white; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; border-left: 6px solid #3b82f6; box-shadow: 0 10px 25px rgba(0,0,0,0.05); color: #334155; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto; margin: 25px 0; position: relative; transition: transform 0.2s ease;">
+                            <h4 style="color: #1e3a8a; font-weight: 800; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
+                            <div style="color: #1e293b; font-weight: 600; margin-bottom: 10px;"># Calculating average price per category</div>
+                            <div style="margin-bottom: 5px;">avg_data = df1.groupby(<span style="color: #059669;">'Category'</span>)[<span style="color: #059669;">'Price'</span>].mean()</div>
                             <div style="margin-bottom: 15px;">avg_data</div>
                             
-                            <div style="border-top: 1px solid #334155; padding-top: 15px; color: #cbd5e1;">
-                                <div style="font-weight: 700; color: #94a3b8; margin-bottom: 10px;">Output:</div>
+                            <div style="padding-top: 5px; color: #334155;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-top: 20px; margin-bottom: 15px;"><div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div><div style="font-weight: 800; color: #1e3a8a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Output Console</div><div style="flex: 1; height: 1px; background: #f1f5f9; margin-left: 10px;"></div></div>
                                 <table style="width: 100%; border-collapse: collapse; font-family: 'Fira Code', monospace; font-size: 14px;">
-                                    <thead><tr style="color: #94a3b8; text-align: left;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Mean</th></tr></thead>
+                                    <thead><tr style="color: #1e293b; text-align: left; font-weight: 700;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Mean</th></tr></thead>
                                     <tbody>
-                                        <tr><td style="padding: 4px 0;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">150.0</td></tr>
-                                        <tr><td style="padding: 4px 0;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">500.0</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">150.0</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">500.0</td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -2080,12 +2281,12 @@ Sara,30,London</pre>
                 <div id="agg-pane-4" class="org-detail-pane">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="background: #3b82f6; color: white; padding: 12px 25px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
-                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">4. Grouping (MAX)</h3>
+                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">2.5.4 Grouping (MAX)</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 25px;">Grouping MAX is an aggregation function that identifies the highest value within each group. It is useful for finding top performers or peak values within specific categories.</p>
                         
                         <div style="margin-bottom: 30px;">
-                            <span style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Performance Records</span>
+                            <span style="font-size: 11px; font-weight: 800; color: #1e293b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Performance Records</span>
                             <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; font-size: 14px;">
                                 <thead style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
                                     <tr><th style="padding: 12px 20px; text-align: left; color: #1e3a5f;">Category</th><th style="padding: 12px 20px; text-align: right; color: #1e3a5f;">Score</th></tr>
@@ -2100,19 +2301,19 @@ Sara,30,London</pre>
                             </table>
                         </div>
 
-                        <div style="background: #1e293b; padding: 25px; border-radius: 12px; color: #e2e8f0; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto;">
-                            <h4 style="color: #38bdf8; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
-                            <div style="color: #94a3b8; margin-bottom: 10px;"># Finding maximum score per category</div>
-                            <div style="margin-bottom: 5px;">max_data = df1.groupby(<span style="color: #34d399;">'Category'</span>)[<span style="color: #34d399;">'Score'</span>].max()</div>
+                        <div class="premium-code-card" style="background: white; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; border-left: 6px solid #3b82f6; box-shadow: 0 10px 25px rgba(0,0,0,0.05); color: #334155; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto; margin: 25px 0; position: relative; transition: transform 0.2s ease;">
+                            <h4 style="color: #1e3a8a; font-weight: 800; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
+                            <div style="color: #1e293b; font-weight: 600; margin-bottom: 10px;"># Finding maximum score per category</div>
+                            <div style="margin-bottom: 5px;">max_data = df1.groupby(<span style="color: #059669;">'Category'</span>)[<span style="color: #059669;">'Score'</span>].max()</div>
                             <div style="margin-bottom: 15px;">max_data</div>
                             
-                            <div style="border-top: 1px solid #334155; padding-top: 15px; color: #cbd5e1;">
-                                <div style="font-weight: 700; color: #94a3b8; margin-bottom: 10px;">Output:</div>
+                            <div style="padding-top: 5px; color: #334155;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-top: 20px; margin-bottom: 15px;"><div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div><div style="font-weight: 800; color: #1e3a8a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Output Console</div><div style="flex: 1; height: 1px; background: #f1f5f9; margin-left: 10px;"></div></div>
                                 <table style="width: 100%; border-collapse: collapse; font-family: 'Fira Code', monospace; font-size: 14px;">
-                                    <thead><tr style="color: #94a3b8; text-align: left;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Max</th></tr></thead>
+                                    <thead><tr style="color: #1e293b; text-align: left; font-weight: 700;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Max</th></tr></thead>
                                     <tbody>
-                                        <tr><td style="padding: 4px 0;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">450</td></tr>
-                                        <tr><td style="padding: 4px 0;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">800</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">450</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">800</td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -2124,12 +2325,12 @@ Sara,30,London</pre>
                 <div id="agg-pane-5" class="org-detail-pane">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="background: #3b82f6; color: white; padding: 12px 25px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
-                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">5. Grouping (MIN)</h3>
+                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">2.5.5 Grouping (MIN)</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 25px;">Grouping MIN is an aggregation function that identifies the lowest value within each group. It is useful for finding minimum thresholds or cost floors for different data segments.</p>
                         
                         <div style="margin-bottom: 30px;">
-                            <span style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Cost Records</span>
+                            <span style="font-size: 11px; font-weight: 800; color: #1e293b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Cost Records</span>
                             <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; font-size: 14px;">
                                 <thead style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
                                     <tr><th style="padding: 12px 20px; text-align: left; color: #1e3a5f;">Category</th><th style="padding: 12px 20px; text-align: right; color: #1e3a5f;">Cost</th></tr>
@@ -2144,19 +2345,19 @@ Sara,30,London</pre>
                             </table>
                         </div>
 
-                        <div style="background: #1e293b; padding: 25px; border-radius: 12px; color: #e2e8f0; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto;">
-                            <h4 style="color: #38bdf8; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
-                            <div style="color: #94a3b8; margin-bottom: 10px;"># Finding minimum cost per category</div>
-                            <div style="margin-bottom: 5px;">min_data = df1.groupby(<span style="color: #34d399;">'Category'</span>)[<span style="color: #34d399;">'Cost'</span>].min()</div>
+                        <div class="premium-code-card" style="background: white; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; border-left: 6px solid #3b82f6; box-shadow: 0 10px 25px rgba(0,0,0,0.05); color: #334155; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto; margin: 25px 0; position: relative; transition: transform 0.2s ease;">
+                            <h4 style="color: #1e3a8a; font-weight: 800; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
+                            <div style="color: #1e293b; font-weight: 600; margin-bottom: 10px;"># Finding minimum cost per category</div>
+                            <div style="margin-bottom: 5px;">min_data = df1.groupby(<span style="color: #059669;">'Category'</span>)[<span style="color: #059669;">'Cost'</span>].min()</div>
                             <div style="margin-bottom: 15px;">min_data</div>
                             
-                            <div style="border-top: 1px solid #334155; padding-top: 15px; color: #cbd5e1;">
-                                <div style="font-weight: 700; color: #94a3b8; margin-bottom: 10px;">Output:</div>
+                            <div style="padding-top: 5px; color: #334155;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-top: 20px; margin-bottom: 15px;"><div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div><div style="font-weight: 800; color: #1e3a8a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Output Console</div><div style="flex: 1; height: 1px; background: #f1f5f9; margin-left: 10px;"></div></div>
                                 <table style="width: 100%; border-collapse: collapse; font-family: 'Fira Code', monospace; font-size: 14px;">
-                                    <thead><tr style="color: #94a3b8; text-align: left;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Min</th></tr></thead>
+                                    <thead><tr style="color: #1e293b; text-align: left; font-weight: 700;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Min</th></tr></thead>
                                     <tbody>
-                                        <tr><td style="padding: 4px 0;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">100</td></tr>
-                                        <tr><td style="padding: 4px 0;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">200</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">100</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">200</td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -2168,12 +2369,12 @@ Sara,30,London</pre>
                 <div id="agg-pane-6" class="org-detail-pane">
                     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
                         <div style="background: #3b82f6; color: white; padding: 12px 25px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
-                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">6. Grouping (MODE)</h3>
+                            <h3 style="margin: 0; color: white; font-size: 22px; font-weight: 800; border: none;">2.5.6 Grouping (MODE)</h3>
                         </div>
                         <p style="font-size: 17px; color: #334155; line-height: 1.6; margin-bottom: 25px;">Grouping MODE is an aggregation function that identifies the most frequent value within each group. It is useful for finding common behaviors or preferences within specific categories.</p>
                         
                         <div style="margin-bottom: 30px;">
-                            <span style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Frequency Records</span>
+                            <span style="font-size: 11px; font-weight: 800; color: #1e293b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Visual Dataset: Frequency Records</span>
                             <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; font-size: 14px;">
                                 <thead style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
                                     <tr><th style="padding: 12px 20px; text-align: left; color: #1e3a5f;">Category</th><th style="padding: 12px 20px; text-align: right; color: #1e3a5f;">Value</th></tr>
@@ -2188,19 +2389,19 @@ Sara,30,London</pre>
                             </table>
                         </div>
 
-                        <div style="background: #1e293b; padding: 25px; border-radius: 12px; color: #e2e8f0; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto;">
-                            <h4 style="color: #38bdf8; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
-                            <div style="color: #94a3b8; margin-bottom: 10px;"># Finding most frequent value per category</div>
-                            <div style="margin-bottom: 5px;">mode_data = df1.groupby(<span style="color: #34d399;">'Category'</span>)[<span style="color: #34d399;">'Value'</span>].apply(<span style="color: #fb7185;">lambda</span> x: x.mode().iloc[<span style="color: #38bdf8;">0</span>])</div>
+                        <div class="premium-code-card" style="background: white; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; border-left: 6px solid #3b82f6; box-shadow: 0 10px 25px rgba(0,0,0,0.05); color: #334155; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto; margin: 25px 0; position: relative; transition: transform 0.2s ease;">
+                            <h4 style="color: #1e3a8a; font-weight: 800; margin-top: 0; margin-bottom: 15px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Python Implementation (Pandas)</h4>
+                            <div style="color: #1e293b; font-weight: 600; margin-bottom: 10px;"># Finding most frequent value per category</div>
+                            <div style="margin-bottom: 5px;">mode_data = df1.groupby(<span style="color: #059669;">'Category'</span>)[<span style="color: #059669;">'Value'</span>].apply(<span style="color: #be123c;">lambda</span> x: x.mode().iloc[<span style="color: #0369a1; font-weight: 700;">0</span>])</div>
                             <div style="margin-bottom: 15px;">mode_data</div>
                             
-                            <div style="border-top: 1px solid #334155; padding-top: 15px; color: #cbd5e1;">
-                                <div style="font-weight: 700; color: #94a3b8; margin-bottom: 10px;">Output:</div>
+                            <div style="padding-top: 5px; color: #334155;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-top: 20px; margin-bottom: 15px;"><div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div><div style="font-weight: 800; color: #1e3a8a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Output Console</div><div style="flex: 1; height: 1px; background: #f1f5f9; margin-left: 10px;"></div></div>
                                 <table style="width: 100%; border-collapse: collapse; font-family: 'Fira Code', monospace; font-size: 14px;">
-                                    <thead><tr style="color: #94a3b8; text-align: left;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Mode</th></tr></thead>
+                                    <thead><tr style="color: #1e293b; text-align: left; font-weight: 700;"><th style="padding-bottom: 8px;">Category</th><th style="padding-bottom: 8px; text-align: right;">Mode</th></tr></thead>
                                     <tbody>
-                                        <tr><td style="padding: 4px 0;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">200</td></tr>
-                                        <tr><td style="padding: 4px 0;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #38bdf8;">500</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Clothing</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">200</td></tr>
+                                        <tr><td style="padding: 4px 0; color: #1e293b; font-weight: 500;">Electronics</td><td style="padding: 4px 0; text-align: right; color: #0369a1; font-weight: 700;">500</td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -2211,7 +2412,7 @@ Sara,30,London</pre>
 
             <!-- Section 6: Summarizing -->
             <div id="s6-summarizing" class="section-header" style="margin-top: 40px;">
-                <h2>6. Summarizing</h2>
+                <h2>2.6 Summarizing</h2>
             </div>
 
             <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px; margin-top: 5px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
@@ -2236,24 +2437,24 @@ Sara,30,London</pre>
                     </div>
                 </div>
 
-                <div style="background: #1e293b; padding: 30px; border-radius: 16px; color: #e2e8f0; font-family: 'Fira Code', monospace; font-size: 15px; overflow-x: auto;">
-                    <h4 style="color: #38bdf8; margin-top: 0; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px;">Python Implementation (Pandas)</h4>
-                    <div style="color: #94a3b8; margin-bottom: 15px;"># Creating Summary statistics for an overview</div>
+                <div class="premium-code-card" style="background: white; padding: 30px; border-radius: 16px; border: 1px solid #e2e8f0; border-left: 6px solid #3b82f6; box-shadow: 0 10px 25px rgba(0,0,0,0.05); color: #334155; font-family: 'Fira Code', monospace; font-size: 15px; overflow-x: auto; margin: 25px 0; position: relative; transition: transform 0.2s ease;">
+                    <h4 style="color: #1e3a8a; font-weight: 800; margin-top: 0; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px;">Python Implementation (Pandas)</h4>
+                    <div style="color: #1e293b; font-weight: 600; margin-bottom: 15px;"># Creating Summary statistics for an overview</div>
                     <div style="margin-bottom: 10px;">summary_stats = df1.describe()</div>
                     <div style="margin-bottom: 20px;">summary_stats</div>
                     
-                    <div style="border-top: 1px solid #334155; padding-top: 20px; color: #cbd5e1;">
-                        <div style="font-weight: 700; color: #94a3b8; margin-bottom: 15px;">Output:</div>
+                    <div style="padding-top: 5px; color: #334155;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-top: 20px; margin-bottom: 15px;"><div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div><div style="font-weight: 800; color: #1e3a8a; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Output Console</div><div style="flex: 1; height: 1px; background: #f1f5f9; margin-left: 10px;"></div></div>
                         <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                            <tr><td style="padding: 6px 0;"></td><td style="color: #38bdf8; text-align: right;">Amount</td></tr>
-                            <tr><td style="padding: 6px 0; color: #94a3b8;">count</td><td style="text-align: right;">5.000000</td></tr>
-                            <tr><td style="padding: 6px 0; color: #94a3b8;">mean</td><td style="text-align: right;">370.000000</td></tr>
-                            <tr><td style="padding: 6px 0; color: #94a3b8;">std</td><td style="text-align: right;">228.035085</td></tr>
-                            <tr><td style="padding: 6px 0; color: #94a3b8;">min</td><td style="text-align: right;">150.000000</td></tr>
-                            <tr><td style="padding: 6px 0; color: #94a3b8;">25%</td><td style="text-align: right;">200.000000</td></tr>
-                            <tr><td style="padding: 6px 0; color: #94a3b8;">50%</td><td style="text-align: right;">300.000000</td></tr>
-                            <tr><td style="padding: 6px 0; color: #94a3b8;">75%</td><td style="text-align: right;">500.000000</td></tr>
-                            <tr><td style="padding: 6px 0; color: #94a3b8;">max</td><td style="text-align: right;">700.000000</td></tr>
+                            <tr><td style="padding: 6px 0; color: #1e293b; font-weight: 500;"></td><td style="color: #1e3a8a; font-weight: 800; text-align: right;">Amount</td></tr>
+                            <tr><td style="padding: 6px 0; color: #1e293b; font-weight: 600;">count</td><td style="text-align: right; color: #1e293b; font-weight: 700;">5.000000</td></tr>
+                            <tr><td style="padding: 6px 0; color: #1e293b; font-weight: 600;">mean</td><td style="text-align: right; color: #1e293b; font-weight: 700;">370.000000</td></tr>
+                            <tr><td style="padding: 6px 0; color: #1e293b; font-weight: 600;">std</td><td style="text-align: right; color: #1e293b; font-weight: 700;">228.035085</td></tr>
+                            <tr><td style="padding: 6px 0; color: #1e293b; font-weight: 600;">min</td><td style="text-align: right; color: #1e293b; font-weight: 700;">150.000000</td></tr>
+                            <tr><td style="padding: 6px 0; color: #1e293b; font-weight: 600;">25%</td><td style="text-align: right; color: #1e293b; font-weight: 700;">200.000000</td></tr>
+                            <tr><td style="padding: 6px 0; color: #1e293b; font-weight: 600;">50%</td><td style="text-align: right; color: #1e293b; font-weight: 700;">300.000000</td></tr>
+                            <tr><td style="padding: 6px 0; color: #1e293b; font-weight: 600;">75%</td><td style="text-align: right; color: #1e293b; font-weight: 700;">500.000000</td></tr>
+                            <tr><td style="padding: 6px 0; color: #1e293b; font-weight: 600;">max</td><td style="text-align: right; color: #1e293b; font-weight: 700;">700.000000</td></tr>
                         </table>
                     </div>
                 </div>
@@ -2261,7 +2462,7 @@ Sara,30,London</pre>
 
             <!-- Section 7: Pivoting -->
             <div id="s7-pivoting" class="section-header" style="margin-top: 40px;">
-                <h2>7. Pivoting</h2>
+                <h2>2.7 Pivoting</h2>
             </div>
 
             <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px; margin-top: 5px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
@@ -2276,26 +2477,26 @@ Sara,30,London</pre>
                     </ul>
                 </div>
 
-                <div style="background: #1e293b; padding: 30px; border-radius: 16px; color: #e2e8f0; font-family: 'Fira Code', monospace; font-size: 15px; overflow-x: auto;">
-                    <h4 style="color: #38bdf8; margin-top: 0; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px;">Python Implementation (Pandas)</h4>
-                    <div style="color: #94a3b8; margin-bottom: 15px;"># Reshaping data to view Amount as columns</div>
-                    <div style="margin-bottom: 10px;">pivoted_data = df1.pivot(index=<span style="color: #34d399;">'Category'</span>, columns=<span style="color: #34d399;">'Amount'</span>, values=<span style="color: #34d399;">'Amount'</span>)</div>
+                <div class="premium-code-card" style="background: white; padding: 30px; border-radius: 16px; border: 1px solid #e2e8f0; border-left: 6px solid #3b82f6; box-shadow: 0 10px 25px rgba(0,0,0,0.05); color: #334155; font-family: 'Fira Code', monospace; font-size: 15px; overflow-x: auto; margin: 25px 0; position: relative; transition: transform 0.2s ease;">
+                    <h4 style="color: #1e3a8a; font-weight: 800; margin-top: 0; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px;">Python Implementation (Pandas)</h4>
+                    <div style="color: #1e293b; font-weight: 600; margin-bottom: 15px;"># Reshaping data to view Amount as columns</div>
+                    <div style="margin-bottom: 10px;">pivoted_data = df1.pivot(index=<span style="color: #059669;">'Category'</span>, columns=<span style="color: #059669;">'Amount'</span>, values=<span style="color: #059669;">'Amount'</span>)</div>
                     <div style="margin-bottom: 20px;">pivoted_data</div>
                     
-                    <div style="border-top: 1px solid #334155; padding-top: 20px; color: #cbd5e1;">
-                        <div style="font-weight: 700; color: #94a3b8; margin-bottom: 20px;">Output:</div>
+                    <div style="padding-top: 5px; color: #334155;">
+                        <div style="font-weight: 700; color: #1e293b; font-weight: 600; margin-bottom: 20px;">Output:</div>
                         <table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: right;">
-                            <tr><td style="text-align: left; color: #94a3b8;">Amount</td><td style="padding: 8px;">150</td><td style="padding: 8px;">200</td><td style="padding: 8px;">300</td><td style="padding: 8px;">500</td><td style="padding: 8px;">700</td></tr>
-                            <tr><td style="text-align: left; color: #94a3b8; border-bottom: 1px solid #475569; padding-bottom: 8px;">Category</td><td colspan="5"></td></tr>
-                            <tr><td style="text-align: left; padding: 10px 0;">Clothing</td><td style="color: #38bdf8;">150.0</td><td style="color: #38bdf8;">200.0</td><td style="color: #64748b;">NaN</td><td style="color: #64748b;">NaN</td><td style="color: #64748b;">NaN</td></tr>
-                            <tr><td style="text-align: left; padding: 10px 0;">Electronics</td><td style="color: #64748b;">NaN</td><td style="color: #64748b;">NaN</td><td style="color: #38bdf8;">300.0</td><td style="color: #38bdf8;">500.0</td><td style="color: #38bdf8;">700.0</td></tr>
+                            <tr><td style="text-align: left; color: #1e293b; font-weight: 600;">Amount</td><td style="padding: 8px;">150</td><td style="padding: 8px;">200</td><td style="padding: 8px;">300</td><td style="padding: 8px;">500</td><td style="padding: 8px;">700</td></tr>
+                            <tr><td style="text-align: left; color: #1e293b; font-weight: 600; border-bottom: 1px solid #475569; padding-bottom: 8px;">Category</td><td colspan="5"></td></tr>
+                            <tr><td style="text-align: left; padding: 10px 0;">Clothing</td><td style="color: #0369a1; font-weight: 700;">150.0</td><td style="color: #0369a1; font-weight: 700;">200.0</td><td style="color: #1e293b; font-weight: 600;">NaN</td><td style="color: #1e293b; font-weight: 600;">NaN</td><td style="color: #1e293b; font-weight: 600;">NaN</td></tr>
+                            <tr><td style="text-align: left; padding: 10px 0;">Electronics</td><td style="color: #1e293b; font-weight: 600;">NaN</td><td style="color: #1e293b; font-weight: 600;">NaN</td><td style="color: #0369a1; font-weight: 700;">300.0</td><td style="color: #0369a1; font-weight: 700;">500.0</td><td style="color: #0369a1; font-weight: 700;">700.0</td></tr>
                         </table>
                     </div>
                 </div>
             </div>
 
             <!-- Pro Pivot Builder Lab -->
-            <div class="practical-lab-container" style="margin-top: 35px; border-color: #38bdf8; background: #f0f9ff; width: 100%; margin-left: auto; margin-right: auto; padding: 25px;">
+            <div class="practical-lab-container" style="margin-top: 35px; border-color: #1e3a8a; font-weight: 800; background: #f0f9ff; width: 100%; margin-left: auto; margin-right: auto; padding: 25px;">
                 <div style="margin-bottom: 25px;">
                     <h5 style="margin: 0; color: #1e3a5f; font-weight: 800; font-size: 20px;">Pro Pivot Table Builder</h5>
                     <p style="margin: 5px 0 0; font-size: 14px; color: #475569;">Drag fields to build, filter, and analyze your dataset live.</p>
@@ -2306,7 +2507,7 @@ Sara,30,London</pre>
                     <div style="flex: 0.8; display: flex; flex-direction: column; gap: 20px;">
                         <!-- Available Fields -->
                         <div style="background: white; padding: 20px; border-radius: 12px; border: 1.5px solid #bae6fd;">
-                            <span style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 15px;">Available Fields</span>
+                            <span style="font-size: 11px; font-weight: 800; color: #1e293b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 15px;">Available Fields</span>
                             <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="fields-origin">
                                 <div class="pivot-field" draggable="true" ondragstart="dragPivot(event)" id="f-region">Region</div>
                                 <div class="pivot-field" draggable="true" ondragstart="dragPivot(event)" id="f-category">Category</div>
@@ -2318,7 +2519,7 @@ Sara,30,London</pre>
 
                         <!-- Source Data Table -->
                         <div style="background: white; padding: 15px; border-radius: 12px; border: 1.5px solid #e2e8f0;">
-                            <span style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Source Data</span>
+                            <span style="font-size: 11px; font-weight: 800; color: #1e293b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Source Data</span>
                             <div class="table-scroll" style="max-height: 200px;">
                                 <table class="lab-table" style="font-size: 11px;">
                                     <thead><tr><th>Reg</th><th>Cat</th><th>Yr</th><th>Sales</th></tr></thead>
@@ -2358,9 +2559,9 @@ Sara,30,London</pre>
                         <div style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #38bdf8; min-height: 250px; box-shadow: 0 10px 30px rgba(56, 189, 248, 0.05);">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1.5px solid #f1f5f9; padding-bottom: 10px;">
                                 <span style="font-size: 12px; font-weight: 800; color: #1e3a5f; text-transform: uppercase;">Pivot Result</span>
-                                <div id="pivot-status" style="font-size: 11px; color: #94a3b8; font-weight: 600;">Standby</div>
+                                <div id="pivot-status" style="font-size: 11px; color: #1e293b; font-weight: 600; font-weight: 600;">Standby</div>
                             </div>
-                            <div id="pivot-builder-result" class="table-scroll" style="display: flex; align-items: center; justify-content: center; color: #94a3b8; font-style: italic; text-align: center;">
+                            <div id="pivot-builder-result" class="table-scroll" style="display: flex; align-items: center; justify-content: center; color: #1e293b; font-weight: 600; font-style: italic; text-align: center;">
                                 Drag fields to build your report...
                             </div>
                         </div>
@@ -2446,7 +2647,7 @@ Sara,30,London</pre>
             <div style="margin-top: 100px; padding: 60px; background: linear-gradient(135deg, #1e3a5f 0%, #38bdf8 100%); border-radius: 24px; color: white; text-align: center; box-shadow: 0 20px 40px rgba(30, 58, 95, 0.15);">
                 <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 32px; margin-bottom: 15px; border-bottom: none; color: white;">Ready for the Module 2 Assessment?</h2>
                 <p style="font-size: 18px; color: rgba(255, 255, 255, 0.9); max-width: 650px; margin: 0 auto 40px;">Test your knowledge of the ETL process and common data file formats.</p>
-                <a href="module_quiz.html?mod=data2" style="display: inline-block; background: white; color: #1e3a5f; padding: 18px 50px; border-radius: 40px; text-decoration: none; font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">START FINAL ASSESSMENT</a>
+                <a href="module_quiz.html?mod=data2" style="display: inline-block; background: white; color: #1e3a5f; padding: 18px 50px; border-radius: 40px; text-decoration: none; font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">START ASSESSMENT</a>
             </div>
         </main>
     </div>
@@ -3104,10 +3305,49 @@ Sara,30,London</pre>
         }
 
 
-        document.querySelectorAll('.sidebar-content-link').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelectorAll('.sidebar-content-link').forEach(l => l.classList.remove('selected'));
-                this.classList.add('selected');
+        function toggleAccordion(moduleNum) {
+            const allHeaders = document.querySelectorAll('.accordion-header');
+            const allContents = document.querySelectorAll('.accordion-content');
+            const targetContent = document.getElementById(`content-${moduleNum}`);
+            
+            if (!targetContent) return;
+            
+            const targetHeader = targetContent.previousElementSibling;
+            const isExpanded = targetContent.classList.contains('expanded');
+
+            // Collapse all
+            allContents.forEach((content) => {
+                content.classList.remove('expanded');
+                if (content.previousElementSibling) {
+                    content.previousElementSibling.classList.remove('expanded');
+                }
+            });
+
+            // If it wasn't expanded, expand it
+            if (!isExpanded) {
+                targetContent.classList.add('expanded');
+                targetHeader.classList.add('expanded');
+            }
+        }
+
+        // Highlight active section on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section-header, .lab-container, .practical-lab-container, .practice-light-card');
+            const navLinks = document.querySelectorAll('.sidebar-content-link');
+            
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-topic');
+                if (link.getAttribute('href').includes(current) && current !== "") {
+                    link.classList.add('active-topic');
+                }
             });
         });
     </script>

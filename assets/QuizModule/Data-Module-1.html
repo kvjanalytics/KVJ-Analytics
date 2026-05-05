@@ -7,6 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         :root {
             --primary-blue: #1e3a5f;
             --accent-blue: #38bdf8;
@@ -80,32 +85,139 @@
         .sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         .sidebar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
+        /* ─── ENHANCED ACCORDION SIDEBAR ─── */
+        .sidebar {
+            width: 320px; background: white; padding: 25px;
+            border: 1px solid var(--border-color); position: sticky;
+            top: 100px; border-radius: 20px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+        }
+
         .sidebar h3 {
-            font-family: 'Montserrat', sans-serif; font-size: 12px;
+            font-family: 'Montserrat', sans-serif; font-size: 11px;
             color: var(--accent-blue); text-transform: uppercase;
             margin-bottom: 20px; border-bottom: 2px solid var(--bg-light);
-            padding-bottom: 10px; font-weight: 800; letter-spacing: 1px;
+            padding-bottom: 10px; font-weight: 800; letter-spacing: 1.5px;
         }
 
-        .sidebar a {
-            display: block; padding: 12px 15px;
-            color: var(--text-muted); text-decoration: none; font-size: 14px;
-            font-weight: 500; margin-bottom: 5px; border-radius: 8px;
-            transition: all 0.2s;
+        .accordion-item {
+            margin-bottom: 12px;
         }
 
-        .sidebar a.active {
-            color: var(--primary-blue); font-weight: 700;
-            background: #eff6ff; border-left: 4px solid var(--primary-blue);
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 14px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
         }
 
-        .sidebar a:hover:not(.active) { background: #f8fafc; color: var(--primary-blue); }
+        .accordion-header:hover {
+            background: #f1f5f9;
+            color: var(--primary-blue);
+            transform: translateX(5px);
+            border-color: var(--accent-blue);
+        }
+
+        .accordion-header.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+            box-shadow: 0 8px 25px rgba(30, 58, 95, 0.25);
+        }
+
+        .accordion-header.expanded {
+            border-color: var(--accent-blue);
+            background: #ffffff;
+            color: var(--primary-blue);
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .accordion-header.active.expanded {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .chevron {
+            width: 8px;
+            height: 8px;
+            border-right: 2.5px solid currentColor;
+            border-bottom: 2.5px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-header.expanded .chevron {
+            transform: rotate(-135deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin 0.4s ease;
+            opacity: 0;
+            padding-left: 15px;
+            margin-left: 10px;
+            border-left: 2px solid #e2e8f0;
+        }
+
+        .accordion-content.expanded {
+            max-height: 1000px;
+            opacity: 1;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
         .sidebar-content-link {
-            font-size: 12.5px; padding: 5px 10px; color: #64748b; margin-bottom: 2px;
-            display: block; border-radius: 4px; transition: all 0.2s; text-decoration: none;
+            font-size: 13px;
+            padding: 10px 15px;
+            color: #475569;
+            font-weight: 500;
+            display: block;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-bottom: 4px;
+            position: relative;
         }
-        .sidebar-content-link:hover { color: var(--primary-blue); background: #f1f5f9; }
-        .sidebar-content-link.selected { color: var(--primary-blue); background: #eff6ff; font-weight: 700; }
+
+        .sidebar-content-link:hover {
+            background: #eff6ff;
+            color: var(--primary-blue);
+            padding-left: 22px;
+        }
+
+        .sidebar-content-link:hover::before {
+            content: "";
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        .sidebar-content-link.active-topic {
+            background: #f1f5f9;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
 
         .main-content {
             flex: 1; background: #ffffff; border: 1px solid var(--border-color);
@@ -243,7 +355,7 @@
             display: none;
         }
         .practice-card h3 { 
-            margin-top: 0; color: #38bdf8; font-size: 22px; font-weight: 700; border: none; padding-bottom: 0; margin-bottom: 20px; font-family: 'Outfit', sans-serif;
+            margin-top: 0; color: #1e3a8a; font-weight: 800; font-size: 22px; font-weight: 700; border: none; padding-bottom: 0; margin-bottom: 20px; font-family: 'Outfit', sans-serif;
         }
         .practice-card p { color: #e2e8f0; font-size: 16px; margin-bottom: 20px; }
         .practice-card strong { color: #f8fafc; font-weight: 800; }
@@ -254,16 +366,16 @@
             cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 15px;
             color: #e2e8f0;
         }
-        .mcq-option:hover { background: #1e293b; border-color: #38bdf8; }
-        .mcq-option.selected { border-width: 2px; border-color: #38bdf8; }
+        .mcq-option:hover { background: #1e293b; border-color: #1e3a8a; font-weight: 800; }
+        .mcq-option.selected { border-width: 2px; border-color: #1e3a8a; font-weight: 800; }
         .mcq-option.correct { border-color: #10b981; background: rgba(16, 185, 129, 0.1); color: #10b981; }
         .mcq-option.wrong { border-color: #ef4444; background: rgba(239, 68, 68, 0.1); color: #ef4444; }
-        .mcq-prefix { font-weight: 800; color: #38bdf8; }
+        .mcq-prefix { font-weight: 800; color: #1e3a8a; font-weight: 800; }
 
         .tf-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #334155; }
         .tf-statement { color: #e2e8f0; font-size: 15px; }
         .tf-btn { padding: 6px 15px; border: 1px solid #334155; background: #0f172a; color: #e2e8f0; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
-        .tf-btn.selected { background: #38bdf8; color: #0f172a; border-color: #38bdf8; }
+        .tf-btn.selected { background: #38bdf8; color: #0f172a; border-color: #1e3a8a; font-weight: 800; }
         .tf-btn.correct { background: #10b981 !important; border-color: #10b981 !important; color: white !important; }
         .tf-btn.wrong { background: #ef4444 !important; border-color: #ef4444 !important; color: white !important; }
 
@@ -291,7 +403,7 @@
             color: #f8fafc; border: 1px solid #334155; font-weight: 600;
             width: 220px; outline: none; transition: border-color 0.2s;
         }
-        .dd-container select:focus { border-color: #38bdf8; }
+        .dd-container select:focus { border-color: #1e3a8a; font-weight: 800; }
         
         .mcq-option strong { margin-right: 10px; color: #f8fafc; }
         .dd-container select option { background: #0f172a; color: #f8fafc; }
@@ -351,34 +463,120 @@
     <div class="layout-container">
         
         <aside class="sidebar">
+            
+            
             <h3>Module Path</h3>
-            <a href="Data-Module-1.html" class="active">01 Data Basics</a>
-            <div style="padding-left: 14px; border-left: 3px solid #e2e8f0; margin: 8px 0 10px 15px;">
-                <a href="#s1-basics" class="sidebar-content-link">1. Data & Information</a>
-                <a href="#s2-info" class="sidebar-content-link">2. Information</a>
-                <a href="#s3-knowledge" class="sidebar-content-link">3. Knowledge</a>
-                <a href="#s4-analysis" class="sidebar-content-link">4. Data Analysis</a>
-                <a href="#s5-variables" class="sidebar-content-link">5. Variable Types</a>
-                <a href="#s6-structures" class="sidebar-content-link">6. Basic Structures</a>
-                <a href="#s7-stats" class="sidebar-content-link">7. Statistics</a>
-                <a href="#s8-types" class="sidebar-content-link">8. Types of Data</a>
-                <a href="#s9-structured" class="sidebar-content-link">9. Structured Data</a>
-                <a href="#s10-raw" class="sidebar-content-link">10. Raw & Big Data</a>
+            
+            <!-- Module 1 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-1" onclick="toggleAccordion(1)">
+                    <span>01 Data Basics</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-1" class="accordion-content expanded">
+                    <a href="Data-Module-1.html#s1-basics" class="sidebar-content-link">1.1 Data & Information</a>
+                    <a href="Data-Module-1.html#s2-info" class="sidebar-content-link">1.2 Information</a>
+                    <a href="Data-Module-1.html#s3-knowledge" class="sidebar-content-link">1.3 Knowledge</a>
+                    <a href="Data-Module-1.html#s4-analysis" class="sidebar-content-link">1.4 Data Analysis</a>
+                    <a href="Data-Module-1.html#s5-variables" class="sidebar-content-link">1.5 Variable Types</a>
+                    <a href="Data-Module-1.html#s6-structures" class="sidebar-content-link">1.6 Basic Structures</a>
+                    <a href="Data-Module-1.html#s7-stats" class="sidebar-content-link">1.7 Statistics</a>
+                    <a href="Data-Module-1.html#s8-types" class="sidebar-content-link">1.8 Types of Data</a>
+                    <a href="Data-Module-1.html#s9-structured" class="sidebar-content-link">1.9 Structured Data</a>
+                    <a href="Data-Module-1.html#s10-raw" class="sidebar-content-link">1.10 Raw & Big Data</a>
+                </div>
             </div>
-            <a href="Data-Module-2.html" class="">02 Data Manipulation</a>
-            <a href="Data-Module-3.html" class="">03 Data Analysis</a>
-            <a href="Data-Module-4.html" class="">04 Data Visualization</a>
-            <a href="Data-Module-5.html" class="">05 Responsible Analytics</a>
+
+            <!-- Module 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-2" onclick="toggleAccordion(2)">
+                    <span>02 Data Manipulation</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-2" class="accordion-content">
+                    <a href="Data-Module-2.html#s1-etl" class="sidebar-content-link">2.1 ETL Process</a>
+                    <a href="Data-Module-2.html#s2-formats" class="sidebar-content-link">2.2 File Formats</a>
+                    <a href="Data-Module-2.html#s3-cleaning" class="sidebar-content-link">2.3 Data Cleaning</a>
+                    <a href="Data-Module-2.html#s4-organizing" class="sidebar-content-link">2.4 Data Organizing</a>
+                    <a href="Data-Module-2.html#s5-aggregation" class="sidebar-content-link">2.5 Data Aggregation</a>
+                    <a href="Data-Module-2.html#s6-summarizing" class="sidebar-content-link">2.6 Summarizing</a>
+                    <a href="Data-Module-2.html#s7-pivoting" class="sidebar-content-link">2.7 Pivoting</a>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-3" onclick="toggleAccordion(3)">
+                    <span>03 Data Analysis</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-3" class="accordion-content">
+                    <a href="Data-Module-3.html#s3-1-types" class="sidebar-content-link">3.1 Analysis Types</a>
+                    <a href="Data-Module-3.html#s3-2-descriptive" class="sidebar-content-link">3.2 Descriptive</a>
+                    <a href="Data-Module-3.html#s3-3-diagnostic" class="sidebar-content-link">3.3 Diagnostic</a>
+                    <a href="Data-Module-3.html#s3-4-predictive" class="sidebar-content-link">3.4 Predictive</a>
+                    <a href="Data-Module-3.html#s3-5-prescriptive" class="sidebar-content-link">3.5 Prescriptive</a>
+                    <a href="Data-Module-3.html#s3-6-exploratory" class="sidebar-content-link">3.6 Exploratory (EDA)</a>
+                    <a href="Data-Module-3.html#s3-7-drilling" class="sidebar-content-link">3.7 Data Drilling</a>
+                    <a href="Data-Module-3.html#s3-8-granularity" class="sidebar-content-link">3.8 Data Granularity</a>
+                    <a href="Data-Module-3.html#s3-9-mining" class="sidebar-content-link">3.9 Data Mining</a>
+                    <a href="Data-Module-3.html#s3-10-corr" class="sidebar-content-link">3.10 Correlation</a>
+                    <a href="Data-Module-3.html#s3-11-pattern" class="sidebar-content-link">3.11 Pattern Recognition</a>
+                    <a href="Data-Module-3.html#s3-12-anomaly-outliers" class="sidebar-content-link">3.12 Anomaly & Outliers</a>
+                    <a href="Data-Module-3.html#s3-13-evaluate" class="sidebar-content-link">3.13 Explain Results</a>
+                    <a href="Data-Module-3.html#s3-14-hypothesis" class="sidebar-content-link">3.14 Hypothesis Testing</a>
+                    <a href="Data-Module-3.html#s3-15-prob" class="sidebar-content-link">3.15 Probability/Errors</a>
+                    <a href="Data-Module-3.html#s3-16-stats" class="sidebar-content-link">3.16 Statistical Techniques</a>
+                    <a href="Data-Module-3.html#s3-17-predictive-models" class="sidebar-content-link">3.17 Predictive Models</a>
+                    <a href="Data-Module-3.html#s3-20-ai-role" class="sidebar-content-link">3.20 Role of AI</a>
+                    <a href="Data-Module-3.html#s3-21-ml-algo" class="sidebar-content-link">3.21 ML Algorithms</a>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-4" onclick="toggleAccordion(4)">
+                    <span>04 Data Visualization</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-4" class="accordion-content">
+                    <a href="Data-Module-4.html#s4-1-report-data" class="sidebar-content-link">4.1 Report Data</a>
+                    <a href="Data-Module-4.html#s4-2-types-of-reports" class="sidebar-content-link">4.2 Types of Reports</a>
+                    <a href="Data-Module-4.html#s4-3-apple-case" class="sidebar-content-link">4.3 Apple Case Study</a>
+                    <a href="Data-Module-4.html#s4-4-importance" class="sidebar-content-link">4.4 Importance/Audience</a>
+                    <a href="Data-Module-4.html#s4-5-banavil" class="sidebar-content-link">4.5 Banavil Case Study</a>
+                    <a href="Data-Module-4.html#s4-7-tables" class="sidebar-content-link">4.7 Data Tables</a>
+                    <a href="Data-Module-4.html#s4-8-conclusions" class="sidebar-content-link">4.8 Conclusions</a>
+                    <a href="Data-Module-4.html#s4-9-chart-library" class="sidebar-content-link">4.9 Chart Library</a>
+                    <a href="Data-Module-4.html#s4-10-dashboard" class="sidebar-content-link">4.10 Live Dashboard</a>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="accordion-item">
+                <div class="accordion-header" id="header-5" onclick="toggleAccordion(5)">
+                    <span>05 Responsible Analytics</span>
+                    <span class="chevron"></span>
+                </div>
+                <div id="content-5" class="accordion-content">
+                    <a href="Data-Module-5.html#s5-1-concept" class="sidebar-content-link">5.1 Concept</a>
+                    <a href="Data-Module-5.html#s5-2-laws" class="sidebar-content-link">5.2 Privacy Laws</a>
+                    <a href="Data-Module-5.html#s5-3-best-practices" class="sidebar-content-link">5.3 Best Practices</a>
+                    <a href="Data-Module-5.html#s5-4-bias" class="sidebar-content-link">5.4 Types of Bias</a>
+                </div>
+            </div>
 
             <h3 style="margin-top:35px;">Navigation</h3>
-            <a href="data_roadmap.html" style="background: #f8fafc;">&larr; Return to Roadmap</a>
+
+
+            <a href="data_roadmap.html" style="background: #f8fafc; display: block; padding: 12px 15px; color: var(--primary-blue); text-decoration: none; font-size: 14px; font-weight: 700; border-radius: 12px; transition: all 0.3s; border: 1px solid #e2e8f0; text-align: center;">&larr; Return to Roadmap</a>
         </aside>
 
 
         
         <main class="main-content">
             <div id="s1-basics" class="section-header">
-                <h2>1. Data, Information and Knowledge</h2>
+                <h2>1.1 Data, Information and Knowledge</h2>
             </div>
 
             <h3>Data</h3>
@@ -402,7 +600,7 @@
             </ul>
 
             <div id="s2-info" class="section-header" style="margin-top: 60px;">
-                <h2>2. Information: The Finished Product</h2>
+                <h2>1.2 Information: The Finished Product</h2>
             </div>
             <p>Information is data that has been processed, structured, or presented within a specific context to make it meaningful and useful. It is "data with a story."</p>
             
@@ -461,7 +659,7 @@
             </div>
 
             <div id="s3-knowledge" class="section-header" style="margin-top: 60px;">
-                <h2>3. Knowledge: The Application of Information</h2>
+                <h2>1.3 Knowledge: The Application of Information</h2>
             </div>
             <p>While information is data with context, knowledge is the next step in the hierarchy. It is the ability to use information to make decisions, solve problems, or predict future outcomes. Knowledge is gained through experience, study, and reflection.</p>
             
@@ -486,13 +684,13 @@
                         <span style="font-family: 'Fira Code', monospace; color: #475569; font-size: 16px; font-weight: 600;">85, 40, 92, 38, 77</span>
                     </div>
                     
-                    <p style="color: #64748b; font-size: 15px; line-height: 1.6; margin: 0;">A list of numbers. On their own, these are just digits without a purpose or context.</p>
+                    <p style="color: #1e293b; font-weight: 600; font-size: 15px; line-height: 1.6; margin: 0;">A list of numbers. On their own, these are just digits without a purpose or context.</p>
                 </div>
 
                 <!-- 2. INFORMATION -->
                 <div style="flex: 1; min-width: 260px; background: white; border: 1px solid #bae6fd; border-radius: 16px; padding: 30px 25px; position: relative; box-shadow: 0 10px 25px rgba(56,189,248,0.08); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <div style="position: absolute; top: -20px; left: 30px; background: #0ea5e9; color: white; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; font-family: 'Montserrat', sans-serif; box-shadow: 0 4px 10px rgba(14,165,233,0.3);">2</div>
-                    <h4 style="color: #0284c7; font-size: 20px; margin-top: 10px; margin-bottom: 15px; font-family: 'Montserrat', sans-serif; font-weight: 800;">INFORMATION <span style="font-weight:500; font-size: 14px; color:#7dd3fc; display:block; margin-top: 5px;">The Processed Output</span></h4>
+                    <h4 style="color: #1e3a8a; font-weight: 800; font-size: 20px; margin-top: 10px; margin-bottom: 15px; font-family: 'Montserrat', sans-serif; font-weight: 800;">INFORMATION <span style="font-weight:500; font-size: 14px; color:#7dd3fc; display:block; margin-top: 5px;">The Processed Output</span></h4>
                     
                     <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; border: 1px solid #bae6fd; margin-bottom: 20px;">
                         <p style="color: #0369a1; margin: 0; font-size: 14px; font-weight: 700; text-align: center;">Python Mock Test Scores</p>
@@ -569,7 +767,7 @@
                 border: 2px solid #e2e8f0; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; cursor: pointer; transition: all 0.2s; color: #334155; font-size: 15px; font-weight: 500; background: white;
             }
             .mcq-light-option:hover {
-                border-color: #cbd5e1; background: #f8fafc; transform: translateY(-2px);
+                border-color: #1e293b; background: #f8fafc; transform: translateY(-2px);
             }
             .mcq-light-option.selected {
                 border-color: #3b82f6; background: #eff6ff; box-shadow: 0 4px 12px rgba(59,130,246,0.15);
@@ -581,7 +779,7 @@
                 border-color: #ef4444; background: #fef2f2; color: #b91c1c;
             }
             .mcq-light-prefix {
-                background: #f1f5f9; color: #64748b; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; margin-right: 15px; flex-shrink: 0; transition: all 0.2s; font-family: 'Montserrat', sans-serif;
+                background: #f1f5f9; color: #1e293b; font-weight: 600; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; margin-right: 15px; flex-shrink: 0; transition: all 0.2s; font-family: 'Montserrat', sans-serif;
             }
             .mcq-light-option.selected .mcq-light-prefix {
                 background: #3b82f6; color: white;
@@ -596,12 +794,12 @@
             .tf-light-row {
                 display: flex; justify-content: space-between; align-items: center; padding: 16px; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 12px; transition: all 0.2s; background: white;
             }
-            .tf-light-row:hover { border-color: #cbd5e1; background: #f8fafc; }
+            .tf-light-row:hover { border-color: #1e293b; background: #f8fafc; }
             .tf-light-statement { color: #334155; font-size: 15px; font-weight: 500; padding-right: 20px; line-height: 1.5; }
             .tf-light-btn {
-                padding: 8px 24px; border: 2px solid #e2e8f0; background: white; color: #64748b; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 14px; transition: all 0.2s; font-family: 'Montserrat', sans-serif;
+                padding: 8px 24px; border: 2px solid #e2e8f0; background: white; color: #1e293b; font-weight: 600; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 14px; transition: all 0.2s; font-family: 'Montserrat', sans-serif;
             }
-            .tf-light-btn:hover { border-color: #cbd5e1; color: #334155; background: #f8fafc; }
+            .tf-light-btn:hover { border-color: #1e293b; color: #334155; background: #f8fafc; }
             .tf-light-btn.selected { background: #3b82f6; color: white; border-color: #3b82f6; box-shadow: 0 4px 10px rgba(59,130,246,0.2); }
             .tf-light-btn.correct { background: #10b981 !important; border-color: #10b981 !important; color: white !important; }
             .tf-light-btn.wrong { background: #ef4444 !important; border-color: #ef4444 !important; color: white !important; }
@@ -687,7 +885,7 @@
             <!-- Question 1 -->
             <div class="practice-light-card">
                 <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                    <div style="background: #f0f9ff; color: #0284c7; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q1</div>
+                    <div style="background: #f0f9ff; color: #1e3a8a; font-weight: 800; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q1</div>
                     <h3 style="margin: 0; color: #1e293b; font-size: 19px; font-weight: 700; font-family: 'Montserrat', sans-serif;"></h3>
                 </div>
                 <p style="color: #475569; font-size: 15.5px; margin-bottom: 25px; font-weight: 500;">Which of the following scenarios best illustrates the difference between data and information?</p>
@@ -771,7 +969,7 @@
             </div>
 
             <div id="s4-analysis" class="section-header" style="margin-top: 60px;">
-                <h2>4. Data Analysis</h2>
+                <h2>1.4 Data Analysis</h2>
             </div>
             
             <h3>Concept</h3>
@@ -801,10 +999,10 @@
             <p style="color: #475569; font-size: 16px; line-height: 1.6;">Imagine a business tracking its monthly revenue. The raw numbers (Data) show a decline. By processing this (Information), the owner sees the decline is specific to one product line. This insight allows them to investigate the cause and make an informed decision (Data Analysis) to improve future performance.</p>
 
             <div id="s5-variables" class="section-header" style="margin-top: 60px;">
-                <h2>5. Data Variable Types</h2>
+                <h2>1.5 Data Variable Types</h2>
             </div>
             
-            <h3>Boolean Data Type</h3>
+            <h3>1.5.1 Boolean Data Type</h3>
             <p>The Boolean Data type is used to store only two possible values: <strong>True</strong> and <strong>False</strong>. In binary systems, these are represented by <strong>1</strong> (True) and <strong>0</strong> (False).</p>
             
             <div class="interaction-box" style="border-left-color: #0ea5e9; background: #f0f9ff;">
@@ -855,11 +1053,11 @@
                 <code style="display: block; background: #e6f7ef; padding: 10px; border-radius: 6px; font-weight: bold; color: #047857;">=IFERROR(A1/B1, FALSE)</code>
             </div>
 
-            <h3 style="margin-top: 50px;">Numeric Data Type</h3>
+            <h3 style="margin-top: 50px;">1.5.2 Numeric Data Type</h3>
             <p>Numeric data types consist of numbers which can be computed mathematically with various standard operators such as addition, subtraction, multiplication, division, and more.</p>
             <p>It can be an integer, floating-point number, or even a complex number. Common examples include exam marks, height, weight, fees, and other measurements.</p>
 
-            <h4 style="color: #475569; font-weight: 700; margin-top: 30px; font-size: 18px; font-family: 'Montserrat', sans-serif;">Integer</h4>
+            <h4 style="color: #475569; font-weight: 700; margin-top: 30px; font-size: 18px; font-family: 'Montserrat', sans-serif;">1.5.2.1 Integer</h4>
             <p>An integer data type is used to represent whole numbers without any fractional or decimal parts. Integers can be positive, negative, or zero, and they do not include any digits after a decimal point.</p>
             
             <div class="interaction-box" style="border-left-color: #10b981; background: #f0fdf4;">
@@ -904,7 +1102,7 @@
             </div>
             <p style="font-family: 'Consolas', 'Courier New', monospace; font-size: 15px; color: #333; margin-top: 0; margin-bottom: 40px; padding-left: 5px;">Type of a: &nbsp;&lt;class 'int'&gt;</p>
 
-            <h4 style="color: #475569; font-weight: 700; margin-top: 50px; font-size: 18px; font-family: 'Montserrat', sans-serif;">Float</h4>
+            <h4 style="color: #475569; font-weight: 700; margin-top: 50px; font-size: 18px; font-family: 'Montserrat', sans-serif;">1.5.2.2 Float</h4>
             <p>The float data type (short for "floating-point") is a data type used to represent numbers that have a fractional part, typically with a decimal point. Floating-point numbers are used to represent real numbers that require more precision than integers can provide, especially when dealing with very large or very small numbers.</p>
             
             <div class="interaction-box" style="border-left-color: #10b981; background: #f0fdf4;">
@@ -949,7 +1147,7 @@
             </div>
             <p style="font-family: 'Consolas', 'Courier New', monospace; font-size: 15px; color: #333; margin-top: 0; margin-bottom: 40px; padding-left: 5px;">Type of pi_value: &nbsp;&lt;class 'float'&gt;</p>
 
-            <h4 style="color: #475569; font-weight: 700; margin-top: 50px; font-size: 18px; font-family: 'Montserrat', sans-serif;">Complex</h4>
+            <h4 style="color: #475569; font-weight: 700; margin-top: 50px; font-size: 18px; font-family: 'Montserrat', sans-serif;">1.5.2.3 Complex</h4>
             <p>The complex data type is used to represent complex numbers, which are numbers that have both a real part and an imaginary part.</p>
             <p>A complex number is expressed as <code>a + bi</code> where:</p>
             <ul class="content-list">
@@ -997,7 +1195,7 @@
             </div>
             <p style="font-family: 'Consolas', 'Courier New', monospace; font-size: 15px; color: #333; margin-top: 0; margin-bottom: 40px; padding-left: 5px;">Type of c: &nbsp;&lt;class 'complex'&gt;</p>
 
-            <h4 style="color: #475569; font-weight: 700; margin-top: 50px; font-size: 18px; font-family: 'Montserrat', sans-serif;">String</h4>
+            <h4 style="color: #475569; font-weight: 700; margin-top: 50px; font-size: 18px; font-family: 'Montserrat', sans-serif;">1.5.3 String</h4>
             <p>The string data type is used to represent sequences of characters, such as letters, numbers, symbols, and spaces. It is a versatile and essential type for handling and manipulating text in computing.</p>
             
             <div class="interaction-box" style="border-left-color: #10b981; background: #f0fdf4;">
@@ -1055,7 +1253,7 @@
             <!-- Question 1 -->
             <div class="practice-light-card">
                 <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                    <div style="background: #f0f9ff; color: #0284c7; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q1</div>
+                    <div style="background: #f0f9ff; color: #1e3a8a; font-weight: 800; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q1</div>
                     <h3 style="margin: 0; color: #1e293b; font-size: 19px; font-weight: 700; font-family: 'Montserrat', sans-serif;"></h3>
                 </div>
                 <p style="color: #475569; font-size: 15.5px; margin-bottom: 25px; font-weight: 500;">Which data type is most appropriate for a variable that tracks whether a customer is a premium subscriber or not?</p>
@@ -1143,7 +1341,7 @@
             </div>
 
             <div id="s6-structures" class="section-header" style="margin-top: 80px;">
-                <h2>6. Basic Structures used in data analytics</h2>
+                <h2>1.6 Basic Structures used in data analytics</h2>
             </div>
             
             <!-- Conceptual Diagram -->
@@ -1167,22 +1365,22 @@
                 </div>
             </div>
 
-            <h3 style="margin-top: 50px;">Tables</h3>
+            <h3 style="margin-top: 50px;">1.6.1 Tables</h3>
             <p>Tables are used to structured data, it is essentially a two-dimensional structure with rows and columns.</p>
             <p><strong>Rows</strong>, also known as records or observations, are the horizontal elements in a table.</p>
             <p><strong>Columns</strong>, also known as fields or variables, are the vertical elements in a table. Each column represents a specific attribute or piece of information related to the data set.</p>
 
             <!-- Excel Table Mockup -->
             <div style="border: 1px solid #cbd5e1; border-radius: 6px; overflow: auto; margin-top: 30px; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                <table style="width: 100%; border-collapse: collapse; text-align: left; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; min-width: 600px;">
+                <table id="excel-mockup-table" style="width: 100%; border-collapse: collapse; text-align: left; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; min-width: 600px;">
                     <tr style="background: #0f4a6c; color: white; font-weight: bold;">
-                        <th style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px;"><div style="display: flex; justify-content: space-between; align-items: center;">Name <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
-                        <th style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px;"><div style="display: flex; justify-content: space-between; align-items: center;">Age <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
-                        <th style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px;"><div style="display: flex; justify-content: space-between; align-items: center;">Degree <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
-                        <th style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px;"><div style="display: flex; justify-content: space-between; align-items: center;">Year of Joining <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
-                        <th style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px;"><div style="display: flex; justify-content: space-between; align-items: center;">experience <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
-                        <th style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px;"><div style="display: flex; justify-content: space-between; align-items: center;">Department <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
-                        <th style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px;"><div style="display: flex; justify-content: space-between; align-items: center;">Salary <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
+                        <th onclick="sortTable(0)" style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px; cursor: pointer;"><div style="display: flex; justify-content: space-between; align-items: center;">Name <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
+                        <th onclick="sortTable(1)" style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px; cursor: pointer;"><div style="display: flex; justify-content: space-between; align-items: center;">Age <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
+                        <th onclick="sortTable(2)" style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px; cursor: pointer;"><div style="display: flex; justify-content: space-between; align-items: center;">Degree <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
+                        <th onclick="sortTable(3)" style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px; cursor: pointer;"><div style="display: flex; justify-content: space-between; align-items: center;">Year of Joining <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
+                        <th onclick="sortTable(4)" style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px; cursor: pointer;"><div style="display: flex; justify-content: space-between; align-items: center;">experience <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
+                        <th onclick="sortTable(5)" style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px; cursor: pointer;"><div style="display: flex; justify-content: space-between; align-items: center;">Department <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
+                        <th onclick="sortTable(6)" style="border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 14px; cursor: pointer;"><div style="display: flex; justify-content: space-between; align-items: center;">Salary <span style="font-size: 10px; background: white; color: #0f4a6c; padding: 1px 3px; border-radius: 2px;">▼</span></div></th>
                     </tr>
                     <tr style="background: #e0f2fe; color: #0f172a; font-size: 14px;">
                         <td style="border: 1px solid #cbd5e1; padding: 6px 10px;">ARJUN R</td><td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right;">28</td><td style="border: 1px solid #cbd5e1; padding: 6px 10px;">BA</td><td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right;">2006</td><td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right;">8</td><td style="border: 1px solid #cbd5e1; padding: 6px 10px;">Marketing</td><td style="border: 1px solid #cbd5e1; padding: 6px 10px; text-align: right;">18000</td>
@@ -1202,7 +1400,7 @@
                 </table>
             </div>
 
-            <h3 style="margin-top: 50px;">Lists</h3>
+            <h3 style="margin-top: 50px;">1.6.2 Lists</h3>
             <p>While tables are used for structured data, lists are used for storing unstructured or semi-structured data. A list is a collection of items, where each item can be of a different data type or structure. Lists are often used for tasks like storing unstructured text data, logs, or simple collection of values.</p>
             <div class="interaction-box" style="border-left-color: #f59e0b; background: #fffbeb;">
                 <strong>Key Property:</strong>
@@ -1218,7 +1416,7 @@
                 <span style="color: #333;">[</span><span style="color: #008000;">10</span><span style="color: #333;">, </span><span style="color: #d14;">"Gayathri"</span><span style="color: #333;">, </span><span style="color: #008000;">56</span><span style="color: #333;">, </span><span style="color: #d14;">"Passed"</span><span style="color: #333;">]</span>
             </div>
 
-            <h3 style="margin-top: 50px;">Tuple</h3>
+            <h3 style="margin-top: 50px;">1.6.3 Tuple</h3>
             <p>A tuple is like a list, but it is locked. Once created, you cannot change it. It is faster and safer for data that should stay constant.</p>
             
             <div class="interaction-box" style="border-left-color: #06b6d4; background: #ecfeff;">
@@ -1234,7 +1432,7 @@
                 <span style="color: #333;">my_tuple = (</span><span style="color: #008000;">10.5</span><span style="color: #333;">, </span><span style="color: #008000;">76.2</span><span style="color: #333;">)</span>
             </div>
 
-            <h3 style="margin-top: 50px;">Set</h3>
+            <h3 style="margin-top: 50px;">1.6.4 Set</h3>
             <p>A set is like a bag of unique items. It automatically removes any duplicates you try to add and does not care about order.</p>
             
             <div class="interaction-box" style="border-left-color: #ec4899; background: #fdf2f8;">
@@ -1250,7 +1448,7 @@
                 <span style="color: #333;">my_set = {</span><span style="color: #d14;">"Red"</span><span style="color: #333;">, </span><span style="color: #d14;">"Blue"</span><span style="color: #333;">, </span><span style="color: #d14;">"Green"</span><span style="color: #333;">}</span>
             </div>
 
-            <h3 style="margin-top: 50px;">Dictionary</h3>
+            <h3 style="margin-top: 50px;">1.6.5 Dictionary</h3>
             <p>A dictionary works like a real-life dictionary or a phonebook. You store data in pairs: a unique <strong>Key</strong> and its associated <strong>Value</strong>.</p>
             
             <div class="interaction-box" style="border-left-color: #6366f1; background: #eef2ff;">
@@ -1362,7 +1560,7 @@
             </div>
 
             <div id="s7-stats" class="section-header" style="margin-top: 80px;">
-                <h2>7. Statistics</h2>
+                <h2>1.7 Statistics</h2>
             </div>
             
             <p style="font-size: 18px; line-height: 1.6; color: #334155; margin-bottom: 40px;">
@@ -1392,15 +1590,15 @@
             </div>
 
             <div style="margin-top: 40px;">
-                <h3 style="color: #1e3a5f; font-weight: 700; font-size: 22px; margin-bottom: 20px;">7.1 Descriptive Statistics</h3>
+                <h3 style="color: #1e3a5f; font-weight: 700; font-size: 22px; margin-bottom: 20px;">1.7.1 Descriptive Statistics</h3>
                 <p>Descriptive statistics are used to describe, show, or summarize data in a meaningful way such that, for example, patterns might emerge from the data. It focuses on the characteristics of the data set you are currently looking at.</p>
-                <div class="interaction-box" style="border-left-color: #38bdf8; background: #f0f9ff; margin-top: 15px;">
+                <div class="interaction-box" style="border-left-color: #1e3a8a; font-weight: 800; background: #f0f9ff; margin-top: 15px;">
                     <strong>Examples:</strong> Calculating the average (mean) score of a class, the range of salaries in a company, or creating a chart showing sales trends.
                 </div>
             </div>
 
             <div style="margin-top: 50px;">
-                <h3 style="color: #1e3a5f; font-weight: 700; font-size: 22px; margin-bottom: 25px;">7.2 Inferential Statistics</h3>
+                <h3 style="color: #1e3a5f; font-weight: 700; font-size: 22px; margin-bottom: 25px;">1.7.2 Inferential Statistics</h3>
                 <p style="margin-bottom: 30px;">Inferential statistics allows you to make predictions or "inferences" from that data. With inferential statistics, you take data from samples and make generalizations about a larger population.</p>
                 
                 <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
@@ -1425,7 +1623,7 @@
             </div>
 
             <div id="s8-types" class="section-header" style="margin-top: 80px;">
-                <h2>8. Types of Data</h2>
+                <h2>1.8 Types of Data</h2>
             </div>
 
             <!-- Data Hierarchy Tree -->
@@ -1463,7 +1661,7 @@
                 </div>
             </div>
 
-            <h3 style="color: #1e3a5f; margin-top: 50px;">8.1 Qualitative Data</h3>
+            <h3 style="color: #1e3a5f; margin-top: 50px;">1.8.1 Qualitative Data</h3>
             <p>Also known as categorical data, qualitative data describes characteristics that fit into specific categories rather than numerical values.</p>
             
             <!-- Qualitative Ribbon Flow -->
@@ -1516,7 +1714,7 @@
                         <div style="color: #0369a1; font-size: 24px;">&darr;</div>
                         <span style="background: #e0f2fe; padding: 8px 15px; border-radius: 20px; font-size: 14px; width: 80%;">No math operations</span>
                         <div style="color: #0369a1; font-size: 24px;">&darr;</div>
-                        <p style="font-size: 13px; color: #64748b;"><strong>Examples:</strong> Eye Color, Country Name, Phone Type, Car Brand etc.</p>
+                        <p style="font-size: 13px; color: #1e293b; font-weight: 600;"><strong>Examples:</strong> Eye Color, Country Name, Phone Type, Car Brand etc.</p>
                     </div>
                 </div>
                 <!-- Ordinal -->
@@ -1529,12 +1727,12 @@
                         <div style="color: #0369a1; font-size: 24px;">&darr;</div>
                         <span style="background: #e0f2fe; padding: 8px 15px; border-radius: 20px; font-size: 14px; width: 80%;">Don't know distance between each rank</span>
                         <div style="color: #0369a1; font-size: 24px;">&darr;</div>
-                        <p style="font-size: 13px; color: #64748b;"><strong>Examples:</strong> Ranking of users in a competition, Rating of a product taken by the company on a scale of 1-10, Economic status: low, medium, and high.</p>
+                        <p style="font-size: 13px; color: #1e293b; font-weight: 600;"><strong>Examples:</strong> Ranking of users in a competition, Rating of a product taken by the company on a scale of 1-10, Economic status: low, medium, and high.</p>
                     </div>
                 </div>
             </div>
 
-            <h3 style="color: #1e3a5f; margin-top: 60px;">8.2 Quantitative Data</h3>
+            <h3 style="color: #1e3a5f; margin-top: 60px;">1.8.2 Quantitative Data</h3>
             <p>Also known as numerical data, quantitative data represents numerical values that answer questions like "how much," "how often," or "how many."</p>
 
             <div style="background: #f0f9ff; border: 2px solid #38bdf8; border-radius: 15px; padding: 40px; margin: 30px 0;">
@@ -1599,7 +1797,7 @@
             </div>
 
             <div id="s9-structured" class="section-header" style="margin-top: 80px;">
-                <h2>9. Structured and Unstructured Data</h2>
+                <h2>1.9 Structured and Unstructured Data</h2>
             </div>
 
             <div style="display: flex; gap: 30px; margin: 40px 0; align-items: stretch; flex-wrap: wrap;">
@@ -1642,7 +1840,7 @@
             <!-- Detailed Checklist Comparison -->
             <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 60px;">
                 <div style="flex: 1; min-width: 300px; padding: 25px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
-                    <h4 style="color: #0284c7; font-size: 24px; margin-bottom: 20px;">Structured Data</h4>
+                    <h4 style="color: #1e3a8a; font-weight: 800; font-size: 24px; margin-bottom: 20px;">Structured Data</h4>
                     <div style="display: flex; flex-direction: column; gap: 12px;">
                         <div style="display: flex; align-items: center; gap: 10px;"><div style="width: 20px; height: 20px; border: 1px solid #0284c7; flex-shrink: 0;"></div> Organized Information</div>
                         <div style="display: flex; align-items: center; gap: 10px;"><div style="width: 20px; height: 20px; border: 1px solid #0284c7; flex-shrink: 0;"></div> Quantitative</div>
@@ -1664,14 +1862,14 @@
             </div>
 
             <div id="s10-raw" class="section-header" style="margin-top: 80px;">
-                <h2>10. Raw Data, Meta Data and Big Data</h2>
+                <h2>1.10 Raw Data, Meta Data and Big Data</h2>
             </div>
 
             <div style="margin-top: 40px;">
-                <h3 style="color: #1e3a5f;">10.1 Raw Data</h3>
+                <h3 style="color: #1e3a5f;">1.10.1 Raw Data</h3>
                 <p>Raw Data (also known as <strong>"primary data"</strong> or <strong>"atomic data"</strong>) is data in its most basic form, exactly as it was collected before any cleaning, filtering, or analysis has occurred.</p>
                 
-                <div class="interaction-box" style="border-left-color: #94a3b8; background: #f8fafc;">
+                <div class="interaction-box" style="border-left-color: #1e293b; font-weight: 600; background: #f8fafc;">
                     <p style="margin-bottom: 10px; font-weight: 700;">Characteristics of Raw Data:</p>
                     <ul class="content-list">
                         <li><strong>Unprocessed:</strong> No calculations (like averages or totals) have been performed.</li>
@@ -1683,7 +1881,7 @@
             </div>
 
             <div style="margin-top: 60px;">
-                <h3 style="color: #1e3a5f;">10.2 Meta Data</h3>
+                <h3 style="color: #1e3a5f;">1.10.2 Meta Data</h3>
                 <p style="margin-bottom: 30px;">Metadata is essentially <strong>"data about data."</strong> It provides information about other data, making it easier to understand, organize, and use that data. Metadata can describe the structure, context, and characteristics of the data.</p>
                 
                 <!-- High Fidelity Metadata Visualization -->
@@ -1747,7 +1945,7 @@
                             <!-- Details Frame -->
                             <div style="position: relative; border: 3px solid #2563eb; border-radius: 15px; width: 340px; background: white; padding: 20px; box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1);">
                                 <div style="font-weight: 800; font-size: 18px; color: #1e293b; margin-bottom: 2px;">Favourite Paintings.jpeg</div>
-                                <div style="font-size: 14px; color: #64748b; margin-bottom: 15px;">JPEG image - 7 KB</div>
+                                <div style="font-size: 14px; color: #1e293b; font-weight: 600; margin-bottom: 15px;">JPEG image - 7 KB</div>
                                 
                                 <div style="border-top: 1px solid #f1f5f9; padding-top: 15px;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
@@ -1781,8 +1979,8 @@
             </div>
 
             <div style="margin-top: 100px; border: 1px solid #cbd5e1; padding: 40px; border-radius: 4px; position: relative; background: white;">
-                <div style="position: absolute; top: -15px; left: 30px; background: #1e293b; color: white; padding: 5px 15px; border-radius: 4px; font-weight: 700; font-size: 14px;">SECTION 10.3</div>
-                <h3 style="color: #1e3a5f; margin-top: 0;">Big Data</h3>
+                <div style="position: absolute; top: -15px; left: 30px; background: #1e293b; color: white; padding: 5px 15px; border-radius: 4px; font-weight: 700; font-size: 14px;">SECTION 1.10.3</div>
+                <h3 style="color: #1e3a5f; margin-top: 0;">1.10.3 Big Data</h3>
                 <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
                     <div style="flex: 1; min-width: 300px;">
                         <p style="font-size: 18px; line-height: 1.8; color: #334155; margin: 0;">
@@ -1814,7 +2012,7 @@
                 <!-- dc_q1 -->
                 <div class="practice-light-card">
                     <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <div style="background: #f0f9ff; color: #0284c7; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q1</div>
+                        <div style="background: #f0f9ff; color: #1e3a8a; font-weight: 800; font-weight: 800; font-size: 18px; padding: 8px 16px; border-radius: 8px; margin-right: 15px; font-family: 'Montserrat', sans-serif;">Q1</div>
                         <h3 style="margin: 0; color: #1e293b; font-size: 19px; font-weight: 700; font-family: 'Montserrat', sans-serif;"></h3>
                     </div>
                     <p style="color: #475569; font-size: 15.5px; margin-bottom: 25px; font-weight: 500;">Which of the following is considered "Unstructured Data"?</p>
@@ -1907,7 +2105,7 @@
             <div style="margin-top: 100px; padding: 60px; background: linear-gradient(135deg, #1e3a5f 0%, #38bdf8 100%); border-radius: 24px; color: white; text-align: center; box-shadow: 0 20px 40px rgba(30, 58, 95, 0.15);">
                 <h2 style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 32px; margin-bottom: 15px; border-bottom: none; color: white;">Ready for the Module 1 Assessment?</h2>
                 <p style="font-size: 18px; color: rgba(255, 255, 255, 0.9); max-width: 650px; margin: 0 auto 40px;">Test your knowledge of data types, structures, metadata, and the basic principles of big data.</p>
-                <a href="module_quiz.html?mod=data1" style="display: inline-block; background: white; color: #1e3a5f; padding: 18px 50px; border-radius: 40px; text-decoration: none; font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">START FINAL ASSESSMENT</a>
+                <a href="module_quiz.html?mod=data1" style="display: inline-block; background: white; color: #1e3a5f; padding: 18px 50px; border-radius: 40px; text-decoration: none; font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">START ASSESSMENT</a>
             </div>
         </main>
     </div>
@@ -2061,6 +2259,109 @@
             link.addEventListener('click', function() {
                 document.querySelectorAll('.sidebar-content-link').forEach(l => l.classList.remove('selected'));
                 this.classList.add('selected');
+            });
+        });
+
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("excel-mockup-table");
+            switching = true;
+            dir = "asc";
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    
+                    var xValue = x.innerText.toLowerCase();
+                    var yValue = y.innerText.toLowerCase();
+                    
+                    // Check if numeric
+                    if (!isNaN(xValue.replace(/,/g, '')) && !isNaN(yValue.replace(/,/g, ''))) {
+                        xValue = parseFloat(xValue.replace(/,/g, ''));
+                        yValue = parseFloat(yValue.replace(/,/g, ''));
+                    }
+
+                    if (dir == "asc") {
+                        if (xValue > yValue) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (xValue < yValue) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount ++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+            
+            // Update arrows
+            var headers = table.querySelectorAll('th span');
+            headers.forEach((span, idx) => {
+                if (idx === n) {
+                    span.innerText = dir === "asc" ? "▲" : "▼";
+                } else {
+                    span.innerText = "▼";
+                }
+            });
+        }
+
+        function toggleAccordion(moduleNum) {
+            const allHeaders = document.querySelectorAll('.accordion-header');
+            const allContents = document.querySelectorAll('.accordion-content');
+            const targetContent = document.getElementById(`content-${moduleNum}`);
+            
+            if (!targetContent) return;
+            
+            const targetHeader = targetContent.previousElementSibling;
+            const isExpanded = targetContent.classList.contains('expanded');
+
+            // Collapse all
+            allContents.forEach((content) => {
+                content.classList.remove('expanded');
+                if (content.previousElementSibling) {
+                    content.previousElementSibling.classList.remove('expanded');
+                }
+            });
+
+            // If it wasn't expanded, expand it
+            if (!isExpanded) {
+                targetContent.classList.add('expanded');
+                targetHeader.classList.add('expanded');
+            }
+        }
+
+        // Highlight active section on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section-header, .lab-container, .practice-card');
+            const navLinks = document.querySelectorAll('.sidebar-content-link');
+            
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-topic');
+                if (link.getAttribute('href').includes(current) && current !== "") {
+                    link.classList.add('active-topic');
+                }
             });
         });
     </script>
