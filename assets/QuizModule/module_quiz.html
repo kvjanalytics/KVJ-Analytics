@@ -53,11 +53,11 @@
         .exit-link { color: var(--primary-blue); text-decoration: none; font-weight: 700; font-size: 15px; }
 
         /* Layout */
-        .layout { display: flex; max-width: 1440px; margin: 70px auto 0; gap: 30px; padding: 20px 60px; }
+        .layout { display: flex; max-width: 1440px; margin: 80px auto 20px; gap: 30px; padding: 0 60px; align-items: stretch; height: calc(100vh - 110px); }
 
         /* Sidebar Styling */
-        .sidebar { width: 280px; background: white; border-radius: 12px; padding: 35px 0; border: 1px solid var(--border-color); height: fit-content; position: sticky; top: 110px; box-shadow: var(--shadow); }
-        .sidebar-sec-title { font-family: 'Montserrat', sans-serif; font-size: 12px; color: #008eab; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 35px 25px; font-weight: 800; }
+        .sidebar { width: 280px; background: white; border-radius: 12px; padding: 25px 0 15px 0; border: 1px solid var(--border-color); display: flex; flex-direction: column; box-shadow: var(--shadow); }
+        .sidebar-sec-title { font-family: 'Montserrat', sans-serif; font-size: 12px; color: #008eab; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 35px 20px; font-weight: 800; flex-shrink: 0; }
         .sidebar-list { list-style: none; margin-bottom: 40px; }
         .sidebar-item {
             padding: 12px 35px; font-size: 15px; font-weight: 600; color: #475569;
@@ -72,26 +72,27 @@
         .sidebar-nav-link { color: #1e293b; font-weight: 600; text-decoration: none; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
 
         /* Question Container Overhaul */
-        .main-content { flex: 1; }
-        .q-card { background: white; border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); position: relative; }
+        .main-content { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+        #quiz-ui { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+        .q-card { background: white; border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); position: relative; flex: 1; display: flex; flex-direction: column; min-height: 0; }
         
-        .q-top-header { background: var(--primary-blue); color: white; padding: 12px 40px; display: flex; justify-content: center; align-items: center; position: relative; }
+        .q-top-header { background: var(--primary-blue); color: white; padding: 12px 40px; display: flex; justify-content: center; align-items: center; position: relative; flex-shrink: 0; }
         .q-top-header h2 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; }
         .q-progress-badge { background: rgba(255,255,255,0.2); padding: 3px 12px; border-radius: 15px; font-size: 12px; font-weight: 700; margin-left: 15px; }
 
-        .q-inner-body { padding: 30px 40px; min-height: 400px; }
-        .q-id-label { color: var(--primary-blue); font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; display: block; margin-bottom: 25px; }
-        .q-text { font-size: 20px; font-weight: 400; color: #1e293b; line-height: 1.5; margin-bottom: 20px; }
+        .q-inner-body { padding: 30px 40px; flex: 1; overflow-y: auto; position: relative; min-height: 0; }
+        .q-id-label { color: var(--primary-blue); font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; display: block; margin-bottom: 15px; }
+        .q-text { font-size: 18px; font-weight: 400; color: #1e293b; line-height: 1.4; margin-bottom: 15px; }
         
         .btn-mark {
-            position: absolute; top: 40px; right: 60px;
+            float: right; margin-top: -5px; margin-right: 0px;
             background: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 18px; border-radius: 8px;
             color: #475569; font-weight: 600; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px;
         }
         .btn-mark.marked { background: #fef3c7; border-color: #fcd34d; color: #92400e; }
 
         /* Interaction Area */
-        .interaction-box { margin-top: 40px; }
+        .interaction-box { margin-top: 20px; }
         
         /* Drag and Drop Specific Styles (Matching Image 1) */
         .dnd-wrapper { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 15px; padding: 20px; }
@@ -135,9 +136,9 @@
         .btn-tf.active { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
 
         /* MCQ Options */
-        .mcq-grid { display: flex; flex-direction: column; gap: 12px; }
+        .mcq-grid { display: flex; flex-direction: column; gap: 8px; }
         .mcq-option {
-            padding: 12px 20px; border: 1px solid #e2e8f0; border-radius: 12px;
+            padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 12px;
             cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 20px;
             font-weight: 600; color: #475569;
         }
@@ -148,8 +149,8 @@
         .mcq-option.selected .mcq-prefix::after { content:""; width:12px; height:12px; background:var(--primary-blue); border-radius:50%; }
 
         /* Footer Buttons */
-        .q-footer { padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; }
-        .btn-footer { padding: 14px 40px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: all 0.2s; border: none; font-size: 15px; }
+        .q-footer { padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; flex-shrink: 0; }
+        .btn-footer { padding: 12px 30px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: all 0.2s; border: none; font-size: 14px; }
         .btn-back { background: #f1f5f9; color: #475569; }
         .btn-review-all { background: #eff6ff; color: #1e3a5f; border: 1px solid #dbeafe; }
         .btn-next { background: var(--primary-blue); color: white; box-shadow: 0 4px 12px rgba(0,97,255,0.2); }
@@ -178,6 +179,9 @@
         }
         .grid-q-btn.answered { background: #dcfce7; color: #166534; }
         .grid-q-btn.review { background: #fef3c7; color: #92400e; }
+
+        #tile-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; padding: 15px 20px; overflow-y: auto; align-content: start; }
+        #tile-bar .grid-q-btn { width: 100%; font-size: 16px; }
 
         .modal-btns { display: flex; gap: 20px; justify-content: center; }
         .btn-modal { padding: 16px 35px; border-radius: 12px; font-weight: 800; border: none; cursor: pointer; font-size: 15px; }
@@ -230,16 +234,18 @@
 
     <!-- Navbar -->
     <nav class="navbar">
-        <img src="Kvj logo.jpeg" alt="KVJ Logo" style="height: 38px;">
+        <div style="display:flex; align-items:center; gap:14px;">
+            <img src="Kvj logo.jpeg" alt="KVJ Logo" style="height: 38px;">
+            <span id="mock-title-badge" style="font-family:'Outfit',sans-serif; font-size:13px; font-weight:700; color:#1e3a5f; background:#eff6ff; border:1px solid #bfdbfe; padding:5px 14px; border-radius:20px; letter-spacing:0.5px; white-space:nowrap;"></span>
+        </div>
         <div class="timer-pill" id="timer-display">10:00</div>
-        <a href="javascript:history.back()" class="exit-link">Exit</a>
     </nav>
 
     <div class="layout">
         <!-- Sidebar -->
         <aside class="sidebar" style="width: 320px;">
             <h4 class="sidebar-sec-title">Question Progress</h4>
-            <div id="tile-bar" style="display: flex; gap: 10px; flex-wrap: wrap; padding: 0 35px; justify-content: flex-start;"></div>
+            <div id="tile-bar"></div>
         </aside>
 
         <!-- Main Content -->
@@ -346,8 +352,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="quiz_data.js"></script>
-    <script src="data_quiz_data.js"></script>
+    <script src="quiz_data.js?v=3"></script>
+    <script src="data_quiz_data.js?v=3"></script>
 
     <script>
         const params = new URLSearchParams(window.location.search);
@@ -360,15 +366,85 @@
             modId = "da_mock3";
         }
         
-        // Data selection & Cache Busting
-        let masterData = (modId.startsWith('data') || modId.startsWith('da_')) ? dataQuizData : quizData;
-        let questions = masterData[modId] || masterData["1"];
+        // Friendly name map for mock title badge
+        const mockTitleMap = {
+            "1":       "DA — Practice 1",
+            "2":       "DA — Practice 2",
+            "3":       "DA — Practice 3",
+            "4":       "DA — Practice 4",
+            "5":       "DA — Practice 5",
+            "data1":   "DA — Module 1",
+            "data2":   "DA — Module 2",
+            "data3":   "DA — Module 3",
+            "data4":   "DA — Module 4",
+            "data5":   "DA — Module 5",
+            "da_mock1": "DA — Mock Test 1",
+            "da_mock2": "DA — Mock Test 2",
+            "da_mock3": "DA — Mock Test 3",
+            "ex1":     "Excel — Practice 1",
+            "ex2":     "Excel — Practice 2",
+        };
+        const badgeEl = document.getElementById('mock-title-badge');
+        if (badgeEl) badgeEl.textContent = mockTitleMap[modId] || ("Quiz — " + modId);
+
+        // Data selection
+        let masterData = [];
+        if (typeof dataQuizData !== 'undefined' && dataQuizData[modId]) {
+            masterData = dataQuizData;
+        } else if (typeof quizData !== 'undefined' && quizData[modId]) {
+            masterData = quizData;
+        }
+        
+        let questions = (masterData && masterData[modId]) ? masterData[modId] : [];
+        
+        // Shuffle questions for mock tests
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        if ((mockParam || modId.includes('mock')) && questions.length > 0) {
+            shuffleArray(questions);
+        }
+
+        // Fallback removed so empty mock tests stay empty
+        if (questions.length === 0) {
+            console.log("No questions found for this module.");
+        }
 
         let currentIndex = 0;
         let userAnswers = new Array(questions.length).fill(null);
         let reviewMarks = new Array(questions.length).fill(false);
         let timeLeft = (mockParam ? 50 : 10) * 60;
         let timerInterval;
+
+        const moduleMapping = {
+            "da_mock1": {
+                "Data Analytics Concepts": [1, 2, 3],
+                "Data Mining & Organization": [4, 5, 6],
+                "Statistics & Analysis": [7, 8, 9],
+                "Visualization & Reporting": [10, 11, 12],
+                "PII & Ethics": [13, 14, 15],
+                "Intelligent Tech": [16, 17, 18, 19, 20]
+            },
+            "da_mock2": {
+                "Data Analytics Concepts": [1, 2, 3],
+                "Data Mining & Organization": [4, 5, 6],
+                "Statistics & Analysis": [7, 8, 9],
+                "Visualization & Reporting": [10, 11, 12],
+                "PII & Ethics": [13, 14, 15],
+                "Intelligent Tech": [16, 17, 18, 19, 20]
+            },
+            "da_mock3": {
+                "Data Analytics Concepts": [11, 12, 13, 19, 22, 31, 37, 39, 42, 45, 48, 51],
+                "Data Mining & Organization": [1, 5, 8, 25, 29, 44, 46],
+                "Statistics & Analysis": [10, 21, 27, 30, 32, 35, 36, 40, 50, 56],
+                "Visualization & Reporting": [3, 4, 7, 9, 23, 24, 26, 28, 34, 38, 47, 49, 58, 59],
+                "PII & Ethics": [14, 17, 33, 54],
+                "Intelligent Tech": [6, 15, 16, 18, 20, 41, 43, 52, 53, 55, 57, 60]
+            }
+        };
 
         window.onload = () => {
             loadQuestion();
@@ -425,6 +501,16 @@
         }
 
         function loadQuestion() {
+            if (questions.length === 0) {
+                document.getElementById('header-qid').innerText = `Empty`;
+                document.getElementById('header-progress').innerText = `0/0`;
+                document.getElementById('inner-qid').innerText = `Question 0`;
+                document.getElementById('q-text-container').innerHTML = "This mock test is currently empty.";
+                document.getElementById('interaction-area').innerHTML = "";
+                document.getElementById('btn-prev').style.visibility = "hidden";
+                document.getElementById('btn-next').innerText = "Review & Submit";
+                return;
+            }
             const q = questions[currentIndex];
             const body = document.getElementById('q-body');
             body.classList.remove('fade-in');
@@ -449,6 +535,14 @@
 
             const textContainer = document.getElementById('q-text-container');
             const area = document.getElementById('interaction-area');
+            // masterData selection - Prioritize dataQuizData (for DA Mocks and Modules)
+            if (typeof dataQuizData !== 'undefined' && dataQuizData[modId]) {
+                masterData = dataQuizData[modId];
+            } else if (typeof quizData !== 'undefined' && quizData[modId]) {
+                masterData = quizData[modId];
+            } else {
+                masterData = [];
+            }
             area.innerHTML = "";
             if (q.type !== "DND_PIVOT") {
                 textContainer.innerHTML = q.q;
@@ -458,7 +552,7 @@
 
             // Render question image (data table etc.) if present
             if (q.img) {
-                textContainer.innerHTML += `<div style="margin-top: 15px; display:flex; justify-content:center; background:#f8fafc; padding:10px; border-radius:14px; border:1px solid #e2e8f0;"><img src="${q.img}" style="max-width:100%; max-height:300px; object-fit:contain; border-radius:8px; box-shadow:0 4px 15px rgba(0,0,0,0.05);" /></div>`;
+                textContainer.innerHTML += `<div style="margin-top: 8px; display:flex; justify-content:center; background:#f8fafc; padding:10px; border-radius:12px; border:1px solid #e2e8f0; width:fit-content; margin-left:auto; margin-right:auto;"><img src="${q.img}" style="max-width:100%; max-height:300px; object-fit:contain; border-radius:6px; cursor: pointer;" onclick="window.open(this.src, '_blank')" title="Click to view full size" /></div>`;
             }
 
             // Handle Question Rendering by Type
@@ -468,15 +562,15 @@
                 // Image-based options (chart selection questions)
                 if (q.optionImages && q.optionImages.length > 0) {
                     const imgGrid = document.createElement('div');
-                    imgGrid.style.cssText = "display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:15px; margin-top:10px;";
+                    imgGrid.style.cssText = "display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-top:10px;";
                     q.options.forEach((opt, i) => {
                         const isSel = q.type === "MCQ" ? userAnswers[currentIndex] === i : (userAnswers[currentIndex]?.includes?.(i));
                         const card = document.createElement('div');
-                        card.style.cssText = `border: ${isSel ? '3px solid var(--primary-blue)' : '1px solid #e2e8f0'}; border-radius:16px; padding:10px; cursor:pointer; background:${isSel ? '#f0f7ff' : '#fff'}; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-align:center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);`;
+                        card.style.cssText = `border: ${isSel ? '3px solid var(--primary-blue)' : '1px solid #e2e8f0'}; border-radius:16px; padding:8px; cursor:pointer; background:${isSel ? '#f0f7ff' : '#fff'}; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-align:center; box-shadow: 0 4px 10px rgba(0,0,0,0.02);`;
                         
                         card.innerHTML = `
-                            <div style="background:#f8fafc; border-radius:12px; padding:8px; margin-bottom:8px; border:1px solid #f1f5f9; display:flex; align-items:center; justify-content:center; height:130px; overflow:hidden;">
-                                <img src="${q.optionImages[i]}" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:4px;" />
+                            <div style="background:#fff; border-radius:12px; padding:10px; margin-bottom:8px; border:1px solid #f1f5f9; display:flex; align-items:center; justify-content:center; height:220px; overflow:hidden; position:relative;">
+                                <img src="${q.optionImages[i]}" style="width: auto; height: auto; max-width:98%; max-height:98%; object-fit:contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
                             </div>
                             <div style="display:flex; align-items:center; gap:12px; justify-content:center;">
                                 <div style="width:24px; height:24px; border:2.5px solid ${isSel ? 'var(--primary-blue)' : '#cbd5e1'}; border-radius:50%; display:flex; align-items:center; justify-content:center;">
@@ -565,6 +659,12 @@
                     item.className = "dnd-item";
                     item.style.padding = "10px 15px";
                     item.style.fontSize = "13px";
+                    item.style.border = "2px solid #0ea5e9";
+                    item.style.borderRadius = "8px";
+                    item.style.background = "#fff";
+                    item.style.cursor = "grab";
+                    item.style.textAlign = "center";
+                    item.style.fontWeight = "600";
                     item.innerText = l;
                     item.draggable = true;
                     item.ondragstart = (e) => e.dataTransfer.setData("text", l);
@@ -584,13 +684,14 @@
                 q.options.forEach(labelKey => {
                     const val = userAnswers[currentIndex]?.[labelKey];
                     const slotHtml = `
-                        <div class="dnd-target-slot ${val ? 'filled' : ''}" 
+                        <div class="dnd-target-slot pivot-slot ${val ? 'filled' : ''}" 
+                             style="min-height: 40px; border: 2px dashed #cbd5e1; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #f8fafc; font-weight: 600; color: #1e293b;"
                              ondragover="event.preventDefault()" 
                              ondrop="handleDrop(event, '${labelKey}')">${val || ""}</div>
                     `;
-                    // We need a safe way to replace the text in the HTML string
-                    // This is a bit hacky but should work for this specific structure
-                    tableHtml = tableHtml.replace(new RegExp(labelKey, 'g'), slotHtml);
+                    // Escape regex special characters in labelKey before replacing
+                    const escapedKey = labelKey.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    tableHtml = tableHtml.replace(new RegExp(escapedKey, 'g'), slotHtml);
                 });
                 
                 tableContainer.innerHTML = tableHtml;
@@ -602,12 +703,21 @@
             else if (q.type === "MTF" || q.type === "DND") {
                 const wrapper = document.createElement('div');
                 wrapper.className = "dnd-wrapper";
+                
                 const pool = document.createElement('div');
                 pool.className = "dnd-source-pool";
+                if (q.poolHeader) {
+                    const h = document.createElement('h4');
+                    h.style.cssText = "font-size:15px; font-weight:800; color:#1e293b; margin-bottom:15px; padding-left:5px;";
+                    h.innerText = q.poolHeader;
+                    pool.appendChild(h);
+                }
+
                 const labels = q.labels || q.options;
                 labels.forEach(l => {
                     const item = document.createElement('div');
                     item.className = "dnd-item";
+                    item.style.border = "2px solid #0ea5e9"; // Blue border as in Image 2
                     item.innerText = l;
                     item.draggable = true;
                     item.ondragstart = (e) => e.dataTransfer.setData("text", l);
@@ -616,15 +726,26 @@
 
                 const targets = document.createElement('div');
                 targets.className = "dnd-target-area";
+                if (q.targetHeader) {
+                    const h = document.createElement('h4');
+                    h.style.cssText = "font-size:15px; font-weight:800; color:#1e293b; margin-bottom:15px; padding-left:15px;";
+                    h.innerText = q.targetHeader;
+                    targets.appendChild(h);
+                }
+
                 const options = q.options || Object.keys(q.a);
                 options.forEach((opt, idx) => {
                     const row = document.createElement('div');
                     row.className = "dnd-slot-row";
+                    row.style.background = "transparent";
+                    row.style.border = "none";
+                    row.style.padding = "5px 0";
                     const key = q.type === "MTF" ? opt : idx;
                     const val = userAnswers[currentIndex]?.[key];
                     row.innerHTML = `
-                        <div class="dnd-expr">${opt}</div>
+                        <div class="dnd-expr" style="flex:1; background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:15px; font-weight:600;">${opt}</div>
                         <div class="dnd-target-slot ${val ? 'filled' : ''}" 
+                             style="width:220px; border:2px dashed #cbd5e1; border-radius:12px;"
                              ondragover="event.preventDefault()" 
                              ondrop="handleDrop(event, '${key}')">${val || ""}</div>
                     `;
@@ -777,7 +898,7 @@
             const moduleMapping = {
                 'da_mock1': {1:4, 2:3, 3:3, 4:4, 5:1, 6:2, 7:2, 8:1, 9:2, 10:2, 11:5, 12:5, 13:4, 14:1, 15:4, 16:2, 17:1, 18:4, 19:2, 20:2, 21:3, 22:3, 23:1, 24:3, 25:2, 26:1, 27:2, 28:3, 29:5, 30:2, 31:4, 32:3, 33:5, 34:2, 35:4, 36:5, 37:1, 38:3, 39:3, 40:2},
                 'da_mock2': {1:2, 2:5, 3:1, 4:4, 5:1, 6:1, 7:1, 8:1, 9:3, 10:5, 11:2, 12:2, 13:4, 14:3, 15:4, 16:4, 17:3, 18:2, 19:4, 20:3, 21:4, 22:2, 23:2, 24:4, 25:1, 26:5, 27:2, 28:2, 29:2, 30:3, 31:5, 32:1, 33:1, 34:5, 35:3, 36:3, 37:3, 38:2, 39:4, 40:1, 41:5, 42:5},
-                'da_mock3': {1:4, 2:2, 3:3, 4:2, 5:1, 6:4, 7:4, 8:4, 9:3, 10:4, 11:2, 12:5, 13:1, 14:2, 15:5, 16:4, 17:2, 18:2, 19:1, 20:4, 21:1, 22:3, 23:4, 24:1, 25:3, 26:2, 27:1, 28:3, 29:5, 30:1, 31:3, 32:5, 33:5, 34:3, 35:5, 36:5, 37:5, 38:5, 39:3, 40:5}
+                'da_mock3': {1:4, 2:2, 3:3, 4:2, 5:1, 6:4, 7:4, 8:4, 9:3, 10:4, 11:2, 12:5, 13:1, 14:2, 15:5, 16:4, 17:2, 18:2, 19:1, 20:4, 21:1, 22:1, 23:2, 24:2, 25:3, 26:4, 27:5, 28:4, 29:2, 30:5, 31:1, 32:1, 33:3, 34:4, 35:5, 36:5, 37:2, 38:1, 39:5, 40:5, 41:3, 42:1, 43:5, 44:2, 45:2, 46:3, 47:3, 48:2, 49:5, 50:5, 51:1, 52:5, 53:5, 54:5, 55:5, 56:3, 57:5, 58:4, 59:4, 60:5}
             };
 
             const currentMap = moduleMapping[modId] || null;

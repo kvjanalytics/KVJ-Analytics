@@ -1,0 +1,2610 @@
+var dataQuizData = {
+    "data1": [
+        { id: 1, marks: 1, type: "MCQ", q: "What is metadata? (1 Mark)", options: ["Statistics", "The text content of a message", "Numerical facts", "The context that give data meaning"], a: 3 },
+        { id: 2, marks: 2, type: "MCQ", q: "A popular social media site records and count clicks, likes, and dislikes, and other user interactions. What type of data is collected? (2 Marks)", options: ["Continuous data", "Imputed Data", "Qualitative Data", "Big Data"], a: 3 },
+        { id: 3, marks: 1, type: "MCQ", q: "Which data type can store a phrase or sentence? (1 Mark)", options: ["Integer", "String", "Boolean", "Character"], a: 1 },
+        { id: 4, marks: 4, type: "DND_PIVOT", q: "You are performing descriptive analytics on quarterly sales data. Move the appropriate statistical metrics from the list on the left to the correct locations on the right. You may use each metric once, more than once, or not at all.<br><br><table style=\"width:100%; border-collapse:collapse; margin-top:10px;\"><thead><tr style=\"background:#f1f5f9;\"><th style=\"border:1px solid #ddd; padding:8px;\">Region</th><th style=\"border:1px solid #ddd; padding:8px;\">Quarter 1</th><th style=\"border:1px solid #ddd; padding:8px;\">Quarter 2</th><th style=\"border:1px solid #ddd; padding:8px;\">Quarter 3</th><th style=\"border:1px solid #ddd; padding:8px;\">Quarter 4</th></tr></thead><tbody><tr><td style=\"border:1px solid #ddd; padding:8px;\">North</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">25000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">30000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">40000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">50000</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px;\">South</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">35000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">45000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">40000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">55000</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px;\">East</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">35000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">32500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">41000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">52500</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px;\">West</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">34500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">30000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">42500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">55000</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px; font-weight:bold;\">Metric 1</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">129500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">137500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">163500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">212500</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px; font-weight:bold;\">Metric 2</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">35000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">45000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">42500</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">55000</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px; font-weight:bold;\">Metric 3</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">25000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">30000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">40000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">50000</td></tr><tr><td style=\"border:1px solid #ddd; padding:8px; font-weight:bold;\">Metric 4</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">35000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">30000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">40000</td><td style=\"border:1px solid #ddd; padding:8px; text-align:center;\">55000</td></tr></tbody></table><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct response.</span> (4 Marks)", options: ["Metric 1", "Metric 2", "Metric 3", "Metric 4"], labels: ["Average", "Max", "Median", "Mode", "Sum", "Min"], a: { "Metric 1": "Sum", "Metric 2": "Max", "Metric 3": "Min", "Metric 4": "Mode" } },
+        { id: 5, marks: 4, type: "DROPDOWN", q: "You are analyzing customer satisfaction scores between online purchases and in-store purchases. Satisfaction scores are entered on a scale from 1 (extremely unsatisfied) to 10 (extremely satisfied).<br><br>Select the correct metric from the drop-down list for each statement.<br><br>The most frequent satisfaction score was 5 for online customers and 9 for in-store customers: [b1]<br><br>The average score for online customers was 6.4 and the average score for in-store customers was 7.0: [b2]<br><br>The score at the midpoint between the lowest and the highest scores was 6 for online customers and 7 for in-store customers: [b3]<br><br>The online scores vary from the average by 2.3 and the in-store variance is 1.9: [b4]<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span> (4 Marks)", options: [["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"], ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"], ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"], ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"]], a: ["Mode", "Mean", "Median", "Std Dev"] },
+        { id: 6, marks: 2, type: "MCQ", q: "Which data structure describes the following data?<br><br><code>[\"Aabid\", \"jesenia\", \"Mark\"]</code> (2 Marks)", options: ["Graph", "Table", "List", "Multi-dimensional array"], a: 2 },
+        { id: 8, marks: 1, type: "MCQ", q: "What is raw data? (1 Mark)", options: ["Unprocessed Data", "Purely numerical Data", "Summarized Data", "Visualized Data"], a: 0 },
+
+        { id: 9, marks: 1, type: "MCQ", q: "Which Data structure have multiple rows and columns? (1 Mark)", options: ["Series", "Table", "One-dimensional Array", "List"], a: 1 },
+        { id: 10, marks: 4, type: "MTF", q: "Move each function from the list on the left to the correct description on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct response.</span> (4 Marks)", options: ["Returns the largest value", "Returns the smallest value", "Returns the number of Values", "Returns the total of the values"], labels: ["Count()", "Max()", "Min()", "Sum()"], a: { "Returns the largest value": "Max()", "Returns the smallest value": "Min()", "Returns the number of Values": "Count()", "Returns the total of the values": "Sum()" } },
+        { id: 11, marks: 2, type: "MCQ", q: "Person A has 5 coins and person B has 10 coins.<br><br>Which type of data does the number of coins represents? (2 Marks)", options: ["Ordinal Data", "Metadata", "Qualitative data", "Quantitative data"], a: 3 }
+    ],
+    "data2": [
+{
+            id: 1,
+            type: "MCQ",
+            q: "What is an example of data cleaning?",
+            options: [
+                "Arranging Excel data rows in an order that is easy for a user to read",
+                "Ensuring that the data in a Word table uses a consistent font",
+                "Adding quotation marks to the beginning and end of a tab-delimited file",
+                "Removing non-printable characters from a comma-delimited file"
+            ],
+            a: 3,
+            marks: 2
+        },
+        {
+            id: 2,
+            type: "MCQ2",
+            q: "You need to create a data view based on aggregations for further visual analysis. Your data includes sales information for the past five years for food products at your company's stores. Each product belongs to one category. For example, milk belongs to the Dairy category.<br><br>The data view must meet the following requirements:<br>• Include all products and their associated categories.<br>• Include sales subtotals for each category and year.<br>• Display a grand total of sales for each category.<br>• Create a summary of each category for every year.<br><br>Which two aggregation methods should you use to create the data view? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection</span>",
+            options: [
+                "Filtering",
+                "Pivoting",
+                "Merging",
+                "Grouping"
+            ],
+            a: [1, 3],
+            marks: 2
+        },
+        {
+            id: 3,
+            type: "MCQ",
+            q: "Your company has summarized a large set for the region you live in. You need to compare the result from Urban and Rural communities within your region.<br><br>What is the fastest way to obtain this information?",
+            options: [
+                "Review data from neighboring regions",
+                "Aggregate the data",
+                "Disaggregate the data",
+                "Collect new data sample"
+            ],
+            a: 2,
+            marks: 2
+        },
+        {
+            id: 4,
+            type: "MTF",
+            q: "Your marketing department attends a variety of events each year and distributes promotional items to event participants. The table below shows the quantity distributed of each promotional item.<br><br><table style='width:100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; text-align: center;'><thead><tr style='background: #f1f5f9;'><th style='padding: 10px; border: 1px solid #cbd5e1;'>Promotional item</th><th style='padding: 10px; border: 1px solid #cbd5e1;'>Quantity Distributed</th></tr></thead><tbody><tr><td style='padding: 8px; border: 1px solid #cbd5e1;'>T-shirt</td><td style='padding: 8px; border: 1px solid #cbd5e1;'>600</td></tr><tr><td style='padding: 8px; border: 1px solid #cbd5e1;'>Shuffled Animal</td><td style='padding: 8px; border: 1px solid #cbd5e1;'>425</td></tr><tr><td style='padding: 8px; border: 1px solid #cbd5e1;'>Drinkware</td><td style='padding: 8px; border: 1px solid #cbd5e1;'>550</td></tr><tr><td style='padding: 8px; border: 1px solid #cbd5e1;'>Backpacks</td><td style='padding: 8px; border: 1px solid #cbd5e1;'>100</td></tr><tr><td style='padding: 8px; border: 1px solid #cbd5e1;'>Blankets</td><td style='padding: 8px; border: 1px solid #cbd5e1;'>55</td></tr><tr><td style='padding: 8px; border: 1px solid #cbd5e1;'>Magnets</td><td style='padding: 8px; border: 1px solid #cbd5e1;'>250</td></tr><tr><td style='padding: 8px; border: 1px solid #cbd5e1;'>Gift cards</td><td style='padding: 8px; border: 1px solid #cbd5e1;'>50</td></tr><tr><td style='padding: 8px; border: 1px solid #cbd5e1;'>Candy</td><td style='padding: 8px; border: 1px solid #cbd5e1;'>500</td></tr><tr><td style='padding: 8px; border: 1px solid #cbd5e1;'>Notebooks</td><td style='padding: 8px; border: 1px solid #cbd5e1;'>450</td></tr></tbody></table>You are performing analysis on the data. Complete the sentence about the data organization by selecting the correct option from the list.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>",
+            options: [
+                "Can arrange distributed items from highest to lowest",
+                "Can limit the display of distributed items to greater than 500",
+                "Can limit the display of promotional items to shuffled animals and T-shirt"
+            ],
+            labels: ["Appending", "Filtering", "Sorting", "Truncating", "Transposing", "Slicing"],
+            a: {
+                "Can arrange distributed items from highest to lowest": "Sorting",
+                "Can limit the display of distributed items to greater than 500": "Filtering",
+                "Can limit the display of promotional items to shuffled animals and T-shirt": "Slicing"
+            },
+            marks: 2
+        },
+        {
+            id: 5,
+            type: "MCQ",
+            q: "As part of an ETL process, which process represents transformation?",
+            options: [
+                "Changing data from summary level to detailed level",
+                "Converting data from one data type to another data type or structure",
+                "Retrieving data from many sources into a single destination",
+                "Importing a percentage of row from the source data"
+            ],
+            a: 1,
+            marks: 2
+        },
+        {
+            id: 6,
+            type: "MCQ",
+            q: "The marketing team wants to know which market segment had the highest sales last year. Which type of data analytics should they use?",
+            options: [
+                "Diagnostic analytics",
+                "Descriptive analytics",
+                "Predictive analytics",
+                "Prescriptive analytics"
+            ],
+            a: 1,
+            marks: 2
+        },
+        {
+            id: 7,
+            type: "SHORT",
+            q: "A file named <strong>courses data</strong> contains the following content:<br><br><pre>Title|Number|Hours\nAlgebra|MT101|3\nHistory|HS201|3\nPhysics|PS302|4\nMusic|MS101|2\nArt|AR201|2</pre><br>You need to use Python to read the data from the file so that you can import it into a database file. Write the Python code to read the data from the file into a variable. (Assume the file is named <code>courses.csv</code>).",
+            regex: "^[a-z0-9_]+=[a-z0-9_]+\\.read_csv\\(['\"]?courses\\.csv['\"]?(.*?)\\)$",
+            a: "data = pd.read_csv('courses.csv', sep='|')",
+            marks: 2
+        },
+        {
+            id: 8,
+            type: "MCQ2",
+            q: "A coworker is having trouble joining two database tables, Table A and Table B, that were imported from CSV files. They say the tables have no common values.<br><br>You look at the data in the original CSV file and find that the RowKey values in the TableA file and the RowID values in the TableB file look identical. Both have three numbers followed by a dash(-) and two letters.<br><br>Which two actions should you complete next? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection</span>",
+            options: [
+                "Verify that the data in the database was imported as a numeric data type",
+                "Trim empty spaces from both of the valid characters",
+                "Visually compare the database values to the CSV values",
+                "Trim empty spaces from only the right side of the valid characters"
+            ],
+            a: [1, 2],
+            marks: 2
+        },
+        {
+            id: 9,
+            type: "MCQ2",
+            q: "Each month you need to automatically transform the data from two XML documents into a single flat file with columns and rows that excel can open and interpret. The document names and structure remain constant. You know the relationship between the two XML documents.<br><br>Which two resources can you use? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection</span>",
+            options: [
+                "Json",
+                "Power Query for Excel (M)",
+                "Microsoft Excel",
+                "Python"
+            ],
+            a: [1, 3],
+            marks: 2
+        },
+        {
+            id: 10,
+            type: "MCQ",
+            q: "You have a comma-delimited file with 100,000 rows and 200 columns of phone sales data. One column represents the Phone manufacturer.<br><br>You need to analyze all sales data for a specific manufacturer. Which technique should you use?",
+            options: [
+                "Deleting",
+                "Transposing",
+                "Truncating",
+                "Filtering"
+            ],
+            a: 3,
+            marks: 2
+        },
+        {
+            id: 11,
+            type: "TF",
+            q: "For each statement about data disaggregation, select whether it is True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection</span>",
+            options: [
+                "Data disaggregation provides a summary of the data",
+                "Data disaggregation combines data from different sources",
+                "Data disaggregation can clarify trends and patterns among subgroups"
+            ],
+            a: [false, false, true],
+            marks: 2
+        },
+        {
+            id: 12,
+            type: "DND_PIVOT",
+            q: "From the data in the table below, you create a pivot table to show the combined number of certified virtual and in-person teachers for each class at each school.<br><br><table style='width:100%; border-collapse: collapse; margin: 15px 0; font-size: 13px; text-align: center;'><thead><tr style='background: #000; color: #fff;'><th style='padding: 8px; border: 1px solid #ddd;'>School</th><th style='padding: 8px; border: 1px solid #ddd;'>Class</th><th style='padding: 8px; border: 1px solid #ddd;'>Format</th><th style='padding: 8px; border: 1px solid #ddd;'>Certified teacher</th></tr></thead><tbody><tr><td>School A</td><td>Networking</td><td>In Person</td><td>6</td></tr><tr><td>School A</td><td>Networking</td><td>Virtual</td><td>5</td></tr><tr><td>School A</td><td>Data Analytics</td><td>In Person</td><td>2</td></tr><tr><td>School A</td><td>Data Analytics</td><td>Virtual</td><td>3</td></tr><tr><td>School B</td><td>Networking</td><td>In Person</td><td>9</td></tr><tr><td>School B</td><td>Networking</td><td>Virtual</td><td>7</td></tr><tr><td>School B</td><td>Data Analytics</td><td>In Person</td><td>2</td></tr><tr><td>School B</td><td>Data Analytics</td><td>Virtual</td><td>4</td></tr></tbody></table><br>Move the appropriate labels to the correct locations in the Pivot table structure below.<br><br><table style='border-collapse: collapse; margin: 10px 0; text-align: center;'><tr><td style='border: 1px solid #000; padding: 10px; background: #eee;'></td><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 1</td><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 2</td></tr><tr><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 3</td><td style='border: 1px solid #000; padding: 10px;'>11</td><td style='border: 1px solid #000; padding: 10px;'>5</td></tr><tr><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 4</td><td style='border: 1px solid #000; padding: 10px;'>16</td><td style='border: 1px solid #000; padding: 10px;'>6</td></tr></table><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>",
+            options: ["Label 1", "Label 2", "Label 3", "Label 4"],
+            labels: ["Data Analytics", "Networking", "In-Person", "Virtual", "School A", "School B"],
+            a: {
+                "Label 1": "Networking",
+                "Label 2": "Data Analytics",
+                "Label 3": "School A",
+                "Label 4": "School B"
+            },
+            marks: 2
+        },
+        {
+            id: 13,
+            type: "MCQ",
+            q: "What concept allows analysts to drill down into data and examine different levels of information that may be crucial in diagnostic analytics?",
+            options: [
+                "Granularity",
+                "Completeness",
+                "Interpretability",
+                "Transparency"
+            ],
+            a: 0,
+            marks: 2
+        },
+        {
+            id: 14,
+            type: "MCQ",
+            q: "You have a dataset that includes product review scores and demographic information about the reviewers. There are no subcategories associated with the demographic answers. The table below shows a selection of the data.<br><br><table style='width:100%; border-collapse: collapse; margin: 15px 0; font-size: 13px; text-align: center;'><thead><tr style='background: #f1f5f9;'><th style='padding: 8px; border: 1px solid #cbd5e1;'>Product</th><th style='padding: 8px; border: 1px solid #cbd5e1;'>Review Score</th><th style='padding: 8px; border: 1px solid #cbd5e1;'>Review id</th><th style='padding: 8px; border: 1px solid #cbd5e1;'>Industry</th><th style='padding: 8px; border: 1px solid #cbd5e1;'>Ethnicity</th></tr></thead><tbody><tr><td>AX-150</td><td>74</td><td>123</td><td>Education</td><td>Asian</td></tr><tr><td>BK-330</td><td>82</td><td>124</td><td>Finance</td><td>Latino or Hispanic</td></tr><tr><td>BK-315</td><td>79</td><td>125</td><td>Health Care</td><td>Native Hawaiian...</td></tr><tr><td>CX-290</td><td>86</td><td>126</td><td>Other</td><td>African-American</td></tr><tr><td>BD-250</td><td>61</td><td>127</td><td>Finance</td><td>Other</td></tr><tr><td>CD-140</td><td>35</td><td>128</td><td>Food Services</td><td>Caucasian</td></tr><tr><td>AX-310</td><td>84</td><td>129</td><td>Education</td><td>Caucasian</td></tr></tbody></table><br>Which scenario is an example of <strong>disaggregating</strong> the dataset?",
+            options: [
+                "By average and mode of the scores for each product grouped by the ethnicity of the reviewers",
+                "Display the overall average and mode of all scores on a per-product basis",
+                "Display a list of ethnicities that are included in the other option",
+                "Display the overall average and mode of all scores and a count of all reviews"
+            ],
+            a: 0,
+            marks: 2
+        },
+        {
+            id: 15,
+            type: "MCQ",
+            q: "You are reviewing a database of restaurant menu items. The table below shows a selection of the data.<br><br><table style='width:100%; border-collapse: collapse; margin: 15px 0; font-size: 13px; text-align: center;'><thead><tr style='background: #f1f5f9;'><th style='padding: 8px; border: 1px solid #cbd5e1;'>Item</th><th style='padding: 8px; border: 1px solid #cbd5e1;'>Type</th><th style='padding: 8px; border: 1px solid #cbd5e1;'>Menu</th><th style='padding: 8px; border: 1px solid #cbd5e1;'>Gluten-free</th><th style='padding: 8px; border: 1px solid #cbd5e1;'>Vegan</th></tr></thead><tbody><tr><td>Croque Monsieur</td><td>Sandwich</td><td>Lunch</td><td>Optional</td><td>No</td></tr><tr><td>Lemon Meringue Pie</td><td>Pie</td><td>Dessert</td><td>No</td><td>No</td></tr><tr><td>Matcha Slice</td><td>Cake</td><td>Dessert</td><td>No</td><td>No</td></tr><tr><td>Shrimp and crab Louie</td><td>Salad</td><td>Lunch; Dinner</td><td>Yes</td><td>No</td></tr><tr><td>Vegan Chocolate...</td><td>Cake</td><td>Dessert</td><td>Yes</td><td>Yes</td></tr></tbody></table><br>You need to display only items on the <strong>dessert</strong> menu with a type of <strong>cake</strong>. What should you do to nondestructively limit the data display?",
+            options: [
+                "Group the data by menu and then group the data on the dessert menu by type",
+                "Delete all data that has a menu other than dessert, then delete all data that has a type other than cake",
+                "Add two slicers, one for menu and one for type. Set the menu slicer to dessert and the type slicer to cake",
+                "Sort the data by menu and within each menu, sort by type"
+            ],
+            a: 2,
+            marks: 2
+        },
+        {
+            id: 16,
+            type: "MCQ",
+            q: "Which of the following is a common task in data cleaning?",
+            options: [
+                "Removing duplicate rows from a dataset",
+                "Creating a pie chart of the data",
+                "Collecting new data through interviews",
+                "Publishing the data to a public website"
+            ],
+            a: 0,
+            marks: 2
+        },
+        {
+            id: 17,
+            type: "MCQ",
+            q: "Which technique is used to rearrange data rows based on a specific column, such as Alphabetical order or Date?",
+            options: [
+                "Filtering",
+                "Sorting",
+                "Aggregation",
+                "Pivoting"
+            ],
+            a: 1,
+            marks: 2
+        },
+        {
+            id: 18,
+            type: "MCQ",
+            q: "Which aggregation function should be used to find the most frequently occurring value in a dataset?",
+            options: [
+                "SUM",
+                "AVG",
+                "COUNT",
+                "MODE"
+            ],
+            a: 3,
+            marks: 2
+        },
+        {
+            id: 19,
+            type: "MCQ",
+            q: "What does the 'L' stand for in the data management process known as ETL?",
+            options: [
+                "Label",
+                "Link",
+                "Load",
+                "List"
+            ],
+            a: 2,
+            marks: 2
+        },
+        {
+            id: 20,
+            type: "MCQ",
+            q: "Which file format is specifically designed to store data in a plain text format where values are separated by commas?",
+            options: [
+                "XML",
+                "JSON",
+                "CSV",
+                "HTML"
+            ],
+            a: 2,
+            marks: 2
+        }
+    ],
+    "data3": [
+        {
+            id: 1,
+            type: "MTF",
+            q: "You are using data analytics to help answer business questions about a new product your company released.<br><br>Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>",
+            options: ["Why did it happen?", "What action should be taken?", "What might happen?", "What happened in the past?"],
+            labels: ["Descriptive Analysis", "Diagnostic Analysis", "Predictive Analysis", "Prescriptive Analysis"],
+            a: {
+                "Why did it happen?": "Diagnostic Analysis",
+                "What action should be taken?": "Prescriptive Analysis",
+                "What might happen?": "Predictive Analysis",
+                "What happened in the past?": "Descriptive Analysis"
+            },
+            marks: 2
+        },
+        {
+            id: 2,
+            type: "MCQ",
+            q: "What is an example of machine learning in predictive analysis?",
+            options: [
+                "Your thermostat adjusts to a higher temperature because you programmed it based on the time of day.",
+                "Your streaming service suggests a category of movies based on the last ten movies you watched.",
+                "Your vehicle turns on a warning sensor because one of its components requires maintenance.",
+                "Your computer automatically goes into sleep mode because the battery has less than ten percent power."
+            ],
+            a: 1,
+            marks: 2
+        },
+        {
+            id: 3,
+            type: "TF",
+            q: "For each statement about data mining, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+            options: [
+                "Data mining is used to find anomalies.",
+                "Data mining is used to summarize raw data from large data sets.",
+                "Data mining is used to review underlying details in a given table."
+            ],
+            a: [true, true, false],
+            marks: 2
+        },
+        {
+            id: 4,
+            type: "MTF",
+            q: "Match the type of data analysis on the left to the analysis question it answers on the right. You may use each item once or not at all.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct response.</span>",
+            options: [
+                "What happened?",
+                "Why did it happen?",
+                "What should we do next?",
+                "Is there enough evidence to draw a conclusion?"
+            ],
+            labels: [
+                "Descriptive analysis",
+                "Diagnostic analysis",
+                "Predictive analysis",
+                "Prescriptive analysis",
+                "Hypothesis Testing"
+            ],
+            a: {
+                "What happened?": "Descriptive analysis",
+                "Why did it happen?": "Diagnostic analysis",
+                "What should we do next?": "Prescriptive analysis",
+                "Is there enough evidence to draw a conclusion?": "Hypothesis Testing"
+            },
+            marks: 2
+        },
+        {
+            id: 5,
+            type: "MCQ",
+            q: "You will be analyzing sales and determining trends based on a very large dataset that includes the following columns:<ul style='margin-top: 10px; margin-bottom: 15px; padding-left: 20px; line-height: 1.6;'><li>CustomerName</li><li>CustomerEmail</li><li>Birthdate</li><li>FirstPurchaseDate</li><li>MostRecentPurchaseDate</li><li>TotalQuantityPurchased</li><li>TotalsalesAmount</li></ul>You need to validate the data before you start analysis.<br><br>What should you do?",
+            options: [
+                "Analyze firstPurchaseDates to determine purchasing trends",
+                "Calculate statistics TotalQuantityPurchased",
+                "Verify date ranges and value for all dates column",
+                "Create aggregation of all new column"
+            ],
+            a: 2,
+            marks: 2
+        },
+        {
+            id: 6,
+            type: "MCQ",
+            q: "A data scientist at your company creates a machine learning model to help the hiring manager select candidates from thousands of job applicants. Which statement best describes how machine learning is used in this scenario?",
+            options: [
+                "A machine learning model defines the qualifications necessary for a given job or role",
+                "The machine learning model uses historical data and algorithms to predict future applicant performance",
+                "The machine learning system converts applicant information into a common format",
+                "The hiring manager queries the machine learning database for qualified applicants"
+            ],
+            a: 1,
+            marks: 2
+        },
+        {
+            id: 7,
+            type: "MCQ",
+            q: "You ran a t-test with an alpha value of 1% (&alpha;=0.01). Which p-value would cause you to reject the null hypothesis?",
+            options: [
+                "0.001",
+                "0.011",
+                "0.09",
+                "0.10"
+            ],
+            a: 0,
+            marks: 2
+        },
+        {
+            id: 8,
+            type: "MCQ",
+            q: "You want to know whether there is a significant difference between the average test scores of male and female students in the same class. You check that the data is approximately normally distributed for each group and has similar variance.<br><br>How would you decide whether the difference in the test scores between male and female students is significant?",
+            options: [
+                "Perform a t-test using the means and variance for male and female students and if p-value is greater than 0.05 decide that the difference is significant.",
+                "Perform a t-test using the medians and variance for male and female students and if p-value is less than 0.05 decide that the difference is significant.",
+                "Perform a t-test using the medians and variance for male and female students and if p-value is greater than 0.05 decide that the difference is significant.",
+                "Perform a t-test using the means and variance for male and female students and if p-value is less than 0.05 decide that the difference is significant."
+            ],
+            a: 3,
+            marks: 2
+        },
+        {
+            id: 9,
+            type: "MCQ",
+            q: "You are analyzing sales activity that occurs on national holidays.<br><br>What level of data granularity will enable you to perform the most precise analysis?",
+            options: [
+                "Years",
+                "Months",
+                "Weeks",
+                "Days",
+                "Hours"
+            ],
+            a: 4,
+            marks: 2
+        },
+        {
+            id: 10,
+            type: "MCQ",
+            q: "What concept allows analysts to drill down into data and examine different levels of information that may be crucial in diagnostic analytics?",
+            options: [
+                "Granularity",
+                "Completeness",
+                "Interpretability",
+                "Transparency"
+            ],
+            a: 0,
+            marks: 2
+        },
+        {
+            id: 11,
+            type: "TF",
+            q: "For each statement about machine learning, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+            options: [
+                "Machine learning can predict the probability of rain in a region by examining known weather patterns.",
+                "Machine learning can help determine whether a candidate will pass an exam without looking at historical scores.",
+                "Machine learning can be used to automatically decline financial purchases based on previous purchase activity."
+            ],
+            a: [true, false, true],
+            marks: 2
+        },
+        {
+            id: 12,
+            type: "MCQ2",
+            q: "Which two concepts are commonly associated with artificial intelligence (AI) in data analytics? (Choose 2)",
+            options: [
+                "Cost-Benefit Analysis",
+                "Stakeholder Mapping",
+                "Automation",
+                "Machine Learning"
+            ],
+            a: [2, 3],
+            marks: 2
+        },
+        {
+            id: 13,
+            type: "MCQ2",
+            q: "For which two reasons is it risky to make generalizations from limited sample data? (Choose 2)",
+            options: [
+                "Limited data samples are easier to collect",
+                "A limited sample may not represent a larger population",
+                "Findings from a smaller sample size may not be as precise",
+                "Analyzing data from a smaller sample size is faster"
+            ],
+            a: [1, 2],
+            marks: 2
+        },
+        {
+            id: 14,
+            type: "MCQ",
+            q: "You believe playing video games increases the chance of a man getting a heart attack. In your research you notice equal evidence favouring your hypothesis and opposed to it. You tried hours trying to identify the problems with the evidence opposed to your hypothesis, but readily accept the evidence in favor.<br><br>Which type of bias are you demonstrating?",
+            options: [
+                "Motivated Reasoning",
+                "Confirmation Bias",
+                "Anchoring Bias",
+                "Sampling Bias"
+            ],
+            a: 1,
+            marks: 2
+        },
+        {
+            id: 15,
+            type: "MCQ",
+            q: "In which scenario will artificial intelligence (AI) provide the greatest benefit?",
+            options: [
+                "Interpreting fundraising sales data for a college team",
+                "Recording daily sales for three stores owned by one franchise owner",
+                "Determining the statistical mean, median, mode, and standard deviation of the grades for a class",
+                "Predicting maintenance requirements for an international rental car company's fleet vehicles"
+            ],
+            a: 3,
+            marks: 2
+        },
+        {
+            id: 16,
+            type: "MCQ2",
+            q: "Each month, you need to automatically transform the data from two XML documents into a single flat file with columns and rows that Excel can open and interpret. The document names and structure remain constant. You know the relationships between the two XML documents.<br><br>Which two resources can you use? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+            options: [
+                "Python",
+                "Microsoft Word",
+                "Power Query for Excel (M)",
+                "JSON"
+            ],
+            a: [0, 2],
+            marks: 2
+        },
+        {
+            id: 17,
+            type: "MCQ",
+            q: "A bank uses data analytics to flag transactions that significantly deviate from a customer's typical spending behavior. Which technique is most likely being used?",
+            options: [
+                "Hypothesis Testing",
+                "Anomaly Detection",
+                "Data Granularity",
+                "Drill-Down Analysis"
+            ],
+            a: 1,
+            marks: 2
+        },
+        {
+            id: 18,
+            type: "MCQ",
+            q: "Which type of pattern recognition is crucial for understanding the specific order of events, such as a customer buying a laptop and then purchasing a mouse a week later?",
+            options: [
+                "Frequent Patterns",
+                "Sequential Patterns",
+                "Temporal Patterns",
+                "Descriptive Patterns"
+            ],
+            a: 1,
+            marks: 2
+        },
+        {
+            id: 19,
+            type: "MCQ",
+            q: "You are reviewing a dataset and notice that the first number you see (a high price) makes all subsequent prices seem relatively low, even if they are still above market value. Which cognitive bias is influencing your judgment?",
+            options: [
+                "Confirmation Bias",
+                "Sampling Bias",
+                "Anchoring Bias",
+                "Motivated Reasoning"
+            ],
+            a: 2,
+            marks: 2
+        },
+        {
+            id: 20,
+            type: "TF",
+            q: "For each statement about data granularity, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+            options: [
+                "Higher granularity means the data is more detailed.",
+                "Drilling down into data involves moving from a lower granularity (less detailed) to a higher granularity (more detailed).",
+                "Aggregating monthly sales into yearly totals increases data granularity."
+            ],
+            a: [true, true, false],
+            marks: 2
+        }
+    ],
+    "data4": [
+{
+                "id": 1,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You are responsible for e-commerce sales at your company. You need to present the quarterly data shown in the table to upper management using the most accurate and unbiased visualization.<br><br>Which visualization should you choose? Select the correct visualization in the answer area. (1 Mark)",
+                "img": "quarterly_sales_table.png",
+                "optionImages": [
+                        "v3_q21_opt1.png",
+                        "v3_q21_opt2.png",
+                        "v3_q21_opt3.png",
+                        "v3_q21_opt4.png"
+                ],
+                "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+                "a": 0
+        },
+{
+            id: 2,
+            marks: 1,
+            type: "MCQ",
+            q: "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x axis and corresponding frequencies on the Y axis?<br>Select the correct visualization type in the answer area. (1 Mark)",
+            options: ["Option A", "Option B", "Option C", "Option D"],
+            optionImages: ["v3_q1_optA.png", "v3_q1_optB.png", "v3_q1_optC.png", "v3_q1_optD.png"],
+            a: 2
+        },
+{
+                "id": 3,
+                "marks": 3,
+                "type": "TF",
+"q": "The professional visualization and data table below depict housing prices in a region. Review the visual patterns and the data set carefully.<br><br>For each statement about the visualization, select True or False<br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection</span> (3 Marks)",
+                "img": "housing_prices_professional.png",
+                "options": [
+                        "The visualization uses scaling manipulation to exaggerate growth",
+                        "An annual increase of $25,000 occurs consistently between 2016 and 2025",
+                        "The visualization accurately depicts the housing prices shown in the table"
+                ],
+                "a": [
+                        false,
+                        false,
+                        true
+                ]
+        },
+{
+                "id": 4,
+                "marks": 1,
+                "type": "MCQ",
+"q": "A colleague shows you the chart below to indicate that Group A has performed significantly better than Group B on a recent assignment. You do not know the sample size or the results of statistical testing. Which chart element creates the impression of a significant score difference? (1 Mark)",
+                "img": "group_comparison_bias.png",
+                "options": [
+                        "The x-axis units of measurement",
+                        "The y-axis units of measurement",
+                        "The z-axis units of measurement",
+                        "The color differentiation"
+                ],
+                "a": 1
+        },
+{
+                "id": 5,
+                "marks": 1,
+                "type": "MCQ",
+"q": "What is the direction of correlation between variable X and variable Y? (1 Mark)",
+                "img": "correlation_direction.png",
+                "options": ["Positive", "Negative", "Zero"],
+                "a": 0
+        },
+{
+                "id": 6,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You want to show a friend your monthly budget breakdown to prove that most of your expenditure is food costs. You create a table that shows the flow of money as it moves from one budget category to the next.<br><br>Which visualization type should you use to display your analysis based on the table shown? (1 Mark)",
+                "img": "budget_flow_table.png",
+                "options": [
+                        "Time Series Chart",
+                        "Correlation Chart",
+                        "Sankey Chart",
+                        "Classification Chart"
+                ],
+                "a": 2
+        },
+{
+                "id": 7,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You work for a recreational sports company. The table shows the company's recreational vehicle sales data. You need to show how each vehicle type contributes to the company's total sales.<br><br>Which visualization should you use? Select the correct visualization in the answer area. (1 Mark)",
+                "img": "vehicle_sales_table.png",
+                "optionImages": [
+                        "v3_q6_optA.png",
+                        "v3_q6_optB.png",
+                        "v3_q6_optC.png",
+                        "v3_q6_optD.png"
+                ],
+                "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+                "a": 0
+        },
+{
+                "id": 8,
+                "marks": 3,
+                "type": "TF",
+"q": "The visualization and data table depict housing price in a region. Review the visual patterns and the data set carefully.<br><br>For each statement about the visualization, select True or False.<br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection</span> (3 Marks)",
+                "img": "housing_prices_v2_professional.png",
+                "options": [
+                        "The visualization accurately depict the housing prices shown in the table",
+                        "The scaling of the graph is misleading",
+                        "An increase of $25000 occurs Each year"
+                ],
+                "a": [
+                        true,
+                        false,
+                        false
+                ]
+        },
+{
+                "id": 9,
+                "marks": 1,
+                "type": "MCQ",
+"q": "A college shows you the chart below to indicate that group A has performed significantly better than group B on a recent assignment. You don't know the sample size and the result of the statistical testing.<br><br>Which chart element creates the impression of a significant score difference? (1 Mark)",
+                "img": "group_comparison_3d_bias.png",
+                "options": [
+                        "The X-axis unit of Measurement",
+                        "The Y-Axis unit of measurement",
+                        "The Z-Axis Unit of Measurement",
+                        "The Color differentiation"
+                ],
+                "a": 1
+        },
+{
+                "id": 10,
+                "marks": 1,
+                "type": "MCQ",
+"q": "The visualization below displays sales data for two salespeople. A conclusion indicates that Salesperson 1 has a higher lead to sale rate than salesperson 2.<br><br>(A lead to sales rate is the number of actual sales divided by the number of attempted sales)<br><br>You need to determine the accuracy of this conclusion. What should you conclude? (1 Mark)",
+                "img": "sales_lead_comparison.png",
+                "options": [
+                        "The conclusion is accurate",
+                        "The conclusion is inaccurate because the visualization is missing sales and lead data",
+                        "The conclusion is inaccurate because the visualization uses size manipulation",
+                        "The conclusion is inaccurate because the visualization uses scale manipulation"
+                ],
+                "a": 1
+        },
+{
+                "id": 11,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You need to compare three (3) values of each data point in a series which data type should you use? (1 Mark)",
+                "options": [
+                        "Bubble chart",
+                        "Area chart",
+                        "Scatter chart",
+                        "Waterfall chart"
+                ],
+                "a": 0
+        },
+{
+                "id": 12,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You are given a data set displaying the time of day and number of minutes customers waited in line for service. You need to remove bias from the results by eliminating outliers.<br><br>Which visualization illustrates outliers in your dataset? Select the correct visualization in the answer area. (1 Mark)",
+                "optionImages": [
+                        "v3_q11_opt1.png",
+                        "v3_q11_opt2.png",
+                        "v3_q11_opt3.png",
+                        "v3_q11_opt4.png"
+                ],
+                "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+                "a": 3
+        },
+{
+                "id": 13,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You want to show a friend your monthly budget breakdown to prove that most of your expenditure is food costs. You create a table that shows the flow of money as it moves one budget category to the next.<br><br>Which visualization type should you use to display your analysis based on the table shown? (1 Mark)",
+                "img": "budget_flow_v2.png",
+                "options": [
+                        "Time Series Chart",
+                        "Classification tree",
+                        "Correlation matrix",
+                        "Sankey Diagram"
+                ],
+                "a": 3
+        },
+{
+                "id": 14,
+                "marks": 1,
+                "type": "MCQ",
+"q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the y-axis? Select the correct visualization type in the answer area. (1 Mark)",
+                "optionImages": [
+                        "v3_q13_opt1.png",
+                        "v3_q13_opt2.png",
+                        "v3_q13_opt3.png",
+                        "v3_q13_opt4.png"
+                ],
+                "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+                "a": 2
+        },
+{
+                "id": 15,
+                "marks": 1,
+                "type": "MCQ2",
+"q": "Which two chart types should you use to rank values in ascending or descending order? (choose 2)<br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection</span> (1 Mark)",
+                "options": [
+                        "Bar chart",
+                        "Column chart",
+                        "Line chart",
+                        "Bubble chart"
+                ],
+                "a": [0, 1]
+        },
+{
+                "id": 16,
+                "marks": 1,
+                "type": "MCQ",
+"q": "For which scenario should you use a line chart to represent the data? (1 Mark)",
+                "options": [
+                        "The weekly average stock price during a one-year period",
+                        "The proportion of yes and no answer to a survey question",
+                        "The binned distribution for the height of different students",
+                        "The maximum, minimum, and average value for a set of data"
+                ],
+                "a": 0
+        },
+{
+                "id": 17,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You create the column chart below, which shows sales for different years. Management asks for a way to see demographic information associated with the individual sales records for each year.<br><br>You decide to create tables for each year that show the demographic information for the sales in that year. When someone clicks, the associated table will open.<br><br>Which reporting technique does this represent? (1 Mark)",
+                "img": "sales_by_year_column.png",
+                "options": [
+                        "Disaggregating",
+                        "Unpivoting",
+                        "Pivoting",
+                        "Distributing"
+                ],
+                "a": 0
+        },
+{
+                "id": 18,
+                "marks": 1,
+                "type": "DROPDOWN",
+"q": "Which correlation range most likely describes the relationship between Variable X and Variable Y based on the visualization below? Select the correct answer from the dropdown. (1 Mark)",
+                "img": "scatter_correlation_v2.png",
+                "code": "Relationship Analysis → [b1]",
+                "options": [
+                        ["No correlation(r=0.00)", "Some correlation(0.00<r<0.99)", "Perfect correlation(r=1.00)"]
+                ],
+                "a": ["Some correlation(0.00<r<0.99)"]
+        },
+{
+                "id": 19,
+                "marks": 1,
+                "type": "MCQ",
+"q": "A group of students was asked about their favorite flavor of ice cream. The pie chart below illustrates the proportion of each response.<br><br>What can you conclude from the visualization below about ice cream preference for this group of students? (1 Mark)",
+                "img": "ice_cream_pie_chart.png",
+                "options": [
+                        "The fewest students chose strawberry",
+                        "The most students chose vanilla",
+                        "The most students chose chocolate",
+                        "Fewest students chose chocolate"
+                ],
+                "a": 2
+        },
+{
+                "id": 20,
+                "marks": 1,
+                "type": "MCQ",
+"q": "An analyst claims the visualization below implies that Variable X <b>causes</b> Variable Y. Is the analyst correct in this assertion? (1 Mark)",
+                "img": "scatter_correlation_v2.png",
+                "options": [
+                        "Yes",
+                        "No"
+                ],
+                "a": 1
+        },
+{
+                "id": 21,
+                "marks": 4,
+                "type": "TF",
+"q": "You are analyzing statistics for online and in-store purchases with data collected over the past year. Data collected includes surveys from 300 instore customers and 300 online customers.<br><br>Based on the data visualization below, identify which statements about customer purchases over the last year are correct and which statements are incorrect. Select True if the statement is correct or False if the statement is incorrect.<br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection.</span> (4 Marks)",
+                "img": "purchase_stats_comparison.png",
+                "options": [
+                        "In-store customers spent more money than online customers.",
+                        "Online customers have a larger variance in how much they spend.",
+                        "The difference between the largest amount spent and the smallest amount spent is higher for in-store customers.",
+                        "The amount spent the most often is the same for online and in-store customers."
+                ],
+                "a": [false, true, false, true]
+        }
+    ],
+    "data5": [
+        {
+                "id": 1,
+                "marks": 1,
+                "type": "MCQ",
+"q": "What is an example of machine learning in predictive analysis? (1 Mark)",
+                "options": [
+                        "Your thermostat adjusts to a higher temperature because you programmed it based on the time of day",
+                        "Your streaming service suggests a category of movies based on the last ten movies you watched.",
+                        "Your vehicle turns on a warning sensor because one of its components requires maintenance.",
+                        "Your computer automatically goes into sleep mode because the battery has less than ten percent power."
+                ],
+                "a": 1
+        },
+        {
+                "id": 2,
+                "marks": 1,
+                "type": "MCQ2",
+"q": "In the United States and Europe, which two data points are considered <b>non-sensitive PII</b> (personal identifiable information)? (choose 2) (1 Mark)",
+                "options": [
+                        "Bank account number",
+                        "Medical records",
+                        "Date of birth",
+                        "Job title"
+                ],
+                "a": [2, 3]
+        },
+        {
+                "id": 3,
+                "marks": 3,
+                "type": "TF",
+"q": "For each statement about <b>data mining</b>, select True if the statement is correct or False if it is incorrect. <br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection.</span> (3 Marks)",
+                "options": [
+                        "Data mining is used to find anomalies",
+                        "Data mining is used to summarize raw data from large data sets",
+                        "Data mining is used to review underlying details in a given table"
+                ],
+                "a": [true, true, false]
+        },
+        {
+                "id": 4,
+                "marks": 5,
+                "type": "DND_PIVOT",
+                "q": "Match the type of data analysis on the left to the analysis question it answers on the right. You may use each item once or not at all.<br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct response.</span> (5 Marks)<br><br><div style='background: white; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;'><table style='width: 100%; border-collapse: separate; border-spacing: 0 12px;'><thead><tr><th style='text-align: left; font-weight: 800; color: #1e3a5f; text-transform: uppercase; font-size: 13px; padding-bottom: 10px;'>Analysis Question</th><th style='width: 150px;'></th></tr></thead><tbody><tr><td style='padding: 10px; font-weight: 600; color: #334155;'>What happened?</td><td style='text-align: right;'>Box 1</td></tr><tr><td style='padding: 10px; font-weight: 600; color: #334155;'>Why did it happen?</td><td style='text-align: right;'>Box 2</td></tr><tr><td style='padding: 10px; font-weight: 600; color: #334155;'>What should we do next?</td><td style='text-align: right;'>Box 3</td></tr><tr><td style='padding: 10px; font-weight: 600; color: #334155;'>Is there enough evidence to draw conclusion</td><td style='text-align: right;'>Box 4</td></tr><tr><td style='padding: 10px; font-weight: 600; color: #334155;'>What will happen</td><td style='text-align: right;'>Box 5</td></tr></tbody></table></div>",
+                "poolHeader": "Analysis Type",
+                "options": ["Box 1", "Box 2", "Box 3", "Box 4", "Box 5"],
+                "labels": ["Descriptive analysis", "Predictive analysis", "Hypothesis Testing", "Diagnostic analysis", "Prescriptive analysis"],
+                "a": {
+                        "Box 1": "Descriptive analysis",
+                        "Box 2": "Diagnostic analysis",
+                        "Box 3": "Prescriptive analysis",
+                        "Box 4": "Hypothesis Testing",
+                        "Box 5": "Predictive analysis"
+                }
+        },
+        {
+                "id": 5,
+                "marks": 1,
+                "type": "MCQ3",
+"q": "You are tasked with completing a data analysis project for a large organization. During the project, you must handle personally identifiable information (PII).<br><br>Throughout the project, which <b>three principles</b> should you follow? (Choose 3) (1 Mark)",
+                "options": [
+                        "Limit your handling of the PII to only what is necessary for the current analysis.",
+                        "Remove all PII from your computer after the analysis is complete.",
+                        "Retain only the PII that you might need for future analysis.",
+                        "Request all data from the database that contains the PII.",
+                        "Keep track of the PII that you have during the analysis."
+                ],
+                "a": [0, 1, 4]
+        },
+        {
+                "id": 6,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You are analyzing sales and determining trends based on a very large dataset that includes the following columns:<br><ul><li>CustomerName</li><li>CustomerEmail</li><li>Birthdate</li><li>FirstPurchaseDate</li><li>MostRecentPurchaseDate</li><li>TotalQuantityPurchased</li><li>TotalSalesAmount</li></ul>You need to validate the data before you start analysis. What should you do? (1 Mark)",
+                "options": [
+                        "Analyze FirstPurchaseDates to determine purchasing trends",
+                        "Calculate statistics for TotalQuantityPurchased",
+                        "Verify date ranges and values for all date columns",
+                        "Create aggregations for all new columns"
+                ],
+                "a": 2
+        },
+        {
+                "id": 7,
+                "marks": 1,
+                "type": "MCQ",
+"q": "A data scientist at your company creates a machine learning model to help the hiring manager select candidates from thousands of job applicants.<br><br>Which statement best describes how <b>machine learning</b> is used in this scenario? (1 Mark)",
+                "options": [
+                        "A machine learning model defines the qualifications necessary for a given job or role",
+                        "The machine learning model uses historical data and algorithms to predict future applicant performance",
+                        "The machine learning system converts applicant information into a common format",
+                        "The hiring manager queries the machine learning database for qualified applicants"
+                ],
+                "a": 1
+        },
+        {
+                "id": 8,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You ran a t-test with an alpha value of 1% (a=0.01).<br><br>Which p-value would cause you to <b>reject</b> the null hypothesis? (1 Mark)",
+                "options": [
+                        "0.001",
+                        "0.011",
+                        "0.09",
+                        "0.10"
+                ],
+                "a": 0
+        },
+        {
+                "id": 9,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You want to know whether there is a significant difference between the average test scores of male and female students in the same class. You check that the data is approximately normally distributed and that each group has similar variance.<br><br>How would you decide whether the difference in the test score between male and female students is significant? (1 Mark)",
+                "options": [
+                        "Perform a t-test using the means and variance for male and female students and if p-value is greater than 0.05 decide that the difference is significant.",
+                        "Perform a t-test using the medians and variance for male and female students and if p-value is less than 0.05 decide that the difference is significant.",
+                        "Perform a t-test using the medians and variance for male and female students and if p-value is greater than 0.05 decide that the difference is significant.",
+                        "Perform a t-test using the means and variance for male and female students and if p-value is less than 0.05 decide that the difference is significant."
+                ],
+                "a": 3
+        },
+        {
+                "id": 10,
+                "marks": 1,
+                "type": "MCQ",
+"q": "What is the goal of data privacy and protection laws such as GDPR, FERPA, and HIPAA? (1 Mark)",
+                "options": [
+                        "To hold violators accountable for mishandling data",
+                        "To tax companies that use private data",
+                        "To ensure that companies openly share industry data",
+                        "To protect companies from liability related to private data"
+                ],
+                "a": 0
+        },
+        {
+                "id": 11,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You have a small dataset that contains personally identifiable information (PII). You need to provide the data to an outside source for additional processing.<br><br>What could you do to protect the PII but still allow you to eventually relate the additional analysis to your original data? (1 Mark)",
+                "options": [
+                        "Remove every instance of PII in the original dataset and add them back after the new dataset is retrieved.",
+                        "Retain every text-based PII in the original dataset but convert them to number-based features in the new dataset.",
+                        "Employ pseudonymization on the PII and use the pseudonym as the key between the new and original datasets.",
+                        "Randomly shuffle the original dataset so that each given piece of PII is no longer associated with a particular user."
+                ],
+                "a": 2
+        },
+        {
+                "id": 12,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You are analyzing sales activity that occurs on national holidays.<br><br>What level of data granularity will enable you to perform the most precise analysis? (1 Mark)",
+                "options": [
+                        "Years",
+                        "Months",
+                        "Weeks",
+                        "Days",
+                        "Hours"
+                ],
+                "a": 4
+        },
+        {
+                "id": 13,
+                "marks": 3,
+                "type": "TF",
+"q": "For each statement about machine learning, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span> (3 Marks)",
+                "options": [
+                        "Machine learning can predict the probability of rain in a region by examining known weather patterns.",
+                        "Machine learning can help determine whether a candidate will pass an exam without looking at historical scores.",
+                        "Machine learning can be used to automatically decline financial purchases based on previous purchase activity."
+                ],
+                "a": [true, false, true]
+        },
+        {
+                "id": 14,
+                "marks": 1,
+                "type": "MCQ",
+"q": "In which scenario will artificial intelligence (AI) provide the greatest benefit? (1 Mark)",
+                "options": [
+                        "Interpreting fundraising sales data for a college team",
+                        "Recording daily sales for three stores owned by one franchise owner",
+                        "Determining the statistical mean, median, mode, and standard deviation of the grade for a class",
+                        "Predicting maintenance requirement for an international rental car's companies fleet vehicles"
+                ],
+                "a": 3
+        },
+        {
+                "id": 15,
+                "marks": 2,
+                "type": "MCQ2",
+"q": "Which two concepts are commonly associated with artificial intelligence (AI) in data analytics?<br><span style='font-size: 15px; font-style: italic;'>Each correct answer presents a complete solution. (Choose 2.)</span> (2 Marks)",
+                "options": [
+                        "Cost-Benefit Analysis",
+                        "Stakeholder Mapping",
+                        "Automation",
+                        "Machine Learning"
+                ],
+                "a": [2, 3]
+        },
+        {
+                "id": 16,
+                "marks": 2,
+                "type": "MCQ2",
+"q": "For which two reasons is it risky to make generalizations from limited sample data?<br><span style='font-size: 15px; font-style: italic;'>Each correct answer presents a complete solution. (Choose 2.)</span> (2 Marks)",
+                "options": [
+                        "Findings from a smaller sample size may not be as precise",
+                        "Analyzing data from a smaller sample size is faster",
+                        "A limited sample may not represent a larger population",
+                        "Limited data samples are easier to collect."
+                ],
+                "a": [0, 2]
+        },
+        {
+                "id": 17,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You believe playing video games increases the chance of a person getting a heart attack. In your research, you notice equal evidence favoring your hypothesis and opposed to it. You spend hours trying to identify problems with the evidence opposed to your hypothesis, but readily accept the evidence in favor.<br><br>Which type of bias are you demonstrating? (1 Mark)",
+                "options": [
+                        "Motivated Reasoning",
+                        "Anchoring bias",
+                        "Sampling bias",
+                        "Affinity bias"
+                ],
+                "a": 0
+        },
+        {
+                "id": 18,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You conduct a study to identify how much time people exercise daily. You recruit all the study participants at the gym.<br><br>Which type of bias are you demonstrating? (1 Mark)",
+                "options": [
+                        "Anchoring bias",
+                        "Motivated reasoning",
+                        "Sampling bias",
+                        "Confirmation bias"
+                ],
+                "a": 2
+        },
+        {
+                "id": 19,
+                "marks": 1,
+                "type": "MCQ",
+"q": "You run a t-test with an alpha value of 5% (a = 0.05) in order to test an alternative hypothesis (H1). You finish the analysis and discover the p-value is 0.017.<br><br>What can you conclude about the null hypothesis (H0)? (1 Mark)",
+                "options": [
+                        "You reject the null hypothesis (H0)",
+                        "You fail to reject the null hypothesis (H0)",
+                        "You modify the null hypothesis (H0)",
+                        "You accept the null hypothesis (H0)"
+                ],
+                "a": 0
+        },
+        {
+                "id": 20,
+                "marks": 1,
+                "type": "MCQ3",
+"q": "Select three ways that machine learning algorithms are used in data analysis.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 3.)</span> (1 Mark)",
+                "options": [
+                        "Time Series Analysis",
+                        "Anomaly Detection",
+                        "Regulated Data Analysis",
+                        "Small Data Set Analysis",
+                        "Singular Historical Events",
+                        "Data Classification"
+                ],
+                "a": [0, 1, 5]
+        },
+        {
+                "id": 21,
+                "marks": 1,
+                "type": "MCQ2",
+"q": "Each month, you need to automatically transform the data from two XML documents into a single flat file with columns and rows that Excel can open and interpret. The document names and structure remain constant. You know the relationships between the two XML documents.<br><br>Which two resources can you use?<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 2.)</span> (1 Mark)",
+                "options": [
+                        "Python",
+                        "Microsoft Word",
+                        "Power Query for Excel (M)",
+                        "JSON"
+                ],
+                "a": [0, 2]
+        },
+        {
+                "id": 22,
+                "marks": 1,
+                "type": "MCQ",
+"q": "A popular social media site records and counts clicks, likes, dislikes, and other user interactions.<br><br>What type of data is collected? (1 Mark)",
+                "options": [
+                        "Continuous Data",
+                        "Imputed Data",
+                        "Qualitative Data",
+                        "Big Data"
+                ],
+                "a": 3
+        }
+    ],
+    "da_mock1": [
+{ 
+            id: 1, 
+            type: "MCQ", 
+            q: "What is the direction of correlation between variable X and variable Y based on the scatter plot below?", 
+            img: "correlation_scatter.png", 
+            options: ["Positive", "Negative", "Zero"], 
+            a: 0 
+        },
+        { 
+            id: 2, 
+            type: "MCQ", 
+            q: "Which correlation range most likely describes the relationship between Variable X and Variable Y based on the plot provided?", 
+            img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2ZjZmNmYyIgc3Ryb2tlPSIjZTJlOGYwIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjUwIiB4Mj0iNTUwIiB5Mj0iNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIxMDAiIHgyPSI1NTAiIHkyPSIxMDAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIxNTAiIHgyPSI1NTAiIHkyPSIxNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIyMDAiIHgyPSI1NTAiIHkyPSIyMDAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIyNTAiIHgyPSI1NTAiIHkyPSIyNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIzMDAiIHgyPSI1NTAiIHkyPSIzMDAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iMTAwIiB5MT0iNTAiIHgyPSIxMDAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iMTUwIiB5MT0iNTAiIHgyPSIxMTUwIiB5Mj0iMzUwIiBzdHJva2U9IiNmMmY1ZjkiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPGxpbmUgeD0iMjAwIiB5MT0iNTAiIHgyPSIyMDAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iMjUwIiB5MT0iNTAiIHgyPSIyNTAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iNTAiIHgyPSIzMDAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iMzUwIiB5MT0iNTAiIHgyPSIzNTAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNDAwIiB5MT0iNTAiIHgyPSI0MDAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNDUwIiB5MT0iNTAiIHgyPSI0NTAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAwIiB5MT0iNTAiIHgyPSI1MDAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIzNTAiIHgyPSI1NTAiIHkyPSIzNTAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSI1MCIgeDI9IjUwIiB5Mj0iMzUwIiBzdHJva2U9IiM0NzU1NjkiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHRleHQgeD0iMzAwIiB5PSIzODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzQ3NTU2OSI+VmFyaWFibGUgWDwvdGV4dD4KICAgIDx0ZXh0IHg9IjE1IiB5PSIyMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzQ3NTU2OSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwLCAxNSwgMjAwKSI+VmFyaWFibGUgWTwvdGV4dD4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjI1MCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjE1MCIgY3k9IjMwMCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjIwMCIgY3k9IjE5MCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjIwMCIgY3k9IjIwMCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjE2MCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjM1MCIgY3k9IjI1NSIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjQwMCIgY3k9IjEzMCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjQ1MCIgY3k9Ijc1IiAgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KPC9zdmc+", 
+            options: ["No correlation (r=0.00)", "Some correlation (0.00 < r < 0.99)", "Perfect correlation (r=1.00)"], 
+            a: 1 
+        },
+        { 
+            id: 3, 
+            type: "MCQ", 
+            q: "An analyst claims the visualization implies that Variable X causes Variable Y. Is the analyst correct in this assertion?", 
+            img: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2ZjZmNmYyIgc3Ryb2tlPSIjZTJlOGYwIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjUwIiB4Mj0iNTUwIiB5Mj0iNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIxMDAiIHgyPSI1NTAiIHkyPSIxMDAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIxNTAiIHgyPSI1NTAiIHkyPSIxNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIyMDAiIHgyPSI1NTAiIHkyPSIyMDAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIyNTAiIHgyPSI1NTAiIHkyPSIyNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIzMDAiIHgyPSI1NTAiIHkyPSIzMDAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iMTAwIiB5MT0iNTAiIHgyPSIxMDAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iMTUwIiB5MT0iNTAiIHgyPSIxNTAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iMjAwIiB5MT0iNTAiIHgyPSIyMDAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iMjUwIiB5MT0iNTAiIHgyPSIyNTAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iMzAwIiB5MT0iNTAiIHgyPSIzMDAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iMzUwIiB5MT0iNTAiIHgyPSIzNTAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNDAwIiB5MT0iNTAiIHgyPSI0MDAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNDUwIiB5MT0iNTAiIHgyPSI0NTAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAwIiB5MT0iNTAiIHgyPSI1MDAiIHkyPSIzNTAiIHN0cm9rZT0iI2YxZjVmOSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSIzNTAiIHgyPSI1NTAiIHkyPSIzNTAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8bGluZSB4MT0iNTAiIHkxPSI1MCIgeDI9IjUwIiB5Mj0iMzUwIiBzdHJva2U9IiM0NzU1NjkiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHRleHQgeD0iMzAwIiB5PSIzODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzQ3NTU2OSI+VmFyaWFibGUgWDwvdGV4dD4KICAgIDx0ZXh0IHg9IjE1IiB5PSIyMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzQ3NTU2OSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwLCAxNSwgMjAwKSI+VmFyaWFibGUgWTwvdGV4dD4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjI1MCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjE1MCIgY3k9IjMwMCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjIwMCIgY3k9IjE5MCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjI1MCIgY3k9IjIwMCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjE2MCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjM1MCIgY3k9IjI1NSIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjQwMCIgY3k9IjEzMCIgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KICAgIDxjaXJjbGUgY3g9IjQ1MCIgY3k9Ijc1IiAgcj0iNSIgZmlsbD0iIzQ0NzJjNCIgLz4KPC9zdmc+", 
+            options: ["Yes", "No"], 
+            a: 1 
+        },
+        { 
+            id: 4, 
+            type: "MCQ", 
+            q: "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?", 
+            options: ["Option A: Column Chart", "Option B: Bar Chart", "Option C: Histogram", "Option D: Line Chart"], 
+            optionImages: [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ], 
+            a: 2 
+        },
+        { 
+            id: 5, 
+            type: "MCQ", 
+            q: "What data structure describes the following data?<br><strong>[“Aabid”, “Jesenia”, “Mark”]</strong>", 
+            options: ["List", "Multi-dimensional", "Table", "Graph"], 
+            a: 0 
+        },
+        { 
+            id: 6, 
+            type: "MCQ2", 
+            q: "You need to create a data view based on aggregations for further visual analysis. Your data includes sales information for the past five years for food products at your company’s stores. Each product belongs to one category. For example milk belongs to dairy category. <br><br>The data view must meet the following requirements:<br>• Include all products and their associated categories<br>• Include sales sub-total for each category and year<br>• Display grand total of sales for each category<br>• Create a summary of each category for every year<br><br>Which <b>two</b> aggregation methods should you use to create the data view? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", 
+            options: ["Pivoting", "Filtering", "Merging", "Grouping"], 
+            a: [0, 3] 
+        },
+        { 
+            id: 7, 
+            type: "DND_PIVOT", 
+            q: "<strong>Statistical Metrics:</strong> You are performing descriptive analysis on quarterly sales data. <br><br>Drag the correct statistical metric from the panel on the left and drop it into the highlighted row cells in the table below.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span><br><br><div style='overflow-x:auto;'><table style='border-collapse:collapse; font-size:13px; width:100%; text-align:center;'><thead><tr style='background:#1e3a5f; color:white;'><th style='padding:8px 12px; border:1px solid #ccc;'>Region</th><th style='padding:8px 12px; border:1px solid #ccc;'>Quarter 1</th><th style='padding:8px 12px; border:1px solid #ccc;'>Quarter 2</th><th style='padding:8px 12px; border:1px solid #ccc;'>Quarter 3</th><th style='padding:8px 12px; border:1px solid #ccc;'>Quarter 4</th></tr></thead><tbody><tr><td style='padding:7px 12px; border:1px solid #ccc;'>North</td><td style='padding:7px 12px; border:1px solid #ccc;'>25,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>30,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>40,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>50,000</td></tr><tr style='background:#f8fafc;'><td style='padding:7px 12px; border:1px solid #ccc;'>South</td><td style='padding:7px 12px; border:1px solid #ccc;'>35,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>45,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>40,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>55,000</td></tr><tr><td style='padding:7px 12px; border:1px solid #ccc;'>East</td><td style='padding:7px 12px; border:1px solid #ccc;'>35,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>32,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>41,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>52,500</td></tr><tr style='background:#f8fafc;'><td style='padding:7px 12px; border:1px solid #ccc;'>West</td><td style='padding:7px 12px; border:1px solid #ccc;'>34,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>30,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>42,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>55,000</td></tr><tr style='background:#dbeafe; font-weight:600;'><td style='padding:7px 12px; border:2px solid #3b82f6; color:#1e3a8a;'>Label 1</td><td style='padding:7px 12px; border:1px solid #ccc;'>129,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>137,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>163,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>212,500</td></tr><tr style='background:#dbeafe; font-weight:600;'><td style='padding:7px 12px; border:2px solid #3b82f6; color:#1e3a8a;'>Label 2</td><td style='padding:7px 12px; border:1px solid #ccc;'>35,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>45,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>42,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>55,000</td></tr><tr style='background:#dbeafe; font-weight:600;'><td style='padding:7px 12px; border:2px solid #3b82f6; color:#1e3a8a;'>Label 3</td><td style='padding:7px 12px; border:1px solid #ccc;'>25,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>30,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>40,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>50,000</td></tr><tr style='background:#dbeafe; font-weight:600;'><td style='padding:7px 12px; border:2px solid #3b82f6; color:#1e3a8a;'>Label 4</td><td style='padding:7px 12px; border:1px solid #ccc;'>35,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>30,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>40,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>55,000</td></tr></tbody></table></div>", 
+            options: ["Label 1", "Label 2", "Label 3", "Label 4"], 
+            labels: ["Sum", "Max", "Min", "Mode", "Average", "Median"], 
+            a: { "Label 1": "Sum", "Label 2": "Max", "Label 3": "Min", "Label 4": "Mode" } 
+        },
+        { 
+            id: 8, 
+            type: "MCQ", 
+            q: "Which data type can store a phrase or sentence?", 
+            options: ["Integer", "Character", "String", "Boolean"], 
+            a: 2 
+        },
+        { 
+            id: 9, 
+            type: "MCQ2", 
+            q: "A coworker is having trouble joining two database tables, Table A and Table B, that were imported from CSV files. They say the tables have no common values.<br><br>You troubleshoot the problem and find that the <b>RowKey</b> values in TableA and the <b>RowID</b> values in TableB look identical (e.g., three numbers, a dash, and two letters).<br><br>Which <b>two</b> actions should you complete next? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", 
+            options: [
+                "Verify that the data in the database was imported as a numeric data type", 
+                "Trim empty spaces from both of the valid characters", 
+                "Visually compare the database values to the CSV values", 
+                "Trim empty spaces from only the right side of the valid characters"
+            ], 
+            a: [1, 2] 
+        },
+        { 
+            id: 10, 
+            type: "MCQ2", 
+            q: "Each month you need to automatically transform the data from two XML documents into a single flat file with columns and rows that Excel can open and interpret. The document names and structure remain constant. You know the relationship between the two XML documents.<br><br>Which <b>two</b> resources can you use? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", 
+            options: ["Json", "Power Query for Excel (M)", "Microsoft Excel", "Python"], 
+            a: [1, 3] 
+        },
+        { 
+            id: 11, 
+            type: "MCQ", 
+            q: "What is the goal of data privacy and protection laws such as GDPR, FERPA, and HIPAA?", 
+            options: [
+                "To hold violators accountable for mishandling data", 
+                "To tax companies that use private data", 
+                "To ensure that companies openly share industry data", 
+                "To protect companies from liability related to private data"
+            ], 
+            a: 0 
+        },
+        { 
+            id: 12, 
+            type: "MCQ", 
+            q: "You have a small dataset that contains personally identifiable information (PII). You need to provide the data to an outside source for additional processing.<br><br>What could you do to protect the PII but still allow you to eventually relate the additional analysis to your original data?", 
+            options: [
+                "Employ pseudonymization on the PII and use the pseudonym as the key between the new and original datasets", 
+                "Retain every text based PII in the original dataset but convert them to number-based features in the new dataset", 
+                "Randomly shuffle the original dataset so that each given piece of PII is no longer associated with a particular user", 
+                "Remove every instance of PII in the original dataset and add them back after the new dataset is retrieved"
+            ], 
+            a: 0 
+        },
+        { 
+            id: 13, 
+            type: "TF", 
+            q: "The visualization and the data table depict housing prices in a region. For each statement about the visualization, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", 
+            img: "housing_prices_color_final.png", 
+            options: [
+                "The visualization uses scaling manipulation", 
+                "An annual increase of $25,000 occurs between 2016 and 2025", 
+                "The visualization accurately depicts the housing prices shown"
+            ], 
+            a: [false, false, true] 
+        },
+        { 
+            id: 14, 
+            type: "MCQ", 
+            q: "What is a raw data?", 
+            options: ["Unprocessed Data", "Purely numerical Data", "Summarized Data", "Visualized Data"], 
+            a: 0 
+        },
+        { 
+            id: 15, 
+            type: "MCQ", 
+            q: "You are analyzing sales activity that occurs on national holidays.<br><br>What level of data granularity will enable you to perform the most precise analysis?", 
+            options: ["Years", "Months", "Weeks", "Days", "Hours"], 
+            a: 4 
+        },
+        { 
+            id: 16, 
+            type: "MCQ", 
+            q: "What is an example of data cleaning?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Arranging Excel data rows in an order that is easy for a user to read", 
+                "Ensuring that the data in a Word table uses a consistent font", 
+                "Adding quotation marks to the beginning and end of a tab-delimited file", 
+                "Removing non-printable characters from a comma-delimited file"
+            ], 
+            a: 3 
+        },
+        { 
+            id: 17, 
+            type: "MCQ", 
+            q: "A popular social media site records and counts clicks, likes, and dislikes and other user interactions.<br><br>What type of data is collected?", 
+            options: ["Continuous data", "Qualitative data", "Imputed data", "Big data"], 
+            a: 3 
+        },
+        { 
+            id: 18, 
+            type: "MCQ", 
+            q: "You work for a recreational sports company. The table shows the company's recreational vehicle sales.<br><br>You need to show how each vehicle type contributes to the company's total sales.<br><br>Which visualization should you use? Select the correct visualization in the answer area.", 
+            img: "recreational_sales_table.png", 
+            options: ["Option A", "Option B", "Option C", "Option D"], 
+            optionImages: [
+                "recreational_pie_chart.png", 
+                "recreational_combo_chart.png", 
+                "recreational_scatter_plot.png", 
+                "recreational_bar_chart.png"
+            ], 
+            a: 0 
+        },
+        { 
+            id: 19, 
+            type: "DND_PIVOT", 
+            q: "From the data in the table below, you create a pivot table to show the combined number of certified virtual and in-person teachers for each class at each school.<br><br><table style='width:100%; border-collapse: collapse; margin: 15px 0; font-size: 13px; text-align: center;'><thead><tr style='background: #000; color: #fff;'><th style='padding: 8px; border: 1px solid #ddd;'>School</th><th style='padding: 8px; border: 1px solid #ddd;'>Class</th><th style='padding: 8px; border: 1px solid #ddd;'>Format</th><th style='padding: 8px; border: 1px solid #ddd;'>Certified teacher</th></tr></thead><tbody><tr><td>School A</td><td>Networking</td><td>In Person</td><td>6</td></tr><tr><td>School A</td><td>Networking</td><td>Virtual</td><td>5</td></tr><tr><td>School A</td><td>Data Analytics</td><td>In Person</td><td>2</td></tr><tr><td>School A</td><td>Data Analytics</td><td>Virtual</td><td>3</td></tr><tr><td>School B</td><td>Networking</td><td>In Person</td><td>9</td></tr><tr><td>School B</td><td>Networking</td><td>Virtual</td><td>7</td></tr><tr><td>School B</td><td>Data Analytics</td><td>In Person</td><td>2</td></tr><tr><td>School B</td><td>Data Analytics</td><td>Virtual</td><td>4</td></tr></tbody></table><br>Move the appropriate labels to the correct locations in the Pivot table structure below.<br><br><table style='border-collapse: collapse; margin: 10px 0; text-align: center;'><tr><td style='border: 1px solid #000; padding: 10px; background: #eee;'></td><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 1</td><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 2</td></tr><tr><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 3</td><td style='border: 1px solid #000; padding: 10px;'>11</td><td style='border: 1px solid #000; padding: 10px;'>5</td></tr><tr><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 4</td><td style='border: 1px solid #000; padding: 10px;'>16</td><td style='border: 1px solid #000; padding: 10px;'>6</td></tr></table>", 
+            options: ["Label 1", "Label 2", "Label 3", "Label 4"],
+            labels: ["Data Analytics", "Networking", "In-Person", "Virtual", "School A", "School B"],
+            a: {
+                "Label 1": "Networking",
+                "Label 2": "Data Analytics",
+                "Label 3": "School A",
+                "Label 4": "School B"
+            },
+            marks: 4
+        },
+        { 
+            id: 20, 
+            type: "MCQ", 
+            q: "Your company has summarized a large data set for the region you live in. You need to compare results from urban and rural communities within your region.<br><br>What is the fastest way to obtain the information?", 
+            options: ["Collect a new Data Sample", "Review data from neighbouring regions", "Disaggregate the data", "Aggregate the data"], 
+            a: 2 
+        },
+        { 
+            id: 21, 
+            type: "MCQ", 
+            q: "What concept allows analysts to drill down into data and examine different levels of information that may be crucial in diagnostic analytics?", 
+            options: ["Granularity", "Completeness", "Interpretability", "Transparency"], 
+            a: 0 
+        },
+        { 
+            id: 22, 
+            type: "TF", 
+            q: "For each statement about the machine learning select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", 
+            options: [
+                "Machine learning can predict the probability of Rain in a region by examining known weather patterns",
+                "Machine learning can help determine whether a candidate will pass an exam without looking at historical scores",
+                "Machine Learning can be used to automatically decline financial purchases based on previous purchase activity"
+            ], 
+            a: [true, false, true] 
+        },
+        { 
+            id: 23, 
+            type: "MCQ", 
+            q: "Which Data structure have multiple rows and columns?", 
+            options: ["Series", "Table", "One-dimensional Array", "List"], 
+            a: 1 
+        },
+        { 
+            id: 24, 
+            type: "MCQ", 
+            q: "In which scenario will artificial intelligence (AI) provide the greatest benefit?", 
+            options: [
+                "Predicting maintenance requirements for a international rental car company's fleet vehicles",
+                "Determining the statistical mean, mode, and standard deviation of the grades for a class",
+                "Recording daily sales for the three stores owned by one franchise owner",
+                "Interpreting fundraising sales data for a college soccer team"
+            ], 
+            a: 0 
+        },
+        { 
+            id: 25, 
+            type: "MTF", 
+            q: "Move each function from the list on the left to the correct description on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>", 
+            options: ["Returns the largest value", "Returns the smallest value", "Returns the number of Values", "Returns the total of the values"], 
+            labels: ["Max()", "Min()", "Count()", "Sum()"], 
+            a: {
+                "Returns the largest value": "Max()",
+                "Returns the smallest value": "Min()",
+                "Returns the number of Values": "Count()",
+                "Returns the total of the values": "Sum()"
+            }
+        },
+        { 
+            id: 26, 
+            type: "MCQ", 
+            q: "Person A has 5 coins and person B has 10 coins.<br><br>Which type of data does the number of coins represent?", 
+            options: ["Ordinal Data", "Metadata", "Qualitative data", "Quantitative data"], 
+            a: 3 
+        },
+        { 
+            id: 27, 
+            type: "MCQ", 
+            q: "You have a dataset that includes product review scores and demographic information about the reviewers. There are no subcategories associated with the demographic answers. The table shows a selection of the data.<br><br>Which Scenario is an example of disaggregating the dataset?", 
+            img: "disaggregation_dataset_v3.png",
+            options: [
+                "By average and mode of the scores for each product grouped by the ethnicity of the reviewers",
+                "Display the overall average and mode of all scores on a per-products basis",
+                "Display a list of ethnicities that are included in the other option",
+                "Display the overall average and mode of all scores and a count of all reviews"
+            ], 
+            a: 2 
+        },
+        { 
+            id: 28, 
+            type: "MCQ2", 
+            q: "Which two concepts are commonly associated with artificial intelligence (AI) in data analytics?<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 2.)</span>", 
+            options: ["Cost-Benefit Analysis", "Stakeholder Mapping", "Automation", "Machine Learning"], 
+            a: [2, 3] 
+        },
+        { 
+            id: 29, 
+            type: "MCQ2", 
+            q: "For which two reasons is it risky to make generalizations from limited sample data?<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 2.)</span>", 
+            options: [
+                "Limited data Samples are easier to collect",
+                "A limited sample may not represent a larger population",
+                "Findings from a smaller sample size may not be as precise",
+                "Analyzing data from a smaller sample size is faster"
+            ], 
+            a: [1, 2] 
+        },
+        { 
+            id: 30, 
+            type: "MCQ", 
+            q: "You are reviewing a database of restaurant menu items. The table below shows a selection of the data.<br>You need to display only items on the dessert menu with a type of cake.<br><br>What should you do to nondestructively limit the data display?", 
+            img: "restaurant_menu_dataset.png",
+            options: [
+                "Group the data by menu and then group the data on the desert menu by type",
+                "Delete all data that has a menu other than desert. Then delete all data that has a type other than cake",
+                "Add two slicers, one for menu and one for type. Set the menu slicer to desert and the type slicer to cake",
+                "Sort the data by menu and within each menu, Sort by type"
+            ], 
+            a: 2 
+        },
+        { 
+            id: 31, 
+            type: "MCQ", 
+            q: "You want to show a friend your monthly budget breakdown to prove that most of your expenditure is food costs. You create a table that shows the flow of money as it moves one budget category to the next.<br><br>Which visualization type should you use to display your analysis based on the table shown?", 
+            img: "budget_flow_dataset_v2.png",
+            options: ["Time Series Chart", "Correlation Chart", "Sankey Chart", "Classification Chart"], 
+            a: 2 
+        },
+        { 
+            id: 32, 
+            type: "MCQ", 
+            q: "The Marketing team wants to know which market segment have the highest sales in the last year.<br><br>Which type of data analysis should they use?", 
+            options: ["Perspective analytics", "Diagnostic Analytics", "Predictive Analytics", "Descriptive Analytics"], 
+            a: 3 
+        },
+        { 
+            id: 33, 
+            type: "MCQ", 
+            q: "You Believe Playing video game's increases the chance of man getting heart attack. In your research you notice equal evidences in favouring your hypothesis and opposed to it. You tried hours trying to identify the problems with the evidence opposed to your hypothesis, but readily accept the evidence in favor.<br><br>Which type of bias are you demonstrating?", 
+            options: ["Motivated Reasoning", "Confirmation Bias", "Anchoring Bias", "Sampling Bias"], 
+            a: 1 
+        },
+        { 
+            id: 34, 
+            type: "TF", 
+            q: "<strong>Data Disaggregation:</strong> For each statement about data disaggregation, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>", 
+            options: [
+                "Data disaggregation provides a summary of the data",
+                "Data disaggregation combines data from different sources",
+                "Data Disaggregation can clarify trends and patterns among subgroups"
+            ], 
+            a: [false, false, true] 
+        },
+        { 
+            id: 35, 
+            type: "MCQ", 
+            q: "A college shows you the chart below to indicate that group A has performed significantly better than group B on a recent assignment. You don't know the sample size and the result of the statistical testing.<br><br>Which chart element creates the impression of a significant score difference?", 
+            img: "scaling_manipulation_chart.png",
+            options: [
+                "The X-axis unit of Measurement", 
+                "The Y-Axis unit of measurement", 
+                "The Z-Axis Unit of Measurement", 
+                "The Color differentiation"
+            ], 
+            a: 1 
+        },
+        { 
+            id: 36, 
+            type: "MCQ", 
+            q: "You conduct a study to identify how much people exercise daily. You recruit all the study participants at the gyms.<br><br>Which type of bias are you demonstrating?", 
+            options: ["Anchoring bias", "Confirmation Bias", "Motivated Bias", "Sampling bias"], 
+            a: 3 
+        },
+        { 
+            id: 37, 
+            type: "MCQ", 
+            q: "Which Statement correctly assigns a string to the variable that is name score?", 
+            options: ["Score=true", "Score=String[7]", "Score=\"&\"", "Score= 7\""], 
+            a: 2 
+        },
+        { 
+            id: 38, 
+            type: "MTF", 
+            q: "You are using data analytics to help answer business questions about a new product your company released.<br><br>Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>", 
+            options: [
+                "Descriptive Analysis",
+                "Diagnostic Analysis",
+                "Predictive Analysis",
+                "Perspective Analysis"
+            ], 
+            labels: [
+                "What happened in the initial product release?",
+                "Why did it happens?",
+                "What might happen in future?",
+                "What action should we take next?"
+            ], 
+            a: {
+                "Descriptive Analysis": "What happened in the initial product release?",
+                "Diagnostic Analysis": "Why did it happens?",
+                "Predictive Analysis": "What might happen in future?",
+                "Perspective Analysis": "What action should we take next?"
+            }
+        },
+        { 
+            id: 39, 
+            type: "MCQ", 
+            q: "You run a t-test with alpha value of 5% (a= 0.05) in order to test an alternative hypothesis (H1). You finish the analysis and discover the P-value is 0.017.<br><br>What can you conclude about the null hypothesis (H0)?", 
+            options: [
+                "You modify the null hypothesis (H0)",
+                "You accept the null hypothesis (H0)",
+                "You fail to reject the null Hypothesis (H0)",
+                "You reject the null hypothesis (H0)"
+            ], 
+            a: 3 
+        },
+        { 
+            id: 40, 
+            type: "MCQ", 
+            q: "You have a comma-delimited file with 100,000 rows and 200 columns of phone sales data. One column represents the Phone manufacturer.<br><br>You need to analyze all sales data for a specific manufacturer.<br><br>Which technique should you use?", 
+            options: ["Deleting", "Transposing", "Truncating", "Filtering"], 
+            a: 3 
+        }
+    ],
+    "da_mock2": [
+{ 
+            id: 1, 
+            type: "MCQ", 
+            q: "What is an example of data cleaning?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Arranging Excel data rows in an order that is easy for a user to read", 
+                "Ensuring that the data in a Word table uses a consistent font", 
+                "Adding quotation marks to the beginning and end of a tab-delimited file", 
+                "Removing non-printable characters from a comma-delimited file"
+            ], 
+            a: 3 
+        },
+        { 
+            id: 2, 
+            type: "MCQ", 
+            q: "You believe playing video games increases a person's chance of having a heart attack. In your research. you notice equal evidence in favor of this hypothesis and opposed to it. You spend hours trying to identify the problems with the evidence opposed to your hypothesis, but readily accept the evidence in favor.<br><br>Which type of bias are you demonstrating?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Motivated Reasoning", 
+                "Anchoring bias", 
+                "Sampling bias", 
+                "Confirmation Bias"
+            ], 
+            a: 3 
+        },
+        { 
+            id: 3, 
+            type: "MCQ", 
+            q: "What is metadata?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Statistics", 
+                "The text content of a message", 
+                "Numerical facts", 
+                "The context that give data meaning"
+            ], 
+            a: 3 
+        },
+        { 
+            id: 4, 
+            type: "TF", 
+            q: "The visualization and data table depict housing price in a region. For each statement about the visualization, select True or False.<br><span style='font-size: 13px; color: #64748b;'>1 point</span><br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection</span>", 
+            img: "housing_prices_color_final.png", 
+            options: [
+                "The visualization accurately depict the housing prices shown in the table", 
+                "The scaling of the graph is misleading", 
+                "An increase of $25000 occurs Each year"
+            ], 
+            a: [true, false, false] 
+        },
+        { 
+            id: 5, 
+            type: "MCQ", 
+            q: "Person A has 5 coins and person B has 10 coins.<br><br>Which type of data does the number of coins represent?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Qualitative data", 
+                "Quantitative data", 
+                "Ordinal data", 
+                "Metadata"
+            ], 
+            a: 1 
+        },
+        { 
+            id: 6, 
+            type: "MCQ", 
+            q: "Which data structure describes the following data<br><br><div class='code-snippet' style='margin:0;'>[\"Aabid\",\"jesenia\",\"Mark\"]</div><br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Graph", 
+                "Table", 
+                "List", 
+                "Multi-dimensional array"
+            ], 
+            a: 2 
+        },
+        { 
+            id: 7, 
+            type: "MCQ", 
+            q: "A popular social media site records and count clicks, likes, and dislikes, and other user interactions<br><br>What type of data is collected?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Continuous data", 
+                "Imputed Data", 
+                "Qualitative Data", 
+                "Big Data"
+            ], 
+            a: 3 
+        },
+        { 
+            id: 8, 
+            type: "MCQ", 
+            q: "Which data type can store a phrase or sentence?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Integer", 
+                "String", 
+                "Boolean", 
+                "Character"
+            ], 
+            a: 1 
+        },
+        { 
+            id: 9, 
+            type: "MTF", 
+            q: "You are using data analytics to help answer business questions about a new product your company released. Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size: 13px; color: #64748b;'>4 points</span><br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>", 
+            options: ["Descriptive analytics", "Diagnostic analytics", "Predictive analytics", "Prescriptive analytics"], 
+            labels: [
+                "Why did this happen?", 
+                "What action should we take next", 
+                "What might happen in the future", 
+                "What happened in the initial product relese"
+            ], 
+            a: {
+                "Descriptive analytics": "What happened in the initial product relese",
+                "Diagnostic analytics": "Why did this happen?",
+                "Predictive analytics": "What might happen in the future?",
+                "Prescriptive analytics": "What action should we take next"
+            } 
+        },
+        { 
+            id: 10, 
+            type: "MCQ", 
+            q: "You have a small dataset that contains personally identifiable information (PII). You need to provide the data to an outside source for additional processing. What could you do to protect the Pll but still allow you to eventually relate the additional analysis to your original data?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Remove every instance of Pll in the original dataset and add them back after the new dataset is retrieved.", 
+                "Retain every text-based Pll in the original dataset but convert them to number-based features in the new dataset.", 
+                "Employ pseudonymization on the Pll and use the pseudonym as the key between the new and original datasets.", 
+                "Randomly shuffle the original dataset so that each given piece of Pll is no longer associated. with a particular user"
+            ], 
+            a: 2 
+        },
+        { 
+            id: 11, 
+            type: "MCQ", 
+            q: "You are reviewing a database of restaurant menu items. The table below shows a selection of the data. You need to display only items on the Dessert menu With a Type of Cake. What should you do to nondestructively limit the data display?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            img: "restaurant_menu_dataset.png",
+            options: [
+                "Group the data by Menu and then group data on the Dessert menu by Type", 
+                "Add two slicers, one for Menu and one for Type. Set the Menu slicer to Dessert and the Type slicer to Cake.", 
+                "Sort the data by Menu and within each Menu, sort by Type.", 
+                "Delete all data that has a Menu other than Dessert. Then delete all data that has a Type other than Cake."
+            ], 
+            a: 1 
+        },
+        { 
+            id: 12, 
+            type: "MCQ2", 
+            q: "You need to create a data view based on aggregations for further visual analysis. Your data includes sales information for the past five years for food products at your company's stores. Each product belongs to one category. For example, milk belongs to the Dairy category<br><br> The data view must meet the following requirements:<br> * Include all products and their associated categories.<br> * Include sales subtotals for each category and year. <br> * Display a grand total of sales for each category.<br> * Create a summary of each category for every year.<br><br>Which <strong>two</strong> aggregation method should you use to create the data view (choose 2)<br><span style='font-size: 13px; color: #64748b;'>1 point</span><br><br><span style='font-size: 15px; font-style: italic;'>Note : You will receive partial credit for each correct selection</span>", 
+            options: ["Filtering", "Pivoting", "Merging", "Grouping"], 
+            a: [1, 3] 
+        },
+        { 
+            id: 13, 
+            type: "MCQ", 
+            q: "What concept allow analytics to drill down into data and examine level of information that maybe crucial in diagnostic analytics?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Completeness", 
+                "Interpretability", 
+                "Granularity", 
+                "Transparency"
+            ], 
+            a: 2 
+        },
+        { 
+            id: 14, 
+            type: "MCQ", 
+            q: "You work for a recreational sports company. The table shows the company's recreational vehicle sales. You need to show how each vehicle type contributes to the company's total sales.<br><br> Which visualization should you use? Select the correct visualization in the answer area.<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            img: "recreational_sales_table.png", 
+            options: ["Option A", "Option B", "Option C", "Option D"], 
+            optionImages: [
+                "recreational_pie_chart.png", 
+                "recreational_combo_chart.png", 
+                "recreational_scatter_plot.png", 
+                "recreational_bar_chart.png"
+            ], 
+            a: 0 
+        },
+        { 
+            id: 15, 
+            type: "MCQ", 
+            q: "Which visualization type is commonly used to display the distribution of a continuous variable. with variable values on the x-axis and corresponding frequencies on the y-axis? Select the correct visualization type in the answer area.<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: ["Option 1", "Option 2", "Option 3", "Option 4"], 
+            optionImages: [
+                "dist_column_chart.png", 
+                "dist_line_chart.png", 
+                "dist_histogram.png", 
+                "dist_bar_chart.png"
+            ], 
+            a: 2 
+        },
+        { 
+            id: 16, 
+            type: "TF", 
+            q: "For each statement about data disaggregation ,Select True or False<br><span style='font-size: 15px; font-style: italic;'>Note: You will Receive partial credit for each correct selection</span><br><span style='font-size: 13px; color: #64748b;'>3 points</span>", 
+            options: [
+                "Data disaggregation provides a summary of data",
+                "Data disaggregation combines data from multiple sources",
+                "Data disaggregation can clarify trends and pattern among subgroups"
+            ], 
+            a: {
+                "Data disaggregation provides a summary of data": "False",
+                "Data disaggregation combines data from multiple sources": "False",
+                "Data disaggregation can clarify trends and pattern among subgroups": "True"
+            } 
+        },
+        { 
+            id: 17, 
+            type: "MCQ", 
+            q: "The marketing team want to know which market segment had the highest sales last year. Which type of data analytics should they use?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Diagnostic analytics", 
+                "Descriptive analytics", 
+                "Predictive analytics", 
+                "Prescriptive analytics"
+            ], 
+            a: 1 
+        },
+        { 
+            id: 18, 
+            type: "MCQ", 
+            q: "You have a dataset that includes product review scores and demographic information about the reviewers_ There are no subcategories associated with the demographic answers, The table shows a selection of the data, Which scenario is an example of disaggregating the dataset?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            img: "disaggregation_dataset_v4.png",
+            options: [
+                "Display the overall average and mode of all scores on a PW-product basis.",
+                "Display a list of ethnicities that are included in the Other option.",
+                "Display average and mode of the scores for each product grouped by the ethnicity of the reviewers.",
+                "Display the overall average and mode of all scores and a count of all reviews."
+            ], 
+            a: 1 
+        },
+        { 
+            id: 19, 
+            type: "MCQ", 
+            q: "A colleague shows you the chart below to indicate that Group A has performed significantly better than Group B on a recent assignment. You do not know the sample size or the results of statistical testing. Which chart element creates the impression Of a significant score difference?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            img: "q19_misleading_chart.png", 
+            options: [
+                "The x-axis units of measurement", 
+                "The y-axis units of measurement", 
+                "The z-axis units of measurement", 
+                "The color differentiation"
+            ], 
+            a: 1 
+        },
+        { 
+            id: 20, 
+            type: "MCQ", 
+            q: "You have produced a linear regression model which calculates house prices based on area taken up by the house, the number of bedrooms, and the number of bathrooms:<br><br><b>House price = (100 + 0.5 * square meters + 8 * bedrooms + 10 * bathrooms) * 1,000</b><br><br>What would the model predict for the price of a house with 800 square meters, 4 bedrooms and 3 bathrooms?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "538,000",
+                "552,000",
+                "562,000",
+                "572,000"
+            ], 
+            a: 2 
+        },
+        { 
+            id: 21, 
+            type: "MCQ", 
+            q: "You want to show a friend your monthly budget breakdown to prove that most of your expenditure is food costs. You create a table that shows the flow of money as it moves one budget category to the next.<br><br>Which visualization type should you use to display your analysis based on the table shown?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            img: "budget_sankey_table.png",
+            options: [
+                "Time Series Chart",
+                "Classification tree",
+                "Correlation matrix",
+                "Sankey Diagram"
+            ], 
+            a: 3 
+        },
+        { 
+            id: 22, 
+            type: "DROPDOWN", 
+            q: "You are analyzing customer satisfaction scores between on-line purchases and in-store purchases. Satisfaction scores are entered on a scale from 1 (extremely unsatisfied) to 10 (extremely satisfied).<br><br>Select the correct metric from the drop-down list for each statement.<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span><br><span style='font-size: 13px; color: #64748b;'>4 points</span>", 
+            code: "The most frequent satisfaction score was 5 for online customer and 9 for in-store customers: [b1]<br><br>The average score for online customers was 6.4 and the average score for in-store customers was 7.0: [b2]<br><br>The score at the midpoint between the lowest and the highest scores was 6 for online customers and 7 for in-store customers: [b3]<br><br>The online scores vary from the average by 2.3 and the in-store variance is 1.9: [b4]",
+            options: [
+                ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"],
+                ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"],
+                ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"],
+                ["Count", "Mean", "Median", "Mode", "Std Dev", "Max", "Min"]
+            ], 
+            a: ["Mode", "Mean", "Median", "Std Dev"]
+        },
+        { 
+            id: 23, 
+            type: "MCQ2", 
+            q: "You have a comma-delimited file with 100,000 rows and 200 columns of phone sales data. One column represents the phone manufacturer. You need to analyze all sales data for one manufacturer. Which two techniques should you use? (Choose 2.)<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Filtering",
+                "Transposing",
+                "Slicing",
+                "Deleting",
+                "Truncating"
+            ], 
+            a: [0, 2] 
+        },
+        { 
+            id: 24, 
+            type: "DROPDOWN", 
+            q: "You are analyzing statistics for online and in-store purchases with data collected over the past year. Data collected includes surveys from 300 instore customers and 300 online customers. Based on the data visualization below, identify which statements about customer purchases over the last year are correct and which statements are incorrect.<br><br>For each statement about online and in-store purchases, select True if the statement is correct or False if the statement is incorrect.<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span><br><span style='font-size: 13px; color: #64748b;'>4 points</span>", 
+            img: "purchase_stats_chart.png",
+            code: "In-store customers spent more money than online customers: [b1]<br><br>Online customers have a larger variance in how much they spend: [b2]<br><br>The difference between the largest amount spent and the smallest amount spent is higher for in-store customers: [b3]<br><br>The amount spent the most often is the same for online and in-store customers: [b4]",
+            options: [
+                ["True", "False"],
+                ["True", "False"],
+                ["True", "False"],
+                ["True", "False"]
+            ], 
+            a: ["False", "True", "False", "True"]
+        },
+        { 
+            id: 25, 
+            type: "MCQ2", 
+            q: "Each month, you need to automatically transform the data from two XML documents into a single flat file with columns and rows that Excel can open and interpret. The document names and structure remain constant. You know the relationships between the two XML documents.<br><br>Which two resources can you use? (Choose 2.)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each Correct selection.</span><br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Python",
+                "Microsoft Word",
+                "Power Query for Excel (M)",
+                "JSON"
+            ], 
+            a: [0, 2] 
+        },
+        { 
+            id: 26, 
+            type: "MCQ2", 
+            q: "For which two reason is risky to make generalization from limited sample data?<br><span style='font-size: 13px; color: #64748b;'>2 points</span>", 
+            options: [
+                "Findings from a smaller sample size may not be as precise",
+                "Analyzing data from a smaller sample size is faster",
+                "A limited sample may not represent a larger population",
+                "Limited data samples are easier to collect."
+            ], 
+            a: [0, 2] 
+        },
+        { 
+            id: 27, 
+            type: "MCQ2", 
+            q: "A coworker is having trouble joining two database tables, TableA and TableB, that were imported from CSV files. They say the tables have no common values.<br><br>You need to troubleshoot the problem. You look at the data in the original CSV files and find that the RowKey values in the TableA file and the RowID values in the TableB file look identical. Both have three numbers followed by a dash (-) and two letters.<br><br>Which two actions should you complete next? (Choose 2.)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span><br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Visually compare the database values to the CSV values.",
+                "Trim empty spaces from only the right side of the valid characters",
+                "Verify that the data in the database was imported as a numeric data type",
+                "Trim empty spaces from both Sides of the valid characters."
+            ], 
+            a: [0, 3] 
+        },
+        { 
+            id: 28, 
+            type: "MCQ", 
+            q: "Your company has summarized a large set for the region you live in. You need to compare the result from Urban and Rural communities Within your region.<br><br>What is the fastest way to obtain this information?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Review data from neighboring regions",
+                "Aggregate the data",
+                "Disaggregate the data",
+                "Collect new data sample"
+            ], 
+            a: 2 
+        },
+        { 
+            id: 29, 
+            type: "DND_PIVOT", 
+            q: "<table style='width:100%; border-collapse: collapse; margin: 15px 0; font-size: 13px; text-align: center;'><thead><tr style='background: #000; color: #fff;'><th style='padding: 8px; border: 1px solid #ddd;'>School</th><th style='padding: 8px; border: 1px solid #ddd;'>Class</th><th style='padding: 8px; border: 1px solid #ddd;'>Format</th><th style='padding: 8px; border: 1px solid #ddd;'>Certified teacher</th></tr></thead><tbody><tr><td>School A</td><td>Networking</td><td>In Person</td><td>6</td></tr><tr><td>School A</td><td>Networking</td><td>Virtual</td><td>5</td></tr><tr><td>School A</td><td>Data Analytics</td><td>In Person</td><td>2</td></tr><tr><td>School A</td><td>Data Analytics</td><td>Virtual</td><td>3</td></tr><tr><td>School B</td><td>Networking</td><td>In Person</td><td>9</td></tr><tr><td>School B</td><td>Networking</td><td>Virtual</td><td>7</td></tr><tr><td>School B</td><td>Data Analytics</td><td>In Person</td><td>2</td></tr><tr><td>School B</td><td>Data Analytics</td><td>Virtual</td><td>4</td></tr></tbody></table><br>Move the appropriate labels to the correct locations in the Pivot table structure below.<br><br><table style='border-collapse: collapse; margin: 10px 0; text-align: center;'><tr><td style='border: 1px solid #000; padding: 10px; background: #eee;'></td><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 1</td><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 2</td></tr><tr><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 3</td><td style='border: 1px solid #000; padding: 10px;'>11</td><td style='border: 1px solid #000; padding: 10px;'>5</td></tr><tr><td style='border: 1px solid #000; padding: 10px; font-weight: bold;'>Label 4</td><td style='border: 1px solid #000; padding: 10px;'>16</td><td style='border: 1px solid #000; padding: 10px;'>6</td></tr></table>", 
+            options: ["Label 1", "Label 2", "Label 3", "Label 4"],
+            labels: ["Data Analytics", "Networking", "In-Person", "Virtual", "School A", "School B"],
+            a: {
+                "Label 1": "Networking",
+                "Label 2": "Data Analytics",
+                "Label 3": "School A",
+                "Label 4": "School B"
+            },
+            marks: 4
+        },
+        { 
+            id: 30, 
+            type: "MCQ3", 
+            q: "Select three ways that machine learning algorithms are used in data analysis. (Choose 3)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span><br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Time series Analysis",
+                "Anomaly Detection",
+                "Regulated Data Analysis",
+                "Small Data Set Analysis",
+                "Singular Historical Events",
+                "Data Classification"
+            ], 
+            a: [0, 1, 5] 
+        },
+        { 
+            id: 31, 
+            type: "MCQ", 
+            q: "What is one goal of data privacy and protection laws such as GDPR, FERPA, and HIPAA?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "To hold violators accountable for mishandling data",
+                "To ensure that companies openly share industry data",
+                "To protect companies from liability related to private data",
+                "To tax companies that use private data"
+            ], 
+            a: 0 
+        },
+        { 
+            id: 32, 
+            type: "MCQ", 
+            q: "What is a raw data<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Visualized data",
+                "Purely numeric data",
+                "Summarized data",
+                "Unprocessed data"
+            ], 
+            a: 3 
+        },
+        { 
+            id: 33, 
+            type: "MCQ", 
+            q: "The data structure has multiple rows and multiple column<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "One-dimensional array",
+                "Series",
+                "Table",
+                "List"
+            ], 
+            a: 2 
+        },
+        { 
+            id: 34, 
+            type: "MCQ", 
+            q: "A conduct of study identify how many people exercise daily. You recruit all the study participants at gyms. Which types of bias are you demonstrating?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Anchoring bias", 
+                "Motivated reasoning", 
+                "Sampling bias", 
+                "Confirmation bias"
+            ], 
+            a: 2 
+        },
+        { 
+            id: 35, 
+            type: "MCQ", 
+            q: "You run a t-test with an alpha value of 5% (α = 0.05) in order to test an alternative hypothesis (H₁). You finish the analysis and discover that the p-value is 0.017. What can you conclude about the null hypothesis (H₀)?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "You reject the null hypothesis (H₀)", 
+                "You Fail to reject the null hypothesis (H₀)", 
+                "You modify the null hypothesis (H₀)", 
+                "You accept the null hypothesis (H₀)"
+            ], 
+            a: 0 
+        },
+        { 
+            id: 36, 
+            type: "MCQ", 
+            q: "In which scenario will artificial Intelligence (AI) Provides the greatest benefit?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Interpreting fundraising sales data for a college team",
+                "Recording daily sales for three stores owned by one franchise owner",
+                "Determining the statistical mean, median, mode, and standard deviation of the grade for a class",
+                "Predicting maintenance requirement for an international rental car's companies fleet vehicles"
+            ], 
+            a: 3 
+        },
+        { 
+            id: 37, 
+            type: "MCQ", 
+            q: "You are analyzing sales that occurs on a national holiday.<br>What level of data granularity will enable you to perform the most precise analysis?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
+            options: [
+                "Years",
+                "Months",
+                "Weeks",
+                "Days",
+                "Hours"
+            ], 
+            a: 4 
+        },
+        { 
+            id: 38, 
+            type: "MATRIX", 
+            q: "You are performing descriptive analytics on quarterly sales data. Move the appropriate statistical metrics from the list on the left to the correct locations on the right.<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct response.</span><br><span style='font-size: 13px; color: #64748b;'>4 points</span>", 
+            img: "quarterly_sales_metrics.png",
+            rows: ["Metric 1", "Metric 2", "Metric 3", "Metric 4"],
+            cols: ["Average", "Max", "Median", "Mode", "Sum", "Min"],
+            a: [4, 1, 5, 3] 
+        },
+        {
+                "id": 41,
+                "type": "MCQ",
+                "q": "What is the primary role of 'Training Data' in the development of a Machine Learning model?",
+                "options": [
+                        "To serve as the final output for the user",
+                        "To provide the examples from which the algorithm learns patterns and relationships",
+                        "To act as a backup in case the computer crashes",
+                        "To increase the processing speed of the CPU"
+                ],
+                "a": 1
+        },
+        {
+                "id": 42,
+                "type": "MCQ",
+                "q": "Which of the following is the most common use case for an AI-powered 'Recommendation Engine'?",
+                "options": [
+                        "A word processor highlighting a spelling error",
+                        "An e-commerce site suggesting products based on your past browsing behavior",
+                        "A clock showing the current time in different time zones",
+                        "A simple spreadsheet calculating the sum of a column"
+                ],
+                "a": 1
+        }
+    ],
+    "da_mock3": [
+        {
+                "id": 1,
+                "type": "MCQ",
+                "q": "You have been given a large data set that includes location, income, and age.<br>Why should you disaggregate the data?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
+                "options": [
+                        "To hide difference among subgroups",
+                        "To combine data sets and present a summary of your findings",
+                        "To form generalization about the entire data set",
+                        "To analyze income within different age groups or locations"
+                ],
+                "a": 3
+        },
+        {
+                "id": 2,
+                "type": "MCQ",
+                "q": "As part of an ETL process, Which process represents transformation?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
+                "options": [
+                        "Changing data from summary level to detailed level",
+                        "Converting data from one data type to another data type or structure",
+                        "Retrieving data from many sources into a single destination",
+                        "Importing a percentage of row from the source data"
+                ],
+                "a": 1
+        },
+        {
+                "id": 3,
+                "type": "MCQ",
+                "q": "How is machine learning typically used in a modern recruitment (hiring) process?",
+                "options": [
+                        "To manually call every candidate",
+                        "To predict applicant performance using historical data patterns",
+                        "To convert resumes from PDF to Word format",
+                        "To write job descriptions for managers"
+                ],
+                "a": 1
+        },
+        {
+                "id": 4,
+                "type": "MCQ",
+                "q": "A dataset contains a column labeled 'Phone Number' with values formatted like '(555) 123-4567'. Which data type is most appropriate for storing this information?",
+                "options": [
+                        "Integer",
+                        "String",
+                        "Float",
+                        "Boolean"
+                ],
+                "a": 1
+        },
+        {
+                "id": 5,
+                "type": "MCQ",
+                "q": "Which of the following is an example of Unstructured Data?",
+                "options": [
+                        "A relational database table",
+                        "An Excel spreadsheet of sales records",
+                        "A collection of customer review audio files",
+                        "A library of books sorted by ISBN"
+                ],
+                "a": 2
+        },
+        {
+                "id": 6,
+                "type": "MCQ",
+                "q": "Which scenario is the most appropriate use case for a Line Chart?",
+                "options": [
+                        "Comparing the market share of five different companies",
+                        "Showing the relationship between employee height and weight",
+                        "Tracking the stock price of a company over 30 days",
+                        "Comparing the number of pets owned by different households"
+                ],
+                "a": 2
+        },
+        {
+                "id": 7,
+                "type": "MCQ",
+                "q": "Which reporting technique allows users to break down a total value (e.g., Total Revenue) into its component parts (e.g., Revenue by City)?",
+                "options": [
+                        "Data Truncation",
+                        "Data Disaggregation",
+                        "Data Masking",
+                        "Data Appending"
+                ],
+                "a": 1
+        },
+        {
+                "id": 8,
+                "type": "MCQ",
+                "q": "You need to identify outliers in a delivery time dataset. Which visualization would most clearly display these anomalies?",
+                "img": "outlier_detection_visual.png",
+                "options": [
+                        "Pie Chart",
+                        "Scatter Plot",
+                        "Heatmap",
+                        "Sankey Diagram"
+                ],
+                "a": 1
+        },
+        {
+                "id": 9,
+                "type": "MTF",
+                "q": "Match each analysis type with the core question it seeks to answer.<br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct match.</span>",
+                "options": [
+                        "Descriptive",
+                        "Diagnostic",
+                        "Predictive",
+                        "Prescriptive",
+                        "Inferential"
+                ],
+                "labels": [
+                        "What happened?",
+                        "Why did it happen?",
+                        "What will happen?",
+                        "What should we do?",
+                        "Does this sample represent the population?"
+                ],
+                "a": {
+                        "Descriptive": "What happened?",
+                        "Diagnostic": "Why did it happen?",
+                        "Predictive": "What will happen?",
+                        "Prescriptive": "What should we do?",
+                        "Inferential": "Does this sample represent the population?"
+                }
+        },
+        {
+                "id": 10,
+                "type": "MCQ",
+                "q": "Which chart type is specifically designed to compare three variables at once using the X-axis, Y-axis, and the size of the marker?",
+                "options": [
+                        "Bar Chart",
+                        "Bubble Chart",
+                        "Area Chart",
+                        "Waterfall Chart"
+                ],
+                "a": 1
+        },
+        {
+                "id": 11,
+                "type": "MCQ",
+                "q": "In the ETL (Extract, Transform, Load) process, which of the following is an example of 'Transformation'?",
+                "options": [
+                        "Importing a CSV into a data warehouse",
+                        "Converting currency values from USD to INR",
+                        "Running a SQL query to see data",
+                        "Backing up a database"
+                ],
+                "a": 1
+        },
+        {
+                "id": 12,
+                "type": "MCQ3",
+                "q": "While handling Personally Identifiable Information (PII) during a project, which THREE principles should you follow? (Choose 3.)",
+                "options": [
+                        "Limit PII usage to only necessary data",
+                        "Remove PII immediately after analysis is complete",
+                        "Track and audit who accesses PII",
+                        "Store PII in public cloud folders",
+                        "Share PII via email for quick reviews"
+                ],
+                "a": [
+                        0,
+                        1,
+                        2
+                ]
+        },
+        {
+                "id": 13,
+                "type": "MCQ",
+                "q": "What is the primary relationship between Data and Statistics?",
+                "options": [
+                        "They are completely unrelated fields",
+                        "Statistics is the tool used to interpret and summarize data",
+                        "Data is created by statistics",
+                        "Statistics is only used for small datasets"
+                ],
+                "a": 1
+        },
+        {
+                "id": 14,
+                "type": "TF",
+                "q": "Determine if the following statements about data organization are True or False.",
+                "options": [
+                        "Slicers are a visual way to filter data in a dashboard.",
+                        "Sorting changes the actual values within the dataset.",
+                        "Filters allow you to hide rows that do not meet certain criteria."
+                ],
+                "a": [
+                        true,
+                        false,
+                        true
+                ]
+        },
+        {
+                "id": 15,
+                "type": "MCQ2",
+                "q": "Which TWO of the following are generally considered NON-sensitive PII? (Choose 2.)",
+                "options": [
+                        "Bank account number",
+                        "Medical diagnosis",
+                        "Job title",
+                        "General city of residence",
+                        "Social Security Number"
+                ],
+                "a": [
+                        2,
+                        3
+                ]
+        },
+        {
+                "id": 16,
+                "type": "MCQ2",
+                "q": "Which TWO chart types are most effective for ranking items from highest to lowest? (Choose 2.)",
+                "options": [
+                        "Bar Chart",
+                        "Pie Chart",
+                        "Column Chart",
+                        "Scatter Plot"
+                ],
+                "a": [
+                        0,
+                        2
+                ]
+        },
+        {
+                "id": 17,
+                "type": "MCQ",
+                "q": "What is the main goal of Data Validation before beginning analysis?",
+                "options": [
+                        "To make the report look visually appealing",
+                        "To verify that values fall within logical ranges (e.g., age is not negative)",
+                        "To convert all data into visualizations",
+                        "To delete all outliers from the dataset"
+                ],
+                "a": 1
+        },
+        {
+                "id": 18,
+                "type": "MTF",
+                "q": "Match the NULL value handling technique with the situation it is best suited for.",
+                "options": [
+                        "Row Removal",
+                        "Mean Imputation",
+                        "Keep as NULL"
+                ],
+                "labels": [
+                        "When only a tiny % of rows are missing data",
+                        "When you want to maintain the sample size by using averages",
+                        "When the absence of data is itself a meaningful insight"
+                ],
+                "a": {
+                        "Row Removal": "When only a tiny % of rows are missing data",
+                        "Mean Imputation": "When you want to maintain the sample size by using averages",
+                        "Keep as NULL": "When the absence of data is itself a meaningful insight"
+                }
+        },
+        {
+                "id": 19,
+                "type": "MCQ",
+                "q": "In a comma-delimited file (.csv), why are 'Text Qualifiers' (like double quotes) sometimes used?",
+                "options": [
+                        "To make the file look more professional",
+                        "To allow data containing actual commas to stay in one column",
+                        "To encrypt the information",
+                        "To reduce the file size"
+                ],
+                "a": 1
+        },
+        {
+                "id": 20,
+                "type": "MCQ",
+                "q": "You are creating a visualization to compare sales against a target. Which of the following is the most UNBIASED way to present this?",
+                "options": [
+                        "A 3D Pie chart with the 'Sales' slice exploded",
+                        "A Grouped Bar Chart including a clear Benchmark Line for the target",
+                        "A Line chart that starts the Y-axis at 50% of the target",
+                        "A Bar chart where only the 'Sales' bar is colored brightly"
+                ],
+                "a": 1
+        },
+        {
+                "id": 21,
+                "type": "MCQ",
+                "q": "What is a primary characteristic of Big Data that makes it difficult to manage with traditional database systems?",
+                "options": [
+                        "It only contains text",
+                        "It has low velocity and volume",
+                        "It has extreme volume, velocity, and variety",
+                        "It is only collected via paper surveys"
+                ],
+                "a": 2
+        },
+        {
+                "id": 22,
+                "type": "MCQ",
+                "q": "You run a t-test with a significance level of \u03b1 = 0.01. Which p-value would allow you to reject the null hypothesis?",
+                "options": [
+                        "0.05",
+                        "0.011",
+                        "0.008",
+                        "0.10"
+                ],
+                "a": 2
+        },
+        {
+                "id": 23,
+                "type": "MCQ",
+                "q": "Based on the Lead-to-Sale Rate chart, which channel has the highest conversion efficiency despite having lower total volume?",
+                "img": "lead_conversion_efficiency.png",
+                "options": [
+                        "Organic Search",
+                        "Direct Marketing",
+                        "Social Media",
+                        "Referrals"
+                ],
+                "a": 3
+        },
+        {
+                "id": 24,
+                "type": "MCQ",
+                "q": "In the context of data analysis, how is 'Information' defined?",
+                "options": [
+                        "Any collection of numbers",
+                        "Interpreted and processed data that provides meaning or context",
+                        "Raw signals collected from hardware",
+                        "A database that has not been queried yet"
+                ],
+                "a": 1
+        },
+        {
+                "id": 25,
+                "type": "MCQ",
+                "q": "Which of the following is a classic example of Machine Learning in Predictive Analysis?",
+                "options": [
+                        "A calculator showing the result of 1+1",
+                        "A streaming service recommending music based on your listening history",
+                        "A computer shutting down on a timer",
+                        "A printer showing a 'Low Ink' warning"
+                ],
+                "a": 1
+        },
+        {
+                "id": 26,
+                "type": "DD",
+                "q": "Complete the data organization description by choosing the correct operations.<br><br>First, we [b1] the data to hide irrelevant categories. Then, we [b2] the list alphabetically. Finally, we [b3] a specific slice of the data for investigation.",
+                "options": [
+                        "Filter",
+                        "Sort",
+                        "Slicing"
+                ],
+                "a": [
+                        "Filter",
+                        "Sort",
+                        "Slicing"
+                ]
+        },
+        {
+                "id": 27,
+                "type": "MCQ",
+                "q": "When writing a logical statement like <code>IF(Sales > 5000)</code>, what is the resulting data type for that specific output?",
+                "options": [
+                        "Integer",
+                        "String",
+                        "Boolean",
+                        "Float"
+                ],
+                "a": 2
+        },
+        {
+                "id": 28,
+                "type": "TF",
+                "q": "Evaluate these statements about Data Mining.",
+                "options": [
+                        "Data mining is used to identify anomalies and pattern correlations in large datasets.",
+                        "Data mining requires an analyst to manually read every single record.",
+                        "Data mining helps in summarizing complex data into actionable insights."
+                ],
+                "a": [
+                        true,
+                        false,
+                        true
+                ]
+        },
+        {
+                "id": 29,
+                "type": "MCQ3",
+                "q": "A domestic flight company wants to forecast flight delays and cancellations to provide the best experience to their customers. Which three approaches would a data scientist use for this task? (Choose 3.)<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+                "options": [
+                        "Using structured data",
+                        "Building predictive analysis models using machine learning",
+                        "Using only current local weather",
+                        "Proposing when a flight might be delayed without using data mining",
+                        "Using unstructured data"
+                ],
+                "a": [0, 1, 4]
+        },
+        {
+                "id": 30,
+                "type": "MTF",
+                "q": "You are a data analytics auditor for a large public company. You need to categorize the types of data stored. Match each of the four data descriptions to the category of data it represents.<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>",
+                "options": [
+                        "An archive called 'Spring Sales Campaign' containing .svg documents, images, and .pdf files",
+                        "SQL database with calendar-year sales data",
+                        "Results of a company-wide survey measuring feelings about the company's direction",
+                        "Information about the writer of each knowledge-base article and when it was last revised"
+                ],
+                "labels": [
+                        "Qualitative Data",
+                        "Unstructured Data",
+                        "Metadata",
+                        "Structured Data"
+                ],
+                "a": {
+                        "An archive called 'Spring Sales Campaign' containing .svg documents, images, and .pdf files": "Unstructured Data",
+                        "SQL database with calendar-year sales data": "Structured Data",
+                        "Results of a company-wide survey measuring feelings about the company's direction": "Qualitative Data",
+                        "Information about the writer of each knowledge-base article and when it was last revised": "Metadata"
+                }
+        },
+        {
+                "id": 31,
+                "type": "MCQ",
+                "q": "You want to know whether there is a significant difference between the average test scores of male and female students in the same class. You check that the data is approximately normally distributed for each group, and that each group has similar variance. How would you decide whether the difference in test scores between male and female students is significant?",
+                "options": [
+                        "Perform a t-test using the means and variances for male and female students and if the p-value is greater than 0.05, decide that the difference is significant.",
+                        "Perform a t-test using the means and variances for male and female students and if the p-value is less than 0.05, decide that the difference is significant.",
+                        "Perform a t-test using the medians and variances for male and female students and if the p-value is less than 0.05, decide that the difference is significant.",
+                        "Perform a t-test using the medians and variances for male and female students and if the p-value is greater than 0.05, decide that the difference is significant."
+                ],
+                "a": 1
+        },
+        {
+                "id": 32,
+                "type": "MCQ",
+                "q": "Which of the following describes the 'Velocity' characteristic of Big Data?",
+                "options": [
+                        "The massive physical size of the storage hardware",
+                        "The speed at which data is generated and must be processed",
+                        "The variety of different file formats within the dataset",
+                        "The accuracy and reliability of the data sources"
+                ],
+                "a": 1
+        },
+        {
+                "id": 33,
+                "type": "MCQ",
+                "q": "What is the primary difference between standard computer programming and Machine Learning?",
+                "options": [
+                        "Standard programming requires a computer; Machine Learning does not",
+                        "In standard programming, rules are explicit; in ML, the machine learns rules from data",
+                        "Machine Learning is only used for numerical calculations",
+                        "Standard programming is faster for predicting future weather patterns"
+                ],
+                "a": 1
+        },
+        {
+                "id": 34,
+                "type": "MCQ",
+                "q": "You are analyzing a dataset of employee salaries. You notice one entry is 100 times higher than the average. What is this data point called?",
+                "options": [
+                        "A constant",
+                        "A median",
+                        "An outlier",
+                        "A pivot"
+                ],
+                "a": 2
+        },
+        {
+                "id": 35,
+                "type": "MCQ",
+                "q": "Which technology is primarily responsible for allowing a computer to 'see' and identify objects in a digital image?",
+                "options": [
+                        "Natural Language Processing (NLP)",
+                        "Computer Vision",
+                        "Blockchain",
+                        "Edge Computing"
+                ],
+                "a": 1
+        },
+        {
+                "id": 36,
+                "type": "MCQ",
+                "q": "In the context of Intelligent Technologies, what does 'NLP' stand for?",
+                "options": [
+                        "Network Loading Protocol",
+                        "Natural Language Processing",
+                        "New Logical Programming",
+                        "Non-Linear Processing"
+                ],
+                "a": 1
+        },
+        {
+                "id": 37,
+                "type": "MCQ",
+                "q": "An AI model used for hiring consistently favors candidates from one specific geographic region over others, despite equal qualifications. What is this an example of?",
+                "options": [
+                        "Algorithmic Bias",
+                        "Data Integration",
+                        "Cloud Scalability",
+                        "Predictive Accuracy"
+                ],
+                "a": 0
+        },
+        {
+                "id": 38,
+                "type": "MCQ",
+                "q": "Which of the following is the best example of a 'Smart' automation system?",
+                "options": [
+                        "A sprinkler that turns on every day at 8:00 AM",
+                        "A thermostat that adjusts the temperature based on your historical habits and current occupancy",
+                        "A light switch that requires manual interaction to turn off",
+                        "A calculator that performs addition"
+                ],
+                "a": 1
+        },
+        {
+                "id": 39,
+                "type": "MCQ",
+                "q": "You observe that ice cream sales and shark attacks both increase during the summer months. Can you conclude that ice cream sales cause shark attacks?",
+                "options": [
+                        "Yes, because they are positively correlated",
+                        "No, because correlation does not imply causation",
+                        "Yes, if the p-value is less than 0.05",
+                        "No, because the sample size is too small"
+                ],
+                "a": 1
+        },
+        {
+                "id": 40,
+                "type": "MCQ",
+                "q": "What is the main goal of 'Generative AI' models?",
+                "options": [
+                        "To delete redundant data from a database",
+                        "To create new content, such as text, images, or code, based on training data",
+                        "To increase the speed of internet connections",
+                        "To encrypt sensitive personal information"
+                ],
+                "a": 1
+        },
+        {
+                "id": 41,
+                "type": "MCQ",
+                "q": "For which scenario should you use a line chart to represent the data?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
+                "options": [
+                        "The weekly average stock price during a one-year period",
+                        "The proportion of yes and no answer to a survey question",
+                        "The binned distribution for the height of different students",
+                        "The maximum, minimum, and average value for a set of data"
+                ],
+                "a": 0
+        },
+        {
+                "id": 42,
+                "type": "MCQ2",
+                "q": "Which two chart types should you use to rank values in ascending or descending order? (Choose 2)<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span><br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
+                "options": [
+                        "Bar chart",
+                        "Column chart",
+                        "Line chart",
+                        "Bubble chart"
+                ],
+                "a": [0, 1]
+        },
+        {
+                "id": 43,
+                "type": "TF",
+                "q": "You have a data set of 100,000 rows. The data values fall within a standard range. The data has been cleaned to remove outliers. Approximately 100 rows of the data set contain NULL values in a numeric data column. You need to determine a best practice for handling the NULL values.<br><br>For each statement about handling NULL, select <strong>Yes</strong> if it is a best practice or <strong>No</strong> if it is not.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+                "options": [
+                        "Remove the row that contains Null values",
+                        "Remove each Null value with a random value",
+                        "Use a statistic such as average to account for the Null values"
+                ],
+                "a": [false, false, true]
+        },
+        {
+                "id": 44,
+                "type": "MCQ",
+                "q": "You are given a data set displaying the time of day and number of minutes customers waited in line for service. You need to remove bias from the results eliminating outliers.<br><br>Which visualization illustrates outliers in your dataset?<br>Select the correct Visualization in the answer area.<br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
+                "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+                "optionImages": [
+                        "q44_opt1.png",
+                        "q44_opt2.png",
+                        "q44_opt3.png",
+                        "q44_opt4.png"
+                ],
+                "a": 3
+        }
+    ]
+};
