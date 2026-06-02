@@ -3,771 +3,843 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 4: Documentation | KVJ Python Mastery</title>
+    <title>Module 4: Built-in Modules | KVJ Python Mastery</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulkt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulkt-stdlib.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px;
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #eff6ff;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #cbd5e1;
+            --success: #10b981;
+            --warning: #f59e0b;
         }
-
-                        :root {
-            --primary-blue: #1c1d1f;
-            --brand-python: #a435f0;
-            --accent-blue: #a435f0;
-            --bg-light: #ffffff;
-            --text-main: #1c1d1f;
-            --text-muted: #6a6f73;
-            --border-color: #d1d7dc;
-            --white: #ffffff;
-        }
-
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Outfit', sans-serif; background-color: var(--bg-page); color: var(--text-main); line-height: 1.7; }
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-light);
-            color: #0f172a;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            line-height: 1.6;
-        }
+        /* NAVBAR */
+        .navbar { height: 68px; background: white; padding: 0 2.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .logout-btn { background: #ef4444; color: white; padding: 9px 22px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 13px; }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 3rem;
-            background: #ffffff;
-            border-bottom: 1px solid var(--border-color);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
+        /* LAYOUT */
+        .layout-container { display: flex; align-items: flex-start; max-width: 1360px; margin: 90px auto 60px; gap: 30px; padding: 20px 20px 0; }
 
-        .navbar-left { display: flex; align-items: center; gap: 1.5rem; }
-        .kvj-logo-img { max-height: 35px; width: auto; }
+        /* SIDEBAR */
+        .sidebar { width: 270px; flex: 0 0 270px; position: sticky; top: 90px; z-index: 100; }
+        .sidebar-inner { background: white; border-radius: 14px; padding: 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+        .sidebar h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin: 0 0 12px; font-weight: 700; }
+        .sidebar a { display: flex; align-items: center; gap: 10px; padding: 10px 13px; text-decoration: none; color: #475569; font-weight: 500; font-size: 14px; border-radius: 9px; transition: all 0.2s; margin-bottom: 3px; }
+        .sidebar a:hover { background: var(--primary-light); color: var(--primary); }
+        .sidebar a.active { background: var(--primary-light); color: var(--primary); font-weight: 700; }
+        .sidebar a i { width: 18px; text-align: center; font-size: 13px; }
 
-        .logout-btn {
-            background: #dc2626; color: white; padding: 8px 18px;
-            text-decoration: none; font-size: 12px; font-weight: 700;
-            border-radius: 6px; transition: opacity 0.3s; text-transform: uppercase;
-        }
+        /* MAIN CONTENT */
+        .main-content { flex: 1; min-width: 0; }
 
-        .header-banner {
-            background: var(--primary-blue);
-            color: white;
-            padding: 120px 20px 60px; text-align: center;
-        }
+        /* LESSON CARD */
+        .lesson-card { background: white; border-radius: 20px; padding: 38px 44px; margin-bottom: 30px; border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.05); transition: transform 0.25s ease, box-shadow 0.25s ease; position: relative; }
+        .lesson-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(30,64,175,0.10); }
 
-        .header-banner h1 {
-            font-family: 'Montserrat', sans-serif; font-size: 38px;
-            font-weight: 900; letter-spacing: -1px; text-transform: uppercase;
-        }
+        /* SECTION HEADER */
+        .section-header { margin-bottom: 28px; padding-bottom: 18px; border-bottom: 2px solid #e2e8f0; }
+        .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 14px; letter-spacing: -0.5px; }
+        .section-header h2 i { background: linear-gradient(135deg, var(--primary), #3b82f6); color: white; width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(30,64,175,0.25); }
+        .section-header p { margin-top: 6px; margin-bottom: 0; color: var(--primary); font-weight: 600; font-size: 14px; }
 
-        .layout-container {
-            display: flex; max-width: 1400px;
-            margin: 40px auto; gap: 40px; width: 95%; padding-bottom: 60px;
-        }
+        /* TYPOGRAPHY */
+        h3 { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; margin: 40px 0 16px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        h3 i { color: var(--primary); font-size: 15px; }
+        p { margin-bottom: 16px; font-size: 17px; color: #475569; line-height: 1.7; }
+        strong { color: var(--text-main); }
+        code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-family: 'Fira Code', monospace; font-weight: 700; color: #ef4444; font-size: 15px; }
 
-        .sidebar {
-            width: 300px; background: #ffffff; padding: 30px;
-            border: 1px solid var(--border-color); position: sticky;
-            top: 100px; border-radius: 12px; height: fit-content;
-        }
+        /* INTERACTION BOX */
+        .interaction-box { background: #f8fafc; border-radius: 16px; padding: 24px 26px; margin: 18px 0; border: 1px solid var(--border); position: relative; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .interaction-box.blue   { border-color: #93c5fd; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: 4px solid #3b82f6; }
+        .interaction-box.green  { border-color: #6ee7b7; background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%); border-left: 4px solid #10b981; }
+        .interaction-box.amber  { border-color: #fcd34d; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-left: 4px solid #f59e0b; }
+        .interaction-box.red    { border-color: #fca5a5; background: linear-gradient(135deg, #fff5f5 0%, #fee2e2 100%); border-left: 4px solid #ef4444; }
+        .interaction-box.purple { border-color: #c4b5fd; background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 100%); border-left: 4px solid #8b5cf6; }
+        .interaction-box h4 { color: var(--primary); font-size: 17px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 9px; margin-top: 0; }
+        .interaction-box.blue h4   { color: #1d4ed8; }
+        .interaction-box.green h4  { color: #047857; }
+        .interaction-box.amber h4  { color: #b45309; }
+        .interaction-box.red h4    { color: #b91c1c; }
+        .interaction-box.purple h4 { color: #6d28d9; }
 
-        .sidebar h3 {
-            font-family: 'Montserrat', sans-serif; font-size: 12px;
-            color: var(--primary-blue); text-transform: uppercase;
-            margin-bottom: 20px; border-bottom: 2px solid var(--bg-light);
-            padding-bottom: 10px; font-weight: 800; letter-spacing: 1px;
-        }
+        h4 { font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 700; color: #4f46e5; margin-top: 28px; margin-bottom: 14px; letter-spacing: -0.3px; display: flex; align-items: center; gap: 10px; }
 
-        .sidebar a {
-            display: block; padding: 12px 15px;
-            color: #334155; text-decoration: none; font-size: 14px;
-            font-weight: 500; margin-bottom: 5px; border-radius: 8px;
-            transition: all 0.2s;
-        }
+        /* CODE BLOCKS - LIGHT THEME */
+        pre { background: #f1f5f9; color: #1e293b; padding: 18px 22px; border-radius: 12px; margin: 12px 0; font-family: 'Fira Code', monospace; font-size: 13.5px; line-height: 1.8; overflow-x: auto; border: 1.5px solid #e2e8f0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .keyword  { color: #1d4ed8; font-weight: 700; }
+        .function { color: #7c3aed; font-weight: 600; }
+        .string   { color: #059669; }
+        .number   { color: #0369a1; font-weight: 700; }
+        .comment  { color: #94a3b8; font-style: italic; }
 
-        .sidebar a.active {
-            color: var(--primary-blue); font-weight: 700;
-            background: #f1f5f9; border-left: 4px solid var(--primary-blue);
-        }
+        /* OUTPUT / NOTE BOXES */
+        .output-box { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 1.5px solid #86efac; border-left: 4px solid var(--success); padding: 14px 20px; border-radius: 10px; font-family: 'Fira Code', monospace; font-size: 13.5px; margin: 14px 0; color: #166534; font-weight: 600; box-shadow: 0 2px 8px rgba(16,185,129,0.10); }
+        .note-box { background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 1.5px solid #fcd34d; border-left: 4px solid #f59e0b; padding: 14px 20px; border-radius: 10px; font-size: 15px; margin: 14px 0; color: #78350f; box-shadow: 0 2px 8px rgba(245,158,11,0.10); }
+        .note-box strong { color: #92400e; }
+        .important-box { background: linear-gradient(135deg, #fff5f5, #fee2e2); border: 1.5px solid #fca5a5; border-left: 4px solid #ef4444; padding: 14px 20px; border-radius: 10px; font-size: 15px; margin: 14px 0; color: #991b1b; box-shadow: 0 2px 8px rgba(239,68,68,0.10); }
 
-        .sidebar a:hover:not(.active) { background: #f8fafc; color: var(--primary-blue); }
+        /* CONTENT LIST */
+        .content-list { list-style: none; margin: 12px 0 16px; padding: 0; }
+        .content-list li { position: relative; padding: 9px 0 9px 30px; color: #475569; font-size: 15px; border-bottom: 1px solid #f1f5f9; }
+        .content-list li:last-child { border-bottom: none; }
+        .content-list li::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: 800; font-size: 14px; }
 
-        .main-content {
-            flex: 1; background: #ffffff; border: 1px solid var(--border-color);
-            padding: 40px 60px; border-radius: 12px;
-        }
+        /* METHOD TABLE */
+        .method-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 14px; overflow: hidden; margin: 18px 0; box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
+        .method-table th { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 14px 18px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px; text-align: left; }
+        .method-table td { padding: 12px 18px; border-bottom: 1px solid #f1f5f9; font-size: 14px; font-weight: 500; background: white; transition: background 0.15s; }
+        .method-table tr:hover td { background: #f8fafc; }
+        .method-table tr:last-child td { border-bottom: none; }
+        .method-table td code { background: #eff6ff; color: #1d4ed8; font-weight: 700; padding: 2px 8px; border-radius: 5px; }
 
-        .section-header { margin-bottom: 30px; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; margin-top: 40px; }
-        .section-header:first-child { margin-top: 0; }
-        .section-header h2 { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; }
-        
-        p { margin-bottom: 25px; color: #334155; font-size: 17px; }
-        strong { color: var(--primary-blue); font-weight: 700; }
-        
-        .content-list { list-style: none; margin-bottom: 25px; }
-        .content-list li { position: relative; padding-left: 28px; margin-bottom: 12px; color: #334155; font-size: 16px; }
-        .content-list li::before { content: "✓"; position: absolute; left: 0; color: #10b981; font-weight: 800; }
+        /* EXAMPLE GRID */
+        .example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 18px 0; }
+        .example-card { background: white; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 18px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s; }
+        .example-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,64,175,0.10); border-color: #93c5fd; }
+        .example-card .ex-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: white; background: var(--primary); display: inline-block; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
 
-        .interaction-box { background: #f8fafc; border-left: 5px solid #a435f0; padding: 25px; margin: 30px 0; border-radius: 8px; font-size: 16px; border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        pre { background: #0f172a; color: #f8fafc; padding: 20px; border-radius: 12px; margin: 25px 0; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto; line-height: 1.5; }
-        .number { color: #1e3a8a; font-weight: 800; }
-        .function { color: #f472b6; }
-        .string { color: #10b981; }
-        .keyword { color: #fbbf24; }
-        .comment { color: #1e293b; font-weight: 600; font-style: italic; }
+        /* CODING PRACTICE */
+        .coding-practice { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 24px; margin: 18px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .coding-practice textarea { width: 100%; height: 130px; background: #ffffff; color: #1e293b; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px 16px; font-family: 'Fira Code', monospace; font-size: 14px; margin: 0 0 14px; outline: none; resize: vertical; transition: all 0.2s ease; line-height: 1.7; }
+        .coding-practice textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,64,175,0.1); }
+        .coding-practice textarea::placeholder { color: #94a3b8; }
+        .badge-try-it { background: var(--primary-light); color: var(--primary); border: 1.5px solid #bfdbfe; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+        .badge-try-it i { font-size: 11px; }
 
-        /* Dark UI for Practice */
-        .practice-card {
-            background: #0f172a;
-            border-radius: 12px;
-            padding: 30px;
-            margin: 40px 0;
-            color: #f8fafc;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-        .practice-card h3 { margin-top: 0; color: #1e3a8a; font-weight: 800; font-size: 22px; font-weight: 700; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
-        .practice-card p { color: #e2e8f0; font-size: 16px; margin-bottom: 20px; }
-        .practice-card strong { color: #f8fafc; font-weight: 800; }
-        
-        .coding-practice textarea {
-            width: 100%; height: 120px;
-            background: #0f172a; color: #1e3a8a; font-weight: 800;
-            border: 1px solid #0ea5e9; border-radius: 8px;
-            padding: 15px; font-family: 'Fira Code', monospace; font-size: 14px;
-            margin-bottom: 15px; outline: none; resize: vertical;
-        }
-        .btn-run { background: #38bdf8; color: #0f172a; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: transform 0.2s; margin-right: 10px; }
-        .btn-reset { background: #334155; color: #f8fafc; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
-        .live-output-box { background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; margin-top: 15px; font-family: 'Fira Code', monospace; font-size: 13px; min-height: 40px; display: none; border: 1px solid #334155; }
-        .feedback { margin-top: 15px; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 14px; display: none; }
-        .feedback.correct { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid #10b981; display: block; }
-        .feedback.wrong { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; display: block; }
+        /* BUTTONS */
+        .btn-run { background: var(--primary); color: white; padding: 10px 24px; border-radius: 9px; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 3px 8px rgba(30,64,175,0.25); }
+        .btn-run:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-reset { background: #f1f5f9; color: #475569; padding: 10px 24px; border-radius: 9px; font-weight: 700; font-size: 14px; border: 1.5px solid var(--border); cursor: pointer; transition: all 0.2s; margin-left: 10px; }
+        .btn-reset:hover { background: var(--border); color: var(--text-main); }
 
-        .quiz-cta {
-            margin-top: 60px; padding: 40px;
-            background: var(--primary-blue);
-            border-radius: 12px; text-align: center;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
-        }
-        .quiz-cta h3 { color: white; margin-top: 0; font-size: 24px; font-family: 'Montserrat', sans-serif; font-weight: 800; }
-        .quiz-cta p { color: rgba(255,255,255,0.9); margin-bottom: 25px; }
-        .btn-start-quiz {
-            display: inline-block; background: #ffffff; color: var(--primary-blue);
-            text-decoration: none; padding: 16px 40px; border-radius: 30px;
-            font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: 1px;
-            transition: all 0.2s;
-        }
-        .btn-start-quiz:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        /* LIVE OUTPUT */
+        .terminal-label { font-size: 12px; font-weight: 800; color: #64748b; margin-top: 18px; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px; }
+        .terminal-label i { font-size: 11px; color: var(--primary); }
+        .live-output-box { background: #f8fafc; color: #1e293b; padding: 14px 18px; border-radius: 9px; margin-top: 10px; font-family: 'Fira Code', monospace; font-size: 13px; min-height: 38px; display: none; border: 1.5px solid #e2e8f0; }
+        .live-output-box.active { display: block; }
+        .feedback { margin-top: 12px; padding: 11px 16px; border-radius: 8px; font-weight: 600; font-size: 14px; display: none; }
+        .feedback.correct { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; display: block; }
+        .feedback.wrong   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; display: block; }
 
-        @media (max-width: 992px) {
+        /* PRACTICE CARD */
+        .practice-card { background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%); border-radius: 18px; padding: 32px 35px; margin: 28px 0; border: 1.5px solid #c7d7fe; box-shadow: 0 6px 24px rgba(30,64,175,0.08); }
+        .practice-card h3 { color: var(--text-main); margin-top: 0; display: flex; align-items: center; gap: 12px; font-size: 18px; }
+        .practice-card h3 i { background: var(--primary); color: white; width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+        .task-label { display: inline-block; background: var(--primary); color: white; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+
+        /* MODULE BANNER */
+        .module-banner { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #6366f1 100%); border-radius: 20px; padding: 40px 44px; margin-bottom: 30px; color: white; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(30,64,175,0.25); }
+        .module-banner::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+        .module-banner::after { content: ''; position: absolute; bottom: -60px; right: 80px; width: 280px; height: 280px; background: rgba(255,255,255,0.04); border-radius: 50%; }
+        .module-banner .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 30px; padding: 6px 16px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; backdrop-filter: blur(10px); }
+        .module-banner h1 { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 900; letter-spacing: -1px; margin-bottom: 10px; }
+        .module-banner p { color: rgba(255,255,255,0.85); font-size: 16px; margin: 0; }
+        .module-banner .module-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+        .module-banner .pill { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); border-radius: 30px; padding: 6px 16px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 7px; backdrop-filter: blur(8px); }
+
+        @media (max-width: 768px) {
             .layout-container { flex-direction: column; }
-            .sidebar { width: 100%; position: static; }
-            .main-content { padding: 30px; }
-            .navbar { padding: 1rem 1.5rem; }
+            .sidebar { width: 100%; flex: none; position: static; }
+            .example-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="navbar-left">
-            <img src="Kvj logo.jpeg" alt="KVJ Logo" class="kvj-logo-img">
-        </div>
-        <a href="roadmap.html" class="logout-btn">EXIT</a>
-    </nav>
-
-    <header class="header-banner">
-        <h1>Module 4: Documentation</h1>
-    </header>
-
-    <div class="layout-container">
-        <aside class="sidebar">
-            <h3>Module Path</h3>
-            <a href="Module-1.html">01 Foundation</a>
-            <a href="Module-2.html">02 Flow Control</a>
-            <a href="Module-3.html">03 I/O Operations</a>
-            <a href="Module-4.html" class="active">04 Documentation</a>
-            <a href="Module-5.html">05 Error Handling</a>
-            <a href="Module-6.html">06 Built-in Modules</a>
-
-            <h3 style="margin-top:35px;">Navigation</h3>
-            <a href="roadmap.html" style="background: #f8fafc;">&larr; Return to Roadmap</a>
-        </aside>
-
-        <main class="main-content">
-            <div class="section-header">
-                <h2>MODULE 4 – CODE DOCUMENTATION AND FUNCTIONS</h2>
-                <p style="font-weight: 600; color: var(--secondary-blue);">Python Certification Course – Module 4</p>
-            </div>
-            
-            <h3>Introduction to Code Structure</h3>
-            <p>As programs become larger, writing code in a structured and organized way becomes very important.</p>
-            <p>Good programs should be:</p>
-            <ul>
-                <li>Easy to read</li>
-                <li>Easy to maintain</li>
-                <li>Properly documented</li>
-                <li>Reusable</li>
-            </ul>
-            <p>Professional developers write code so that other developers can understand it easily.</p>
-            <p>Two important practices help achieve this:</p>
-            <p>Code Documentation</p>
-            <p>2️⃣ Functions</p>
-
-            <div class="section-header">
-                <h2>4.1 Code Documentation</h2>
-            </div>
-            <p>Documentation explains what the code is doing.</p>
-            <p>It helps:</p>
-            <ul>
-                <li>Team members understand the program</li>
-                <li>Maintain large systems</li>
-                <li>Debug errors faster</li>
-                <li>Improve readability</li>
-            </ul>
-            <p>Python supports documentation using:</p>
-            <ul>
-                <li>Indentation</li>
-                <li>White space</li>
-                <li>Comments</li>
-                <li>Docstrings</li>
-            </ul>
-
-            <h3>Indentation</h3>
-            <p>Python uses indentation to define code blocks.</p>
-            <p>Incorrect indentation leads to errors.</p>
-            <p><strong>Example</strong></p>
-<pre>
-marks = <span class="number">70</span>
-<span class="keyword">if</span> marks >= <span class="number">50</span>:
-    <span class="function">print</span>(<span class="string">"Pass"</span>)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Pass</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                The indented line belongs to the if block.<br>
-                Python does not use braces { } like other languages.<br>
-                Instead, indentation defines the structure.
-            </div>
-
-            <h3>Introduction to Documentation</h3>
-            <p>Documentation is as important as the code itself. It explains what the code does, why it exists, and how to use it.</p>
-            <p>Good documentation helps:</p>
-            <ul>
-                <li>Other developers understand your logic</li>
-                <li>You remember what you wrote months later</li>
-                <li>Automated systems generate instruction manuals</li>
-            </ul>
-            <div class="interaction-box">
-                <strong>Business Importance:</strong><br>
-                • Large organizations rely on clear documentation to hand over projects<br>
-                • API documents allow different companies to connect their software<br>
-                • Compliance reports are generated from documented code
-            </div>
-
-
-            <h3>Incorrect Indentation</h3>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">if</span> marks >= <span class="number">50</span>:
-<span class="function">print</span>(<span class="string">"Pass"</span>)
-</pre>
-            <p><strong>Error</strong></p>
-            <div class="output-box" style="color: #dc2626; border-color: #fecaca; background: #fff1f2;">IndentationError</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                Python requires consistent indentation to determine program structure.
-            </div>
-
-            <h3>White Space</h3>
-            <p>White space improves code readability.</p>
-            <p><strong>Bad style</strong></p>
-            <code>x=10+5*2</code>
-            <p><strong>Better style</strong></p>
-<pre>
-x = <span class="number">10</span> + <span class="number">5</span> * <span class="number">2</span>
-<span class="function">print</span>(x)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">20</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                Spaces around operators make the code cleaner and easier to read.
-            </div>
-
-            <h3>Comments</h3>
-            <p>Comments are used to explain code logic.</p>
-            <p>Python ignores comments during execution.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="comment"># Calculate total sales</span>
-sales = [<span class="number">5000</span>, <span class="number">7000</span>, <span class="number">6000</span>]
-total = <span class="function">sum</span>(sales)
-<span class="function">print</span>(total)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">18000</div>
-            <div class="interaction-box">
-                It helps other programmers understand the purpose of the code.
-            </div>
-            <!-- Coding Practice: comments -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: Comments</h3>
-                <p><strong>Context:</strong> Internal script labeling for a marketing agency audit.
-                <br><strong>Challenge:</strong> Write a short explanation as a comment only (e.g., <code>This is a short explanation written as a comment</code>).</p>
-                <textarea id="coding-ans-comment" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('comment', '')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('comment')">Reset</button>
-                <div id="coding-output-comment" class="live-output-box"></div>
-                <div id="coding-feedback-comment" class="feedback"></div>
-            </div>
-
-            <!-- ... (intermediate content) ... -->
-            <!-- Note: I will use multi_replace for multiple changes, but here I am just showing the intent -->
-
-
-            <h3>Docstrings</h3>
-            <p>Docstrings describe what a function does.</p>
-            <p>They are written using triple quotes.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">def</span> <span class="function">square</span>(n):
-    <span class="string">"""Return the square of a number"""</span>
-    <span class="keyword">return</span> n * n
-
-<span class="function">print</span>(square(<span class="number">5</span>))
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">25</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                The triple quotes """ """ store documentation for the function.
-            </div>
-
-            <h3>Accessing Docstrings</h3>
-            <p>Docstrings can be accessed programmatically.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="function">print</span>(square.__doc__)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Return the square of a number</div>
-            <div class="interaction-box">
-                This allows Python tools to generate documentation automatically.
-            </div>
-            <!-- Coding Practice: docstrings -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: Docstrings</h3>
-                <p><strong>Objective:</strong> Technical documentation for a social media engagement counter.
-                <br><strong>Challenge:</strong> Define a function <code>total_likes()</code> that includes a <strong>Docstring</strong> and <code>return 0</code>.</p>
-                <textarea id="coding-ans-doc" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('doc', '', 'print(total_likes())')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('doc')">Reset</button>
-                <div id="coding-output-doc" class="live-output-box"></div>
-                <div id="coding-feedback-doc" class="feedback"></div>
-            </div>
-
-            <h3>Using pydoc for Documentation</h3>
-            <p>Python provides a tool called pydoc.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">import</span> pydoc
-<span class="function">print</span>(pydoc.render_doc(square))
-</pre>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                pydoc automatically generates documentation for functions, modules, and classes.<br>
-                This is useful in large professional projects.
-            </div>
-
-            <div class="section-header">
-                <h2>4.2 Functions</h2>
-            </div>
-            <p>Functions organize code into reusable blocks.</p>
-            <p>Benefits of functions:</p>
-            <ul>
-                <li>Avoid repeating code</li>
-                <li>Improve readability</li>
-                <li>Simplify debugging</li>
-                <li>Make programs modular</li>
-            </ul>
-
-            <h3>Defining a Function</h3>
-            <p>Functions are defined using the def keyword.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">def</span> <span class="function">greet</span>():
-    <span class="function">print</span>(<span class="string">"Welcome to the finance system"</span>)
-
-greet()
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Welcome to the finance system</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                def defines a function.<br>
-                greet() calls the function.
-            </div>
-
-            <!-- Coding Practice: def -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: Define Function</h3>
-                <p><strong>Task:</strong> Automated status-verification routine for an enterprise server cluster.
-                <br><strong>Challenge:</strong> Define a function <code>show()</code> that prints <code>"Visible"</code>.</p>
-                <textarea id="coding-ans-def" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('def', 'Visible', 'show()')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('def')">Reset</button>
-                <div id="coding-output-def" class="live-output-box"></div>
-                <div id="coding-feedback-def" class="feedback"></div>
-            </div>
-
-            <h3>Function with Parameters</h3>
-            <p>Functions can accept input values called parameters.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">def</span> <span class="function">calculate_sales</span>(price, quantity):
-    total = price * quantity
-    <span class="function">print</span>(<span class="string">"Total Sales:"</span>, total)
-
-calculate_sales(<span class="number">50</span>, <span class="number">10</span>)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Total Sales: 500</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                price and quantity are parameters.<br>
-                They allow the function to work with different inputs.
-            </div>
-
-            <h3>return Statement</h3>
-            <p>Functions can return values using return.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">def</span> <span class="function">profit</span>(revenue, cost):
-    <span class="keyword">return</span> revenue - cost
-
-result = profit(<span class="number">10000</span>, <span class="number">7000</span>)
-<span class="function">print</span>(<span class="string">"Profit:"</span>, result)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Profit: 3000</div>
-            <div class="interaction-box">
-                The function calculates profit and returns the result to the calling program.
-            </div>
-            <!-- Coding Practice: return -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: Return Value</h3>
-                <p><strong>Logic Design:</strong> Rewards-logic module configuration for standardized point-distribution.
-                <br><strong>Challenge:</strong> Define the function <code>get_val()</code> to <strong>return</strong> the value <code>100</code>.</p>
-                <textarea id="coding-ans-return" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('return', '100', 'print(get_val())')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('return')">Reset</button>
-                <div id="coding-output-return" class="live-output-box"></div>
-                <div id="coding-feedback-return" class="feedback"></div>
-            </div>
-            <!-- Coding Practice 1 -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: Parameters</h3>
-                <p><strong>Application Engineering:</strong> Inventory valuation tool processing dynamic unit pricing.
-                <br><strong>Challenge:</strong> Define <code>multiply(a, b)</code> and return their product. Test with 10 and 5.</p>
-                <textarea id="coding-ans-1" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt(1, '50', 'print(multiply(10, 5))')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice(1)">Reset</button>
-                <div id="coding-output-1" class="live-output-box"></div>
-                <div id="coding-feedback-1" class="feedback"></div>
-            </div>
-
-            <h3>Default Parameters</h3>
-            <p>Functions can have default values.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">def</span> <span class="function">greet</span>(name=<span class="string">"Customer"</span>):
-    <span class="function">print</span>(<span class="string">"Welcome"</span>, name)
-
-greet()
-greet(<span class="string">"Rahul"</span>)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Welcome Customer<br>Welcome Rahul</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                If no argument is provided, Python uses the default value.
-            </div>
-
-            <h3>pass Statement in Functions</h3>
-            <p>Sometimes we define a function but do not implement it yet.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">def</span> <span class="function">future_feature</span>():
-    <span class="keyword">pass</span>
-
-<span class="function">print</span>(<span class="string">"Function created successfully"</span>)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Function created successfully</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                pass prevents syntax errors when a function body is empty.
-            </div>
-
-            <!-- Final Coding Challenge: Documentation & Functions -->
-            <div class="practice-card coding-practice">
-                <h3>Final Challenge: Documentation & Functions</h3>
-                <p><strong>Challenge:</strong> Create a professional, documented function to calculate net value.</p>
-                <p style="color: #1e293b; font-weight: 600; font-size: 14px; margin-top: -10px; font-style: italic;">
-                    <strong>Operational Scenario:</strong> Development of a retail checkout system requiring a verified net-price calculation routine after tax deductions.
-                </p>
-                <ul class="practice-checklist">
-                    <li>Define a function <code>calculate_net(gross, tax)</code></li>
-                    <li>Add a <strong>Docstring</strong> describing the purpose</li>
-                    <li>Add a <strong>comment</strong> explaining the calculation</li>
-                    <li><strong>Return</strong> the result and <code>print(calculate_net(1000, 150))</code></li>
-                </ul>
-                <textarea id="coding-ans-complex" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('complex', '850')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('complex')">Reset</button>
-                <div id="coding-output-complex" class="live-output-box"></div>
-                <div id="coding-feedback-complex" class="feedback"></div>
-            </div>
-
-            <div class="section-header">
-                <h2>Integrated Business Example</h2>
-            </div>
-            <p>Example: Calculating average sales.</p>
-<pre>
-<span class="keyword">def</span> <span class="function">calculate_average_sales</span>(sales_list):
-    <span class="string">"""Return the average sales value"""</span>
-    
-    total = <span class="function">sum</span>(sales_list)
-    average = total / <span class="function">len</span>(sales_list)
-    
-    <span class="keyword">return</span> average
-
-sales = [<span class="number">5000</span>, <span class="number">7000</span>, <span class="number">9000</span>]
-avg = calculate_average_sales(sales)
-<span class="function">print</span>(<span class="string">"Average Sales:"</span>, avg)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Average Sales: 7000.0</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                This program demonstrates:<br>
-                • Function creation<br>
-                • Parameters<br>
-                • Return values<br>
-                • Documentation using docstrings
-            </div>
-
-            <!-- Quiz CTA -->
-            <div class="quiz-cta">
-                <h3>Documentation Standardized.</h3>
-                <p>Test your knowledge on documentation and functions in Python.</p>
-                <a href="module_quiz.html?mod=4" class="btn-start-quiz">Start Module 4 Assessment &rarr;</a>
-            </div>
-        </main>
+<nav class="navbar">
+    <div class="navbar-left">
+        <img src="Kvj logo.jpeg" alt="KVJ Logo" style="height:40px;">
     </div>
+    <a href="roadmap.html" class="logout-btn">EXIT</a>
+</nav>
 
-    <script>
-        function triggerConfetti() {
-            var duration = 3 * 1000;
-            var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+<div class="layout-container">
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+            <h3 style="color:var(--primary);font-weight:800;margin-top:0;margin-bottom:15px;"><i class="fas fa-map-signs"></i> MODULE PATH</h3>
+            <a href="Module-1.html"><i class="fas fa-book-open"></i> 01 Foundation</a>
+            <a href="Module-2.html"><i class="fas fa-code-branch"></i> 02 Flow Control</a>
+            <a href="Module-3.html"><i class="fas fa-exchange-alt"></i> 03 I/O Operations</a>
+            <a href="Module-4.html" class="active"><i class="fas fa-cubes"></i> 04 Built-in Modules</a>
+            <a href="Module-5.html"><i class="fas fa-exclamation-triangle"></i> 05 Functions &amp; Unit Test</a>
+            <a href="Module-6.html"><i class="fas fa-file-alt"></i> 06 Documentation</a>
+            <h3 style="margin-top:30px;margin-bottom:15px;"><i class="fas fa-compass"></i> NAVIGATION</h3>
+            <a href="#section-41"><i class="fas fa-file-import"></i> 4.1 io Module</a>
+            <a href="#section-42"><i class="fas fa-calculator"></i> 4.2 Math Module</a>
+            <a href="#section-44"><i class="fas fa-clock"></i> 4.4 datetime Module</a>
+            <a href="#section-45"><i class="fas fa-dice"></i> 4.5 random Module</a>
+            <a href="roadmap.html" style="background:#f8fafc;border:1px solid var(--border);margin-top:8px;"><i class="fas fa-arrow-left"></i> Return to Roadmap</a>
+        </div>
+    </aside>
 
-            function randomInRange(min, max) {
-                return Math.random() * (max - min) + min;
-            }
+    <main class="main-content">
 
-            var interval = setInterval(function() {
-                var timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) { return clearInterval(interval); }
-                var particleCount = 50 * (timeLeft / duration);
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-            }, 250);
+        <!-- MODULE BANNER -->
+        <div class="module-banner">
+            <div class="badge"><i class="fas fa-cubes"></i> Module 4</div>
+            <h1>Built-in Modules</h1>
+            <p>Master Python's powerful built-in modules — io, math, datetime, and random.</p>
+            <div class="module-pills">
+                <span class="pill"><i class="fas fa-file-import"></i> io Module</span>
+                <span class="pill"><i class="fas fa-calculator"></i> Math Module</span>
+                <span class="pill"><i class="fas fa-clock"></i> datetime Module</span>
+                <span class="pill"><i class="fas fa-dice"></i> random Module</span>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════
+             4.1  io MODULE
+        ══════════════════════════════════════════ -->
+        <div class="lesson-card" id="section-41">
+            <div class="section-header">
+                <h2><i class="fas fa-file-import"></i> 4.1 io Module</h2>
+            </div>
+
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-file-import"></i> What is the io Module?</h4>
+                <p>The <code>io</code> module is a built-in Python module used for handling input and output operations.</p>
+                <p>It helps programs:</p>
+                <ul class="content-list">
+                    <li>Open files</li>
+                    <li>Read files</li>
+                    <li>Write files</li>
+                    <li>Work with streams</li>
+                </ul>
+                <p>The <code>io</code> module is mainly used in file handling and data processing.</p>
+            </div>
+
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-lightbulb"></i> Analogy: Think of a Notebook</h4>
+                <p>Think of a notebook.</p>
+                <ul class="content-list">
+                    <li>Writing inside the notebook → Output</li>
+                    <li>Reading from the notebook → Input</li>
+                </ul>
+                <p>Similarly, the <code>io</code> module helps programs write data and read data from files and streams.</p>
+            </div>
+
+            <h3><i class="fas fa-download"></i> Importing the io Module</h3>
+            <pre><span class="keyword">import</span> io</pre>
+
+            <h3><i class="fas fa-folder-open"></i> Opening Files using io Module</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-door-open"></i> The open() Function</h4>
+                <p>The <code>open()</code> function is used to open files.</p>
+                <pre><span class="keyword">import</span> io
+
+file = <span class="function">open</span>(<span class="string">"example.txt"</span>, <span class="string">"w"</span>)
+file.<span class="function">write</span>(<span class="string">"Hello, World!"</span>)
+file.<span class="function">close</span>()</pre>
+            </div>
+
+            <h3><i class="fas fa-pen"></i> write() Function</h3>
+            <div class="interaction-box green">
+                <h4><i class="fas fa-edit"></i> Writing Data to a File</h4>
+                <p>The <code>write()</code> function is used to write data into a file.</p>
+                <p>It stores information permanently inside the file.</p>
+                <pre><span class="keyword">import</span> io
+
+file = <span class="function">open</span>(<span class="string">"data.txt"</span>, <span class="string">"w"</span>)
+file.<span class="function">write</span>(<span class="string">"Python is amazing!"</span>)
+file.<span class="function">close</span>()
+<span class="function">print</span>(<span class="string">"Data written successfully"</span>)</pre>
+                <div class="output-box">Data written successfully</div>
+            </div>
+
+            <h3><i class="fas fa-book-reader"></i> read() Function</h3>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-glasses"></i> Reading Data from a File</h4>
+                <p>The <code>read()</code> function is used to read the contents of a file.</p>
+                <p>It retrieves data stored inside the file.</p>
+                <pre><span class="keyword">import</span> io
+
+file = <span class="function">open</span>(<span class="string">"data.txt"</span>, <span class="string">"r"</span>)
+content = file.<span class="function">read</span>()
+<span class="function">print</span>(content)
+file.<span class="function">close</span>()</pre>
+                <div class="output-box">Python is amazing!</div>
+            </div>
+
+            <h3><i class="fas fa-memory"></i> StringIO()</h3>
+            <div class="interaction-box purple">
+                <h4><i class="fas fa-database"></i> In-Memory Text Stream</h4>
+                <p><code>StringIO()</code> is used to create an in-memory text stream.</p>
+                <p>It behaves like a file but stores data in memory instead of a physical file.</p>
+                <pre><span class="keyword">import</span> io
+
+stream = io.<span class="function">StringIO</span>()
+stream.<span class="function">write</span>(<span class="string">"Hello from memory!"</span>)
+stream.<span class="function">seek</span>(<span class="number">0</span>)
+<span class="function">print</span>(stream.<span class="function">read</span>())</pre>
+                <div class="output-box">Hello from memory!</div>
+            </div>
+        </div><!-- end lesson-card 4.1 -->
+
+
+        <!-- ══════════════════════════════════════════
+             4.2  MATH MODULE
+        ══════════════════════════════════════════ -->
+        <div class="lesson-card" id="section-42">
+            <div class="section-header">
+                <h2><i class="fas fa-calculator"></i> 4.2 Math Module</h2>
+            </div>
+
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-calculator"></i> What is the Math Module?</h4>
+                <p>Python has a built-in module that you can use for mathematical tasks.</p>
+                <p>The <code>math</code> module has a set of methods and constants.</p>
+            </div>
+
+            <h3><i class="fas fa-table"></i> Math Module Methods &amp; Constants</h3>
+            <table class="method-table">
+                <thead>
+                    <tr><th>Method / Constant</th><th>Description</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>fabs()</code></td><td>Returns the positive absolute value of a number</td></tr>
+                    <tr><td><code>ceil()</code></td><td>Rounds the number upward to the nearest integer</td></tr>
+                    <tr><td><code>floor()</code></td><td>Rounds the number downward to the nearest integer</td></tr>
+                    <tr><td><code>trunc()</code></td><td>Removes the decimal part from a number</td></tr>
+                    <tr><td><code>fmod()</code></td><td>Returns the remainder after division</td></tr>
+                    <tr><td><code>frexp()</code></td><td>Returns mantissa and exponent of a number</td></tr>
+                    <tr><td><code>nan</code></td><td>Represents "Not a Number" value</td></tr>
+                    <tr><td><code>isnan()</code></td><td>Checks whether a value is nan</td></tr>
+                    <tr><td><code>sqrt()</code></td><td>Returns the square root of a number</td></tr>
+                    <tr><td><code>isqrt()</code></td><td>Returns the integer square root of a number</td></tr>
+                    <tr><td><code>pow()</code></td><td>Returns the power value of a number</td></tr>
+                    <tr><td><code>pi</code></td><td>Returns the mathematical constant π</td></tr>
+                </tbody>
+            </table>
+
+            <!-- fabs() -->
+            <h3><i class="fas fa-plus-circle"></i> fabs()</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-info-circle"></i> Absolute Positive Value</h4>
+                <p><code>fabs()</code> returns the absolute positive value of a number. Even if the number is negative, Python converts it into a positive value.</p>
+                <p><strong>Syntax:</strong> <code>math.fabs(number)</code></p>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <div class="ex-label">Example 1</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">fabs</span>(<span class="number">-25</span>))</pre>
+                        <div class="output-box">25.0</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 2</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">fabs</span>(<span class="number">15</span>))</pre>
+                        <div class="output-box">15.0</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 3</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">fabs</span>(<span class="number">-99.5</span>))</pre>
+                        <div class="output-box">99.5</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 4</div>
+                        <pre><span class="keyword">import</span> math
+temperature = <span class="number">-12</span>
+<span class="function">print</span>(math.<span class="function">fabs</span>(temperature))</pre>
+                        <div class="output-box">12.0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ceil() -->
+            <h3><i class="fas fa-arrow-up"></i> ceil()</h3>
+            <div class="interaction-box green">
+                <h4><i class="fas fa-info-circle"></i> Round Upward</h4>
+                <p><code>ceil()</code> rounds a decimal number upward to the nearest integer.</p>
+                <p><strong>Syntax:</strong> <code>math.ceil(number)</code></p>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <div class="ex-label">Example 1</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">ceil</span>(<span class="number">4.2</span>))</pre>
+                        <div class="output-box">5</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 2</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">ceil</span>(<span class="number">7.1</span>))</pre>
+                        <div class="output-box">8</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 3</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">ceil</span>(<span class="number">10.9</span>))</pre>
+                        <div class="output-box">11</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 4</div>
+                        <pre><span class="keyword">import</span> math
+bill = <span class="number">250.2</span>
+<span class="function">print</span>(math.<span class="function">ceil</span>(bill))</pre>
+                        <div class="output-box">251</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- floor() -->
+            <h3><i class="fas fa-arrow-down"></i> floor()</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-info-circle"></i> Round Downward</h4>
+                <p><code>floor()</code> rounds a decimal number downward to the nearest integer.</p>
+                <p><strong>Syntax:</strong> <code>math.floor(number)</code></p>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <div class="ex-label">Example 1</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">floor</span>(<span class="number">4.9</span>))</pre>
+                        <div class="output-box">4</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 2</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">floor</span>(<span class="number">7.8</span>))</pre>
+                        <div class="output-box">7</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 3</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">floor</span>(<span class="number">12.3</span>))</pre>
+                        <div class="output-box">12</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 4</div>
+                        <pre><span class="keyword">import</span> math
+salary = <span class="number">25000.95</span>
+<span class="function">print</span>(math.<span class="function">floor</span>(salary))</pre>
+                        <div class="output-box">25000</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- trunc() -->
+            <h3><i class="fas fa-cut"></i> trunc()</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-info-circle"></i> Remove Decimal Part</h4>
+                <p><code>trunc()</code> removes the decimal part of a number.</p>
+                <p><strong>Syntax:</strong> <code>math.trunc(number)</code></p>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <div class="ex-label">Example 1</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">trunc</span>(<span class="number">8.9</span>))</pre>
+                        <div class="output-box">8</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 2</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">trunc</span>(<span class="number">15.7</span>))</pre>
+                        <div class="output-box">15</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 3</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">trunc</span>(<span class="number">99.99</span>))</pre>
+                        <div class="output-box">99</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 4</div>
+                        <pre><span class="keyword">import</span> math
+marks = <span class="number">89.75</span>
+<span class="function">print</span>(math.<span class="function">trunc</span>(marks))</pre>
+                        <div class="output-box">89</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- fmod() -->
+            <h3><i class="fas fa-percent"></i> fmod()</h3>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-info-circle"></i> Remainder After Division</h4>
+                <p><code>fmod()</code> returns the remainder after division.</p>
+                <p><strong>Syntax:</strong> <code>math.fmod(a, b)</code></p>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <div class="ex-label">Example 1</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">fmod</span>(<span class="number">10</span>, <span class="number">3</span>))</pre>
+                        <div class="output-box">1.0</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 2</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">fmod</span>(<span class="number">20</span>, <span class="number">6</span>))</pre>
+                        <div class="output-box">2.0</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 3</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">fmod</span>(<span class="number">50</span>, <span class="number">7</span>))</pre>
+                        <div class="output-box">1.0</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 4</div>
+                        <pre><span class="keyword">import</span> math
+students = <span class="number">25</span>
+<span class="function">print</span>(math.<span class="function">fmod</span>(students, <span class="number">4</span>))</pre>
+                        <div class="output-box">1.0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- sqrt() -->
+            <h3><i class="fas fa-square-root-alt"></i> sqrt()</h3>
+            <div class="interaction-box green">
+                <h4><i class="fas fa-info-circle"></i> Square Root</h4>
+                <p><code>sqrt()</code> returns the square root of a number.</p>
+                <p><strong>Syntax:</strong> <code>math.sqrt(number)</code></p>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <div class="ex-label">Example 1</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">sqrt</span>(<span class="number">25</span>))</pre>
+                        <div class="output-box">5.0</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 2</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">sqrt</span>(<span class="number">64</span>))</pre>
+                        <div class="output-box">8.0</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 3</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">sqrt</span>(<span class="number">100</span>))</pre>
+                        <div class="output-box">10.0</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 4</div>
+                        <pre><span class="keyword">import</span> math
+area = <span class="number">144</span>
+<span class="function">print</span>(math.<span class="function">sqrt</span>(area))</pre>
+                        <div class="output-box">12.0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- pow() -->
+            <h3><i class="fas fa-superscript"></i> pow()</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-info-circle"></i> Power of a Number</h4>
+                <p><code>pow()</code> returns the power value of a number.</p>
+                <p><strong>Syntax:</strong> <code>math.pow(a, b)</code></p>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <div class="ex-label">Example 1</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">pow</span>(<span class="number">2</span>, <span class="number">3</span>))</pre>
+                        <div class="output-box">8.0</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 2</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">pow</span>(<span class="number">5</span>, <span class="number">2</span>))</pre>
+                        <div class="output-box">25.0</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 3</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">pow</span>(<span class="number">10</span>, <span class="number">2</span>))</pre>
+                        <div class="output-box">100.0</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 4</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.<span class="function">pow</span>(<span class="number">3</span>, <span class="number">4</span>))</pre>
+                        <div class="output-box">81.0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- pi -->
+            <h3><i class="fas fa-circle-notch"></i> pi</h3>
+            <div class="interaction-box purple">
+                <h4><i class="fas fa-info-circle"></i> Mathematical Constant π</h4>
+                <p><code>pi</code> returns the mathematical constant π.</p>
+                <p><strong>Syntax:</strong> <code>math.pi</code></p>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <div class="ex-label">Example 1</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(math.pi)</pre>
+                        <div class="output-box">3.141592653589793</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 2</div>
+                        <pre><span class="keyword">import</span> math
+radius = <span class="number">5</span>
+<span class="function">print</span>(math.pi * radius * radius)</pre>
+                        <div class="output-box">78.53981633974483</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 3</div>
+                        <pre><span class="keyword">import</span> math
+<span class="function">print</span>(<span class="function">round</span>(math.pi, <span class="number">2</span>))</pre>
+                        <div class="output-box">3.14</div>
+                    </div>
+                    <div class="example-card">
+                        <div class="ex-label">Example 4</div>
+                        <pre><span class="keyword">import</span> math
+diameter = <span class="number">10</span>
+<span class="function">print</span>(math.pi * diameter)</pre>
+                        <div class="output-box">31.41592653589793</div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end lesson-card 4.2 -->
+
+
+        <!-- ══════════════════════════════════════════
+             4.4  datetime MODULE
+        ══════════════════════════════════════════ -->
+        <div class="lesson-card" id="section-44">
+            <div class="section-header">
+                <h2><i class="fas fa-clock"></i> 4.4 datetime Module</h2>
+            </div>
+
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-calendar-alt"></i> What is the datetime Module?</h4>
+                <p>The <code>datetime</code> module is a built-in Python module used to work with:</p>
+                <ul class="content-list">
+                    <li>Date</li>
+                    <li>Time</li>
+                    <li>Day</li>
+                    <li>Year</li>
+                </ul>
+                <p>It helps programs manage and display date and time information.</p>
+            </div>
+
+            <h3><i class="fas fa-table"></i> datetime Module Methods</h3>
+            <table class="method-table">
+                <thead>
+                    <tr><th>Method</th><th>Description</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>now()</code></td><td>Returns current date and time</td></tr>
+                    <tr><td><code>strftime()</code></td><td>Formats date and time</td></tr>
+                    <tr><td><code>weekday()</code></td><td>Returns day number of week</td></tr>
+                </tbody>
+            </table>
+
+            <!-- now() -->
+            <h3><i class="fas fa-clock"></i> now()</h3>
+            <div class="interaction-box green">
+                <h4><i class="fas fa-info-circle"></i> Current Date and Time</h4>
+                <p><code>now()</code> returns the current date and current time of the system.</p>
+                <pre><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
+
+current = datetime.<span class="function">now</span>()
+<span class="function">print</span>(current)</pre>
+                <div class="output-box">2024-01-15 10:30:45.123456</div>
+            </div>
+
+            <!-- strftime() -->
+            <h3><i class="fas fa-text-width"></i> strftime()</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-info-circle"></i> Format Date and Time</h4>
+                <p>The <code>datetime</code> object has a method for formatting date objects into readable strings.</p>
+                <p>The method is called <code>strftime()</code>, and takes one parameter, <strong>format</strong>, to specify the format of the returned string.</p>
+                <pre><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
+
+now = datetime.<span class="function">now</span>()
+formatted = now.<span class="function">strftime</span>(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)
+<span class="function">print</span>(formatted)</pre>
+                <div class="output-box">2024-01-15 10:30:45</div>
+            </div>
+
+            <!-- weekday() -->
+            <h3><i class="fas fa-calendar-week"></i> weekday()</h3>
+            <div class="interaction-box purple">
+                <h4><i class="fas fa-info-circle"></i> Day Number of the Week</h4>
+                <p><code>weekday()</code> returns the day number of the week.</p>
+                <div class="note-box"><strong>Note:</strong> Monday = 0, Tuesday = 1, ..., Sunday = 6</div>
+                <pre><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
+
+today = datetime.<span class="function">now</span>()
+day_num = today.<span class="function">weekday</span>()
+<span class="function">print</span>(day_num)</pre>
+                <div class="output-box">0</div>
+            </div>
+
+        </div><!-- end lesson-card 4.4 -->
+
+
+        <!-- ══════════════════════════════════════════
+             4.5  random MODULE
+        ══════════════════════════════════════════ -->
+        <div class="lesson-card" id="section-45">
+            <div class="section-header">
+                <h2><i class="fas fa-dice"></i> 4.5 random Module</h2>
+            </div>
+
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-dice"></i> What is the random Module?</h4>
+                <p>The <code>random</code> module is a built-in Python module used to generate random values.</p>
+                <p>It helps programs:</p>
+                <ul class="content-list">
+                    <li>Generate random numbers</li>
+                    <li>Select random items</li>
+                    <li>Shuffle data</li>
+                </ul>
+            </div>
+
+            <!-- randrange() -->
+            <h3><i class="fas fa-random"></i> randrange() Method</h3>
+            <div class="interaction-box green">
+                <h4><i class="fas fa-info-circle"></i> Python Random randrange() Method</h4>
+                <p>The <code>randrange()</code> method returns a randomly selected element from the specified range.</p>
+                <p><strong>Parameter Values</strong></p>
+                <table class="method-table">
+                    <thead>
+                        <tr><th>Parameter</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>start</code></td><td>Optional. An integer specifying at which position to start. Default is 0</td></tr>
+                        <tr><td><code>stop</code></td><td>Required. An integer specifying at which position to end (not included)</td></tr>
+                        <tr><td><code>step</code></td><td>Optional. An integer specifying the incrementation. Default is 1</td></tr>
+                    </tbody>
+                </table>
+                <pre><span class="keyword">import</span> random
+
+x = random.<span class="function">randrange</span>(<span class="number">3</span>, <span class="number">9</span>)
+<span class="function">print</span>(x)</pre>
+                <div class="output-box">5  <span style="color:#94a3b8;font-style:italic;"># (a random number between 3 and 8)</span></div>
+            </div>
+
+            <!-- randint() -->
+            <h3><i class="fas fa-dice-d6"></i> randint() Method</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-info-circle"></i> Python Random randint() Method</h4>
+                <p>The <code>randint()</code> method returns a random integer between the specified integers (both endpoints are included).</p>
+                <pre><span class="keyword">import</span> random
+
+x = random.<span class="function">randint</span>(<span class="number">1</span>, <span class="number">10</span>)
+<span class="function">print</span>(x)</pre>
+                <div class="output-box">7  <span style="color:#94a3b8;font-style:italic;"># (a random number between 1 and 10)</span></div>
+            </div>
+
+            <!-- choice() -->
+            <h3><i class="fas fa-hand-pointer"></i> choice() Method</h3>
+            <div class="interaction-box purple">
+                <h4><i class="fas fa-info-circle"></i> Python Random choice() Method</h4>
+                <p>The <code>choice()</code> method returns a randomly selected element from the specified sequence.</p>
+                <p>The sequence can be a string, a range, a list, a tuple or any other kind of sequence.</p>
+                <pre><span class="keyword">import</span> random
+
+fruits = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>]
+x = random.<span class="function">choice</span>(fruits)
+<span class="function">print</span>(x)</pre>
+                <div class="output-box">banana  <span style="color:#94a3b8;font-style:italic;"># (a randomly selected fruit)</span></div>
+            </div>
+
+            <!-- shuffle() -->
+            <h3><i class="fas fa-shuffle"></i> shuffle() Method</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-info-circle"></i> Python Random shuffle() Method</h4>
+                <p>The <code>shuffle()</code> method takes a sequence, like a list, and reorganizes the order of the items.</p>
+                <div class="note-box"><strong>Note:</strong> This method changes the original list, it does not return a new list.</div>
+                <pre><span class="keyword">import</span> random
+
+mylist = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>]
+random.<span class="function">shuffle</span>(mylist)
+<span class="function">print</span>(mylist)</pre>
+                <div class="output-box">['cherry', 'apple', 'banana']  <span style="color:#94a3b8;font-style:italic;"># (order is randomized)</span></div>
+            </div>
+
+            <!-- CODING CHALLENGE -->
+            <div class="practice-card">
+                <h3><i class="fas fa-laptop-code"></i> Challenge: Built-in Modules</h3>
+                <span class="task-label">Challenge</span>
+                <p>Test your understanding of Python's built-in modules.</p>
+                <p><strong>Instructions</strong> — Inside the editor, complete the following steps:</p>
+                <ul class="content-list">
+                    <li>Import the <code>math</code> module</li>
+                    <li>Use <code>math.sqrt()</code> to find the square root of <code>144</code></li>
+                    <li>Print the result</li>
+                </ul>
+                <div class="badge-try-it"><i class="fas fa-terminal"></i> Try It</div>
+                <div class="coding-practice">
+                    <textarea id="coding-ans-modules-challenge" placeholder="# Write your code here..."></textarea>
+                    <button class="btn-run" onclick="runCode('modules-challenge','12.0')">▶ Run</button>
+                    <button class="btn-reset" onclick="resetCode('modules-challenge')">↺ Reset</button>
+                    <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                    <div class="live-output-box" id="coding-output-modules-challenge"></div>
+                    <div class="feedback" id="coding-feedback-modules-challenge"></div>
+                </div>
+            </div>
+
+        </div><!-- end lesson-card 4.5 -->
+
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulkt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulkt-stdlib.js"></script>
+<script>
+    function runCode(id, expected) {
+        const prog = document.getElementById('coding-ans-' + id).value;
+        const outputDiv = document.getElementById('coding-output-' + id);
+        const feedback = document.getElementById('coding-feedback-' + id);
+        outputDiv.innerHTML = '';
+        outputDiv.classList.add('active');
+
+        function outf(text) { outputDiv.innerText += text; }
+        function builtinRead(x) {
+            if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined)
+                throw "File not found: '" + x + "'";
+            return Sk.builtinFiles['files'][x];
         }
-
-        function checkPracticeAnswer(id, correctAns) {
-            const userAns = document.getElementById(`practice-ans-${id}`).value.trim().toLowerCase();
-            const feedback = document.getElementById(`feedback-${id}`);
-            
-            if (userAns === correctAns.toLowerCase()) {
-                feedback.innerHTML = "Correct! Great job! 🎉";
-                feedback.className = "feedback correct";
-                triggerConfetti();
+        Sk.configure({ output: outf, read: builtinRead });
+        Sk.misceval.asyncToPromise(() => Sk.importMainWithBody('<stdin>', false, prog, true)).then(function () {
+            const cleanOutput = outputDiv.innerText.trim().replace(/\r\n/g, '\n');
+            const cleanExpected = expected.trim().replace(/\r\n/g, '\n');
+            if (cleanOutput.includes(cleanExpected)) {
+                if (feedback) feedback.style.display = 'none';
+                if (feedback) { feedback.innerHTML = '&#x2713; Correct! Your code works perfectly.'; feedback.className = 'feedback correct'; feedback.style.display = 'block'; }
             } else {
-                feedback.innerHTML = "✗ Incorrect. Try again!";
-                feedback.className = "feedback wrong";
+                if (feedback) {
+                    feedback.innerHTML = '&#x2717; Output does not match. Check your logic and try again.';
+                    feedback.className = 'feedback wrong';
+                    feedback.style.display = 'block';
+                }
             }
-        }
-
-        function runSkulpt(id, expected, appendCode = "") {
-            const progInput = document.getElementById(`coding-ans-${id}`).value;
-            const prog = progInput + (appendCode ? "" + appendCode : "");
-            const outputDiv = document.getElementById(`coding-output-${id}`);
-            const feedback = document.getElementById(`coding-feedback-${id}`);
-            
-            outputDiv.innerHTML = "";
-            outputDiv.classList.add('active');
-            feedback.style.display = "none";
-            feedback.className = "feedback";
-
-            let outputText = "";
-            let validationText = "";
-            let userInputs = [];
-            
-            Sk.configure({
-                output: function(text) { 
-                    outputDiv.appendChild(document.createTextNode(text));
-                    outputDiv.scrollTop = outputDiv.scrollHeight;
-                    outputText += text; 
-                    validationText += text;
-                },
-                read: function(x) {
-                    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
-                        throw "File not found: '" + x + "'";
-                    return Sk.builtinFiles["files"][x];
-                },
-                inputfun: function(prompt) {
-                    return new Promise((resolve) => {
-                        // Clean up double prompt if it exists in the output div
-                        if (outputDiv.lastChild && outputDiv.lastChild.nodeType === 3) {
-                            let lastText = outputDiv.lastChild.textContent;
-                            if (lastText.endsWith(prompt)) {
-                                outputDiv.lastChild.textContent = lastText.substring(0, lastText.length - prompt.length);
-                            }
-                        }
-
-                        const container = document.createElement('div');
-                        container.className = 'colab-input-container';
-                        container.innerHTML = `
-                            <span class="colab-prompt">${prompt}</span>
-                            <input type="text" class="colab-input" autocomplete="off">
-                        `;
-                        outputDiv.appendChild(container);
-                        
-                        const inputField = container.querySelector('.colab-input');
-                        inputField.focus();
-                        
-                        inputField.addEventListener('keydown', (e) => {
-                            if (e.key === 'Enter') {
-                                const val = inputField.value;
-                                userInputs.push(val);
-                                container.remove();
-                                // Add back the prompt and the answer to the output box permanently
-                                outputDiv.appendChild(document.createTextNode(prompt + val + ""));
-                                outputText += prompt + val + "";
-                                // Do NOT add prompt/input to validationText!
-                                resolve(val);
-                            }
-                        });
-                    });
-                }
-            });
-
-            const myPromise = Sk.misceval.asyncToPromise(function() {
-                return Sk.importMainWithBody("<stdin>", false, prog, true);
-            });
-
-            myPromise.then(function(mod) {
-                if (!outputDiv.innerHTML) outputDiv.innerText = outputText;
-                
-                const cleanOutput = validationText.trim().toLowerCase();
-                let cleanExpected = expected.toString().trim().toLowerCase();
-
-                // Dynamic Validation Logic
-                if (userInputs.length > 0) {
-                    if (id === 'input') {
-                        cleanExpected = `welcome to ${userInputs[0].trim()}`.toLowerCase();
-                    } else if (id === 'int') {
-                        let num = parseInt(userInputs[0]);
-                        if (!isNaN(num)) {
-                            cleanExpected = (num * 2).toString().toLowerCase();
-                        }
-                    }
-                }
-
-                if (id === 'comment') {
-                    if (progInput.includes('#')) {
-                        feedback.innerHTML = "✓ Perfect! You've used a comment correctly. 🎉";
-                        feedback.className = "feedback correct";
-                        triggerConfetti();
-                    } else {
-                        feedback.innerHTML = "✗ Missing Comment! Use the '#' symbol.";
-                    }
-                } else if (id === 'doc') {
-                    const hasDoc = progInput.includes('"""') || progInput.includes("'''");
-                    const hasDef = progInput.includes('def total_likes');
-                    if (!hasDef) {
-                        feedback.innerHTML = "✗ Function 'total_likes' not defined.";
-                    } else if (!hasDoc) {
-                        feedback.innerHTML = "✗ Missing Docstring! Use triple quotes.";
-                    } else {
-                        feedback.innerHTML = "✓ Great! You've documented your function correctly. 🎉";
-                        feedback.className = "feedback correct";
-                        triggerConfetti();
-                    }
-                } else if (id === 'complex') {
-                    const hasDoc = progInput.includes('"""') || progInput.includes("'''");
-                    const hasComment = progInput.includes('#');
-                    const hasDef = progInput.includes('def calculate_net');
-                    const correctOutput = cleanOutput.includes('850');
-
-                    if (!hasDef) {
-                        feedback.innerHTML = "✗ Function 'calculate_net' not defined.";
-                    } else if (!hasDoc) {
-                        feedback.innerHTML = "✗ Missing Docstring! Use triple quotes.";
-                    } else if (!hasComment) {
-                        feedback.innerHTML = "✗ Missing Comment! Use # symbol.";
-                    } else if (!correctOutput) {
-                        feedback.innerHTML = "✗ Calculation or Print error. Expected 850.";
-                    } else {
-                        feedback.innerHTML = "✓ Exceptional work! Professional documentation and logic verified. 🎉";
-                        feedback.className = "feedback correct";
-                        triggerConfetti();
-                    }
-                } else if (cleanOutput.includes(cleanExpected)) {
-                    feedback.innerHTML = "✓ Correct! Your code works perfectly. 🎉";
-                    feedback.className = "feedback correct";
-                    triggerConfetti();
-                } else {
-                    feedback.innerHTML = `✗ Wrong! Expected result not found.`;
-                    feedback.className = "feedback wrong";
-                }
-                feedback.style.display = "block";
-            }, function(err) {
-                outputDiv.innerText += "" + err.toString();
-                feedback.innerHTML = "✗ Error in your code!";
-                feedback.className = "feedback wrong";
-                feedback.style.display = "block";
-            });
-        }
-
-        function resetCodingPractice(id) {
-            const textarea = document.getElementById(`coding-ans-${id}`);
-            const output = document.getElementById(`coding-output-${id}`);
-            const feedback = document.getElementById(`coding-feedback-${id}`);
-            
-            if (textarea) textarea.value = "";
-            if (output) {
-                output.innerHTML = "";
-                output.classList.remove('active');
-            }
+        }, function (err) {
+            outputDiv.innerText += '' + err.toString();
             if (feedback) {
-                feedback.style.display = "none";
-                feedback.className = "feedback";
+                feedback.innerHTML = '&#x2717; Error in your code!';
+                feedback.className = 'feedback wrong';
+                feedback.style.display = 'block';
             }
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js">
+        });
+    }
+
+    function resetCode(id) {
+        const ta = document.getElementById('coding-ans-' + id);
+        const op = document.getElementById('coding-output-' + id);
+        const fb = document.getElementById('coding-feedback-' + id);
+        if (ta) ta.value = '';
+        if (op) { op.innerHTML = ''; op.classList.remove('active'); }
+        if (fb) { fb.style.display = 'none'; fb.className = 'feedback'; }
+    }
+</script>
+
+</body>
+</html>

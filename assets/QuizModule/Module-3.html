@@ -7,708 +7,1088 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px;
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #eff6ff;
+            --bg-page: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #cbd5e1;
+            --success: #10b981;
         }
-
-                        :root {
-            --primary-blue: #1c1d1f;
-            --brand-python: #a435f0;
-            --accent-blue: #a435f0;
-            --bg-light: #ffffff;
-            --text-main: #1c1d1f;
-            --text-muted: #6a6f73;
-            --border-color: #d1d7dc;
-            --white: #ffffff;
-        }
-
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Outfit', sans-serif; background-color: var(--bg-page); color: var(--text-main); line-height: 1.7; }
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-light);
-            color: #0f172a;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            line-height: 1.6;
+        /* NAVBAR */
+        .navbar { height: 68px; background: white; padding: 0 2.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .logout-btn { background: #ef4444; color: white; padding: 9px 22px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 13px; }
+
+        /* LAYOUT */
+        .layout-container { display: flex; align-items: flex-start; max-width: 1360px; margin: 90px auto 60px; gap: 30px; padding: 20px 20px 0; }
+
+        /* SIDEBAR */
+        .sidebar { width: 270px; flex: 0 0 270px; position: sticky; top: 90px; z-index: 100; }
+        .sidebar-inner { background: white; border-radius: 14px; padding: 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+        .sidebar h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin: 0 0 12px; font-weight: 700; }
+        .sidebar a { display: flex; align-items: center; gap: 10px; padding: 10px 13px; text-decoration: none; color: #475569; font-weight: 500; font-size: 14px; border-radius: 9px; transition: all 0.2s; margin-bottom: 3px; }
+        .sidebar a:hover { background: var(--primary-light); color: var(--primary); }
+        .sidebar a.active { background: var(--primary-light); color: var(--primary); font-weight: 700; }
+        .sidebar a i { width: 18px; text-align: center; font-size: 13px; }
+
+        /* MAIN */
+        .main-content { flex: 1; min-width: 0; }
+
+        /* LESSON CARD */
+        .lesson-card { background: white; border-radius: 16px; padding: 36px 40px; margin-bottom: 28px; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: transform 0.25s, box-shadow 0.25s; }
+        .lesson-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+
+        /* SECTION HEADER */
+        .section-header { margin-bottom: 28px; padding-bottom: 18px; border-bottom: 2px solid #e2e8f0; }
+        .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 14px; letter-spacing: -0.5px; }
+        .section-header h2 i { background: var(--primary-light); color: var(--primary); width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+        .section-header p { margin-top: 6px; margin-bottom: 0; color: var(--primary); font-weight: 600; font-size: 14px; }
+
+        /* TYPOGRAPHY */
+        h3 { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; margin: 36px 0 14px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        h4 { font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 700; color: #4f46e5; margin: 24px 0 12px; display: flex; align-items: center; gap: 9px; }
+        p { margin-bottom: 14px; font-size: 16px; color: #475569; line-height: 1.7; }
+        strong { color: var(--text-main); }
+        code { background: #f1f5f9; padding: 2px 7px; border-radius: 4px; font-family: 'Fira Code', monospace; font-weight: 700; color: #ef4444; font-size: 14px; }
+
+        /* INTERACTION BOXES */
+        .interaction-box { background: #f8fafc; border-radius: 12px; padding: 20px 22px; margin: 14px 0; border: 1px solid var(--border); }
+        .interaction-box.blue   { border-color: #3b82f6; background: #f0f7ff; }
+        .interaction-box.green  { border-color: #10b981; background: #f0fdf8; }
+        .interaction-box.amber  { border-color: #f59e0b; background: #fffbf0; }
+        .interaction-box.red    { border-color: #ef4444; background: #fff5f5; }
+        .interaction-box.purple { border-color: #8b5cf6; background: #faf5ff; }
+        .interaction-box h4 { margin-top: 0; font-size: 16px; }
+        .interaction-box.blue h4   { color: #2563eb; }
+        .interaction-box.green h4  { color: #059669; }
+        .interaction-box.amber h4  { color: #d97706; }
+        .interaction-box.red h4    { color: #dc2626; }
+        .interaction-box.purple h4 { color: #7c3aed; }
+
+        /* CODE BLOCKS — LIGHT */
+        pre { background: #f1f5f9; color: #1e293b; padding: 18px 20px; border-radius: 10px; margin: 12px 0; font-family: 'Fira Code', monospace; font-size: 13.5px; line-height: 1.75; overflow-x: auto; border: 1px solid #e2e8f0; }
+        .kw  { color: #1d4ed8; font-weight: 700; }
+        .fn  { color: #9333ea; font-weight: 600; }
+        .st  { color: #15803d; }
+        .nm  { color: #0369a1; font-weight: 700; }
+        .cm  { color: #94a3b8; font-style: italic; }
+
+        /* OUTPUT / NOTE */
+        .output-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid var(--success); padding: 13px 18px; border-radius: 8px; font-family: 'Fira Code', monospace; font-size: 13.5px; margin: 12px 0; color: #065f46; font-weight: 600; }
+        .note-box { background: #fefce8; border: 1px solid #fde68a; border-left: 4px solid #f59e0b; padding: 13px 18px; border-radius: 8px; font-size: 15px; margin: 14px 0; color: #92400e; }
+        .note-box strong { color: #78350f; }
+        .important-box { background: #fef2f2; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 13px 18px; border-radius: 8px; font-size: 15px; margin: 14px 0; color: #991b1b; }
+
+        /* CONTENT LIST */
+        .content-list { list-style: none; margin: 10px 0 14px; padding: 0; }
+        .content-list li { position: relative; padding: 7px 0 7px 26px; color: #475569; font-size: 15px; border-bottom: 1px solid #f1f5f9; }
+        .content-list li:last-child { border-bottom: none; }
+        .content-list li::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: 800; }
+
+        /* DIFF TABLE */
+        .diff-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; margin: 18px 0; }
+        .diff-table th { background: var(--primary); color: white; padding: 13px 16px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; }
+        .diff-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; background: white; }
+        .diff-table tr:last-child td { border-bottom: none; }
+        .diff-table tr:nth-child(even) td { background: #f8fafc; }
+
+        /* MODE TABLE */
+        .mode-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; margin: 18px 0; }
+        .mode-table th { background: var(--primary); color: white; padding: 12px 16px; font-size: 13px; font-weight: 700; text-transform: uppercase; text-align: left; }
+        .mode-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; background: white; }
+        .mode-table tr:last-child td { border-bottom: none; }
+        .mode-table td:first-child { font-family: 'Fira Code', monospace; font-weight: 700; color: #dc2626; background: #fef2f2; }
+        .mode-table tr:nth-child(2) td:first-child { background: #fef2f2; }
+        .mode-table tr:nth-child(3) td:first-child { background: #fef2f2; }
+        .mode-table tr:nth-child(4) td:first-child { background: #fef2f2; }
+        .mode-table tr:nth-child(5) td:first-child { background: #f0fdf4; color: #15803d; }
+        .mode-table tr:nth-child(6) td:first-child { background: #f0fdf4; color: #15803d; }
+
+        /* QUIZ CARD */
+        .quiz-card { background: white; border-radius: 14px; padding: 28px 32px; margin: 20px 0; border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .quiz-card .q-number { background: var(--primary); color: white; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; display: inline-block; margin-bottom: 12px; }
+        .quiz-card .q-text { font-size: 16px; font-weight: 600; color: var(--text-main); margin-bottom: 14px; }
+        .quiz-card .q-type-badge { display: inline-block; background: #f0fdf4; color: #15803d; border: 1px solid #86efac; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* MCQ OPTIONS — interactive */
+        .quiz-card .q-options { list-style: none; margin: 0 0 14px; padding: 0; }
+        .quiz-card .q-options li {
+            padding: 11px 16px; border-radius: 10px; font-size: 15px; margin-bottom: 8px;
+            border: 1.5px solid #e2e8f0; color: #475569; cursor: pointer;
+            transition: all 0.18s; user-select: none;
         }
+        .quiz-card .q-options li:hover:not(.answered) { background: var(--primary-light); border-color: #93c5fd; color: var(--primary); }
+        .quiz-card .q-options li.selected-correct { background: #f0fdf4; border-color: #86efac; color: #15803d; font-weight: 700; pointer-events: none; }
+        .quiz-card .q-options li.selected-wrong   { background: #fef2f2; border-color: #fca5a5; color: #dc2626; font-weight: 700; pointer-events: none; }
+        .quiz-card .q-options li.reveal-correct   { background: #f0fdf4; border-color: #86efac; color: #15803d; font-weight: 700; pointer-events: none; }
+        .quiz-card .q-options li.disabled         { pointer-events: none; opacity: 0.55; }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 3rem;
-            background: #ffffff;
-            border-bottom: 1px solid var(--border-color);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
+        /* ANSWER REVEAL — hidden by default */
+        .quiz-card .answer-reveal {
+            background: var(--primary-light); border: 1px solid #bfdbfe;
+            border-radius: 8px; padding: 10px 14px; font-size: 14px;
+            font-weight: 700; color: var(--primary);
+            display: none;
         }
+        .quiz-card .answer-reveal.visible { display: block; }
 
-        .navbar-left { display: flex; align-items: center; gap: 1.5rem; }
-        .kvj-logo-img { max-height: 35px; width: auto; }
-
-        .logout-btn {
-            background: #dc2626; color: white; padding: 8px 18px;
-            text-decoration: none; font-size: 12px; font-weight: 700;
-            border-radius: 6px; transition: opacity 0.3s; text-transform: uppercase;
+        /* TRUE/FALSE + FILL + CODE COMPARE — submit button */
+        .quiz-submit-row { margin-top: 12px; }
+        .btn-quiz-submit {
+            background: var(--primary); color: white; border: none;
+            padding: 9px 22px; border-radius: 9px; font-weight: 700; font-size: 14px;
+            cursor: pointer; transition: all 0.2s;
         }
+        .btn-quiz-submit:hover { background: var(--primary-dark); }
+        .btn-quiz-submit:disabled { background: #94a3b8; cursor: default; }
 
-        .header-banner {
-            background: var(--primary-blue);
-            color: white;
-            padding: 120px 20px 60px; text-align: center;
+        /* TRUE/FALSE buttons */
+        .tf-options { display: flex; gap: 12px; margin: 10px 0 14px; }
+        .tf-btn {
+            flex: 1; padding: 11px; border-radius: 10px; font-size: 15px; font-weight: 700;
+            border: 1.5px solid #e2e8f0; cursor: pointer; background: white; color: #475569;
+            transition: all 0.18s;
         }
+        .tf-btn:hover:not(:disabled) { background: var(--primary-light); border-color: #93c5fd; color: var(--primary); }
+        .tf-btn.selected-correct { background: #f0fdf4; border-color: #86efac; color: #15803d; pointer-events: none; }
+        .tf-btn.selected-wrong   { background: #fef2f2; border-color: #fca5a5; color: #dc2626; pointer-events: none; }
+        .tf-btn.reveal-correct   { background: #f0fdf4; border-color: #86efac; color: #15803d; pointer-events: none; }
+        .tf-btn:disabled { pointer-events: none; }
 
-        .header-banner h1 {
-            font-family: 'Montserrat', sans-serif; font-size: 38px;
-            font-weight: 900; letter-spacing: -1px; text-transform: uppercase;
-        }
+        /* FILL IN THE BLANK */
+        .fill-input { width: 100%; padding: 10px 14px; border-radius: 9px; border: 1.5px solid #cbd5e1; font-size: 15px; font-family: 'Fira Code', monospace; margin: 10px 0 10px; outline: none; transition: all 0.2s; }
+        .fill-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,64,175,0.1); }
+        .fill-input.correct-input { border-color: #86efac; background: #f0fdf4; color: #15803d; }
+        .fill-input.wrong-input   { border-color: #fca5a5; background: #fef2f2; color: #dc2626; }
+        .fill-result { font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 8px; margin-top: 6px; display: none; }
+        .fill-result.correct { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; display: block; }
+        .fill-result.wrong   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; display: block; }
 
-        .layout-container {
-            display: flex; max-width: 1400px;
-            margin: 40px auto; gap: 40px; width: 95%; padding-bottom: 60px;
-        }
+        /* CODE COMPARE */
+        .code-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+        .code-compare .opt { border-radius: 10px; overflow: hidden; border: 2px solid #e2e8f0; cursor: pointer; transition: all 0.18s; }
+        .code-compare .opt:hover:not(.opted) { border-color: #93c5fd; transform: translateY(-2px); }
+        .code-compare .opt .opt-label { background: #f1f5f9; padding: 8px 14px; font-size: 13px; font-weight: 700; color: #475569; }
+        .code-compare .opt.selected-correct { border-color: #86efac; }
+        .code-compare .opt.selected-correct .opt-label { background: #f0fdf4; color: #15803d; }
+        .code-compare .opt.selected-wrong   { border-color: #fca5a5; }
+        .code-compare .opt.selected-wrong .opt-label   { background: #fef2f2; color: #dc2626; }
+        .code-compare .opt.reveal-correct   { border-color: #86efac; }
+        .code-compare .opt.reveal-correct .opt-label   { background: #f0fdf4; color: #15803d; }
 
-        .sidebar {
-            width: 300px; background: #ffffff; padding: 30px;
-            border: 1px solid var(--border-color); position: sticky;
-            top: 100px; border-radius: 12px; height: fit-content;
-        }
+        /* PRACTICE CARD */
+        .practice-card { background: white; border-radius: 16px; padding: 30px 34px; margin: 24px 0; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+        .practice-card h3 { color: var(--text-main); margin-top: 0; font-size: 18px; }
+        .task-label { display: inline-block; background: var(--primary-light); color: var(--primary-dark); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .badge-try-it { background: #1e293b; color: #fff; padding: 7px 15px; border-radius: 8px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; margin-bottom: 14px; }
+        .badge-try-it i { font-size: 10px; color: #38bdf8; }
 
-        .sidebar h3 {
-            font-family: 'Montserrat', sans-serif; font-size: 12px;
-            color: var(--primary-blue); text-transform: uppercase;
-            margin-bottom: 20px; border-bottom: 2px solid var(--bg-light);
-            padding-bottom: 10px; font-weight: 800; letter-spacing: 1px;
-        }
+        /* CODING */
+        .coding-practice textarea { width: 100%; height: 110px; background: #ffffff; color: #1e293b; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 12px 14px; font-family: 'Fira Code', monospace; font-size: 14px; margin: 0 0 12px; outline: none; resize: vertical; transition: all 0.2s; }
+        .coding-practice textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,64,175,0.1); }
+        .btn-run { background: var(--primary); color: white; padding: 10px 22px; border-radius: 9px; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: all 0.2s; }
+        .btn-run:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-reset { background: #f1f5f9; color: #475569; padding: 10px 22px; border-radius: 9px; font-weight: 700; font-size: 14px; border: 1.5px solid var(--border); cursor: pointer; margin-left: 8px; }
+        .terminal-label { font-size: 12px; font-weight: 800; color: #475569; margin-top: 16px; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 7px; }
+        .terminal-label i { font-size: 10px; color: #38bdf8; }
+        .live-output-box { background: #f3f4f6; color: #1e293b; padding: 12px 16px; border-radius: 9px; margin-top: 8px; font-family: 'Fira Code', monospace; font-size: 13px; min-height: 36px; display: none; border: 1.5px solid #d1d5db; }
+        .live-output-box.active { display: block; }
+        .feedback { margin-top: 10px; padding: 10px 14px; border-radius: 8px; font-weight: 600; font-size: 14px; display: none; }
+        .feedback.correct { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; display: block; }
+        .feedback.wrong   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; display: block; }
 
-        .sidebar a {
-            display: block; padding: 12px 15px;
-            color: #334155; text-decoration: none; font-size: 14px;
-            font-weight: 500; margin-bottom: 5px; border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .sidebar a.active {
-            color: var(--primary-blue); font-weight: 700;
-            background: #f1f5f9; border-left: 4px solid var(--primary-blue);
-        }
-
-        .sidebar a:hover:not(.active) { background: #f8fafc; color: var(--primary-blue); }
-
-        .main-content {
-            flex: 1; background: #ffffff; border: 1px solid var(--border-color);
-            padding: 40px 60px; border-radius: 12px;
-        }
-
-        .section-header { margin-bottom: 30px; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; margin-top: 40px; }
-        .section-header:first-child { margin-top: 0; }
-        .section-header h2 { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; }
-        
-        p { margin-bottom: 25px; color: #334155; font-size: 17px; }
-        strong { color: var(--primary-blue); font-weight: 700; }
-        
-        .content-list { list-style: none; margin-bottom: 25px; }
-        .content-list li { position: relative; padding-left: 28px; margin-bottom: 12px; color: #334155; font-size: 16px; }
-        .content-list li::before { content: "✓"; position: absolute; left: 0; color: #10b981; font-weight: 800; }
-
-        .interaction-box { background: #f8fafc; border-left: 5px solid #a435f0; padding: 25px; margin: 30px 0; border-radius: 8px; font-size: 16px; border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        pre { background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; margin: 25px 0; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto; line-height: 1.5; }
-        .number { color: #1e3a8a; font-weight: 800; }
-        .function { color: #f472b6; }
-        .string { color: #10b981; }
-        .keyword { color: #fbbf24; }
-
-        /* Dark UI for Practice */
-        .practice-card {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 30px;
-            margin: 40px 0;
-            color: #f8fafc;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-        .practice-card h3 { margin-top: 0; color: #1e3a8a; font-weight: 800; font-size: 22px; font-weight: 700; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
-        .practice-card p { color: #e2e8f0; font-size: 16px; margin-bottom: 20px; }
-        .practice-card strong { color: #f8fafc; font-weight: 800; }
-        
-        .coding-practice textarea {
-            width: 100%; height: 120px;
-            background: #0f172a; color: #1e3a8a; font-weight: 800;
-            border: 1px solid #0ea5e9; border-radius: 8px;
-            padding: 15px; font-family: 'Fira Code', monospace; font-size: 14px;
-            margin-bottom: 15px; outline: none; resize: vertical;
-        }
-        .btn-run { background: #38bdf8; color: #0f172a; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: transform 0.2s; margin-right: 10px; }
-        .btn-reset { background: #334155; color: #f8fafc; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
-        .live-output-box { background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; margin-top: 15px; font-family: 'Fira Code', monospace; font-size: 13px; min-height: 40px; display: none; border: 1px solid #334155; }
-        .feedback { margin-top: 15px; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 14px; display: none; }
-        .feedback.correct { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid #10b981; display: block; }
-        .feedback.wrong { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; display: block; }
-
-        .quiz-cta {
-            margin-top: 60px; padding: 40px;
-            background: var(--primary-blue);
-            border-radius: 12px; text-align: center;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
-        }
-        .quiz-cta h3 { color: white; margin-top: 0; font-size: 24px; font-family: 'Montserrat', sans-serif; font-weight: 800; }
-        .quiz-cta p { color: rgba(255,255,255,0.9); margin-bottom: 25px; }
-        .btn-start-quiz {
-            display: inline-block; background: #ffffff; color: var(--primary-blue);
-            text-decoration: none; padding: 16px 40px; border-radius: 30px;
-            font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: 1px;
-            transition: all 0.2s;
-        }
-        .btn-start-quiz:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
             .layout-container { flex-direction: column; }
-            .sidebar { width: 100%; position: static; }
-            .main-content { padding: 30px; }
-            .navbar { padding: 1rem 1.5rem; }
+            .sidebar { width: 100%; flex: none; position: static; }
+            .code-compare { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="navbar-left">
-            <img src="Kvj logo.jpeg" alt="KVJ Logo" class="kvj-logo-img">
+<nav class="navbar">
+    <div><img src="Kvj logo.jpeg" alt="KVJ Logo" style="height:40px;"></div>
+    <a href="roadmap.html" class="logout-btn">EXIT</a>
+</nav>
+
+<div class="layout-container">
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+            <h3 style="color:var(--primary);font-weight:800;margin-top:0;margin-bottom:15px;"><i class="fas fa-map-signs"></i> MODULE PATH</h3>
+            <a href="Module-1.html"><i class="fas fa-book-open"></i> 01 Foundation</a>
+            <a href="Module-2.html"><i class="fas fa-code-branch"></i> 02 Flow Control</a>
+            <a href="Module-3.html" class="active"><i class="fas fa-exchange-alt"></i> 03 I/O Operations</a>
+            <a href="Module-4.html"><i class="fas fa-file-alt"></i> 04 Documentation</a>
+            <a href="Module-5.html"><i class="fas fa-exclamation-triangle"></i> 05 Error Handling</a>
+            <a href="Module-6.html"><i class="fas fa-cubes"></i> 06 Built-in Modules</a>
+            <h3 style="margin-top:28px;margin-bottom:14px;"><i class="fas fa-compass"></i> NAVIGATION</h3>
+            <a href="#section-31"><i class="fas fa-keyboard"></i> 3.1 Input and Output</a>
+            <a href="#section-32"><i class="fas fa-terminal"></i> 3.2 Command Line Args</a>
+            <a href="#section-33"><i class="fas fa-folder-open"></i> 3.3 File Handling</a>
+            <a href="#quiz-31"><i class="fas fa-question-circle"></i> Quiz 3.1</a>
+            <a href="#quiz-32"><i class="fas fa-question-circle"></i> Quiz 3.2</a>
+            <a href="#quiz-33"><i class="fas fa-question-circle"></i> Quiz 3.3</a>
+            <a href="roadmap.html" style="background:#f8fafc;border:1px solid var(--border);margin-top:8px;"><i class="fas fa-arrow-left"></i> Return to Roadmap</a>
         </div>
-        <a href="roadmap.html" class="logout-btn">EXIT</a>
-    </nav>
+    </aside>
 
-    <header class="header-banner">
-        <h1>Module 3: I/O Operations</h1>
-    </header>
+    <main class="main-content">
 
-    <div class="layout-container">
-        <aside class="sidebar">
-            <h3>Module Path</h3>
-            <a href="Module-1.html">01 Foundation</a>
-            <a href="Module-2.html">02 Flow Control</a>
-            <a href="Module-3.html" class="active">03 I/O Operations</a>
-            <a href="Module-4.html">04 Documentation</a>
-            <a href="Module-5.html">05 Error Handling</a>
-            <a href="Module-6.html">06 Built-in Modules</a>
+        <!-- MODULE HEADER -->
+        <div class="section-header">
+            <h2><i class="fas fa-exchange-alt"></i> MODULE 3</h2>
+            <p>Input/Output Operations and File Handling</p>
+        </div>
 
-            <h3 style="margin-top:35px;">Navigation</h3>
-            <a href="roadmap.html" style="background: #f8fafc;">&larr; Return to Roadmap</a>
-        </aside>
-
-        <main class="main-content">
+        <!-- ══════════════════════════════════════
+             3.1  INPUT AND OUTPUT
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="section-31">
             <div class="section-header">
-                <h2>MODULE 3 – INPUT AND OUTPUT OPERATIONS</h2>
-                <p style="font-weight: 600; color: var(--secondary-blue);">Python Certification Course – Module 3</p>
+                <h2>3.1 Input and Output</h2>
             </div>
-            
-                    <h3>Introduction to Input and Output</h3>
-                    <p>In previous modules, programs used fixed values inside the code.</p>
-                    <p>However, real-world programs must:</p>
-                    <ul>
-                        <li>Accept information from users</li>
-                        <li>Read data from files</li>
-                        <li>Store results permanently</li>
-                        <li>Display information clearly</li>
-                    </ul>
-                    <p>This interaction between a program and external sources is called Input and Output (I/O).</p>
-                    <p>Examples in business applications:</p>
-                    <ul>
-                        <li>Entering customer information</li>
-                        <li>Recording sales transactions</li>
-                        <li>Reading financial records from files</li>
-                        <li>Generating reports</li>
-                    </ul>
-                    <p>Python supports two main types of input/output:</p>
-                    <p>1. Console Input and Output</p>
-                    <p>2. File Input and Output</p>
+
+            <!-- INPUT -->
+            <h3><i class="fas fa-keyboard"></i> Input</h3>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-info-circle"></i> What is Input?</h4>
+                <p>Input means giving data or information to a program.</p>
+                <p>In Python, users can enter data using the keyboard while the program is running.</p>
+            </div>
+
+            <h3><i class="fas fa-terminal"></i> input() Function</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-cog"></i> How input() Works</h4>
+                <p>The <code>input()</code> function is used to take data from the user through the keyboard.</p>
+                <p>The value entered by the user is stored in a variable.</p>
+                <ul class="content-list">
+                    <li><code>input()</code> → function used to take input</li>
+                    <li><code>"message"</code> → text shown to the user</li>
+                    <li>The entered value is returned and stored in a variable</li>
+                </ul>
+                <pre><span class="fn">name</span> = <span class="fn">input</span>(<span class="st">"Enter your name: "</span>)
+<span class="fn">print</span>(<span class="st">"Hello,"</span>, name)</pre>
+                <div class="output-box">Enter your name: Rahul<br>Hello, Rahul</div>
+            </div>
+
+            <!-- TRY THIS -->
+            <div class="practice-card">
+                <h3><i class="fas fa-laptop-code"></i> Try This Example</h3>
+                <span class="task-label">Practice</span>
+                <p>Write a program that asks for a name and prints a greeting.</p>
+                <div class="badge-try-it"><i class="fas fa-terminal"></i> Try It</div>
+                <div class="coding-practice">
+                    <textarea id="coding-ans-input-try" placeholder="# Write your code here..."></textarea>
+                    <button class="btn-run" onclick="runCode('input-try', 'Hello')">▶ Run</button>
+                    <button class="btn-reset" onclick="resetCode('input-try')">↺ Reset</button>
+                    <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                    <div class="live-output-box" id="coding-output-input-try"></div>
+                    <div class="feedback" id="coding-feedback-input-try"></div>
+                </div>
+            </div>
+
+            <!-- DEFAULT DATATYPE -->
+            <h3><i class="fas fa-database"></i> Default Datatype of input()</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-info-circle"></i> Always Returns String</h4>
+                <p>The <code>input()</code> function stores all values as string (<code>str</code>) by default.</p>
+                <p>Even if the user enters:</p>
+                <ul class="content-list">
+                    <li>numbers</li>
+                    <li>decimal values</li>
+                </ul>
+                <p>Python stores them as text.</p>
+                <pre><span class="cm"># User types: 25</span>
+<span class="fn">age</span> = <span class="fn">input</span>(<span class="st">"Enter your age: "</span>)
+<span class="fn">print</span>(<span class="fn">type</span>(age))   <span class="cm"># &lt;class 'str'&gt;</span></pre>
+                <div class="output-box">&lt;class 'str'&gt;</div>
+            </div>
+
+            <!-- WHY STRING -->
+            <div class="interaction-box">
+                <h4><i class="fas fa-question-circle"></i> Why Does input() Store Data as String?</h4>
+                <p>Python treats keyboard input as text by default because users can enter:</p>
+                <ul class="content-list">
+                    <li>letters</li>
+                    <li>numbers</li>
+                    <li>symbols</li>
+                </ul>
+                <p>So Python safely stores everything as string.</p>
+            </div>
+
+            <!-- DATATYPE CONVERSION -->
+            <h3><i class="fas fa-exchange-alt"></i> Datatype Conversion</h3>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-random"></i> What is Datatype Conversion?</h4>
+                <p>Datatype conversion means changing one datatype into another datatype.</p>
+                <p>Python provides built-in functions for conversion.</p>
+                <p>Common conversions:</p>
+                <ul class="content-list">
+                    <li><code>int()</code> → integer</li>
+                    <li><code>float()</code> → decimal number</li>
+                </ul>
+            </div>
+
+            <div class="interaction-box green">
+                <h4><i class="fas fa-sort-numeric-up"></i> int()</h4>
+                <p>The <code>int()</code> function converts a string value into an integer.</p>
+                <pre><span class="fn">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter your age: "</span>))
+<span class="fn">print</span>(age + <span class="nm">5</span>)</pre>
+                <div class="output-box">Enter your age: 20<br>25</div>
+
+                <h4 style="margin-top:18px;"><i class="fas fa-question-circle"></i> Why int() is Important?</h4>
+                <p><code>int()</code> is mainly used for:</p>
+                <ul class="content-list">
+                    <li>addition</li>
+                    <li>subtraction</li>
+                    <li>multiplication</li>
+                    <li>division</li>
+                </ul>
+                <p>because arithmetic operations need numeric datatype.</p>
+            </div>
+
+            <div class="interaction-box purple">
+                <h4><i class="fas fa-dot-circle"></i> float()</h4>
+                <p>The <code>float()</code> function converts a value into a decimal number.</p>
+                <pre><span class="fn">price</span> = <span class="fn">float</span>(<span class="fn">input</span>(<span class="st">"Enter price: "</span>))
+<span class="fn">print</span>(price * <span class="nm">2</span>)</pre>
+                <div class="output-box">Enter price: 9.5<br>19.0</div>
+
+                <h4 style="margin-top:18px;"><i class="fas fa-question-circle"></i> Why float() is Important?</h4>
+                <p><code>float()</code> is important because it allows Python to work with decimal values.</p>
+                <p>It is mainly used when calculations contain:</p>
+                <ul class="content-list">
+                    <li>decimal numbers</li>
+                    <li>fractional values</li>
+                    <li>accurate measurements</li>
+                </ul>
+            </div>
+
+            <!-- MULTIPLE INPUTS -->
+            <h3><i class="fas fa-layer-group"></i> Multiple Inputs</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-list-ol"></i> Taking More Than One Input</h4>
+                <p>Multiple inputs allow users to enter more than one value.</p>
+                <p>Programs often need multiple details from users.</p>
+                <pre><span class="fn">name</span> = <span class="fn">input</span>(<span class="st">"Enter your name: "</span>)
+<span class="fn">age</span>  = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter your age: "</span>))
+<span class="fn">print</span>(<span class="st">f"Hello </span>{name}<span class="st">, you are </span>{age}<span class="st"> years old."</span>)</pre>
+                <div class="output-box">Enter your name: Rahul<br>Enter your age: 22<br>Hello Rahul, you are 22 years old.</div>
+            </div>
+
+            <!-- OUTPUT -->
+            <h3><i class="fas fa-desktop"></i> Output</h3>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-info-circle"></i> What is Output?</h4>
+                <p>Output means displaying information or results to the user.</p>
+                <p>Python uses the <code>print()</code> function to display output.</p>
+            </div>
+
+            <!-- PRINT -->
+            <h3><i class="fas fa-print"></i> print() Function</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-cog"></i> What print() Can Display</h4>
+                <p>The <code>print()</code> function is used to display:</p>
+                <ul class="content-list">
+                    <li>text</li>
+                    <li>numbers</li>
+                    <li>variables</li>
+                    <li>results</li>
+                </ul>
+                <p>on the screen.</p>
+                <pre><span class="fn">print</span>(<span class="st">"Hello, World!"</span>)
+<span class="fn">print</span>(<span class="nm">42</span>)
+<span class="fn">x</span> = <span class="nm">10</span>
+<span class="fn">print</span>(x)</pre>
+                <div class="output-box">Hello, World!<br>42<br>10</div>
+            </div>
+
+            <!-- OUTPUT FORMATTING -->
+            <h3><i class="fas fa-align-left"></i> Output Formatting</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-info-circle"></i> Why Format Output?</h4>
+                <p>Output formatting is used to display output in a neat and readable format.</p>
+                <p>It improves the appearance of program output.</p>
+                <p>Python provides:</p>
+                <ul class="content-list">
+                    <li><code>string.format()</code></li>
+                    <li><code>f-String</code></li>
+                </ul>
+            </div>
+
+            <!-- STRING FORMAT -->
+            <div class="interaction-box green">
+                <h4><i class="fas fa-code"></i> string.format()</h4>
+                <p>The <code>format()</code> method inserts values into placeholders <code>{}</code> inside a string.</p>
+                <ul class="content-list">
+                    <li><code>{}</code> is called placeholder</li>
+                    <li><code>format(name)</code> inserts the value inside the placeholder</li>
+                    <li><code>"Rahul"</code> replaces <code>{}</code></li>
+                </ul>
+                <pre><span class="fn">name</span> = <span class="st">"Rahul"</span>
+<span class="fn">sales</span> = <span class="nm">5000</span>
+<span class="fn">print</span>(<span class="st">"Employee: {}, Sales: {}"</span>.<span class="fn">format</span>(name, sales))</pre>
+                <div class="output-box">Employee: Rahul, Sales: 5000</div>
+            </div>
+
+            <!-- F-STRING -->
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-bolt"></i> f-String</h4>
+                <p>f-String is a modern and simple method used for formatted output.</p>
+                <p>It uses:</p>
+                <ul class="content-list">
+                    <li><code>f</code> before the string</li>
+                    <li>variables inside <code>{}</code></li>
+                </ul>
+                <pre><span class="fn">name</span> = <span class="st">"Rahul"</span>
+<span class="fn">sales</span> = <span class="nm">5000</span>
+<span class="fn">print</span>(<span class="st">f"Employee: {name}, Sales: {sales}"</span>)</pre>
+                <div class="output-box">Employee: Rahul, Sales: 5000</div>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="practice-card">
+                <h3><i class="fas fa-laptop-code"></i> Coding Practice: Input &amp; Output</h3>
+                <span class="task-label">Challenge</span>
+                <p>Write a program that asks for a <code>city</code> and prints <code>"Welcome to {city}"</code> using an f-string.</p>
+                <div class="badge-try-it"><i class="fas fa-terminal"></i> Try It</div>
+                <div class="coding-practice">
+                    <textarea id="coding-ans-io1" placeholder="# Write your code here..."></textarea>
+                    <button class="btn-run" onclick="runCode('io1','Welcome to')">▶ Run</button>
+                    <button class="btn-reset" onclick="resetCode('io1')">↺ Reset</button>
+                    <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                    <div class="live-output-box" id="coding-output-io1"></div>
+                    <div class="feedback" id="coding-feedback-io1"></div>
+                </div>
+            </div>
+        </div><!-- end 3.1 -->
 
 
+        <!-- ══════════════════════════════════════
+             3.2  COMMAND LINE ARGUMENTS
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="section-32">
             <div class="section-header">
-                <h2>3.1 Console Input and Output</h2>
+                <h2>3.2 Command Line Argument</h2>
             </div>
-            <p>Console input allows a program to receive information directly from the user.</p>
-            <p>Console output allows the program to display results to the user.</p>
 
-            <h3>Reading Input from Console</h3>
-            <p>The input() function reads user input from the keyboard.</p>
-            <p><strong>Example</strong></p>
-<pre>
-name = <span class="function">input</span>(<span class="string">"Enter your name: "</span>)
-<span class="function">print</span>(<span class="string">"Hello"</span>, name)
-</pre>
-            <p><strong>Sample Run</strong></p>
-            <div class="output-box" style="background: #f8fafc; color: #1e293b; border-color: #e2e8f0;">
-                Enter your name: Rahul<br>
-                Hello Rahul
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-info-circle"></i> What are Command Line Arguments?</h4>
+                <p>Command line arguments are values passed to a Python program while running the program from the command prompt or terminal.</p>
+                <p>These values are given after the Python file name.</p>
+                <p>Command line arguments help programs receive input directly during execution.</p>
             </div>
+
+            <!-- EXAMPLE -->
+            <h3><i class="fas fa-code"></i> Example</h3>
             <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                The program waits for the user to type a value.<br>
-                The value entered by the user is stored in the variable name.<br><br>
-                input() always returns string data.
+                <h4><i class="fas fa-briefcase"></i> Business Scenario</h4>
+                <p>Suppose a company wants to generate reports for different employees.</p>
+                <p>Instead of changing the program every time, command line arguments can be used to pass the employee name directly:</p>
+                <pre><span class="cm"># Run from terminal:</span>
+python report.py Rahul</pre>
+                <p>Here: <strong>Rahul</strong> is the command line argument.</p>
             </div>
 
-            <!-- Coding Practice: input -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: Input</h3>
-                <p><strong>Challenge:</strong> Write a program that asks for a <code>city</code> and prints <code>"Welcome to {city}"</code>.</p>
-                <textarea id="coding-ans-input" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('input', 'Welcome to Kochi')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('input')">Reset</button>
-                <div id="coding-output-input" class="live-output-box"></div>
-                <div id="coding-feedback-input" class="feedback"></div>
+            <!-- WHY IMPORTANT -->
+            <h3><i class="fas fa-question-circle"></i> Why Command Line Arguments are Important?</h3>
+            <div class="interaction-box green">
+                <h4><i class="fas fa-check-circle"></i> Benefits</h4>
+                <p>Command line arguments are useful because:</p>
+                <ul class="content-list">
+                    <li>programs become flexible</li>
+                    <li>users can give values directly</li>
+                    <li>useful in automation</li>
+                    <li>no need to modify code repeatedly</li>
+                </ul>
             </div>
 
-            <h3>Converting Input Values</h3>
-            <p>Since input() returns a string, we must convert it if we want to perform calculations.</p>
-            <p><strong>Example</strong></p>
-<pre>
-age = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter your age: "</span>))
-<span class="function">print</span>(age + <span class="number">5</span>)
-</pre>
-            <p><strong>Sample Run</strong></p>
-            <div class="output-box" style="background: #f8fafc; color: #1e293b; border-color: #e2e8f0;">
-                Enter your age: 20<br>
-                25
+            <!-- SYS MODULE -->
+            <h3><i class="fas fa-cubes"></i> sys Module</h3>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-cog"></i> Using sys.argv</h4>
+                <p>Python provides the <code>sys</code> module to work with command line arguments.</p>
+                <p>The <code>sys.argv</code> list stores all arguments passed to the program.</p>
+                <pre><span class="kw">import</span> sys
+<span class="fn">print</span>(sys.argv)</pre>
+                <p><strong>If executed as:</strong> <code>python test.py Rahul 22</code></p>
+                <div class="output-box">['test.py', 'Rahul', '22']</div>
+                <ul class="content-list">
+                    <li><code>test.py</code> → program name</li>
+                    <li><code>Rahul</code> → first argument</li>
+                    <li><code>22</code> → second argument</li>
+                </ul>
+                <p>Python stores all values inside a list.</p>
             </div>
+
+            <!-- DEFAULT DATATYPE -->
+            <h3><i class="fas fa-database"></i> Default Datatype of Command Line Arguments</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-font"></i> Always String by Default</h4>
+                <p>All command line arguments are stored as string (<code>str</code>) datatype by default.</p>
+                <pre><span class="kw">import</span> sys
+<span class="fn">print</span>(<span class="fn">type</span>(sys.argv[<span class="nm">1</span>]))   <span class="cm"># &lt;class 'str'&gt;</span></pre>
+            </div>
+
+            <!-- DATATYPE CONVERSION -->
+            <h3><i class="fas fa-exchange-alt"></i> Datatype Conversion</h3>
             <div class="interaction-box">
-                int() converts it into an integer, allowing arithmetic operations.
-            </div>
-            <!-- Coding Practice: int conversion -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: Type Conversion</h3>
-                <p><strong>Challenge:</strong> Take a number input and print the result of that number multiplied by 2. (Remember to use <code>int()</code>).</p>
-                <textarea id="coding-ans-int" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('int', '10')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('int')">Reset</button>
-                <div id="coding-output-int" class="live-output-box"></div>
-                <div id="coding-feedback-int" class="feedback"></div>
-            </div>
-
-            <h3>Multiple Inputs</h3>
-            <p>Programs can accept several inputs from users.</p>
-            <p><strong>Example</strong></p>
-<pre>
-price = <span class="function">float</span>(<span class="function">input</span>(<span class="string">"Enter product price: "</span>))
-quantity = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter quantity sold: "</span>))
-total_sales = price * quantity
-<span class="function">print</span>(<span class="string">"Total Sales:"</span>, total_sales)
-</pre>
-            <p><strong>Sample Run</strong></p>
-            <div class="output-box" style="background: #f8fafc; color: #1e293b; border-color: #e2e8f0;">
-                Enter product price: 50<br>
-                Enter quantity sold: 10<br>
-                Total Sales: 500
-            </div>
-            <div class="interaction-box">
-                <strong>Business example:</strong><br>
-                This can represent sales transaction calculations.
+                <h4><i class="fas fa-random"></i> Converting Command Line Arguments</h4>
+                <p>Datatype conversion means changing one datatype into another datatype.</p>
+                <p>In command line arguments, all values are stored as strings (<code>str</code>) by default.</p>
+                <p>To perform arithmetic operations like:</p>
+                <ul class="content-list">
+                    <li>addition</li>
+                    <li>subtraction</li>
+                    <li>multiplication</li>
+                    <li>division</li>
+                </ul>
+                <p>the values must be converted into numeric datatypes such as <code>int</code> or <code>float</code>.</p>
+                <p>Otherwise, Python treats the values as text instead of numbers.</p>
+                <pre><span class="kw">import</span> sys
+<span class="fn">num1</span> = <span class="fn">int</span>(sys.argv[<span class="nm">1</span>])
+<span class="fn">num2</span> = <span class="fn">int</span>(sys.argv[<span class="nm">2</span>])
+<span class="fn">print</span>(num1 + num2)</pre>
+                <p><strong>Run as:</strong> <code>python calc.py 10 20</code></p>
+                <div class="output-box">30</div>
             </div>
 
-            <h3>Formatted Output using format()</h3>
-            <p>The format() function allows structured output.</p>
-            <p><strong>Example</strong></p>
-<pre>
-name = <span class="string">"Rahul"</span>
-sales = <span class="number">5000</span>
-<span class="function">print</span>(<span class="string">"Employee: {}, Sales: {}"</span>.<span class="function">format</span>(name, sales))
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Employee: Rahul, Sales: 5000</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                {} are placeholders that are replaced by values passed to format().
-            </div>
+            <!-- DIFFERENCE TABLE -->
+            <h3><i class="fas fa-balance-scale"></i> Difference between input() and Command Line Argument</h3>
+            <table class="diff-table">
+                <thead>
+                    <tr><th>Feature</th><th>input()</th><th>Command Line Argument</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>When is input given?</td><td>While the program is running</td><td>Before the program starts</td></tr>
+                    <tr><td>How is it given?</td><td>Typed in the console</td><td>Typed in the terminal with the command</td></tr>
+                    <tr><td>Where is it stored?</td><td>In a variable</td><td>In <code>sys.argv</code> list</td></tr>
+                    <tr><td>Default datatype</td><td>String</td><td>String</td></tr>
+                    <tr><td>Module needed?</td><td>No</td><td>Yes — <code>import sys</code></td></tr>
+                    <tr><td>Use case</td><td>Interactive programs</td><td>Automation and scripting</td></tr>
+                </tbody>
+            </table>
+        </div><!-- end 3.2 -->
 
-            <h3>f-Strings (Modern Method)</h3>
-            <p>A simpler way to format output is using f-strings.</p>
-            <p><strong>Example</strong></p>
-<pre>
-name = <span class="string">"Rahul"</span>
-sales = <span class="number">5000</span>
-<span class="function">print</span>(<span class="string">f"Employee: {name}, Sales: {sales}"</span>)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Employee: Rahul, Sales: 5000</div>
-            <div class="interaction-box">
-                This method is commonly used in modern Python programs.
-            </div>
-            <!-- Coding Practice: f-string -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: f-Strings</h3>
-                <p><strong>Challenge:</strong> Create two variables <code>item = "Tablet"</code> and <code>price = 300</code>. Print <code>"Tablet costs 300"</code> using an f-string.</p>
-                <textarea id="coding-ans-fstring" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('fstring', 'Tablet costs 300')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('fstring')">Reset</button>
-                <div id="coding-output-fstring" class="live-output-box"></div>
-                <div id="coding-feedback-fstring" class="feedback"></div>
-            </div>
 
-            <!-- Coding Practice 1 -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: I/O Greeting</h3>
-                <p><strong>Challenge:</strong> Write a program that takes a name using <code>input()</code> and prints a greeting <code>"Hello {name}!"</code> using an <strong>f-string</strong>.</p>
-                <textarea id="coding-ans-1" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt(1, 'Hello Student!')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice(1)">Reset</button>
-                <div id="coding-output-1" class="live-output-box"></div>
-                <div id="coding-feedback-1" class="feedback"></div>
-            </div>
-
-            <h3>Command-Line Arguments</h3>
-            <p>Sometimes programs receive input when the script is executed.</p>
-            <p>This is done using the <strong>sys</strong> module.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">import</span> sys
-<span class="function">print</span>(sys.argv)
-</pre>
-            <p><strong>If executed as:</strong></p>
-            <code>python script.py Rahul 25</code>
-            <p><strong>Output</strong></p>
-            <div class="output-box">['script.py', 'Rahul', '25']</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                sys.argv stores command-line inputs in a list.<br>
-                First element &rarr; script name<br>
-                Remaining elements &rarr; user inputs
-            </div>
-
+        <!-- ══════════════════════════════════════
+             3.3  FILE HANDLING
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="section-33">
             <div class="section-header">
-                <h2>3.2 File Input and Output</h2>
+                <h2>3.3 File Handling</h2>
             </div>
-            <p>File handling allows programs to store and retrieve data permanently.</p>
-            <p>Examples in business systems:</p>
-            <ul>
-                <li>Storing transaction records</li>
-                <li>Saving reports</li>
-                <li>Reading financial datasets</li>
-            </ul>
 
-            <h3>Opening a File</h3>
-            <p>Files must be opened before reading or writing.</p>
-            <p><strong>Example</strong></p>
-<pre>
-file = <span class="function">open</span>(<span class="string">"data.txt"</span>, <span class="string">"w"</span>)
-file.<span class="function">close</span>()
-</pre>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-info-circle"></i> What is File Handling?</h4>
+                <p>File handling is an important part of any web application.</p>
+                <p>Python has several functions for creating, reading, updating, and deleting files.</p>
+            </div>
+
+            <!-- OPEN FUNCTION -->
+            <h3><i class="fas fa-folder-open"></i> Functions</h3>
             <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                "w" means write mode.<br>
-                If the file does not exist, Python creates it.
+                <h4><i class="fas fa-key"></i> The open() Function</h4>
+                <p>The key function for working with files in Python is the <code>open()</code> function.</p>
+                <p>The <code>open()</code> function takes two parameters: <strong>filename</strong>, and <strong>mode</strong>.</p>
             </div>
 
-            <h3>Writing to a File</h3>
-            <p><strong>Example</strong></p>
-<pre>
-file = <span class="function">open</span>(<span class="string">"data.txt"</span>, <span class="string">"w"</span>)
-file.<span class="function">write</span>(<span class="string">"Monthly Sales Report"</span>)
-file.<span class="function">close</span>()
-</pre>
-            <p><strong>File Content</strong></p>
-            <div class="output-box">Monthly Sales Report</div>
+            <!-- FILE MODES -->
+            <h3><i class="fas fa-list"></i> File Opening Modes</h3>
+            <p>There are four different methods (modes) for opening a file:</p>
+            <table class="mode-table">
+                <thead>
+                    <tr><th>Mode</th><th>Name</th><th>Description</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>"r"</td><td>Read</td><td>Default value. Opens a file for reading, error if the file does not exist</td></tr>
+                    <tr><td>"a"</td><td>Append</td><td>Opens a file for appending, creates the file if it does not exist</td></tr>
+                    <tr><td>"w"</td><td>Write</td><td>Opens a file for writing, creates the file if it does not exist</td></tr>
+                    <tr><td>"x"</td><td>Create</td><td>Creates the specified file, returns an error if the file exists</td></tr>
+                    <tr><td>"t"</td><td>Text</td><td>Default value. Text mode</td></tr>
+                    <tr><td>"b"</td><td>Binary</td><td>Binary mode (e.g. images)</td></tr>
+                </tbody>
+            </table>
+            <p>In addition you can specify if the file should be handled as binary or text mode:</p>
+
+            <!-- FILE OPEN -->
+            <h3><i class="fas fa-file"></i> File Open</h3>
+            <div class="interaction-box green">
+                <h4><i class="fas fa-server"></i> Open a File on the Server</h4>
+                <p>Assume we have the following file, located in the same folder as Python:</p>
+                <pre><span class="cm"># demofile.txt content:</span>
+Hello! Welcome to demofile.txt
+This file is for testing purposes.</pre>
+
+                <h4 style="margin-top:18px;"><i class="fas fa-shield-alt"></i> Using the with Statement</h4>
+                <p>You can also use the <code>with</code> statement when opening a file:</p>
+                <pre><span class="kw">with</span> <span class="fn">open</span>(<span class="st">"demofile.txt"</span>) <span class="kw">as</span> f:
+    <span class="fn">print</span>(f.<span class="fn">read</span>())</pre>
+                <p>Then you do not have to worry about closing your files, the <code>with</code> statement takes care of that.</p>
+            </div>
+
+            <!-- CLOSE FILES -->
+            <h3><i class="fas fa-times-circle"></i> Close Files</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-lock"></i> Always Close Your Files</h4>
+                <p>It is a good practice to always close the file when you are done with it.</p>
+                <p>If you are not using the <code>with</code> statement, you must write a close statement in order to close the file:</p>
+                <pre>f = <span class="fn">open</span>(<span class="st">"demofile.txt"</span>, <span class="st">"r"</span>)
+<span class="fn">print</span>(f.<span class="fn">read</span>())
+f.<span class="fn">close</span>()</pre>
+                <div class="note-box"><strong>Note:</strong> You should always close your files. In some cases, due to buffering, changes made to a file may not show until you close the file.</div>
+            </div>
+
+            <!-- READ PARTS -->
             <div class="interaction-box">
-                write() stores text inside the file.
-            </div>
-            <!-- Coding Practice: write mode -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: File Write</h3>
-                <p><strong>Challenge:</strong> Simulate writing the text "Hello World" to a file named <code>data.txt</code> by printing the message <strong>"Writing Hello World to data.txt"</strong>.</p>
-                <p><strong>Note:</strong> File operations are simulated in this environment. In a real Python program, you would open the file using <strong>'w' mode</strong>.</p>
-                <textarea id="coding-ans-write" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('write', 'Writing Hello World to data.txt')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('write')">Reset</button>
-                <div id="coding-output-write" class="live-output-box"></div>
-                <div id="coding-feedback-write" class="feedback"></div>
+                <h4><i class="fas fa-cut"></i> Read Only Parts of the File</h4>
+                <p>By default the <code>read()</code> method returns the whole text, but you can also specify how many characters you want to return:</p>
+                <pre>f = <span class="fn">open</span>(<span class="st">"demofile.txt"</span>, <span class="st">"r"</span>)
+<span class="fn">print</span>(f.<span class="fn">read</span>(<span class="nm">5</span>))   <span class="cm"># reads first 5 characters</span></pre>
+                <div class="output-box">Hello</div>
             </div>
 
-            <h3>Reading from a File</h3>
-            <p><strong>Example</strong></p>
-<pre>
-file = <span class="function">open</span>(<span class="string">"data.txt"</span>, <span class="string">"r"</span>)
-content = file.<span class="function">read</span>()
-<span class="function">print</span>(content)
-file.<span class="function">close</span>()
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">Monthly Sales Report</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                "r" means read mode.<br>
-                read() retrieves file content.
+            <!-- FILE WRITE -->
+            <h3><i class="fas fa-pen"></i> File Write</h3>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-edit"></i> Write to an Existing File</h4>
+                <p>To write to an existing file, you must add a parameter to the <code>open()</code> function:</p>
+                <ul class="content-list">
+                    <li><code>"a"</code> — Append — will append to the end of the file</li>
+                    <li><code>"w"</code> — Write — will overwrite any existing content</li>
+                </ul>
+                <pre><span class="cm"># Append to existing file</span>
+f = <span class="fn">open</span>(<span class="st">"demofile.txt"</span>, <span class="st">"a"</span>)
+f.<span class="fn">write</span>(<span class="st">"Now the file has more content!"</span>)
+f.<span class="fn">close</span>()</pre>
+
+                <h4 style="margin-top:18px;"><i class="fas fa-eraser"></i> Overwrite Existing Content</h4>
+                <p>To overwrite the existing content to the file, use the <code>w</code> parameter:</p>
+                <pre>f = <span class="fn">open</span>(<span class="st">"demofile.txt"</span>, <span class="st">"w"</span>)
+f.<span class="fn">write</span>(<span class="st">"Woops! I have deleted the content!"</span>)
+f.<span class="fn">close</span>()</pre>
+                <div class="note-box"><strong>Note:</strong> the "w" method will overwrite the entire file.</div>
             </div>
 
-            <h3>Appending to a File</h3>
-            <p>Append mode allows adding data without deleting existing data.</p>
-            <p><strong>Example</strong></p>
-<pre>
-file = <span class="function">open</span>(<span class="string">"data.txt"</span>, <span class="string">"a"</span>)
-file.<span class="function">write</span>(<span class="string">"Total Revenue: 50000"</span>)
-file.<span class="function">close</span>()
-</pre>
-            <p><strong>Updated File</strong></p>
-            <div class="output-box">
-                Monthly Sales Report<br>
-                Total Revenue: 50000
-            </div>
-            <div class="interaction-box">
-                "a" mode adds new content to the end of the file.
-            </div>
-            <!-- Coding Practice: append mode -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: File Append</h3>
-                <p><strong>Challenge:</strong> What is the mode for appending to a file? Print the letter.</p>
-                <textarea id="coding-ans-append" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('append', 'a')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('append')">Reset</button>
-                <div id="coding-output-append" class="live-output-box"></div>
-                <div id="coding-feedback-append" class="feedback"></div>
+            <!-- CREATE FILE -->
+            <h3><i class="fas fa-file-plus"></i> Create a New File</h3>
+            <div class="interaction-box green">
+                <h4><i class="fas fa-plus-circle"></i> Creating Files</h4>
+                <p>To create a new file in Python, use the <code>open()</code> method, with one of the following parameters:</p>
+                <ul class="content-list">
+                    <li><code>"x"</code> — Create — will create a file, returns an error if the file exists</li>
+                    <li><code>"a"</code> — Append — will create a file if the specified file does not exist</li>
+                    <li><code>"w"</code> — Write — will create a file if the specified file does not exist</li>
+                </ul>
+                <pre><span class="cm"># Create a new file</span>
+f = <span class="fn">open</span>(<span class="st">"myfile.txt"</span>, <span class="st">"x"</span>)</pre>
+                <div class="note-box"><strong>Note:</strong> If the file already exists, an error will be raised.</div>
             </div>
 
-            <h3>Using with Statement (Best Practice)</h3>
-            <p>A better method is using with.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"data.txt"</span>, <span class="string">"r"</span>) <span class="keyword">as</span> file:
-    content = file.<span class="function">read</span>()
-    <span class="function">print</span>(content)
-</pre>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                The with statement automatically closes the file, preventing errors.
+            <!-- DELETE FILE -->
+            <h3><i class="fas fa-trash"></i> Delete File</h3>
+            <div class="interaction-box red">
+                <h4><i class="fas fa-trash-alt"></i> Deleting a File</h4>
+                <p>To delete a file, you must import the OS module, and run its <code>os.remove()</code> function:</p>
+                <pre><span class="kw">import</span> os
+os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
             </div>
+        </div><!-- end 3.3 -->
 
-            <h3>Checking if a File Exists</h3>
-            <p>Before reading a file, it is safer to check if it exists.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">import</span> os
-<span class="function">print</span>(os.path.exists(<span class="string">"data.txt"</span>))
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">True</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                This helps prevent FileNotFoundError.
-            </div>
 
-            <h3>Deleting a File</h3>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">import</span> os
-os.<span class="function">remove</span>(<span class="string">"data.txt"</span>)
-</pre>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                os.remove() permanently deletes the file.<br>
-                Programs should always check if the file exists before deleting.
-            </div>
-
+        <!-- ══════════════════════════════════════
+             QUIZ 3.1
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="quiz-31">
             <div class="section-header">
-                <h2>Integrated Business Example</h2>
-            </div>
-            <p>Example: Storing sales data.</p>
-<pre>
-<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"sales.txt"</span>, <span class="string">"w"</span>) <span class="keyword">as</span> file:
-    file.<span class="function">write</span>(<span class="string">"500070009000"</span>)
-
-<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"sales.txt"</span>, <span class="string">"r"</span>) <span class="keyword">as</span> file:
-    data = file.<span class="function">read</span>()
-
-<span class="function">print</span>(<span class="string">"Sales Data:"</span>)
-<span class="function">print</span>(data)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">
-                Sales Data:<br>
-                5000<br>
-                7000<br>
-                9000
-            </div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                The program:<br>
-                1. Writes sales data to a file<br>
-                2. Reads the stored data<br>
-                3. Displays it to the user<br><br>
-                This simulates basic data storage for business transactions.
+                <h2><i class="fas fa-question-circle"></i> Quiz – 3.1 Input and Output</h2>
             </div>
 
-            <!-- Quiz CTA -->
-            <div class="quiz-cta">
-                <h3>I/O Mastery.</h3>
-                <p>Test your knowledge on console and file operations in Python.</p>
-                <a href="module_quiz.html?mod=3" class="btn-start-quiz">Start Module 3 Assessment &rarr;</a>
+            <!-- Q1 MCQ -->
+            <div class="quiz-card">
+                <span class="q-number">Question 1</span>
+                <p class="q-text">Which function is used to take input from the user in Python?</p>
+                <ul class="q-options" id="q31-1">
+                    <li onclick="answerMCQ('q31-1', this, false)">A. print()</li>
+                    <li onclick="answerMCQ('q31-1', this, true)">B. input()</li>
+                    <li onclick="answerMCQ('q31-1', this, false)">C. read()</li>
+                    <li onclick="answerMCQ('q31-1', this, false)">D. write()</li>
+                </ul>
+                <div class="answer-reveal" id="q31-1-ans">✓ Answer: B. input()</div>
             </div>
-        </main>
-    </div>
 
-    <script>
-        function triggerConfetti() {
-            var duration = 3 * 1000;
-            var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            <!-- Q2 True/False -->
+            <div class="quiz-card">
+                <span class="q-number">Question 2</span>
+                <span class="q-type-badge">True / False</span>
+                <p class="q-text">The print() function is used to display output on the screen.</p>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="answerTF('q31-2', this, true, true)">✓ True</button>
+                    <button class="tf-btn" onclick="answerTF('q31-2', this, false, true)">✗ False</button>
+                </div>
+                <div class="answer-reveal" id="q31-2-ans">✓ Answer: True</div>
+            </div>
 
-            function randomInRange(min, max) {
-                return Math.random() * (max - min) + min;
-            }
+            <!-- Q3 Fill in the Blank -->
+            <div class="quiz-card">
+                <span class="q-number">Question 3</span>
+                <span class="q-type-badge">Fill in the Blank</span>
+                <p class="q-text">Complete the code to take user input:</p>
+                <pre>name = _______(<span class="st">"Enter your name: "</span>)</pre>
+                <input class="fill-input" id="q31-3-input" placeholder="Type your answer here..." />
+                <div class="quiz-submit-row">
+                    <button class="btn-quiz-submit" onclick="answerFill('q31-3', 'input')">Submit</button>
+                </div>
+                <div class="fill-result" id="q31-3-result"></div>
+                <div class="answer-reveal" id="q31-3-ans">✓ Answer: <code>input</code></div>
+            </div>
 
-            var interval = setInterval(function() {
-                var timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) { return clearInterval(interval); }
-                var particleCount = 50 * (timeLeft / duration);
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-            }, 250);
+            <!-- Q4 Code Compare -->
+            <div class="quiz-card">
+                <span class="q-number">Question 4</span>
+                <span class="q-type-badge">Which Code is Correct?</span>
+                <p class="q-text">Which Code is Correct?</p>
+                <div class="code-compare" id="q31-4">
+                    <div class="opt" onclick="answerCode('q31-4', this, true)">
+                        <div class="opt-label">Option A</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="fn">print</span>(<span class="st">"Welcome"</span>)</pre>
+                    </div>
+                    <div class="opt" onclick="answerCode('q31-4', this, false)">
+                        <div class="opt-label">Option B</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="fn">print</span>[<span class="st">"Welcome"</span>]</pre>
+                    </div>
+                </div>
+                <div class="answer-reveal" id="q31-4-ans">✓ Answer: Option A</div>
+            </div>
+        </div><!-- end quiz 3.1 -->
+
+
+        <!-- ══════════════════════════════════════
+             QUIZ 3.2
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="quiz-32">
+            <div class="section-header">
+                <h2><i class="fas fa-question-circle"></i> Quiz – 3.2 Command Line Argument</h2>
+            </div>
+
+            <!-- Q1 MCQ -->
+            <div class="quiz-card">
+                <span class="q-number">Question 1</span>
+                <p class="q-text">Which module is used for command line arguments in Python?</p>
+                <ul class="q-options" id="q32-1">
+                    <li onclick="answerMCQ('q32-1', this, false)">A. math</li>
+                    <li onclick="answerMCQ('q32-1', this, false)">B. os</li>
+                    <li onclick="answerMCQ('q32-1', this, true)">C. sys</li>
+                    <li onclick="answerMCQ('q32-1', this, false)">D. random</li>
+                </ul>
+                <div class="answer-reveal" id="q32-1-ans">✓ Answer: C. sys</div>
+            </div>
+
+            <!-- Q2 True/False -->
+            <div class="quiz-card">
+                <span class="q-number">Question 2</span>
+                <span class="q-type-badge">True / False</span>
+                <p class="q-text">sys.argv stores command line arguments as a list.</p>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="answerTF('q32-2', this, true, true)">✓ True</button>
+                    <button class="tf-btn" onclick="answerTF('q32-2', this, false, true)">✗ False</button>
+                </div>
+                <div class="answer-reveal" id="q32-2-ans">✓ Answer: True</div>
+            </div>
+
+            <!-- Q3 Fill in the Blank -->
+            <div class="quiz-card">
+                <span class="q-number">Question 3</span>
+                <span class="q-type-badge">Fill in the Blank</span>
+                <p class="q-text">Complete the code:</p>
+                <pre><span class="kw">import</span> sys
+<span class="fn">print</span>(sys.______)</pre>
+                <input class="fill-input" id="q32-3-input" placeholder="Type your answer here..." />
+                <div class="quiz-submit-row">
+                    <button class="btn-quiz-submit" onclick="answerFill('q32-3', 'argv')">Submit</button>
+                </div>
+                <div class="fill-result" id="q32-3-result"></div>
+                <div class="answer-reveal" id="q32-3-ans">✓ Answer: <code>argv</code></div>
+            </div>
+
+            <!-- Q4 Code Compare -->
+            <div class="quiz-card">
+                <span class="q-number">Question 4</span>
+                <span class="q-type-badge">Which Code is Correct?</span>
+                <p class="q-text">Which Code is Correct?</p>
+                <div class="code-compare" id="q32-4">
+                    <div class="opt" onclick="answerCode('q32-4', this, true)">
+                        <div class="opt-label">Option A</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="kw">import</span> sys
+<span class="fn">print</span>(sys.argv[<span class="nm">1</span>])</pre>
+                    </div>
+                    <div class="opt" onclick="answerCode('q32-4', this, false)">
+                        <div class="opt-label">Option B</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="kw">import</span> sys
+<span class="fn">print</span>(sys.argument[<span class="nm">1</span>])</pre>
+                    </div>
+                </div>
+                <div class="answer-reveal" id="q32-4-ans">✓ Answer: Option A</div>
+            </div>
+        </div><!-- end quiz 3.2 -->
+
+
+        <!-- ══════════════════════════════════════
+             QUIZ 3.3
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="quiz-33">
+            <div class="section-header">
+                <h2><i class="fas fa-question-circle"></i> Quiz – 3.3 File Handling</h2>
+            </div>
+
+            <!-- Q1 MCQ -->
+            <div class="quiz-card">
+                <span class="q-number">Question 1</span>
+                <p class="q-text">Which mode is used to read a file?</p>
+                <ul class="q-options" id="q33-1">
+                    <li onclick="answerMCQ('q33-1', this, false)">A. "w"</li>
+                    <li onclick="answerMCQ('q33-1', this, false)">B. "a"</li>
+                    <li onclick="answerMCQ('q33-1', this, true)">C. "r"</li>
+                    <li onclick="answerMCQ('q33-1', this, false)">D. "x"</li>
+                </ul>
+                <div class="answer-reveal" id="q33-1-ans">✓ Answer: C. "r"</div>
+            </div>
+
+            <!-- Q2 True/False -->
+            <div class="quiz-card">
+                <span class="q-number">Question 2</span>
+                <span class="q-type-badge">True / False</span>
+                <p class="q-text">The write() function is used to add data into a file.</p>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="answerTF('q33-2', this, true, true)">✓ True</button>
+                    <button class="tf-btn" onclick="answerTF('q33-2', this, false, true)">✗ False</button>
+                </div>
+                <div class="answer-reveal" id="q33-2-ans">✓ Answer: True</div>
+            </div>
+
+            <!-- Q3 Fill in the Blank -->
+            <div class="quiz-card">
+                <span class="q-number">Question 3</span>
+                <span class="q-type-badge">Fill in the Blank</span>
+                <p class="q-text">Complete the code to open a file in write mode:</p>
+                <pre>file = <span class="fn">open</span>(<span class="st">"students.txt"</span>, ______)</pre>
+                <input class="fill-input" id="q33-3-input" placeholder='Type your answer here e.g. "w"' />
+                <div class="quiz-submit-row">
+                    <button class="btn-quiz-submit" onclick="answerFill('q33-3', '\"w\"', 'w')">Submit</button>
+                </div>
+                <div class="fill-result" id="q33-3-result"></div>
+                <div class="answer-reveal" id="q33-3-ans">✓ Answer: <code>"w"</code></div>
+            </div>
+
+            <!-- Q4 Code Compare -->
+            <div class="quiz-card">
+                <span class="q-number">Question 4</span>
+                <span class="q-type-badge">Which Code is Correct?</span>
+                <p class="q-text">Which Code is Correct?</p>
+                <div class="code-compare" id="q33-4">
+                    <div class="opt" onclick="answerCode('q33-4', this, true)">
+                        <div class="opt-label">Option A</div>
+                        <pre style="margin:0;border-radius:0;border:none;">file = <span class="fn">open</span>(<span class="st">"data.txt"</span>, <span class="st">"r"</span>)
+<span class="fn">print</span>(file.<span class="fn">read</span>())</pre>
+                    </div>
+                    <div class="opt" onclick="answerCode('q33-4', this, false)">
+                        <div class="opt-label">Option B</div>
+                        <pre style="margin:0;border-radius:0;border:none;">file = open[<span class="st">"data.txt"</span>, <span class="st">"r"</span>]
+<span class="fn">print</span>(file.<span class="fn">read</span>())</pre>
+                    </div>
+                </div>
+                <div class="answer-reveal" id="q33-4-ans">✓ Answer: Option A</div>
+            </div>
+
+            <!-- Q5 MCQ -->
+            <div class="quiz-card">
+                <span class="q-number">Question 5</span>
+                <p class="q-text">Which function is used to check whether a file exists?</p>
+                <ul class="q-options" id="q33-5">
+                    <li onclick="answerMCQ('q33-5', this, false)">A. os.remove()</li>
+                    <li onclick="answerMCQ('q33-5', this, true)">B. os.path.exists()</li>
+                    <li onclick="answerMCQ('q33-5', this, false)">C. open()</li>
+                    <li onclick="answerMCQ('q33-5', this, false)">D. read()</li>
+                </ul>
+                <div class="answer-reveal" id="q33-5-ans">✓ Answer: B. os.path.exists()</div>
+            </div>
+
+            <!-- Q6 Fill in the Blank -->
+            <div class="quiz-card">
+                <span class="q-number">Question 6</span>
+                <span class="q-type-badge">Fill in the Blank</span>
+                <p class="q-text">Complete the code to delete a file:</p>
+                <pre><span class="kw">import</span> os
+os._________(<span class="st">"data.txt"</span>)</pre>
+                <input class="fill-input" id="q33-6-input" placeholder="Type your answer here..." />
+                <div class="quiz-submit-row">
+                    <button class="btn-quiz-submit" onclick="answerFill('q33-6', 'remove')">Submit</button>
+                </div>
+                <div class="fill-result" id="q33-6-result"></div>
+                <div class="answer-reveal" id="q33-6-ans">✓ Answer: <code>remove</code></div>
+            </div>
+
+            <!-- Q7 Code Compare -->
+            <div class="quiz-card">
+                <span class="q-number">Question 7</span>
+                <span class="q-type-badge">Which Code is Correct?</span>
+                <p class="q-text">Which Code is Correct?</p>
+                <div class="code-compare" id="q33-7">
+                    <div class="opt" onclick="answerCode('q33-7', this, true)">
+                        <div class="opt-label">Option A</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="kw">with</span> <span class="fn">open</span>(<span class="st">"students.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> file:
+    <span class="fn">print</span>(file.<span class="fn">read</span>())</pre>
+                    </div>
+                    <div class="opt" onclick="answerCode('q33-7', this, false)">
+                        <div class="opt-label">Option B</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="kw">with</span> open[<span class="st">"students.txt"</span>, <span class="st">"r"</span>] <span class="kw">as</span> file:
+    <span class="fn">print</span>(file.<span class="fn">read</span>())</pre>
+                    </div>
+                </div>
+                <div class="answer-reveal" id="q33-7-ans">✓ Answer: Option A</div>
+            </div>
+
+        </div><!-- end quiz 3.3 -->
+
+    </main>
+</div><!-- end layout -->
+
+<script>
+    /* ── SKULPT CODE RUNNER ── */
+    function runCode(id, expected) {
+        const prog = document.getElementById('coding-ans-' + id).value;
+        const outputDiv = document.getElementById('coding-output-' + id);
+        const feedback  = document.getElementById('coding-feedback-' + id);
+        outputDiv.innerHTML = '';
+        outputDiv.classList.add('active');
+        function outf(text) { outputDiv.innerText += text; }
+        function builtinRead(x) {
+            if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined)
+                throw "File not found: '" + x + "'";
+            return Sk.builtinFiles['files'][x];
         }
-
-        function checkPracticeAnswer(id, correctAns) {
-            const userAns = document.getElementById(`practice-ans-${id}`).value.trim().toLowerCase();
-            const feedback = document.getElementById(`feedback-${id}`);
-            
-            const cleanCorrect = correctAns.toLowerCase().replace(/\s/g, '');
-            const cleanUser = userAns.replace(/\s/g, '');
-
-            if (cleanUser === cleanCorrect || cleanUser === cleanCorrect.replace('()', '')) {
-                feedback.innerHTML = "Correct! Great job! 🎉";
-                feedback.className = "feedback correct";
-                triggerConfetti();
+        Sk.configure({ output: outf, read: builtinRead });
+        Sk.misceval.asyncToPromise(() => Sk.importMainWithBody('<stdin>', false, prog, true)).then(function () {
+            const out = outputDiv.innerText.trim();
+            if (out.toLowerCase().includes(expected.toLowerCase())) {
+                if (feedback) feedback.style.display = 'none';
             } else {
-                feedback.innerHTML = "✗ Incorrect. Try again!";
-                feedback.className = "feedback wrong";
+                if (feedback) { feedback.innerHTML = '&#x2717; Output does not match. Try again!'; feedback.className = 'feedback wrong'; feedback.style.display = 'block'; }
             }
+        }, function (err) {
+            outputDiv.innerText += err.toString();
+            if (feedback) { feedback.innerHTML = '&#x2717; Error in your code!'; feedback.className = 'feedback wrong'; feedback.style.display = 'block'; }
+        });
+    }
+    function resetCode(id) {
+        const ta = document.getElementById('coding-ans-' + id);
+        const op = document.getElementById('coding-output-' + id);
+        const fb = document.getElementById('coding-feedback-' + id);
+        if (ta) ta.value = '';
+        if (op) { op.innerHTML = ''; op.classList.remove('active'); }
+        if (fb) { fb.style.display = 'none'; fb.className = 'feedback'; }
+    }
+
+    /* ── MCQ ── */
+    function answerMCQ(listId, clicked, isCorrect) {
+        const list = document.getElementById(listId);
+        if (!list || list.dataset.answered) return;
+        list.dataset.answered = '1';
+        // disable all
+        Array.from(list.children).forEach(li => li.classList.add('disabled'));
+        if (isCorrect) {
+            clicked.classList.remove('disabled');
+            clicked.classList.add('selected-correct');
+        } else {
+            clicked.classList.remove('disabled');
+            clicked.classList.add('selected-wrong');
+            // reveal correct one
+            Array.from(list.children).forEach(li => {
+                li.removeAttribute('onclick');
+            });
+            // find correct li by its onclick (already removed), so mark via data
         }
+        // show answer
+        const ans = document.getElementById(listId + '-ans');
+        if (ans) ans.classList.add('visible');
+    }
 
-        function runSkulpt(id, expected) {
-            const prog = document.getElementById(`coding-ans-${id}`).value;
-            const outputDiv = document.getElementById(`coding-output-${id}`);
-            const feedback = document.getElementById(`coding-feedback-${id}`);
-            
-            outputDiv.innerHTML = "";
-            outputDiv.classList.add('active');
-            feedback.style.display = "none";
-            feedback.className = "feedback";
-
-            let outputText = "";
-            let validationText = "";
-            let userInputs = [];
-            
-            Sk.configure({
-                output: function(text) { 
-                    outputDiv.appendChild(document.createTextNode(text));
-                    outputDiv.scrollTop = outputDiv.scrollHeight;
-                    outputText += text; 
-                    validationText += text;
-                },
-                read: function(x) {
-                    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
-                        throw "File not found: '" + x + "'";
-                    return Sk.builtinFiles["files"][x];
-                },
-                inputfun: function(prompt) {
-                    return new Promise((resolve) => {
-                        // Clean up double prompt if it exists in the output div
-                        if (outputDiv.lastChild && outputDiv.lastChild.nodeType === 3) {
-                            let lastText = outputDiv.lastChild.textContent;
-                            if (lastText.endsWith(prompt)) {
-                                outputDiv.lastChild.textContent = lastText.substring(0, lastText.length - prompt.length);
-                            }
-                        }
-
-                        const container = document.createElement('div');
-                        container.className = 'colab-input-container';
-                        container.innerHTML = `
-                            <span class="colab-prompt">${prompt}</span>
-                            <input type="text" class="colab-input" autocomplete="off">
-                        `;
-                        outputDiv.appendChild(container);
-                        
-                        const inputField = container.querySelector('.colab-input');
-                        inputField.focus();
-                        
-                        inputField.addEventListener('keydown', (e) => {
-                            if (e.key === 'Enter') {
-                                const val = inputField.value;
-                                userInputs.push(val);
-                                container.remove();
-                                // Add back the prompt and the answer to the output box permanently
-                                outputDiv.appendChild(document.createTextNode(prompt + val + ""));
-                                outputText += prompt + val + "";
-                                // Do NOT add prompt/input to validationText!
-                                resolve(val);
-                            }
-                        });
-                    });
-                }
-            });
-
-            const myPromise = Sk.misceval.asyncToPromise(function() {
-                return Sk.importMainWithBody("<stdin>", false, prog, true);
-            });
-
-            myPromise.then(function(mod) {
-                if (!outputDiv.innerHTML) outputDiv.innerText = outputText;
-                
-                const cleanOutput = validationText.trim().toLowerCase();
-                let cleanExpected = expected.trim().toLowerCase();
-
-                // Dynamic Validation Logic
-                if (userInputs.length > 0) {
-                    if (id === 'input') {
-                        // For the city challenge, handle both the user input and the 'Welcome to' wrapper
-                        cleanExpected = `welcome to ${userInputs[0].trim()}`.toLowerCase();
-                    } else if (id === 'int') {
-                        // For the number challenge, compute the expected number
-                        let num = parseInt(userInputs[0]);
-                        if (!isNaN(num)) {
-                            cleanExpected = (num * 2).toString().toLowerCase();
-                        }
-                    } else if (id.toString() === '1') {
-                        // For the name greeting challenge
-                        cleanExpected = `hello ${userInputs[0].trim()}!`.toLowerCase();
-                    }
-                }
-
-                if (cleanOutput.includes(cleanExpected)) {
-                    feedback.innerHTML = "✓ Correct! Your code works perfectly. 🎉";
-                    feedback.className = "feedback correct";
-                    triggerConfetti();
-                } else {
-                    feedback.innerHTML = `✗ Wrong! Expected result not found.`;
-                    feedback.className = "feedback wrong";
-                }
-                feedback.style.display = "block";
-            }, function(err) {
-                outputDiv.innerText += "" + err.toString();
-                feedback.innerHTML = "✗ Error in your code!";
-                feedback.className = "feedback wrong";
-                feedback.style.display = "block";
+    /* ── TRUE / FALSE ── */
+    function answerTF(id, btn, userSaidTrue, correctIsTrue) {
+        const container = btn.closest('.quiz-card');
+        if (container.dataset.answered) return;
+        container.dataset.answered = '1';
+        const btns = container.querySelectorAll('.tf-btn');
+        btns.forEach(b => b.disabled = true);
+        const isCorrect = (userSaidTrue === correctIsTrue);
+        if (isCorrect) {
+            btn.classList.add('selected-correct');
+        } else {
+            btn.classList.add('selected-wrong');
+            // highlight the correct button
+            btns.forEach(b => {
+                const bSaysTrue = b.textContent.includes('True');
+                if (bSaysTrue === correctIsTrue) b.classList.add('reveal-correct');
             });
         }
+        const ans = document.getElementById(id + '-ans');
+        if (ans) ans.classList.add('visible');
+    }
 
-        function resetCodingPractice(id) {
-            const textarea = document.getElementById(`coding-ans-${id}`);
-            const output = document.getElementById(`coding-output-${id}`);
-            const feedback = document.getElementById(`coding-feedback-${id}`);
-            
-            if (textarea) textarea.value = "";
-            if (output) {
-                output.innerHTML = "";
-                output.classList.remove('active');
-            }
-            if (feedback) {
-                feedback.style.display = "none";
-                feedback.className = "feedback";
-            }
+    /* ── FILL IN THE BLANK ── */
+    function answerFill(id, ...acceptedAnswers) {
+        const input  = document.getElementById(id + '-input');
+        const result = document.getElementById(id + '-result');
+        const ans    = document.getElementById(id + '-ans');
+        const btn    = input.closest('.quiz-card').querySelector('.btn-quiz-submit');
+        if (!input || input.disabled) return;
+        const val = input.value.trim().toLowerCase().replace(/['"]/g, '');
+        const isCorrect = acceptedAnswers.some(a => val === a.toLowerCase().replace(/['"]/g, ''));
+        input.disabled = true;
+        if (btn) btn.disabled = true;
+        if (isCorrect) {
+            input.classList.add('correct-input');
+            result.textContent = '✓ Correct!';
+            result.className = 'fill-result correct';
+        } else {
+            input.classList.add('wrong-input');
+            result.textContent = '✗ Not quite. Check the answer below.';
+            result.className = 'fill-result wrong';
         }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js">
+        if (ans) ans.classList.add('visible');
+    }
+
+    /* ── CODE COMPARE ── */
+    function answerCode(containerId, clicked, isCorrect) {
+        const container = document.getElementById(containerId);
+        if (!container || container.dataset.answered) return;
+        container.dataset.answered = '1';
+        const opts = container.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.add('opted'));
+        if (isCorrect) {
+            clicked.classList.add('selected-correct');
+            clicked.querySelector('.opt-label').textContent = '✓ Option ' + clicked.querySelector('.opt-label').textContent.slice(-1) + ' — Correct!';
+        } else {
+            clicked.classList.add('selected-wrong');
+            clicked.querySelector('.opt-label').textContent = '✗ Option ' + clicked.querySelector('.opt-label').textContent.slice(-1) + ' — Wrong';
+            opts.forEach(o => {
+                if (o !== clicked) { o.classList.add('reveal-correct'); o.querySelector('.opt-label').textContent = '✓ Option ' + o.querySelector('.opt-label').textContent.slice(-1) + ' — Correct!'; }
+            });
+        }
+        // remove onclick
+        opts.forEach(o => o.removeAttribute('onclick'));
+        const ans = document.getElementById(containerId + '-ans');
+        if (ans) ans.classList.add('visible');
+    }
+</script>
+
+</body>
+</html>
