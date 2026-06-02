@@ -136,9 +136,9 @@ var dataQuizData = {
         },
         {
             "id": 8,
-            "marks": 1,
+            "marks": 2,
             "type": "MCQ",
-            "q": "What is raw data? (1 Mark)",
+            "q": "What is raw data? (2 Marks)",
             "options": [
                 "Unprocessed Data",
                 "Purely numerical Data",
@@ -215,7 +215,7 @@ var dataQuizData = {
         {
             "id": 2,
             "type": "MCQ2",
-            "q": "You need to create a data view based on aggregations for further visual analysis. Your data includes sales information for the past five years for food products at your company's stores. Each product belongs to one category. For example, milk belongs to the Dairy category.<br><br>The data view must meet the following requirements:<br>â€¢ Include all products and their associated categories.<br>â€¢ Include sales subtotals for each category and year.<br>â€¢ Display a grand total of sales for each category.<br>â€¢ Create a summary of each category for every year.<br><br>Which two aggregation methods should you use to create the data view? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection</span>",
+            "q": "You need to create a data view based on aggregations for further visual analysis. Your data includes sales information for the past five years for food products at your company's stores. Each product belongs to one category. For example, milk belongs to the Dairy category.<br><br>The data view must meet the following requirements:<br><ul><li>Include all products and their associated categories.</li><li>Include sales subtotals for each category and year.</li><li>Display a grand total of sales for each category.</li><li>Create a summary of each category for every year.</li></ul><br>Which two aggregation methods should you use to create the data view? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection</span>",
             "options": [
                 "Filtering",
                 "Pivoting",
@@ -560,27 +560,15 @@ var dataQuizData = {
         },
         {
             "id": 4,
-            "type": "MTF",
-            "q": "Match the type of data analysis on the left to the analysis question it answers on the right. You may use each item once or not at all.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct response.</span>",
+            "type": "MCQ",
+            "q": "A data analyst is working with a dataset where the relationship between two variables is monotonic but not strictly linear, and there are several extreme outliers. Which correlation coefficient would provide a more robust measurement of the relationship?<br><span style='font-size: 13px; color: #64748b;'>2 points</span>",
             "options": [
-                "What happened?",
-                "Why did it happen?",
-                "What should we do next?",
-                "Is there enough evidence to draw a conclusion?"
+                "Pearson Correlation Coefficient",
+                "Spearman Correlation Coefficient",
+                "Modal Correlation Coefficient",
+                "Mean Correlation Coefficient"
             ],
-            "labels": [
-                "Descriptive analysis",
-                "Diagnostic analysis",
-                "Predictive analysis",
-                "Prescriptive analysis",
-                "Hypothesis Testing"
-            ],
-            "a": {
-                "What happened?": "Descriptive analysis",
-                "Why did it happen?": "Diagnostic analysis",
-                "What should we do next?": "Prescriptive analysis",
-                "Is there enough evidence to draw a conclusion?": "Hypothesis Testing"
-            },
+            "a": 1,
             "marks": 2
         },
         {
@@ -1125,9 +1113,9 @@ var dataQuizData = {
         },
         {
             "id": 21,
-            "marks": 4,
+            "marks": 6,
             "type": "TF",
-            "q": "You are analyzing statistics for online and in-store purchases with data collected over the past year. Data collected includes surveys from 300 instore customers and 300 online customers.<br><br>Based on the data visualization below, identify which statements about customer purchases over the last year are correct and which statements are incorrect. Select True if the statement is correct or False if the statement is incorrect.<br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection.</span> (4 Marks)",
+            "q": "You are analyzing statistics for online and in-store purchases with data collected over the past year. Data collected includes surveys from 300 instore customers and 300 online customers.<br><br>Based on the data visualization below, identify which statements about customer purchases over the last year are correct and which statements are incorrect. Select True if the statement is correct or False if the statement is incorrect.<br><br><span style='font-size:12px;font-style:italic;'>Note: You will receive partial credit for each correct selection.</span> (6 Marks)",
             "img": "purchase_stats_comparison.png",
             "options": [
                 "In-store customers spent more money than online customers.",
