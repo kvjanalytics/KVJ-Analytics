@@ -1127,7 +1127,7 @@ var dataQuizData = {
         }
     ],
     "da_mock1": [
-{ 
+        { 
             id: 1, 
             type: "MCQ", 
             q: "What is the direction of correlation between variable X and variable Y based on the scatter plot below?", 
@@ -1522,7 +1522,7 @@ var dataQuizData = {
         }
     ],
     "da_mock2": [
-{ 
+        { 
             id: 1, 
             type: "MCQ", 
             q: "What is an example of data cleaning?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>", 
@@ -1996,7 +1996,7 @@ var dataQuizData = {
             a: [4, 1, 5, 3] 
         },
         {
-                "id": 41,
+                "id": 39,
                 "type": "MCQ",
                 "q": "What is the primary role of 'Training Data' in the development of a Machine Learning model?",
                 "options": [
@@ -2008,7 +2008,7 @@ var dataQuizData = {
                 "a": 1
         },
         {
-                "id": 42,
+                "id": 40,
                 "type": "MCQ",
                 "q": "Which of the following is the most common use case for an AI-powered 'Recommendation Engine'?",
                 "options": [

@@ -449,7 +449,7 @@ var dataQuizData = {
                 "Publishing the data to a public website"
             ],
             "a": 0,
-            "marks": 2
+            "marks": 1
         },
         {
             "id": 17,
@@ -1073,7 +1073,7 @@ var dataQuizData = {
             "type": "DROPDOWN",
             "q": "Which correlation range most likely describes the relationship between Variable X and Variable Y based on the visualization below? Select the correct answer from the dropdown. (1 Mark)",
             "img": "scatter_correlation_v2.png",
-            "code": "Relationship Analysis â†’ [b1]",
+            "code": "Relationship Analysis '†’ [b1]",
             "options": [
                 [
                     "No correlation(r=0.00)",
@@ -1346,9 +1346,9 @@ var dataQuizData = {
         },
         {
             "id": 15,
-            "marks": 2,
+            "marks": 1,
             "type": "MCQ2",
-            "q": "Which two concepts are commonly associated with artificial intelligence (AI) in data analytics?<br><span style='font-size: 15px; font-style: italic;'>Each correct answer presents a complete solution. (Choose 2.)</span> (2 Marks)",
+            "q": "Which two concepts are commonly associated with artificial intelligence (AI) in data analytics?<br><span style='font-size: 15px; font-style: italic;'>Each correct answer presents a complete solution. (Choose 2.)</span> (1 Mark)",
             "options": [
                 "Cost-Benefit Analysis",
                 "Stakeholder Mapping",
@@ -1362,9 +1362,9 @@ var dataQuizData = {
         },
         {
             "id": 16,
-            "marks": 2,
+            "marks": 1,
             "type": "MCQ2",
-            "q": "For which two reasons is it risky to make generalizations from limited sample data?<br><span style='font-size: 15px; font-style: italic;'>Each correct answer presents a complete solution. (Choose 2.)</span> (2 Marks)",
+            "q": "For which two reasons is it risky to make generalizations from limited sample data?<br><span style='font-size: 15px; font-style: italic;'>Each correct answer presents a complete solution. (Choose 2.)</span> (1 Mark)",
             "options": [
                 "Findings from a smaller sample size may not be as precise",
                 "Analyzing data from a smaller sample size is faster",
@@ -1521,533 +1521,650 @@ var dataQuizData = {
         {
             "id": 5,
             "type": "MCQ",
-            "q": "What data structure describes the following data?<br><strong>[â€œAabidâ€, â€œJeseniaâ€, â€œMarkâ€]</strong>",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "List",
-                "Multi-dimensional",
-                "Table",
-                "Graph"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 0
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 6,
-            "type": "MCQ2",
-            "q": "You need to create a data view based on aggregations for further visual analysis. Your data includes sales information for the past five years for food products at your companyâ€™s stores. Each product belongs to one category. For example milk belongs to dairy category. <br><br>The data view must meet the following requirements:<br>â€¢ Include all products and their associated categories<br>â€¢ Include sales sub-total for each category and year<br>â€¢ Display grand total of sales for each category<br>â€¢ Create a summary of each category for every year<br><br>Which <b>two</b> aggregation methods should you use to create the data view? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+            "type": "MCQ",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Pivoting",
-                "Filtering",
-                "Merging",
-                "Grouping"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": [
-                0,
-                3
-            ]
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 7,
-            "type": "DND_PIVOT",
-            "q": "<strong>Statistical Metrics:</strong> You are performing descriptive analysis on quarterly sales data. <br><br>Drag the correct statistical metric from the panel on the left and drop it into the highlighted row cells in the table below.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span><br><br><div style='overflow-x:auto;'><table style='border-collapse:collapse; font-size:13px; width:100%; text-align:center;'><thead><tr style='background:#1e3a5f; color:white;'><th style='padding:8px 12px; border:1px solid #ccc;'>Region</th><th style='padding:8px 12px; border:1px solid #ccc;'>Quarter 1</th><th style='padding:8px 12px; border:1px solid #ccc;'>Quarter 2</th><th style='padding:8px 12px; border:1px solid #ccc;'>Quarter 3</th><th style='padding:8px 12px; border:1px solid #ccc;'>Quarter 4</th></tr></thead><tbody><tr><td style='padding:7px 12px; border:1px solid #ccc;'>North</td><td style='padding:7px 12px; border:1px solid #ccc;'>25,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>30,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>40,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>50,000</td></tr><tr style='background:#f8fafc;'><td style='padding:7px 12px; border:1px solid #ccc;'>South</td><td style='padding:7px 12px; border:1px solid #ccc;'>35,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>45,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>40,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>55,000</td></tr><tr><td style='padding:7px 12px; border:1px solid #ccc;'>East</td><td style='padding:7px 12px; border:1px solid #ccc;'>35,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>32,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>41,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>52,500</td></tr><tr style='background:#f8fafc;'><td style='padding:7px 12px; border:1px solid #ccc;'>West</td><td style='padding:7px 12px; border:1px solid #ccc;'>34,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>30,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>42,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>55,000</td></tr><tr style='background:#dbeafe; font-weight:600;'><td style='padding:7px 12px; border:2px solid #3b82f6; color:#1e3a8a;'>Label 1</td><td style='padding:7px 12px; border:1px solid #ccc;'>129,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>137,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>163,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>212,500</td></tr><tr style='background:#dbeafe; font-weight:600;'><td style='padding:7px 12px; border:2px solid #3b82f6; color:#1e3a8a;'>Label 2</td><td style='padding:7px 12px; border:1px solid #ccc;'>35,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>45,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>42,500</td><td style='padding:7px 12px; border:1px solid #ccc;'>55,000</td></tr><tr style='background:#dbeafe; font-weight:600;'><td style='padding:7px 12px; border:2px solid #3b82f6; color:#1e3a8a;'>Label 3</td><td style='padding:7px 12px; border:1px solid #ccc;'>25,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>30,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>40,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>50,000</td></tr><tr style='background:#dbeafe; font-weight:600;'><td style='padding:7px 12px; border:2px solid #3b82f6; color:#1e3a8a;'>Label 4</td><td style='padding:7px 12px; border:1px solid #ccc;'>35,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>30,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>40,000</td><td style='padding:7px 12px; border:1px solid #ccc;'>55,000</td></tr></tbody></table></div>",
+            "type": "MCQ",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Label 1",
-                "Label 2",
-                "Label 3",
-                "Label 4"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "labels": [
-                "Sum",
-                "Max",
-                "Min",
-                "Mode",
-                "Average",
-                "Median"
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
             ],
-            "a": {
-                "Label 1": "Sum",
-                "Label 2": "Max",
-                "Label 3": "Min",
-                "Label 4": "Mode"
-            }
+            "a": 2
         },
         {
             "id": 8,
             "type": "MCQ",
-            "q": "Which data type can store a phrase or sentence?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Integer",
-                "Character",
-                "String",
-                "Boolean"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
+            ],
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
             ],
             "a": 2
         },
         {
             "id": 9,
-            "type": "MCQ2",
-            "q": "A coworker is having trouble joining two database tables, Table A and Table B, that were imported from CSV files. They say the tables have no common values.<br><br>You troubleshoot the problem and find that the <b>RowKey</b> values in TableA and the <b>RowID</b> values in TableB look identical (e.g., three numbers, a dash, and two letters).<br><br>Which <b>two</b> actions should you complete next? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+            "type": "MCQ",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Verify that the data in the database was imported as a numeric data type",
-                "Trim empty spaces from both of the valid characters",
-                "Visually compare the database values to the CSV values",
-                "Trim empty spaces from only the right side of the valid characters"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": [
-                1,
-                2
-            ]
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 10,
-            "type": "MCQ2",
-            "q": "Each month you need to automatically transform the data from two XML documents into a single flat file with columns and rows that Excel can open and interpret. The document names and structure remain constant. You know the relationship between the two XML documents.<br><br>Which <b>two</b> resources can you use? (Choose 2)<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+            "type": "MCQ",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Json",
-                "Power Query for Excel (M)",
-                "Microsoft Excel",
-                "Python"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": [
-                1,
-                3
-            ]
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 11,
             "type": "MCQ",
-            "q": "What is the goal of data privacy and protection laws such as GDPR, FERPA, and HIPAA?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "To hold violators accountable for mishandling data",
-                "To tax companies that use private data",
-                "To ensure that companies openly share industry data",
-                "To protect companies from liability related to private data"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 0
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 12,
             "type": "MCQ",
-            "q": "You have a small dataset that contains personally identifiable information (PII). You need to provide the data to an outside source for additional processing.<br><br>What could you do to protect the PII but still allow you to eventually relate the additional analysis to your original data?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Employ pseudonymization on the PII and use the pseudonym as the key between the new and original datasets",
-                "Retain every text based PII in the original dataset but convert them to number-based features in the new dataset",
-                "Randomly shuffle the original dataset so that each given piece of PII is no longer associated with a particular user",
-                "Remove every instance of PII in the original dataset and add them back after the new dataset is retrieved"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 0
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 13,
-            "type": "TF",
-            "q": "The visualization and the data table depict housing prices in a region. For each statement about the visualization, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
-            "img": "housing_prices_color_final.png",
+            "type": "MCQ",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "The visualization uses scaling manipulation",
-                "An annual increase of $25,000 occurs between 2016 and 2025",
-                "The visualization accurately depicts the housing prices shown"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": [
-                false,
-                false,
-                true
-            ]
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 14,
             "type": "MCQ",
-            "q": "What is a raw data?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Unprocessed Data",
-                "Purely numerical Data",
-                "Summarized Data",
-                "Visualized Data"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 0
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 15,
             "type": "MCQ",
-            "q": "You are analyzing sales activity that occurs on national holidays.<br><br>What level of data granularity will enable you to perform the most precise analysis?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Years",
-                "Months",
-                "Weeks",
-                "Days",
-                "Hours"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 4
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 16,
             "type": "MCQ",
-            "q": "What is an example of data cleaning?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Arranging Excel data rows in an order that is easy for a user to read",
-                "Ensuring that the data in a Word table uses a consistent font",
-                "Adding quotation marks to the beginning and end of a tab-delimited file",
-                "Removing non-printable characters from a comma-delimited file"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 3
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 17,
             "type": "MCQ",
-            "q": "A popular social media site records and counts clicks, likes, and dislikes and other user interactions.<br><br>What type of data is collected?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Continuous data",
-                "Qualitative data",
-                "Imputed data",
-                "Big data"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 3
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 18,
             "type": "MCQ",
-            "q": "You work for a recreational sports company. The table shows the company's recreational vehicle sales.<br><br>You need to show how each vehicle type contributes to the company's total sales.<br><br>Which visualization should you use? Select the correct visualization in the answer area.",
-            "img": "recreational_sales_table.png",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Option A",
-                "Option B",
-                "Option C",
-                "Option D"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
             "optionImages": [
-                "recreational_pie_chart.png",
-                "recreational_combo_chart.png",
-                "recreational_scatter_plot.png",
-                "recreational_bar_chart.png"
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
             ],
-            "a": 0
+            "a": 2
         },
         {
-            "id": 29,
+            "id": 19,
             "type": "MCQ",
-            "q": "Which area of a PivotTable should you use to create a vertical list of unique values from a specific field?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Columns",
-                "Rows",
-                "Values",
-                "Filters"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 1,
-            "marks": 1
-        },
-        {
-            "id": 129,
-            "type": "MCQ",
-            "q": "You need to find the total revenue for each sales region in a large dataset. Which summary function should you choose in the Value Field Settings of your PivotTable?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
-            "options": [
-                "Average",
-                "Count",
-                "Sum",
-                "Max"
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
             ],
-            "a": 2,
-            "marks": 1
-        },
-        {
-            "id": 229,
-            "type": "MCQ",
-            "q": "How do you update a PivotTable after changing some values in its source data range?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
-            "options": [
-                "It updates automatically almost immediately",
-                "You must delete and recreate the PivotTable",
-                "You must click the Refresh button in the Data or PivotTable Analyze tab",
-                "You must save and close the workbook"
-            ],
-            "a": 2,
-            "marks": 1
+            "a": 2
         },
         {
             "id": 20,
             "type": "MCQ",
-            "q": "Your company has summarized a large data set for the region you live in. You need to compare results from urban and rural communities within your region.<br><br>What is the fastest way to obtain the information?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Collect a new Data Sample",
-                "Review data from neighbouring regions",
-                "Disaggregate the data",
-                "Aggregate the data"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
+            ],
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
             ],
             "a": 2
         },
         {
             "id": 21,
             "type": "MCQ",
-            "q": "What concept allows analysts to drill down into data and examine different levels of information that may be crucial in diagnostic analytics?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Granularity",
-                "Completeness",
-                "Interpretability",
-                "Transparency"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 0
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 22,
-            "type": "TF",
-            "q": "For each statement about the machine learning select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+            "type": "MCQ",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Machine learning can predict the probability of Rain in a region by examining known weather patterns",
-                "Machine learning can help determine whether a candidate will pass an exam without looking at historical scores",
-                "Machine Learning can be used to automatically decline financial purchases based on previous purchase activity"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": [
-                true,
-                false,
-                true
-            ]
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 23,
             "type": "MCQ",
-            "q": "Which Data structure have multiple rows and columns?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Series",
-                "Table",
-                "One-dimensional Array",
-                "List"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 1
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 24,
             "type": "MCQ",
-            "q": "In which scenario will artificial intelligence (AI) provide the greatest benefit?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Predicting maintenance requirements for a international rental car company's fleet vehicles",
-                "Determining the statistical mean, mode, and standard deviation of the grades for a class",
-                "Recording daily sales for the three stores owned by one franchise owner",
-                "Interpreting fundraising sales data for a college soccer team"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 0
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 25,
-            "type": "MTF",
-            "q": "Move each function from the list on the left to the correct description on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>",
+            "type": "MCQ",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Returns the largest value",
-                "Returns the smallest value",
-                "Returns the number of Values",
-                "Returns the total of the values"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "labels": [
-                "Max()",
-                "Min()",
-                "Count()",
-                "Sum()"
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
             ],
-            "a": {
-                "Returns the largest value": "Max()",
-                "Returns the smallest value": "Min()",
-                "Returns the number of Values": "Count()",
-                "Returns the total of the values": "Sum()"
-            }
+            "a": 2
         },
         {
             "id": 26,
             "type": "MCQ",
-            "q": "Person A has 5 coins and person B has 10 coins.<br><br>Which type of data does the number of coins represent?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Ordinal Data",
-                "Metadata",
-                "Qualitative data",
-                "Quantitative data"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 3
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 27,
             "type": "MCQ",
-            "q": "You have a dataset that includes product review scores and demographic information about the reviewers. There are no subcategories associated with the demographic answers. The table shows a selection of the data.<br><br>Which Scenario is an example of disaggregating the dataset?",
-            "img": "disaggregation_dataset_v3.png",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "By average and mode of the scores for each product grouped by the ethnicity of the reviewers",
-                "Display the overall average and mode of all scores on a per-products basis",
-                "Display a list of ethnicities that are included in the other option",
-                "Display the overall average and mode of all scores and a count of all reviews"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
+            ],
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
             ],
             "a": 2
         },
         {
             "id": 28,
-            "type": "MCQ2",
-            "q": "Which two concepts are commonly associated with artificial intelligence (AI) in data analytics?<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 2.)</span>",
+            "type": "MCQ",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Cost-Benefit Analysis",
-                "Stakeholder Mapping",
-                "Automation",
-                "Machine Learning"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": [
-                2,
-                3
-            ]
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 29,
-            "type": "MCQ2",
-            "q": "For which two reasons is it risky to make generalizations from limited sample data?<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection. (Choose 2.)</span>",
+            "type": "MCQ",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Limited data Samples are easier to collect",
-                "A limited sample may not represent a larger population",
-                "Findings from a smaller sample size may not be as precise",
-                "Analyzing data from a smaller sample size is faster"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": [
-                1,
-                2
-            ]
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 30,
             "type": "MCQ",
-            "q": "You are reviewing a database of restaurant menu items. The table below shows a selection of the data.<br>You need to display only items on the dessert menu with a type of cake.<br><br>What should you do to nondestructively limit the data display?",
-            "img": "restaurant_menu_dataset.png",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Group the data by menu and then group the data on the desert menu by type",
-                "Delete all data that has a menu other than desert. Then delete all data that has a type other than cake",
-                "Add two slicers, one for menu and one for type. Set the menu slicer to desert and the type slicer to cake",
-                "Sort the data by menu and within each menu, Sort by type"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
+            ],
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
             ],
             "a": 2
         },
         {
             "id": 31,
             "type": "MCQ",
-            "q": "You want to show a friend your monthly budget breakdown to prove that most of your expenditure is food costs. You create a table that shows the flow of money as it moves one budget category to the next.<br><br>Which visualization type should you use to display your analysis based on the table shown?",
-            "img": "budget_flow_dataset_v2.png",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Time Series Chart",
-                "Correlation Chart",
-                "Sankey Chart",
-                "Classification Chart"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
+            ],
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
             ],
             "a": 2
         },
         {
             "id": 32,
             "type": "MCQ",
-            "q": "The Marketing team wants to know which market segment have the highest sales in the last year.<br><br>Which type of data analysis should they use?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Perspective analytics",
-                "Diagnostic Analytics",
-                "Predictive Analytics",
-                "Descriptive Analytics"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 3
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 33,
             "type": "MCQ",
-            "q": "You Believe Playing video game's increases the chance of man getting heart attack. In your research you notice equal evidences in favouring your hypothesis and opposed to it. You tried hours trying to identify the problems with the evidence opposed to your hypothesis, but readily accept the evidence in favor.<br><br>Which type of bias are you demonstrating?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Motivated Reasoning",
-                "Confirmation Bias",
-                "Anchoring Bias",
-                "Sampling Bias"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 1
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 34,
-            "type": "TF",
-            "q": "<strong>Data Disaggregation:</strong> For each statement about data disaggregation, select True or False.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+            "type": "MCQ",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Data disaggregation provides a summary of the data",
-                "Data disaggregation combines data from different sources",
-                "Data Disaggregation can clarify trends and patterns among subgroups"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": [
-                false,
-                false,
-                true
-            ]
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 35,
             "type": "MCQ",
-            "q": "A college shows you the chart below to indicate that group A has performed significantly better than group B on a recent assignment. You don't know the sample size and the result of the statistical testing.<br><br>Which chart element creates the impression of a significant score difference?",
-            "img": "scaling_manipulation_chart.png",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "The X-axis unit of Measurement",
-                "The Y-Axis unit of measurement",
-                "The Z-Axis Unit of Measurement",
-                "The Color differentiation"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 1
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 36,
             "type": "MCQ",
-            "q": "You conduct a study to identify how much people exercise daily. You recruit all the study participants at the gyms.<br><br>Which type of bias are you demonstrating?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Anchoring bias",
-                "Confirmation Bias",
-                "Motivated Bias",
-                "Sampling bias"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 3
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 37,
             "type": "MCQ",
-            "q": "Which Statement correctly assigns a string to the variable that is name score?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Score=true",
-                "Score=String[7]",
-                "Score=\"&\"",
-                "Score= 7\""
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
+            ],
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
             ],
             "a": 2
         },
         {
             "id": 38,
-            "type": "MTF",
-            "q": "You are using data analytics to help answer business questions about a new product your company released.<br><br>Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>",
+            "type": "MCQ",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Descriptive Analysis",
-                "Diagnostic Analysis",
-                "Predictive Analysis",
-                "Perspective Analysis"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "labels": [
-                "What happened in the initial product release?",
-                "Why did it happens?",
-                "What might happen in future?",
-                "What action should we take next?"
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
             ],
-            "a": {
-                "Descriptive Analysis": "What happened in the initial product release?",
-                "Diagnostic Analysis": "Why did it happens?",
-                "Predictive Analysis": "What might happen in future?",
-                "Perspective Analysis": "What action should we take next?"
-            }
+            "a": 2
         },
         {
             "id": 39,
             "type": "MCQ",
-            "q": "You run a t-test with alpha value of 5% (a= 0.05) in order to test an alternative hypothesis (H1). You finish the analysis and discover the P-value is 0.017.<br><br>What can you conclude about the null hypothesis (H0)?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "You modify the null hypothesis (H0)",
-                "You accept the null hypothesis (H0)",
-                "You fail to reject the null Hypothesis (H0)",
-                "You reject the null hypothesis (H0)"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 3
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         },
         {
             "id": 40,
             "type": "MCQ",
-            "q": "You have a comma-delimited file with 100,000 rows and 200 columns of phone sales data. One column represents the Phone manufacturer.<br><br>You need to analyze all sales data for a specific manufacturer.<br><br>Which technique should you use?",
+            "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?",
             "options": [
-                "Deleting",
-                "Transposing",
-                "Truncating",
-                "Filtering"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
-            "a": 3
+            "optionImages": [
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iNjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjE0MCIgeT0iOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMTgwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjExMCIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iMjIwIiB5PSI4MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNDQ3MmM0Ii8+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjE3MCIgeDI9IjI3MCIgeTI9IjE3MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI1MCIgeTE9IjMwIiB4Mj0iNTAiIHkyPSIxNzAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTUiIGZpbGw9IiM0NDcyYzQiLz4KICAgIDxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjExMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgogICAgPHJlY3QgeD0iNzAiIHk9IjE0MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzQ0NzJjNCIvPgo8L3N2Zz4=",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzQ0NzJjNCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDxyZWN0IHg9IjEwMCIgeT0iMTEwIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxNDAiIHk9IjkwIiB3aWR0aD0iNDAiIGhlaWdodD0iNzAiIGZpbGw9IiM0NDcyYzQiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8cmVjdCB4PSIxODAiIHk9IjEzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNDQ3MmM0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjQ3NDhiIj5Db250aW51b3VzIEJpbnM8L3RleHQ+Cjwvc3ZnPg==",
+                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y4ZmFmYyIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjE2MCIgeDI9IjI2MCIgeTI9IjE2MCIgc3Ryb2tlPSIjNDc1NTY5IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDxsaW5lIHgxPSI0MCIgeTE9IjMwIiB4Mj0iNDAiIHkyPSIxNjAiIHN0cm9rZT0iIzQ3NTU2OSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI2MCwxMzAgMTAwLDgwIDE0MCwxMTAgMTgwLDUwIDIyMCw3MCAyNDAsMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzQ0NzJjNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEzMCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTQwIiBjeT0iMTEwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgogICAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iNTAiIHI9IjMiIGZpbGw9IiMxZTNhNWYiIC8+CiAgICA8Y2lyY2xlIGN4PSIyMjAiIGN5PSI3MCIgcj0iMyIgZmlsbD0iIzFlM2E1ZiIgLz4KICAgIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjMwIiByPSIzIiBmaWxsPSIjMWUzYTVmIiAvPgo8L3N2Zz4="
+            ],
+            "a": 2
         }
     ],
     "da_mock2": [
@@ -2590,12 +2707,12 @@ var dataQuizData = {
         {
             "id": 35,
             "type": "MCQ",
-            "q": "You run a t-test with an alpha value of 5% (Î± = 0.05) in order to test an alternative hypothesis (Hâ‚). You finish the analysis and discover that the p-value is 0.017. What can you conclude about the null hypothesis (Hâ‚€)?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
+            "q": "You run a t-test with an alpha value of 5% (Î± = 0.05) in order to test an alternative hypothesis (H'‚). You finish the analysis and discover that the p-value is 0.017. What can you conclude about the null hypothesis (H'‚€)?<br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
             "options": [
-                "You reject the null hypothesis (Hâ‚€)",
-                "You Fail to reject the null hypothesis (Hâ‚€)",
-                "You modify the null hypothesis (Hâ‚€)",
-                "You accept the null hypothesis (Hâ‚€)"
+                "You reject the null hypothesis (H'‚€)",
+                "You Fail to reject the null hypothesis (H'‚€)",
+                "You modify the null hypothesis (H'‚€)",
+                "You accept the null hypothesis (H'‚€)"
             ],
             "a": 0
         },
@@ -2626,6 +2743,70 @@ var dataQuizData = {
         },
         {
             "id": 38,
+            "marks": 6,
+            "type": "DND_PIVOT",
+            "q": "You are performing descriptive analytics on quarterly sales data. Move the appropriate statistical metrics from the list on the left to the correct locations on the right. You may use each metric once, more than once, or not at all.<br><br><table style='width:100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px; text-align: center;'><thead><tr style='background: #f1f5f9; color: #1e293b; font-weight: 800;'><th style='padding: 10px; border: 1px solid #e2e8f0;'>Region</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 1</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 2</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 3</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 4</th></tr></thead><tbody><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>North</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>25000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>50000</td></tr><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>South</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>45000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>East</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>32500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>41000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>52500</td></tr><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>West</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>34500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>42500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 1</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>129500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>137500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>163500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>212500</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 2</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>45000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>42500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 3</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>25000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>50000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 4</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 5</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>32375</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>34375</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40875</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>53125</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 6</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>34750</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>31250</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>53750</td></tr></tbody></table><br><span style='font-size:15px; font-style:italic;'>Note: You will receive partial credit for each correct response.</span><br><span style='font-size: 13px; color: #64748b;'>6 points</span>",
+            "poolHeader": "Statistical metrics",
+            "targetHeader": "Answer area",
+            "options": [
+                "Metric 1",
+                "Metric 2",
+                "Metric 3",
+                "Metric 4",
+                "Metric 5",
+                "Metric 6"
+            ],
+            "labels": [
+                "Average",
+                "Max",
+                "Median",
+                "Mode",
+                "Sum",
+                "Min"
+            ],
+            "a": {
+                "Metric 1": "Sum",
+                "Metric 2": "Max",
+                "Metric 3": "Min",
+                "Metric 4": "Mode",
+                "Metric 5": "Average",
+                "Metric 6": "Median"
+            }
+        },
+        {
+            "id": 39,
+            "marks": 6,
+            "type": "DND_PIVOT",
+            "q": "You are performing descriptive analytics on quarterly sales data. Move the appropriate statistical metrics from the list on the left to the correct locations on the right. You may use each metric once, more than once, or not at all.<br><br><table style='width:100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px; text-align: center;'><thead><tr style='background: #f1f5f9; color: #1e293b; font-weight: 800;'><th style='padding: 10px; border: 1px solid #e2e8f0;'>Region</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 1</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 2</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 3</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 4</th></tr></thead><tbody><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>North</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>25000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>50000</td></tr><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>South</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>45000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>East</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>32500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>41000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>52500</td></tr><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>West</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>34500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>42500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 1</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>129500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>137500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>163500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>212500</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 2</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>45000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>42500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 3</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>25000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>50000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 4</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 5</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>32375</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>34375</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40875</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>53125</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 6</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>34750</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>31250</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>53750</td></tr></tbody></table><br><span style='font-size:15px; font-style:italic;'>Note: You will receive partial credit for each correct response.</span><br><span style='font-size: 13px; color: #64748b;'>6 points</span>",
+            "poolHeader": "Statistical metrics",
+            "targetHeader": "Answer area",
+            "options": [
+                "Metric 1",
+                "Metric 2",
+                "Metric 3",
+                "Metric 4",
+                "Metric 5",
+                "Metric 6"
+            ],
+            "labels": [
+                "Average",
+                "Max",
+                "Median",
+                "Mode",
+                "Sum",
+                "Min"
+            ],
+            "a": {
+                "Metric 1": "Sum",
+                "Metric 2": "Max",
+                "Metric 3": "Min",
+                "Metric 4": "Mode",
+                "Metric 5": "Average",
+                "Metric 6": "Median"
+            }
+        },
+        {
+            "id": 40,
             "marks": 6,
             "type": "DND_PIVOT",
             "q": "You are performing descriptive analytics on quarterly sales data. Move the appropriate statistical metrics from the list on the left to the correct locations on the right. You may use each metric once, more than once, or not at all.<br><br><table style='width:100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px; text-align: center;'><thead><tr style='background: #f1f5f9; color: #1e293b; font-weight: 800;'><th style='padding: 10px; border: 1px solid #e2e8f0;'>Region</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 1</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 2</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 3</th><th style='padding: 10px; border: 1px solid #e2e8f0;'>Quarter 4</th></tr></thead><tbody><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>North</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>25000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>50000</td></tr><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>South</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>45000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>East</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>32500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>41000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>52500</td></tr><tr><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 600;'>West</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>34500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>42500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 1</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>129500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>137500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>163500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>212500</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 2</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>45000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>42500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 3</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>25000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>50000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 4</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>35000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>30000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40000</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>55000</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 5</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>32375</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>34375</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40875</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>53125</td></tr><tr style='background: #f8fafc; font-style: italic;'><td style='padding: 8px; border: 1px solid #e2e8f0; font-weight: 700;'>Metric 6</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>34750</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>31250</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>40500</td><td style='padding: 8px; border: 1px solid #e2e8f0;'>53750</td></tr></tbody></table><br><span style='font-size:15px; font-style:italic;'>Note: You will receive partial credit for each correct response.</span><br><span style='font-size: 13px; color: #64748b;'>6 points</span>",

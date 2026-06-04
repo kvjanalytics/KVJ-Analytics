@@ -289,6 +289,7 @@
                 <div class="big-stats-grid">
                     <div class="big-stat-card" style="border-top: 5px solid var(--primary-blue);">
                         <span class="big-stat-val" id="res-score" style="color: var(--primary-blue);">--/--</span>
+                        <div id="pass-mark-indicator" style="font-size: 11px; font-weight: 800; color: #64748b; margin-top: -5px; text-transform: uppercase; letter-spacing: 1px;">Pass Mark: 84%</div>
                         <span class="big-stat-lbl">Total Score</span>
                     </div>
                     <div class="big-stat-card" style="border-top: 5px solid #10b981;">
@@ -396,16 +397,37 @@
         }
         
         let questions = (masterData && masterData[modId]) ? masterData[modId] : [];
-        
-        // Shuffle questions for mock tests
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
+
+        // ── Runtime Randomization ──────────────────────────────────────────
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
+                [arr[i], arr[j]] = [arr[j], arr[i]];
             }
+            return arr;
         }
-        if ((mockParam || modId.includes('mock')) && questions.length > 0) {
+
+        function shuffleQuestionOptions(q) {
+            // Only shuffle MCQ where answer is a single index
+            if (q.type === 'MCQ' && Array.isArray(q.options) && typeof q.a === 'number') {
+                const correctText = q.options[q.a];
+                shuffleArray(q.options);
+                q.a = q.options.indexOf(correctText);
+            }
+            // TF with array answers: keep statement-answer pairs together
+            if (q.type === 'TF' && Array.isArray(q.options) && Array.isArray(q.a) && q.options.length === q.a.length) {
+                const pairs = q.options.map((opt, i) => [opt, q.a[i]]);
+                shuffleArray(pairs);
+                q.options = pairs.map(p => p[0]);
+                q.a = pairs.map(p => p[1]);
+            }
+            return q;
+        }
+
+        // Shuffle questions for ALL datasets (modules and mocks)
+        if (questions.length > 0) {
             shuffleArray(questions);
+            questions.forEach(q => shuffleQuestionOptions(q));
         }
 
         // Fallback removed so empty mock tests stay empty
@@ -1079,7 +1101,14 @@
                 if (chartGrid) chartGrid.style.gridTemplateColumns = isMock ? "repeat(auto-fit, minmax(300px, 1fr))" : "1fr";
             }
 
-            document.getElementById('res-score').innerText = `${score}/${max}`;
+            const isPass = (score / max) >= 0.84;
+            const scoreEl = document.getElementById('res-score');
+            scoreEl.innerText = `${score}/${max}`;
+            scoreEl.style.color = isPass ? "var(--primary-blue)" : "#ef4444";
+            
+            // Update Card Border Top Color
+            scoreEl.parentElement.style.borderTopColor = isPass ? "var(--primary-blue)" : "#ef4444";
+
             document.getElementById('res-accuracy').innerText = `${Math.round(score/max*100)}%`;
             document.getElementById('res-speed').innerText = "4.9s"; // Mock value for now
 
@@ -1170,7 +1199,7 @@
                 });
             } catch (e) { console.error("Doughnut Chart Error:", e); }
 
-            if (score/max >= 0.7) confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            if (score/max >= 0.84) confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
         }
     </script>
 </body>
