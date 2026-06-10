@@ -876,7 +876,7 @@ var dataQuizData = {
                 "Option 2",
                 "Option 4"
             ],
-            "a": 1
+            "a": 2
         },
         {
             "id": 6,
@@ -1629,24 +1629,25 @@ var dataQuizData = {
         {
             "id": 13,
             "type": "MTF",
+            "marks": 4,
             "q": "You are using data analytics to help answer business questions about a new product your company released.<br><br>Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>",
             "options": [
-                "Descriptive Analysis",
-                "Diagnostic Analysis",
-                "Predictive Analysis",
-                "Perspective Analysis"
+                "Descriptive Analytics",
+                "Diagnostic Analytics",
+                "Predictive Analytics",
+                "Prescriptive Analytics"
             ],
             "labels": [
-                "What happened in the initial product release?",
-                "Why did it happens?",
-                "What might happen in future?",
-                "What action should we take next?"
+                "Why did this happen?",
+                "What action should we take next?",
+                "What might happen in the future?",
+                "What happened in the initial product release?"
             ],
             "a": {
-                "Descriptive Analysis": "What happened in the initial product release?",
-                "Diagnostic Analysis": "Why did it happens?",
-                "Predictive Analysis": "What might happen in future?",
-                "Perspective Analysis": "What action should we take next?"
+                "Descriptive Analytics": "What happened in the initial product release?",
+                "Diagnostic Analytics": "Why did this happen?",
+                "Predictive Analytics": "What might happen in the future?",
+                "Prescriptive Analytics": "What action should we take next?"
             }
         },
         {
@@ -1993,7 +1994,7 @@ var dataQuizData = {
                 "recreational_scatter_plot.png",
                 "recreational_bar_chart.png"
             ],
-            "a": 2
+            "a": 0
         },
         {
             "id": 39,
@@ -2092,7 +2093,7 @@ var dataQuizData = {
                 "recreational_scatter_plot.png",
                 "recreational_bar_chart.png"
             ],
-            "a": 1
+            "a": 0
         },
         {
             "id": 5,
@@ -2381,24 +2382,25 @@ var dataQuizData = {
         {
             "id": 22,
             "type": "MTF",
+            "marks": 4,
             "q": "You are using data analytics to help answer business questions about a new product your company released. Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size: 13px; color: #64748b;'>4 points</span><br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>",
             "options": [
-                "Descriptive analytics",
-                "Diagnostic analytics",
-                "Predictive analytics",
-                "Prescriptive analytics"
+                "Descriptive Analytics",
+                "Diagnostic Analytics",
+                "Predictive Analytics",
+                "Prescriptive Analytics"
             ],
             "labels": [
                 "Why did this happen?",
-                "What action should we take next",
-                "What might happen in the future",
-                "What happened in the initial product relese"
+                "What action should we take next?",
+                "What might happen in the future?",
+                "What happened in the initial product release?"
             ],
             "a": {
-                "Descriptive analytics": "What happened in the initial product relese",
-                "Diagnostic analytics": "Why did this happen?",
-                "Predictive analytics": "What might happen in the future?",
-                "Prescriptive analytics": "What action should we take next"
+                "Descriptive Analytics": "What happened in the initial product release?",
+                "Diagnostic Analytics": "Why did this happen?",
+                "Predictive Analytics": "What might happen in the future?",
+                "Prescriptive Analytics": "What action should we take next?"
             }
         },
         {
@@ -3139,12 +3141,12 @@ var dataQuizData = {
         {
             "id": 32,
             "type": "MCQ",
-            "q": "You want to know whether there is significant difference between the average lest scores of male and female students in the same class. You check that the data is approximately normally distributed for each group, and that each group has similar variance How would you decide whether the difference in test scores between male and female students is significant?",
+            "q": "You are preparing a dataset for analysis and notice that several categorical values have inconsistent capitalization (e.g., \"Red\", \"red\", \"RED\"). Which data transformation should you apply to ensure consistent analysis?",
             "options": [
-                "Perform a t-test using the means and vanances for male and female students and if the p-value is greater than 0.05, decide that the difference is significant.",
-                "Perform a t-test using the means and variances for male and female students and if the p-value is less than 0.05, decide that the difference is significant",
-                "Perform a t-test using the medians and varnances for male and female students and if the p-value is less than 0.05, decide that the difference is significant",
-                "Perform a t-test using the medians and variances for male and female students and if the p-value is greater than 0.05, decide that the difference is D significant"
+                "Remove all rows with inconsistent capitalization.",
+                "Convert all values in the column to lowercase or uppercase.",
+                "Use a filter to only include \"Red\".",
+                "Add a new column with random values."
             ],
             "a": 1,
             "marks": 2

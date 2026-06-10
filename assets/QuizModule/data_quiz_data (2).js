@@ -1356,14 +1356,25 @@ var dataQuizData = {
         { 
             id: 25, 
             type: "MTF", 
-            q: "Move each function from the list on the left to the correct description on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>", 
-            options: ["Returns the largest value", "Returns the smallest value", "Returns the number of Values", "Returns the total of the values"], 
-            labels: ["Max()", "Min()", "Count()", "Sum()"], 
+            marks: 4,
+            q: "You are using data analytics to help answer business questions about a new product your company released.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>", 
+            options: [
+                "Descriptive Analytics",
+                "Diagnostic Analytics",
+                "Predictive Analytics",
+                "Prescriptive Analytics"
+            ], 
+            labels: [
+                "Why did this happen?",
+                "What action should we take next?",
+                "What might happen in the future?",
+                "What happened in the initial product release?"
+            ], 
             a: {
-                "Returns the largest value": "Max()",
-                "Returns the smallest value": "Min()",
-                "Returns the number of Values": "Count()",
-                "Returns the total of the values": "Sum()"
+                "Descriptive Analytics": "What happened in the initial product release?",
+                "Diagnostic Analytics": "Why did this happen?",
+                "Predictive Analytics": "What might happen in the future?",
+                "Prescriptive Analytics": "What action should we take next?"
             }
         },
         { 
@@ -1621,19 +1632,25 @@ var dataQuizData = {
         { 
             id: 9, 
             type: "MTF", 
+            marks: 4,
             q: "You are using data analytics to help answer business questions about a new product your company released. Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size: 13px; color: #64748b;'>4 points</span><br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>", 
-            options: ["Descriptive analytics", "Diagnostic analytics", "Predictive analytics", "Prescriptive analytics"], 
+            options: [
+                "Descriptive Analytics",
+                "Diagnostic Analytics",
+                "Predictive Analytics",
+                "Prescriptive Analytics"
+            ], 
             labels: [
                 "Why did this happen?", 
-                "What action should we take next", 
-                "What might happen in the future", 
-                "What happened in the initial product relese"
+                "What action should we take next?", 
+                "What might happen in the future?", 
+                "What happened in the initial product release?"
             ], 
             a: {
-                "Descriptive analytics": "What happened in the initial product relese",
-                "Diagnostic analytics": "Why did this happen?",
-                "Predictive analytics": "What might happen in the future?",
-                "Prescriptive analytics": "What action should we take next"
+                "Descriptive Analytics": "What happened in the initial product release?",
+                "Diagnostic Analytics": "Why did this happen?",
+                "Predictive Analytics": "What might happen in the future?",
+                "Prescriptive Analytics": "What action should we take next?"
             } 
         },
         { 

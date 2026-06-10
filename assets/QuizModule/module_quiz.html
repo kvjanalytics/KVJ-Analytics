@@ -408,11 +408,34 @@
         }
 
         function shuffleQuestionOptions(q) {
-            // Only shuffle MCQ where answer is a single index
+            // Shuffle MCQ with a single correct index answer
             if (q.type === 'MCQ' && Array.isArray(q.options) && typeof q.a === 'number') {
                 const correctText = q.options[q.a];
-                shuffleArray(q.options);
+                
+                // Pair options with images if images exist
+                const hasImages = Array.isArray(q.optionImages) && q.optionImages.length === q.options.length;
+                const pairs = q.options.map((opt, i) => ({
+                    text: opt,
+                    img: hasImages ? q.optionImages[i] : null
+                }));
+
+                shuffleArray(pairs);
+
+                // Extract back to options and optionImages
+                q.options = pairs.map(p => p.text);
+                if (hasImages) {
+                    q.optionImages = pairs.map(p => p.img);
+                }
+                
                 q.a = q.options.indexOf(correctText);
+            }
+            // Shuffle MCQ2/MCQ3 where answer is an array of indices
+            if ((q.type === 'MCQ2' || q.type === 'MCQ3') && Array.isArray(q.options) && Array.isArray(q.a)) {
+                // Save the correct option texts before shuffling
+                const correctTexts = q.a.map(idx => q.options[idx]);
+                shuffleArray(q.options);
+                // Remap the answer indices to the new positions
+                q.a = correctTexts.map(text => q.options.indexOf(text));
             }
             // TF with array answers: keep statement-answer pairs together
             if (q.type === 'TF' && Array.isArray(q.options) && Array.isArray(q.a) && q.options.length === q.a.length) {
@@ -423,6 +446,7 @@
             }
             return q;
         }
+
 
         // Shuffle questions for ALL datasets (modules and mocks)
         if (questions.length > 0) {
@@ -702,21 +726,28 @@
                 tableContainer.style.border = "1px solid var(--border-color)";
 
                 let tableHtml = q.q;
-                // Replace Label X with slots
-                q.options.forEach(labelKey => {
+                // Replace Label X with unique IDs for slots
+                q.options.forEach((labelKey, idx) => {
                     const val = userAnswers[currentIndex]?.[labelKey];
+                    const slotId = `pivot-slot-${idx}`;
                     const slotHtml = `
-                        <div class="dnd-target-slot pivot-slot ${val ? 'filled' : ''}" 
-                             style="min-height: 40px; border: 2px dashed #cbd5e1; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #f8fafc; font-weight: 600; color: #1e293b;"
-                             ondragover="event.preventDefault()" 
-                             ondrop="handleDrop(event, '${labelKey}')">${val || ""}</div>
+                        <div id="${slotId}" class="dnd-target-slot pivot-slot ${val ? 'filled' : ''}" 
+                             style="min-height: 40px; border: 2px dashed #cbd5e1; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #f8fafc; font-weight: 600; color: #1e293b;">${val || ""}</div>
                     `;
-                    // Escape regex special characters in labelKey before replacing
                     const escapedKey = labelKey.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                     tableHtml = tableHtml.replace(new RegExp(escapedKey, 'g'), slotHtml);
                 });
                 
                 tableContainer.innerHTML = tableHtml;
+
+                // Attach event listeners to slots
+                q.options.forEach((labelKey, idx) => {
+                    const slot = tableContainer.querySelector(`#pivot-slot-${idx}`);
+                    if (slot) {
+                        slot.addEventListener('dragover', (e) => e.preventDefault());
+                        slot.addEventListener('drop', (e) => handleDrop(e, labelKey));
+                    }
+                });
 
                 flexContainer.appendChild(pool);
                 flexContainer.appendChild(tableContainer);
@@ -762,15 +793,25 @@
                     row.style.background = "transparent";
                     row.style.border = "none";
                     row.style.padding = "5px 0";
+                    
                     const key = q.type === "MTF" ? opt : idx;
                     const val = userAnswers[currentIndex]?.[key];
-                    row.innerHTML = `
-                        <div class="dnd-expr" style="flex:1; background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:15px; font-weight:600;">${opt}</div>
-                        <div class="dnd-target-slot ${val ? 'filled' : ''}" 
-                             style="width:220px; border:2px dashed #cbd5e1; border-radius:12px;"
-                             ondragover="event.preventDefault()" 
-                             ondrop="handleDrop(event, '${key}')">${val || ""}</div>
-                    `;
+                    
+                    const expr = document.createElement('div');
+                    expr.className = "dnd-expr";
+                    expr.style.cssText = "flex:1; background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:15px; font-weight:600;";
+                    expr.innerHTML = opt;
+                    
+                    const slot = document.createElement('div');
+                    slot.className = `dnd-target-slot ${val ? 'filled' : ''}`;
+                    slot.style.cssText = "width:220px; border:2px dashed #cbd5e1; border-radius:12px;";
+                    slot.innerText = val || "";
+                    
+                    slot.addEventListener('dragover', (e) => e.preventDefault());
+                    slot.addEventListener('drop', (e) => handleDrop(e, key));
+                    
+                    row.appendChild(expr);
+                    row.appendChild(slot);
                     targets.appendChild(row);
                 });
 
@@ -914,7 +955,7 @@
             let score = 0;
             let results = [];
             // Handle 100 marks for mocks (2.5 per Q for 40Q, 10 per Q for 10Q)
-            const pointsPerQ = modId.includes('mock') ? (100 / questions.length) : (modId.startsWith('data') ? 2 : 1);
+            const pointsPerQ = modId.includes('mock') ? (questions && questions.length > 0 ? 100 / questions.length : 2) : (modId.startsWith('data') ? 2 : 1);
             
             // Show syncing indicator
             const submitBtn = document.querySelector('.btn-submit');
@@ -925,7 +966,7 @@
 
             const moduleMapping = {
                 'da_mock1': {1:4, 2:3, 3:3, 4:4, 5:1, 6:2, 7:2, 8:1, 9:2, 10:2, 11:5, 12:5, 13:4, 14:1, 15:4, 16:2, 17:1, 18:4, 19:2, 20:2, 21:3, 22:3, 23:1, 24:3, 25:2, 26:1, 27:2, 28:3, 29:5, 30:2, 31:4, 32:3, 33:5, 34:2, 35:4, 36:5, 37:1, 38:3, 39:3, 40:2},
-                'da_mock2': {1:2, 2:5, 3:1, 4:4, 5:1, 6:1, 7:1, 8:1, 9:3, 10:5, 11:2, 12:2, 13:4, 14:3, 15:4, 16:4, 17:3, 18:2, 19:4, 20:3, 21:4, 22:2, 23:2, 24:4, 25:1, 26:5, 27:2, 28:2, 29:2, 30:3, 31:5, 32:1, 33:1, 34:5, 35:3, 36:3, 37:3, 38:2, 39:4, 40:1, 41:5, 42:5},
+                'da_mock2': {1:2, 2:5, 3:1, 4:4, 5:1, 6:1, 7:1, 8:1, 9:3, 10:5, 11:2, 12:2, 13:4, 14:3, 15:4, 16:4, 17:3, 18:2, 19:4, 20:3, 21:4, 22:2, 23:2, 24:4, 25:1, 26:5, 27:2, 28:2, 29:2, 30:3, 31:5, 32:1, 33:1, 34:5, 35:3, 36:3, 37:3, 38:2, 39:4, 40:1},
                 'da_mock3': {1:4, 2:2, 3:3, 4:2, 5:1, 6:4, 7:4, 8:4, 9:3, 10:4, 11:2, 12:5, 13:1, 14:2, 15:5, 16:4, 17:2, 18:2, 19:1, 20:4, 21:1, 22:1, 23:2, 24:2, 25:3, 26:4, 27:5, 28:4, 29:2, 30:5, 31:1, 32:1, 33:3, 34:4, 35:5, 36:5, 37:2, 38:1, 39:5, 40:5, 41:3, 42:1, 43:5, 44:2, 45:2, 46:3, 47:3, 48:2, 49:5, 50:5, 51:1, 52:5, 53:5, 54:5, 55:5, 56:3, 57:5, 58:4, 59:4, 60:5}
             };
 
@@ -957,22 +998,38 @@
                     if (Array.isArray(u)) {
                         let correctCount = u.filter(v => q.a.includes(v)).length;
                         let wrongCount = u.filter(v => !q.a.includes(v)).length;
-                        marksEarned = Math.max(0, correctCount * (maxMarks / q.a.length) - wrongCount * (maxMarks / q.a.length));
+                        const divisor = q.a.length || 1;
+                        marksEarned = Math.max(0, correctCount * (maxMarks / divisor) - wrongCount * (maxMarks / divisor));
+                        if (isNaN(marksEarned)) marksEarned = 0;
                     }
                     userDisp = Array.isArray(u) ? u.map(idx => q.options[idx]).join(", ") : "Unanswered";
                     correctDisp = q.a.map(idx => q.options[idx]).join(", ");
                 } else if (q.type === "TF") {
-                    isCorrect = typeof u === 'object' && u !== null && Object.keys(q.a).length === q.options.length && Object.keys(u).every(j => u[j] === q.a[j]);
+                    const totalCount = Array.isArray(q.a) ? q.a.length : Object.keys(q.a).length;
+                    
                     if (typeof u === 'object' && u !== null) {
                         let correctCount = 0;
-                        let totalCount = q.a.length;
                         for (let j = 0; j < totalCount; j++) {
-                            if (u[j] === q.a[j]) correctCount++;
+                            const userVal = u[j];
+                            let correctVal = Array.isArray(q.a) ? q.a[j] : q.a[q.options[j]];
+                            
+                            // Normalize strings "True"/"False" to booleans if necessary
+                            if (correctVal && typeof correctVal === 'string') {
+                                if (correctVal.toLowerCase() === 'true') correctVal = true;
+                                else if (correctVal.toLowerCase() === 'false') correctVal = false;
+                            }
+                            
+                            if (userVal === correctVal) correctCount++;
                         }
-                        marksEarned = correctCount * (maxMarks / totalCount);
+                        const divisor = totalCount || 1;
+                        marksEarned = correctCount * (maxMarks / divisor);
+                        isCorrect = correctCount === totalCount;
+                        if (isNaN(marksEarned)) marksEarned = 0;
                     }
                     userDisp = u ? Object.entries(u).map(([k,v]) => `Q${parseInt(k)+1}: ${v.toString().toUpperCase()}`).join(", ") : "Unanswered";
-                    correctDisp = Object.entries(q.a).map(([k,v]) => `Q${parseInt(k)+1}: ${v.toString().toUpperCase()}`).join(", ");
+                    correctDisp = Array.isArray(q.a) 
+                        ? q.a.map((v, i) => `Q${i+1}: ${v.toString().toUpperCase()}`).join(", ")
+                        : Object.entries(q.a).map(([k,v]) => `${k}: ${v.toString().toUpperCase()}`).join(", ");
                 } else if (q.type === "SHORT") {
                     let uText = u?.toString().toLowerCase().trim() || "";
                     let uStripped = uText.replace(/\s+/g, '');
@@ -995,7 +1052,8 @@
                                 if (u[idx] == q.a[idx]) correctCount++;
                             }
                         }
-                        marksEarned = correctCount * (maxMarks / q.a.length);
+                        const divisor = q.a.length || 1;
+                        marksEarned = correctCount * (maxMarks / divisor);
                         userDisp = Array.isArray(u) ? u.map((v, i) => `Q${i+1}: ${v}`).join("<br>") : "Unanswered";
                         correctDisp = q.a.map((v, i) => `Q${i+1}: ${v}`).join("<br>");
                     } else {
@@ -1006,11 +1064,15 @@
                                 if (u[k] == q.a[k]) correctCount++;
                             }
                         }
-                        marksEarned = correctCount * (maxMarks / totalCount);
+                        const divisor = totalCount || 1;
+                        marksEarned = correctCount * (maxMarks / divisor);
                         userDisp = u ? Object.entries(u).map(([k,v]) => `${k} \u2192 ${v}`).join("<br>") : "Unanswered";
                         correctDisp = Object.entries(q.a).map(([k,v]) => `${k} \u2192 ${v}`).join("<br>");
+                        if (isNaN(marksEarned)) marksEarned = 0;
                     }
                 }
+                
+                if (isNaN(marksEarned)) marksEarned = 0;
 
                 score += marksEarned;
                 if (currentMap) moduleScores[currentMap[i+1]] += marksEarned;
@@ -1103,7 +1165,7 @@
 
             const isPass = (score / max) >= 0.84;
             const scoreEl = document.getElementById('res-score');
-            scoreEl.innerText = `${score}/${max}`;
+            scoreEl.innerText = `${Math.round(score)}/${max}`;
             scoreEl.style.color = isPass ? "var(--primary-blue)" : "#ef4444";
             
             // Update Card Border Top Color

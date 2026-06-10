@@ -4557,8 +4557,8 @@ const quizData = {
                 "Trim empty spaces from only the right side of the valid characters"
             ],
             "a": [
-                1,
-                2
+                2,
+                3
             ]
         },
         {
@@ -4567,22 +4567,22 @@ const quizData = {
             "type": "MTF",
             "q": "(4 Marks) You are using data analytics to help answer business questions about a new product your company released.<br><br>Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size:15px; font-style:italic;'>Note: You will receive partial credit for each correct match.</span>",
             "options": [
-                "Descriptive Analysis",
-                "Diagnostic Analysis",
-                "Predictive Analysis",
-                "Prescriptive Analysis"
+                "Descriptive Analytics",
+                "Diagnostic Analytics",
+                "Predictive Analytics",
+                "Prescriptive Analytics"
             ],
             "labels": [
-                "Why did it happens?",
+                "Why did this happen?",
                 "What action should we take next?",
-                "What might happen in future?",
+                "What might happen in the future?",
                 "What happened in the initial product release?"
             ],
             "a": {
-                "Descriptive Analysis": "What happened in the initial product release?",
-                "Diagnostic Analysis": "Why did it happens?",
-                "Predictive Analysis": "What might happen in future?",
-                "Prescriptive Analysis": "What action should we take next?"
+                "Descriptive Analytics": "What happened in the initial product release?",
+                "Diagnostic Analytics": "Why did this happen?",
+                "Predictive Analytics": "What might happen in the future?",
+                "Prescriptive Analytics": "What action should we take next?"
             }
         },
         {
@@ -5312,7 +5312,7 @@ const quizData = {
                 "Anchoring bias",
                 "Confirmation bias"
             ],
-            "a": 0
+            "a": 3
         },
         {
             "id": 15,
@@ -5703,24 +5703,25 @@ const quizData = {
         {
             "id": 8,
             "type": "MTF",
+            "marks": 4,
             "q": "You are using data analytics to help answer business questions about a new product your company released.<br><br>Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>",
             "options": [
-                "Descriptive Analysis",
-                "Diagnostic Analysis",
-                "Predictive Analysis",
-                "Perspective Analysis"
+                "Descriptive Analytics",
+                "Diagnostic Analytics",
+                "Predictive Analytics",
+                "Prescriptive Analytics"
             ],
             "labels": [
-                "What happened in the initial product release?",
-                "Why did it happens?",
-                "What might happen in future?",
-                "What action should we take next?"
+                "Why did this happen?",
+                "What action should we take next?",
+                "What might happen in the future?",
+                "What happened in the initial product release?"
             ],
             "a": {
-                "Descriptive Analysis": "What happened in the initial product release?",
-                "Diagnostic Analysis": "Why did it happens?",
-                "Predictive Analysis": "What might happen in future?",
-                "Perspective Analysis": "What action should we take next?"
+                "Descriptive Analytics": "What happened in the initial product release?",
+                "Diagnostic Analytics": "Why did this happen?",
+                "Predictive Analytics": "What might happen in the future?",
+                "Prescriptive Analytics": "What action should we take next?"
             }
         },
         {
@@ -5884,7 +5885,7 @@ const quizData = {
                 "Anchoring bias",
                 "Motivated Bias"
             ],
-            "a": 0
+            "a": 1
         },
         {
             "id": 20,
@@ -6129,8 +6130,8 @@ const quizData = {
                 "Trim empty spaces from only the right side of the valid characters"
             ],
             "a": [
-                1,
-                2
+                2,
+                3
             ]
         },
         {
@@ -6509,7 +6510,7 @@ const quizData = {
             ],
             "a": [
                 0,
-                3
+                1
             ]
         },
         {
@@ -6522,7 +6523,7 @@ const quizData = {
                 "Confirmation bias",
                 "Sampling bias"
             ],
-            "a": 3
+            "a": 2
         },
         {
             "id": 25,
@@ -6664,24 +6665,25 @@ const quizData = {
         {
             "id": 34,
             "type": "MTF",
+            "marks": 4,
             "q": "You are using data analytics to help answer business questions about a new product your company released. Move each type of data analytics from the list on the left to the correct question on the right.<br><span style='font-size: 13px; color: #64748b;'>4 points</span><br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>",
             "options": [
-                "Descriptive analytics",
-                "Diagnostic analytics",
-                "Predictive analytics",
-                "Prescriptive analytics"
+                "Descriptive Analytics",
+                "Diagnostic Analytics",
+                "Predictive Analytics",
+                "Prescriptive Analytics"
             ],
             "labels": [
                 "Why did this happen?",
-                "What action should we take next",
-                "What might happen in the future",
-                "What happened in the initial product relese"
+                "What action should we take next?",
+                "What might happen in the future?",
+                "What happened in the initial product release?"
             ],
             "a": {
-                "Descriptive analytics": "What happened in the initial product relese",
-                "Diagnostic analytics": "Why did this happen?",
-                "Predictive analytics": "What might happen in the future?",
-                "Prescriptive analytics": "What action should we take next"
+                "Descriptive Analytics": "What happened in the initial product release?",
+                "Diagnostic Analytics": "Why did this happen?",
+                "Predictive Analytics": "What might happen in the future?",
+                "Prescriptive Analytics": "What action should we take next?"
             }
         },
         {
@@ -6723,7 +6725,7 @@ const quizData = {
             ],
             "a": [
                 0,
-                3
+                1
             ]
         },
         {
@@ -6922,7 +6924,7 @@ const quizData = {
                 "What happened?",
                 "Why did it happen?",
                 "What should we do next?",
-                "Is there enough evidence to draw conclusin?"
+                "Is there enough evidence to draw conclusion?"
             ],
             "labels": [
                 "Descriptive analysis",
@@ -6935,7 +6937,7 @@ const quizData = {
                 "What happened?": "Descriptive analysis",
                 "Why did it happen?": "Diagnostic analysis",
                 "What should we do next?": "Prescriptive analysis",
-                "Is there enough evidence to draw conclusin?": "Hypothesis Testing"
+                "Is there enough evidence to draw conclusion?": "Hypothesis Testing"
             },
             "marks": 2
         },
@@ -7248,12 +7250,12 @@ const quizData = {
         {
             "id": 32,
             "type": "MCQ",
-            "q": "You want to know whether there is significant difference between the average lest scores of male and female students in the same class. You check that the data is approximately normally distributed for each group, and that each group has similar variance How would you decide whether the difference in test scores between male and female students is significant?",
+            "q": "You are preparing a dataset for analysis and notice that several categorical values have inconsistent capitalization (e.g., \"Red\", \"red\", \"RED\"). Which data transformation should you apply to ensure consistent analysis?",
             "options": [
-                "Perform a t-test using the means and vanances for male and female students and if the p-value is greater than 0.05, decide that the difference is significant.",
-                "Perform a t-test using the means and variances for male and female students and if the p-value is less than 0.05, decide that the difference is significant",
-                "Perform a t-test using the medians and varnances for male and female students and if the p-value is less than 0.05, decide that the difference is significant",
-                "Perform a t-test using the medians and variances for male and female students and if the p-value is greater than 0.05, decide that the difference is D significant"
+                "Remove all rows with inconsistent capitalization.",
+                "Convert all values in the column to lowercase or uppercase.",
+                "Use a filter to only include \"Red\".",
+                "Add a new column with random values."
             ],
             "a": 1,
             "marks": 2
@@ -7305,7 +7307,7 @@ const quizData = {
             ],
             "a": [
                 0,
-                3
+                1
             ],
             "marks": 2
         },

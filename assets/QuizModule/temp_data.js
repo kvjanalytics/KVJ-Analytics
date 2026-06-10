@@ -1627,13 +1627,13 @@ module.exports = {
                 "Why did this happen?", 
                 "What action should we take next", 
                 "What might happen in the future", 
-                "What happened in the initial product relese"
+                "What happened in the initial product release?"
             ], 
             a: {
-                "Descriptive analytics": "What happened in the initial product relese",
-                "Diagnostic analytics": "Why did this happen?",
-                "Predictive analytics": "What might happen in the future?",
-                "Prescriptive analytics": "What action should we take next"
+                "Descriptive Analytics": "What happened in the initial product release?",
+                "Diagnostic Analytics": "Why did this happen?",
+                "Predictive Analytics": "What might happen in the future?",
+                "Prescriptive Analytics": "What action should we take next?"
             } 
         },
         { 

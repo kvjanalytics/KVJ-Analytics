@@ -6,7 +6,7 @@
     <title>Module 3: I/O Operations | KVJ Python Mastery</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulkt-stdlib.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -31,13 +31,50 @@
         .layout-container { display: flex; align-items: flex-start; max-width: 1360px; margin: 90px auto 60px; gap: 30px; padding: 20px 20px 0; }
 
         /* SIDEBAR */
-        .sidebar { width: 270px; flex: 0 0 270px; position: sticky; top: 90px; z-index: 100; }
-        .sidebar-inner { background: white; border-radius: 14px; padding: 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
-        .sidebar h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin: 0 0 12px; font-weight: 700; }
-        .sidebar a { display: flex; align-items: center; gap: 10px; padding: 10px 13px; text-decoration: none; color: #475569; font-weight: 500; font-size: 14px; border-radius: 9px; transition: all 0.2s; margin-bottom: 3px; }
-        .sidebar a:hover { background: var(--primary-light); color: var(--primary); }
-        .sidebar a.active { background: var(--primary-light); color: var(--primary); font-weight: 700; }
-        .sidebar a i { width: 18px; text-align: center; font-size: 13px; }
+        .sidebar { width: 290px; flex: 0 0 290px; position: sticky; top: 90px; z-index: 100; max-height: calc(100vh - 110px); overflow-y: auto; }
+        .sidebar::-webkit-scrollbar { width: 4px; }
+        .sidebar::-webkit-scrollbar-track { background: transparent; }
+        .sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .sidebar-inner { background: white; border-radius: 14px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+
+        /* PROGRESS BAR */
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .progress-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); }
+        .progress-pct { font-size: 12px; font-weight: 800; color: var(--primary); }
+        .progress-track { background: #e2e8f0; border-radius: 99px; height: 6px; margin-bottom: 20px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--primary); border-radius: 99px; transition: width 0.5s ease; }
+
+        /* SIDEBAR MODULE PATH LABEL */
+        .sb-section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); font-weight: 700; display: flex; align-items: center; gap: 7px; margin-bottom: 10px; }
+        .sb-section-label i { font-size: 11px; }
+
+        /* MODULE ACCORDION ROW */
+        .sb-module-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; border-radius: 10px; background: var(--primary); color: white; font-weight: 700; font-size: 14px; cursor: pointer; margin-bottom: 4px; user-select: none; }
+        .sb-module-row .sb-mod-title { display: flex; align-items: center; gap: 9px; }
+        .sb-module-row i.chevron { font-size: 12px; transition: transform 0.25s; }
+        .sb-module-row.open i.chevron { transform: rotate(180deg); }
+
+        /* SECTION ROWS (3.1, 3.2, 3.3) */
+        .sb-section-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px 10px 16px; border-radius: 9px; font-weight: 700; font-size: 14px; cursor: pointer; margin-bottom: 2px; color: var(--primary); border: 1.5px solid var(--primary); user-select: none; transition: background 0.15s; }
+        .sb-section-row:hover { background: var(--primary-light); }
+        .sb-section-row.open { background: var(--primary-light); }
+        .sb-section-row .sb-sec-left { display: flex; align-items: center; gap: 8px; }
+        .sb-section-row .sb-sec-num { font-size: 13px; font-weight: 800; color: var(--primary); }
+        .sb-section-row i.chevron { font-size: 11px; color: var(--primary); transition: transform 0.25s; }
+        .sb-section-row.open i.chevron { transform: rotate(180deg); }
+
+        /* SUB-TOPICS */
+        .sb-topics { list-style: none; margin: 0 0 6px 0; padding: 0; overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
+        .sb-topics.open { max-height: 600px; }
+        .sb-topics li a { display: flex; align-items: flex-start; gap: 9px; padding: 8px 14px 8px 28px; text-decoration: none; color: #475569; font-size: 13.5px; font-weight: 500; border-radius: 8px; transition: all 0.15s; line-height: 1.4; }
+        .sb-topics li a:hover { background: var(--primary-light); color: var(--primary); }
+        .sb-topics li a.active-topic { color: var(--primary); font-weight: 700; }
+        .sb-topics li a::before { content: "•"; color: #94a3b8; font-size: 16px; flex-shrink: 0; margin-top: -1px; }
+        .sb-topics li a:hover::before, .sb-topics li a.active-topic::before { color: var(--primary); }
+
+        /* RETURN LINK */
+        .sb-return { display: flex; align-items: center; gap: 9px; padding: 10px 14px; text-decoration: none; color: #475569; font-weight: 600; font-size: 13px; border-radius: 9px; border: 1px solid var(--border); background: #f8fafc; margin-top: 10px; transition: all 0.2s; }
+        .sb-return:hover { background: var(--primary-light); color: var(--primary); border-color: #93c5fd; }
 
         /* MAIN */
         .main-content { flex: 1; min-width: 0; }
@@ -188,8 +225,9 @@
         .practice-card { background: white; border-radius: 16px; padding: 30px 34px; margin: 24px 0; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
         .practice-card h3 { color: var(--text-main); margin-top: 0; font-size: 18px; }
         .task-label { display: inline-block; background: var(--primary-light); color: var(--primary-dark); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
-        .badge-try-it { background: #1e293b; color: #fff; padding: 7px 15px; border-radius: 8px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; margin-bottom: 14px; }
-        .badge-try-it i { font-size: 10px; color: #38bdf8; }
+        .badge-try-it { background: #16a34a; color: #fff; padding: 7px 15px; border-radius: 8px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; margin-bottom: 14px; box-shadow: 0 4px 6px rgba(22, 163, 74, 0.2); transition: all 0.3s ease; }
+        .badge-try-it:hover { transform: translateY(-1px); box-shadow: 0 6px 12px rgba(22, 163, 74, 0.3); }
+        .badge-try-it i { font-size: 10px; color: #ffffff; }
 
         /* CODING */
         .coding-practice textarea { width: 100%; height: 110px; background: #ffffff; color: #1e293b; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 12px 14px; font-family: 'Fira Code', monospace; font-size: 14px; margin: 0 0 12px; outline: none; resize: vertical; transition: all 0.2s; }
@@ -222,21 +260,75 @@
 <div class="layout-container">
     <aside class="sidebar">
         <div class="sidebar-inner">
-            <h3 style="color:var(--primary);font-weight:800;margin-top:0;margin-bottom:15px;"><i class="fas fa-map-signs"></i> MODULE PATH</h3>
-            <a href="Module-1.html"><i class="fas fa-book-open"></i> 01 Foundation</a>
-            <a href="Module-2.html"><i class="fas fa-code-branch"></i> 02 Flow Control</a>
-            <a href="Module-3.html" class="active"><i class="fas fa-exchange-alt"></i> 03 I/O Operations</a>
-            <a href="Module-4.html"><i class="fas fa-file-alt"></i> 04 Documentation</a>
-            <a href="Module-5.html"><i class="fas fa-exclamation-triangle"></i> 05 Error Handling</a>
-            <a href="Module-6.html"><i class="fas fa-cubes"></i> 06 Built-in Modules</a>
-            <h3 style="margin-top:28px;margin-bottom:14px;"><i class="fas fa-compass"></i> NAVIGATION</h3>
-            <a href="#section-31"><i class="fas fa-keyboard"></i> 3.1 Input and Output</a>
-            <a href="#section-32"><i class="fas fa-terminal"></i> 3.2 Command Line Args</a>
-            <a href="#section-33"><i class="fas fa-folder-open"></i> 3.3 File Handling</a>
-            <a href="#quiz-31"><i class="fas fa-question-circle"></i> Quiz 3.1</a>
-            <a href="#quiz-32"><i class="fas fa-question-circle"></i> Quiz 3.2</a>
-            <a href="#quiz-33"><i class="fas fa-question-circle"></i> Quiz 3.3</a>
-            <a href="roadmap.html" style="background:#f8fafc;border:1px solid var(--border);margin-top:8px;"><i class="fas fa-arrow-left"></i> Return to Roadmap</a>
+
+            <!-- PROGRESS -->
+            <div class="progress-header">
+                <span class="progress-label">Progress</span>
+                <span class="progress-pct" id="prog-pct">0%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+            </div>
+
+            <!-- MODULE PATH LABEL -->
+            <div class="sb-section-label"><i class="fas fa-compass"></i> MODULE PATH</div>
+
+            <!-- MODULE 3 ACCORDION -->
+            <div class="sb-module-row open" id="mod3-toggle" onclick="toggleMod3()">
+                <span class="sb-mod-title"><i class="fas fa-exchange-alt"></i> 03 I/O Operations</span>
+                <i class="fas fa-chevron-up chevron"></i>
+            </div>
+
+            <!-- 3.1 -->
+            <div class="sb-section-row open" id="sec31-toggle" onclick="toggleSec('sec31')">
+                <span class="sb-sec-left"><span class="sb-sec-num">3.1</span> Input and Output</span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </div>
+            <ul class="sb-topics open" id="sec31-topics">
+                <li><a href="#sec31-input">Input</a></li>
+                <li><a href="#sec31-input-fn">input() Function</a></li>
+                <li><a href="#sec31-default">Default Datatype</a></li>
+                <li><a href="#sec31-conversion">Datatype Conversion</a></li>
+                <li><a href="#sec31-multiple">Multiple Inputs</a></li>
+                <li><a href="#sec31-output">Output</a></li>
+                <li><a href="#sec31-print">print() Function</a></li>
+                <li><a href="#sec31-format">Output Formatting</a></li>
+            </ul>
+
+            <!-- 3.2 -->
+            <div class="sb-section-row" id="sec32-toggle" onclick="toggleSec('sec32')">
+                <span class="sb-sec-left"><span class="sb-sec-num">3.2</span> Command Line Args</span>
+                <i class="fas fa-chevron-right chevron"></i>
+            </div>
+            <ul class="sb-topics" id="sec32-topics">
+                <li><a href="#sec32-what">What are CLI Args?</a></li>
+                <li><a href="#sec32-example">Example</a></li>
+                <li><a href="#sec32-why">Why Important?</a></li>
+                <li><a href="#sec32-sys">sys Module</a></li>
+                <li><a href="#sec32-default">Default Datatype</a></li>
+                <li><a href="#sec32-conversion">Datatype Conversion</a></li>
+                <li><a href="#sec32-diff">Difference Table</a></li>
+            </ul>
+
+            <!-- 3.3 -->
+            <div class="sb-section-row" id="sec33-toggle" onclick="toggleSec('sec33')">
+                <span class="sb-sec-left"><span class="sb-sec-num">3.3</span> File Handling</span>
+                <i class="fas fa-chevron-right chevron"></i>
+            </div>
+            <ul class="sb-topics" id="sec33-topics">
+                <li><a href="#sec33-what">What is File Handling?</a></li>
+                <li><a href="#sec33-open">open() Function</a></li>
+                <li><a href="#sec33-modes">File Opening Modes</a></li>
+                <li><a href="#sec33-fileopen">File Open</a></li>
+                <li><a href="#sec33-close">Close Files</a></li>
+                <li><a href="#sec33-read">Read Parts of File</a></li>
+                <li><a href="#sec33-write">File Write</a></li>
+                <li><a href="#sec33-create">Create a New File</a></li>
+                <li><a href="#sec33-delete">Delete File</a></li>
+            </ul>
+
+            <!-- RETURN -->
+            <a href="roadmap.html" class="sb-return"><i class="fas fa-arrow-left"></i> Return to Roadmap</a>
         </div>
     </aside>
 
@@ -257,18 +349,27 @@
             </div>
 
             <!-- INPUT -->
-            <h3><i class="fas fa-keyboard"></i> Input</h3>
+            <h3 id="sec31-input"><i class="fas fa-keyboard"></i> Input</h3>
             <div class="interaction-box blue">
                 <h4><i class="fas fa-info-circle"></i> What is Input?</h4>
                 <p>Input means giving data or information to a program.</p>
                 <p>In Python, users can enter data using the keyboard while the program is running.</p>
+                <div style="margin-top: 16px; border-radius: 10px; overflow: hidden; border: 1px solid #bfdbfe;">
+                    <video autoplay loop muted playsinline style="width: 100%; display: block; border-radius: 10px;">
+                        <source src="C:/Users/kj anand/Downloads/Quiz DD (2) 7 (2)/Quiz DD (2) 6/Quiz DD (13) 6/Quiz DD/Kid_typing_on_keyboard_output_202606101532.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
 
-            <h3><i class="fas fa-terminal"></i> input() Function</h3>
+            <h3 id="sec31-input-fn"><i class="fas fa-terminal"></i> input() Function</h3>
             <div class="interaction-box">
                 <h4><i class="fas fa-cog"></i> How input() Works</h4>
                 <p>The <code>input()</code> function is used to take data from the user through the keyboard.</p>
                 <p>The value entered by the user is stored in a variable.</p>
+                <div style="display:flex; flex-direction:column; gap:12px; margin:14px 0;">
+                    <img src="input_syntax.png" style="width:100%; border-radius:8px; border:1px solid #e2e8f0;" alt="input syntax">
+                    <img src="input_example.png" style="width:100%; border-radius:8px; border:1px solid #e2e8f0;" alt="input example">
+                </div>
                 <ul class="content-list">
                     <li><code>input()</code> → function used to take input</li>
                     <li><code>"message"</code> → text shown to the user</li>
@@ -287,8 +388,8 @@
                 <div class="badge-try-it"><i class="fas fa-terminal"></i> Try It</div>
                 <div class="coding-practice">
                     <textarea id="coding-ans-input-try" placeholder="# Write your code here..."></textarea>
-                    <button class="btn-run" onclick="runCode('input-try', 'Hello')">▶ Run</button>
-                    <button class="btn-reset" onclick="resetCode('input-try')">↺ Reset</button>
+                    <button class="btn-run" onclick="runCode('input-try', 'Hello')">&#9654; Run</button>
+                    <button class="btn-reset" onclick="resetCode('input-try')">&#8634; Reset</button>
                     <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
                     <div class="live-output-box" id="coding-output-input-try"></div>
                     <div class="feedback" id="coding-feedback-input-try"></div>
@@ -296,7 +397,7 @@
             </div>
 
             <!-- DEFAULT DATATYPE -->
-            <h3><i class="fas fa-database"></i> Default Datatype of input()</h3>
+            <h3 id="sec31-default"><i class="fas fa-database"></i> Default Datatype of input()</h3>
             <div class="interaction-box amber">
                 <h4><i class="fas fa-info-circle"></i> Always Returns String</h4>
                 <p>The <code>input()</code> function stores all values as string (<code>str</code>) by default.</p>
@@ -325,9 +426,8 @@
             </div>
 
             <!-- DATATYPE CONVERSION -->
-            <h3><i class="fas fa-exchange-alt"></i> Datatype Conversion</h3>
-            <div class="interaction-box blue">
-                <h4><i class="fas fa-random"></i> What is Datatype Conversion?</h4>
+            <h3 id="sec31-conversion"><i class="fas fa-exchange-alt"></i> Datatype Conversion</h3>
+            <div class="interaction-box">
                 <p>Datatype conversion means changing one datatype into another datatype.</p>
                 <p>Python provides built-in functions for conversion.</p>
                 <p>Common conversions:</p>
@@ -373,7 +473,7 @@
             </div>
 
             <!-- MULTIPLE INPUTS -->
-            <h3><i class="fas fa-layer-group"></i> Multiple Inputs</h3>
+            <h3 id="sec31-multiple"><i class="fas fa-layer-group"></i> Multiple Inputs</h3>
             <div class="interaction-box">
                 <h4><i class="fas fa-list-ol"></i> Taking More Than One Input</h4>
                 <p>Multiple inputs allow users to enter more than one value.</p>
@@ -385,7 +485,7 @@
             </div>
 
             <!-- OUTPUT -->
-            <h3><i class="fas fa-desktop"></i> Output</h3>
+            <h3 id="sec31-output"><i class="fas fa-desktop"></i> Output</h3>
             <div class="interaction-box blue">
                 <h4><i class="fas fa-info-circle"></i> What is Output?</h4>
                 <p>Output means displaying information or results to the user.</p>
@@ -393,7 +493,7 @@
             </div>
 
             <!-- PRINT -->
-            <h3><i class="fas fa-print"></i> print() Function</h3>
+            <h3 id="sec31-print"><i class="fas fa-print"></i> print() Function</h3>
             <div class="interaction-box">
                 <h4><i class="fas fa-cog"></i> What print() Can Display</h4>
                 <p>The <code>print()</code> function is used to display:</p>
@@ -412,7 +512,7 @@
             </div>
 
             <!-- OUTPUT FORMATTING -->
-            <h3><i class="fas fa-align-left"></i> Output Formatting</h3>
+            <h3 id="sec31-format"><i class="fas fa-align-left"></i> Output Formatting</h3>
             <div class="interaction-box amber">
                 <h4><i class="fas fa-info-circle"></i> Why Format Output?</h4>
                 <p>Output formatting is used to display output in a neat and readable format.</p>
@@ -462,8 +562,8 @@
                 <div class="badge-try-it"><i class="fas fa-terminal"></i> Try It</div>
                 <div class="coding-practice">
                     <textarea id="coding-ans-io1" placeholder="# Write your code here..."></textarea>
-                    <button class="btn-run" onclick="runCode('io1','Welcome to')">▶ Run</button>
-                    <button class="btn-reset" onclick="resetCode('io1')">↺ Reset</button>
+                    <button class="btn-run" onclick="runCode('io1','Welcome to')">&#9654; Run</button>
+                    <button class="btn-reset" onclick="resetCode('io1')">&#8634; Reset</button>
                     <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
                     <div class="live-output-box" id="coding-output-io1"></div>
                     <div class="feedback" id="coding-feedback-io1"></div>
@@ -480,7 +580,7 @@
                 <h2>3.2 Command Line Argument</h2>
             </div>
 
-            <div class="interaction-box blue">
+            <div id="sec32-what" class="interaction-box blue">
                 <h4><i class="fas fa-info-circle"></i> What are Command Line Arguments?</h4>
                 <p>Command line arguments are values passed to a Python program while running the program from the command prompt or terminal.</p>
                 <p>These values are given after the Python file name.</p>
@@ -488,7 +588,7 @@
             </div>
 
             <!-- EXAMPLE -->
-            <h3><i class="fas fa-code"></i> Example</h3>
+            <h3 id="sec32-example"><i class="fas fa-code"></i> Example</h3>
             <div class="interaction-box">
                 <h4><i class="fas fa-briefcase"></i> Business Scenario</h4>
                 <p>Suppose a company wants to generate reports for different employees.</p>
@@ -499,7 +599,7 @@ python report.py Rahul</pre>
             </div>
 
             <!-- WHY IMPORTANT -->
-            <h3><i class="fas fa-question-circle"></i> Why Command Line Arguments are Important?</h3>
+            <h3 id="sec32-why"><i class="fas fa-question-circle"></i> Why Command Line Arguments are Important?</h3>
             <div class="interaction-box green">
                 <h4><i class="fas fa-check-circle"></i> Benefits</h4>
                 <p>Command line arguments are useful because:</p>
@@ -512,7 +612,7 @@ python report.py Rahul</pre>
             </div>
 
             <!-- SYS MODULE -->
-            <h3><i class="fas fa-cubes"></i> sys Module</h3>
+            <h3 id="sec32-sys"><i class="fas fa-cubes"></i> sys Module</h3>
             <div class="interaction-box blue">
                 <h4><i class="fas fa-cog"></i> Using sys.argv</h4>
                 <p>Python provides the <code>sys</code> module to work with command line arguments.</p>
@@ -530,7 +630,7 @@ python report.py Rahul</pre>
             </div>
 
             <!-- DEFAULT DATATYPE -->
-            <h3><i class="fas fa-database"></i> Default Datatype of Command Line Arguments</h3>
+            <h3 id="sec32-default"><i class="fas fa-database"></i> Default Datatype of Command Line Arguments</h3>
             <div class="interaction-box amber">
                 <h4><i class="fas fa-font"></i> Always String by Default</h4>
                 <p>All command line arguments are stored as string (<code>str</code>) datatype by default.</p>
@@ -539,7 +639,7 @@ python report.py Rahul</pre>
             </div>
 
             <!-- DATATYPE CONVERSION -->
-            <h3><i class="fas fa-exchange-alt"></i> Datatype Conversion</h3>
+            <h3 id="sec32-conversion"><i class="fas fa-exchange-alt"></i> Datatype Conversion</h3>
             <div class="interaction-box">
                 <h4><i class="fas fa-random"></i> Converting Command Line Arguments</h4>
                 <p>Datatype conversion means changing one datatype into another datatype.</p>
@@ -562,7 +662,7 @@ python report.py Rahul</pre>
             </div>
 
             <!-- DIFFERENCE TABLE -->
-            <h3><i class="fas fa-balance-scale"></i> Difference between input() and Command Line Argument</h3>
+            <h3 id="sec32-diff"><i class="fas fa-balance-scale"></i> Difference between input() and Command Line Argument</h3>
             <table class="diff-table">
                 <thead>
                     <tr><th>Feature</th><th>input()</th><th>Command Line Argument</th></tr>
@@ -587,14 +687,14 @@ python report.py Rahul</pre>
                 <h2>3.3 File Handling</h2>
             </div>
 
-            <div class="interaction-box blue">
+            <div id="sec33-what" class="interaction-box blue">
                 <h4><i class="fas fa-info-circle"></i> What is File Handling?</h4>
                 <p>File handling is an important part of any web application.</p>
                 <p>Python has several functions for creating, reading, updating, and deleting files.</p>
             </div>
 
             <!-- OPEN FUNCTION -->
-            <h3><i class="fas fa-folder-open"></i> Functions</h3>
+            <h3 id="sec33-open"><i class="fas fa-folder-open"></i> Functions</h3>
             <div class="interaction-box">
                 <h4><i class="fas fa-key"></i> The open() Function</h4>
                 <p>The key function for working with files in Python is the <code>open()</code> function.</p>
@@ -602,7 +702,7 @@ python report.py Rahul</pre>
             </div>
 
             <!-- FILE MODES -->
-            <h3><i class="fas fa-list"></i> File Opening Modes</h3>
+            <h3 id="sec33-modes"><i class="fas fa-list"></i> File Opening Modes</h3>
             <p>There are four different methods (modes) for opening a file:</p>
             <table class="mode-table">
                 <thead>
@@ -620,7 +720,7 @@ python report.py Rahul</pre>
             <p>In addition you can specify if the file should be handled as binary or text mode:</p>
 
             <!-- FILE OPEN -->
-            <h3><i class="fas fa-file"></i> File Open</h3>
+            <h3 id="sec33-fileopen"><i class="fas fa-file"></i> File Open</h3>
             <div class="interaction-box green">
                 <h4><i class="fas fa-server"></i> Open a File on the Server</h4>
                 <p>Assume we have the following file, located in the same folder as Python:</p>
@@ -636,7 +736,7 @@ This file is for testing purposes.</pre>
             </div>
 
             <!-- CLOSE FILES -->
-            <h3><i class="fas fa-times-circle"></i> Close Files</h3>
+            <h3 id="sec33-close"><i class="fas fa-times-circle"></i> Close Files</h3>
             <div class="interaction-box amber">
                 <h4><i class="fas fa-lock"></i> Always Close Your Files</h4>
                 <p>It is a good practice to always close the file when you are done with it.</p>
@@ -648,7 +748,7 @@ f.<span class="fn">close</span>()</pre>
             </div>
 
             <!-- READ PARTS -->
-            <div class="interaction-box">
+            <div id="sec33-read" class="interaction-box">
                 <h4><i class="fas fa-cut"></i> Read Only Parts of the File</h4>
                 <p>By default the <code>read()</code> method returns the whole text, but you can also specify how many characters you want to return:</p>
                 <pre>f = <span class="fn">open</span>(<span class="st">"demofile.txt"</span>, <span class="st">"r"</span>)
@@ -657,7 +757,7 @@ f.<span class="fn">close</span>()</pre>
             </div>
 
             <!-- FILE WRITE -->
-            <h3><i class="fas fa-pen"></i> File Write</h3>
+            <h3 id="sec33-write"><i class="fas fa-pen"></i> File Write</h3>
             <div class="interaction-box blue">
                 <h4><i class="fas fa-edit"></i> Write to an Existing File</h4>
                 <p>To write to an existing file, you must add a parameter to the <code>open()</code> function:</p>
@@ -679,7 +779,7 @@ f.<span class="fn">close</span>()</pre>
             </div>
 
             <!-- CREATE FILE -->
-            <h3><i class="fas fa-file-plus"></i> Create a New File</h3>
+            <h3 id="sec33-create"><i class="fas fa-file-plus"></i> Create a New File</h3>
             <div class="interaction-box green">
                 <h4><i class="fas fa-plus-circle"></i> Creating Files</h4>
                 <p>To create a new file in Python, use the <code>open()</code> method, with one of the following parameters:</p>
@@ -694,7 +794,7 @@ f = <span class="fn">open</span>(<span class="st">"myfile.txt"</span>, <span cla
             </div>
 
             <!-- DELETE FILE -->
-            <h3><i class="fas fa-trash"></i> Delete File</h3>
+            <h3 id="sec33-delete"><i class="fas fa-trash"></i> Delete File</h3>
             <div class="interaction-box red">
                 <h4><i class="fas fa-trash-alt"></i> Deleting a File</h4>
                 <p>To delete a file, you must import the OS module, and run its <code>os.remove()</code> function:</p>
@@ -709,7 +809,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
         ══════════════════════════════════════ -->
         <div class="lesson-card" id="quiz-31">
             <div class="section-header">
-                <h2><i class="fas fa-question-circle"></i> Quiz – 3.1 Input and Output</h2>
+                <h2><i class="fas fa-question-circle"></i> Quiz &#8211; 3.1 Input and Output</h2>
             </div>
 
             <!-- Q1 MCQ -->
@@ -722,7 +822,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
                     <li onclick="answerMCQ('q31-1', this, false)">C. read()</li>
                     <li onclick="answerMCQ('q31-1', this, false)">D. write()</li>
                 </ul>
-                <div class="answer-reveal" id="q31-1-ans">✓ Answer: B. input()</div>
+                <div class="answer-reveal" id="q31-1-ans">&#10003; Answer: B. input()</div>
             </div>
 
             <!-- Q2 True/False -->
@@ -731,10 +831,10 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
                 <span class="q-type-badge">True / False</span>
                 <p class="q-text">The print() function is used to display output on the screen.</p>
                 <div class="tf-options">
-                    <button class="tf-btn" onclick="answerTF('q31-2', this, true, true)">✓ True</button>
-                    <button class="tf-btn" onclick="answerTF('q31-2', this, false, true)">✗ False</button>
+                    <button class="tf-btn" onclick="answerTF('q31-2', this, true, true)">&#10003; True</button>
+                    <button class="tf-btn" onclick="answerTF('q31-2', this, false, true)">&#10007; False</button>
                 </div>
-                <div class="answer-reveal" id="q31-2-ans">✓ Answer: True</div>
+                <div class="answer-reveal" id="q31-2-ans">&#10003; Answer: True</div>
             </div>
 
             <!-- Q3 Fill in the Blank -->
@@ -748,7 +848,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
                     <button class="btn-quiz-submit" onclick="answerFill('q31-3', 'input')">Submit</button>
                 </div>
                 <div class="fill-result" id="q31-3-result"></div>
-                <div class="answer-reveal" id="q31-3-ans">✓ Answer: <code>input</code></div>
+                <div class="answer-reveal" id="q31-3-ans">&#10003; Answer: <code>input</code></div>
             </div>
 
             <!-- Q4 Code Compare -->
@@ -766,7 +866,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
                         <pre style="margin:0;border-radius:0;border:none;"><span class="fn">print</span>[<span class="st">"Welcome"</span>]</pre>
                     </div>
                 </div>
-                <div class="answer-reveal" id="q31-4-ans">✓ Answer: Option A</div>
+                <div class="answer-reveal" id="q31-4-ans">&#10003; Answer: Option A</div>
             </div>
         </div><!-- end quiz 3.1 -->
 
@@ -776,7 +876,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
         ══════════════════════════════════════ -->
         <div class="lesson-card" id="quiz-32">
             <div class="section-header">
-                <h2><i class="fas fa-question-circle"></i> Quiz – 3.2 Command Line Argument</h2>
+                <h2><i class="fas fa-question-circle"></i> Quiz &#8211; 3.2 Command Line Argument</h2>
             </div>
 
             <!-- Q1 MCQ -->
@@ -789,7 +889,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
                     <li onclick="answerMCQ('q32-1', this, true)">C. sys</li>
                     <li onclick="answerMCQ('q32-1', this, false)">D. random</li>
                 </ul>
-                <div class="answer-reveal" id="q32-1-ans">✓ Answer: C. sys</div>
+                <div class="answer-reveal" id="q32-1-ans">&#10003; Answer: C. sys</div>
             </div>
 
             <!-- Q2 True/False -->
@@ -798,10 +898,10 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
                 <span class="q-type-badge">True / False</span>
                 <p class="q-text">sys.argv stores command line arguments as a list.</p>
                 <div class="tf-options">
-                    <button class="tf-btn" onclick="answerTF('q32-2', this, true, true)">✓ True</button>
-                    <button class="tf-btn" onclick="answerTF('q32-2', this, false, true)">✗ False</button>
+                    <button class="tf-btn" onclick="answerTF('q32-2', this, true, true)">&#10003; True</button>
+                    <button class="tf-btn" onclick="answerTF('q32-2', this, false, true)">&#10007; False</button>
                 </div>
-                <div class="answer-reveal" id="q32-2-ans">✓ Answer: True</div>
+                <div class="answer-reveal" id="q32-2-ans">&#10003; Answer: True</div>
             </div>
 
             <!-- Q3 Fill in the Blank -->
@@ -816,7 +916,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
                     <button class="btn-quiz-submit" onclick="answerFill('q32-3', 'argv')">Submit</button>
                 </div>
                 <div class="fill-result" id="q32-3-result"></div>
-                <div class="answer-reveal" id="q32-3-ans">✓ Answer: <code>argv</code></div>
+                <div class="answer-reveal" id="q32-3-ans">&#10003; Answer: <code>argv</code></div>
             </div>
 
             <!-- Q4 Code Compare -->
@@ -836,7 +936,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
 <span class="fn">print</span>(sys.argument[<span class="nm">1</span>])</pre>
                     </div>
                 </div>
-                <div class="answer-reveal" id="q32-4-ans">✓ Answer: Option A</div>
+                <div class="answer-reveal" id="q32-4-ans">&#10003; Answer: Option A</div>
             </div>
         </div><!-- end quiz 3.2 -->
 
@@ -846,7 +946,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
         ══════════════════════════════════════ -->
         <div class="lesson-card" id="quiz-33">
             <div class="section-header">
-                <h2><i class="fas fa-question-circle"></i> Quiz – 3.3 File Handling</h2>
+                <h2><i class="fas fa-question-circle"></i> Quiz &#8211; 3.3 File Handling</h2>
             </div>
 
             <!-- Q1 MCQ -->
@@ -859,7 +959,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
                     <li onclick="answerMCQ('q33-1', this, true)">C. "r"</li>
                     <li onclick="answerMCQ('q33-1', this, false)">D. "x"</li>
                 </ul>
-                <div class="answer-reveal" id="q33-1-ans">✓ Answer: C. "r"</div>
+                <div class="answer-reveal" id="q33-1-ans">&#10003; Answer: C. "r"</div>
             </div>
 
             <!-- Q2 True/False -->
@@ -868,10 +968,10 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
                 <span class="q-type-badge">True / False</span>
                 <p class="q-text">The write() function is used to add data into a file.</p>
                 <div class="tf-options">
-                    <button class="tf-btn" onclick="answerTF('q33-2', this, true, true)">✓ True</button>
-                    <button class="tf-btn" onclick="answerTF('q33-2', this, false, true)">✗ False</button>
+                    <button class="tf-btn" onclick="answerTF('q33-2', this, true, true)">&#10003; True</button>
+                    <button class="tf-btn" onclick="answerTF('q33-2', this, false, true)">&#10007; False</button>
                 </div>
-                <div class="answer-reveal" id="q33-2-ans">✓ Answer: True</div>
+                <div class="answer-reveal" id="q33-2-ans">&#10003; Answer: True</div>
             </div>
 
             <!-- Q3 Fill in the Blank -->
@@ -882,10 +982,10 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
                 <pre>file = <span class="fn">open</span>(<span class="st">"students.txt"</span>, ______)</pre>
                 <input class="fill-input" id="q33-3-input" placeholder='Type your answer here e.g. "w"' />
                 <div class="quiz-submit-row">
-                    <button class="btn-quiz-submit" onclick="answerFill('q33-3', '\"w\"', 'w')">Submit</button>
+                    <button class="btn-quiz-submit" onclick="answerFill('q33-3', '&quot;w&quot;', 'w')">Submit</button>
                 </div>
                 <div class="fill-result" id="q33-3-result"></div>
-                <div class="answer-reveal" id="q33-3-ans">✓ Answer: <code>"w"</code></div>
+                <div class="answer-reveal" id="q33-3-ans">&#10003; Answer: <code>"w"</code></div>
             </div>
 
             <!-- Q4 Code Compare -->
@@ -905,7 +1005,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
 <span class="fn">print</span>(file.<span class="fn">read</span>())</pre>
                     </div>
                 </div>
-                <div class="answer-reveal" id="q33-4-ans">✓ Answer: Option A</div>
+                <div class="answer-reveal" id="q33-4-ans">&#10003; Answer: Option A</div>
             </div>
 
             <!-- Q5 MCQ -->
@@ -918,7 +1018,7 @@ os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
                     <li onclick="answerMCQ('q33-5', this, false)">C. open()</li>
                     <li onclick="answerMCQ('q33-5', this, false)">D. read()</li>
                 </ul>
-                <div class="answer-reveal" id="q33-5-ans">✓ Answer: B. os.path.exists()</div>
+                <div class="answer-reveal" id="q33-5-ans">&#10003; Answer: B. os.path.exists()</div>
             </div>
 
             <!-- Q6 Fill in the Blank -->
@@ -933,7 +1033,7 @@ os._________(<span class="st">"data.txt"</span>)</pre>
                     <button class="btn-quiz-submit" onclick="answerFill('q33-6', 'remove')">Submit</button>
                 </div>
                 <div class="fill-result" id="q33-6-result"></div>
-                <div class="answer-reveal" id="q33-6-ans">✓ Answer: <code>remove</code></div>
+                <div class="answer-reveal" id="q33-6-ans">&#10003; Answer: <code>remove</code></div>
             </div>
 
             <!-- Q7 Code Compare -->
@@ -953,7 +1053,7 @@ os._________(<span class="st">"data.txt"</span>)</pre>
     <span class="fn">print</span>(file.<span class="fn">read</span>())</pre>
                     </div>
                 </div>
-                <div class="answer-reveal" id="q33-7-ans">✓ Answer: Option A</div>
+                <div class="answer-reveal" id="q33-7-ans">&#10003; Answer: Option A</div>
             </div>
 
         </div><!-- end quiz 3.3 -->
@@ -997,7 +1097,99 @@ os._________(<span class="st">"data.txt"</span>)</pre>
         if (fb) { fb.style.display = 'none'; fb.className = 'feedback'; }
     }
 
-    /* ── MCQ ── */
+    /* ── SIDEBAR ACCORDION ── */
+    function toggleMod3() {
+        // Module 3 row just shows/hides all sections — toggle all sub sections
+        const rows = ['sec31','sec32','sec33'];
+        const modBtn = document.getElementById('mod3-toggle');
+        const isOpen = modBtn.classList.contains('open');
+        if (isOpen) {
+            modBtn.classList.remove('open');
+            rows.forEach(id => {
+                document.getElementById(id+'-toggle').classList.remove('open');
+                document.getElementById(id+'-topics').classList.remove('open');
+            });
+        } else {
+            modBtn.classList.add('open');
+        }
+    }
+
+    function toggleSec(id) {
+        const row = document.getElementById(id+'-toggle');
+        const topics = document.getElementById(id+'-topics');
+        const isOpen = row.classList.contains('open');
+        // close all first
+        ['sec31','sec32','sec33'].forEach(s => {
+            document.getElementById(s+'-toggle').classList.remove('open');
+            document.getElementById(s+'-topics').classList.remove('open');
+            // restore chevron-right for closed ones
+            const chevron = document.querySelector('#'+s+'-toggle .chevron');
+            if (chevron) { chevron.classList.remove('fa-chevron-down'); chevron.classList.add('fa-chevron-right'); }
+        });
+        if (!isOpen) {
+            row.classList.add('open');
+            topics.classList.add('open');
+            const chevron = row.querySelector('.chevron');
+            if (chevron) { chevron.classList.remove('fa-chevron-right'); chevron.classList.add('fa-chevron-down'); }
+        }
+    }
+
+    /* ── PROGRESS TRACKING ── */
+    // Count total interactive elements: MCQ + TF + Fill + Code Compare
+    const TOTAL_QUESTIONS = 15; // 4 + 4 + 7 quiz questions
+    let answeredCount = 0;
+    function updateProgress() {
+        answeredCount++;
+        const pct = Math.round((answeredCount / TOTAL_QUESTIONS) * 100);
+        const capped = Math.min(pct, 100);
+        document.getElementById('prog-fill').style.width = capped + '%';
+        document.getElementById('prog-pct').textContent = capped + '%';
+    }
+
+    /* ── PATCH answer functions to call updateProgress ── */
+    const _origMCQ  = answerMCQ;
+    const _origTF   = answerTF;
+    const _origFill = answerFill;
+    const _origCode = answerCode;
+
+    answerMCQ = function(listId, clicked, isCorrect) {
+        const list = document.getElementById(listId);
+        if (list && list.dataset.answered) return;
+        _origMCQ(listId, clicked, isCorrect);
+        updateProgress();
+    };
+    answerTF = function(id, btn, userSaidTrue, correctIsTrue) {
+        const container = btn.closest('.quiz-card');
+        if (container.dataset.answered) return;
+        _origTF(id, btn, userSaidTrue, correctIsTrue);
+        updateProgress();
+    };
+    answerFill = function(id, ...acceptedAnswers) {
+        const input = document.getElementById(id + '-input');
+        if (!input || input.disabled) return;
+        _origFill(id, ...acceptedAnswers);
+        updateProgress();
+    };
+    answerCode = function(containerId, clicked, isCorrect) {
+        const container = document.getElementById(containerId);
+        if (!container || container.dataset.answered) return;
+        _origCode(containerId, clicked, isCorrect);
+        updateProgress();
+    };
+
+    /* ── ACTIVE TOPIC HIGHLIGHT on scroll ── */
+    const allAnchors = document.querySelectorAll('[id^="sec3"]');
+    window.addEventListener('scroll', function() {
+        let current = '';
+        allAnchors.forEach(el => {
+            if (window.scrollY >= el.offsetTop - 120) current = el.id;
+        });
+        document.querySelectorAll('.sb-topics li a').forEach(a => {
+            a.classList.remove('active-topic');
+            if (a.getAttribute('href') === '#' + current) a.classList.add('active-topic');
+        });
+    }, { passive: true });
+
     function answerMCQ(listId, clicked, isCorrect) {
         const list = document.getElementById(listId);
         if (!list || list.dataset.answered) return;
@@ -1014,7 +1206,6 @@ os._________(<span class="st">"data.txt"</span>)</pre>
             Array.from(list.children).forEach(li => {
                 li.removeAttribute('onclick');
             });
-            // find correct li by its onclick (already removed), so mark via data
         }
         // show answer
         const ans = document.getElementById(listId + '-ans');
