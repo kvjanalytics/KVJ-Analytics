@@ -3,671 +3,776 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 6: Built-in Modules | KVJ Python Mastery</title>
+    <title>Module 6: Troubleshooting & Error Handling | KVJ Python Mastery</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulkt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulkt-stdlib.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px;
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --primary-light: #eef2ff;
+            --secondary: #0d9488;
+            --secondary-dark: #0f766e;
+            --secondary-light: #f0fdfa;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #cbd5e1;
+            --success: #10b981;
+            --warning: #f59e0b;
         }
-
-                        :root {
-            --primary-blue: #1c1d1f;
-            --brand-python: #a435f0;
-            --accent-blue: #a435f0;
-            --bg-light: #ffffff;
-            --text-main: #1c1d1f;
-            --text-muted: #6a6f73;
-            --border-color: #d1d7dc;
-            --white: #ffffff;
-        }
-
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Outfit', sans-serif; background-color: var(--bg-page); color: var(--text-main); line-height: 1.7; }
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-light);
-            color: #0f172a;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            line-height: 1.6;
-        }
+        /* NAVBAR */
+        .navbar { height: 68px; background: white; padding: 0 2.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .logout-btn { background: #ef4444; color: white; padding: 9px 22px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 13px; }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 3rem;
-            background: #ffffff;
-            border-bottom: 1px solid var(--border-color);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
+        /* LAYOUT */
+        .layout-container { display: flex; align-items: flex-start; max-width: 1360px; margin: 90px auto 60px; gap: 30px; padding: 20px 20px 0; }
 
-        .navbar-left { display: flex; align-items: center; gap: 1.5rem; }
-        .kvj-logo-img { max-height: 35px; width: auto; }
+        /* SIDEBAR */
+        .sidebar { width: 270px; flex: 0 0 auto; position: sticky; top: 90px; z-index: 100; height: fit-content; max-height: calc(100vh - 110px); }
+        .sidebar-inner { background: white; border-radius: 14px; padding: 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; overflow-y: auto; max-height: calc(100vh - 130px); }
+        .sidebar h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin: 0 0 12px; font-weight: 700; }
+        .sidebar a { display: flex; align-items: center; gap: 10px; padding: 10px 13px; text-decoration: none; color: #475569; font-weight: 500; font-size: 14px; border-radius: 9px; transition: all 0.2s; margin-bottom: 3px; }
+        .sidebar a:hover { background: var(--primary-light); color: var(--primary); }
+        .sidebar a.active { background: var(--primary-light); color: var(--primary); font-weight: 700; }
+        .sidebar a i { width: 18px; text-align: center; font-size: 13px; }
 
-        .logout-btn {
-            background: #dc2626; color: white; padding: 8px 18px;
-            text-decoration: none; font-size: 12px; font-weight: 700;
-            border-radius: 6px; transition: opacity 0.3s; text-transform: uppercase;
-        }
+        /* MAIN CONTENT */
+        .main-content { flex: 1; min-width: 0; }
 
-        .header-banner {
-            background: var(--primary-blue);
-            color: white;
-            padding: 120px 20px 60px; text-align: center;
-        }
+        /* LESSON CARD */
+        .lesson-card { background: white; border-radius: 20px; padding: 38px 44px; margin-bottom: 30px; border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.05); transition: transform 0.25s ease, box-shadow 0.25s ease; position: relative; }
+        .lesson-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(79,70,229,0.10); }
 
-        .header-banner h1 {
-            font-family: 'Montserrat', sans-serif; font-size: 38px;
-            font-weight: 900; letter-spacing: -1px; text-transform: uppercase;
-        }
+        /* SECTION HEADER */
+        .section-header { margin-bottom: 28px; padding-bottom: 18px; border-bottom: 2px solid #e2e8f0; }
+        .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 14px; letter-spacing: -0.5px; }
+        .section-header h2 i { background: linear-gradient(135deg, var(--primary), #6366f1); color: white; width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(79,70,229,0.25); }
+        .section-header p { margin-top: 6px; margin-bottom: 0; color: var(--primary); font-weight: 600; font-size: 14px; }
 
-        .layout-container {
-            display: flex; max-width: 1400px;
-            margin: 40px auto; gap: 40px; width: 95%; padding-bottom: 60px;
-        }
+        /* TYPOGRAPHY */
+        h3 { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; margin: 40px 0 16px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        h3 i { color: var(--primary); font-size: 15px; }
+        p { margin-bottom: 16px; font-size: 17px; color: #475569; line-height: 1.7; }
+        strong { color: var(--text-main); }
+        code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-family: 'Fira Code', monospace; font-weight: 700; color: #ef4444; font-size: 15px; }
 
-        .sidebar {
-            width: 300px; background: #ffffff; padding: 30px;
-            border: 1px solid var(--border-color); position: sticky;
-            top: 100px; border-radius: 12px; height: fit-content;
-        }
-
-        .sidebar h3 {
-            font-family: 'Montserrat', sans-serif; font-size: 12px;
-            color: var(--primary-blue); text-transform: uppercase;
-            margin-bottom: 20px; border-bottom: 2px solid var(--bg-light);
-            padding-bottom: 10px; font-weight: 800; letter-spacing: 1px;
-        }
-
-        .sidebar a {
-            display: block; padding: 12px 15px;
-            color: #334155; text-decoration: none; font-size: 14px;
-            font-weight: 500; margin-bottom: 5px; border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .sidebar a.active {
-            color: var(--primary-blue); font-weight: 700;
-            background: #f1f5f9; border-left: 4px solid var(--primary-blue);
-        }
-
-        .sidebar a:hover:not(.active) { background: #f8fafc; color: var(--primary-blue); }
-
-        .main-content {
-            flex: 1; background: #ffffff; border: 1px solid var(--border-color);
-            padding: 40px 60px; border-radius: 12px;
-        }
-
-        .section-header { margin-bottom: 30px; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; margin-top: 40px; }
-        .section-header:first-child { margin-top: 0; }
-        .section-header h2 { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; }
+        /* INTERACTION BOX */
+        .interaction-box { background: #f8fafc; border-radius: 20px; padding: 30px 34px; margin: 26px 0; border: 1.5px solid var(--border); position: relative; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+        .interaction-box.blue   { border-color: #93c5fd; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: 5px solid #3b82f6; }
+        .interaction-box.green  { border-color: #6ee7b7; background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%); border-left: 5px solid #10b981; }
+        .interaction-box.amber  { border-color: #fcd34d; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-left: 5px solid #f59e0b; }
+        .interaction-box.red    { border-color: #fca5a5; background: linear-gradient(135deg, #fff5f5 0%, #fee2e2 100%); border-left: 5px solid #ef4444; }
+        .interaction-box.purple { border-color: #c4b5fd; background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 100%); border-left: 5px solid #8b5cf6; }
+        .interaction-box h4 { color: var(--primary); font-size: 20px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; margin-top: 0; }
+        .interaction-box p { font-size: 17.5px; line-height: 1.8; color: #334155; }
+        .interaction-box .content-list li { font-size: 16.5px; }
         
-        p { margin-bottom: 25px; color: #334155; font-size: 17px; }
-        strong { color: var(--primary-blue); font-weight: 700; }
-        
-        .content-list { list-style: none; margin-bottom: 25px; }
-        .content-list li { position: relative; padding-left: 28px; margin-bottom: 12px; color: #334155; font-size: 16px; }
-        .content-list li::before { content: "✓"; position: absolute; left: 0; color: #10b981; font-weight: 800; }
+        h4 { font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 700; color: #4f46e5; margin-top: 28px; margin-bottom: 14px; letter-spacing: -0.3px; display: flex; align-items: center; gap: 10px; }
 
-        .interaction-box { background: #f8fafc; border-left: 5px solid #a435f0; padding: 25px; margin: 30px 0; border-radius: 8px; font-size: 16px; border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        pre { background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; margin: 25px 0; font-family: 'Fira Code', monospace; font-size: 14px; overflow-x: auto; line-height: 1.5; }
-        .number { color: #1e3a8a; font-weight: 800; }
-        .function { color: #f472b6; }
-        .string { color: #10b981; }
-        .keyword { color: #fbbf24; }
+        /* CODE BLOCKS */
+        pre { background: #f1f5f9; color: #1e293b; padding: 18px 22px; border-radius: 12px; margin: 12px 0; font-family: 'Fira Code', monospace; font-size: 13.5px; line-height: 1.8; overflow-x: auto; border: 1.5px solid #e2e8f0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .keyword  { color: #1d4ed8; font-weight: 700; }
+        .function { color: #7c3aed; font-weight: 600; }
+        .string   { color: #059669; }
+        .number   { color: #0369a1; font-weight: 700; }
+        .comment  { color: #94a3b8; font-style: italic; }
 
-        /* Dark UI for Practice */
-        .practice-card {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 30px;
-            margin: 40px 0;
-            color: #f8fafc;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-        .practice-card h3 { margin-top: 0; color: #1e3a8a; font-weight: 800; font-size: 22px; font-weight: 700; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
-        .practice-card p { color: #e2e8f0; font-size: 16px; margin-bottom: 20px; }
-        .practice-card strong { color: #f8fafc; font-weight: 800; }
-        
-        .coding-practice textarea {
-            width: 100%; height: 120px;
-            background: #0f172a; color: #1e3a8a; font-weight: 800;
-            border: 1px solid #0ea5e9; border-radius: 8px;
-            padding: 15px; font-family: 'Fira Code', monospace; font-size: 14px;
-            margin-bottom: 15px; outline: none; resize: vertical;
-        }
-        .btn-run { background: #38bdf8; color: #0f172a; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: transform 0.2s; margin-right: 10px; }
-        .btn-reset { background: #334155; color: #f8fafc; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
-        .live-output-box { background: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; margin-top: 15px; font-family: 'Fira Code', monospace; font-size: 13px; min-height: 40px; display: none; border: 1px solid #334155; }
-        .feedback { margin-top: 15px; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 14px; display: none; }
-        .feedback.correct { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid #10b981; display: block; }
-        .feedback.wrong { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid #ef4444; display: block; }
+        /* OUTPUT / NOTE BOXES */
+        .output-box { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 1.5px solid #86efac; border-left: 4px solid var(--success); padding: 14px 20px; border-radius: 10px; font-family: 'Fira Code', monospace; font-size: 13.5px; margin: 14px 0; color: #166534; font-weight: 600; box-shadow: 0 2px 8px rgba(16,185,129,0.10); }
+        .note-box { background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 1.5px solid #fcd34d; border-left: 4px solid #f59e0b; padding: 14px 20px; border-radius: 10px; font-size: 15px; margin: 14px 0; color: #78350f; box-shadow: 0 2px 8px rgba(245,158,11,0.10); }
+        .important-box { background: linear-gradient(135deg, #fff5f5, #fee2e2); border: 1.5px solid #fca5a5; border-left: 4px solid #ef4444; padding: 14px 20px; border-radius: 10px; font-size: 15px; margin: 14px 0; color: #991b1b; box-shadow: 0 2px 8px rgba(239,68,68,0.10); }
 
-        .quiz-cta {
-            margin-top: 60px; padding: 40px;
-            background: var(--primary-blue);
-            border-radius: 12px; text-align: center;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
-        }
-        .quiz-cta h3 { color: white; margin-top: 0; font-size: 24px; font-family: 'Montserrat', sans-serif; font-weight: 800; }
-        .quiz-cta p { color: rgba(255,255,255,0.9); margin-bottom: 25px; }
-        .btn-start-quiz {
-            display: inline-block; background: #ffffff; color: var(--primary-blue);
-            text-decoration: none; padding: 16px 40px; border-radius: 30px;
-            font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: 1px;
-            transition: all 0.2s;
-        }
-        .btn-start-quiz:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        /* CONTENT LIST */
+        .content-list { list-style: none; margin: 12px 0 16px; padding: 0; }
+        .content-list li { position: relative; padding: 9px 0 9px 30px; color: #475569; font-size: 15px; border-bottom: 1px solid #f1f5f9; }
+        .content-list li:last-child { border-bottom: none; }
+        .content-list li::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: 800; font-size: 14px; }
 
-        @media (max-width: 992px) {
+        /* METHOD TABLE */
+        .method-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 14px; overflow: hidden; margin: 18px 0; box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
+        .method-table th { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 14px 18px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px; text-align: left; }
+        .method-table td { padding: 12px 18px; border-bottom: 1px solid #f1f5f9; font-size: 14px; font-weight: 500; background: white; transition: background 0.15s; }
+        .method-table tr:hover td { background: #f8fafc; }
+        .method-table td code { background: #eef2ff; color: #4f46e5; font-weight: 700; padding: 2px 8px; border-radius: 5px; }
+
+        /* MODULE BANNER */
+        .module-banner { background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #8b5cf6 100%); border-radius: 20px; padding: 40px 44px; margin-bottom: 30px; color: white; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(79,70,229,0.25); }
+        .module-banner::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%; }
+        .module-banner .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 30px; padding: 6px 16px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; backdrop-filter: blur(10px); }
+        .module-banner h1 { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 900; letter-spacing: -1px; margin-bottom: 10px; }
+        .module-banner p { color: rgba(255,255,255,0.85); font-size: 16px; margin: 0; }
+
+        /* Image Styling */
+        .featured-image { width: 100%; max-width: 900px; margin: 40px auto; display: block; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+
+        @media (max-width: 768px) {
             .layout-container { flex-direction: column; }
-            .sidebar { width: 100%; position: static; }
-            .main-content { padding: 30px; }
-            .navbar { padding: 1rem 1.5rem; }
+            .sidebar { width: 100%; position: relative; top: auto; height: auto; max-height: none; }
+            .sidebar-inner { max-height: auto; }
         }
     </style>
 </head>
 <body>
-
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="navbar-left">
-            <img src="Kvj logo.jpeg" alt="KVJ Logo" class="kvj-logo-img">
-        </div>
+        <div style="font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 900; color: var(--primary);">KVJ Python Mastery</div>
         <a href="roadmap.html" class="logout-btn">EXIT</a>
     </nav>
 
-    <header class="header-banner">
-        <h1>Module 6: Built-in Modules</h1>
-    </header>
-
+    <!-- MAIN LAYOUT -->
     <div class="layout-container">
+        <!-- SIDEBAR -->
         <aside class="sidebar">
-            <h3>Module Path</h3>
-            <a href="Module-1.html">01 Foundation</a>
-            <a href="Module-2.html">02 Flow Control</a>
-            <a href="Module-3.html">03 I/O Operations</a>
-            <a href="Module-4.html">04 Documentation</a>
-            <a href="Module-5.html">05 Error Handling</a>
-            <a href="Module-6.html" class="active">06 Built-in Modules</a>
+            <div class="sidebar-inner">
+                <!-- PROGRESS SECTION -->
+                <div style="margin-bottom:24px; padding-bottom:18px; border-bottom:1.5px solid #e2e8f0;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                        <div style="width:100%;height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+                            <div id="sidebar-progress-bar" style="height:100%;background:linear-gradient(90deg, var(--primary), var(--secondary));width:0%;transition:width 0.15s ease;border-radius:3px;"></div>
+                        </div>
+                        <span id="sidebar-progress-pct" style="color:var(--primary);font-size:14px;font-weight:800;margin-left:12px;min-width:35px;text-align:right;">0%</span>
+                    </div>
+                </div>
 
-            <h3 style="margin-top:35px;">Navigation</h3>
-            <a href="roadmap.html" style="background: #f8fafc;">&larr; Return to Roadmap</a>
+                <!-- MODULE PATH -->
+                <h3 style="color:var(--primary);font-weight:800;margin-top:0;margin-bottom:12px;"><i class="fas fa-map-signs"></i> MODULE PATH</h3>
+
+                <div style="display:flex;align-items:center;gap:8px;background:var(--primary);color:#fff;border-radius:10px;padding:10px 13px;margin-bottom:6px;">
+                    <span style="background:rgba(255,255,255,0.25);color:#fff;border-radius:5px;padding:1px 8px;font-size:11px;font-weight:800;">06</span>
+                    <i class="fas fa-bug" style="font-size:13px;"></i>
+                    <span style="font-size:13.5px;font-weight:700;">Error Handling & Debugging</span>
+                </div>
+
+                <div style="margin-left:10px;border-left:2px solid var(--primary-light);padding-left:10px;">
+                    <!-- 6.1 Error Analysis -->
+                    <button onclick="toggleSection('sub-61','section-61',this)" class="nav-link toggle-btn" data-section="section-61" style="font-size:12.5px;padding:8px 10px;margin-bottom:2px;font-weight:700;width:100%;text-align:left;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;border-radius:9px;color:#475569;transition:all 0.2s;">
+                        <span style="background:var(--primary-light);color:var(--primary);border-radius:5px;padding:1px 7px;font-size:11px;font-weight:800;margin-right:4px;">6.1</span>
+                        <i class="fas fa-search-minus" style="color:var(--primary);font-size:11px;"></i> Error Analysis
+                        <i class="fas fa-chevron-down toggle-icon" style="font-size:9px;margin-left:auto;transition:transform 0.25s;"></i>
+                    </button>
+                    <div class="sub-items" id="sub-61" style="overflow:hidden;max-height:0;transition:max-height 0.3s ease;">
+                        <a href="#section-61-def" style="font-size:11.5px;padding:5px 10px 5px 22px;color:#64748b;display:flex;align-items:center;gap:7px;text-decoration:none;border-radius:7px;margin-bottom:1px;"><i class="fas fa-info-circle" style="font-size:9px;width:12px;"></i> What are Errors?</a>
+                        <a href="#section-61-types" style="font-size:11.5px;padding:5px 10px 5px 22px;color:#64748b;display:flex;align-items:center;gap:7px;text-decoration:none;border-radius:7px;margin-bottom:1px;"><i class="fas fa-list" style="font-size:9px;width:12px;"></i> Types of Errors</a>
+                        <a href="#section-61-syntax" style="font-size:11.5px;padding:5px 10px 5px 22px;color:#64748b;display:flex;align-items:center;gap:7px;text-decoration:none;border-radius:7px;margin-bottom:1px;"><i class="fas fa-code" style="font-size:9px;width:12px;"></i> Syntax Errors</a>
+                        <a href="#section-61-logic" style="font-size:11.5px;padding:5px 10px 5px 22px;color:#64748b;display:flex;align-items:center;gap:7px;text-decoration:none;border-radius:7px;margin-bottom:1px;"><i class="fas fa-brain" style="font-size:9px;width:12px;"></i> Logic Errors</a>
+                        <a href="#section-61-runtime" style="font-size:11.5px;padding:5px 10px 5px 22px;color:#64748b;display:flex;align-items:center;gap:7px;text-decoration:none;border-radius:7px;margin-bottom:4px;"><i class="fas fa-play" style="font-size:9px;width:12px;"></i> Runtime Errors</a>
+                    </div>
+
+                    <!-- 6.2 Exception Handling -->
+                    <button onclick="toggleSection('sub-62','section-62',this)" class="nav-link toggle-btn" data-section="section-62" style="font-size:12.5px;padding:8px 10px;margin-bottom:2px;font-weight:700;width:100%;text-align:left;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;border-radius:9px;color:#475569;transition:all 0.2s;">
+                        <span style="background:var(--secondary-light);color:var(--secondary);border-radius:5px;padding:1px 7px;font-size:11px;font-weight:800;margin-right:4px;">6.2</span>
+                        <i class="fas fa-shield-alt" style="color:var(--secondary);font-size:11px;"></i> Exception Handling
+                        <i class="fas fa-chevron-down toggle-icon" style="font-size:9px;margin-left:auto;transition:transform 0.25s;"></i>
+                    </button>
+                    <div class="sub-items" id="sub-62" style="overflow:hidden;max-height:0;transition:max-height 0.3s ease;">
+                        <a href="#section-62-intro" style="font-size:11.5px;padding:5px 10px 5px 22px;color:#64748b;display:flex;align-items:center;gap:7px;text-decoration:none;border-radius:7px;margin-bottom:1px;"><i class="fas fa-question-circle" style="font-size:9px;width:12px;"></i> What is Exception Handling?</a>
+                        <a href="#section-62-try" style="font-size:11.5px;padding:5px 10px 5px 22px;color:#64748b;display:flex;align-items:center;gap:7px;text-decoration:none;border-radius:7px;margin-bottom:1px;"><i class="fas fa-cube" style="font-size:9px;width:12px;"></i> try Statement</a>
+                        <a href="#section-62-except" style="font-size:11.5px;padding:5px 10px 5px 22px;color:#64748b;display:flex;align-items:center;gap:7px;text-decoration:none;border-radius:7px;margin-bottom:1px;"><i class="fas fa-hand-paper" style="font-size:9px;width:12px;"></i> except Statement</a>
+                        <a href="#section-62-else" style="font-size:11.5px;padding:5px 10px 5px 22px;color:#64748b;display:flex;align-items:center;gap:7px;text-decoration:none;border-radius:7px;margin-bottom:1px;"><i class="fas fa-check" style="font-size:9px;width:12px;"></i> else Statement</a>
+                        <a href="#section-62-finally" style="font-size:11.5px;padding:5px 10px 5px 22px;color:#64748b;display:flex;align-items:center;gap:7px;text-decoration:none;border-radius:7px;margin-bottom:1px;"><i class="fas fa-flag-checkered" style="font-size:9px;width:12px;"></i> finally Statement</a>
+                        <a href="#section-62-raise" style="font-size:11.5px;padding:5px 10px 5px 22px;color:#64748b;display:flex;align-items:center;gap:7px;text-decoration:none;border-radius:7px;margin-bottom:4px;"><i class="fas fa-exclamation" style="font-size:9px;width:12px;"></i> raise Statement</a>
+                    </div>
+                </div>
+
+                <a href="roadmap.html" style="background:#f8fafc;border:1px solid var(--border);margin-top:14px;font-size:12.5px; display: flex; align-items: center; gap: 8px; padding: 10px 13px; text-decoration: none; color: #475569; font-weight: 500; border-radius: 9px;">
+                    <i class="fas fa-arrow-left"></i> Return to Roadmap
+                </a>
+            </div>
         </aside>
 
+        <!-- MAIN CONTENT -->
         <main class="main-content">
-            <div class="section-header">
-                <h2>MODULE 6 – BUILT-IN MODULES</h2>
-                <p style="font-weight: 600; color: var(--secondary-blue);">Python Certification Course – Module 6</p>
+
+            <!-- MODULE BANNER -->
+            <div class="module-banner">
+                <div class="badge"><i class="fas fa-bug"></i> Module 6</div>
+                <h1>Troubleshooting & Error Handling</h1>
+                <p>Master error detection, debugging techniques, and exception handling to build robust and reliable Python programs.</p>
             </div>
-            
-                    <h3>Introduction to Python Modules</h3>
-                    <p>As programs grow larger, writing all code inside a single file becomes difficult to manage. Python solves this problem using modules.</p>
-                    <p>A module is a file that contains reusable Python code such as:</p>
-                    <ul>
-                        <li>Functions</li>
-                        <li>Variables</li>
-                        <li>Classes</li>
+
+            <!-- ══════════════════════════════════════════
+                 6.1  ERROR ANALYSIS
+            ══════════════════════════════════════════ -->
+            <div class="lesson-card" id="section-61">
+                <div class="section-header">
+                    <h2><i class="fas fa-search-minus"></i> 6.1 Error Analysis & Detection</h2>
+                    <p>Identify and understand different types of errors in Python</p>
+                </div>
+
+                <!-- What are Errors -->
+                <div id="section-61-def">
+                    <h3><i class="fas fa-info-circle"></i> What are Errors?</h3>
+                    <p>An <strong>error</strong> is a problem in a program that causes it to behave incorrectly or stop execution. Errors can prevent a program from running properly.</p>
+                    
+                    <div class="interaction-box blue">
+                        <h4><i class="fas fa-lightbulb"></i> Key Points About Errors</h4>
+                        <ul class="content-list">
+                            <li>Can prevent a program from running properly</li>
+                            <li>Some errors stop the program immediately</li>
+                            <li>Others produce incorrect results</li>
+                            <li>Finding and correcting errors is essential</li>
+                        </ul>
+                    </div>
+
+                    <h3><i class="fas fa-graduation-cap"></i> Why Should We Learn About Errors?</h3>
+                    <ul class="content-list">
+                        <li>Helps identify problems in programs</li>
+                        <li>Improves debugging skills</li>
+                        <li>Makes programs reliable</li>
+                        <li>Produces correct output</li>
+                        <li>Helps write better code</li>
                     </ul>
-                    <p>Instead of writing everything manually, Python provides built-in modules that help solve common computing problems.</p>
-                    <p><strong>Examples of built-in modules:</strong></p>
-                    <ul>
-                        <li><strong>math</strong> – mathematical calculations</li>
-                        <li><strong>random</strong> – random number generation</li>
-                        <li><strong>datetime</strong> – working with dates and time</li>
-                        <li><strong>os</strong> – operating system interaction</li>
-                        <li><strong>sys</strong> – system-level operations</li>
+                </div>
+
+                <!-- Types of Errors -->
+                <div id="section-61-types">
+                    <!-- Error Types Overview Diagram -->
+                    <img src="Screenshot 2026-06-19 103735.png" alt="Python Error Types Overview" class="featured-image">
+
+                    <h3><i class="fas fa-list"></i> Types of Errors in Python</h3>
+                    <p>Python has three main types of errors:</p>
+                    <div style="border-radius:14px; overflow:hidden; margin:18px 0; background:#ffffff; border:1.5px solid #e2e8f0; box-shadow:0 4px 18px rgba(0,0,0,0.08);">
+                        <table class="method-table">
+                            <thead>
+                                <tr>
+                                    <th>Error Type</th>
+                                    <th>When It Occurs</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Syntax Error</strong></td>
+                                    <td>Before execution (breaks Python rules)</td>
+                                    <td>Missing colon or bracket</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Logic Error</strong></td>
+                                    <td>During execution (wrong result)</td>
+                                    <td>Using - instead of +</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Runtime Error</strong></td>
+                                    <td>During execution (unexpected problem)</td>
+                                    <td>Division by zero</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Math Analogy Image -->
+                    <img src="ChatGPT Image Jun 19, 2026, 05_00_48 PM.png" alt="Python Error Math Analogy" class="featured-image">
+                </div>
+
+                <!-- Syntax Errors -->
+                <div id="section-61-syntax">
+                    <h3><i class="fas fa-code"></i> Syntax Errors</h3>
+                    <p>A <strong>syntax error</strong> occurs when Python rules are not followed correctly. The program cannot run until the error is fixed.</p>
+
+                    <div class="interaction-box red">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Characteristics</h4>
+                        <ul class="content-list">
+                            <li>Program cannot run</li>
+                            <li>Python detects before execution</li>
+                            <li>Usually caused by missing symbols</li>
+                            <li>Incorrect keywords or structure</li>
+                        </ul>
+                    </div>
+
+                    <p><strong>Example 1: Missing Closing Bracket</strong></p>
+                    <pre><span class="function">print</span>(<span class="string">"Hello"</span>
+<span class="comment"># ❌ SyntaxError: Missing closing parenthesis</span></pre>
+
+                    <div class="important-box">
+                        <strong>❌ Error:</strong> SyntaxError<br/>
+                        <strong>Reason:</strong> The closing parenthesis is missing
+                    </div>
+
+                    <p><strong>Correct Code:</strong></p>
+                    <pre><span class="function">print</span>(<span class="string">"Hello"</span>)</pre>
+
+                    <div class="output-box">Hello</div>
+
+                    <p><strong>Example 2: Missing Colon</strong></p>
+                    <pre><span class="keyword">if</span> <span class="number">5</span> > <span class="number">3</span>
+    <span class="function">print</span>(<span class="string">"Hello"</span>)
+<span class="comment"># ❌ SyntaxError: Missing colon after if statement</span></pre>
+
+                    <div class="important-box">
+                        <strong>❌ Error:</strong> SyntaxError<br/>
+                        <strong>Reason:</strong> Missing colon (:) after if condition
+                    </div>
+
+                    <p><strong>Correct Code:</strong></p>
+                    <pre><span class="keyword">if</span> <span class="number">5</span> > <span class="number">3</span>:
+    <span class="function">print</span>(<span class="string">"Hello"</span>)</pre>
+
+                    <div class="output-box">Hello</div>
+                </div>
+
+                <!-- Logic Errors -->
+                <div id="section-61-logic">
+                    <h3><i class="fas fa-brain"></i> Logic Errors</h3>
+                    <p>A <strong>logic error</strong> occurs when the program runs successfully but produces the wrong output. Python does not display an error message.</p>
+
+                    <div class="interaction-box amber">
+                        <h4><i class="fas fa-warning"></i> Characteristics</h4>
+                        <ul class="content-list">
+                            <li>Program executes normally</li>
+                            <li>No error message displayed</li>
+                            <li>Wrong output produced</li>
+                            <li>Programmer's logic is incorrect</li>
+                        </ul>
+                    </div>
+
+                    <p><strong>Example: Wrong Operator</strong></p>
+                    <pre>a = <span class="number">10</span>
+b = <span class="number">5</span>
+
+<span class="function">print</span>(a - b)  <span class="comment"># Using - instead of +</span></pre>
+
+                    <div class="output-box">5</div>
+
+                    <div class="note-box">
+                        <strong>Expected Output:</strong> 15<br/>
+                        <strong>Actual Output:</strong> 5<br/>
+                        <strong>Problem:</strong> Used - (minus) instead of + (plus)
+                    </div>
+
+                    <p><strong>Correct Code:</strong></p>
+                    <pre>a = <span class="number">10</span>
+b = <span class="number">5</span>
+
+<span class="function">print</span>(a + b)  <span class="comment"># Correct operator</span></pre>
+
+                    <div class="output-box">15</div>
+
+                    <div class="interaction-box green">
+                        <h4><i class="fas fa-graduation-cap"></i> Real-Life Example</h4>
+                        <p><strong>Question:</strong> 10 + 5 = ?</p>
+                        <p><strong>Student's Answer:</strong> 5</p>
+                        <p style="margin-bottom:0;">The answer is <strong>wrong</strong>, but there is <strong>no grammar mistake</strong>. This is similar to a logic error in programming.</p>
+                    </div>
+                </div>
+
+                <!-- Runtime Errors -->
+                <div id="section-61-runtime">
+                    <h3><i class="fas fa-play"></i> Runtime Errors</h3>
+                    <p>A <strong>runtime error</strong> occurs while the program is running. The code may be syntactically correct, but an unexpected problem occurs during execution.</p>
+
+                    <div class="interaction-box red">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Characteristics</h4>
+                        <ul class="content-list">
+                            <li>Code is syntactically correct</li>
+                            <li>Error occurs during execution</li>
+                            <li>Python stops execution</li>
+                            <li>Error message is displayed</li>
+                        </ul>
+                    </div>
+
+                    <p><strong>Example 1: Division by Zero</strong></p>
+                    <pre>num = <span class="number">10</span>
+
+<span class="function">print</span>(num / <span class="number">0</span>)</pre>
+
+                    <div class="important-box">
+                        <strong>❌ Error:</strong> ZeroDivisionError<br/>
+                        <strong>Reason:</strong> Division by zero is not allowed in mathematics
+                    </div>
+
+                    <p><strong>Correct Code:</strong></p>
+                    <pre>num = <span class="number">10</span>
+
+<span class="function">print</span>(num / <span class="number">2</span>)</pre>
+
+                    <div class="output-box">5.0</div>
+
+                    <p><strong>Example 2: Index Out of Range</strong></p>
+                    <pre>numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+
+<span class="function">print</span>(numbers[<span class="number">5</span>])</pre>
+
+                    <div class="important-box">
+                        <strong>❌ Error:</strong> IndexError<br/>
+                        <strong>Reason:</strong> Index 5 does not exist (list has only 0, 1, 2 indices)
+                    </div>
+
+                    <p><strong>Correct Code:</strong></p>
+                    <pre>numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+
+<span class="function">print</span>(numbers[<span class="number">2</span>])  <span class="comment"># Valid index</span></pre>
+
+
+                <!-- Comparison & Summary Section -->
+                <div style="margin-top:40px; border-top: 2px solid #e2e8f0; padding-top: 30px;">
+                    <h3><i class="fas fa-th"></i> Comparison of Error Types</h3>
+                    <div style="border-radius:14px; overflow:hidden; margin:18px 0; background:#ffffff; border:1.5px solid #e2e8f0; box-shadow:0 4px 18px rgba(0,0,0,0.08);">
+                        <table class="method-table">
+                            <thead>
+                                <tr>
+                                    <th>Error Type</th>
+                                    <th>Program Runs?</th>
+                                    <th>Output Correct?</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Syntax Error</strong></td>
+                                    <td>No</td>
+                                    <td>No</td>
+                                    <td>Missing : or )</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Logic Error</strong></td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                    <td>Wrong formula</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Runtime Error</strong></td>
+                                    <td>Starts but stops</td>
+                                    <td>No</td>
+                                    <td>Division by zero</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 style="margin-top:30px;"><i class="fas fa-list"></i> Summary</h3>
+                    <div style="border-radius:14px; overflow:hidden; margin:18px 0; background:#ffffff; border:1.5px solid #e2e8f0; box-shadow:0 4px 18px rgba(0,0,0,0.08);">
+                        <table class="method-table">
+                            <thead>
+                                <tr>
+                                    <th>Error Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Syntax Error</strong></td>
+                                    <td>Violation of Python rules</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Logic Error</strong></td>
+                                    <td>Wrong program logic</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Runtime Error</strong></td>
+                                    <td>Error during execution</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Detailed Error Flowchart Image -->
+                    <img src="error_summary_table.png" alt="Python Error Types Detailed Flowchart" class="featured-image">
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════════════════
+                 6.2  EXCEPTION HANDLING
+            ══════════════════════════════════════════ -->
+            <div class="lesson-card" id="section-62">
+                <div class="section-header">
+                    <h2><i class="fas fa-shield-alt"></i> 6.2 Exception Handling</h2>
+                    <p>Handle errors gracefully to prevent program crashes</p>
+                </div>
+
+                <!-- Introduction -->
+                <div id="section-62-intro">
+                    <h3><i class="fas fa-question-circle"></i> What is Exception Handling?</h3>
+                    <p><strong>Exception handling</strong> is a technique used to handle errors that occur while a program is running. It prevents the program from stopping unexpectedly.</p>
+
+                    <div class="interaction-box green">
+                        <h4><i class="fas fa-lightbulb"></i> Key Benefits</h4>
+                        <ul class="content-list">
+                            <li>Prevents program from crashing</li>
+                            <li>Handles errors gracefully</li>
+                            <li>Continues execution after error</li>
+                            <li>Improves program reliability</li>
+                        </ul>
+                    </div>
+
+                    <p><strong>Why Do We Need Exception Handling?</strong></p>
+                    <p>Sometimes users enter incorrect input or unexpected situations occur. Exception handling helps manage these situations without breaking the program.</p>
+
+                    <!-- Exception Handling Intro Image -->
+                    <img src="exception_handling_intro.png" alt="Why We Need Exception Handling" class="featured-image">
+
+                    <!-- Why Exception Handling is Important Image -->
+                    <img src="exception_handling_importance.png" alt="Why Exception Handling is Important" class="featured-image">
+
+                    <!-- Real-Life ATM Example Image -->
+                    <img src="exception_handling_atm_example.png" alt="Real-Life Example: ATM Machine" class="featured-image">
+
+                    <h3><i class="fas fa-key"></i> Exception Handling Keywords</h3>
+                    <p>Python provides five important keywords for exception handling:</p>
+                    <ul class="content-list">
+                        <li><code>try</code> - Contains code that may produce an error</li>
+                        <li><code>except</code> - Handles errors from try block</li>
+                        <li><code>else</code> - Executes if no error occurs</li>
+                        <li><code>finally</code> - Always executes regardless of error</li>
+                        <li><code>raise</code> - Manually generates an exception</li>
                     </ul>
-                    <p>Using modules makes programs: Faster to develop, More reliable, and Easier to maintain.</p>
 
+                    <!-- Exception Keywords Overview Image -->
+                    <img src="exception_keywords_overview.png" alt="Exception Handling Keywords Overview" class="featured-image">
+                </div>
 
-            <h3>Importing Modules</h3>
-            <p>To use a module, we must import it.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">import</span> math
-<span class="function">print</span>(math.pi)
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">3.141592653589793</div>
-            <div class="interaction-box">
-                math.pi retrieves the value of π.
-            </div>
-            <!-- Coding Practice: import keyword -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: Import Keyword</h3>
-                <p><strong>Challenge:</strong> Write the code to <code>import math</code> and print <code>"Imported"</code>.</p>
-                <textarea id="coding-ans-import" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('import', 'Imported')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('import')">Reset</button>
-                <div id="coding-output-import" class="live-output-box"></div>
-                <div id="coding-feedback-import" class="feedback"></div>
-            </div>
+                <!-- try Statement -->
+                <div id="section-62-try">
+                    <h3><i class="fas fa-cube"></i> try Statement</h3>
+                    <p>The <strong>try</strong> block contains code that may produce an error. Python first executes the code inside the try block. If no error occurs, execution continues normally. If an error occurs, Python moves to the except block.</p>
 
-            <!-- Coding Practice 1 -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: Modules</h3>
-                <p><strong>Challenge:</strong> Import the <code>math</code> module and print the square root of 16 using <code>math.sqrt()</code>.</p>
-                <textarea id="coding-ans-1" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt(1, '4.0')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice(1)">Reset</button>
-                <div id="coding-output-1" class="live-output-box"></div>
-                <div id="coding-feedback-1" class="feedback"></div>
-            </div>
+                    <p><strong>Syntax:</strong></p>
+                    <pre><span class="keyword">try</span>:
+    <span class="comment"># code that may have an error</span>
+<span class="keyword">except</span>:
+    <span class="comment"># handling code</span></pre>
 
-            <h3>Importing Specific Functions</h3>
-            <p>Sometimes we only need a specific function from a module.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">from</span> math <span class="keyword">import</span> sqrt
-<span class="function">print</span>(sqrt(<span class="number">16</span>))
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">4.0</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                Instead of importing the entire module, we import only the required function.
-            </div>
+                    <p><strong>Example:</strong></p>
+                    <pre><span class="keyword">try</span>:
+    <span class="function">print</span>(<span class="number">10</span> / <span class="number">0</span>)
+<span class="keyword">except</span>:
+    <span class="function">print</span>(<span class="string">"Error Occurred"</span>)</pre>
 
-            <div class="section-header">
-                <h2>6.1 File System and Command-Line Operations</h2>
-            </div>
-            <p>Some modules allow Python to interact with the computer system. These are useful when building real applications.</p>
+                    <div class="output-box">Error Occurred</div>
 
-            <h3>The os Module</h3>
-            <p>The os module provides functions to interact with the operating system.</p>
-            <p><strong>Get Current Working Directory Example:</strong></p>
-<pre>
-<span class="keyword">import</span> os
-<span class="function">print</span>(os.getcwd())
-</pre>
-            <p><strong>Output (example)</strong></p>
-            <div class="output-box">C:\Users\Student</div>
-            <div class="interaction-box">
-                getcwd() returns the current working directory where the program is running.
-            </div>
-            <!-- Coding Practice: os module -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: OS Interaction</h3>
-                <p><strong>Challenge:</strong> Import <code>os</code> and print <code>"Checking"</code>.</p>
-                <textarea id="coding-ans-os" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('os', 'Checking')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('os')">Reset</button>
-                <div id="coding-output-os" class="live-output-box"></div>
-                <div id="coding-feedback-os" class="feedback"></div>
-            </div>
+                    <div class="interaction-box blue">
+                        <h4><i class="fas fa-graduation-cap"></i> Explanation</h4>
+                        <p><strong>What Happens:</strong></p>
+                        <ul class="content-list">
+                            <li>Python tries to execute: <code>10 / 0</code></li>
+                            <li>Division by zero causes an error</li>
+                            <li>Instead of crashing, <code>Error Occurred</code> is displayed</li>
+                            <li>Program continues execution</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <p><strong>List Files in a Directory Example:</strong></p>
-<pre>
-<span class="keyword">import</span> os
-<span class="function">print</span>(os.listdir())
-</pre>
-            <p><strong>Output (example)</strong></p>
-            <div class="output-box">['report.txt', 'sales.py']</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                listdir() displays files and folders in the current directory. This is useful for programs that process multiple data files.
-            </div>
+                <!-- except Statement -->
+                <div id="section-62-except">
+                    <h3><i class="fas fa-hand-paper"></i> except Statement</h3>
+                    <p>The <strong>except</strong> block handles errors generated in the try block. It executes only when an exception occurs. Different errors can be handled using different except blocks.</p>
 
-            <p><strong>Checking File Existence Example:</strong></p>
-<pre>
-<span class="keyword">import</span> os
-<span class="function">print</span>(os.path.exists(<span class="string">"data.txt"</span>))
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">True</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                This prevents FileNotFoundError before attempting to open a file.
-            </div>
+                    <p><strong>Example: Specific Error Handling</strong></p>
+                    <pre><span class="keyword">try</span>:
+    <span class="function">print</span>(<span class="number">10</span> / <span class="number">0</span>)
+<span class="keyword">except</span> ZeroDivisionError:
+    <span class="function">print</span>(<span class="string">"Cannot divide by zero"</span>)</pre>
 
-            <h3>The io Module</h3>
-            <p>The io module provides advanced file input and output operations.</p>
-            <p><strong>Example</strong></p>
-<pre>
-<span class="keyword">import</span> io
-file = io.open(<span class="string">"sample.txt"</span>, <span class="string">"w"</span>)
-file.write(<span class="string">"Financial Report"</span>)
-file.close()
-</pre>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                io.open() behaves similarly to Python's built-in open() function. It is commonly used in advanced file handling systems.
-            </div>
+                    <div class="output-box">Cannot divide by zero</div>
 
-            <h3>The sys Module</h3>
-            <p>The sys module provides access to system-level information.</p>
-            <p><strong>Command-Line Arguments Example:</strong></p>
-<pre>
-<span class="keyword">import</span> sys
-<span class="function">print</span>(sys.argv)
-</pre>
-            <p><strong>If the script is executed as:</strong> python script.py Rahul 30</p>
-            <p><strong>Output</strong></p>
-            <div class="output-box">['script.py', 'Rahul', '30']</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                sys.argv stores command-line arguments in a list. First element → script name. Remaining elements → user inputs.
-            </div>
+                    <div class="interaction-box blue">
+                        <h4><i class="fas fa-info-circle"></i> How It Works</h4>
+                        <ul class="content-list">
+                            <li><code>ZeroDivisionError</code> is detected</li>
+                            <li>The matching except block executes</li>
+                            <li>Program handles the error gracefully</li>
+                            <li>Execution continues safely</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <p><strong>Python Version Information Example:</strong></p>
-<pre>
-<span class="keyword">import</span> sys
-<span class="function">print</span>(sys.version)
-</pre>
-            <p><strong>Output (example)</strong></p>
-            <div class="output-box">3.12.0 (main, ...)</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                This shows the Python version currently running the program.
-            </div>
+                <!-- else Statement -->
+                <div id="section-62-else">
+                    <h3><i class="fas fa-check"></i> else Statement</h3>
+                    <p>The <strong>else</strong> block executes only when no error occurs in the try block. If an exception occurs, the else block is skipped.</p>
 
-            <div class="section-header">
-                <h2>6.2 Solving Computing Problems Using Built-in Modules</h2>
-            </div>
-            <p>Python modules provide many built-in tools for solving problems efficiently.</p>
+                    <p><strong>Example:</strong></p>
+                    <pre><span class="keyword">try</span>:
+    <span class="function">print</span>(<span class="number">10</span> / <span class="number">2</span>)
+<span class="keyword">except</span> ZeroDivisionError:
+    <span class="function">print</span>(<span class="string">"Error"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Division Successful"</span>)</pre>
 
-            <h3>The math Module</h3>
-            <p>The math module provides mathematical functions.</p>
-            <ul>
-                <li><strong>math.fabs(-10)</strong> → returns 10.0 (Absolute Value)</li>
-                <li><strong>math.ceil(4.3)</strong> → returns 5 (Round Up)</li>
-                <li><strong>math.floor(4.7)</strong> → returns 4 (Round Down)</li>
-                <li><strong>math.trunc(4.9)</strong> → returns 4 (Truncation)</li>
-                <li><strong>math.fmod(10, 3)</strong> → returns 1.0 (Modulus)</li>
-                <li><strong>math.sqrt(16)</strong> → returns 4.0 (Square Root)</li>
-                <li><strong>math.pow(2, 3)</strong> → returns 8.0 (Power)</li>
-                <li><strong>math.isnan(math.nan)</strong> → returns True (Checking NaN-Not a Number)</li>
-            </ul>
-            <!-- Coding Practice: math function -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: Math Functions</h3>
-                <p><strong>Challenge:</strong> What is the math function for square root? Print just the name (e.g., <code>sqrt</code>).</p>
-                <textarea id="coding-ans-mathfunc" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('mathfunc', 'sqrt')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('mathfunc')">Reset</button>
-                <div id="coding-output-mathfunc" class="live-output-box"></div>
-                <div id="coding-feedback-mathfunc" class="feedback"></div>
-            </div>
+                    <div class="output-box">5.0<br/>Division Successful</div>
 
-            <h3>The datetime Module</h3>
-            <p>The datetime module is used to work with dates and time.</p>
-            <p><strong>Current Date and Time Example:</strong></p>
-<pre>
-<span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
-now = datetime.now()
-<span class="function">print</span>(now)
-</pre>
-            <p><strong>Output (example)</strong></p>
-            <div class="output-box">2026-03-02 14:30:45.123456</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                datetime.now() returns the current system date and time.
-            </div>
+                    <div class="interaction-box green">
+                        <h4><i class="fas fa-graduation-cap"></i> Explanation</h4>
+                        <ul class="content-list">
+                            <li>No error occurs in try block</li>
+                            <li>Therefore, else block executes</li>
+                            <li>Output includes both results</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <!-- Coding Practice: datetime -->
-            <div class="practice-card coding-practice">
-                <h3>Coding Practice: DateTime</h3>
-                <p><strong>Challenge:</strong> Import <code>datetime</code> and print <code>"Time Check"</code>.</p>
-                <textarea id="coding-ans-datetime" placeholder="Write your code here..."></textarea>
-                <button class="btn-run" onclick="runSkulpt('datetime', 'Time Check')">Run & Check</button>
-                <button class="btn-reset" onclick="resetCodingPractice('datetime')">Reset</button>
-                <div id="coding-output-datetime" class="live-output-box"></div>
-                <div id="coding-feedback-datetime" class="feedback"></div>
-            </div>
+                <!-- finally Statement -->
+                <div id="section-62-finally">
+                    <h3><i class="fas fa-flag-checkered"></i> finally Statement</h3>
+                    <p>The <strong>finally</strong> block always executes whether an error occurs or not. It is commonly used for cleanup tasks.</p>
 
-            <p><strong>Formatting Dates Example:</strong></p>
-<pre>
-<span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
-now = datetime.now()
-<span class="function">print</span>(now.strftime(<span class="string">"%Y-%m-%d"</span>))
-</pre>
-            <p><strong>Output</strong></p>
-            <div class="output-box">2026-03-02</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                strftime() converts the date into a formatted string.
+                    <p><strong>Example:</strong></p>
+                    <pre><span class="keyword">try</span>:
+    <span class="function">print</span>(<span class="number">10</span> / <span class="number">2</span>)
+<span class="keyword">except</span>:
+    <span class="function">print</span>(<span class="string">"Error"</span>)
+<span class="keyword">finally</span>:
+    <span class="function">print</span>(<span class="string">"Program Finished"</span>)</pre>
+
+                    <div class="output-box">5.0<br/>Program Finished</div>
+
+                    <div class="interaction-box blue">
+                        <h4><i class="fas fa-info-circle"></i> Key Point</h4>
+                        <p style="margin-bottom:0;">The <strong>finally</strong> block executes <strong>regardless of whether an error occurred</strong>. This is useful for cleanup tasks like closing files or resources.</p>
+                    </div>
+                </div>
+
+                <!-- raise Statement -->
+                <div id="section-62-raise">
+                    <h3><i class="fas fa-exclamation"></i> raise Statement</h3>
+                    <p>The <strong>raise</strong> statement is used to generate an exception manually. Programmers use it to create their own error conditions and enforce program rules.</p>
+
+                    <p><strong>Example: Validate User Input</strong></p>
+                    <pre>age = -<span class="number">5</span>
+
+<span class="keyword">if</span> age < <span class="number">0</span>:
+    <span class="keyword">raise</span> ValueError(<span class="string">"Age cannot be negative"</span>)</pre>
+
+                    <div class="important-box">
+                        <strong>❌ Error Output:</strong><br/>
+                        ValueError: Age cannot be negative
+                    </div>
+
+                    <div class="interaction-box purple">
+                        <h4><i class="fas fa-lightbulb"></i> When to Use raise</h4>
+                        <ul class="content-list">
+                            <li>Enforce program rules</li>
+                            <li>Validate user input</li>
+                            <li>Create meaningful error messages</li>
+                            <li>Prevent invalid operations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Complete Program -->
+                <div style="margin-top:40px;">
+                    <h3><i class="fas fa-code"></i> Complete Exception Handling Program</h3>
+                    <p>Here's a real-world example that combines all exception handling concepts:</p>
+
+                    <pre><span class="keyword">try</span>:
+    num = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter a number: "</span>))
+    result = <span class="number">10</span> / num
+
+<span class="keyword">except</span> ZeroDivisionError:
+    <span class="function">print</span>(<span class="string">"Cannot divide by zero"</span>)
+
+<span class="keyword">except</span> ValueError:
+    <span class="function">print</span>(<span class="string">"Please enter a valid number"</span>)
+
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Result = "</span>, result)
+
+<span class="keyword">finally</span>:
+    <span class="function">print</span>(<span class="string">"Program Finished"</span>)</pre>
+
+                    <!-- Complete Exception Handling Program Image -->
+                    <img src="exception_complete_program.png" alt="Complete Exception Handling Program" class="featured-image">
+
+                    <div class="interaction-box green">
+                        <h4><i class="fas fa-graduation-cap"></i> How This Program Works</h4>
+                        <ol style="margin-left:20px;">
+                            <li style="margin-bottom:10px;"><strong>try block:</strong> Gets user input and performs division</li>
+                            <li style="margin-bottom:10px;"><strong>ZeroDivisionError except:</strong> Handles division by zero</li>
+                            <li style="margin-bottom:10px;"><strong>ValueError except:</strong> Handles non-numeric input</li>
+                            <li style="margin-bottom:10px;"><strong>else block:</strong> Displays result if no error</li>
+                            <li style="margin-bottom:0;"><strong>finally block:</strong> Always prints completion message</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div style="margin-top:40px;">
+                    <h3><i class="fas fa-th"></i> Summary Table</h3>
+                    <div style="border-radius:14px; overflow:hidden; margin:18px 0; background:#ffffff; border:1.5px solid #e2e8f0; box-shadow:0 4px 18px rgba(0,0,0,0.08);">
+                        <table class="method-table">
+                            <thead>
+                                <tr>
+                                    <th>Keyword</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>try</code></td>
+                                    <td>Contains risky code that may cause errors</td>
+                                </tr>
+                                <tr>
+                                    <td><code>except</code></td>
+                                    <td>Handles specific errors from try block</td>
+                                </tr>
+                                <tr>
+                                    <td><code>else</code></td>
+                                    <td>Runs only if no error occurs in try</td>
+                                </tr>
+                                <tr>
+                                    <td><code>finally</code></td>
+                                    <td>Always executes regardless of errors</td>
+                                </tr>
+                                <tr>
+                                    <td><code>raise</code></td>
+                                    <td>Generates an error manually</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
-            <p><strong>Finding the Day of the Week Example:</strong></p>
-<pre>
-<span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
-<span class="function">print</span>(datetime.now().weekday())
-</pre>
-            <p><strong>Output (example)</strong></p>
-            <div class="output-box">0</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                Days are numbered: 0 → Monday, 6 → Sunday.
-            </div>
-
-            <h3>The random Module</h3>
-            <p>The random module generates random values. This is useful for simulations, testing, and sampling.</p>
-            <ul>
-                <li><strong>random.randint(1, 5)</strong> → Random integer between 1-5</li>
-                <li><strong>random.random()</strong> → Random decimal between 0 and 1</li>
-                <li><strong>random.choice(["A", "B", "C"])</strong> → Random selection from a list</li>
-                <li><strong>random.shuffle(numbers)</strong> → Randomly rearranges list elements</li>
-                <li><strong>random.sample(list, 2)</strong> → Selects random elements without repetition</li>
-            </ul>
-
-            <div class="section-header">
-                <h2>Integrated Business Example</h2>
-            </div>
-            <p>Example: Financial data simulation.</p>
-<pre>
-<span class="keyword">import</span> math
-<span class="keyword">import</span> random
-<span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
-
-revenue = random.randint(<span class="number">10000</span>, <span class="number">50000</span>)
-growth = math.sqrt(revenue)
-today = datetime.now().strftime(<span class="string">"%Y-%m-%d"</span>)
-
-<span class="function">print</span>(<span class="string">"Revenue:"</span>, revenue)
-<span class="function">print</span>(<span class="string">"Growth Indicator:"</span>, growth)
-<span class="function">print</span>(<span class="string">"Report Date:"</span>, today)
-</pre>
-            <p><strong>Sample Output</strong></p>
-            <div class="output-box">Revenue: 25000<br>Growth Indicator: 158.11<br>Report Date: 2026-03-05</div>
-            <div class="interaction-box">
-                <strong>Explanation</strong><br>
-                This example demonstrates: Random revenue generation, Mathematical analysis, and Date stamping for reports.
-            </div>
-            <!-- Quiz CTA -->
-            <div class="quiz-cta">
-                <h3>Final Module Complete!</h3>
-                <p>Verify your understanding of Python libraries and the modular ecosystem.</p>
-                <a href="module_quiz.html?mod=6" class="btn-start-quiz">Start Module 6 Assessment &rarr;</a>
-            </div>
         </main>
     </div>
 
     <script>
-        function triggerConfetti() {
-            var duration = 3 * 1000;
-            var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+        // Scroll Progress
+        window.onscroll = function() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = Math.round((scrollTop / docHeight) * 100);
+            
+            // Update sidebar progress bar
+            const sidebarProgressBar = document.getElementById('sidebar-progress-bar');
+            const sidebarProgressPct = document.getElementById('sidebar-progress-pct');
+            if(sidebarProgressBar) sidebarProgressBar.style.width = pct + '%';
+            if(sidebarProgressPct) sidebarProgressPct.textContent = pct + '%';
+        };
 
-            function randomInRange(min, max) {
-                return Math.random() * (max - min) + min;
+        // Toggle functionality for sidebar sections
+        function toggleSection(subId, sectionId, btn) {
+            const sub = document.getElementById(subId);
+            const icon = btn.querySelector('.toggle-icon');
+            const isOpen = sub.style.maxHeight !== '0px' && sub.style.maxHeight !== '';
+            
+            document.querySelectorAll('.sub-items').forEach(el => el.style.maxHeight = '0px');
+            document.querySelectorAll('.toggle-icon').forEach(ic => ic.style.transform = '');
+            
+            if (!isOpen) {
+                sub.style.maxHeight = sub.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+                const sec = document.getElementById(sectionId);
+                if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-
-            var interval = setInterval(function() {
-                var timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) { return clearInterval(interval); }
-                var particleCount = 50 * (timeLeft / duration);
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
-            }, 250);
         }
 
-        function checkPracticeAnswer(id, correctAns) {
-            const userAns = document.getElementById(`practice-ans-${id}`).value.trim().toLowerCase();
-            const feedback = document.getElementById(`feedback-${id}`);
-            
-            if (userAns === correctAns.toLowerCase()) {
-                feedback.innerHTML = "Correct! Great job! 🎉";
-                feedback.className = "feedback correct";
-                triggerConfetti();
-            } else {
-                feedback.innerHTML = "✗ Incorrect. Try again!";
-                feedback.className = "feedback wrong";
+        // Default open first section on load
+        window.onload = () => {
+            const s = document.getElementById('sub-61');
+            if(s) {
+                s.style.maxHeight = s.scrollHeight + 'px';
+                const icon = document.querySelector('[data-section="section-61"] .toggle-icon');
+                if(icon) icon.style.transform = 'rotate(180deg)';
             }
-        }
-
-        function runSkulpt(id, expected) {
-            const prog = document.getElementById(`coding-ans-${id}`).value;
-            const outputDiv = document.getElementById(`coding-output-${id}`);
-            const feedback = document.getElementById(`coding-feedback-${id}`);
-            
-            outputDiv.innerHTML = "";
-            outputDiv.classList.add('active');
-            feedback.style.display = "none";
-            feedback.className = "feedback";
-
-            // BYPASS FOR UNSUPPORTED SKULPT MODULES
-            if (id === 'os' || id === 'datetime') {
-                let isValid = false;
-                let simulatedOutput = "";
-                
-                if (id === 'os' && prog.includes('import os') && (prog.includes('print("Checking")') || prog.includes("print('Checking')"))) {
-                    isValid = true;
-                    simulatedOutput = "Checking";
-                } else if (id === 'datetime' && prog.includes('datetime') && (prog.includes('print("Time Check")') || prog.includes("print('Time Check')"))) {
-                    isValid = true;
-                    simulatedOutput = "Time Check";
-                }
-
-                if (isValid) {
-                    outputDiv.innerText = simulatedOutput;
-                    feedback.innerHTML = "✓ Correct! Your code works perfectly. 🎉";
-                    feedback.className = "feedback correct";
-                    triggerConfetti();
-                } else {
-                    outputDiv.innerText = "Error: Did you import the module correctly and print the exact string requested?";
-                    feedback.innerHTML = `✗ Wrong! Expected result not found.`;
-                    feedback.className = "feedback wrong";
-                }
-                feedback.style.display = "block";
-                return; // Exit early to bypass Skulpt
-            }
-
-            let outputText = "";
-            let validationText = "";
-            let userInputs = [];
-            
-            Sk.configure({
-                output: function(text) { 
-                    outputDiv.appendChild(document.createTextNode(text));
-                    outputDiv.scrollTop = outputDiv.scrollHeight;
-                    outputText += text; 
-                    validationText += text;
-                },
-                read: function(x) {
-                    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
-                        throw "File not found: '" + x + "'";
-                    return Sk.builtinFiles["files"][x];
-                },
-                inputfun: function(prompt) {
-                    return new Promise((resolve) => {
-                        // Clean up double prompt if it exists in the output div
-                        if (outputDiv.lastChild && outputDiv.lastChild.nodeType === 3) {
-                            let lastText = outputDiv.lastChild.textContent;
-                            if (lastText.endsWith(prompt)) {
-                                outputDiv.lastChild.textContent = lastText.substring(0, lastText.length - prompt.length);
-                            }
-                        }
-
-                        const container = document.createElement('div');
-                        container.className = 'colab-input-container';
-                        container.innerHTML = `
-                            <span class="colab-prompt">${prompt}</span>
-                            <input type="text" class="colab-input" autocomplete="off">
-                        `;
-                        outputDiv.appendChild(container);
-                        
-                        const inputField = container.querySelector('.colab-input');
-                        inputField.focus();
-                        
-                        inputField.addEventListener('keydown', (e) => {
-                            if (e.key === 'Enter') {
-                                const val = inputField.value;
-                                userInputs.push(val);
-                                container.remove();
-                                // Add back the prompt and the answer to the output box permanently
-                                outputDiv.appendChild(document.createTextNode(prompt + val + ""));
-                                outputText += prompt + val + "";
-                                // Do NOT add prompt/input to validationText!
-                                resolve(val);
-                            }
-                        });
-                    });
-                }
-            });
-
-            const myPromise = Sk.misceval.asyncToPromise(function() {
-                return Sk.importMainWithBody("<stdin>", false, prog, true);
-            });
-
-            myPromise.then(function(mod) {
-                if (!outputDiv.innerHTML) outputDiv.innerText = outputText;
-                
-                const cleanOutput = validationText.trim().toLowerCase();
-                let cleanExpected = expected.toString().trim().toLowerCase();
-
-                // Dynamic Validation Logic
-                if (userInputs.length > 0) {
-                    if (id === 'input') {
-                        cleanExpected = `welcome to ${userInputs[0].trim()}`.toLowerCase();
-                    } else if (id === 'int') {
-                        let num = parseInt(userInputs[0]);
-                        if (!isNaN(num)) {
-                            cleanExpected = (num * 2).toString().toLowerCase();
-                        }
-                    }
-                }
-
-                if (cleanOutput.includes(cleanExpected)) {
-                    feedback.innerHTML = "✓ Correct! Your code works perfectly. 🎉";
-                    feedback.className = "feedback correct";
-                    triggerConfetti();
-                } else {
-                    feedback.innerHTML = `✗ Wrong! Expected result not found.`;
-                    feedback.className = "feedback wrong";
-                }
-                feedback.style.display = "block";
-            }, function(err) {
-                outputDiv.innerText += "" + err.toString();
-                feedback.innerHTML = "✗ Error in your code!";
-                feedback.className = "feedback wrong";
-                feedback.style.display = "block";
-            });
-        }
-
-        function resetCodingPractice(id) {
-            const textarea = document.getElementById(`coding-ans-${id}`);
-            const output = document.getElementById(`coding-output-${id}`);
-            const feedback = document.getElementById(`coding-feedback-${id}`);
-            
-            if (textarea) textarea.value = "";
-            if (output) {
-                output.innerHTML = "";
-                output.classList.remove('active');
-            }
-            if (feedback) {
-                feedback.style.display = "none";
-                feedback.className = "feedback";
-            }
-        }
+        };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js">
+</body>
+</html>

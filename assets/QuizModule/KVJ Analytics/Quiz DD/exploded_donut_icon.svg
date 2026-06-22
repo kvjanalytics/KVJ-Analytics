@@ -1,0 +1,7 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#f8fafc" rx="12"/>
+    <!-- Remaining donut -->
+    <path d="M 50 15 A 35 35 0 1 0 85 50" fill="none" stroke="#0ea5e9" stroke-width="15"/>
+    <!-- Exploded segment -->
+    <path d="M 55 10 A 40 40 0 0 1 90 45" fill="none" stroke="#38bdf8" stroke-width="15"/>
+</svg>

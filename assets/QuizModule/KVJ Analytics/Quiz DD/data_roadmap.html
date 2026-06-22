@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Roadmap | KVJ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        :root {
+            --brand-dark: #0f172a;
+            --brand-blue: #1e4ed8;
+            --brand-accent: #3b82f6;
+            --bg-light: #f6f8fb;
+            --text-main: #1d1d1f;
+            --text-muted: #4b5563;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* ── NAVBAR ── */
+        .navbar {
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 2.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .navbar-left { display: flex; align-items: center; gap: 1.25rem; }
+        .nav-back {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #193855;
+            text-decoration: none;
+            background: #eef2ff;
+            padding: 7px 18px;
+            border-radius: 20px;
+            transition: background 0.2s;
+        }
+        .nav-back:hover { background: #dde5ff; }
+        .nav-logo { max-height: 38px; width: auto; display: block; }
+        .nav-logout {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--brand-blue);
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .nav-logout:hover { opacity: 0.75; }
+
+        /* ── HERO BANNER ── */
+        .course-banner {
+            background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-blue) 100%);
+            color: #fff;
+            padding: 4rem 2.5rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-banner::before,
+        .course-banner::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+        }
+        .course-banner::before {
+            width: 420px; height: 420px;
+            background: #fff;
+            top: -160px; right: -100px;
+        }
+        .course-banner::after {
+            width: 300px; height: 300px;
+            background: #fff;
+            bottom: -100px; left: 30%;
+        }
+
+        .banner-inner {
+            max-width: 820px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-icon {
+            width: 52px; height: 52px;
+            background: rgba(255,255,255,0.18);
+            border: 2px solid rgba(255,255,255,0.35);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.1rem;
+            backdrop-filter: blur(4px);
+            overflow: hidden;
+        }
+        .course-icon img {
+            width: 100%; height: 100%; object-fit: contain; padding: 10px;
+        }
+
+        .course-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+        .course-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .stars { color: #fbbf24; font-size: 1rem; letter-spacing: 1px; }
+        .rating-score { font-weight: 700; font-size: 0.95rem; }
+        .rating-count {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: underline;
+            cursor: default;
+        }
+
+        .meta-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+        .meta-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.92);
+        }
+        .meta-list li svg { flex-shrink: 0; opacity: 0.85; }
+        .meta-list li strong { color: #fff; }
+
+        .btn-cta {
+            display: inline-block;
+            background: var(--brand-accent);
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 800;
+            padding: 0.9rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 18px rgba(59, 130, 246, 0.4);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5);
+            background: #2563eb;
+        }
+
+
+        /* ── FEATURES BAR ── */
+        .features-bar {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+            margin: -1.5rem 2.5rem 0;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            align-items: stretch;
+        }
+
+        .feature-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            gap: 0.5rem;
+            border-right: 1px solid #f0f0f0;
+        }
+        .feature-item:last-child { border-right: none; }
+        .feature-icon-text { font-size: 2.2rem; margin-bottom: 0.2rem; }
+        .feature-title { font-size: 0.95rem; font-weight: 700; color: #1a1a1a; }
+        .feature-sub { font-size: 0.8rem; color: #6b7280; line-height: 1.4; }
+
+        /* ── MAIN CONTENT AREA ── */
+        .page-body {
+            max-width: 1200px;
+            margin: 3.5rem auto;
+            padding: 0 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .learn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 2rem;
+            margin-bottom: 3rem;
+        }
+        .learn-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: #374151;
+            line-height: 1.5;
+        }
+        .check { color: #10b981; font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+        .modules-section { margin-bottom: 3rem; }
+        .module-list { display: flex; flex-direction: column; gap: 1rem; }
+
+        .module-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            transition: all 0.2s ease;
+        }
+        .module-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border-color: #1e293b;
+            transform: translateY(-2px);
+        }
+        .module-num {
+            min-width: 44px; height: 44px;
+            background: #eff6ff;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--brand-blue);
+        }
+        .module-info { flex: 1; }
+        .module-name { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.3rem; }
+        .module-desc { font-size: 0.85rem; color: #6b7280; line-height: 1.5; }
+        
+        .module-actions { display: flex; gap: 0.6rem; flex-shrink: 0; }
+        .btn-sm {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.5rem 1.1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 1px solid;
+            transition: all 0.2s;
+        }
+        .btn-study { color: var(--brand-blue); border-color: #dbeafe; background: #eff6ff; }
+        .btn-study:hover { background: #dbeafe; }
+        .btn-quiz { color: #059669; border-color: #dcfce7; background: #f0fdf4; }
+        .btn-quiz:hover { background: #dcfce7; }
+
+        /* ── SIDEBAR ── */
+        .sidebar { 
+            position: sticky; 
+            top: 100px; 
+        }
+        .sidebar-card {
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+        }
+        .sidebar-thumb {
+            background: linear-gradient(135deg, var(--brand-dark), var(--brand-blue));
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+        }
+        .sidebar-thumb-icon { 
+            width: 140px; height: 140px; margin: 0 auto; 
+            background: #fff; border-radius: 50%; padding: 15px;
+            display: flex; align-items: center; justify-content: center; 
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)); 
+        }
+        .sidebar-thumb p { color: rgba(255,255,255,0.95); font-size: 0.85rem; margin-top: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .sidebar-body { padding: 1.8rem 1.5rem; }
+        .sidebar-track-title { font-size: 1.8rem; font-weight: 900; color: #1a1a1a; margin-bottom: 1.25rem; letter-spacing: -0.5px; }
+        
+        .cert-info-box {
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .cert-info-box h4 { font-size: 1rem; font-weight: 800; color: #1e293b; margin-bottom: 0.5rem; }
+        .cert-info-box p { font-size: 0.85rem; color: #1e293b; font-weight: 600; line-height: 1.5; margin-bottom: 1.25rem; }
+        .btn-view-cert { 
+            display: block;
+            width: 100%; 
+            padding: 1rem; 
+            background: #0ea5e9; 
+            border: none;
+            border-radius: 12px; 
+            color: #fff; 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+        }
+        .btn-view-cert:hover { background: #0284c7; transform: translateY(-1px); }
+
+        .tools-covered {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f1f5f9;
+        }
+        .tools-label { font-size: 0.75rem; font-weight: 700; color: #1e293b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; display: block; text-align: center; }
+        .tools-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 1.25rem; 
+        }
+        .tool-icon-wrap { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 0.6rem; 
+        }
+        .tool-icon-wrap img { 
+            width: 32px; 
+            height: 32px; 
+            object-fit: contain; 
+            margin-bottom: 4px;
+        }
+        .tool-icon-wrap span { 
+            font-size: 0.7rem; 
+            font-weight: 600; 
+            color: #1e293b; font-weight: 600; 
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            padding: 20px;
+        }
+        .modal-content { position: relative; max-width: 800px; width: 100%; background: #fff; padding: 8px; border-radius: 12px; }
+        .modal-content img { display: block; width: 100%; height: auto; border-radius: 8px; }
+        .modal-close { position: absolute; top: -45px; right: 0; width: 36px; height: 36px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; font-weight: bold; border: none; }
+
+        @media (max-width: 900px) {
+            .page-body { grid-template-columns: 1fr; }
+            .features-bar { margin: -1rem 1rem 0; flex-direction: column; }
+            .feature-item { border-right: none; border-bottom: 1px solid #f0f0f0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="index.html" class="nav-back">← Back</a>
+            <img src="Kvj logo.jpeg" class="nav-logo" alt="KVJ Logo">
+        </div>
+        <a onclick="logout()" class="nav-logout">Log Out</a>
+    </nav>
+
+    <div class="course-banner">
+        <div class="banner-inner">
+            <div class="course-icon">
+                <img src="pearson_icon_only.svg" alt="Pearson Logo">
+            </div>
+            <h2 class="course-title">Pearson IT Specialist & KVJ Completion Certificate</h2>
+            <h1 class="course-subtitle">DATA ANALYTICS</h1>
+
+            <div class="rating-row">
+                <span class="stars">★★★★★</span>
+                <span class="rating-score">4.9</span>
+                <span class="rating-count">(1,850+ enrolled)</span>
+            </div>
+
+            <ul class="meta-list">
+                <li>
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Estimated learning time: <strong>3 to 4 hours</strong>
+                </li>
+                <li>
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                    5 Modules + 3 Full Mock Assessments
+                </li>
+                <li>
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Industry-aligned curriculum by <strong>KVJ</strong>
+                </li>
+            </ul>
+
+            <div style="margin-bottom: 2rem;">
+                <a href="#modules" class="btn-cta">START ANALYZING →</a>
+                <div style="margin-top: 1rem; display: flex; gap: 1.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.9);">
+                    <span>✓ Professional dashboards</span>
+                    <span>✓ Real-world datasets</span>
+                    <span>✓ Certificate upon completion</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features-bar">
+        <div class="feature-item">
+            <div class="feature-icon-text">
+                <img src="https://cdn-icons-png.flaticon.com/512/3090/3090011.png" style="height: 40px; margin-bottom: 10px;">
+            </div>
+            <div class="feature-title">Data Insights</div>
+            <div class="feature-sub">Transform raw numbers into business strategy</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon-text">
+                <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" style="height: 40px; margin-bottom: 10px;">
+            </div>
+            <div class="feature-title">Visualization</div>
+            <div class="feature-sub">Master storytelling with interactive dashboards</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon-text">
+                <img src="https://cdn-icons-png.flaticon.com/512/2085/2085277.png" style="height: 40px; margin-bottom: 10px;">
+            </div>
+            <div class="feature-title">Ethical Data</div>
+            <div class="feature-sub">Learn responsible and unbiased analytics</div>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="main-column">
+            <h2 class="section-title">What You'll Learn</h2>
+            <div class="learn-grid">
+                <div class="learn-item"><span class="check">✓</span> Foundational data concepts, types, and principles of collection</div>
+                <div class="learn-item"><span class="check">✓</span> Advanced data cleaning and transformation techniques</div>
+                <div class="learn-item"><span class="check">✓</span> Exploratory Data Analysis (EDA) and trend discovery</div>
+                <div class="learn-item"><span class="check">✓</span> Creating high-impact dashboards and visualizations</div>
+                <div class="learn-item"><span class="check">✓</span> Communicating analytical insights to stakeholders</div>
+                <div class="learn-item"><span class="check">✓</span> Responsible and ethical analytics practices</div>
+                <div class="learn-item"><span class="check">✓</span> Solving real-world business case studies</div>
+                <div class="learn-item"><span class="check">✓</span> Passing full-length certification mock simulations</div>
+            </div>
+
+            <h2 class="section-title" id="modules">Course Modules</h2>
+            <div class="module-list">
+                <div class="module-card">
+                    <div class="module-num">M1</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 1 — Data Basics</div>
+                        <div class="module-desc">Foundational data concepts, types, and the principles of collection.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="Data-Module-1.html" class="btn-sm btn-study">Learn</a>
+                        <a href="module_quiz.html?mod=data1" class="btn-sm btn-quiz">Quiz</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M2</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 2 — Data Manipulation</div>
+                        <div class="module-desc">Mastering tools and techniques to clean and transform datasets.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="Data-Module-2.html" class="btn-sm btn-study">Learn</a>
+                        <a href="module_quiz.html?mod=data2" class="btn-sm btn-quiz">Quiz</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M3</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 3 — Data Analysis</div>
+                        <div class="module-desc">Applying statistical methods and exploratory data processes.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="Data-Module-3.html" class="btn-sm btn-study">Learn</a>
+                        <a href="module_quiz.html?mod=data3" class="btn-sm btn-quiz">Quiz</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M4</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 4 — Data Visualization</div>
+                        <div class="module-desc">Creating compelling dashboards and stakeholder communication.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="Data-Module-4.html" class="btn-sm btn-study">Learn</a>
+                        <a href="module_quiz.html?mod=data4" class="btn-sm btn-quiz">Quiz</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num">M5</div>
+                    <div class="module-info">
+                        <div class="module-name">Module 5 — Responsible Analytics</div>
+                        <div class="module-desc">Privacy, ethics, and avoiding bias in analytical models.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="Data-Module-5.html" class="btn-sm btn-study">Learn</a>
+                        <a href="module_quiz.html?mod=data5" class="btn-sm btn-quiz">Quiz</a>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 3rem;">Certification Mock Exams</h2>
+            <div class="module-list">
+                <div class="module-card">
+                    <div class="module-num"><img src="https://cdn-icons-png.flaticon.com/512/2620/2620857.png" style="width:24px;"></div>
+                    <div class="module-info">
+                        <div class="module-name">Mock Test 1 — Foundational</div>
+                        <div class="module-desc">Covers core data concepts and manipulation (Modules 1-3).</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="module_quiz.html?mock=da_mock1" class="btn-sm btn-study" style="background:#eff6ff; color:var(--brand-blue); border-color:#dbeafe;">Take Mock</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135783.png" style="width:24px;"></div>
+                    <div class="module-info">
+                        <div class="module-name">Mock Test 2 — Advanced Reporting</div>
+                        <div class="module-desc">Focuses on visualization, storytelling, and ethical practices.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="module_quiz.html?mock=da_mock2" class="btn-sm btn-study" style="background:#eff6ff; color:var(--brand-blue); border-color:#dbeafe;">Take Mock</a>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-num"><img src="https://cdn-icons-png.flaticon.com/512/3112/3112946.png" style="width:24px;"></div>
+                    <div class="module-info">
+                        <div class="module-name">Mock Test 3 — Full Simulation</div>
+                        <div class="module-desc">Comprehensive final simulation covering all modules.</div>
+                    </div>
+                    <div class="module-actions">
+                        <a href="module_quiz.html?mock=da_mock3" class="btn-sm btn-study" style="background:#eff6ff; color:var(--brand-blue); border-color:#dbeafe;">Take Mock</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <div class="sidebar-thumb">
+                    <div class="sidebar-thumb-icon">
+                        <img src="pearson_badge.png" alt="Pearson Badge" style="width: 100%; height: auto;">
+                    </div>
+                    <p>Pearson IT Specialist</p>
+                </div>
+                <div class="sidebar-body">
+                    <h3 class="sidebar-track-title">Career Track</h3>
+                    
+                    <div class="cert-info-box">
+                        <p style="margin-bottom: 1.5rem; color: #1e293b; font-weight: 600; font-size: 0.9rem;">Specialist and KVJ certificate.</p>
+                        <button class="btn-view-cert" onclick="openCertModal()">View a sample certificate</button>
+                    </div>
+
+                    <ul class="sidebar-benefits" style="list-style: none; padding: 2rem 0; border-top: 1px solid #f1f5f9; margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+                        <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1e293b; font-weight: 500;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991108.png" style="width: 24px;"> 5 core analytical modules
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1e293b; font-weight: 500;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3588/3588616.png" style="width: 24px;"> Hands-on case studies
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1e293b; font-weight: 500;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2599/2599181.png" style="width: 24px;"> 3 full mock exams
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1e293b; font-weight: 500;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2838/2838779.png" style="width: 24px;"> Self-paced flexibility
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 15px; font-size: 0.95rem; color: #1e293b; font-weight: 500;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2888/2888408.png" style="width: 24px;"> Industry-standard tools
+                        </li>
+                    </ul>
+
+                    <div style="display: flex; justify-content: center; gap: 0.8rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; margin-bottom: 1.5rem;">
+                        <div style="flex: 1; border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="pearson_logo.svg" alt="Pearson" style="height: 20px;">
+                        </div>
+                        <div style="flex: 1; border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                            <img src="Kvj logo.jpeg" alt="KVJ" style="height: 28px;">
+                        </div>
+                    </div>
+
+                    <div class="tools-covered">
+                        <span class="tools-label">TOOLS COVERED</span>
+                        <div class="tools-grid" style="grid-template-columns: repeat(4, 1fr);">
+                            <div class="tool-icon-wrap">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python">
+                                <span>Python</span>
+                            </div>
+                            <div class="tool-icon-wrap">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2772/2772128.png" alt="SQL">
+                                <span>SQL</span>
+                            </div>
+                            <div class="tool-icon-wrap">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel">
+                                <span>Excel</span>
+                            </div>
+                            <div class="tool-icon-wrap">
+                                <img src="Power bi logo.png" alt="Power BI">
+                                <span>Power BI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="certModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCertModal()">×</button>
+            <img src="sample_certificate.png" alt="Sample Certificate">
+        </div>
+    </div>
+
+    <script>
+        function checkMockCode(expectedCode, targetUrl) {
+            window.location.href = targetUrl;
+        }
+
+        function logout() {
+            sessionStorage.clear();
+            localStorage.removeItem('strategist_user');
+            localStorage.removeItem('strategist_phone');
+            window.location.href = 'login.html';
+        }
+        function openCertModal() { document.getElementById('certModal').style.display = 'flex'; }
+        function closeCertModal() { document.getElementById('certModal').style.display = 'none'; }
+        window.onclick = function(event) {
+            let modal = document.getElementById('certModal');
+            if (event.target == modal) { modal.style.display = 'none'; }
+        }
+    </script>
+</body>
+</html>

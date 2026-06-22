@@ -1,0 +1,347 @@
+[
+    {
+        "id": 21,
+        "type": "MCQ2",
+        "q": "You work on a team that is developing a game.<br><br>You need to write code that generates a random number that meets the following requirements:<br>\u2022 The number is a multiple of 5.<br>\u2022 The lowest number is 5.<br>\u2022 The highest number is 100.<br><br>Which two code segments will meet the requirements? Each correct answer presents a complete solution. (Choose 2.)<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct answer.</span>",
+        "options": [
+            "from random import randint\nprint(randint(1, 20) * 5)",
+            "from random import randint\nprint(randint(0, 20) * 5)",
+            "from random import randrange\nprint(randrange(0, 100, 5))",
+            "from random import randrange\nprint(randrange(5, 105, 5))"
+        ],
+        "a": [
+            0,
+            3
+        ]
+    },
+    {
+        "id": 22,
+        "type": "DROPDOWN",
+        "q": "You are writing a Python program to determine if a number (num) the user inputs is one, two, or more than two digits (digits).<br><br>Complete the code by selecting the correct code segment from each drop-down list.<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+        "code": "num = int(input(\"Enter a number with 1 or 2 digits: \"))\ndigits = \"0\"\n[b1]\n    digits = \"1\"\n[b2]\n    digits = \"2\"\n[b3]\n    digits = \">2\"\nprint(digits + \" digits.\")",
+        "options": [
+            [
+                "if num > -10 and num < 10:",
+                "if num > -100 and num < 100:"
+            ],
+            [
+                "if num > -100 and num < 100:",
+                "elif num > -100 and num < 100:",
+                "if num > -10 and num < 10:",
+                "elif num > -10 and num < 10:"
+            ],
+            [
+                "else:",
+                "elif:"
+            ]
+        ],
+        "a": [
+            "if num > -10 and num < 10:",
+            "elif num > -100 and num < 100:",
+            "else:"
+        ]
+    },
+    {
+        "id": 23,
+        "type": "MCQ",
+        "q": "You write the following code to determine a student's final grade based on their current grade (grade) and rank (rank):<br><br>What value will print?",
+        "code": "grade = 76\nrank = 3\n\nif grade > 80 and rank >= 3:\n    grade += 10\nelif grade >= 70 and rank > 3:\n    grade += 5\nelse:\n    grade -= 5\n\nprint(grade)",
+        "options": [
+            "71",
+            "76",
+            "81",
+            "86"
+        ],
+        "a": 0
+    },
+    {
+        "id": 24,
+        "type": "MTF",
+        "q": "You need to identify the data types of various type operations.<br><br>Move the appropriate data types from the list on the left to the correct type operations on the right. You may use each data type once, more than once, or not at all.<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct match.</span>",
+        "labels": [
+            "int",
+            "float",
+            "str",
+            "bool"
+        ],
+        "options": [
+            "type(+1E10)",
+            "type(5.0)",
+            "type(\"True\")",
+            "type(False)"
+        ],
+        "a": {
+            "type(+1E10)": "float",
+            "type(5.0)": "float",
+            "type(\"True\")": "str",
+            "type(False)": "bool"
+        }
+    },
+    {
+        "id": 25,
+        "type": "MCQ2",
+        "q": "A bicycle company is creating a program that allows customers to log the number of miles biked. The program will send messages based on how many miles the customer logs.<br><br>You write the following Python code. Line numbers are included for reference only.<br><br>You need to define the two required functions.<br><br>Which two code segments should you use for line 01 and line 04? Each correct answer presents part of the solution. (Choose 2.)<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+        "code": "01\n02     name = input(\"What is your name? \")\n03     return name\n04\n05     calories = miles * calories_per_mile\n06     return calories\n07 distance = int(input(\"How many miles did you bike this week? \"))\n08 burn_rate = 50\n09 biker = get_name()\n10 calories_burned = calc_calories(distance, burn_rate)\n11 print(biker, \", you burned about \", calories_burned, \" calories.\")",
+        "options": [
+            "01 def get_name():",
+            "01 def get_name(biker):",
+            "01 def get_name(name):",
+            "04 def calc_calories():",
+            "04 def calc_calories(miles, burn_rate):",
+            "04 def calc_calories(miles, calories_per_mile):"
+        ],
+        "a": [
+            0,
+            5
+        ]
+    },
+    {
+        "id": 26,
+        "type": "MCQ",
+        "q": "Review the following code:<br><br>What is the output of the print statement?",
+        "code": "x = \"oranges\"\ny = \"apples\"\nz = \"bananas\"\n\ndata = \"{1} and {0} and {2}\"\nprint(data.format(z, y, x))",
+        "options": [
+            "oranges and apples and bananas",
+            "apples and oranges and bananas",
+            "bananas and oranges and apples",
+            "apples and bananas and oranges"
+        ],
+        "a": 3
+    },
+    {
+        "id": 27,
+        "type": "TF",
+        "q": "For each statement about try statements, select True or False.",
+        "options": [
+            "A try statement can have one or more except clauses.",
+            "A try statement can have a finally clause without an except clause.",
+            "A try statement can have a finally clause and an except clause.",
+            "A try statement can have one or more finally clauses."
+        ],
+        "a": [
+            true,
+            true,
+            true,
+            false
+        ]
+    },
+    {
+        "id": 28,
+        "type": "TF",
+        "q": "The following function calculates the value of an expression that uses an exponent. Line numbers are included for reference only.<br><br>For each statement, select True or False.<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+        "code": "01 def calc_power(a, b):\n02     return a**b\n03 base = input(\"Enter the number for the base: \")\n04 exponent = input(\"Enter the number for the exponent: \")\n05 result = calc_power(base, exponent)\n06 print(\"The result is \" + result)",
+        "options": [
+            "The code will generate an error in line 03 and line 04.",
+            "The code will generate an error in line 02 and line 05.",
+            "The code will correctly output data to the console."
+        ],
+        "a": [
+            false,
+            true,
+            false
+        ]
+    },
+    {
+        "id": 29,
+        "type": "TF",
+        "q": "Review the following code segment:<br><br><code>f = open(\"python.txt\", \"a\")<br>f.write(\"This is a line of text.\")<br>f.close()</code>",
+        "options": [
+            "A file named python.txt is created if it does not exist.",
+            "The data in the file will be overwritten.",
+            "Other code can open the file after this code runs."
+        ],
+        "a": [
+            true,
+            false,
+            true
+        ]
+    },
+    {
+        "id": 30,
+        "type": "MCQ2",
+        "q": "You are creating an eCommerce script that accepts input from the user and outputs the data in a comma-delimited format.<br><br>You write the following code to accept input:<br><br><code>item = input(\"Enter the item name: \")<br>sales = int(input(\"Enter the quantity: \"))</code><br><br>The output must meet the following requirements:<br>\u2022 Enclose strings in double quotes.<br>\u2022 Do not enclose numbers in quotes or other characters.<br>\u2022 Separate items by commas.<br><br>You need to complete the code to meet the requirements.<br><br>Which two code segments could you use? Each correct answer presents a complete solution. (Choose 2.)<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct selection.</span>",
+        "options": [
+            "print('\"' + item + '\",' , sales)",
+            "print('\"{0}\",{1}'.format(item, sales))",
+            "print(item + ',' + sales)",
+            "print(f'\"{item}\", {sales}')"
+        ],
+        "a": [
+            1,
+            3
+        ]
+    },
+    {
+        "id": 31,
+        "type": "MTF",
+        "q": "You are writing a Python application that includes multiple operations on the same line of code. You need to determine the correct order of operations.<br><br>Move the type of operation from the list on the left to the correct locations on the right, with the type of operation that will be performed first at the top and the type of operation that will be performed last at the bottom.<br><br><span style='font-size: 15px; font-style: italic;'>Note: You will receive partial credit for each correct response.</span>",
+        "headers": [
+            "Operation Types",
+            "Operation Types in Order"
+        ],
+        "placeholder": "<span style='color: #64748b; font-size: 13px;'>Operation Type</span>",
+        "labels": [
+            "Addition and Subtraction",
+            "And",
+            "Exponents",
+            "Multiplication and Division",
+            "Parentheses",
+            "Unary positive, negative, not"
+        ],
+        "options": [
+            "<span style='white-space:nowrap;'>Operation type performed first</span>",
+            "\u200b",
+            "\u200b\u200b",
+            "\u200b\u200b\u200b",
+            "\u200b\u200b\u200b\u200b",
+            "\u200b\u200b\u200b\u200b\u200b"
+        ],
+        "a": {
+            "<span style='white-space:nowrap;'>Operation type performed first</span>": "Parentheses",
+            "\u200b": "Exponents",
+            "\u200b\u200b": "Unary positive, negative, not",
+            "\u200b\u200b\u200b": "Multiplication and Division",
+            "\u200b\u200b\u200b\u200b": "Addition and Subtraction",
+            "\u200b\u200b\u200b\u200b\u200b": "And"
+        }
+    },
+    {
+        "id": 32,
+        "type": "TF",
+        "q": "You are writing a function that increments the player score in a game. The function has the following requirements:<br>\u2022 If no value is specified for points, then points start at one.<br>\u2022 If bonus is True, then points must be doubled.<br><br>You write the following code. Line numbers are included for reference only.",
+        "code": "01 def increment_score(score, bonus, points):<br>02     if bonus == True:<br>03         points = points * 2<br>04     score = score + points<br>05     return score<br>06 points = 5<br>07 score = 10<br>08 new_score = increment_score(score, True, points)",
+        "options": [
+            "To meet the requirements, you must change line 01 to: def increment_score(score, bonus, points = 1):",
+            "If you do not change line 01 and the function is called with only two parameters, an error occurs.",
+            "Line 03 will also modify the value of the variable points declared at line 06."
+        ],
+        "a": [
+            true,
+            true,
+            false
+        ]
+    },
+    {
+        "id": 33,
+        "type": "MTF",
+        "q": "You need to identify the results of performing various slicing operations on the following sequence structure:<br><br><code>alph = \"abcdefghijklmnopqrstuvwxyz\"</code>",
+        "options": [
+            "alph[3:6]",
+            "alph[:6]"
+        ],
+        "labels": [
+            "def",
+            "cde",
+            "cdef",
+            "abcdef",
+            "defg",
+            "abcde"
+        ],
+        "a": {
+            "alph[3:6]": "def",
+            "alph[:6]": "abcdef"
+        }
+    },
+    {
+        "id": 34,
+        "type": "SHORT",
+        "q": "Review the following code segment:<br><br>How many lines of output does the code print?<br><span style='font-size: 12px; font-style: italic;'>Enter the number as an integer.</span>",
+        "code": "product = 2<br>n = 5<br>while (n != 0):<br>    product *= n<br>    print(product)<br>    n -= 1<br>    if n == 3:<br>        break",
+        "a": "2"
+    },
+    {
+        "id": 35,
+        "type": "DROPDOWN",
+        "q": "You find errors while evaluating the following code. Line numbers are included for reference only. You need to correct the code at line 03 and line 06.",
+        "code": "<div class='code-snippet'>01 numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]<br>02 index = 0<br>03 [b1]<br>04 &nbsp;&nbsp;&nbsp;&nbsp;print(numbers[index])<br>05 <br>06 &nbsp;&nbsp;&nbsp;&nbsp;[b2]<br>07 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br>08 &nbsp;&nbsp;&nbsp;&nbsp;else :<br>09 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index += 1</div>",
+        "options": [
+            [
+                "while (index < 10) :",
+                "while [index < 10]",
+                "while (index < 5) :",
+                "while [index < 5]"
+            ],
+            [
+                "if numbers[index] == 6 :",
+                "if numbers[index] == 6",
+                "if numbers(index) = 6 :",
+                "if numbers(index) != 6"
+            ]
+        ],
+        "a": [
+            "while (index < 10) :",
+            "if numbers[index] == 6 :"
+        ]
+    },
+    {
+        "id": 36,
+        "type": "MCQ",
+        "q": "You are developing a script to calculate the final score in a racing game. The score depends on the base points, time penalty, and a multiplier.<br><br>What is the final value of the <code>final_score</code> variable?",
+        "code": "base_points = 50\npenalty = 3\n\nfinal_score = base_points - penalty * 2 ** 3 // 4 + (base_points % 7)",
+        "options": [
+            "45",
+            "93",
+            "44",
+            "25"
+        ],
+        "a": 0
+    },
+    {
+        "id": 37,
+        "type": "MCQ",
+        "q": "You are building a time-tracking application. You run the script and encounter a NameError on line 02.<br><br>What is causing the error?",
+        "code": "01 \n02 def get_current_year():\n03     now = datetime.datetime.now()\n04     return now.year\n05 print(get_current_year())",
+        "options": [
+            "You need to import the datetime module.",
+            "The get_current_year function must take a parameter.",
+            "The now() method does not exist in the datetime object.",
+            "The year attribute requires parentheses to be called."
+        ],
+        "a": 0
+    },
+    {
+        "id": 38,
+        "type": "MCQ",
+        "q": "You are creating an automated email generation script for a travel agency:<br><br>What is the output of the print statement?",
+        "code": "city = \"Paris\"\nnights = 3\nprice = 450.50\n\nemail = \"Your trip to {0} for {1} nights will cost ${2}.\"\nprint(email.format(city, nights, price))",
+        "options": [
+            "Your trip to Paris for 3 nights will cost $450.50.",
+            "Your trip to {city} for {nights} nights will cost ${price}.",
+            "A syntax error occurs because the variables are different data types.",
+            "Your trip to 3 for 450.50 nights will cost $Paris."
+        ],
+        "a": 0
+    },
+    {
+        "id": 39,
+        "type": "TF",
+        "q": "You are implementing an authentication module that must handle multiple error types seamlessly. For each statement about exception handling, select True or False.",
+        "options": [
+            "A single try block can be followed by multiple except blocks to handle different exceptions.",
+            "The finally block is only executed if no exceptions are raised.",
+            "You can use the Exception keyword to catch any general error that occurs.",
+            "If an exception is raised inside a try block, the program will always crash immediately."
+        ],
+        "a": [
+            true,
+            false,
+            true,
+            false
+        ]
+    },
+    {
+        "id": 40,
+        "type": "TF",
+        "q": "You are building an application that needs to securely log user transactions into a text file:<br><br><code>with open(\"transactions.txt\", \"a\") as file:<br>&nbsp;&nbsp;&nbsp;&nbsp;file.write(\"User login successful\\n\")</code><br><br>For each statement, select True or False.",
+        "options": [
+            "Using the with statement ensures the file is automatically closed when the block ends.",
+            "The mode \"a\" guarantees that existing data in the file will not be overwritten.",
+            "If transactions.txt does not exist, the code will throw a FileNotFoundError."
+        ],
+        "a": [
+            true,
+            true,
+            false
+        ]
+    }
+]

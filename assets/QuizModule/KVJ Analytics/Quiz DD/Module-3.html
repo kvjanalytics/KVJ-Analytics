@@ -1,0 +1,2386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3: I/O Operations | KVJ Python Mastery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulkt-stdlib.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #eff6ff;
+            --bg-page: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #cbd5e1;
+            --success: #10b981;
+        }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Outfit', sans-serif; background-color: var(--bg-page); color: var(--text-main); line-height: 1.7; }
+
+        /* NAVBAR */
+        .navbar { height: 68px; background: white; padding: 0 2.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .logout-btn { background: #ef4444; color: white; padding: 9px 22px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 13px; }
+
+        /* LAYOUT */
+        .layout-container { display: flex; align-items: flex-start; max-width: 1360px; margin: 90px auto 60px; gap: 30px; padding: 20px 20px 0; }
+
+        /* SIDEBAR */
+        .sidebar { width: 290px; flex: 0 0 290px; position: sticky; top: 90px; z-index: 100; max-height: calc(100vh - 110px); overflow-y: auto; }
+        .sidebar::-webkit-scrollbar { width: 4px; }
+        .sidebar::-webkit-scrollbar-track { background: transparent; }
+        .sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .sidebar-inner { background: white; border-radius: 14px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+
+        /* PROGRESS BAR */
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .progress-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); }
+        .progress-pct { font-size: 12px; font-weight: 800; color: var(--primary); }
+        .progress-track { background: #e2e8f0; border-radius: 99px; height: 6px; margin-bottom: 20px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--primary); border-radius: 99px; transition: width 0.5s ease; }
+
+        /* SIDEBAR MODULE PATH LABEL */
+        .sb-section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); font-weight: 700; display: flex; align-items: center; gap: 7px; margin-bottom: 10px; }
+        .sb-section-label i { font-size: 11px; }
+
+        /* MODULE ACCORDION ROW */
+        .sb-module-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; border-radius: 10px; background: var(--primary); color: white; font-weight: 700; font-size: 14px; cursor: pointer; margin-bottom: 4px; user-select: none; }
+        .sb-module-row .sb-mod-title { display: flex; align-items: center; gap: 9px; }
+        .sb-module-row i.chevron { font-size: 12px; transition: transform 0.25s; }
+        .sb-module-row.open i.chevron { transform: rotate(180deg); }
+
+        /* SECTION ROWS (3.1, 3.2, 3.3) */
+        .sb-section-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px 10px 16px; border-radius: 9px; font-weight: 700; font-size: 14px; cursor: pointer; margin-bottom: 2px; color: var(--primary); border: 1.5px solid var(--primary); user-select: none; transition: background 0.15s; }
+        .sb-section-row:hover { background: var(--primary-light); }
+        .sb-section-row.open { background: var(--primary-light); }
+        .sb-section-row .sb-sec-left { display: flex; align-items: center; gap: 8px; }
+        .sb-section-row .sb-sec-num { font-size: 13px; font-weight: 800; color: var(--primary); }
+        .sb-section-row i.chevron { font-size: 11px; color: var(--primary); transition: transform 0.25s; }
+        .sb-section-row.open i.chevron { transform: rotate(180deg); }
+
+        /* SUB-TOPICS */
+        .sb-topics { list-style: none; margin: 0 0 6px 0; padding: 0; overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
+        .sb-topics.open { max-height: 600px; }
+        .sb-topics li a { display: flex; align-items: flex-start; gap: 9px; padding: 8px 14px 8px 28px; text-decoration: none; color: #475569; font-size: 13.5px; font-weight: 500; border-radius: 8px; transition: all 0.15s; line-height: 1.4; }
+        .sb-topics li a:hover { background: var(--primary-light); color: var(--primary); }
+        .sb-topics li a.active-topic { color: var(--primary); font-weight: 700; }
+        .sb-topics li a::before { content: "•"; color: #94a3b8; font-size: 16px; flex-shrink: 0; margin-top: -1px; }
+        .sb-topics li a:hover::before, .sb-topics li a.active-topic::before { color: var(--primary); }
+
+        /* RETURN LINK */
+        .sb-return { display: flex; align-items: center; gap: 9px; padding: 10px 14px; text-decoration: none; color: #475569; font-weight: 600; font-size: 13px; border-radius: 9px; border: 1px solid var(--border); background: #f8fafc; margin-top: 10px; transition: all 0.2s; }
+        .sb-return:hover { background: var(--primary-light); color: var(--primary); border-color: #93c5fd; }
+
+        /* MAIN */
+        .main-content { flex: 1; min-width: 0; }
+
+        /* LESSON CARD */
+        .lesson-card { background: white; border-radius: 16px; padding: 36px 40px; margin-bottom: 28px; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: transform 0.25s, box-shadow 0.25s; }
+        .lesson-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+
+        /* SECTION HEADER */
+        .section-header { margin-bottom: 28px; padding-bottom: 18px; border-bottom: 2px solid #e2e8f0; }
+        .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 14px; letter-spacing: -0.5px; }
+        .section-header h2 i { background: var(--primary-light); color: var(--primary); width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+        .section-header p { margin-top: 6px; margin-bottom: 0; color: var(--primary); font-weight: 600; font-size: 14px; }
+
+        /* TYPOGRAPHY */
+        h3 { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; margin: 36px 0 14px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        h4 { font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 700; color: #4f46e5; margin: 24px 0 12px; display: flex; align-items: center; gap: 9px; }
+        p { margin-bottom: 14px; font-size: 16px; color: #475569; line-height: 1.7; }
+        strong { color: var(--text-main); }
+        code { background: #f1f5f9; padding: 2px 7px; border-radius: 4px; font-family: 'Fira Code', monospace; font-weight: 700; color: #ef4444; font-size: 14px; }
+
+        /* INTERACTION BOXES */
+        .interaction-box { background: #f8fafc; border-radius: 12px; padding: 20px 22px; margin: 14px 0; border: 1px solid var(--border); }
+        .interaction-box.blue   { border-color: #3b82f6; background: #f0f7ff; }
+        .interaction-box.green  { border-color: #10b981; background: #f0fdf8; }
+        .interaction-box.amber  { border-color: #f59e0b; background: #fffbf0; }
+        .interaction-box.red    { border-color: #ef4444; background: #fff5f5; }
+        .interaction-box.purple { border-color: #8b5cf6; background: #faf5ff; }
+        .interaction-box h4 { margin-top: 0; font-size: 16px; }
+        .interaction-box.blue h4   { color: #2563eb; }
+        .interaction-box.green h4  { color: #059669; }
+        .interaction-box.amber h4  { color: #d97706; }
+        .interaction-box.red h4    { color: #dc2626; }
+        .interaction-box.purple h4 { color: #7c3aed; }
+
+        /* CODE BLOCKS — LIGHT */
+        pre { background: #f1f5f9; color: #1e293b; padding: 18px 20px; border-radius: 10px; margin: 12px 0; font-family: 'Fira Code', monospace; font-size: 13.5px; line-height: 1.75; overflow-x: auto; border: 1px solid #e2e8f0; }
+        .kw  { color: #1d4ed8; font-weight: 700; }
+        .fn  { color: #9333ea; font-weight: 600; }
+        .st  { color: #15803d; }
+        .nm  { color: #0369a1; font-weight: 700; }
+        .cm  { color: #94a3b8; font-style: italic; }
+
+        /* OUTPUT / NOTE */
+        .output-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid var(--success); padding: 13px 18px; border-radius: 8px; font-family: 'Fira Code', monospace; font-size: 13.5px; margin: 12px 0; color: #065f46; font-weight: 600; }
+        .note-box { background: #fefce8; border: 1px solid #fde68a; border-left: 4px solid #f59e0b; padding: 13px 18px; border-radius: 8px; font-size: 15px; margin: 14px 0; color: #92400e; }
+        .note-box strong { color: #78350f; }
+        .important-box { background: #fef2f2; border: 1px solid #fecaca; border-left: 4px solid #ef4444; padding: 13px 18px; border-radius: 8px; font-size: 15px; margin: 14px 0; color: #991b1b; }
+
+        /* CONTENT LIST */
+        .content-list { list-style: none; margin: 10px 0 14px; padding: 0; }
+        .content-list li { position: relative; padding: 7px 0 7px 26px; color: #475569; font-size: 15px; border-bottom: 1px solid #f1f5f9; }
+        .content-list li:last-child { border-bottom: none; }
+        .content-list li::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: 800; }
+
+        /* DIFF TABLE */
+        .diff-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; margin: 18px 0; }
+        .diff-table th { background: var(--primary); color: white; padding: 13px 16px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; }
+        .diff-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; background: white; }
+        .diff-table tr:last-child td { border-bottom: none; }
+        .diff-table tr:nth-child(even) td { background: #f8fafc; }
+
+        /* MODE TABLE */
+        .mode-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; margin: 18px 0; }
+        .mode-table th { background: var(--primary); color: white; padding: 12px 16px; font-size: 13px; font-weight: 700; text-transform: uppercase; text-align: left; }
+        .mode-table td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; background: white; }
+        .mode-table tr:last-child td { border-bottom: none; }
+        .mode-table td:first-child { font-family: 'Fira Code', monospace; font-weight: 700; color: #dc2626; background: #fef2f2; }
+        .mode-table tr:nth-child(2) td:first-child { background: #fef2f2; }
+        .mode-table tr:nth-child(3) td:first-child { background: #fef2f2; }
+        .mode-table tr:nth-child(4) td:first-child { background: #fef2f2; }
+        .mode-table tr:nth-child(5) td:first-child { background: #f0fdf4; color: #15803d; }
+        .mode-table tr:nth-child(6) td:first-child { background: #f0fdf4; color: #15803d; }
+
+        /* QUIZ CARD */
+        .quiz-card { background: white; border-radius: 14px; padding: 28px 32px; margin: 20px 0; border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .quiz-card .q-number { background: var(--primary); color: white; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; display: inline-block; margin-bottom: 12px; }
+        .quiz-card .q-text { font-size: 16px; font-weight: 600; color: var(--text-main); margin-bottom: 14px; }
+        .quiz-card .q-type-badge { display: inline-block; background: #f0fdf4; color: #15803d; border: 1px solid #86efac; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* MCQ OPTIONS — interactive */
+        .quiz-card .q-options { list-style: none; margin: 0 0 14px; padding: 0; }
+        .quiz-card .q-options li {
+            padding: 11px 16px; border-radius: 10px; font-size: 15px; margin-bottom: 8px;
+            border: 1.5px solid #e2e8f0; color: #475569; cursor: pointer;
+            transition: all 0.18s; user-select: none;
+        }
+        .quiz-card .q-options li:hover:not(.answered) { background: var(--primary-light); border-color: #93c5fd; color: var(--primary); }
+        .quiz-card .q-options li.selected-correct { background: #f0fdf4; border-color: #86efac; color: #15803d; font-weight: 700; pointer-events: none; }
+        .quiz-card .q-options li.selected-wrong   { background: #fef2f2; border-color: #fca5a5; color: #dc2626; font-weight: 700; pointer-events: none; }
+        .quiz-card .q-options li.reveal-correct   { background: #f0fdf4; border-color: #86efac; color: #15803d; font-weight: 700; pointer-events: none; }
+        .quiz-card .q-options li.disabled         { pointer-events: none; opacity: 0.55; }
+
+        /* ANSWER REVEAL — hidden by default */
+        .quiz-card .answer-reveal {
+            background: var(--primary-light); border: 1px solid #bfdbfe;
+            border-radius: 8px; padding: 10px 14px; font-size: 14px;
+            font-weight: 700; color: var(--primary);
+            display: none;
+        }
+        .quiz-card .answer-reveal.visible { display: block; }
+
+        /* TRUE/FALSE + FILL + CODE COMPARE — submit button */
+        .quiz-submit-row { margin-top: 12px; }
+        .btn-quiz-submit {
+            background: var(--primary); color: white; border: none;
+            padding: 9px 22px; border-radius: 9px; font-weight: 700; font-size: 14px;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .btn-quiz-submit:hover { background: var(--primary-dark); }
+        .btn-quiz-submit:disabled { background: #94a3b8; cursor: default; }
+
+        /* TRUE/FALSE buttons */
+        .tf-options { display: flex; gap: 12px; margin: 10px 0 14px; }
+        .tf-btn {
+            flex: 1; padding: 11px; border-radius: 10px; font-size: 15px; font-weight: 700;
+            border: 1.5px solid #e2e8f0; cursor: pointer; background: white; color: #475569;
+            transition: all 0.18s;
+        }
+        .tf-btn:hover:not(:disabled) { background: var(--primary-light); border-color: #93c5fd; color: var(--primary); }
+        .tf-btn.selected-correct { background: #f0fdf4; border-color: #86efac; color: #15803d; pointer-events: none; }
+        .tf-btn.selected-wrong   { background: #fef2f2; border-color: #fca5a5; color: #dc2626; pointer-events: none; }
+        .tf-btn.reveal-correct   { background: #f0fdf4; border-color: #86efac; color: #15803d; pointer-events: none; }
+        .tf-btn:disabled { pointer-events: none; }
+
+        /* FILL IN THE BLANK */
+        .fill-input { width: 100%; padding: 10px 14px; border-radius: 9px; border: 1.5px solid #cbd5e1; font-size: 15px; font-family: 'Fira Code', monospace; margin: 10px 0 10px; outline: none; transition: all 0.2s; }
+        .fill-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,64,175,0.1); }
+        .fill-input.correct-input { border-color: #86efac; background: #f0fdf4; color: #15803d; }
+        .fill-input.wrong-input   { border-color: #fca5a5; background: #fef2f2; color: #dc2626; }
+        .fill-result { font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 8px; margin-top: 6px; display: none; }
+        .fill-result.correct { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; display: block; }
+        .fill-result.wrong   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; display: block; }
+
+        /* CODE COMPARE */
+        .code-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+        .code-compare .opt { border-radius: 10px; overflow: hidden; border: 2px solid #e2e8f0; cursor: pointer; transition: all 0.18s; }
+        .code-compare .opt:hover:not(.opted) { border-color: #93c5fd; transform: translateY(-2px); }
+        .code-compare .opt .opt-label { background: #f1f5f9; padding: 8px 14px; font-size: 13px; font-weight: 700; color: #475569; }
+        .code-compare .opt.selected-correct { border-color: #86efac; }
+        .code-compare .opt.selected-correct .opt-label { background: #f0fdf4; color: #15803d; }
+        .code-compare .opt.selected-wrong   { border-color: #fca5a5; }
+        .code-compare .opt.selected-wrong .opt-label   { background: #fef2f2; color: #dc2626; }
+        .code-compare .opt.reveal-correct   { border-color: #86efac; }
+        .code-compare .opt.reveal-correct .opt-label   { background: #f0fdf4; color: #15803d; }
+
+        /* PRACTICE CARD */
+        .practice-card { background: white; border-radius: 16px; padding: 30px 34px; margin: 24px 0; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+        .practice-card h3 { color: var(--text-main); margin-top: 0; font-size: 18px; }
+        .task-label { display: inline-block; background: var(--primary-light); color: var(--primary-dark); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .badge-try-it { background: #16a34a; color: #fff; padding: 7px 15px; border-radius: 8px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; margin-bottom: 14px; box-shadow: 0 4px 6px rgba(22, 163, 74, 0.2); transition: all 0.3s ease; }
+        .badge-try-it:hover { transform: translateY(-1px); box-shadow: 0 6px 12px rgba(22, 163, 74, 0.3); }
+        .badge-try-it i { font-size: 10px; color: #ffffff; }
+
+        /* CODING */
+        .coding-practice textarea { width: 100%; height: 110px; background: #ffffff; color: #1e293b; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 12px 14px; font-family: 'Fira Code', monospace; font-size: 14px; margin: 0 0 12px; outline: none; resize: vertical; transition: all 0.2s; }
+        .coding-practice textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,64,175,0.1); }
+        .btn-run { background: var(--primary); color: white; padding: 10px 22px; border-radius: 9px; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: all 0.2s; }
+        .btn-run:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-reset { background: #f1f5f9; color: #475569; padding: 10px 22px; border-radius: 9px; font-weight: 700; font-size: 14px; border: 1.5px solid var(--border); cursor: pointer; margin-left: 8px; }
+        .terminal-label { font-size: 12px; font-weight: 800; color: #475569; margin-top: 16px; text-transform: uppercase; letter-spacing: 1.5px; display: none; align-items: center; gap: 7px; }
+        .terminal-label i { font-size: 10px; color: #38bdf8; }
+        .live-output-box { background: #f3f4f6; color: #1e293b; padding: 12px 16px; border-radius: 9px; margin-top: 8px; font-family: 'Fira Code', monospace; font-size: 13px; min-height: 36px; display: none; border: 1.5px solid #d1d5db; }
+        .live-output-box.active { display: block; }
+        .feedback { margin-top: 10px; padding: 10px 14px; border-radius: 8px; font-weight: 600; font-size: 14px; display: none; }
+        .feedback.correct { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; display: block; }
+        .feedback.wrong   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; display: block; }
+
+        /* ── EXAMPLE WRAPPER (white theme matching Try-it-out style) ── */
+        .example-wrapper { margin: 22px 0; border-radius: 12px; overflow: hidden; border: 1.5px solid #e2e8f0; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+
+        /* "Try it out" green label */
+        .example-try-label {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #16a34a; color: #fff;
+            padding: 9px 20px; border-radius: 9px;
+            font-size: 13px; font-weight: 700;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 10px rgba(22,163,74,0.25);
+        }
+        .example-try-label i { font-size: 10px; }
+
+        /* Example title row */
+        .example-block-title {
+            font-size: 14px; font-weight: 800; color: #1e40af;
+            margin-bottom: 6px; display: flex; align-items: center; gap: 7px;
+        }
+        .example-block-title i { color: #1e40af; font-size: 13px; }
+
+        /* White code box */
+        .example-block {
+            background: #fff;
+            border-radius: 0; overflow: hidden; border: none;
+        }
+        .example-block pre {
+            background: #f8fafc; color: #1e293b;
+            margin: 0; border: none; border-radius: 0;
+            padding: 20px 24px; font-family: 'Fira Code', monospace;
+            font-size: 15.5px; line-height: 2; overflow-x: auto;
+        }
+        /* syntax colours (light) */
+        .example-block pre .dk  { color: #1d4ed8; font-weight: 700; }
+        .example-block pre .df  { color: #7c3aed; font-weight: 600; }
+        .example-block pre .ds  { color: #15803d; }
+        .example-block pre .dn  { color: #b45309; font-weight: 700; }
+        .example-block pre .dc  { color: #94a3b8; font-style: italic; }
+        .example-block pre .dv  { color: #0f172a; }
+
+        /* Blue Run button row */
+        .example-run-row {
+            background: #fff; padding: 12px 18px;
+            border-top: 1.5px solid #e2e8f0;
+        }
+        .btn-example-run {
+            background: #1d4ed8; color: #fff; border: none;
+            padding: 10px 26px; border-radius: 9px;
+            font-size: 15px; font-weight: 700; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 8px;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .btn-example-run:hover { background: #1e40af; transform: translateY(-1px); }
+        .btn-example-run i { font-size: 12px; }
+
+        /* Output panel — HIDDEN until Run is clicked */
+        .example-output-panel { display: none; }
+        .example-output-panel.visible { display: block; }
+
+        /* White OUTPUT area */
+        .output-block-title {
+            font-size: 12px; font-weight: 800; color: #475569;
+            text-transform: uppercase; letter-spacing: 1.4px;
+            padding: 10px 18px 6px; display: flex; align-items: center; gap: 6px;
+            background: #fff; border-top: 2px solid #e2e8f0;
+        }
+        .output-block-title i { color: #16a34a; font-size: 11px; }
+        .output-block { background: #f0fdf4; }
+        .output-block pre {
+            background: #f0fdf4; color: #166534;
+            margin: 0; border: none; border-radius: 0;
+            padding: 16px 24px; font-family: 'Fira Code', monospace;
+            font-size: 15.5px; line-height: 2;
+        }
+        .output-block pre .prompt { color: #0369a1; }
+
+        @media (max-width: 768px) {
+            .layout-container { flex-direction: column; }
+            .sidebar { width: 100%; flex: none; position: static; }
+            .code-compare { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div><img src="Kvj logo.jpeg" alt="KVJ Logo" style="height:40px;"></div>
+    <a href="roadmap.html" class="logout-btn">EXIT</a>
+</nav>
+
+<div class="layout-container">
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+
+            <!-- PROGRESS -->
+            <div class="progress-header">
+                <span class="progress-label">Progress</span>
+                <span class="progress-pct" id="prog-pct">0%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+            </div>
+
+            <!-- MODULE PATH LABEL -->
+            <div class="sb-section-label"><i class="fas fa-compass"></i> MODULE PATH</div>
+
+            <!-- MODULE 3 ACCORDION -->
+            <div class="sb-module-row open" id="mod3-toggle" onclick="toggleMod3()">
+                <span class="sb-mod-title"><i class="fas fa-exchange-alt"></i> 03 I/O Operations</span>
+                <i class="fas fa-chevron-up chevron"></i>
+            </div>
+
+            <!-- 3.1 -->
+            <div class="sb-section-row open" id="sec31-toggle" onclick="toggleSec('sec31')">
+                <span class="sb-sec-left"><span class="sb-sec-num">3.1</span> Input and Output</span>
+                <i class="fas fa-chevron-down chevron"></i>
+            </div>
+            <ul class="sb-topics open" id="sec31-topics">
+                <li><a href="#sec31-input">Input</a></li>
+                <li><a href="#sec31-input-fn">input() Function</a></li>
+                <li><a href="#sec31-default">Default Datatype</a></li>
+                <li><a href="#sec31-conversion">Datatype Conversion</a></li>
+                <li><a href="#sec31-multiple">Multiple Inputs</a></li>
+                <li><a href="#sec31-output">Output</a></li>
+                <li><a href="#sec31-print">print() Function</a></li>
+                <li><a href="#sec31-format">Output Formatting</a></li>
+            </ul>
+
+            <!-- 3.2 -->
+            <div class="sb-section-row" id="sec32-toggle" onclick="toggleSec('sec32')">
+                <span class="sb-sec-left"><span class="sb-sec-num">3.2</span> Command Line Args</span>
+                <i class="fas fa-chevron-right chevron"></i>
+            </div>
+            <ul class="sb-topics" id="sec32-topics">
+                <li><a href="#sec32-what">What are CLI Args?</a></li>
+                <li><a href="#sec32-example">Example</a></li>
+                <li><a href="#sec32-why">Why Important?</a></li>
+                <li><a href="#sec32-sys">sys Module</a></li>
+                <li><a href="#sec32-default">Default Datatype</a></li>
+                <li><a href="#sec32-conversion">Datatype Conversion</a></li>
+                <li><a href="#sec32-diff">Difference Table</a></li>
+            </ul>
+
+            <!-- 3.3 -->
+            <div class="sb-section-row" id="sec33-toggle" onclick="toggleSec('sec33')">
+                <span class="sb-sec-left"><span class="sb-sec-num">3.3</span> File Handling</span>
+                <i class="fas fa-chevron-right chevron"></i>
+            </div>
+            <ul class="sb-topics" id="sec33-topics">
+                <li><a href="#sec33-what">What is File Handling?</a></li>
+                <li><a href="#sec33-open">open() Function</a></li>
+                <li><a href="#sec33-modes">File Opening Modes</a></li>
+                <li><a href="#sec33-fileopen">File Open</a></li>
+                <li><a href="#sec33-close">Close Files</a></li>
+                <li><a href="#sec33-read">Read Parts of File</a></li>
+                <li><a href="#sec33-write">File Write</a></li>
+                <li><a href="#sec33-create">Create a New File</a></li>
+                <li><a href="#sec33-delete">Delete File</a></li>
+            </ul>
+
+            <!-- RETURN -->
+            <a href="roadmap.html" class="sb-return"><i class="fas fa-arrow-left"></i> Return to Roadmap</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <!-- MODULE HEADER -->
+        <div class="section-header">
+            <h2><i class="fas fa-exchange-alt"></i> MODULE 3</h2>
+            <p>Input/Output Operations and File Handling</p>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             3.1  INPUT AND OUTPUT
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="section-31">
+            <div class="section-header">
+                <h2>3.1 Input and Output</h2>
+            </div>
+
+            <!-- INPUT -->
+            <h3 id="sec31-input"><i class="fas fa-keyboard"></i> Input</h3>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-info-circle"></i> What is Input?</h4>
+                <p>Input means giving data or information to a program.</p>
+                <p>In Python, users can enter data using the keyboard while the program is running.</p>
+                <div style="margin-top: 16px; border-radius: 10px; overflow: hidden; border: 1px solid #bfdbfe;">
+                    <video autoplay loop muted playsinline style="width: 100%; display: block; border-radius: 10px;">
+                        <source src="C:/Users/kj anand/Downloads/Quiz DD (2) 7 (2)/Quiz DD (2) 6/Quiz DD (13) 6/Quiz DD/Kid_typing_on_keyboard_output_202606101532.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <h3 id="sec31-input-fn"><i class="fas fa-terminal"></i> input() Function</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-cog"></i> How input() Works</h4>
+                <p>The <code>input()</code> function is used to take data from the user through the keyboard.</p>
+                <p>The value entered by the user is stored in a variable.</p>
+                <div style="display:flex; flex-direction:column; gap:12px; margin:14px 0;">
+                <div style="background: #f1f5f9; padding: 12px 20px; border-radius: 8px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 15px; margin: 15px 0;">
+                    <div style="background: #e0e7ff; color: #4338ca; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <code style="background: transparent; padding: 0; color: #1e293b; font-size: 15px;">variable = input("message")</code>
+                </div>
+                <div style="background: #f1f5f9; padding: 12px 20px; border-radius: 8px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 15px; margin: 15px 0;">
+                    <div style="background: #dcfce7; color: #15803d; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <code style="background: transparent; padding: 0; color: #1e293b; font-size: 15px;">name = input("Enter your name: ")</code>
+                </div>
+                </div>
+                <ul class="content-list">
+                    <li><code>input()</code> → function used to take input</li>
+                    <li><code>"message"</code> → text shown to the user</li>
+                    <li>The entered value is returned and stored in a variable</li>
+                </ul>
+                <pre><span class="fn">name</span> = <span class="fn">input</span>(<span class="st">"Enter your name: "</span>)
+<span class="fn">print</span>(<span class="st">"Hello,"</span>, name)</pre>
+                <div class="output-box" style="display:none;">Enter your name: Rahul<br>Hello, Rahul</div>
+
+                <!-- STEP-BY-STEP BREAKDOWN -->
+                <div style="margin-top: 22px;">
+                    <p style="font-size:15px; font-weight:700; color:#0f172a; margin-bottom:14px;">Step-by-step: How input() Works</p>
+
+                    <!-- Step 1 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 1</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">Python displays the message:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">Enter your name:</pre>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 2</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">The user enters:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">Anoop</pre>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 3</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">Python stores the value in the variable:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">name = <span style="color:#15803d;">"Anoop"</span>  <span style="color:#94a3b8; font-style:italic;"># stored as string</span></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE 1 -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 1 </div>
+                <pre><span class="dv">name</span> = <span class="df">input</span>(<span class="ds">"Enter your name: "</span>)
+<span class="df">print</span>(name)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-1')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-1">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre><span class="prompt">Enter your name: </span>Anoop
+Anoop</pre></div>
+            </div>
+            </div>
+
+            <!-- EXAMPLE 2 -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 2 </div>
+                <pre><span class="dv">city</span> = <span class="df">input</span>(<span class="ds">"Enter your city: "</span>)
+<span class="df">print</span>(<span class="ds">"You live in:"</span>, city)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-2')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-2">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre><span class="prompt">Enter your city: </span>Kerala
+You live in: Kerala</pre></div>
+            </div>
+            </div>
+
+            <!-- TRY THIS -->
+            <div class="practice-card">
+                <h3><i class="fas fa-laptop-code"></i> Try This Example</h3>
+                <span class="task-label">Practice</span>
+                <p>Write a program that asks for a name and prints a greeting.</p>
+                <div class="badge-try-it"><i class="fas fa-terminal"></i> Try It</div>
+                <div class="coding-practice">
+                    <textarea id="coding-ans-input-try" placeholder="# Write your code here..."></textarea>
+                    <button class="btn-run" onclick="runCode('input-try', 'Hello')">&#9654; Run</button>
+                    <button class="btn-reset" onclick="resetCode('input-try')">&#8634; Reset</button>
+                    <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                    <div class="live-output-box" id="coding-output-input-try"></div>
+                    <div class="feedback" id="coding-feedback-input-try"></div>
+                </div>
+            </div>
+
+            <!-- DEFAULT DATATYPE -->
+            <h3 id="sec31-default"><i class="fas fa-database"></i> Default Datatype of input()</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-info-circle"></i> Always Returns String</h4>
+                <p>The <code>input()</code> function stores all values as string (<code>str</code>) by default.</p>
+                <p>Even if the user enters:</p>
+                <ul class="content-list">
+                    <li>numbers</li>
+                    <li>decimal values</li>
+                </ul>
+                <p>Python stores them as text.</p>
+                <pre><span class="cm"># User types: 25</span>
+<span class="fn">age</span> = <span class="fn">input</span>(<span class="st">"Enter your age: "</span>)
+<span class="fn">print</span>(<span class="fn">type</span>(age))   <span class="cm"># &lt;class 'str'&gt;</span></pre>
+                <div class="output-box" style="display:none;">&lt;class 'str'&gt;</div>
+
+                <!-- STEP-BY-STEP: Default Datatype -->
+                <div style="margin-top: 22px;">
+                    <p style="font-size:15px; font-weight:700; color:#0f172a; margin-bottom:14px;">Step-by-step: Default Datatype of input()</p>
+
+                    <!-- Step 1 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 1</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">The user enters:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">22</pre>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 2</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">Python stores <code style="background:#f1f5f9; color:#1e293b; padding:2px 7px; border-radius:5px; font-size:13px;">"22"</code> as a string.</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 3</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;"><code style="background:#f1f5f9; color:#1e293b; padding:2px 7px; border-radius:5px; font-size:13px;">type(age)</code> checks the datatype.</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 4</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">Output shows:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#ef4444; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">&lt;class 'str'&gt;</pre>
+                        </div>
+                    </div>
+                    <p style="font-size:15px; color:#475569; margin-top:4px; margin-bottom:0;">which means the value is stored as string datatype.</p>
+                </div>
+
+            <!-- EXAMPLE - DEFAULT DATATYPE -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 1 </div>
+                <pre><span class="dv">age</span> = <span class="df">input</span>(<span class="ds">"Enter your age: "</span>)
+<span class="df">print</span>(<span class="df">type</span>(age))</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-3')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-3">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre><span class="prompt">Enter your age: </span>25
+&lt;class 'str'&gt;</pre></div>
+            </div>
+            </div>
+
+            <!-- WHY STRING -->
+            <div class="interaction-box">
+                <h4><i class="fas fa-question-circle"></i> Why Does input() Store Data as String?</h4>
+                <p>Python treats keyboard input as text by default because users can enter:</p>
+                <ul class="content-list">
+                    <li>letters</li>
+                    <li>numbers</li>
+                    <li>symbols</li>
+                </ul>
+                <p>So Python safely stores everything as string.</p>
+            </div>
+
+            <!-- DATATYPE CONVERSION -->
+            <h3 id="sec31-conversion"><i class="fas fa-exchange-alt"></i> Datatype Conversion</h3>
+            <div class="interaction-box">
+                <p>Datatype conversion means changing one datatype into another datatype.</p>
+                <p>Python provides built-in functions for conversion.</p>
+                <p>Common conversions:</p>
+                <ul class="content-list">
+                    <li><code>int()</code> → integer</li>
+                    <li><code>float()</code> → decimal number</li>
+                </ul>
+            </div>
+
+            <div class="interaction-box green">
+                <h4><i class="fas fa-sort-numeric-up"></i> int()</h4>
+                <p>The <code>int()</code> function converts a string value into an integer.</p>
+
+                <!-- EXAMPLE BOX -->
+                <div class="example-wrapper" style="margin:18px 0 6px;">
+                <div class="example-block">
+                    <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="example-block-title"><i class="fas fa-code"></i> Example 1</div>
+                    <pre><span class="dv">age</span> = <span class="df">int</span>(<span class="df">input</span>(<span class="ds">"Enter your age: "</span>))
+<span class="df">print</span>(age)
+<span class="df">print</span>(<span class="df">type</span>(age))</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-int1')"><i class="fas fa-play"></i> Run</button></div>
+                </div>
+                <div class="example-output-panel" style="display:none;" id="ex-out-int1">
+                    <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                    <div class="output-block"><pre><span class="prompt">Enter your age: </span>22
+22
+&lt;class 'int'&gt;</pre></div>
+                </div>
+                </div>
+
+                <!-- 5-STEP BREAKDOWN -->
+                <div style="margin-top: 22px;">
+                    <p style="font-size:15px; font-weight:700; color:#0f172a; margin-bottom:14px;">Step-by-step: How int() Works</p>
+
+                    <!-- Step 1 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 1</span>
+                            <span style="color:#0f172a; font-size:13.5px; font-weight:600;">The user enters:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">22</pre>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 2</span>
+                            <span style="color:#0f172a; font-size:13.5px; font-weight:600;"><code style="background:#f1f5f9; color:#1e293b; padding:2px 7px; border-radius:5px; font-size:13px;">input()</code> stores <code style="background:#f1f5f9; color:#1e293b; padding:2px 7px; border-radius:5px; font-size:13px;">"22"</code> as string.</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 3</span>
+                            <span style="color:#0f172a; font-size:13.5px; font-weight:600;"><code style="background:#f1f5f9; color:#1e293b; padding:2px 7px; border-radius:5px; font-size:13px;">int()</code> converts <code style="background:#f1f5f9; color:#1e293b; padding:2px 7px; border-radius:5px; font-size:13px;">"22"</code> into integer <code style="background:#f1f5f9; color:#1e293b; padding:2px 7px; border-radius:5px; font-size:13px;">22</code>.</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 4</span>
+                            <span style="color:#0f172a; font-size:13.5px; font-weight:600;"><code style="background:#f1f5f9; color:#1e293b; padding:2px 7px; border-radius:5px; font-size:13px;">type(age)</code> checks the datatype.</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 5</span>
+                            <span style="color:#0f172a; font-size:13.5px; font-weight:600;">Output becomes:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">&lt;class 'int'&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="margin-top:18px;"><i class="fas fa-question-circle"></i> Why int() is Important?</h4>
+                <p><code>int()</code> is mainly used for:</p>
+                <ul class="content-list">
+                    <li>addition</li>
+                    <li>subtraction</li>
+                    <li>multiplication</li>
+                    <li>division</li>
+                </ul>
+                <p>because arithmetic operations need numeric datatype.</p>
+
+                <!-- EXAMPLE - Why int() is Important -->
+                <div class="example-wrapper" style="margin:18px 0 6px;">
+                <div class="example-block">
+                    <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="example-block-title"><i class="fas fa-code"></i> Example 1</div>
+                    <pre><span class="dv">num1</span> = <span class="df">int</span>(<span class="df">input</span>(<span class="ds">"Enter first number: "</span>))
+<span class="dv">num2</span> = <span class="df">int</span>(<span class="df">input</span>(<span class="ds">"Enter second number: "</span>))
+
+<span class="df">print</span>(<span class="ds">"Addition:"</span>, num1 + num2)
+<span class="df">print</span>(<span class="ds">"Subtraction:"</span>, num1 - num2)
+<span class="df">print</span>(<span class="ds">"Multiplication:"</span>, num1 * num2)
+<span class="df">print</span>(<span class="ds">"Division:"</span>, num1 / num2)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-int-arith')"><i class="fas fa-play"></i> Run</button></div>
+                </div>
+                <div class="example-output-panel" style="display:none;" id="ex-out-int-arith">
+                    <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                    <div class="output-block"><pre><span class="prompt">Enter first number: </span>20
+<span class="prompt">Enter second number: </span>10
+Addition: 30
+Subtraction: 10
+Multiplication: 200
+Division: 2.0</pre></div>
+                </div>
+                </div>
+
+                <!-- EXAMPLE + PROBLEM: without int() -->
+                <div class="example-wrapper" style="margin:18px 0 6px;">
+                <div class="example-block">
+                    <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="example-block-title"><i class="fas fa-code"></i> Example 2</div>
+                    <pre><span class="dv">num1</span> = <span class="df">input</span>(<span class="ds">"Enter first number: "</span>)
+<span class="dv">num2</span> = <span class="df">input</span>(<span class="ds">"Enter second number: "</span>)
+
+<span class="df">print</span>(num1 + num2)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-int-prob')"><i class="fas fa-play"></i> Run</button></div>
+                </div>
+                <div class="example-output-panel" style="display:none;" id="ex-out-int-prob">
+                    <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                    <div class="output-block"><pre><span class="prompt">Enter first number: </span>10
+<span class="prompt">Enter second number: </span>20
+1020</pre></div>
+                </div>
+                </div>
+
+                <!-- PROBLEM BLOCK — white theme -->
+                <div style="border:1.5px solid #fecaca; border-radius:12px; overflow:hidden; margin:18px 0 6px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                    <!-- Problem header -->
+                    <div style="background:#fef2f2; padding:12px 20px; border-bottom:1.5px solid #fecaca;">
+                        <span style="color:#dc2626; font-size:17px; font-weight:800; display:flex; align-items:center; gap:8px;"><i class="fas fa-exclamation-circle"></i> Problem</span>
+                    </div>
+                    <div style="padding:16px 20px;">
+                        <p style="color:#475569; font-size:14px; margin-bottom:10px;">The output becomes:</p>
+                        <!-- wrong output -->
+                        <div style="background:#f8fafc; border-radius:9px; overflow:hidden; border:1.5px solid #e2e8f0; margin-bottom:14px;">
+                            <div style="background:#f1f5f9; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#f8fafc; border:none; border-radius:0; margin:0; padding:14px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8; color:#dc2626;">1020</pre>
+                        </div>
+                        <p style="color:#475569; font-size:14px; margin-bottom:10px;">instead of:</p>
+                        <!-- correct output -->
+                        <div style="background:#f8fafc; border-radius:9px; overflow:hidden; border:1.5px solid #e2e8f0; margin-bottom:16px;">
+                            <div style="background:#f1f5f9; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#f8fafc; border:none; border-radius:0; margin:0; padding:14px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8; color:#15803d;">30</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WHY THIS HAPPENS -->
+                <div style="border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin:14px 0 6px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="background:#f8fafc; padding:12px 20px; border-bottom:1.5px solid #e2e8f0;">
+                        <span style="color:#0f172a; font-size:17px; font-weight:800; display:flex; align-items:center; gap:8px;"><i class="fas fa-question-circle" style="color:#1e40af;"></i> Why This Happens?</span>
+                    </div>
+                    <div style="padding:16px 20px;">
+                        <p style="color:#475569; font-size:14.5px; margin-bottom:10px;">The <code style="background:#f1f5f9; color:#dc2626; padding:2px 7px; border-radius:4px; font-size:13px;">input()</code> function stores values as string datatype by default.</p>
+                        <p style="color:#475569; font-size:14.5px; margin-bottom:10px;">So Python treats:</p>
+                        <div style="background:#f8fafc; border-radius:9px; overflow:hidden; border:1.5px solid #e2e8f0; margin-bottom:12px;">
+                            <div style="background:#f1f5f9; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#f8fafc; border:none; border-radius:0; margin:0; padding:14px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;"><span style="color:#15803d;">"10"</span> + <span style="color:#15803d;">"20"</span></pre>
+                        </div>
+                        <p style="color:#475569; font-size:14.5px; margin-bottom:0;">as string concatenation instead of addition.</p>
+                    </div>
+                </div>
+
+                <!-- CORRECT CODE -->
+                <div style="border:1.5px solid #bbf7d0; border-radius:12px; overflow:hidden; margin:14px 0 6px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="background:#f0fdf4; padding:12px 20px; border-bottom:1.5px solid #bbf7d0;">
+                        <span style="color:#15803d; font-size:17px; font-weight:800; display:flex; align-items:center; gap:8px;"><i class="fas fa-check-circle"></i> Correct Code</span>
+                    </div>
+                    <div style="padding:0;">
+                        <div style="background:#f8fafc; border:none; overflow:hidden;">
+                            <div style="background:#f1f5f9; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#f8fafc; border:none; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:2;"><span style="color:#0369a1;">num1</span> = <span style="color:#7c3aed;">int</span>(<span style="color:#7c3aed;">input</span>(<span style="color:#15803d;">"Enter first number: "</span>))
+<span style="color:#0369a1;">num2</span> = <span style="color:#7c3aed;">int</span>(<span style="color:#7c3aed;">input</span>(<span style="color:#15803d;">"Enter second number: "</span>))
+
+<span style="color:#7c3aed;">print</span>(num1 + num2)</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CORRECT OUTPUT -->
+                <div style="border:1.5px solid #bbf7d0; border-radius:12px; overflow:hidden; margin:14px 0 6px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="background:#f0fdf4; padding:12px 20px; border-bottom:1.5px solid #bbf7d0;">
+                        <span style="color:#15803d; font-size:17px; font-weight:800; display:flex; align-items:center; gap:8px;"><i class="fas fa-terminal"></i> Correct Output</span>
+                    </div>
+                    <div style="padding:0;">
+                        <div style="background:#f8fafc; overflow:hidden;">
+                            <div style="background:#f1f5f9; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#f8fafc; border:none; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:2; color:#15803d;">Enter first number: 10
+Enter second number: 20
+30</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interaction-box purple">
+                <h4><i class="fas fa-dot-circle"></i> float()</h4>
+                <p>The <code>float()</code> function converts a value into a decimal number.</p>
+
+                <!-- EXAMPLE BOX -->
+                <div class="example-wrapper" style="margin:18px 0 6px;">
+                <div class="example-block">
+                    <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="example-block-title"><i class="fas fa-code"></i> Example 1</div>
+                    <pre><span class="dv">salary</span> = <span class="df">float</span>(<span class="df">input</span>(<span class="ds">"Enter salary: "</span>))
+
+<span class="df">print</span>(salary)
+<span class="df">print</span>(<span class="df">type</span>(salary))</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-float1')"><i class="fas fa-play"></i> Run</button></div>
+                </div>
+                <div class="example-output-panel" style="display:none;" id="ex-out-float1">
+                    <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                    <div class="output-block"><pre><span class="prompt">Enter salary: </span>25000.50
+25000.5
+&lt;class 'float'&gt;</pre></div>
+                </div>
+                </div>
+
+                <!-- 4-STEP BREAKDOWN -->
+                <div style="margin-top: 22px;">
+                    <p style="font-size:15px; font-weight:700; color:#0f172a; margin-bottom:14px;">Step-by-step: How float() Works</p>
+
+                    <!-- Step 1 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 1</span>
+                            <span style="color:#0f172a; font-size:13.5px; font-weight:600;">The user enters:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">25000.50</pre>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 2</span>
+                            <span style="color:#0f172a; font-size:13.5px; font-weight:600;"><code style="background:#f1f5f9; color:#1e293b; padding:2px 7px; border-radius:5px; font-size:13px;">input()</code> stores it as string.</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 3</span>
+                            <span style="color:#0f172a; font-size:13.5px; font-weight:600;"><code style="background:#f1f5f9; color:#1e293b; padding:2px 7px; border-radius:5px; font-size:13px;">float()</code> converts the string into decimal datatype.</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 4</span>
+                            <span style="color:#0f172a; font-size:13.5px; font-weight:600;"><code style="background:#f1f5f9; color:#1e293b; padding:2px 7px; border-radius:5px; font-size:13px;">type(salary)</code> shows:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">&lt;class 'float'&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WHY FLOAT IS IMPORTANT -->
+                <h4 style="margin-top:24px;"><i class="fas fa-question-circle"></i> Why float() is Important?</h4>
+                <p><code>float()</code> is important because it allows Python to work with decimal values.</p>
+                <p>It is mainly used when calculations contain:</p>
+                <ul class="content-list">
+                    <li>decimal numbers</li>
+                    <li>fractional values</li>
+                    <li>accurate measurements</li>
+                </ul>
+
+                <!-- EXAMPLE: Why float is Important -->
+                <div class="example-wrapper" style="margin:18px 0 6px;">
+                <div class="example-block">
+                    <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="example-block-title"><i class="fas fa-code"></i> Example 1</div>
+                    <pre><span class="dv">price</span>    = <span class="df">float</span>(<span class="df">input</span>(<span class="ds">"Enter product price: "</span>))
+<span class="dv">quantity</span> = <span class="df">int</span>(<span class="df">input</span>(<span class="ds">"Enter quantity: "</span>))
+
+<span class="dv">total</span> = price * quantity
+
+<span class="df">print</span>(<span class="ds">"Total Amount:"</span>, total)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-float-imp')"><i class="fas fa-play"></i> Run</button></div>
+                </div>
+                <div class="example-output-panel" style="display:none;" id="ex-out-float-imp">
+                    <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                    <div class="output-block"><pre><span class="prompt">Enter product price: </span>99.50
+<span class="prompt">Enter quantity: </span>2
+Total Amount: 199.0</pre></div>
+                </div>
+                </div>
+            </div>
+
+            <!-- MULTIPLE INPUTS -->
+            <h3 id="sec31-multiple"><i class="fas fa-layer-group"></i> Multiple Inputs</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-list-ol"></i> Taking More Than One Input</h4>
+                <p>Multiple inputs allow users to enter more than one value.</p>
+                <p>Programs often need multiple details from users.</p>
+                <pre><span class="fn">name</span>     = <span class="fn">input</span>(<span class="st">"Enter your name: "</span>)
+<span class="fn">password</span> = <span class="fn">input</span>(<span class="st">"Enter your password: "</span>)
+<span class="fn">print</span>(<span class="st">f"Hello </span>{name}<span class="st">, your password is </span>{password}<span class="st">"</span>)</pre>
+                <div class="output-box" style="display:none;">Enter your name: Rahul<br>Enter your password: pass123<br>Hello Rahul, your password is pass123</div>
+            </div>
+
+            <!-- LOGIN WIDGET - Multiple Inputs Interactive Demo -->
+            <div class="example-wrapper">
+            <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; margin-bottom:0;">
+
+                <!-- LOGIN FORM -->
+                <div style="flex:0 0 300px; background:#f0f4ff; border-radius:16px; padding:32px 28px; box-shadow:0 4px 20px rgba(30,64,175,0.10); border:1.5px solid #c7d7fa; display:flex; flex-direction:column; align-items:center;">
+                    <div style="width:56px;height:56px;background:#1e40af;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                        <i class="fas fa-user" style="color:#fff;font-size:24px;"></i>
+                    </div>
+                    <div style="font-size:22px;font-weight:800;color:#0f172a;margin-bottom:22px;">Login</div>
+
+                    <div style="width:100%;margin-bottom:14px;">
+                        <label style="font-size:13px;font-weight:700;color:#1e293b;display:block;margin-bottom:6px;">Username (Name)</label>
+                        <div style="display:flex;align-items:center;background:#fff;border:1.5px solid #cbd5e1;border-radius:9px;padding:10px 13px;gap:9px;">
+                            <i class="fas fa-user" style="color:#94a3b8;font-size:14px;"></i>
+                            <input id="login-name-input" type="text" placeholder="Rahul" style="border:none;outline:none;font-size:15px;width:100%;font-family:'Outfit',sans-serif;color:#0f172a;background:transparent;" oninput="updateLoginCode()" />
+                        </div>
+                    </div>
+
+                    <div style="width:100%;margin-bottom:18px;">
+                        <label style="font-size:13px;font-weight:700;color:#1e293b;display:block;margin-bottom:6px;">Password</label>
+                        <div style="display:flex;align-items:center;background:#fff;border:1.5px solid #cbd5e1;border-radius:9px;padding:10px 13px;gap:9px;">
+                            <i class="fas fa-lock" style="color:#94a3b8;font-size:14px;"></i>
+                            <input id="login-pass-input" type="password" placeholder="••••••" style="border:none;outline:none;font-size:15px;width:100%;font-family:'Outfit',sans-serif;color:#0f172a;background:transparent;" oninput="updateLoginCode()" />
+                            <i class="fas fa-eye" id="toggle-eye" style="color:#94a3b8;font-size:14px;cursor:pointer;" onclick="togglePassword()"></i>
+                        </div>
+                    </div>
+
+                    <div style="width:100%;display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+                        <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:#475569;cursor:pointer;">
+                            <input type="checkbox" style="accent-color:#1e40af;" /> Remember me
+                        </label>
+                        <span style="font-size:13px;color:#1e40af;font-weight:600;cursor:pointer;">Forgot password?</span>
+                    </div>
+
+                    <button onclick="submitLogin()" style="width:100%;background:#1e40af;color:#fff;border:none;border-radius:10px;padding:13px;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:0.3px;transition:background 0.2s;" onmouseover="this.style.background='#1e3a8a'" onmouseout="this.style.background='#1e40af'">Login</button>
+
+                    <div id="login-msg" style="margin-top:12px;font-size:14px;font-weight:600;display:none;padding:9px 14px;border-radius:8px;width:100%;text-align:center;"></div>
+
+                    <div style="margin-top:14px;font-size:13px;color:#64748b;">Don't have an account? <span style="color:#1e40af;font-weight:700;cursor:pointer;">Sign up</span></div>
+                </div>
+
+                <!-- LIVE CODE PANEL -->
+                <div style="flex:1;min-width:280px;">
+                    <div style="font-size:13px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:7px;">
+                        <i class="fas fa-code" style="color:#1e40af;"></i> Live Python Code
+                    </div>
+                    <div style="background:#0f172a;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+                        <div style="background:#1e293b;padding:9px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #334155;">
+                            <span style="width:11px;height:11px;border-radius:50%;background:#ef4444;display:inline-block;"></span>
+                            <span style="width:11px;height:11px;border-radius:50%;background:#f59e0b;display:inline-block;"></span>
+                            <span style="width:11px;height:11px;border-radius:50%;background:#10b981;display:inline-block;"></span>
+                            <span style="font-size:12px;color:#94a3b8;font-weight:600;margin-left:8px;">login.py</span>
+                        </div>
+                        <pre id="live-code-block" style="background:#0f172a;color:#e2e8f0;border:none;margin:0;padding:20px 22px;font-family:'Fira Code',monospace;font-size:13.5px;line-height:1.9;white-space:pre;"><span style="color:#94a3b8;"># Multiple Inputs Example</span>
+<span style="color:#7dd3fc;">name</span>     = <span style="color:#c084fc;">input</span>(<span style="color:#86efac;">"Enter your name: "</span>)
+<span style="color:#7dd3fc;">password</span> = <span style="color:#c084fc;">input</span>(<span style="color:#86efac;">"Enter your password: "</span>)
+
+<span style="color:#c084fc;">print</span>(<span style="color:#86efac;">"Name:    "</span>, <span style="color:#7dd3fc;">name</span>)
+<span style="color:#c084fc;">print</span>(<span style="color:#86efac;">"Password:"</span>, <span style="color:#7dd3fc;">password</span>)</pre>
+                    </div>
+
+                    <!-- Output Panel -->
+                    <div style="margin-top:14px;">
+                        <div style="font-size:13px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:flex;align-items:center;gap:7px;">
+                            <i class="fas fa-terminal" style="color:#10b981;"></i> Output
+                        </div>
+                        <div id="live-output-panel" style="background:#0f172a;border-radius:10px;padding:16px 20px;font-family:'Fira Code',monospace;font-size:13.5px;line-height:1.9;min-height:56px;border:1px solid #1e293b;">
+                            <span style="color:#94a3b8;font-style:italic;">↑ Type in the login form to see the output update live...</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+            <script>
+            function updateLoginCode() {
+                var name = document.getElementById('login-name-input').value || 'name';
+                var pass = document.getElementById('login-pass-input').value || 'password';
+
+                // Update code block — show actual typed values
+                document.getElementById('live-code-block').innerHTML =
+                    '<span style="color:#94a3b8;"># Multiple Inputs Example</span>\n' +
+                    '<span style="color:#7dd3fc;">name</span>     = <span style="color:#c084fc;">input</span>(<span style="color:#86efac;">"Enter your name: "</span>)' +
+                    ' <span style="color:#94a3b8;"># ➜ "' + name + '"</span>\n' +
+                    '<span style="color:#7dd3fc;">password</span> = <span style="color:#c084fc;">input</span>(<span style="color:#86efac;">"Enter your password: "</span>)' +
+                    ' <span style="color:#94a3b8;"># ➜ "' + pass + '"</span>\n\n' +
+                    '<span style="color:#c084fc;">print</span>(<span style="color:#86efac;">"Name:    "</span>, <span style="color:#7dd3fc;">name</span>)\n' +
+                    '<span style="color:#c084fc;">print</span>(<span style="color:#86efac;">"Password:"</span>, <span style="color:#7dd3fc;">password</span>)';
+
+                // Update output panel — show actual typed values
+                var realName = document.getElementById('login-name-input').value;
+                var realPass = document.getElementById('login-pass-input').value;
+                if (realName || realPass) {
+                    document.getElementById('live-output-panel').innerHTML =
+                        '<span style="color:#94a3b8;">Enter your name: </span><span style="color:#c084fc;">' + (realName || '') + '</span>\n' +
+                        '<span style="color:#94a3b8;">Enter your password: </span><span style="color:#c084fc;">' + (realPass || '') + '</span>\n' +
+                        '<span style="color:#86efac;">Name:     ' + (realName || '') + '</span>\n' +
+                        '<span style="color:#86efac;">Password: ' + (realPass || '') + '</span>';
+                } else {
+                    document.getElementById('live-output-panel').innerHTML =
+                        '<span style="color:#94a3b8;font-style:italic;">↑ Type in the login form to see the output update live...</span>';
+                }
+            }
+
+            function togglePassword() {
+                var inp = document.getElementById('login-pass-input');
+                var eye = document.getElementById('toggle-eye');
+                if (inp.type === 'password') {
+                    inp.type = 'text';
+                    eye.className = 'fas fa-eye-slash';
+                    eye.style.color = '#1e40af';
+                } else {
+                    inp.type = 'password';
+                    eye.className = 'fas fa-eye';
+                    eye.style.color = '#94a3b8';
+                }
+            }
+
+            function submitLogin() {
+                var name = document.getElementById('login-name-input').value.trim();
+                var pass = document.getElementById('login-pass-input').value.trim();
+                var msg  = document.getElementById('login-msg');
+                msg.style.display = 'block';
+                if (name && pass) {
+                    msg.style.background = '#f0fdf4';
+                    msg.style.color = '#15803d';
+                    msg.style.border = '1px solid #86efac';
+                    msg.textContent = '✓ Welcome, ' + name + '! Login successful.';
+                    updateLoginCode();
+                } else {
+                    msg.style.background = '#fef2f2';
+                    msg.style.color = '#dc2626';
+                    msg.style.border = '1px solid #fca5a5';
+                    msg.textContent = '✗ Please enter both name and password.';
+                }
+            }
+            </script>
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 2 </div>
+                <pre><span class="dv">num1</span> = <span class="df">int</span>(<span class="df">input</span>(<span class="ds">"Enter first number: "</span>))
+<span class="dv">num2</span> = <span class="df">int</span>(<span class="df">input</span>(<span class="ds">"Enter second number: "</span>))
+
+<span class="df">print</span>(<span class="dv">num1</span> + <span class="dv">num2</span>)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-9')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-9">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre><span class="prompt">Enter first number: </span>10
+<span class="prompt">Enter second number: </span>20
+30</pre></div>
+            </div>
+            </div>
+
+            <!-- OUTPUT -->
+            <h3 id="sec31-output"><i class="fas fa-desktop"></i> Output</h3>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-info-circle"></i> What is Output?</h4>
+                <p>Output means displaying information or results to the user.</p>
+                <p>Python uses the <code>print()</code> function to display output.</p>
+            </div>
+
+            <!-- PRINT -->
+            <h3 id="sec31-print"><i class="fas fa-print"></i> print() Function</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-cog"></i> What print() Can Display</h4>
+                <p>The <code>print()</code> function is used to display:</p>
+                <ul class="content-list">
+                    <li>text</li>
+                    <li>numbers</li>
+                    <li>variables</li>
+                    <li>results</li>
+                </ul>
+                <p>on the screen.</p>
+                <pre><span class="fn">print</span>(<span class="st">"Hello, World!"</span>)
+<span class="fn">print</span>(<span class="nm">42</span>)
+<span class="fn">x</span> = <span class="nm">10</span>
+<span class="fn">print</span>(x)</pre>
+                <div class="output-box" style="display:none;">Hello, World!<br>42<br>10</div>
+            </div>
+
+            <!-- SYNTAX - print() -->
+            <div class="interaction-box">
+                <h4><i class="fas fa-terminal"></i> Syntax</h4>
+                <pre><span class="fn">print</span>(value)</pre>
+            </div>
+
+            <!-- EXAMPLE 1 - print() -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 1 </div>
+                <pre><span class="df">print</span>(<span class="ds">"Welcome to Python"</span>)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-10')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-10">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>Welcome to Python</pre></div>
+            </div>
+            </div>
+            <div class="interaction-box blue" style="margin-top:8px;">
+                <h4><i class="fas fa-lightbulb"></i> Explanation</h4>
+                <ul class="content-list">
+                    <li><code>print()</code> displays the text inside quotes</li>
+                    <li>The message appears on the screen</li>
+                </ul>
+            </div>
+
+            <!-- EXAMPLE 2 - print() -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 2 </div>
+                <pre><span class="dv">name</span> = <span class="ds">"Anoop"</span>
+
+<span class="df">print</span>(<span class="dv">name</span>)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-11')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-11">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>Anoop</pre></div>
+            </div>
+            </div>
+            <div class="interaction-box blue" style="margin-top:8px;">
+                <h4><i class="fas fa-lightbulb"></i> Explanation</h4>
+                <ul class="content-list">
+                    <li><code>"Anoop"</code> is stored in the variable <code>name</code></li>
+                    <li><code>print(name)</code> displays the variable value</li>
+                </ul>
+            </div>
+
+            <!-- OUTPUT FORMATTING -->
+            <h3 id="sec31-format"><i class="fas fa-align-left"></i> Output Formatting</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-info-circle"></i> Why Format Output?</h4>
+                <p>Output formatting is used to display output in a neat and readable format.</p>
+                <p>It improves the appearance of program output.</p>
+                <p>Python provides:</p>
+                <ul class="content-list">
+                    <li><code>string.format()</code></li>
+                    <li><code>f-String</code></li>
+                </ul>
+            </div>
+
+            <!-- STRING FORMAT -->
+            <div class="interaction-box green">
+                <h4><i class="fas fa-code"></i> string.format()</h4>
+                <p>The <code>format()</code> method inserts values into placeholders <code>{}</code> inside a string.</p>
+                <ul class="content-list">
+                    <li><code>{}</code> is called placeholder</li>
+                    <li><code>format(name)</code> inserts the value inside the placeholder</li>
+                    <li><code>"Rahul"</code> replaces <code>{}</code></li>
+                </ul>
+            </div>
+
+            <!-- EXAMPLE 1 - format() -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 1 </div>
+                <pre><span class="dv">name</span> = <span class="ds">"Rahul"</span>
+
+<span class="df">print</span>(<span class="ds">"My name is {}"</span>.<span class="df">format</span>(name))</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-12')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-12">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>My name is Rahul</pre></div>
+            </div>
+            </div>
+
+            <!-- EXAMPLE 2 - format() -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 2 </div>
+                <pre><span class="dv">name</span> = <span class="ds">"Rahul"</span>
+<span class="dv">age</span>  = <span class="dn">25</span>
+
+<span class="df">print</span>(<span class="ds">"My name is {} and I am {} years old"</span>.<span class="df">format</span>(name, age))</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-13')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-13">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>My name is Rahul and I am 25 years old</pre></div>
+            </div>
+            </div>
+            <div class="interaction-box blue" style="margin-top:8px;">
+                <h4><i class="fas fa-lightbulb"></i> Explanation</h4>
+                <ul class="content-list">
+                    <li>First <code>{}</code> stores <code>name</code></li>
+                    <li>Second <code>{}</code> stores <code>age</code></li>
+                    <li><code>format()</code> fills the placeholders in order</li>
+                </ul>
+            </div>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-bolt"></i> f-String</h4>
+                <p>f-String is a modern and simple method used for formatted output.</p>
+                <p>It uses:</p>
+                <ul class="content-list">
+                    <li><code>f</code> before the string</li>
+                    <li>variables inside <code>{}</code></li>
+                </ul>
+                <pre><span class="fn">name</span> = <span class="st">"Rahul"</span>
+<span class="fn">sales</span> = <span class="nm">5000</span>
+<span class="fn">print</span>(<span class="st">f"Employee: {name}, Sales: {sales}"</span>)</pre>
+                <div class="output-box" style="display:none;">Employee: Rahul, Sales: 5000</div>
+            </div>
+
+            <!-- EXAMPLE - f-string -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 1 </div>
+                <pre><span class="dv">name</span> = <span class="ds">"Anoop"</span>
+
+<span class="df">print</span>(<span class="ds">f"My name is </span>{<span class="dv">name</span>}<span class="ds">"</span>)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-14')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-14">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>My name is Anoop</pre></div>
+            </div>
+            </div>
+            <div class="interaction-box blue" style="margin-top:8px;">
+                <h4><i class="fas fa-lightbulb"></i> Detailed Explanation</h4>
+                <ul class="content-list">
+                    <li><code>f</code> tells Python it is a formatted string</li>
+                    <li><code>{name}</code> inserts the variable value</li>
+                    <li>Output becomes readable and clean</li>
+                </ul>
+            </div>
+
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 2 </div>
+                <pre><span class="dv">name</span>   = <span class="ds">"Anoop"</span>
+<span class="dv">salary</span> = <span class="dn">25000</span>
+
+<span class="df">print</span>(<span class="ds">f"My salary is ₹</span>{<span class="dv">salary</span>}<span class="ds">"</span>)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-15')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-15">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>My salary is ₹25000</pre></div>
+            </div>
+            </div>
+            <div class="interaction-box blue" style="margin-top:8px;">
+                <h4><i class="fas fa-lightbulb"></i> Explanation</h4>
+                <ul class="content-list">
+                    <li><code>{salary}</code> inserts the value of salary variable</li>
+                    <li>f-String makes formatting easier and shorter</li>
+                </ul>
+            </div>
+            <div class="practice-card">
+                <h3><i class="fas fa-laptop-code"></i> Coding Practice: Input &amp; Output</h3>
+                <span class="task-label">Challenge</span>
+                <p>Write a program that asks for a <code>city</code> and prints <code>"Welcome to {city}"</code> using an f-string.</p>
+                <div class="badge-try-it"><i class="fas fa-terminal"></i> Try It</div>
+                <div class="coding-practice">
+                    <textarea id="coding-ans-io1" placeholder="# Write your code here..."></textarea>
+                    <button class="btn-run" onclick="runCode('io1','Welcome to')">&#9654; Run</button>
+                    <button class="btn-reset" onclick="resetCode('io1')">&#8634; Reset</button>
+                    <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                    <div class="live-output-box" id="coding-output-io1"></div>
+                    <div class="feedback" id="coding-feedback-io1"></div>
+                </div>
+            </div>
+        </div><!-- end 3.1 -->
+
+
+        <!-- ══════════════════════════════════════
+             3.2  COMMAND LINE ARGUMENTS
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="section-32">
+            <div class="section-header">
+                <h2>3.2 Command Line Argument</h2>
+            </div>
+
+            <div id="sec32-what" class="interaction-box blue">
+                <h4><i class="fas fa-info-circle"></i> What are Command Line Arguments?</h4>
+                <p>Command line arguments are values passed to a Python program while running the program from the command prompt or terminal.</p>
+                <p>These values are given after the Python file name.</p>
+                <p>Command line arguments help programs receive input directly during execution.</p>
+            </div>
+
+            <!-- EXAMPLE -->
+            <h3 id="sec32-example"><i class="fas fa-code"></i> Example</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-briefcase"></i> Business Scenario</h4>
+                <p>Suppose a company wants to generate reports for different employees.</p>
+                <p>Instead of changing the program every time, command line arguments can be used to pass the employee name directly:</p>
+                <pre><span class="cm"># Run from terminal:</span>
+python report.py Rahul</pre>
+                <p>Here: <strong>Rahul</strong> is the command line argument.</p>
+            </div>
+
+            <!-- WHY IMPORTANT -->
+            <h3 id="sec32-why"><i class="fas fa-question-circle"></i> Why Command Line Arguments are Important?</h3>
+            <div class="interaction-box green">
+                <h4><i class="fas fa-check-circle"></i> Benefits</h4>
+                <p>Command line arguments are useful because:</p>
+                <ul class="content-list">
+                    <li>programs become flexible</li>
+                    <li>users can give values directly</li>
+                    <li>useful in automation</li>
+                    <li>no need to modify code repeatedly</li>
+                </ul>
+            </div>
+
+            <!-- SYS MODULE -->
+            <h3 id="sec32-sys"><i class="fas fa-cubes"></i> sys Module</h3>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-cog"></i> Using sys.argv</h4>
+                <p>Python provides the <code>sys</code> module to work with command line arguments.</p>
+                <p>The <code>sys.argv</code> list stores all arguments passed to the program.</p>
+                <pre><span class="kw">import</span> sys
+<span class="fn">print</span>(sys.argv)</pre>
+                <p><strong>If executed as:</strong> <code>python test.py Rahul 22</code></p>
+                <div class="output-box" style="display:none;">['test.py', 'Rahul', '22']</div>
+                <ul class="content-list">
+                    <li><code>test.py</code> → program name</li>
+                    <li><code>Rahul</code> → first argument</li>
+                    <li><code>22</code> → second argument</li>
+                </ul>
+                <p>Python stores all values inside a list.</p>
+
+                <!-- STEP-BY-STEP BREAKDOWN -->
+                <div style="margin-top: 22px;">
+                    <p style="font-size:15px; font-weight:700; color:#0f172a; margin-bottom:14px;">Step-by-step: How sys.argv Works</p>
+
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 1</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">Run your Python file from the terminal with arguments:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;"><span style="color:#94a3b8;font-style:italic;"># In terminal:</span>
+python test.py Rahul 22</pre>
+                        </div>
+                    </div>
+
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 2</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">Python stores all values in sys.argv list:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">sys.argv = ['test.py', 'Rahul', '22']  <span style='color:#94a3b8;font-style:italic;'># index 0 = filename</span></pre>
+                        </div>
+                    </div>
+
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 3</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">Access arguments by index in your code:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">import sys
+print(sys.argv[1])  <span style="color:#15803d; font-style:italic;"># Output: Rahul</span></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE - sys.argv -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 1 </div>
+                <pre><span class="dk">import</span> sys
+<span class="df">print</span>(<span class="ds">"Hello,"</span>, sys.argv[<span class="dn">1</span>])</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-16')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-16">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre><span class="dc"># Run: python greet.py Anoop</span>
+Hello, Anoop</pre></div>
+            </div>
+            </div>
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 2 </div>
+                <pre><span class="dk">import</span> sys
+<span class="dv">name</span> = sys.argv[<span class="dn">1</span>]
+<span class="dv">dept</span> = sys.argv[<span class="dn">2</span>]
+<span class="df">print</span>(<span class="ds">f"Employee: </span>{<span class="dv">name</span>}<span class="ds">, Department: </span>{<span class="dv">dept</span>}<span class="ds">"</span>)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-17')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-17">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre><span class="dc"># Run: python emp.py Rahul Sales</span>
+Employee: Rahul, Department: Sales</pre></div>
+            </div>
+            </div>
+
+            <!-- DEFAULT DATATYPE -->
+            <h3 id="sec32-default"><i class="fas fa-database"></i> Default Datatype of Command Line Arguments</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-font"></i> Always String by Default</h4>
+                <p>All command line arguments are stored as string (<code>str</code>) datatype by default.</p>
+                <pre><span class="kw">import</span> sys
+<span class="fn">print</span>(<span class="fn">type</span>(sys.argv[<span class="nm">1</span>]))   <span class="cm"># &lt;class 'str'&gt;</span></pre>
+            </div>
+
+            <!-- DATATYPE CONVERSION -->
+            <h3 id="sec32-conversion"><i class="fas fa-exchange-alt"></i> Datatype Conversion</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-random"></i> Converting Command Line Arguments</h4>
+                <p>Datatype conversion means changing one datatype into another datatype.</p>
+                <p>In command line arguments, all values are stored as strings (<code>str</code>) by default.</p>
+                <p>To perform arithmetic operations like:</p>
+                <ul class="content-list">
+                    <li>addition</li>
+                    <li>subtraction</li>
+                    <li>multiplication</li>
+                    <li>division</li>
+                </ul>
+                <p>the values must be converted into numeric datatypes such as <code>int</code> or <code>float</code>.</p>
+                <p>Otherwise, Python treats the values as text instead of numbers.</p>
+                <pre><span class="kw">import</span> sys
+<span class="fn">num1</span> = <span class="fn">int</span>(sys.argv[<span class="nm">1</span>])
+<span class="fn">num2</span> = <span class="fn">int</span>(sys.argv[<span class="nm">2</span>])
+<span class="fn">print</span>(num1 + num2)</pre>
+                <p><strong>Run as:</strong> <code>python calc.py 10 20</code></p>
+                <div class="output-box" style="display:none;">30</div>
+            </div>
+
+            <!-- EXAMPLE - CLI conversion -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 1 </div>
+                <pre><span class="dk">import</span> sys
+<span class="dv">price</span> = <span class="df">float</span>(sys.argv[<span class="dn">1</span>])
+<span class="dv">qty</span>   = <span class="df">int</span>(sys.argv[<span class="dn">2</span>])
+<span class="df">print</span>(<span class="ds">"Total:"</span>, price * qty)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-18')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-18">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre><span class="dc"># Run: python bill.py 99.5 3</span>
+Total: 298.5</pre></div>
+            </div>
+            </div>
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 2 </div>
+                <pre><span class="dk">import</span> sys
+<span class="dv">a</span> = <span class="df">int</span>(sys.argv[<span class="dn">1</span>])
+<span class="dv">b</span> = <span class="df">int</span>(sys.argv[<span class="dn">2</span>])
+<span class="df">print</span>(<span class="ds">"Difference:"</span>, a - b)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-19')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-19">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre><span class="dc"># Run: python diff.py 50 20</span>
+Difference: 30</pre></div>
+            </div>
+            </div>
+
+            <!-- DIFFERENCE TABLE -->
+            <h3 id="sec32-diff"><i class="fas fa-balance-scale"></i> Difference between input() and Command Line Argument</h3>
+            <table class="diff-table">
+                <thead>
+                    <tr><th>Feature</th><th>input()</th><th>Command Line Argument</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>When is input given?</td><td>While the program is running</td><td>Before the program starts</td></tr>
+                    <tr><td>How is it given?</td><td>Typed in the console</td><td>Typed in the terminal with the command</td></tr>
+                    <tr><td>Where is it stored?</td><td>In a variable</td><td>In <code>sys.argv</code> list</td></tr>
+                    <tr><td>Default datatype</td><td>String</td><td>String</td></tr>
+                    <tr><td>Module needed?</td><td>No</td><td>Yes — <code>import sys</code></td></tr>
+                    <tr><td>Use case</td><td>Interactive programs</td><td>Automation and scripting</td></tr>
+                </tbody>
+            </table>
+        </div><!-- end 3.2 -->
+
+
+        <!-- ══════════════════════════════════════
+             3.3  FILE HANDLING
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="section-33">
+            <div class="section-header">
+                <h2>3.3 File Handling</h2>
+            </div>
+
+            <div id="sec33-what" class="interaction-box blue">
+                <h4><i class="fas fa-info-circle"></i> What is File Handling?</h4>
+                <p>File handling is an important part of any web application.</p>
+                <p>Python has several functions for creating, reading, updating, and deleting files.</p>
+            </div>
+
+            <!-- OPEN FUNCTION -->
+            <h3 id="sec33-open"><i class="fas fa-folder-open"></i> Functions</h3>
+            <div class="interaction-box">
+                <h4><i class="fas fa-key"></i> The open() Function</h4>
+                <p>The key function for working with files in Python is the <code>open()</code> function.</p>
+                <p>The <code>open()</code> function takes two parameters: <strong>filename</strong>, and <strong>mode</strong>.</p>
+
+                <!-- STEP-BY-STEP BREAKDOWN -->
+                <div style="margin-top: 22px;">
+                    <p style="font-size:15px; font-weight:700; color:#0f172a; margin-bottom:14px;">Step-by-step: How open() Works</p>
+
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 1</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">Call open() with the filename and mode:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">file = open("students.txt", "r")  <span style="color:#94a3b8;font-style:italic;"># mode: r=read, w=write, a=append</span></pre>
+                        </div>
+                    </div>
+
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 2</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">Read or write data using file methods:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">content = file.read()  <span style="color:#94a3b8;font-style:italic;"># reads entire file as string</span></pre>
+                        </div>
+                    </div>
+
+                    <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="background:#fff; padding:10px 18px; display:flex; align-items:center; gap:10px; border-bottom:1.5px solid #e2e8f0;">
+                            <span style="background:#1e40af; color:#fff; font-size:12px; font-weight:800; padding:3px 10px; border-radius:20px; letter-spacing:0.5px;">Step 3</span>
+                            <span style="color:#94a3b8; font-size:13.5px; font-weight:600;">Always close the file when done:</span>
+                        </div>
+                        <div style="background:#fff; padding:0;">
+                            <div style="background:#f8fafc; padding:7px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #e2e8f0;">
+                                <i class="fas fa-code" style="color:#64748b; font-size:11px;"></i>
+                                <span style="font-size:12px; font-weight:800; color:#475569; letter-spacing:0.5px;">Python</span>
+                            </div>
+                            <pre style="background:#fff; color:#7c3aed; border:none; border-radius:0; margin:0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:14px; line-height:1.8;">file.close()  <span style="color:#15803d;font-style:italic;"># frees up system resources</span></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FILE MODES -->
+            <h3 id="sec33-modes"><i class="fas fa-list"></i> File Opening Modes</h3>
+            <p>There are four different methods (modes) for opening a file:</p>
+            <table class="mode-table">
+                <thead>
+                    <tr><th>Mode</th><th>Name</th><th>Description</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>"r"</td><td>Read</td><td>Default value. Opens a file for reading, error if the file does not exist</td></tr>
+                    <tr><td>"a"</td><td>Append</td><td>Opens a file for appending, creates the file if it does not exist</td></tr>
+                    <tr><td>"w"</td><td>Write</td><td>Opens a file for writing, creates the file if it does not exist</td></tr>
+                    <tr><td>"x"</td><td>Create</td><td>Creates the specified file, returns an error if the file exists</td></tr>
+                    <tr><td>"t"</td><td>Text</td><td>Default value. Text mode</td></tr>
+                    <tr><td>"b"</td><td>Binary</td><td>Binary mode (e.g. images)</td></tr>
+                </tbody>
+            </table>
+            <p>In addition you can specify if the file should be handled as binary or text mode:</p>
+
+            <!-- FILE OPEN -->
+            <h3 id="sec33-fileopen"><i class="fas fa-file"></i> File Open</h3>
+            <div class="interaction-box green">
+                <h4><i class="fas fa-server"></i> Open a File on the Server</h4>
+                <p>Assume we have the following file, located in the same folder as Python:</p>
+                <pre><span class="cm"># demofile.txt content:</span>
+Hello! Welcome to demofile.txt
+This file is for testing purposes.</pre>
+
+                <h4 style="margin-top:18px;"><i class="fas fa-shield-alt"></i> Using the with Statement</h4>
+                <p>You can also use the <code>with</code> statement when opening a file:</p>
+                <pre><span class="kw">with</span> <span class="fn">open</span>(<span class="st">"demofile.txt"</span>) <span class="kw">as</span> f:
+    <span class="fn">print</span>(f.<span class="fn">read</span>())</pre>
+                <p>Then you do not have to worry about closing your files, the <code>with</code> statement takes care of that.</p>
+            </div>
+
+            <!-- EXAMPLE - File Open -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 1 </div>
+                <pre><span class="dv">f</span> = <span class="df">open</span>(<span class="ds">"demofile.txt"</span>, <span class="ds">"r"</span>)
+<span class="df">print</span>(f.<span class="df">read</span>())</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-20')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-20">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>Hello! Welcome to demofile.txt
+This file is for testing purposes.</pre></div>
+            </div>
+            </div>
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 2 </div>
+                <pre><span class="dk">with</span> <span class="df">open</span>(<span class="ds">"demofile.txt"</span>, <span class="ds">"r"</span>) <span class="dk">as</span> f:
+    <span class="dv">content</span> = f.<span class="df">read</span>()
+    <span class="df">print</span>(content)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-21')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-21">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>Hello! Welcome to demofile.txt
+This file is for testing purposes.</pre></div>
+            </div>
+            </div>
+
+            <!-- CLOSE FILES -->
+            <h3 id="sec33-close"><i class="fas fa-times-circle"></i> Close Files</h3>
+            <div class="interaction-box amber">
+                <h4><i class="fas fa-lock"></i> Always Close Your Files</h4>
+                <p>It is a good practice to always close the file when you are done with it.</p>
+                <p>If you are not using the <code>with</code> statement, you must write a close statement in order to close the file:</p>
+                <pre>f = <span class="fn">open</span>(<span class="st">"demofile.txt"</span>, <span class="st">"r"</span>)
+<span class="fn">print</span>(f.<span class="fn">read</span>())
+f.<span class="fn">close</span>()</pre>
+                <div class="note-box"><strong>Note:</strong> You should always close your files. In some cases, due to buffering, changes made to a file may not show until you close the file.</div>
+            </div>
+
+            <!-- READ PARTS -->
+            <div id="sec33-read" class="interaction-box">
+                <h4><i class="fas fa-cut"></i> Read Only Parts of the File</h4>
+                <p>By default the <code>read()</code> method returns the whole text, but you can also specify how many characters you want to return:</p>
+                <pre>f = <span class="fn">open</span>(<span class="st">"demofile.txt"</span>, <span class="st">"r"</span>)
+<span class="fn">print</span>(f.<span class="fn">read</span>(<span class="nm">5</span>))   <span class="cm"># reads first 5 characters</span></pre>
+                <div class="output-box" style="display:none;">Hello</div>
+            </div>
+
+            <!-- FILE WRITE -->
+            <h3 id="sec33-write"><i class="fas fa-pen"></i> File Write</h3>
+            <div class="interaction-box blue">
+                <h4><i class="fas fa-edit"></i> Write to an Existing File</h4>
+                <p>To write to an existing file, you must add a parameter to the <code>open()</code> function:</p>
+                <ul class="content-list">
+                    <li><code>"a"</code> — Append — will append to the end of the file</li>
+                    <li><code>"w"</code> — Write — will overwrite any existing content</li>
+                </ul>
+                <pre><span class="cm"># Append to existing file</span>
+f = <span class="fn">open</span>(<span class="st">"demofile.txt"</span>, <span class="st">"a"</span>)
+f.<span class="fn">write</span>(<span class="st">"Now the file has more content!"</span>)
+f.<span class="fn">close</span>()</pre>
+
+                <h4 style="margin-top:18px;"><i class="fas fa-eraser"></i> Overwrite Existing Content</h4>
+                <p>To overwrite the existing content to the file, use the <code>w</code> parameter:</p>
+                <pre>f = <span class="fn">open</span>(<span class="st">"demofile.txt"</span>, <span class="st">"w"</span>)
+f.<span class="fn">write</span>(<span class="st">"Woops! I have deleted the content!"</span>)
+f.<span class="fn">close</span>()</pre>
+                <div class="note-box"><strong>Note:</strong> the "w" method will overwrite the entire file.</div>
+            </div>
+
+            <!-- EXAMPLE - File Write -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 1 — Append </div>
+                <pre><span class="dv">f</span> = <span class="df">open</span>(<span class="ds">"notes.txt"</span>, <span class="ds">"a"</span>)
+f.<span class="df">write</span>(<span class="ds">"Python is awesome!\n"</span>)
+f.<span class="df">close</span>()
+<span class="df">print</span>(<span class="ds">"Content appended."</span>)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-22')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-22">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>Content appended.</pre></div>
+            </div>
+            </div>
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 2 — Overwrite </div>
+                <pre><span class="dv">f</span> = <span class="df">open</span>(<span class="ds">"notes.txt"</span>, <span class="ds">"w"</span>)
+f.<span class="df">write</span>(<span class="ds">"This replaces old content."</span>)
+f.<span class="df">close</span>()
+<span class="df">print</span>(<span class="ds">"File overwritten."</span>)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-23')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-23">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>File overwritten.</pre></div>
+            </div>
+            </div>
+
+            <!-- CREATE FILE -->
+            <h3 id="sec33-create"><i class="fas fa-file-plus"></i> Create a New File</h3>
+            <div class="interaction-box green">
+                <h4><i class="fas fa-plus-circle"></i> Creating Files</h4>
+                <p>To create a new file in Python, use the <code>open()</code> method, with one of the following parameters:</p>
+                <ul class="content-list">
+                    <li><code>"x"</code> — Create — will create a file, returns an error if the file exists</li>
+                    <li><code>"a"</code> — Append — will create a file if the specified file does not exist</li>
+                    <li><code>"w"</code> — Write — will create a file if the specified file does not exist</li>
+                </ul>
+                <pre><span class="cm"># Create a new file</span>
+f = <span class="fn">open</span>(<span class="st">"myfile.txt"</span>, <span class="st">"x"</span>)</pre>
+                <div class="note-box"><strong>Note:</strong> If the file already exists, an error will be raised.</div>
+            </div>
+
+            <!-- DELETE FILE -->
+            <h3 id="sec33-delete"><i class="fas fa-trash"></i> Delete File</h3>
+            <div class="interaction-box red">
+                <h4><i class="fas fa-trash-alt"></i> Deleting a File</h4>
+                <p>To delete a file, you must import the OS module, and run its <code>os.remove()</code> function:</p>
+                <pre><span class="kw">import</span> os
+os.<span class="fn">remove</span>(<span class="st">"demofile.txt"</span>)</pre>
+            </div>
+
+            <!-- EXAMPLE - Delete File -->
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 1 </div>
+                <pre><span class="dk">import</span> os
+os.<span class="df">remove</span>(<span class="ds">"oldfile.txt"</span>)
+<span class="df">print</span>(<span class="ds">"File deleted."</span>)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-24')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-24">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>File deleted.</pre></div>
+            </div>
+            </div>
+            <div class="example-wrapper">
+            <div class="example-block">
+                <div class="example-try-label"><i class="fas fa-play"></i> Try it out:</div>
+                <div class="example-block-title"><i class="fas fa-code"></i> Example 2 — Check Before Delete </div>
+                <pre><span class="dk">import</span> os
+<span class="dk">if</span> os.path.<span class="df">exists</span>(<span class="ds">"data.txt"</span>):
+    os.<span class="df">remove</span>(<span class="ds">"data.txt"</span>)
+    <span class="df">print</span>(<span class="ds">"File deleted."</span>)
+<span class="dk">else</span>:
+    <span class="df">print</span>(<span class="ds">"File does not exist."</span>)</pre>
+<div class="example-run-row"><button class="btn-example-run" onclick="showExampleOutput(this,'ex-out-25')"><i class="fas fa-play"></i> Run</button></div>
+            </div>
+            <div class="example-output-panel" style="display:none;" id="ex-out-25">
+                <div class="output-block-title"><i class="fas fa-terminal"></i> Output</div>
+                <div class="output-block"><pre>File deleted.</pre></div>
+            </div>
+            </div>
+
+
+        <!-- ══════════════════════════════════════
+             QUIZ 3.1
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="quiz-31">
+            <div class="section-header">
+                <h2><i class="fas fa-question-circle"></i> Quiz &#8211; 3.1 Input and Output</h2>
+            </div>
+
+            <!-- Q1 MCQ -->
+            <div class="quiz-card">
+                <span class="q-number">Question 1</span>
+                <p class="q-text">Which function is used to take input from the user in Python?</p>
+                <ul class="q-options" id="q31-1">
+                    <li onclick="answerMCQ('q31-1', this, false)">A. print()</li>
+                    <li onclick="answerMCQ('q31-1', this, true)">B. input()</li>
+                    <li onclick="answerMCQ('q31-1', this, false)">C. read()</li>
+                    <li onclick="answerMCQ('q31-1', this, false)">D. write()</li>
+                </ul>
+                <div class="answer-reveal" id="q31-1-ans">&#10003; Answer: B. input()</div>
+            </div>
+
+            <!-- Q2 True/False -->
+            <div class="quiz-card">
+                <span class="q-number">Question 2</span>
+                <span class="q-type-badge">True / False</span>
+                <p class="q-text">The print() function is used to display output on the screen.</p>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="answerTF('q31-2', this, true, true)">&#10003; True</button>
+                    <button class="tf-btn" onclick="answerTF('q31-2', this, false, true)">&#10007; False</button>
+                </div>
+                <div class="answer-reveal" id="q31-2-ans">&#10003; Answer: True</div>
+            </div>
+
+            <!-- Q3 Fill in the Blank -->
+            <div class="quiz-card">
+                <span class="q-number">Question 3</span>
+                <span class="q-type-badge">Fill in the Blank</span>
+                <p class="q-text">Complete the code to take user input:</p>
+                <pre>name = _______(<span class="st">"Enter your name: "</span>)</pre>
+                <input class="fill-input" id="q31-3-input" placeholder="Type your answer here..." />
+                <div class="quiz-submit-row">
+                    <button class="btn-quiz-submit" onclick="answerFill('q31-3', 'input')">Submit</button>
+                </div>
+                <div class="fill-result" id="q31-3-result"></div>
+                <div class="answer-reveal" id="q31-3-ans">&#10003; Answer: <code>input</code></div>
+            </div>
+
+            <!-- Q4 Code Compare -->
+            <div class="quiz-card">
+                <span class="q-number">Question 4</span>
+                <span class="q-type-badge">Which Code is Correct?</span>
+                <p class="q-text">Which Code is Correct?</p>
+                <div class="code-compare" id="q31-4">
+                    <div class="opt" onclick="answerCode('q31-4', this, true)">
+                        <div class="opt-label">Option A</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="fn">print</span>(<span class="st">"Welcome"</span>)</pre>
+                    </div>
+                    <div class="opt" onclick="answerCode('q31-4', this, false)">
+                        <div class="opt-label">Option B</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="fn">print</span>[<span class="st">"Welcome"</span>]</pre>
+                    </div>
+                </div>
+                <div class="answer-reveal" id="q31-4-ans">&#10003; Answer: Option A</div>
+            </div>
+        </div><!-- end quiz 3.1 -->
+
+
+        <!-- ══════════════════════════════════════
+             QUIZ 3.2
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="quiz-32">
+            <div class="section-header">
+                <h2><i class="fas fa-question-circle"></i> Quiz &#8211; 3.2 Command Line Argument</h2>
+            </div>
+
+            <!-- Q1 MCQ -->
+            <div class="quiz-card">
+                <span class="q-number">Question 1</span>
+                <p class="q-text">Which module is used for command line arguments in Python?</p>
+                <ul class="q-options" id="q32-1">
+                    <li onclick="answerMCQ('q32-1', this, false)">A. math</li>
+                    <li onclick="answerMCQ('q32-1', this, false)">B. os</li>
+                    <li onclick="answerMCQ('q32-1', this, true)">C. sys</li>
+                    <li onclick="answerMCQ('q32-1', this, false)">D. random</li>
+                </ul>
+                <div class="answer-reveal" id="q32-1-ans">&#10003; Answer: C. sys</div>
+            </div>
+
+            <!-- Q2 True/False -->
+            <div class="quiz-card">
+                <span class="q-number">Question 2</span>
+                <span class="q-type-badge">True / False</span>
+                <p class="q-text">sys.argv stores command line arguments as a list.</p>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="answerTF('q32-2', this, true, true)">&#10003; True</button>
+                    <button class="tf-btn" onclick="answerTF('q32-2', this, false, true)">&#10007; False</button>
+                </div>
+                <div class="answer-reveal" id="q32-2-ans">&#10003; Answer: True</div>
+            </div>
+
+            <!-- Q3 Fill in the Blank -->
+            <div class="quiz-card">
+                <span class="q-number">Question 3</span>
+                <span class="q-type-badge">Fill in the Blank</span>
+                <p class="q-text">Complete the code:</p>
+                <pre><span class="kw">import</span> sys
+<span class="fn">print</span>(sys.______)</pre>
+                <input class="fill-input" id="q32-3-input" placeholder="Type your answer here..." />
+                <div class="quiz-submit-row">
+                    <button class="btn-quiz-submit" onclick="answerFill('q32-3', 'argv')">Submit</button>
+                </div>
+                <div class="fill-result" id="q32-3-result"></div>
+                <div class="answer-reveal" id="q32-3-ans">&#10003; Answer: <code>argv</code></div>
+            </div>
+
+            <!-- Q4 Code Compare -->
+            <div class="quiz-card">
+                <span class="q-number">Question 4</span>
+                <span class="q-type-badge">Which Code is Correct?</span>
+                <p class="q-text">Which Code is Correct?</p>
+                <div class="code-compare" id="q32-4">
+                    <div class="opt" onclick="answerCode('q32-4', this, true)">
+                        <div class="opt-label">Option A</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="kw">import</span> sys
+<span class="fn">print</span>(sys.argv[<span class="nm">1</span>])</pre>
+                    </div>
+                    <div class="opt" onclick="answerCode('q32-4', this, false)">
+                        <div class="opt-label">Option B</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="kw">import</span> sys
+<span class="fn">print</span>(sys.argument[<span class="nm">1</span>])</pre>
+                    </div>
+                </div>
+                <div class="answer-reveal" id="q32-4-ans">&#10003; Answer: Option A</div>
+            </div>
+        </div><!-- end quiz 3.2 -->
+
+
+        <!-- ══════════════════════════════════════
+             QUIZ 3.3
+        ══════════════════════════════════════ -->
+        <div class="lesson-card" id="quiz-33">
+            <div class="section-header">
+                <h2><i class="fas fa-question-circle"></i> Quiz &#8211; 3.3 File Handling</h2>
+            </div>
+
+            <!-- Q1 MCQ -->
+            <div class="quiz-card">
+                <span class="q-number">Question 1</span>
+                <p class="q-text">Which mode is used to read a file?</p>
+                <ul class="q-options" id="q33-1">
+                    <li onclick="answerMCQ('q33-1', this, false)">A. "w"</li>
+                    <li onclick="answerMCQ('q33-1', this, false)">B. "a"</li>
+                    <li onclick="answerMCQ('q33-1', this, true)">C. "r"</li>
+                    <li onclick="answerMCQ('q33-1', this, false)">D. "x"</li>
+                </ul>
+                <div class="answer-reveal" id="q33-1-ans">&#10003; Answer: C. "r"</div>
+            </div>
+
+            <!-- Q2 True/False -->
+            <div class="quiz-card">
+                <span class="q-number">Question 2</span>
+                <span class="q-type-badge">True / False</span>
+                <p class="q-text">The write() function is used to add data into a file.</p>
+                <div class="tf-options">
+                    <button class="tf-btn" onclick="answerTF('q33-2', this, true, true)">&#10003; True</button>
+                    <button class="tf-btn" onclick="answerTF('q33-2', this, false, true)">&#10007; False</button>
+                </div>
+                <div class="answer-reveal" id="q33-2-ans">&#10003; Answer: True</div>
+            </div>
+
+            <!-- Q3 Fill in the Blank -->
+            <div class="quiz-card">
+                <span class="q-number">Question 3</span>
+                <span class="q-type-badge">Fill in the Blank</span>
+                <p class="q-text">Complete the code to open a file in write mode:</p>
+                <pre>file = <span class="fn">open</span>(<span class="st">"students.txt"</span>, ______)</pre>
+                <input class="fill-input" id="q33-3-input" placeholder='Type your answer here e.g. "w"' />
+                <div class="quiz-submit-row">
+                    <button class="btn-quiz-submit" onclick="answerFill('q33-3', '&quot;w&quot;', 'w')">Submit</button>
+                </div>
+                <div class="fill-result" id="q33-3-result"></div>
+                <div class="answer-reveal" id="q33-3-ans">&#10003; Answer: <code>"w"</code></div>
+            </div>
+
+            <!-- Q4 Code Compare -->
+            <div class="quiz-card">
+                <span class="q-number">Question 4</span>
+                <span class="q-type-badge">Which Code is Correct?</span>
+                <p class="q-text">Which Code is Correct?</p>
+                <div class="code-compare" id="q33-4">
+                    <div class="opt" onclick="answerCode('q33-4', this, true)">
+                        <div class="opt-label">Option A</div>
+                        <pre style="margin:0;border-radius:0;border:none;">file = <span class="fn">open</span>(<span class="st">"data.txt"</span>, <span class="st">"r"</span>)
+<span class="fn">print</span>(file.<span class="fn">read</span>())</pre>
+                    </div>
+                    <div class="opt" onclick="answerCode('q33-4', this, false)">
+                        <div class="opt-label">Option B</div>
+                        <pre style="margin:0;border-radius:0;border:none;">file = open[<span class="st">"data.txt"</span>, <span class="st">"r"</span>]
+<span class="fn">print</span>(file.<span class="fn">read</span>())</pre>
+                    </div>
+                </div>
+                <div class="answer-reveal" id="q33-4-ans">&#10003; Answer: Option A</div>
+            </div>
+
+            <!-- Q5 MCQ -->
+            <div class="quiz-card">
+                <span class="q-number">Question 5</span>
+                <p class="q-text">Which function is used to check whether a file exists?</p>
+                <ul class="q-options" id="q33-5">
+                    <li onclick="answerMCQ('q33-5', this, false)">A. os.remove()</li>
+                    <li onclick="answerMCQ('q33-5', this, true)">B. os.path.exists()</li>
+                    <li onclick="answerMCQ('q33-5', this, false)">C. open()</li>
+                    <li onclick="answerMCQ('q33-5', this, false)">D. read()</li>
+                </ul>
+                <div class="answer-reveal" id="q33-5-ans">&#10003; Answer: B. os.path.exists()</div>
+            </div>
+
+            <!-- Q6 Fill in the Blank -->
+            <div class="quiz-card">
+                <span class="q-number">Question 6</span>
+                <span class="q-type-badge">Fill in the Blank</span>
+                <p class="q-text">Complete the code to delete a file:</p>
+                <pre><span class="kw">import</span> os
+os._________(<span class="st">"data.txt"</span>)</pre>
+                <input class="fill-input" id="q33-6-input" placeholder="Type your answer here..." />
+                <div class="quiz-submit-row">
+                    <button class="btn-quiz-submit" onclick="answerFill('q33-6', 'remove')">Submit</button>
+                </div>
+                <div class="fill-result" id="q33-6-result"></div>
+                <div class="answer-reveal" id="q33-6-ans">&#10003; Answer: <code>remove</code></div>
+            </div>
+
+            <!-- Q7 Code Compare -->
+            <div class="quiz-card">
+                <span class="q-number">Question 7</span>
+                <span class="q-type-badge">Which Code is Correct?</span>
+                <p class="q-text">Which Code is Correct?</p>
+                <div class="code-compare" id="q33-7">
+                    <div class="opt" onclick="answerCode('q33-7', this, true)">
+                        <div class="opt-label">Option A</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="kw">with</span> <span class="fn">open</span>(<span class="st">"students.txt"</span>, <span class="st">"r"</span>) <span class="kw">as</span> file:
+    <span class="fn">print</span>(file.<span class="fn">read</span>())</pre>
+                    </div>
+                    <div class="opt" onclick="answerCode('q33-7', this, false)">
+                        <div class="opt-label">Option B</div>
+                        <pre style="margin:0;border-radius:0;border:none;"><span class="kw">with</span> open[<span class="st">"students.txt"</span>, <span class="st">"r"</span>] <span class="kw">as</span> file:
+    <span class="fn">print</span>(file.<span class="fn">read</span>())</pre>
+                    </div>
+                </div>
+                <div class="answer-reveal" id="q33-7-ans">&#10003; Answer: Option A</div>
+            </div>
+
+        </div><!-- end quiz 3.3 -->
+
+    </main>
+</div><!-- end layout -->
+
+<script>
+    /* ── SKULPT CODE RUNNER ── */
+    function runCode(id, expected) {
+        const prog = document.getElementById('coding-ans-' + id).value;
+        const outputDiv = document.getElementById('coding-output-' + id);
+        const feedback  = document.getElementById('coding-feedback-' + id);
+        // Show the terminal label when Run is clicked
+        const termLabel = outputDiv.closest('.coding-practice').querySelector('.terminal-label');
+        if (termLabel) termLabel.style.display = 'flex';
+        outputDiv.innerHTML = '';
+        outputDiv.classList.add('active');
+        function outf(text) { outputDiv.innerText += text; }
+        function builtinRead(x) {
+            if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined)
+                throw "File not found: '" + x + "'";
+            return Sk.builtinFiles['files'][x];
+        }
+        Sk.configure({ output: outf, read: builtinRead });
+        Sk.misceval.asyncToPromise(() => Sk.importMainWithBody('<stdin>', false, prog, true)).then(function () {
+            const out = outputDiv.innerText.trim();
+            if (out.toLowerCase().includes(expected.toLowerCase())) {
+                if (feedback) feedback.style.display = 'none';
+            } else {
+                if (feedback) { feedback.innerHTML = '&#x2717; Output does not match. Try again!'; feedback.className = 'feedback wrong'; feedback.style.display = 'block'; }
+            }
+        }, function (err) {
+            outputDiv.innerText += err.toString();
+            if (feedback) { feedback.innerHTML = '&#x2717; Error in your code!'; feedback.className = 'feedback wrong'; feedback.style.display = 'block'; }
+        });
+    }
+    function resetCode(id) {
+        const ta = document.getElementById('coding-ans-' + id);
+        const op = document.getElementById('coding-output-' + id);
+        const fb = document.getElementById('coding-feedback-' + id);
+        if (ta) ta.value = '';
+        if (op) {
+            op.innerHTML = ''; op.classList.remove('active');
+            const termLabel = op.closest('.coding-practice').querySelector('.terminal-label');
+            if (termLabel) termLabel.style.display = 'none';
+        }
+        if (fb) { fb.style.display = 'none'; fb.className = 'feedback'; }
+    }
+
+    /* ── SIDEBAR ACCORDION ── */
+    function toggleMod3() {
+        // Module 3 row just shows/hides all sections — toggle all sub sections
+        const rows = ['sec31','sec32','sec33'];
+        const modBtn = document.getElementById('mod3-toggle');
+        const isOpen = modBtn.classList.contains('open');
+        if (isOpen) {
+            modBtn.classList.remove('open');
+            rows.forEach(id => {
+                document.getElementById(id+'-toggle').classList.remove('open');
+                document.getElementById(id+'-topics').classList.remove('open');
+            });
+        } else {
+            modBtn.classList.add('open');
+        }
+    }
+
+    function toggleSec(id) {
+        const row = document.getElementById(id+'-toggle');
+        const topics = document.getElementById(id+'-topics');
+        const isOpen = row.classList.contains('open');
+        // close all first
+        ['sec31','sec32','sec33'].forEach(s => {
+            document.getElementById(s+'-toggle').classList.remove('open');
+            document.getElementById(s+'-topics').classList.remove('open');
+            // restore chevron-right for closed ones
+            const chevron = document.querySelector('#'+s+'-toggle .chevron');
+            if (chevron) { chevron.classList.remove('fa-chevron-down'); chevron.classList.add('fa-chevron-right'); }
+        });
+        if (!isOpen) {
+            row.classList.add('open');
+            topics.classList.add('open');
+            const chevron = row.querySelector('.chevron');
+            if (chevron) { chevron.classList.remove('fa-chevron-right'); chevron.classList.add('fa-chevron-down'); }
+        }
+    }
+
+    /* ── PROGRESS TRACKING ── */
+    // Count total interactive elements: MCQ + TF + Fill + Code Compare
+    const TOTAL_QUESTIONS = 15; // 4 + 4 + 7 quiz questions
+    let answeredCount = 0;
+    function updateProgress() {
+        answeredCount++;
+        const pct = Math.round((answeredCount / TOTAL_QUESTIONS) * 100);
+        const capped = Math.min(pct, 100);
+        document.getElementById('prog-fill').style.width = capped + '%';
+        document.getElementById('prog-pct').textContent = capped + '%';
+    }
+
+    /* ── PATCH answer functions to call updateProgress ── */
+    const _origMCQ  = answerMCQ;
+    const _origTF   = answerTF;
+    const _origFill = answerFill;
+    const _origCode = answerCode;
+
+    answerMCQ = function(listId, clicked, isCorrect) {
+        const list = document.getElementById(listId);
+        if (list && list.dataset.answered) return;
+        _origMCQ(listId, clicked, isCorrect);
+        updateProgress();
+    };
+    answerTF = function(id, btn, userSaidTrue, correctIsTrue) {
+        const container = btn.closest('.quiz-card');
+        if (container.dataset.answered) return;
+        _origTF(id, btn, userSaidTrue, correctIsTrue);
+        updateProgress();
+    };
+    answerFill = function(id, ...acceptedAnswers) {
+        const input = document.getElementById(id + '-input');
+        if (!input || input.disabled) return;
+        _origFill(id, ...acceptedAnswers);
+        updateProgress();
+    };
+    answerCode = function(containerId, clicked, isCorrect) {
+        const container = document.getElementById(containerId);
+        if (!container || container.dataset.answered) return;
+        _origCode(containerId, clicked, isCorrect);
+        updateProgress();
+    };
+
+    /* ── ACTIVE TOPIC HIGHLIGHT on scroll ── */
+    const allAnchors = document.querySelectorAll('[id^="sec3"]');
+    window.addEventListener('scroll', function() {
+        let current = '';
+        allAnchors.forEach(el => {
+            if (window.scrollY >= el.offsetTop - 120) current = el.id;
+        });
+        document.querySelectorAll('.sb-topics li a').forEach(a => {
+            a.classList.remove('active-topic');
+            if (a.getAttribute('href') === '#' + current) a.classList.add('active-topic');
+        });
+    }, { passive: true });
+
+    /* ── FORCE-HIDE all output panels on page load ── */
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.example-output-panel').forEach(function(el) {
+            el.style.display = 'none';
+        });
+        document.querySelectorAll('.terminal-label').forEach(function(el) {
+            el.style.display = 'none';
+        });
+        document.querySelectorAll('.live-output-box').forEach(function(el) {
+            el.style.display = 'none';
+        });
+        document.querySelectorAll('.output-box').forEach(function(el) {
+            el.style.display = 'none';
+        });
+    });
+
+    /* ── SHOW EXAMPLE OUTPUT on Run click ── */
+    function showExampleOutput(btnEl, outputId) {
+        const panel = document.getElementById(outputId);
+        if (!panel) return;
+        panel.style.display = 'block';
+        panel.classList.add('visible');
+    }
+
+    function answerMCQ(listId, clicked, isCorrect) {
+        const list = document.getElementById(listId);
+        if (!list || list.dataset.answered) return;
+        list.dataset.answered = '1';
+        // disable all
+        Array.from(list.children).forEach(li => li.classList.add('disabled'));
+        if (isCorrect) {
+            clicked.classList.remove('disabled');
+            clicked.classList.add('selected-correct');
+        } else {
+            clicked.classList.remove('disabled');
+            clicked.classList.add('selected-wrong');
+            // reveal correct one
+            Array.from(list.children).forEach(li => {
+                li.removeAttribute('onclick');
+            });
+        }
+        // show answer
+        const ans = document.getElementById(listId + '-ans');
+        if (ans) ans.classList.add('visible');
+    }
+
+    /* ── TRUE / FALSE ── */
+    function answerTF(id, btn, userSaidTrue, correctIsTrue) {
+        const container = btn.closest('.quiz-card');
+        if (container.dataset.answered) return;
+        container.dataset.answered = '1';
+        const btns = container.querySelectorAll('.tf-btn');
+        btns.forEach(b => b.disabled = true);
+        const isCorrect = (userSaidTrue === correctIsTrue);
+        if (isCorrect) {
+            btn.classList.add('selected-correct');
+        } else {
+            btn.classList.add('selected-wrong');
+            // highlight the correct button
+            btns.forEach(b => {
+                const bSaysTrue = b.textContent.includes('True');
+                if (bSaysTrue === correctIsTrue) b.classList.add('reveal-correct');
+            });
+        }
+        const ans = document.getElementById(id + '-ans');
+        if (ans) ans.classList.add('visible');
+    }
+
+    /* ── FILL IN THE BLANK ── */
+    function answerFill(id, ...acceptedAnswers) {
+        const input  = document.getElementById(id + '-input');
+        const result = document.getElementById(id + '-result');
+        const ans    = document.getElementById(id + '-ans');
+        const btn    = input.closest('.quiz-card').querySelector('.btn-quiz-submit');
+        if (!input || input.disabled) return;
+        const val = input.value.trim().toLowerCase().replace(/['"]/g, '');
+        const isCorrect = acceptedAnswers.some(a => val === a.toLowerCase().replace(/['"]/g, ''));
+        input.disabled = true;
+        if (btn) btn.disabled = true;
+        if (isCorrect) {
+            input.classList.add('correct-input');
+            result.textContent = '✓ Correct!';
+            result.className = 'fill-result correct';
+        } else {
+            input.classList.add('wrong-input');
+            result.textContent = '✗ Not quite. Check the answer below.';
+            result.className = 'fill-result wrong';
+        }
+        if (ans) ans.classList.add('visible');
+    }
+
+    /* ── CODE COMPARE ── */
+    function answerCode(containerId, clicked, isCorrect) {
+        const container = document.getElementById(containerId);
+        if (!container || container.dataset.answered) return;
+        container.dataset.answered = '1';
+        const opts = container.querySelectorAll('.opt');
+        opts.forEach(o => o.classList.add('opted'));
+        if (isCorrect) {
+            clicked.classList.add('selected-correct');
+            clicked.querySelector('.opt-label').textContent = '✓ Option ' + clicked.querySelector('.opt-label').textContent.slice(-1) + ' — Correct!';
+        } else {
+            clicked.classList.add('selected-wrong');
+            clicked.querySelector('.opt-label').textContent = '✗ Option ' + clicked.querySelector('.opt-label').textContent.slice(-1) + ' — Wrong';
+            opts.forEach(o => {
+                if (o !== clicked) { o.classList.add('reveal-correct'); o.querySelector('.opt-label').textContent = '✓ Option ' + o.querySelector('.opt-label').textContent.slice(-1) + ' — Correct!'; }
+            });
+        }
+        // remove onclick
+        opts.forEach(o => o.removeAttribute('onclick'));
+        const ans = document.getElementById(containerId + '-ans');
+        if (ans) ans.classList.add('visible');
+    }
+</script>
+
+</body>
+</html>

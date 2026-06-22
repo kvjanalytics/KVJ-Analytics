@@ -1,0 +1,3356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Flow Control | KVJ Python Mastery</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #eff6ff;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #cbd5e1;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            height: 68px;
+            background: white;
+            padding: 0 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            padding: 9px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        /* LAYOUT */
+        .layout-container {
+            display: flex;
+            align-items: flex-start;
+            max-width: 1360px;
+            margin: 90px auto 60px;
+            gap: 30px;
+            padding: 20px 20px 0;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 270px;
+            flex: 0 0 270px;
+            position: sticky;
+            top: 90px;
+            z-index: 100;
+            max-height: calc(100vh - 110px);
+            overflow-y: auto;
+            border-radius: 14px;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 99px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .sidebar-inner {
+            background: white;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+            min-height: 100%;
+        }
+
+        .sidebar h3 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin: 0 0 12px;
+            font-weight: 700;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 13px;
+            text-decoration: none;
+            color: #475569;
+            font-weight: 500;
+            font-size: 14px;
+            border-radius: 9px;
+            transition: all 0.2s;
+            margin-bottom: 3px;
+        }
+
+        .sidebar a:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .sidebar a.active {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .sidebar a i {
+            width: 18px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* LESSON CARD */
+        .lesson-card {
+            background: white;
+            border-radius: 16px;
+            padding: 36px 40px;
+            margin-bottom: 28px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+            will-change: transform;
+            isolation: isolate;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* SECTION HEADER */
+        .section-header {
+            margin-bottom: 28px;
+            padding-bottom: 18px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .section-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header h2 i {
+            background: var(--primary-light);
+            color: var(--primary);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .section-header p {
+            margin-top: 6px;
+            margin-bottom: 0;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* TYPOGRAPHY */
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 40px 0 16px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 i {
+            color: var(--primary);
+            font-size: 15px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 17px;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        strong {
+            color: var(--text-main);
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            color: #ef4444;
+            font-size: 15px;
+        }
+
+        /* INTERACTION BOX */
+        .interaction-box {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 22px 24px;
+            margin: 16px 0;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .interaction-box.blue {
+            border-color: #3b82f6;
+            background: #f0f7ff;
+        }
+
+        .interaction-box.green {
+            border-color: #10b981;
+            background: #f0fdf8;
+        }
+
+        .interaction-box.amber {
+            border-color: #f59e0b;
+            background: #fffbf0;
+        }
+
+        .interaction-box.red {
+            border-color: #ef4444;
+            background: #fff5f5;
+        }
+
+        .interaction-box.purple {
+            border-color: #8b5cf6;
+            background: #faf5ff;
+        }
+
+        .interaction-box h4 {
+            color: var(--primary);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 0;
+        }
+
+        .interaction-box.blue h4 {
+            color: #2563eb;
+        }
+
+        .interaction-box.green h4 {
+            color: #059669;
+        }
+
+        .interaction-box.amber h4 {
+            color: #d97706;
+        }
+
+        .interaction-box.red h4 {
+            color: #dc2626;
+        }
+
+        .interaction-box.purple h4 {
+            color: #7c3aed;
+        }
+
+        h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: #4f46e5;
+            margin-top: 28px;
+            margin-bottom: 14px;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* CODE BLOCKS */
+        pre {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 18px 20px;
+            border-radius: 10px;
+            margin: 12px 0;
+            font-family: 'Fira Code', monospace;
+            font-size: 13.5px;
+            line-height: 1.75;
+            overflow-x: auto;
+        }
+
+        .keyword {
+            color: #93c5fd;
+            font-weight: 700;
+        }
+
+        .function {
+            color: #f9a8d4;
+            font-weight: 600;
+        }
+
+        .string {
+            color: #6ee7b7;
+        }
+
+        .number {
+            color: #0369a1;
+            font-weight: 700;
+        }
+
+        .comment {
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        /* OUTPUT / NOTE BOXES */
+        .output-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid var(--success);
+            padding: 13px 18px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 13.5px;
+            margin: 12px 0;
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        .note-box {
+            background: #fefce8;
+            border: 1px solid #fde68a;
+            border-left: 4px solid #f59e0b;
+            padding: 13px 18px;
+            border-radius: 8px;
+            font-size: 15px;
+            margin: 14px 0;
+            color: #92400e;
+        }
+
+        .note-box strong {
+            color: #78350f;
+        }
+
+        .important-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-left: 4px solid #ef4444;
+            padding: 13px 18px;
+            border-radius: 8px;
+            font-size: 15px;
+            margin: 14px 0;
+            color: #991b1b;
+        }
+
+        .important-box strong {
+            color: #7f1d1d;
+        }
+
+        /* CONTENT LIST */
+        .content-list {
+            list-style: none;
+            margin: 12px 0 16px;
+            padding: 0;
+        }
+
+        .content-list li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            color: #475569;
+            font-size: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .content-list li:last-child {
+            border-bottom: none;
+        }
+
+        .content-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 800;
+        }
+
+        /* OPERATOR GRID */
+        .operator-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .operator-card {
+            background: white;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .op-symbol {
+            display: block;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .op-name {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin: 3px 0;
+            font-weight: 600;
+        }
+
+        .op-example {
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            color: #ef4444;
+            background: #fef2f2;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* LOGIC TABLE */
+        .logic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .logic-table th {
+            background: #1e293b;
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        .logic-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .logic-table tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+
+        /* BADGE TRY IT */
+        .badge-try-it {
+            background: #16a34a;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            margin-top: 16px;
+            box-shadow: 0 4px 6px rgba(22, 163, 74, 0.2);
+        }
+
+        .badge-try-it i {
+            font-size: 11px;
+        }
+
+        /* CODING PRACTICE */
+        .coding-practice {
+            margin: 0 0 8px;
+        }
+
+        .coding-practice textarea {
+            width: 100%;
+            min-height: 160px;
+            background: #f8fafc;
+            color: #1e293b;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-family: 'Fira Code', monospace;
+            font-size: 16px;
+            resize: vertical;
+            line-height: 1.8;
+            outline: none;
+            transition: border-color 0.2s;
+            margin-bottom: 10px;
+            display: block;
+            overflow: hidden;
+        }
+
+        .coding-practice textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .coding-practice textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        /* BUTTONS */
+        .btn-run {
+            background: var(--primary);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 9px;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 3px 8px rgba(30, 64, 175, 0.25);
+            will-change: transform;
+        }
+
+        .btn-run:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-reset {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 10px 20px;
+            border-radius: 9px;
+            font-weight: 700;
+            font-size: 14px;
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 8px;
+        }
+
+        .btn-reset:hover {
+            background: var(--border);
+        }
+
+        /* OUTPUT LIVE */
+        .terminal-label {
+            font-size: 12px;
+            font-weight: 800;
+            color: #475569;
+            margin-top: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-label i {
+            font-size: 11px;
+            color: #38bdf8;
+        }
+
+        .live-output-box {
+            background: #f3f4f6;
+            color: #1e293b;
+            padding: 14px 18px;
+            border-radius: 9px;
+            margin-top: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 15px;
+            min-height: 38px;
+            display: none;
+            border: 1.5px solid #d1d5db;
+        }
+
+        .live-output-box.active {
+            display: block;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #f0fdf4;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+            display: block;
+        }
+
+        .feedback.wrong {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            display: block;
+        }
+
+        /* PRACTICE CARD */
+        .practice-card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin: 28px 0;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .practice-card h3 {
+            color: var(--text-main);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 17px;
+        }
+
+        .practice-card h3 i {
+            background: var(--primary-light);
+            color: var(--primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .task-label {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        /* SIDEBAR NUMBERED LINKS */
+        .sidebar-num-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 13px;
+            text-decoration: none;
+            color: #475569;
+            border-radius: 9px;
+            transition: all 0.2s;
+            margin-bottom: 3px;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-num-link:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .sidebar-num-link.active {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+        }
+
+        .sidebar-num {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary);
+            min-width: 28px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .sidebar-num-link.active .sidebar-num {
+            color: var(--primary);
+        }
+
+        .sidebar-label {
+            font-size: 14px;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .sidebar-num-link.active .sidebar-label {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* SIDEBAR SUB-TOPICS */
+        .sidebar-subtopics {
+            padding-left: 18px;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-sub {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            text-decoration: none;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: color 0.2s;
+        }
+
+        .sidebar-sub::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            flex-shrink: 0;
+        }
+
+        .sidebar-sub:hover {
+            color: var(--primary);
+        }
+
+        .sidebar-sub:hover::before {
+            background: var(--primary);
+        }
+
+        /* LOOP COMPARE */
+        .loop-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .loop-card {
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid;
+        }
+
+        .loop-card.for-loop {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+        }
+
+        .loop-card.for-loop h4 {
+            color: #1d4ed8;
+        }
+
+        .loop-card.while-loop {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+        }
+
+        .loop-card.while-loop h4 {
+            color: #15803d;
+        }
+
+        .loop-card h4 {
+            margin-top: 0;
+            font-size: 16px;
+        }
+
+        .loop-card pre {
+            font-size: 12.5px;
+            padding: 10px 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div>
+            <img src="Kvj logo.jpeg" alt="KVJ Logo"
+                style="height:42px; width:auto; display:block; border-radius:8px; object-fit:contain;">
+        </div>
+        <a href="roadmap.html" class="logout-btn"
+            style="background:#ef4444; letter-spacing:1px; font-size:13px; font-weight:800; padding:10px 26px; border-radius:8px;">EXIT</a>
+    </nav>
+
+    <div class="layout-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-inner">
+
+                <!-- PROGRESS -->
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+                    <span
+                        style="font-size:11px; font-weight:800; letter-spacing:1.5px; color:var(--text-muted); text-transform:uppercase;">Progress</span>
+                    <span id="sidebar-progress-pct"
+                        style="font-size:11px; font-weight:800; color:var(--primary); letter-spacing:1px;">0%</span>
+                </div>
+                <div style="background:#e2e8f0; border-radius:99px; height:6px; margin-bottom:20px; overflow:hidden;">
+                    <div id="sidebar-progress-bar"
+                        style="height:100%; width:0%; background:linear-gradient(90deg,#1e40af,#3b82f6); border-radius:99px; transition:width 0.4s ease;">
+                    </div>
+                </div>
+
+                <!-- MODULE PATH header -->
+                <h3 style="display:flex;align-items:center;gap:7px;margin-bottom:12px;">
+                    <i class="fas fa-compass" style="color:var(--primary);font-size:12px;"></i> MODULE PATH
+                </h3>
+
+                <!-- Module 2 accordion header -->
+                <div
+                    style="background:#eff6ff; border-radius:10px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; border:1px solid #bfdbfe;">
+                    <span style="font-size:14px; font-weight:700; color:var(--primary);">02 Flow Control</span>
+                    <i class="fas fa-chevron-up" style="font-size:12px; color:var(--primary);"></i>
+                </div>
+
+                <!-- 2.1 -->
+                <a href="#section-21" class="sidebar-num-link active" id="nav-21">
+                    <span class="sidebar-num">2.1</span>
+                    <span class="sidebar-label">If / Elif / Else</span>
+                    <i class="fas fa-chevron-down" id="chevron-21"
+                        style="font-size:11px; color:#94a3b8; margin-left:auto;"></i>
+                </a>
+                <div class="sidebar-subtopics" id="sub-21">
+                    <a href="#section-21" class="sidebar-sub">Conditions &amp; If Statements</a>
+                    <a href="#sub-elif" class="sidebar-sub">Elif Statement</a>
+                    <a href="#sub-else" class="sidebar-sub">Else Statement</a>
+                    <a href="#sub-shorthand" class="sidebar-sub">Shorthand If / Else</a>
+                    <a href="#sub-logical" class="sidebar-sub">Logical Operators</a>
+                    <a href="#sub-nested" class="sidebar-sub">Nested If</a>
+                    <a href="#sub-pass" class="sidebar-sub">Pass Statement</a>
+                </div>
+
+                <!-- 2.2 -->
+                <a href="#section-22" class="sidebar-num-link" id="nav-22">
+                    <span class="sidebar-num">2.2</span>
+                    <span class="sidebar-label">For Loops</span>
+                    <i class="fas fa-chevron-right" id="chevron-22"
+                        style="font-size:11px; color:#94a3b8; margin-left:auto;"></i>
+                </a>
+                <div class="sidebar-subtopics" id="sub-22" style="display:none;">
+                    <a href="#section-22" class="sidebar-sub">What is a For Loop?</a>
+                    <a href="#sub-for-break" class="sidebar-sub">Break &amp; Continue</a>
+                    <a href="#sub-for-range" class="sidebar-sub">The range() Function</a>
+                    <a href="#sub-for-else" class="sidebar-sub">Else &amp; Nested Loops</a>
+                </div>
+
+                <!-- 2.3 -->
+                <a href="#section-23" class="sidebar-num-link" id="nav-23">
+                    <span class="sidebar-num">2.3</span>
+                    <span class="sidebar-label">While Loops</span>
+                    <i class="fas fa-chevron-right" id="chevron-23"
+                        style="font-size:11px; color:#94a3b8; margin-left:auto;"></i>
+                </a>
+                <div class="sidebar-subtopics" id="sub-23" style="display:none;">
+                    <a href="#section-23" class="sidebar-sub">The while Loop</a>
+                    <a href="#sub-while-break" class="sidebar-sub">Break &amp; Continue</a>
+                    <a href="#sub-while-else" class="sidebar-sub">The else Statement</a>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main-content">
+            <div class="section-header">
+                <h2><i class="fas fa-code-branch"></i> MODULE 2</h2>
+                <p>Flow Control with Decisions and Loops</p>
+            </div>
+
+            <div
+                style="margin-bottom: 28px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--border); width: 100%;">
+                <video autoplay loop muted playsinline
+                    style="width: 100%; display: block; height: 420px; object-fit: cover;">
+                    <source src="Python_control_flow_diagram_anim…_202606101448.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- ══════════════════════════════════════
+             2.1  IF / ELIF / ELSE
+        ══════════════════════════════════════ -->
+            <div class="lesson-card" id="section-21">
+                <div class="section-header">
+                    <h2><i class="fas fa-sitemap"></i> 2.1 Python If / Elif / Else Statement</h2>
+                </div>
+
+                <!-- CONDITIONS -->
+                <div class="interaction-box blue">
+                    <h4><i class="fas fa-not-equal"></i> Python Conditions and If Statements</h4>
+                    <p>Python supports the usual logical conditions from mathematics. These conditions can be used in
+                        several ways, most commonly in "if statements" and loops. An "if statement" is written by using
+                        the <code>if</code> keyword.</p>
+                    <div class="operator-grid">
+                        <div class="operator-card"><span class="op-symbol">==</span><span
+                                class="op-name">Equals</span><span class="op-example">a == b</span></div>
+                        <div class="operator-card"><span class="op-symbol">!=</span><span class="op-name">Not
+                                Equals</span><span class="op-example">a != b</span></div>
+                        <div class="operator-card"><span class="op-symbol">&lt;</span><span class="op-name">Less
+                                Than</span><span class="op-example">a &lt; b</span></div>
+                        <div class="operator-card"><span class="op-symbol">&lt;=</span><span class="op-name">Less or
+                                Equal</span><span class="op-example">a &lt;= b</span></div>
+                        <div class="operator-card"><span class="op-symbol">&gt;</span><span class="op-name">Greater
+                                Than</span><span class="op-example">a &gt; b</span></div>
+                        <div class="operator-card"><span class="op-symbol">&gt;=</span><span class="op-name">Greater or
+                                Equal</span><span class="op-example">a &gt;= b</span></div>
+                    </div>
+                    <p>In this example we use two variables, <code>a</code> and <code>b</code>. As <code>a</code> is 33
+                        and <code>b</code> is 200, we know that 200 is greater than 33, so we print "b is greater than
+                        a".</p>
+
+                    <p>In this example we use two variables, <code>a</code> and <code>b</code>, which are used as part
+                        of the if statement to test whether b is greater than a. As <code>a</code> is 33, and
+                        <code>b</code> is 200, we know that 200 is greater than 33, and so we print to screen that "b is
+                        greater than a".</p>
+
+                </div>
+
+                <!-- HOW IF WORKS -->
+                <div class="interaction-box">
+                    <h4><i class="fas fa-cogs"></i> How If Statements Work</h4>
+                    <p>The if statement evaluates a condition (an expression that results in <strong>True</strong> or
+                        <strong>False</strong>). If the condition is true, the code block inside the if statement is
+                        executed. If the condition is false, the code block is skipped.</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it Yourself »</div>
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:10px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Checking if a number is positive:
+                        </p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-howif-ex" spellcheck="false">number = 15
+if number > 0:
+    print("The number is positive")</textarea>
+                            <button class="btn-run" onclick="runCode('howif-ex','The number is positive')">&#9654;
+                                Run</button>
+                            <button class="btn-reset" onclick="resetCode('howif-ex')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-howif-ex"></div>
+                            <div class="feedback" id="coding-feedback-howif-ex"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:22px;"><i class="fas fa-indent"></i> Indentation</h4>
+                    <p>Python relies on indentation (whitespace at the beginning of a line) to define scope in the code.
+                        Other programming languages often use curly-brackets for this purpose.</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it Yourself »</div>
+                    <div style="background:#fff0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:10px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">If statement, without indentation
+                            (will raise an error):</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-indent-ex" spellcheck="false">a = 33
+b = 200
+if b > a:
+print("b is greater than a") # you will get an error</textarea>
+                            <button class="btn-run" onclick="runCodeExpectError('indent-ex')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCode('indent-ex')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-indent-ex"></div>
+                            <div class="feedback" id="coding-feedback-indent-ex"></div>
+                        </div>
+                    </div>
+                    <div class="note-box"><strong>Note:</strong> You must use the same amount of indentation for all
+                        statements within the same code block.</div>
+
+                    <h4 style="margin-top:22px;"><i class="fas fa-list"></i> Multiple Statements in If Block</h4>
+                    <p>You can have multiple statements inside an if block. All statements must be indented at the same
+                        level.</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it Yourself »</div>
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:10px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Multiple statements in an if
+                            block:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-multi-if" spellcheck="false">age = 20
+if age >= 18:
+    print("You are an adult")
+    print("You can vote")
+    print("You have full legal rights")</textarea>
+                            <button class="btn-run" onclick="runCode('multi-if','You are an adult')">&#9654;
+                                Run</button>
+                            <button class="btn-reset" onclick="resetCode('multi-if')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-multi-if"></div>
+                            <div class="feedback" id="coding-feedback-multi-if"></div>
+                        </div>
+                    </div>
+
+
+
+                    <h4 style="margin-top:22px;"><i class="fas fa-check-circle"></i> Using Variables in Conditions</h4>
+                    <p>Boolean variables can be used directly in if statements without comparison operators. Zero
+                        (<code>0</code>), empty strings (<code>""</code>), <code>None</code>, and empty collections are
+                        treated as <strong>False</strong>. Everything else is treated as <strong>True</strong>.</p>
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it Yourself »</div>
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:10px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Using a boolean variable in an if
+                            statement:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-loggedin" spellcheck="false">is_logged_in = True
+if is_logged_in:
+    print("Welcome back!")</textarea>
+                            <button class="btn-run" onclick="runCode('loggedin','Welcome back!')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCode('loggedin')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-loggedin"></div>
+                            <div class="feedback" id="coding-feedback-loggedin"></div>
+                        </div>
+                    </div>
+                    <p>Python can evaluate many types of values as <strong>True</strong> or <strong>False</strong> in an
+                        if statement. Zero (<code>0</code>), empty strings (<code>""</code>), <code>None</code>, and
+                        empty collections are treated as <strong>False</strong>. Everything else is treated as
+                        <strong>True</strong>. This includes positive numbers (<code>5</code>), negative numbers
+                        (<code>-3</code>), and any non-empty string (even <code>"False"</code> is treated as True
+                        because it's a non-empty string).</p>
+                </div>
+
+                <!-- ELIF -->
+                <h3 id="sub-elif"><i class="fas fa-list-ol"></i> Python Elif Statement</h3>
+                <div class="interaction-box blue">
+                    <h4><i class="fas fa-random"></i> The Elif Keyword</h4>
+                    <p>The <code>elif</code> keyword is Python's way of saying "if the previous conditions were not
+                        true, then try this condition". In this example <code>a</code> is equal to <code>b</code>, so
+                        the first condition is not true, but the elif condition is true.</p>
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-elif-1" spellcheck="false">a = 33
+b = 33
+if b > a:
+    print("b is greater than a")
+elif a == b:
+    print("a and b are equal")</textarea>
+                        <button class="btn-run" onclick="runCode('elif-1','a and b are equal')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('elif-1')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-elif-1"></div>
+                        <div class="feedback" id="coding-feedback-elif-1"></div>
+                    </div>
+                    <p>In this example <code>a</code> is equal to <code>b</code>, so the first condition is not true,
+                        but the <a href="https://www.w3schools.com/python/ref_keyword_elif.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">elif</a> condition is true, so we print to
+                        screen that "a and b are equal".</p>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-layer-group"></i> Multiple Elif Statements</h4>
+                    <p>You can have as many <code>elif</code> statements as you need. Python will check each condition
+                        in order and execute the first one that is true.</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it Yourself »</div>
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:10px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Testing multiple conditions:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-elif-2" spellcheck="false">score = 75
+
+if score >= 90:
+    print("Grade: A")
+elif score >= 80:
+    print("Grade: B")
+elif score >= 70:
+    print("Grade: C")
+elif score >= 60:
+    print("Grade: D")</textarea>
+                            <button class="btn-run" onclick="runCode('elif-2','Grade: C')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCode('elif-2')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-elif-2"></div>
+                            <div class="feedback" id="coding-feedback-elif-2"></div>
+                        </div>
+                    </div>
+
+                    <p>In this example, the program checks each condition in order. Since <code>score</code> is 75, it
+                        prints <strong>"Grade: C"</strong> (the first condition that evaluates to true).</p>
+
+                    <h4 style="margin-top:22px;"><i class="fas fa-question-circle"></i> How Elif Works</h4>
+                    <p>When you use <code>elif</code>, Python evaluates the conditions from top to bottom. As soon as it
+                        finds a condition that is true, it executes that block and skips all remaining conditions.</p>
+                    <div class="important-box"><strong>Important:</strong> Only the first true condition will be
+                        executed. Even if multiple conditions are true, Python stops after executing the first matching
+                        block.</div>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it Yourself »</div>
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:10px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Categorizing age groups:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-elif-3" spellcheck="false">age = 25
+
+if age < 13:
+    print("You are a child")
+elif age < 20:
+    print("You are a teenager")
+elif age < 65:
+    print("You are an adult")
+elif age >= 65:
+    print("You are a senior")</textarea>
+                            <button class="btn-run" onclick="runCode('elif-3','You are an adult')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCode('elif-3')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-elif-3"></div>
+                            <div class="feedback" id="coding-feedback-elif-3"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:22px;"><i class="fas fa-lightbulb"></i> When to Use Elif</h4>
+                    <p>Use <code>elif</code> when you have multiple mutually exclusive conditions to check. This is more
+                        efficient than using multiple separate <code>if</code> statements because Python stops checking
+                        once it finds a true condition.</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it Yourself »</div>
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:10px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Day of the week checker:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-elif-4" spellcheck="false">day = 3
+
+if day == 1:
+    print("Monday")
+elif day == 2:
+    print("Tuesday")
+elif day == 3:
+    print("Wednesday")
+elif day == 4:
+    print("Thursday")
+elif day == 5:
+    print("Friday")
+elif day == 6:
+    print("Saturday")
+elif day == 7:
+    print("Sunday")</textarea>
+                            <button class="btn-run" onclick="runCode('elif-4','Wednesday')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCode('elif-4')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-elif-4"></div>
+                            <div class="feedback" id="coding-feedback-elif-4"></div>
+                        </div>
+                    </div>
+                    <p>In this example <code>a</code> is greater than <code>b</code>, so the first condition is not
+                        true, also the <a href="https://www.w3schools.com/python/ref_keyword_elif.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">elif</a> condition is not true, so we go to
+                        the <a href="https://www.w3schools.com/python/ref_keyword_else.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">else</a> condition and print to screen that
+                        "a is greater than b".</p>
+                </div>
+
+                <!-- ELSE -->
+                <h3 id="sub-else"><i class="fas fa-door-open"></i> Python Else Statement</h3>
+                <div class="interaction-box amber">
+                    <h4><i class="fas fa-shield-alt"></i> The Else Keyword</h4>
+                    <p>The <a href="https://www.w3schools.com/python/ref_keyword_else.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">else</a> keyword catches anything which isn't
+                        caught by the preceding conditions. The <code>else</code> statement is executed when the
+                        <code>if</code> condition (and any <code>elif</code> conditions) evaluate to
+                        <strong>False</strong>.</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-else-1" spellcheck="false">a = 200
+b = 33
+if b > a:
+    print("b is greater than a")
+elif a == b:
+    print("a and b are equal")
+else:
+    print("a is greater than b")</textarea>
+                        <button class="btn-run" onclick="runCode('else-1','a is greater than b')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('else-1')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-else-1"></div>
+                        <div class="feedback" id="coding-feedback-else-1"></div>
+                    </div>
+                    <p>In this example <code>a</code> is greater than <code>b</code>, so the first condition is not
+                        true, also the <a href="https://www.w3schools.com/python/ref_keyword_elif.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">elif</a> condition is not true, so we go to
+                        the <a href="https://www.w3schools.com/python/ref_keyword_else.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">else</a> condition and print to screen that
+                        "a is greater than b".</p>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-door-open"></i> Else Without Elif</h4>
+                    <p>You can also have an <a href="https://www.w3schools.com/python/ref_keyword_else.asp"
+                            target="_blank" style="color:#ef4444; font-weight:600; text-decoration:underline;">else</a>
+                        without the <a href="https://www.w3schools.com/python/ref_keyword_elif.asp" target="_blank"
+                            style="color:#ef4444; font-weight:600; text-decoration:underline;">elif</a>:</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:10px;">Example</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-else-without-elif" spellcheck="false">a = 200
+b = 33
+if b > a:
+    print("b is greater than a")
+else:
+    print("b is not greater than a")</textarea>
+                            <button class="btn-run"
+                                onclick="runCode('else-without-elif','b is not greater than a')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCode('else-without-elif')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-else-without-elif"></div>
+                            <div class="feedback" id="coding-feedback-else-without-elif"></div>
+                        </div>
+                    </div>
+                    <p>This creates a simple two-way choice: if the condition is true, execute one block; otherwise,
+                        execute the else block.</p>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-cogs"></i> How Else Works</h4>
+                    <p>The else statement provides a default action when none of the previous conditions are true. Think
+                        of it as a "catch-all" for any scenario not covered by your <code>if</code> and
+                        <code>elif</code> statements.</p>
+                    <div class="note-box"><strong>Note:</strong> The else statement must come last. You cannot have an
+                        elif after an else.</div>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:16px 0;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Checking even or odd numbers:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-even-odd" spellcheck="false">number = 7
+
+if number % 2 == 0:
+    print("The number is even")
+else:
+    print("The number is odd")</textarea>
+                            <button class="btn-run" onclick="runCode('even-odd','The number is odd')">&#9654;
+                                Run</button>
+                            <button class="btn-reset" onclick="resetCode('even-odd')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-even-odd"></div>
+                            <div class="feedback" id="coding-feedback-even-odd"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-link"></i> Complete If-Elif-Else Chain</h4>
+                    <p>You can combine if, <a href="https://www.w3schools.com/python/ref_keyword_elif.asp"
+                            target="_blank" style="color:#ef4444; font-weight:600; text-decoration:underline;">elif</a>,
+                        and else to create a comprehensive decision-making structure.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Temperature classifier:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-else-2" spellcheck="false">temperature = 22
+
+if temperature > 30:
+    print("It's hot outside!")
+elif temperature > 20:
+    print("It's warm outside")
+elif temperature > 10:
+    print("It's cool outside")
+else:
+    print("It's cold outside!")</textarea>
+                            <button class="btn-run" onclick="runCode('else-2','warm')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCode('else-2')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-else-2"></div>
+                            <div class="feedback" id="coding-feedback-else-2"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-shield-alt"></i> Else as Fallback</h4>
+                    <p>The else statement acts as a fallback that executes when none of the preceding conditions are
+                        true. This makes it useful for error handling, validation, and providing default values.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Validating user input:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-else-fallback" spellcheck="false">username = "Emil"
+
+if len(username) > 0:
+    print(f"Welcome, {username}!")
+else:
+    print("Error: Username cannot be empty")</textarea>
+                            <button class="btn-run" onclick="runCode('else-fallback','Welcome')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCode('else-fallback')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-else-fallback"></div>
+                            <div class="feedback" id="coding-feedback-else-fallback"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SHORTHAND IF -->
+                <h3 id="sub-shorthand"><i class="fas fa-compress-arrows-alt"></i> Python Shorthand If</h3>
+                <div class="interaction-box">
+                    <h4><i class="fas fa-bolt"></i> Shorthand If</h4>
+                    <p>If you have only one statement to execute, you can put it on the same line as the if statement.
+                    </p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-short-1" spellcheck="false">a = 200
+b = 33
+if a > b: print("a is greater than b")</textarea>
+                        <button class="btn-run" onclick="runCode('short-1','a is greater than b')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('short-1')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-short-1"></div>
+                        <div class="feedback" id="coding-feedback-short-1"></div>
+                    </div>
+                    <div class="note-box"><strong>Note:</strong> You still need the colon <code>:</code> after the
+                        condition.</div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-exchange-alt"></i> Short Hand If ... Else</h4>
+                    <p>If you have one statement for if and one for else, you can put them on the same line using a
+                        conditional expression:</p>
+                    <p>This is called a <strong>conditional expression</strong> (sometimes known as a "ternary
+                        operator").</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-short-2" spellcheck="false">a = 2
+b = 330
+print("A") if a > b else print("B")</textarea>
+                        <button class="btn-run" onclick="runCode('short-2','B')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('short-2')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-short-2"></div>
+                        <div class="feedback" id="coding-feedback-short-2"></div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-tag"></i> Assign a Value With If ... Else</h4>
+                    <p>You can also use a one-line if/else to choose a value and assign it to a variable:</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-short-3" spellcheck="false">score = 60
+status = "Pass" if score >= 50 else "Fail"
+print(status)</textarea>
+                        <button class="btn-run" onclick="runCode('short-3','Pass')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('short-3')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-short-3"></div>
+                        <div class="feedback" id="coding-feedback-short-3"></div>
+                    </div>
+                    <p>The syntax follows this pattern:
+                        <code>variable = value_if_true if condition else value_if_false</code></p>
+
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-list-ul"></i> Multiple Conditions on One Line</h4>
+                    <p>You can chain conditional expressions, but keep it short so it stays readable:</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">One line, three outcomes:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-1" spellcheck="false">a = 330
+
+b = 330
+
+print("A") if a > b else print("=") if a == b else print("B")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-1')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-1', `a = 330
+
+b = 330
+
+print('A') if a > b else print('=') if a == b else print('B')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-1"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-star"></i> Practical Examples</h4>
+                    <p>Ternary operators are particularly useful for simple assignments and return statements.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Finding the maximum of two
+                            numbers:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-2" spellcheck="false">x = 15
+
+y = 20
+
+max_value = x if x > y else y
+
+print("Maximum value:", max_value)</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-2')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-2', `x = 15
+
+y = 20
+
+max_value = x if x > y else y
+
+print('Maximum value:', max_value)`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-2"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-question-circle"></i> When to Use Shorthand If</h4>
+                    <p>Shorthand if statements and ternary operators should be used when:</p>
+                    <ul class="content-list">
+                        <li>The condition and actions are simple</li>
+                        <li>It improves code readability</li>
+                        <li>You want to make a quick assignment based on a condition</li>
+                    </ul>
+                    <div class="important-box"><strong>Important:</strong> While shorthand if statements can make code
+                        more concise, avoid overusing them for complex conditions. For readability, use regular if-else
+                        statements when dealing with multiple lines of code or complex logic.</div>
+                </div>
+
+                <!-- LOGICAL OPERATORS -->
+                <h3 id="sub-logical"><i class="fas fa-project-diagram"></i> Python Logical Operators</h3>
+                <div class="interaction-box purple">
+                    <h4><i class="fas fa-sitemap"></i> and, or, not</h4>
+                    <p>Logical operators are used to combine conditional statements. Python has three logical operators:
+                    </p>
+                    <table class="logic-table">
+                        <thead>
+                            <tr>
+                                <th>Operator</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>and</code></td>
+                                <td>Returns True if <strong>both</strong> conditions are true</td>
+                                <td><code>x &lt; 5 and x &lt; 10</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>or</code></td>
+                                <td>Returns True if <strong>at least one</strong> condition is true</td>
+                                <td><code>x &lt; 5 or x &lt; 4</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>not</code></td>
+                                <td><strong>Reverses</strong> the result</td>
+                                <td><code>not(x &lt; 5)</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin-top:22px;"><i class="fas fa-hand-point-right"></i> The and Operator</h4>
+                    <p>The <a href="https://www.w3schools.com/python/ref_keyword_and.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">and</a> keyword is a logical operator, and is
+                        used to combine conditional statements. Both conditions must be true for the entire expression
+                        to be true.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Test if <span
+                                style="color:#ef4444;">a</span> is greater than <span style="color:#ef4444;">b</span>,
+                            AND if <span style="color:#ef4444;">c</span> is greater than <span
+                                style="color:#ef4444;">a</span>:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-3" spellcheck="false">a = 200
+
+b = 33
+
+c = 500
+
+if a > b and c > a:
+
+    print("Both conditions are True")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-3')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-3', `a = 200
+
+b = 33
+
+c = 500
+
+if a > b and c > a:
+
+    print('Both conditions are True')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-3"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-hand-point-right"></i> The or Operator</h4>
+                    <p>The <a href="https://www.w3schools.com/python/ref_keyword_or.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">or</a> keyword is a logical operator, and is
+                        used to combine conditional statements. At least one condition must be true for the entire
+                        expression to be true.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Test if <span
+                                style="color:#ef4444;">a</span> is greater than <span style="color:#ef4444;">b</span>,
+                            OR if <span style="color:#ef4444;">a</span> is greater than <span
+                                style="color:#ef4444;">c</span>:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-4" spellcheck="false">a = 200
+
+b = 33
+
+c = 500
+
+if a > b or a > c:
+
+    print("At least one of the conditions is True")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-4')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-4', `a = 200
+
+b = 33
+
+c = 500
+
+if a > b or a > c:
+
+    print('At least one of the conditions is True')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-4"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-hand-point-right"></i> The not Operator</h4>
+                    <p>The <a href="https://www.w3schools.com/python/ref_keyword_not.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">not</a> keyword is a logical operator, and is
+                        used to reverse the result of the conditional statement.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Test if <span
+                                style="color:#ef4444;">a</span> is NOT greater than <span
+                                style="color:#ef4444;">b</span>:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-5" spellcheck="false">a = 33
+
+b = 200
+
+if not a > b:
+
+    print("a is NOT greater than b")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-5')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-5', `a = 33
+
+b = 200
+
+if not a > b:
+
+    print('a is NOT greater than b')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-5"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-brackets-curly"></i> Combining Multiple Operators</h4>
+                    <p>You can combine multiple logical operators in a single expression. Python evaluates
+                        <code>not</code> first, then <code>and</code>, then <code>or</code>.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Combining <span
+                                style="color:#ef4444;">and</span>, <span style="color:#ef4444;">or</span>, and <span
+                                style="color:#ef4444;">not</span>:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-6" spellcheck="false">age = 25
+
+is_student = False
+
+has_discount_code = True
+
+if (age < 18 or age > 65) and not is_student or has_discount_code:
+
+    print("Discount applies!")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-6')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-6', `age = 25
+
+is_student = False
+
+has_discount_code = True
+
+if (age < 18 or age > 65) and not is_student or has_discount_code:
+
+    print('Discount applies!')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-6"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:32px;"><i class="fas fa-table"></i> Truth Tables</h4>
+                    <p>Understanding how logical operators work with different values:</p>
+
+                    <p style="font-weight:700; color:var(--text-main); margin-bottom:10px; font-size:16px;">and Operator
+                        Truth Table</p>
+                    <table
+                        style="width:100%; border-collapse:collapse; margin-bottom:28px; font-size:14px; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                        <thead>
+                            <tr style="background:#1e293b;">
+                                <th style="padding:14px 20px; text-align:left; color:white; font-weight:700;">Condition
+                                    1</th>
+                                <th style="padding:14px 20px; text-align:left; color:white; font-weight:700;">Condition
+                                    2</th>
+                                <th style="padding:14px 20px; text-align:left; color:white; font-weight:700;">Result
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background:#ffffff;">
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">True</td>
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">True</td>
+                                <td
+                                    style="padding:12px 20px; border-bottom:1px solid #e2e8f0; color:#15803d; font-weight:600;">
+                                    True</td>
+                            </tr>
+                            <tr style="background:#f8fafc;">
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">True</td>
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">False</td>
+                                <td
+                                    style="padding:12px 20px; border-bottom:1px solid #e2e8f0; color:#dc2626; font-weight:600;">
+                                    False</td>
+                            </tr>
+                            <tr style="background:#ffffff;">
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">False</td>
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">True</td>
+                                <td
+                                    style="padding:12px 20px; border-bottom:1px solid #e2e8f0; color:#dc2626; font-weight:600;">
+                                    False</td>
+                            </tr>
+                            <tr style="background:#f8fafc;">
+                                <td style="padding:12px 20px;">False</td>
+                                <td style="padding:12px 20px;">False</td>
+                                <td style="padding:12px 20px; color:#dc2626; font-weight:600;">False</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p style="font-weight:700; color:var(--text-main); margin-bottom:10px; font-size:16px;">or Operator
+                        Truth Table</p>
+                    <table
+                        style="width:100%; border-collapse:collapse; margin-bottom:16px; font-size:14px; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                        <thead>
+                            <tr style="background:#1e293b;">
+                                <th style="padding:14px 20px; text-align:left; color:white; font-weight:700;">Condition
+                                    1</th>
+                                <th style="padding:14px 20px; text-align:left; color:white; font-weight:700;">Condition
+                                    2</th>
+                                <th style="padding:14px 20px; text-align:left; color:white; font-weight:700;">Result
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background:#ffffff;">
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">True</td>
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">True</td>
+                                <td
+                                    style="padding:12px 20px; border-bottom:1px solid #e2e8f0; color:#15803d; font-weight:600;">
+                                    True</td>
+                            </tr>
+                            <tr style="background:#f8fafc;">
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">True</td>
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">False</td>
+                                <td
+                                    style="padding:12px 20px; border-bottom:1px solid #e2e8f0; color:#15803d; font-weight:600;">
+                                    True</td>
+                            </tr>
+                            <tr style="background:#ffffff;">
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">False</td>
+                                <td style="padding:12px 20px; border-bottom:1px solid #e2e8f0;">True</td>
+                                <td
+                                    style="padding:12px 20px; border-bottom:1px solid #e2e8f0; color:#15803d; font-weight:600;">
+                                    True</td>
+                            </tr>
+                            <tr style="background:#f8fafc;">
+                                <td style="padding:12px 20px;">False</td>
+                                <td style="padding:12px 20px;">False</td>
+                                <td style="padding:12px 20px; color:#dc2626; font-weight:600;">False</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-brackets-curly"></i> Using Parentheses for Clarity
+                    </h4>
+                    <p>When combining multiple logical operators, use parentheses to make your intentions clear and
+                        control the order of evaluation.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Using parentheses for complex
+                            conditions:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-7" spellcheck="false">temperature = 25
+
+is_raining = False
+
+is_weekend = True
+
+if (temperature > 20 and not is_raining) or is_weekend:
+
+    print("Great day for outdoor activities!")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-7')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-7', `temperature = 25
+
+is_raining = False
+
+is_weekend = True
+
+if (temperature > 20 and not is_raining) or is_weekend:
+
+    print('Great day for outdoor activities!')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-7"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:32px;"><i class="fas fa-star"></i> More Examples</h4>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">User authentication check:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-8" spellcheck="false">username = "Tobias"
+
+password = "secret123"
+
+is_verified = True
+
+if username and password and is_verified:
+
+    print("Login successful")
+
+else:
+
+    print("Login failed")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-8')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-8', `username = 'Tobias'
+
+password = 'secret123'
+
+is_verified = True
+
+if username and password and is_verified:
+
+    print('Login successful')
+
+else:
+
+    print('Login failed')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-8"></div>
+                        </div>
+                    </div>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Range checking with logical
+                            operators:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-9" spellcheck="false">score = 85
+
+if score >= 0 and score <= 100:
+
+    print("Valid score")
+
+else:
+
+    print("Invalid score")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-9')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-9', `score = 85
+if score >= 0 and score <= 100:
+    print('Valid score')
+else:
+    print('Invalid score')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-9"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NESTED IF -->
+                <h3 id="sub-nested"><i class="fas fa-layer-group"></i> Python Nested If</h3>
+                <div class="interaction-box blue">
+                    <h4><i class="fas fa-code-branch"></i> Nested If Statements</h4>
+                    <p>You can have <a href="https://www.w3schools.com/python/ref_keyword_if.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">if</a> statements inside <a
+                            href="https://www.w3schools.com/python/ref_keyword_if.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">if</a> statements. This is called
+                        <em>nested</em> <a href="https://www.w3schools.com/python/ref_keyword_if.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">if</a> statements. In this example, the inner
+                        if statement only runs if the outer condition (x &gt; 10) is true.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-10" spellcheck="false">x = 41
+
+if x > 10:
+
+    print("Above ten,")
+
+    if x > 20:
+
+        print("and also above 20!")
+
+    else:
+
+        print("but not above 20.")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-10')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-10', `x = 41
+
+if x > 10:
+
+    print('Above ten,')
+
+    if x > 20:
+
+        print('and also above 20!')
+
+    else:
+
+        print('but not above 20.')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-10"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-cogs"></i> How Nested If Works</h4>
+                    <p>Each level of nesting creates a deeper level of decision-making. The code evaluates from the
+                        outermost condition inward.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Checking multiple conditions with
+                            nesting:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-11" spellcheck="false">age = 25
+
+has_license = True
+
+if age >= 18:
+
+    if has_license:
+
+        print("You can drive")
+
+    else:
+
+        print("You need a license")
+
+else:
+
+    print("You are too young to drive")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-11')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-11', `age = 25
+
+has_license = True
+
+if age >= 18:
+
+    if has_license:
+
+        print('You can drive')
+
+    else:
+
+        print('You need a license')
+
+else:
+
+    print('You are too young to drive')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-11"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-layer-group"></i> Multiple Levels of Nesting</h4>
+                    <p>You can nest as many levels deep as needed, but keep in mind that too many levels can make code
+                        harder to read.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Three levels of nesting:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-12" spellcheck="false">score = 85
+
+attendance = 90
+
+submitted = True
+
+if score >= 60:
+
+    if attendance >= 80:
+
+        if submitted:
+
+            print("Pass with good standing")
+
+        else:
+
+            print("Pass but missing assignment")
+
+    else:
+
+        print("Pass but low attendance")
+
+else:
+
+    print("Fail")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-12')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-12', `score = 85
+
+attendance = 90
+
+submitted = True
+
+if score >= 60:
+
+    if attendance >= 80:
+
+        if submitted:
+
+            print('Pass with good standing')
+
+        else:
+
+            print('Pass but missing assignment')
+
+    else:
+
+        print('Pass but low attendance')
+
+else:
+
+    print('Fail')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-12"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-balance-scale"></i> Nested If vs Logical Operators
+                    </h4>
+                    <p>Sometimes nested if statements can be simplified using logical operators like <code>and</code>.
+                        The choice depends on your logic.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">This nested if:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-13" spellcheck="false">temperature = 25
+
+is_sunny = True
+
+if temperature > 20:
+
+    if is_sunny:
+
+        print("Perfect beach weather!")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-13')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-13', `temperature = 25
+
+is_sunny = True
+
+if temperature > 20:
+
+    if is_sunny:
+
+        print('Perfect beach weather!')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-13"></div>
+                        </div>
+                    </div>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Could also be written with <span
+                                style="color:#ef4444;">and</span>:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-14" spellcheck="false">temperature = 25
+
+is_sunny = True
+
+if temperature > 20 and is_sunny:
+
+    print("Perfect beach weather!")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-14')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-14', `temperature = 25
+
+is_sunny = True
+
+if temperature > 20 and is_sunny:
+
+    print('Perfect beach weather!')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-14"></div>
+                        </div>
+                    </div>
+
+                    <div class="note-box">Both approaches produce the same result. Use nested if statements when the
+                        inner logic is complex or depends on the outer condition. Use <strong>and</strong> when both
+                        conditions are simple and equally important.</div>
+
+                    <h4 style="margin-top:32px;"><i class="fas fa-star"></i> More Examples</h4>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Login validation with nested
+                            checks:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-15" spellcheck="false">username = "Emil"
+
+password = "python123"
+
+is_active = True
+
+if username:
+
+    if password:
+
+        if is_active:
+
+            print("Login successful")
+
+        else:
+
+            print("Account is not active")
+
+    else:
+
+        print("Password required")
+
+else:
+
+    print("Username required")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-15')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-15', `username = 'Emil'
+
+password = 'python123'
+
+is_active = True
+
+if username:
+
+    if password:
+
+        if is_active:
+
+            print('Login successful')
+
+        else:
+
+            print('Account is not active')
+
+    else:
+
+        print('Password required')
+
+else:
+
+    print('Username required')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-15"></div>
+                        </div>
+                    </div>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Grade calculation with nested
+                            logic:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-16" spellcheck="false">score = 92
+
+extra_credit = 5
+
+if score >= 90:
+
+    if extra_credit > 0:
+
+        print("A+ grade")
+
+    else:
+
+        print("A grade")
+
+elif score >= 80:
+
+    print("B grade")
+
+else:
+
+    print("C grade or below")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-16')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-16', `score = 92
+
+extra_credit = 5
+
+if score >= 90:
+
+    if extra_credit > 0:
+
+        print('A+ grade')
+
+    else:
+
+        print('A grade')
+
+elif score >= 80:
+
+    print('B grade')
+
+else:
+
+    print('C grade or below')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-16"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASS -->
+                <h3 id="sub-pass"><i class="fas fa-minus-circle"></i> Python Pass Statement</h3>
+                <div class="interaction-box">
+                    <h4><i class="fas fa-hourglass-half"></i> The pass Statement</h4>
+                    <p><a href="https://www.w3schools.com/python/ref_keyword_if.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">if</a> statements cannot be empty, but if you
+                        for some reason have an <a href="https://www.w3schools.com/python/ref_keyword_if.asp"
+                            target="_blank" style="color:var(--primary); font-weight:600;">if</a> statement with no
+                        content, put in the <a href="https://www.w3schools.com/python/ref_keyword_pass.asp"
+                            target="_blank" style="color:var(--primary); font-weight:600;">pass</a> statement to avoid
+                        getting an error.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-17" spellcheck="false">a = 33
+
+b = 200
+
+if b > a:
+
+    pass</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-17')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-17', `a = 33
+
+b = 200
+
+if b > a:
+
+    pass`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-17"></div>
+                        </div>
+                    </div>
+
+                    <p>The pass statement is a null operation — nothing happens when it executes. It serves as a
+                        placeholder.</p>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-question-circle"></i> Why Use pass?</h4>
+                    <p>The pass statement is useful in several situations:</p>
+                    <ul class="content-list" style="margin-top:16px;">
+                        <li>When you're creating code structure but haven't implemented the logic yet</li>
+                        <li>When a statement is required syntactically but no action is needed</li>
+                        <li>As a placeholder for future code during development</li>
+                        <li>In empty functions or classes that you plan to implement later</li>
+                    </ul>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-pencil-alt"></i> pass in Development</h4>
+                    <p>During development, you might want to sketch out your program structure before implementing the
+                        details. The pass statement allows you to do this without syntax errors.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Placeholder for future
+                            implementation:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-18" spellcheck="false">age = 16
+
+if age < 18:
+
+    pass # TODO: Add underage logic later
+
+else:
+
+    print("Access granted")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-18')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-18', `age = 16
+
+if age < 18:
+
+    pass # TODO: Add underage logic later
+
+else:
+
+    print('Access granted')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-18"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-comment-slash"></i> pass vs Comments</h4>
+                    <p>A comment is ignored by Python, but <code>pass</code> is an actual statement that gets executed
+                        (though it does nothing). You need <code>pass</code> where Python expects a statement, not just
+                        a comment.</p>
+
+                    <div
+                        style="background:#fef2f2; border:1px solid #fecaca; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">This will cause an error (empty
+                            code block):</p>
+                        <div
+                            style="background:white; border-left:4px solid #ef4444; border-radius:0 8px 8px 0; padding:16px 20px; font-family:'Fira Code',monospace; font-size:13.5px; line-height:1.9; margin-bottom:0;">
+                            <span style="color:#1e293b;">score</span> = <span style="color:#0369a1;">85</span><br><br>
+                            <span style="color:#1d4ed8;">if</span> score &gt; <span
+                                style="color:#0369a1;">90</span>:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#94a3b8;"># This is excellent</span><br>
+                            <span style="color:#94a3b8;"># This will raise an IndentationError</span>
+                        </div>
+                    </div>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">This works correctly with pass:
+                        </p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-19" spellcheck="false">score = 85
+
+if score > 90:
+
+    pass # This is excellent
+
+print("Score processed")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-19')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-19', `score = 85
+
+if score > 90:
+
+    pass # This is excellent
+
+print('Score processed')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-19"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-list-ol"></i> pass with Multiple Conditions</h4>
+                    <p>You can use <code>pass</code> in any branch of an if-elif-else statement.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Using pass in different branches:
+                        </p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-20" spellcheck="false">value = 50
+
+if value < 0:
+
+    print("Negative value")
+
+elif value == 0:
+
+    pass # Zero case - no action needed
+
+else:
+
+    print("Positive value")</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-20')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-20', `value = 50
+
+if value < 0:
+
+    print('Negative value')
+
+elif value == 0:
+
+    pass # Zero case - no action needed
+
+else:
+
+    print('Positive value')`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-20"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHALLENGE 2.1 -->
+                <div class="practice-card">
+                    <h3><i class="fas fa-laptop-code"></i> Challenge: If / Elif / Else Basics</h3>
+                    <span class="task-label">Challenge</span>
+                    <p>Test your understanding of if, elif, and else statements.</p>
+                    <p><strong>Instructions</strong> — Inside the editor, complete the following steps:</p>
+                    <ul class="content-list">
+                        <li>Create a variable <code>age</code> with the value <code>20</code></li>
+                        <li>Write an if statement that prints <code>"Child"</code> if age is less than 13</li>
+                        <li>Add an elif that prints <code>"Teenager"</code> if age is less than 18</li>
+                        <li>Add an else that prints <code>"Adult"</code></li>
+                    </ul>
+                    <div class="badge-try-it"><i class="fas fa-terminal"></i> Try It</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-if-challenge" placeholder="# Write your code here..."></textarea>
+                        <button class="btn-run" onclick="runCode('if-challenge','Adult')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('if-challenge')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-if-challenge"></div>
+                        <div class="feedback" id="coding-feedback-if-challenge"></div>
+                    </div>
+                </div>
+            </div><!-- end lesson-card 2.1 -->
+
+
+            <!-- PYTHON LOOPS INTRO -->
+            <div class="lesson-card" style="border-left: 5px solid var(--primary);">
+                <h3 style="margin-top:0;"><i class="fas fa-sync-alt"></i> Python Loops</h3>
+                <p>Python has two primitive loop commands:</p>
+                <ul class="content-list">
+                    <li>For loops</li>
+                    <li>While loops</li>
+                </ul>
+            </div>
+
+            <!-- ══════════════════════════════════════
+             2.2  FOR LOOPS
+        ══════════════════════════════════════ -->
+            <div class="lesson-card" id="section-22">
+                <div class="section-header">
+                    <h2><i class="fas fa-redo"></i> 2.2 Python For Loops</h2>
+                </div>
+
+                <div class="interaction-box blue">
+                    <h4><i class="fas fa-redo-alt"></i> What is a For Loop?</h4>
+                    <p>A <a href="https://www.w3schools.com/python/ref_keyword_for.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">for</a> loop is used for iterating over a
+                        sequence (that is either a list, a tuple, a dictionary, a set, or a string).</p>
+                    <p>This is less like the <a href="https://www.w3schools.com/python/ref_keyword_for.asp"
+                            target="_blank" style="color:var(--primary); font-weight:600;">for</a> keyword in other
+                        programming languages, and works more like an iterator method as found in other
+                        object-orientated programming languages.</p>
+                    <p>With the <a href="https://www.w3schools.com/python/ref_keyword_for.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">for</a> loop we can execute a set of
+                        statements, once for each item in a list, tuple, set etc.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Print each fruit in a fruit list:
+                        </p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-21" spellcheck="false">fruits = ["apple", "banana", "cherry"]
+
+for x in fruits:
+
+    print(x)</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-21')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-21', `fruits = ['apple', 'banana', 'cherry']
+
+for x in fruits:
+
+    print(x)`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-21"></div>
+                        </div>
+                    </div>
+
+                    <p>The <a href="https://www.w3schools.com/python/ref_keyword_for.asp" target="_blank"
+                            style="color:var(--primary); font-weight:600;">for</a> loop does not require an indexing
+                        variable to set beforehand.</p>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-font"></i> Looping Through a String</h4>
+                    <p>Even strings are iterable objects, they contain a sequence of characters:</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:8px 0 16px;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Loop through the letters in the
+                            word "banana":</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-static-ex-22" spellcheck="false">for x in "banana":
+
+    print(x)</textarea>
+                            <button class="btn-run"
+                                style="background:#10b981; box-shadow:0 3px 8px rgba(16,185,129,0.3);"
+                                onclick="runCodeFree('static-ex-22')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCodeFree('static-ex-22', `for x in 'banana':
+
+    print(x)`)">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-static-ex-22"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BREAK / CONTINUE -->
+                <div class="interaction-box green" id="sub-for-break">
+                    <h4><i class="fas fa-stop-circle"></i> The break Statement</h4>
+                    <p>With the <code>break</code> statement we can stop the loop before it has looped through all the
+                        items:</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-break-1" spellcheck="false">fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+    print(x)
+    if x == "banana":
+        break</textarea>
+                        <button class="btn-run" onclick="runCode('break-1','apple')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('break-1')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-break-1"></div>
+                        <div class="feedback" id="coding-feedback-break-1"></div>
+                    </div>
+
+                    <p>Exit the loop when <code>x</code> is "banana", but this time the break comes before the print:
+                    </p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-break-2" spellcheck="false">fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+    if x == "banana":
+        break
+    print(x)</textarea>
+                        <button class="btn-run" onclick="runCode('break-2','apple')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('break-2')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-break-2"></div>
+                        <div class="feedback" id="coding-feedback-break-2"></div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-forward"></i> The continue Statement</h4>
+                    <p>With the <code>continue</code> statement we can skip the current iteration and continue with the
+                        next:</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-continue-1" spellcheck="false">fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+    if x == "banana":
+        continue
+    print(x)</textarea>
+                        <button class="btn-run" onclick="runCode('continue-1','apple')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('continue-1')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-continue-1"></div>
+                        <div class="feedback" id="coding-feedback-continue-1"></div>
+                    </div>
+                </div>
+
+                <!-- RANGE -->
+                <div class="interaction-box amber" id="sub-for-range">
+                    <h4><i class="fas fa-ruler-combined"></i> The range() Function</h4>
+                    <p>To loop through a set of code a specified number of times, we can use the <a
+                            href="https://www.w3schools.com/python/ref_func_range.asp" target="_blank"
+                            style="color:var(--primary);font-weight:600;">range()</a> function.</p>
+                    <p>The <a href="https://www.w3schools.com/python/ref_func_range.asp" target="_blank"
+                            style="color:var(--primary);font-weight:600;">range()</a> function returns a sequence of
+                        numbers, starting from 0 by default, and increments by 1 (by default), and ends at a specified
+                        number.</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:16px 0;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:10px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Using the range() function:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-range-1-ex" spellcheck="false">for x in range(6):
+    print(x)</textarea>
+                            <button class="btn-run" onclick="runCode('range-1-ex','0')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCode('range-1-ex')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-range-1-ex"></div>
+                            <div class="feedback" id="coding-feedback-range-1-ex"></div>
+                        </div>
+                    </div>
+
+                    <p>Note that <a href="https://www.w3schools.com/python/ref_func_range.asp" target="_blank"
+                            style="color:var(--primary);font-weight:600;">range(6)</a> is not the values of 0 to 6, but
+                        the values 0 to 5.</p>
+                    <p>The <a href="https://www.w3schools.com/python/ref_func_range.asp" target="_blank"
+                            style="color:var(--primary);font-weight:600;">range()</a> function defaults to 0 as a
+                        starting value, however it is possible to specify the starting value by adding a parameter:
+                        <code>range(2, 6)</code>, which means values from 2 to 6 (but not including 6):</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-range-1" spellcheck="false">for x in range(6):
+    print(x)</textarea>
+                        <button class="btn-run" onclick="runCode('range-1','0')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('range-1')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-range-1"></div>
+                        <div class="feedback" id="coding-feedback-range-1"></div>
+                    </div>
+
+                    <p style="margin-top:16px;">The <a href="https://www.w3schools.com/python/ref_func_range.asp"
+                            target="_blank" style="color:var(--primary);font-weight:600;">range()</a> function defaults
+                        to increment the sequence by 1, however it is possible to specify the increment value by adding
+                        a third parameter: <code>range(2, 30, 3)</code>:</p>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:16px 0;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:10px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Increment the sequence with 3
+                            (default is 1):</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-range-step-ex" spellcheck="false">for x in range(2, 30, 3):
+    print(x)</textarea>
+                            <button class="btn-run" onclick="runCode('range-step-ex','2')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCode('range-step-ex')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-range-step-ex"></div>
+                            <div class="feedback" id="coding-feedback-range-step-ex"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- ELSE / NESTED / PASS -->
+                <div class="interaction-box" id="sub-for-else">
+                    <h4><i class="fas fa-flag-checkered"></i> Else in For Loop</h4>
+                    <p>The <code>else</code> keyword in a <code>for</code> loop specifies a block of code to be executed
+                        when the loop finishes:</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-for-else" spellcheck="false">for x in range(6):
+    print(x)
+else:
+    print("Finally finished!")</textarea>
+                        <button class="btn-run" onclick="runCode('for-else','Finally finished!')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('for-else')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-for-else"></div>
+                        <div class="feedback" id="coding-feedback-for-else"></div>
+                    </div>
+                    <div class="note-box"><strong>Note:</strong> The else block will NOT run if the loop is stopped by a
+                        <code>break</code> statement.</div>
+
+                    <div style="background:#f0f0f0; border-radius:10px; padding:20px 24px; margin:16px 0;">
+                        <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:10px;">Example</p>
+                        <p style="color:#1e293b; font-size:15px; margin-bottom:12px;">Break the loop when <code
+                                style="color:#ef4444;">x</code> is 3, and see what happens with the <code
+                                style="color:#ef4444;">else</code> block:</p>
+                        <div class="coding-practice" style="margin:0;">
+                            <textarea id="coding-ans-for-else-break" spellcheck="false">for x in range(6):
+    if x == 3: break
+    print(x)
+else:
+    print("Finally finished!")</textarea>
+                            <button class="btn-run" onclick="runCode('for-else-break','0')">&#9654; Run</button>
+                            <button class="btn-reset" onclick="resetCode('for-else-break')">&#8635; Reset</button>
+                            <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                            <div class="live-output-box" id="coding-output-for-else-break"></div>
+                            <div class="feedback" id="coding-feedback-for-else-break"></div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-sitemap"></i> Nested Loops</h4>
+                    <p>A nested loop is a loop inside a loop. The inner loop runs completely for each iteration of the
+                        outer loop:</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-nested-for" spellcheck="false">adj = ["red", "big", "tasty"]
+fruits = ["apple", "banana", "cherry"]
+for x in adj:
+    for y in fruits:
+        print(x, y)</textarea>
+                        <button class="btn-run" onclick="runCode('nested-for','red apple')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('nested-for')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-nested-for"></div>
+                        <div class="feedback" id="coding-feedback-nested-for"></div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-minus-circle"></i> The pass Statement</h4>
+                    <p><code>for</code> loops cannot be empty. If you have a <code>for</code> loop with no content, use
+                        the <code>pass</code> statement to avoid getting an error:</p>
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-for-pass" spellcheck="false">for x in [0, 1, 2]:
+    pass
+print("Loop finished with pass")</textarea>
+                        <button class="btn-run" onclick="runCode('for-pass','Loop finished with pass')">&#9654;
+                            Run</button>
+                        <button class="btn-reset" onclick="resetCode('for-pass')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-for-pass"></div>
+                        <div class="feedback" id="coding-feedback-for-pass"></div>
+                    </div>
+                </div>
+
+                <!-- ACTIVITY: For Loop Exercises — Open Activity Card -->
+                <div
+                    style="background:linear-gradient(135deg,#7c3aed,#9333ea); border-radius:16px; padding:28px 32px; margin:28px 0; box-shadow:0 6px 24px rgba(124,58,237,0.35);">
+                    <div style="display:flex; align-items:center; gap:14px; margin-bottom:6px;">
+                        <span style="font-size:22px;">🔖</span>
+                        <span
+                            style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#fff;">For
+                            Loop Exercises</span>
+                    </div>
+                    <p style="color:#e9d5ff; font-size:14px; font-weight:600; margin:0 0 20px;">5 interactive exercises
+                    </p>
+                    <button onclick="openFLActivity()"
+                        style="width:100%; background:rgba(255,255,255,0.18); color:#fff; border:none; border-radius:10px; padding:14px; font-size:15px; font-weight:700; cursor:pointer; letter-spacing:0.5px;">Open
+                        Activity</button>
+                </div>
+
+                <!-- CHALLENGE 2.2 -->
+                <div class="practice-card">
+                    <h3><i class="fas fa-laptop-code"></i> Challenge: For Loops</h3>
+                    <span class="task-label">Challenge</span>
+                    <p>Test your understanding of Python for loops.</p>
+                    <p><strong>Instructions</strong> — Inside the editor, complete the following steps:</p>
+                    <ul class="content-list">
+                        <li>Create a list called <code>fruits</code> with: <code>"apple"</code>, <code>"banana"</code>,
+                            <code>"cherry"</code></li>
+                        <li>Write a for loop that prints each item in fruits</li>
+                        <li>Use break to stop the loop when the item is <code>"banana"</code></li>
+                    </ul>
+                    <div class="badge-try-it"><i class="fas fa-terminal"></i> Try It</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-for-challenge" placeholder="# Write your code here..."></textarea>
+                        <button class="btn-run" onclick="runCode('for-challenge','apple\nbanana')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('for-challenge')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-for-challenge"></div>
+                        <div class="feedback" id="coding-feedback-for-challenge"></div>
+                    </div>
+                </div>
+            </div><!-- end lesson-card 2.2 -->
+
+
+            <!-- ══════════════════════════════════════
+             2.3  WHILE LOOPS
+        ══════════════════════════════════════ -->
+            <div class="lesson-card" id="section-23">
+                <div class="section-header">
+                    <h2><i class="fas fa-sync-alt"></i> 2.3 Python While Loops</h2>
+                </div>
+
+                <!-- FOR vs WHILE compare -->
+                <div class="loop-compare">
+                    <div class="loop-card for-loop">
+                        <h4><i class="fas fa-list"></i> For Loop</h4>
+                        <p>Used when you know the number of iterations in advance, or are iterating over a sequence.</p>
+                    </div>
+                    <div class="loop-card while-loop">
+                        <h4><i class="fas fa-infinity"></i> While Loop</h4>
+                        <p>Used when the number of iterations depends on a condition that may change during execution.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="interaction-box blue" style="margin-top:18px;">
+                    <h4><i class="fas fa-sync-alt"></i> The while Loop</h4>
+                    <p>With the while loop we can execute a set of statements as long as a condition is true. The
+                        <code>while</code> loop requires relevant variables to be ready — here we define
+                        <code>i = 1</code> as the indexing variable.</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-while-1" spellcheck="false">i = 1
+while i < 6:
+    print(i)
+    i += 1</textarea>
+                        <button class="btn-run" onclick="runCode('while-1','1')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('while-1')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-while-1"></div>
+                        <div class="feedback" id="coding-feedback-while-1"></div>
+                    </div>
+                    <div class="note-box"><strong>Note:</strong> Remember to increment <code>i</code>, or else the loop
+                        will continue forever.</div>
+                </div>
+
+                <!-- BREAK / CONTINUE / ELSE -->
+                <div class="interaction-box green" id="sub-while-break">
+                    <h4><i class="fas fa-stop-circle"></i> The break Statement</h4>
+                    <p>With the <code>break</code> statement we can stop the loop even if the while condition is still
+                        true:</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-while-break" spellcheck="false">i = 1
+while i < 6:
+    print(i)
+    if i == 3:
+        break
+    i += 1</textarea>
+                        <button class="btn-run" onclick="runCode('while-break','1')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('while-break')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-while-break"></div>
+                        <div class="feedback" id="coding-feedback-while-break"></div>
+                    </div>
+
+                    <h4 style="margin-top:26px;"><i class="fas fa-forward"></i> The continue Statement</h4>
+                    <p>With the <code>continue</code> statement we can stop the current iteration and continue with the
+                        next:</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-while-continue" spellcheck="false">i = 0
+while i < 6:
+    i += 1
+    if i == 3:
+        continue
+    print(i)</textarea>
+                        <button class="btn-run" onclick="runCode('while-continue','1')">&#9654; Run</button>
+                        <button class="btn-reset" onclick="resetCode('while-continue')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-while-continue"></div>
+                        <div class="feedback" id="coding-feedback-while-continue"></div>
+                    </div>
+
+                    <span id="sub-while-else"></span>
+                    <h4 style="margin-top:26px;"><i class="fas fa-flag-checkered"></i> The else Statement</h4>
+                    <p>With the <code>else</code> statement we can run a block of code once when the condition is no
+                        longer true:</p>
+
+                    <div class="badge-try-it"><i class="fas fa-play"></i> Try it out:</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-while-else" spellcheck="false">i = 1
+while i < 6:
+    print(i)
+    i += 1
+else:
+    print("i is no longer less than 6")</textarea>
+                        <button class="btn-run" onclick="runCode('while-else','i is no longer less than 6')">&#9654;
+                            Run</button>
+                        <button class="btn-reset" onclick="resetCode('while-else')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-while-else"></div>
+                        <div class="feedback" id="coding-feedback-while-else"></div>
+                    </div>
+                    <div class="note-box"><strong>Note:</strong> The else block will NOT execute if the loop is stopped
+                        by a <code>break</code> statement.</div>
+                </div>
+
+                <!-- ACTIVITY: While Loop Exercises — Open Activity Card -->
+                <div
+                    style="background:linear-gradient(135deg,#0f766e,#0d9488); border-radius:16px; padding:28px 32px; margin:28px 0; box-shadow:0 6px 24px rgba(13,148,136,0.35);">
+                    <div style="display:flex; align-items:center; gap:14px; margin-bottom:6px;">
+                        <span style="font-size:22px;">🔁</span>
+                        <span
+                            style="font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#fff;">While
+                            Loop Exercises</span>
+                    </div>
+                    <p style="color:#ccfbf1; font-size:14px; font-weight:600; margin:0 0 20px;">5 interactive exercises
+                    </p>
+                    <button onclick="openWLActivity()"
+                        style="width:100%; background:rgba(255,255,255,0.18); color:#fff; border:none; border-radius:10px; padding:14px; font-size:15px; font-weight:700; cursor:pointer; letter-spacing:0.5px;">Open
+                        Activity</button>
+                </div>
+
+                <!-- CHALLENGE 2.3 -->
+                <div class="practice-card">
+                    <h3><i class="fas fa-laptop-code"></i> Challenge: While Loops</h3>
+                    <span class="task-label">Challenge</span>
+                    <p>Test your understanding of Python while loops.</p>
+                    <p><strong>Instructions</strong> — Inside the editor, complete the following steps:</p>
+                    <ul class="content-list">
+                        <li>Create a variable <code>i</code> with the value <code>0</code></li>
+                        <li>Write a while loop that runs as long as i is less than <code>6</code></li>
+                        <li>Inside the loop: increment i by 1</li>
+                        <li>If i equals <code>3</code>, use continue to skip that iteration</li>
+                        <li>Print i</li>
+                    </ul>
+                    <div class="badge-try-it"><i class="fas fa-terminal"></i> Try It</div>
+                    <div class="coding-practice">
+                        <textarea id="coding-ans-while-challenge" placeholder="# Write your code here..."></textarea>
+                        <button class="btn-run" onclick="runCode('while-challenge','1\n2\n4\n5\n6')">&#9654;
+                            Run</button>
+                        <button class="btn-reset" onclick="resetCode('while-challenge')">&#8635; Reset</button>
+                        <div class="terminal-label"><i class="fas fa-terminal"></i> OUTPUT</div>
+                        <div class="live-output-box" id="coding-output-while-challenge"></div>
+                        <div class="feedback" id="coding-feedback-while-challenge"></div>
+                    </div>
+                </div>
+
+            </div><!-- end lesson-card 2.3 -->
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.coding-practice textarea').forEach(function (ta) {
+                ta.style.height = 'auto';
+                ta.style.height = (ta.scrollHeight + 4) + 'px';
+                ta.addEventListener('input', function () {
+                    this.style.height = 'auto';
+                    this.style.height = (this.scrollHeight + 4) + 'px';
+                });
+            });
+
+            // Progress tracking via scroll
+            var sections = [
+                { id: 'section-21', nav: 'nav-21', sub: 'sub-21', chevron: 'chevron-21' },
+                { id: 'section-22', nav: 'nav-22', sub: 'sub-22', chevron: 'chevron-22' },
+                { id: 'section-23', nav: 'nav-23', sub: 'sub-23', chevron: 'chevron-23' }
+            ];
+            var completed = new Set();
+
+            function updateProgress() {
+                var scrollY = window.scrollY + window.innerHeight * 0.6;
+
+                // Recalculate completed fresh each time (so it can decrease on scroll up)
+                completed.clear();
+                sections.forEach(function (s) {
+                    var el = document.getElementById(s.id);
+                    if (el && el.offsetTop + el.offsetHeight * 0.7 < scrollY) {
+                        completed.add(s.id);
+                    }
+                });
+
+                // Update progress bar
+                var pct = Math.round((completed.size / sections.length) * 100);
+                var pctStr = pct + '%';
+                var pb = document.getElementById('sidebar-progress-bar');
+                var pp = document.getElementById('sidebar-progress-pct');
+                if (pb) pb.style.width = pctStr;
+                if (pp) pp.textContent = pctStr;
+
+                // Determine active section based on scroll position
+                var currentSection = sections[0];
+                sections.forEach(function (s) {
+                    var el = document.getElementById(s.id);
+                    if (el && el.offsetTop - 140 <= window.scrollY) {
+                        currentSection = s;
+                    }
+                });
+
+                // Update nav highlighting and sub-topic visibility
+                sections.forEach(function (s) {
+                    var nav = document.getElementById(s.nav);
+                    var sub = document.getElementById(s.sub);
+                    var chev = document.getElementById(s.chevron);
+                    var isActive = currentSection && currentSection.id === s.id;
+                    if (nav) {
+                        if (isActive) {
+                            nav.classList.add('active');
+                        } else {
+                            nav.classList.remove('active');
+                        }
+                    }
+                    if (sub) {
+                        sub.style.display = isActive ? 'block' : 'none';
+                    }
+                    if (chev) {
+                        chev.className = isActive
+                            ? 'fas fa-chevron-down'
+                            : 'fas fa-chevron-right';
+                        chev.style.fontSize = '11px';
+                        chev.style.color = '#94a3b8';
+                        chev.style.marginLeft = 'auto';
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateProgress, { passive: true });
+            updateProgress();
+        });
+
+        function runCodeFree(id) {
+            const prog = document.getElementById('coding-ans-' + id).value;
+            const outputDiv = document.getElementById('coding-output-' + id);
+            outputDiv.innerHTML = '';
+            outputDiv.classList.add('active');
+            function outf(text) { outputDiv.innerText += text; }
+            function builtinRead(x) {
+                if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined)
+                    throw "File not found: '" + x + "'";
+                return Sk.builtinFiles['files'][x];
+            }
+            Sk.configure({ output: outf, read: builtinRead });
+            Sk.misceval.asyncToPromise(() => Sk.importMainWithBody('<stdin>', false, prog, true)).then(function () {
+                // output shown - no pass/fail check for examples
+            }, function (err) {
+                outputDiv.innerText += '\u274C ' + err.toString();
+            });
+        }
+
+        function resetCodeFree(id, originalCode) {
+            const ta = document.getElementById('coding-ans-' + id);
+            const op = document.getElementById('coding-output-' + id);
+            if (ta) ta.value = originalCode;
+            if (op) { op.innerHTML = ''; op.classList.remove('active'); }
+        }
+
+        function runCodeExpectError(id) {
+            const prog = document.getElementById('coding-ans-' + id).value;
+            const outputDiv = document.getElementById('coding-output-' + id);
+            const feedback = document.getElementById('coding-feedback-' + id);
+            outputDiv.innerHTML = '';
+            outputDiv.classList.add('active');
+            function outf(text) { outputDiv.innerText += text; }
+            function builtinRead(x) {
+                if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined)
+                    throw "File not found: '" + x + "'";
+                return Sk.builtinFiles['files'][x];
+            }
+            Sk.configure({ output: outf, read: builtinRead });
+            Sk.misceval.asyncToPromise(() => Sk.importMainWithBody('<stdin>', false, prog, true)).then(function () {
+                // Code ran without error — unexpected for this example
+                if (feedback) { feedback.innerHTML = '&#10007; Expected an error but code ran fine. Try removing the indentation!'; feedback.className = 'feedback wrong'; }
+            }, function (err) {
+                outputDiv.innerText = err.toString();
+                if (feedback) { feedback.innerHTML = '&#10003; Correct! This error is exactly what happens without proper indentation.'; feedback.className = 'feedback correct'; }
+            });
+        }
+
+        function runCode(id, expected) {
+            const prog = document.getElementById('coding-ans-' + id).value;
+            const outputDiv = document.getElementById('coding-output-' + id);
+            const feedback = document.getElementById('coding-feedback-' + id);
+            outputDiv.innerHTML = '';
+            outputDiv.classList.add('active');
+
+            function outf(text) { outputDiv.innerText += text; }
+            function builtinRead(x) {
+                if (Sk.builtinFiles === undefined || Sk.builtinFiles['files'][x] === undefined)
+                    throw "File not found: '" + x + "'";
+                return Sk.builtinFiles['files'][x];
+            }
+            Sk.configure({ output: outf, read: builtinRead });
+            Sk.misceval.asyncToPromise(() => Sk.importMainWithBody('<stdin>', false, prog, true)).then(function () {
+                const cleanOutput = outputDiv.innerText.trim().replace(/\r\n/g, '\n');
+                const cleanExpected = expected.trim().replace(/\r\n/g, '\n');
+                if (cleanOutput.includes(cleanExpected)) {
+                    if (feedback) { feedback.innerHTML = '&#10003; Great job!'; feedback.className = 'feedback correct'; }
+                } else {
+                    if (feedback) { feedback.innerHTML = '&#10007; Output does not match. Check your logic and try again.'; feedback.className = 'feedback wrong'; }
+                }
+            }, function (err) {
+                outputDiv.innerText += '' + err.toString();
+                if (feedback) { feedback.innerHTML = '&#10007; Error in your code!'; feedback.className = 'feedback wrong'; }
+            });
+        }
+
+        function resetCode(id) {
+            const ta = document.getElementById('coding-ans-' + id);
+            const op = document.getElementById('coding-output-' + id);
+            const fb = document.getElementById('coding-feedback-' + id);
+            if (ta) ta.value = '';
+            if (op) { op.innerHTML = ''; op.classList.remove('active'); }
+            if (fb) { fb.style.display = 'none'; fb.className = 'feedback'; }
+        }
+    </script>
+
+    <!-- FOR LOOP ACTIVITY MODAL — placed at body level to avoid transform/stacking context issues -->
+    <div id="fl-overlay"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); z-index:99999; overflow-y:auto;">
+        <div
+            style="margin:40px auto; background:#1a2234; border-radius:20px; padding:32px 28px; width:90%; max-width:580px; box-shadow:0 20px 60px rgba(0,0,0,0.6);">
+
+            <button onclick="closeFLActivity()"
+                style="background:#2d3a4f; color:#94a3b8; border:none; border-radius:9px; padding:9px 18px; font-size:13px; font-weight:700; cursor:pointer; margin-bottom:22px;">←
+                Back to Control</button>
+
+            <h2
+                style="font-family:'Montserrat',sans-serif; font-size:24px; font-weight:800; background:linear-gradient(135deg,#818cf8,#c084fc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:0 0 24px;">
+                Mission: For Loop Exercises</h2>
+
+            <!-- Challenge box -->
+            <div id="fl-challenge-box" style="background:#202c3e; border-radius:14px; padding:24px 20px;">
+                <p id="fl-label"
+                    style="color:#38bdf8; font-size:11px; font-weight:800; letter-spacing:2px; margin-bottom:12px;"></p>
+                <p id="fl-question" style="color:#f1f5f9; font-size:15px; font-weight:500; margin-bottom:18px;"></p>
+                <div id="fl-code-wrap"
+                    style="display:none; background:#131c2b; border-radius:10px; padding:16px 20px; font-family:'Fira Code',monospace; font-size:13.5px; color:#cbd5e1; line-height:2.4; margin-bottom:18px;">
+                </div>
+                <div id="fl-options" style="display:none; flex-direction:column; gap:10px; margin-bottom:20px;"></div>
+                <div id="fl-feedback"
+                    style="display:none; padding:10px 14px; border-radius:8px; font-weight:600; font-size:14px; margin-bottom:14px;">
+                </div>
+                <button onclick="flSubmit()"
+                    style="width:100%; background:linear-gradient(135deg,#4f46e5,#7c3aed); color:#fff; border:none; border-radius:10px; padding:13px; font-size:14px; font-weight:800; letter-spacing:1px; cursor:pointer;">SUBMIT
+                    ANSWER »</button>
+            </div>
+
+            <!-- Completion -->
+            <div id="fl-complete" style="display:none; text-align:center; padding:20px 0;">
+                <p style="font-size:44px; margin-bottom:10px;">🎉</p>
+                <p style="color:#a78bfa; font-size:20px; font-weight:800; font-family:'Montserrat',sans-serif;">All
+                    done! Great work!</p>
+                <p style="color:#94a3b8; font-size:14px; margin-top:6px;">You completed all For Loop Exercises.</p>
+                <button onclick="closeFLActivity()"
+                    style="margin-top:20px; background:#7c3aed; color:#fff; border:none; border-radius:10px; padding:12px 28px; font-weight:700; font-size:14px; cursor:pointer;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var flData = [
+            { type: "fillin", label: "CHALLENGE 1 OF 5", question: "Loop through the items in the fruits list. Fill in the missing line:", lines: [{ text: 'fruits = ["apple", "banana", "cherry"]', blank: false }, { text: '', blank: true }, { text: '    print(x)', blank: false }], answer: "for x in fruits:" },
+            { type: "fillin", label: "CHALLENGE 2 OF 5", question: 'In the loop, when the item value is "banana", jump directly to the next item. Fill in the missing keyword:', lines: [{ text: 'fruits = ["apple", "banana", "cherry"]', blank: false }, { text: 'for x in fruits:', blank: false }, { text: '    if x == "banana":', blank: false }, { text: '        ', blank: true }, { text: '    print(x)', blank: false }], answer: "continue" },
+            { type: "mcq", label: "CHALLENGE 3 OF 5", question: "What does range(6) return?", options: ["Values 1 to 6", "Values 0 to 6", "Values 0 to 5", "Values 1 to 5"], answer: "Values 0 to 5" },
+            { type: "fillin", label: "CHALLENGE 4 OF 5", question: "Use the range function to loop through a code set 6 times. Fill in the blank:", lines: [{ text: 'for x in ', blank: true, suffix: ':' }, { text: '    print(x)', blank: false }], answer: "range(6)" },
+            { type: "mcq", label: "CHALLENGE 5 OF 5", question: "What keyword is used to exit a for loop early?", options: ["exit", "stop", "break", "return"], answer: "break" }
+        ];
+        var flCurrent = 0, flSelected = null;
+
+        function openFLActivity() {
+            flCurrent = 0; flSelected = null;
+            document.getElementById('fl-challenge-box').style.display = 'block';
+            document.getElementById('fl-complete').style.display = 'none';
+            document.getElementById('fl-overlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            flRender();
+        }
+        function closeFLActivity() {
+            document.getElementById('fl-overlay').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        function flRender() {
+            var c = flData[flCurrent];
+            flSelected = null;
+            document.getElementById('fl-label').textContent = c.label;
+            document.getElementById('fl-question').textContent = c.question;
+            document.getElementById('fl-feedback').style.display = 'none';
+            var codeWrap = document.getElementById('fl-code-wrap');
+            var optionsEl = document.getElementById('fl-options');
+            if (c.type === 'fillin') {
+                codeWrap.style.display = 'block';
+                codeWrap.innerHTML = '';
+                c.lines.forEach(function (line) {
+                    var row = document.createElement('div');
+                    row.style.cssText = 'display:flex; align-items:center; min-height:30px;';
+                    if (line.blank) {
+                        if (line.text) { var pre = document.createElement('span'); pre.textContent = line.text; row.appendChild(pre); }
+                        var inp = document.createElement('input');
+                        inp.id = 'fl-inline-input';
+                        inp.type = 'text';
+                        inp.placeholder = '...';
+                        inp.style.cssText = 'background:#2a3a50; color:#f1f5f9; border:1.5px solid #4b5563; border-radius:6px; padding:3px 10px; font-family:"Fira Code",monospace; font-size:13px; width:190px; outline:none; margin:0 4px;';
+                        row.appendChild(inp);
+                        if (line.suffix) { var suf = document.createElement('span'); suf.textContent = line.suffix; row.appendChild(suf); }
+                    } else {
+                        row.textContent = line.text;
+                    }
+                    codeWrap.appendChild(row);
+                });
+                optionsEl.style.display = 'none';
+                optionsEl.innerHTML = '';
+            } else {
+                codeWrap.style.display = 'none';
+                optionsEl.style.display = 'flex';
+                optionsEl.innerHTML = '';
+                c.options.forEach(function (opt) {
+                    var btn = document.createElement('button');
+                    btn.style.cssText = 'background:#131c2b; color:#f1f5f9; border:1.5px solid #374151; border-radius:10px; padding:13px 16px; font-size:14px; cursor:pointer; text-align:left; display:flex; align-items:center; gap:12px;';
+                    var dot = document.createElement('span');
+                    dot.style.cssText = 'width:16px; height:16px; border-radius:50%; background:#2d3a4f; border:2px solid #4b5563; flex-shrink:0;';
+                    var lbl = document.createElement('span');
+                    lbl.textContent = opt;
+                    btn.appendChild(dot); btn.appendChild(lbl);
+                    btn.onclick = function () {
+                        flSelected = opt;
+                        optionsEl.querySelectorAll('button').forEach(function (b) { b.style.borderColor = '#374151'; b.querySelector('span').style.background = '#2d3a4f'; b.querySelector('span').style.borderColor = '#4b5563'; });
+                        btn.style.borderColor = '#7c3aed'; dot.style.background = '#7c3aed'; dot.style.borderColor = '#7c3aed';
+                    };
+                    optionsEl.appendChild(btn);
+                });
+            }
+        }
+        function flSubmit() {
+            var c = flData[flCurrent];
+            var fb = document.getElementById('fl-feedback');
+            var userAnswer = c.type === 'fillin' ? (document.getElementById('fl-inline-input') ? document.getElementById('fl-inline-input').value.trim() : '') : (flSelected || '');
+            if (!userAnswer) { fb.style.cssText = 'display:block;padding:10px 14px;border-radius:8px;font-weight:600;font-size:14px;margin-bottom:14px;background:#1e1b4b;color:#a5b4fc;'; fb.textContent = 'Please enter or select an answer.'; return; }
+            var correct = userAnswer.toLowerCase() === c.answer.toLowerCase();
+            fb.style.cssText = 'display:block;padding:10px 14px;border-radius:8px;font-weight:600;font-size:14px;margin-bottom:14px;background:' + (correct ? '#052e16;color:#4ade80;' : '#450a0a;color:#f87171;');
+            fb.textContent = correct ? '✓ Correct! Well done!' : '✗ Not quite — try again!';
+            if (correct) {
+                setTimeout(function () {
+                    flCurrent++;
+                    if (flCurrent >= flData.length) { document.getElementById('fl-challenge-box').style.display = 'none'; document.getElementById('fl-complete').style.display = 'block'; }
+                    else { flRender(); }
+                }, 900);
+            }
+        }
+    </script>
+
+    <!-- WHILE LOOP ACTIVITY MODAL -->
+    <div id="wl-overlay"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); z-index:99999; overflow-y:auto;">
+        <div
+            style="margin:40px auto; background:#1a2234; border-radius:20px; padding:32px 28px; width:90%; max-width:580px; box-shadow:0 20px 60px rgba(0,0,0,0.6);">
+
+            <button onclick="closeWLActivity()"
+                style="background:#2d3a4f; color:#94a3b8; border:none; border-radius:9px; padding:9px 18px; font-size:13px; font-weight:700; cursor:pointer; margin-bottom:22px;">←
+                Back to Control</button>
+
+            <h2
+                style="font-family:'Montserrat',sans-serif; font-size:24px; font-weight:800; background:linear-gradient(135deg,#2dd4bf,#34d399); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:0 0 24px;">
+                Mission: While Loop Exercises</h2>
+
+            <!-- Challenge box -->
+            <div id="wl-challenge-box" style="background:#202c3e; border-radius:14px; padding:24px 20px;">
+                <p id="wl-label"
+                    style="color:#2dd4bf; font-size:11px; font-weight:800; letter-spacing:2px; margin-bottom:12px;"></p>
+                <p id="wl-question" style="color:#f1f5f9; font-size:15px; font-weight:500; margin-bottom:18px;"></p>
+                <div id="wl-code-wrap"
+                    style="display:none; background:#131c2b; border-radius:10px; padding:16px 20px; font-family:'Fira Code',monospace; font-size:13.5px; color:#cbd5e1; line-height:2.4; margin-bottom:18px;">
+                </div>
+                <div id="wl-options" style="display:none; flex-direction:column; gap:10px; margin-bottom:20px;"></div>
+                <div id="wl-feedback"
+                    style="display:none; padding:10px 14px; border-radius:8px; font-weight:600; font-size:14px; margin-bottom:14px;">
+                </div>
+                <button onclick="wlSubmit()"
+                    style="width:100%; background:linear-gradient(135deg,#0f766e,#0d9488); color:#fff; border:none; border-radius:10px; padding:13px; font-size:14px; font-weight:800; letter-spacing:1px; cursor:pointer;">SUBMIT
+                    ANSWER »</button>
+            </div>
+
+            <!-- Completion -->
+            <div id="wl-complete" style="display:none; text-align:center; padding:20px 0;">
+                <p style="font-size:44px; margin-bottom:10px;">🎉</p>
+                <p style="color:#2dd4bf; font-size:20px; font-weight:800; font-family:'Montserrat',sans-serif;">All
+                    done! Great work!</p>
+                <p style="color:#94a3b8; font-size:14px; margin-top:6px;">You completed all While Loop Exercises.</p>
+                <button onclick="closeWLActivity()"
+                    style="margin-top:20px; background:#0d9488; color:#fff; border:none; border-radius:10px; padding:12px 28px; font-weight:700; font-size:14px; cursor:pointer;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var wlData = [
+            {
+                type: "mcq",
+                label: "CHALLENGE 1 OF 5",
+                question: "Which statement is a correct syntax to break out of a loop?",
+                options: ["end", "return", "break"],
+                answer: "break"
+            },
+            {
+                type: "fillin",
+                label: "CHALLENGE 2 OF 5",
+                question: "Print i as long as i is less than 6. Fill in the missing part:",
+                lines: [
+                    { text: "i = 1", blank: false },
+                    { text: "while i < ", blank: true, suffix: ":" },
+                    { text: "    print(i)", blank: false },
+                    { text: "    i += 1", blank: false }
+                ],
+                answer: "6"
+            },
+            {
+                type: "fillin",
+                label: "CHALLENGE 3 OF 5",
+                question: "Stop the loop if i is 3. Fill in the missing keyword:",
+                lines: [
+                    { text: "i = 1", blank: false },
+                    { text: "while i < 6:", blank: false },
+                    { text: "    if i == 3:", blank: false },
+                    { text: "        ", blank: true },
+                    { text: "    i += 1", blank: false }
+                ],
+                answer: "break"
+            },
+            {
+                type: "fillin",
+                label: "CHALLENGE 4 OF 5",
+                question: "In the loop, when i is 3, jump directly to the next iteration. Fill in the missing keyword:",
+                lines: [
+                    { text: "i = 0", blank: false },
+                    { text: "while i < 6:", blank: false },
+                    { text: "    i += 1", blank: false },
+                    { text: "    if i == 3:", blank: false },
+                    { text: "        ", blank: true },
+                    { text: "    print(i)", blank: false }
+                ],
+                answer: "continue"
+            },
+            {
+                type: "fillin",
+                label: "CHALLENGE 5 OF 5",
+                question: "Print a message once the condition is false. Fill in the missing keyword:",
+                lines: [
+                    { text: "i = 1", blank: false },
+                    { text: "while i < 6:", blank: false },
+                    { text: "    print(i)", blank: false },
+                    { text: "    i += 1", blank: false },
+                    { text: "", blank: true, suffix: ":" },
+                    { text: '    print("i is no longer less than 6")', blank: false }
+                ],
+                answer: "else"
+            }
+        ];
+        var wlCurrent = 0, wlSelected = null;
+
+        function openWLActivity() {
+            wlCurrent = 0; wlSelected = null;
+            document.getElementById('wl-challenge-box').style.display = 'block';
+            document.getElementById('wl-complete').style.display = 'none';
+            document.getElementById('wl-overlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            wlRender();
+        }
+        function closeWLActivity() {
+            document.getElementById('wl-overlay').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        function wlRender() {
+            var c = wlData[wlCurrent];
+            wlSelected = null;
+            document.getElementById('wl-label').textContent = c.label;
+            document.getElementById('wl-question').textContent = c.question;
+            document.getElementById('wl-feedback').style.display = 'none';
+            var codeWrap = document.getElementById('wl-code-wrap');
+            var optionsEl = document.getElementById('wl-options');
+            if (c.type === 'fillin') {
+                codeWrap.style.display = 'block';
+                codeWrap.innerHTML = '';
+                c.lines.forEach(function (line) {
+                    var row = document.createElement('div');
+                    row.style.cssText = 'display:flex; align-items:center; min-height:30px;';
+                    if (line.blank) {
+                        if (line.text) { var pre = document.createElement('span'); pre.textContent = line.text; row.appendChild(pre); }
+                        var inp = document.createElement('input');
+                        inp.id = 'wl-inline-input';
+                        inp.type = 'text';
+                        inp.placeholder = '...';
+                        inp.style.cssText = 'background:#2a3a50; color:#f1f5f9; border:1.5px solid #4b5563; border-radius:6px; padding:3px 10px; font-family:"Fira Code",monospace; font-size:13px; width:190px; outline:none; margin:0 4px;';
+                        row.appendChild(inp);
+                        if (line.suffix) { var suf = document.createElement('span'); suf.textContent = line.suffix; row.appendChild(suf); }
+                    } else {
+                        row.textContent = line.text;
+                    }
+                    codeWrap.appendChild(row);
+                });
+                optionsEl.style.display = 'none';
+                optionsEl.innerHTML = '';
+            } else {
+                codeWrap.style.display = 'none';
+                optionsEl.style.display = 'flex';
+                optionsEl.innerHTML = '';
+                c.options.forEach(function (opt) {
+                    var btn = document.createElement('button');
+                    btn.style.cssText = 'background:#131c2b; color:#f1f5f9; border:1.5px solid #374151; border-radius:10px; padding:13px 16px; font-size:14px; cursor:pointer; text-align:left; display:flex; align-items:center; gap:12px;';
+                    var dot = document.createElement('span');
+                    dot.style.cssText = 'width:16px; height:16px; border-radius:50%; background:#2d3a4f; border:2px solid #4b5563; flex-shrink:0;';
+                    var lbl = document.createElement('span');
+                    lbl.textContent = opt;
+                    btn.appendChild(dot); btn.appendChild(lbl);
+                    btn.onclick = function () {
+                        wlSelected = opt;
+                        optionsEl.querySelectorAll('button').forEach(function (b) { b.style.borderColor = '#374151'; b.querySelector('span').style.background = '#2d3a4f'; b.querySelector('span').style.borderColor = '#4b5563'; });
+                        btn.style.borderColor = '#0d9488'; dot.style.background = '#0d9488'; dot.style.borderColor = '#0d9488';
+                    };
+                    optionsEl.appendChild(btn);
+                });
+            }
+        }
+        function wlSubmit() {
+            var c = wlData[wlCurrent];
+            var fb = document.getElementById('wl-feedback');
+            var userAnswer = c.type === 'fillin' ? (document.getElementById('wl-inline-input') ? document.getElementById('wl-inline-input').value.trim() : '') : (wlSelected || '');
+            if (!userAnswer) { fb.style.cssText = 'display:block;padding:10px 14px;border-radius:8px;font-weight:600;font-size:14px;margin-bottom:14px;background:#1e1b4b;color:#a5b4fc;'; fb.textContent = 'Please enter or select an answer.'; return; }
+            var correct = userAnswer.toLowerCase() === c.answer.toLowerCase();
+            fb.style.cssText = 'display:block;padding:10px 14px;border-radius:8px;font-weight:600;font-size:14px;margin-bottom:14px;background:' + (correct ? '#052e16;color:#4ade80;' : '#450a0a;color:#f87171;');
+            fb.textContent = correct ? '✓ Correct! Well done!' : '✗ Not quite — try again!';
+            if (correct) {
+                setTimeout(function () {
+                    wlCurrent++;
+                    if (wlCurrent >= wlData.length) { document.getElementById('wl-challenge-box').style.display = 'none'; document.getElementById('wl-complete').style.display = 'block'; }
+                    else { wlRender(); }
+                }, 900);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

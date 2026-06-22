@@ -1,0 +1,8 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#f8fafc" rx="12"/>
+    <!-- Outer ring -->
+    <path d="M 50 50 L 50 15 A 35 35 0 1 1 50 85 A 35 35 0 1 1 50 15 Z" fill="none" stroke="#0ea5e9" stroke-width="12"/>
+    <path d="M 50 15 A 35 35 0 0 1 85 50" fill="none" stroke="#38bdf8" stroke-width="12"/>
+    <!-- Inner ring -->
+    <path d="M 50 50 L 50 25 A 25 25 0 1 1 50 75 A 25 25 0 1 1 50 25 Z" fill="none" stroke="#0369a1" stroke-width="8" opacity="0.6"/>
+</svg>

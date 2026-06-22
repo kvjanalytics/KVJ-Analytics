@@ -1,0 +1,7 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#f8fafc" rx="12"/>
+    <!-- Exploded slice -->
+    <path d="M 55 45 L 55 15 A 30 30 0 0 1 85 45 Z" fill="#38bdf8"/>
+    <!-- Remaining pie -->
+    <path d="M 50 50 L 80 50 A 30 30 0 1 1 50 20 Z" fill="#0ea5e9"/>
+</svg>

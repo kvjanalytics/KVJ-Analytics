@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" width="320" height="400">
+  <defs>
+    <linearGradient id="coverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a0522d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6b3410;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="spineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b4513;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#cd853f;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="3" dy="4" stdDeviation="6" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="320" height="400" fill="#f0ebe3" rx="8"/>
+
+  <!-- Book shadow -->
+  <rect x="38" y="22" width="248" height="358" rx="12" fill="rgba(0,0,0,0.18)" filter="url(#shadow)"/>
+
+  <!-- Back cover -->
+  <rect x="35" y="18" width="248" height="358" rx="12" fill="url(#coverGrad)"/>
+
+  <!-- Spine strip -->
+  <rect x="35" y="18" width="28" height="358" rx="0" fill="url(#spineGrad)"/>
+  <rect x="35" y="18" width="28" height="358" rx="12" fill="url(#spineGrad)" clip-path="inset(0 0 0 0 round 12px)"/>
+
+  <!-- Strap / clasp -->
+  <rect x="255" y="170" width="30" height="60" rx="6" fill="#7a3d10"/>
+  <rect x="258" y="190" width="24" height="20" rx="4" fill="#cd853f"/>
+  <circle cx="270" cy="200" r="5" fill="#a0522d"/>
+  <circle cx="270" cy="200" r="2.5" fill="#d4a574"/>
+
+  <!-- White page area -->
+  <rect x="63" y="28" width="208" height="338" rx="4" fill="white"/>
+
+  <!-- Page lines -->
+  <line x1="63" y1="68" x2="271" y2="68" stroke="#e8e8e8" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <rect x="63" y="28" width="208" height="40" rx="4" fill="#f8f8f8"/>
+  <text x="167" y="53" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#2c2c2c" text-anchor="middle" letter-spacing="1.5">CONTACT BOOK</text>
+  <line x1="80" y1="68" x2="254" y2="68" stroke="#cccccc" stroke-width="1.5"/>
+
+  <!-- ── Contact 1: Anoop ── -->
+  <!-- Card background -->
+  <rect x="72" y="76" width="190" height="72" rx="8" fill="#f7f9fc" stroke="#e0e8f0" stroke-width="1"/>
+  <!-- Avatar circle -->
+  <rect x="82" y="86" width="44" height="52" rx="6" fill="#e8eef5" stroke="#d0dce8" stroke-width="1"/>
+  <!-- Person icon -->
+  <circle cx="104" cy="103" r="10" fill="#8fa8c8"/>
+  <ellipse cx="104" cy="126" rx="14" ry="10" fill="#8fa8c8"/>
+  <!-- Name -->
+  <text x="136" y="98" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1a1a2e">Name : Anoop</text>
+  <text x="136" y="114" font-family="Arial, sans-serif" font-size="9.5" fill="#444">Phone : 9876543210</text>
+  <text x="136" y="130" font-family="Arial, sans-serif" font-size="9.5" fill="#444">Email :  anoop@gmail.com</text>
+
+  <!-- Divider -->
+  <line x1="80" y1="155" x2="255" y2="155" stroke="#e8e8e8" stroke-width="1"/>
+
+  <!-- ── Contact 2: Riya ── -->
+  <rect x="72" y="162" width="190" height="72" rx="8" fill="#f7f9fc" stroke="#e0e8f0" stroke-width="1"/>
+  <!-- Avatar -->
+  <rect x="82" y="172" width="44" height="52" rx="6" fill="#e8eef5" stroke="#d0dce8" stroke-width="1"/>
+  <circle cx="104" cy="189" r="10" fill="#8fa8c8"/>
+  <ellipse cx="104" cy="212" rx="14" ry="10" fill="#8fa8c8"/>
+  <!-- Details -->
+  <text x="136" y="184" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1a1a2e">Name : Riya</text>
+  <text x="136" y="200" font-family="Arial, sans-serif" font-size="9.5" fill="#444">Phone : 9123456780</text>
+  <text x="136" y="216" font-family="Arial, sans-serif" font-size="9.5" fill="#444">Email :  riya@gmail.com</text>
+
+  <!-- Divider -->
+  <line x1="80" y1="241" x2="255" y2="241" stroke="#e8e8e8" stroke-width="1"/>
+
+  <!-- ── Contact 3: Kiran ── -->
+  <rect x="72" y="248" width="190" height="72" rx="8" fill="#f7f9fc" stroke="#e0e8f0" stroke-width="1"/>
+  <!-- Avatar -->
+  <rect x="82" y="258" width="44" height="52" rx="6" fill="#e8eef5" stroke="#d0dce8" stroke-width="1"/>
+  <circle cx="104" cy="275" r="10" fill="#8fa8c8"/>
+  <ellipse cx="104" cy="298" rx="14" ry="10" fill="#8fa8c8"/>
+  <!-- Details -->
+  <text x="136" y="270" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1a1a2e">Name : Kiran</text>
+  <text x="136" y="286" font-family="Arial, sans-serif" font-size="9.5" fill="#444">Phone : 9988776655</text>
+  <text x="136" y="302" font-family="Arial, sans-serif" font-size="9.5" fill="#444">Email :  kiran@gmail.com</text>
+
+  <!-- Bottom page detail -->
+  <line x1="80" y1="330" x2="255" y2="330" stroke="#eeeeee" stroke-width="1"/>
+  <line x1="80" y1="344" x2="255" y2="344" stroke="#eeeeee" stroke-width="1"/>
+  <line x1="80" y1="358" x2="255" y2="358" stroke="#eeeeee" stroke-width="1"/>
+</svg>
