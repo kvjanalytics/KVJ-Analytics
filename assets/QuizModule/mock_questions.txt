@@ -1,0 +1,39 @@
+1. You need to create a data view based on aggregations for further visual analysis. Your data includes sales information for the past five years for food products at your company’s stores. Each product belongs to one category. For example milk belongs to dairy category. The data view must meet the following requirements: • Include all products and their associated categories • Include sales sub-total for each category and year • Display grand total of sales for each category • Create a summary of each category for every year Which two aggregation methods should you use to create the data view? (Choose 2) Note: You will receive partial credit for each correct selection.
+2. Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x-axis and corresponding frequencies on the Y-axis?
+3. What is the direction of correlation between variable X and variable Y based on the scatter plot below?
+4. You are analyzing sales activity that occurs on national holidays. What level of data granularity will enable you to perform the most precise analysis?
+5. You work for a recreational sports company. The table shows the company's recreational vehicle sales. You need to show how each vehicle type contributes to the company's total sales. Which visualization should you use? Select the correct visualization in the answer area.
+6. What concept allows analysts to drill down into data and examine different levels of information that may be crucial in diagnostic analytics?
+7. Person A has 5 coins and person B has 10 coins. Which type of data does the number of coins represent?
+8. You are using data analytics to help answer business questions about a new product your company released. Move each type of data analytics from the list on the left to the correct question on the right. Note: You will receive partial credit for each correct match.
+9. An analyst claims the visualization implies that Variable X causes Variable Y. Is the analyst correct in this assertion?
+10. What is a raw data?
+11. Which Statement correctly assigns a string to the variable that is name score?
+12. Which correlation range most likely describes the relationship between Variable X and Variable Y based on the plot provided?
+13. What is an example of data cleaning? 1 point
+14. From the data in the table below, you create a pivot table to show the combined number of certified virtual and in-person teachers for each class at each school. Move the appropriate labels from the list on the left to the correct locations in the Pivot tables on the right. You may use each label once or not at all.
+15. The visualization and the data table depict housing prices in a region. For each statement about the visualization, select True or False. Note: You will receive partial credit for each correct selection.
+16. Which data type can store a phrase or sentence?
+17. Move each function from the list on the left to the correct description on the right. Note: You will receive partial credit for each correct match.
+18. Which two concepts are commonly associated with artificial intelligence (AI) in data analytics? Note: You will receive partial credit for each correct selection. (Choose 2.)
+19. You conduct a study to identify how much people exercise daily. You recruit all the study participants at the gyms. Which type of bias are you demonstrating?
+20. Each month you need to automatically transform the data from two XML documents into a single flat file with columns and rows that Excel can open and interpret. The document names and structure remain constant. You know the relationship between the two XML documents. Which two resources can you use? (Choose 2) Note: You will receive partial credit for each correct selection.
+21. You have a dataset that includes product review scores and demographic information about the reviewers. There are no subcategories associated with the demographic answers. The table shows a selection of the data. Which Scenario is an example of disaggregating the dataset?
+22. For each statement about the machine learning select True or False. Note: You will receive partial credit for each correct selection.
+23. You are reviewing a database of restaurant menu items. The table below shows a selection of the data. You need to display only items on the dessert menu with a type of cake. What should you do to nondestructively limit the data display?
+24. You have a comma-delimited file with 100,000 rows and 200 columns of phone sales data. One column represents the Phone manufacturer. You need to analyze all sales data for a specific manufacturer. Which technique should you use?
+25. You Believe Playing video game's increases the chance of man getting heart attack. In your research you notice equal evidences in favouring your hypothesis and opposed to it. You tried hours trying to identify the problems with the evidence opposed to your hypothesis, but readily accept the evidence in favor. Which type of bias are you demonstrating?
+26. You want to show a friend your monthly budget breakdown to prove that most of your expenditure is food costs. You create a table that shows the flow of money as it moves one budget category to the next. Which visualization type should you use to display your analysis based on the table shown?
+27. Your company has summarized a large data set for the region you live in. You need to compare results from urban and rural communities within your region. What is the fastest way to obtain the information?
+28. Data Disaggregation: For each statement about data disaggregation, select True or False. Note: You will receive partial credit for each correct selection.
+29. For which two reasons is it risky to make generalizations from limited sample data? Note: You will receive partial credit for each correct selection. (Choose 2.)
+30. What data structure describes the following data? [“Aabid”, “Jesenia”, “Mark”]
+31. The Marketing team wants to know which market segment have the highest sales in the last year. Which type of data analysis should they use?
+32. In which scenario will artificial intelligence (AI) provide the greatest benefit?
+33. You run a t-test with alpha value of 5% (a= 0.05) in order to test an alternative hypothesis (H1). You finish the analysis and discover the P-value is 0.017. What can you conclude about the null hypothesis (H0)?
+34. What is the goal of data privacy and protection laws such as GDPR, FERPA, and HIPAA?
+35. You have a small dataset that contains personally identifiable information (PII). You need to provide the data to an outside source for additional processing. What could you do to protect the PII but still allow you to eventually relate the additional analysis to your original data?
+36. A college shows you the chart below to indicate that group A has performed significantly better than group B on a recent assignment. You don't know the sample size and the result of the statistical testing. Which chart element creates the impression of a significant score difference?
+37. Which Data structure have multiple rows and columns?
+38. A coworker is having trouble joining two database tables, Table A and Table B, that were imported from CSV files. They say the tables have no common values. You troubleshoot the problem and find that the RowKey values in TableA and the RowID values in TableB look identical (e.g., three numbers, a dash, and two letters). Which two actions should you complete next? (Choose 2) Note: You will receive partial credit for each correct selection.
+39. A popular social media site records and counts clicks, likes, and dislikes and other user interactions. What type of data is collected?

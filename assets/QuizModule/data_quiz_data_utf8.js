@@ -823,10 +823,10 @@ var dataQuizData = {
             "type": "MCQ",
             "q": "Which visualization type is commonly used to display the distribution of a continuous variable, with variable values on the x axis and corresponding frequencies on the Y axis?<br>Select the correct visualization type in the answer area. (1 Mark)",
             "options": [
-                "Option A",
-                "Option B",
-                "Option C",
-                "Option D"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
             "optionImages": [
                 "v3_q1_optA.png",
@@ -1017,10 +1017,10 @@ var dataQuizData = {
                 "v3_q13_opt4.png"
             ],
             "options": [
-                "Option 1",
-                "Option 2",
-                "Option 3",
-                "Option 4"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
             "a": 2
         },
@@ -2368,10 +2368,10 @@ var dataQuizData = {
             "type": "MCQ",
             "q": "Which visualization type is commonly used to display the distribution of a continuous variable. with variable values on the x-axis and corresponding frequencies on the y-axis? Select the correct visualization type in the answer area.<br><span style='font-size: 13px; color: #64748b;'>1 point</span>",
             "options": [
-                "Option 1",
-                "Option 2",
-                "Option 3",
-                "Option 4"
+                "Option A: Column Chart",
+                "Option B: Bar Chart",
+                "Option C: Histogram",
+                "Option D: Line Chart"
             ],
             "optionImages": [
                 "dist_column_chart.png",

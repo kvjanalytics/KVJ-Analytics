@@ -410,16 +410,26 @@
         function shuffleQuestionOptions(q) {
             // Shuffle MCQ with a single correct index answer
             if (q.type === 'MCQ' && Array.isArray(q.options) && typeof q.a === 'number') {
-                const correctText = q.options[q.a];
+                const originalCorrectIndex = q.a;
                 
                 // Pair options with images if images exist
                 const hasImages = Array.isArray(q.optionImages) && q.optionImages.length === q.options.length;
                 const pairs = q.options.map((opt, i) => ({
                     text: opt,
-                    img: hasImages ? q.optionImages[i] : null
+                    img: hasImages ? q.optionImages[i] : null,
+                    originalIndex: i
                 }));
 
                 shuffleArray(pairs);
+
+                // Relabel placeholders like "Option 1" or "Option A: Bar Chart"
+                pairs.forEach((p, index) => {
+                    const match = p.text.match(/^Option\s+[A-D1-4][:\-\s]*(.*)$/i);
+                    if (match) {
+                        const restOfText = match[1].trim();
+                        p.text = restOfText ? `Option ${String.fromCharCode(65 + index)}: ${restOfText}` : `Option ${String.fromCharCode(65 + index)}`;
+                    }
+                });
 
                 // Extract back to options and optionImages
                 q.options = pairs.map(p => p.text);
@@ -427,15 +437,36 @@
                     q.optionImages = pairs.map(p => p.img);
                 }
                 
-                q.a = q.options.indexOf(correctText);
+                q.a = pairs.findIndex(p => p.originalIndex === originalCorrectIndex);
             }
             // Shuffle MCQ2/MCQ3 where answer is an array of indices
             if ((q.type === 'MCQ2' || q.type === 'MCQ3') && Array.isArray(q.options) && Array.isArray(q.a)) {
-                // Save the correct option texts before shuffling
-                const correctTexts = q.a.map(idx => q.options[idx]);
-                shuffleArray(q.options);
-                // Remap the answer indices to the new positions
-                q.a = correctTexts.map(text => q.options.indexOf(text));
+                const originalCorrectIndices = [...q.a];
+                
+                const hasImages = Array.isArray(q.optionImages) && q.optionImages.length === q.options.length;
+                const pairs = q.options.map((opt, i) => ({
+                    text: opt,
+                    img: hasImages ? q.optionImages[i] : null,
+                    originalIndex: i
+                }));
+
+                shuffleArray(pairs);
+
+                // Relabel placeholders
+                pairs.forEach((p, index) => {
+                    const match = p.text.match(/^Option\s+[A-D1-4][:\-\s]*(.*)$/i);
+                    if (match) {
+                        const restOfText = match[1].trim();
+                        p.text = restOfText ? `Option ${String.fromCharCode(65 + index)}: ${restOfText}` : `Option ${String.fromCharCode(65 + index)}`;
+                    }
+                });
+
+                q.options = pairs.map(p => p.text);
+                if (hasImages) {
+                    q.optionImages = pairs.map(p => p.img);
+                }
+                
+                q.a = originalCorrectIndices.map(origIdx => pairs.findIndex(p => p.originalIndex === origIdx));
             }
             // TF with array answers: keep statement-answer pairs together
             if (q.type === 'TF' && Array.isArray(q.options) && Array.isArray(q.a) && q.options.length === q.a.length) {
@@ -451,7 +482,7 @@
         // Shuffle questions for ALL datasets (modules and mocks)
         if (questions.length > 0) {
             shuffleArray(questions);
-            questions.forEach(q => shuffleQuestionOptions(q));
+            // questions.forEach(q => shuffleQuestionOptions(q)); // Option shuffling disabled per user request
         }
 
         // Fallback removed so empty mock tests stay empty
